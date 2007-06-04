@@ -1,0 +1,8 @@
+statusbarpanel#grwatcher_panel_icon
+{
+  list-style-image: url("chrome://grwatcher/content/images/googlereader_grey.png");
+}
+statusbarpanel#grwatcher_panel_icon[status="new_feed"]
+{
+  list-style-image: url("chrome://grwatcher/content/images/googlereader.png");
+}

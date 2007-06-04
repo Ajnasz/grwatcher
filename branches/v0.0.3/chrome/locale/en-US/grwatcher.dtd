@@ -1,0 +1,32 @@
+<!ENTITY GRWstatusbar.popup.openReader "Open Google Reader">
+<!ENTITY GRWstatusbar.popup.getReadCounter 'Check for unread feeds'>
+<!ENTITY GRWstatusbar.popup.openPrefs "Preferences">
+
+<!ENTITY GRWpreferences.title "Google Reader Checker Preferences">
+<!ENTITY GRWpreferences.checkfrequency "Check for new feeds every">
+<!ENTITY GRWpreferences.checkfrequency.unit "minute(s)">
+<!ENTITY GRWpreferences.openinnewtab "Open in new tab">
+<!ENTITY GRWpreferences.generalpreferencescaption "General preferences">
+<!ENTITY GRWpreferences.tooltippreferencescaption "Tooltip preferences">
+<!ENTITY GRWpreferences.tabgeneral "General">
+<!ENTITY GRWpreferences.tabtooltip "Tooltip">
+<!ENTITY GRWpreferences.openinnewtabdesc "Set to open Google Reader in a new or current tab (Default is new tab)">
+<!ENTITY GRWpreferences.resetcounterdesc "Resets the statusbar counter when the Google Reader window opens">
+<!ENTITY GRWpreferences.checkfrequencydesc "(Requires restart)">
+<!ENTITY GRWpreferences.resetcounter "Resets counter">
+
+<!ENTITY GRWpreferences.tooltipcounterposleft "Left">
+<!ENTITY GRWpreferences.tooltipcounterposright "Right">
+<!ENTITY GRWpreferences.tooltipcounterposdesc "The position of the counter in the tooltip:">
+<!ENTITY GRWpreferences.tooltipdesc "These options will take effect after a feed check.">
+<!ENTITY GRWpreferences.tooltiptitlelengthdesc "Sets the Feed title's character number in the tooltip">
+
+<!ENTITY GRWpreferences.tabaccountinfo "Account information">
+<!ENTITY GRWpreferences.accountinfocaption "Google account information">
+<!ENTITY GRWpreferences.accountinfodesc "Specify your Google account e-mail and password">
+<!ENTITY GRWpreferences.accountinfoemail "Email address:">
+<!ENTITY GRWpreferences.accountinfopassword "Password:">
+
+<!ENTITY GRWtooltip.nonewfeed "You haven't got any unread feeds">
+<!ENTITY GRWtooltip.errorfeedfetch "Error fetching feeds! Are you logged in?">
+<!ENTITY GRWtooltip.newfeed "You have unread feeds">
