@@ -1,0 +1,105 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://global/skin/global.css" type="text/css"?>
+
+<!DOCTYPE window SYSTEM "chrome://grwatcher/locale/grwatcher.dtd">
+
+<prefwindow
+  id="grprefs"
+  title="&GRWpreferences.title;"
+  buttons="accept,cancel"
+  onclose="opener.startInterval();"
+  xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+  <script type="application/x-javascript" src="chrome://grwatcher/content/grwatcher.js" />
+  <script type="application/x-javascript">
+  <![CDATA[
+    window.addEventListener('load', GRPrefs.init, false);
+  ]]>
+  </script>
+  <prefpane id="GRW-prefs-prefpane">
+
+    <preferences>
+      <preference id="GRW-checkfreq" name="extensions.grwatcher.checkfreq" type="int" />
+      <preference id="GRW-openinnewtab" name="extensions.grwatcher.openinnewtab" type="bool" />
+      <preference id="GRW-resetcounter" name="extensions.grwatcher.resetcounter" type="bool" />
+      <preference id="GRW-tooltipcounterpos" name="extensions.grwatcher.tooltipcounterpos" type="string" />
+      <preference id="GRW-tooltiptitlelength" name="extensions.grwatcher.tooltiptitlelength" type="int" />
+      <preference id="GRW-rememberlogin" name="extensions.grwatcher.rememberLogin" type="bool" />
+      <!-- <preference id="GRW-account-email" name="extensions.grwatcher.email" type="string" /> -->
+    </preferences>
+    <tabbox id="GRW-preferences-tabbox">
+      <tabs>
+        <tab label="&GRWpreferences.tabgeneral;" />
+        <tab label="&GRWpreferences.tabtooltip;" />
+        <tab label="&GRWpreferences.tabaccountinfo;" />
+      </tabs>
+      <tabpanels>
+        <tabpanel>
+          <groupbox flex="1">
+            <caption label="&GRWpreferences.generalpreferencescaption;" />
+
+            <hbox align="center">
+              <label control="GRW-checkfreq-field" value="&GRWpreferences.checkfrequency;" />
+              <textbox id="GRW-checkfreq-field" preference="GRW-checkfreq" size="2" cols="2" />
+              <label control="GRW-checkfreq-field" value="&GRWpreferences.checkfrequency.unit;" />
+              <description>&GRWpreferences.checkfrequencydesc;</description>
+            </hbox>
+
+            <vbox>
+              <checkbox id="GRW-openinnewtab-field" preference="GRW-openinnewtab" label="&GRWpreferences.openinnewtab;" />
+              <description>&GRWpreferences.openinnewtabdesc;</description>
+              <checkbox id="GRW-resetcounter-field" preference="GRW-resetcounter" label="&GRWpreferences.resetcounter;" />
+              <description>&GRWpreferences.resetcounterdesc;</description>
+            </vbox>
+
+          </groupbox>
+        </tabpanel>
+        <tabpanel>
+          <groupbox flex="1">
+            <caption label="&GRWpreferences.tooltippreferencescaption;" />
+
+            <description class="header">&GRWpreferences.tooltipdesc;</description>
+            <hbox align="center">
+              <label control="GRW-tooltiptitlelength-field" value="&GRWpreferences.tooltiptitlelengthdesc;" />
+              <textbox id="GRW-tooltiptitlelength-field" preference="GRW-tooltiptitlelength" size="2" cols="2" />
+            </hbox>
+
+            <description>&GRWpreferences.tooltipcounterposdesc;</description>
+
+            <radiogroup preference="GRW-tooltipcounterpos">
+              <radio label="&GRWpreferences.tooltipcounterposleft;" value="left" selected="true" />
+              <radio label="&GRWpreferences.tooltipcounterposright;" value="right" />
+            </radiogroup>
+
+          </groupbox>
+        </tabpanel>
+        <tabpanel>
+          <groupbox flex="1">
+
+            <caption label="&GRWpreferences.accountinfocaption;" />
+            <description class="header">&GRWpreferences.accountinfodesc;</description>
+
+            <grid align="center">
+              <columns>
+                <column />
+                <column />
+              </columns>
+              <rows>
+                <row align="center">
+                  <label control="GRW-accountmanage-email" value="&GRWpreferences.accountinfoemail;" />
+                  <textbox id="GRW-accountmanage-email" onchange="passManager.setUser(this.value, document.getElementById('GRW-accountmanage-pass').value)" maxlength="100" />
+                </row>
+                <row align="center">
+                  <label control="GRW-accountmanage-pass" value="&GRWpreferences.accountinfopassword;" />
+                  <textbox id="GRW-accountmanage-pass" onchange="passManager.setUser(document.getElementById('GRW-accountmanage-email').value, this.value)" type="password" maxlength="50" />
+                </row>
+                <row>
+                  <checkbox id="GRW-rememberLogin-field" preference="GRW-rememberlogin" label="&GRWpreferences.accountinfo.rememberLogin;" />
+                </row>
+              </rows>
+            </grid>
+          </groupbox>
+        </tabpanel>
+      </tabpanels>
+    </tabbox>
+  </prefpane>
+</prefwindow>
