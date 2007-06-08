@@ -5,7 +5,7 @@
 // mozilla preferences component service
 var prefManager = Components.classes["@mozilla.org/preferences-service;1"].getService(Components.interfaces.nsIPrefBranch);
 // user agent for Google Reader Watcher
-var GRWUserAgent = 'Google Reader Watcher 0.0.5a';
+var GRWUserAgent = 'Google Reader Watcher 0.0.5a2';
 /**
  * @param {String} message log on the javascript console
  */
@@ -25,7 +25,7 @@ passManager = {
   passwordManagerInternal: Components.classes["@mozilla.org/passwordmanager;1"].createInstance(Components.interfaces.nsIPasswordManagerInternal),
   // mozilla nsi password manager component
   passwordManager: Components.classes["@mozilla.org/passwordmanager;1"].createInstance(Components.interfaces.nsIPasswordManager),
-  url: "chrome://grwatcher/",
+  url: "https://www.google.com",
 
   /**
    * @param {String} username
