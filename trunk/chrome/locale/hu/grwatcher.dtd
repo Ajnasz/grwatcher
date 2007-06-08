@@ -29,6 +29,11 @@
 <!ENTITY GRWpreferences.accountinfopassword "Jelszó:">
 <!ENTITY GRWpreferences.accountinfo.rememberLogin "Bejelentkezés megjegyzése">
 
+<!ENTITY GRWpreferences.leftclickopen.description "Google Reader megnyitása az ikonra kattintáskor">
+<!ENTITY GRWpreferences.leftclickopen.singleclick "Kattintás">
+<!ENTITY GRWpreferences.leftclickopen.dblclick "Dupla kattintás">
+<!ENTITY GRWpreferences.leftclickopen.disabled "Tiltva">
+
 <!ENTITY GRWtooltip.nonewfeed "Nincs olvastlan feeded!">
 <!ENTITY GRWtooltip.errorfeedfetch "Hiba a feed lekérdezésekkor! Be vagy jelentkezve?">
 <!ENTITY GRWtooltip.newfeed "Olvasatlan feeded van!">

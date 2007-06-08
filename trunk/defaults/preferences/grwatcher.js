@@ -8,3 +8,5 @@ pref("extensions.grwatcher.tooltiptitlelength", 23);
 pref("extensions.grwatcher.email", '');
 pref("extensions.grwatcher.sid", '');
 pref("extensions.grwatcher.rememberLogin", false);
+
+pref("extensions.grwatcher.leftClickOpen", 1);

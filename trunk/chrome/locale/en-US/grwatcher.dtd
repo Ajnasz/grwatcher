@@ -28,6 +28,11 @@
 <!ENTITY GRWpreferences.accountinfopassword "Password:">
 <!ENTITY GRWpreferences.accountinfo.rememberLogin "Remember login">
 
+<!ENTITY GRWpreferences.leftclickopen.description "Open Google Reader when you click on the icon">
+<!ENTITY GRWpreferences.leftclickopen.singleclick "Single click">
+<!ENTITY GRWpreferences.leftclickopen.dblclick "Double click">
+<!ENTITY GRWpreferences.leftclickopen.disabled "Disabled">
+
 <!ENTITY GRWtooltip.nonewfeed "You haven't got any unread feeds">
 <!ENTITY GRWtooltip.errorfeedfetch "Error fetching feeds! Are you logged in?">
 <!ENTITY GRWtooltip.newfeed "You have unread feeds">

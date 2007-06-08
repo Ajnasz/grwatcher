@@ -5,7 +5,7 @@
 // mozilla preferences component service
 var prefManager = Components.classes["@mozilla.org/preferences-service;1"].getService(Components.interfaces.nsIPrefBranch);
 // user agent for Google Reader Watcher
-var GRWUserAgent = 'Google Reader Watcher 0.0.4';
+var GRWUserAgent = 'Google Reader Watcher 0.0.5a';
 /**
  * @param {String} message log on the javascript console
  */
@@ -35,12 +35,12 @@ passManager = {
   {
     var url = this.url
     try
-		{
-	    this.passwordManager.removeUser( url, username );
+    {
+      this.passwordManager.removeUser( url, username );
     }
     catch(error){}
     try
-		{
+    {
       this.passwordManagerInternal.addUserFull( url, username, password, "", "" );
     }
     catch(error){}
@@ -49,28 +49,28 @@ passManager = {
   getPassword: function()
   {
     var url = this.url;
-	  var host = {value:""};
-	  var user =  {value:""};
-	  var password = {value:""};
+    var host = {value:""};
+    var user =  {value:""};
+    var password = {value:""};
     try
-		{
-	    this.passwordManagerInternal.findPasswordEntry( url, "", "", host, user, password );
-	  }
-		catch(error){}
+    {
+      this.passwordManagerInternal.findPasswordEntry( url, "", "", host, user, password );
+    }
+    catch(error){}
     return password.value;
   },
 
   getUserName: function()
   {
     var url = this.url;
-	  var host = {value:""};
-	  var user =  {value:""};
-	  var password = {value:""};
+    var host = {value:""};
+    var user =  {value:""};
+    var password = {value:""};
     try
-		{
-	    this.passwordManagerInternal.findPasswordEntry( url, "", "", host, user, password );
-	  }
-		catch(error){}
+    {
+      this.passwordManagerInternal.findPasswordEntry( url, "", "", host, user, password );
+    }
+    catch(error){}
     return user.value;
   }
 }
@@ -91,21 +91,21 @@ accountManager = {
    */
   getCurrentSID: function()
   {
-		var enumerator = this.CookieManager.enumerator;
-		while (enumerator.hasMoreElements())
-		{
-			var cookie = enumerator.getNext();
-			if (cookie instanceof Components.interfaces.nsICookie)
-			{
+    var enumerator = this.CookieManager.enumerator;
+    while (enumerator.hasMoreElements())
+    {
+      var cookie = enumerator.getNext();
+      if (cookie instanceof Components.interfaces.nsICookie)
+      {
         if (cookie.host.match("google.com"))
-				{
-					if(cookie.name == 'SID')
-					{
-						return cookie.value;
-					}
-				}
-			}
-		}
+        {
+          if(cookie.name == 'SID')
+          {
+            return cookie.value;
+          }
+        }
+      }
+    }
     return false;
   },
   /**
@@ -128,7 +128,7 @@ accountManager = {
       req.setRequestHeader('User-Agent', GRWUserAgent);
       req.setRequestHeader('Accept-Charset','utf-8');
       req.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
-			req.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+      req.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
       req.onreadystatechange = function(aEvt)
       {
         if(req.readyState == 4)
@@ -331,64 +331,6 @@ var hideCounter = function()
     label.style.width = '0';
     label.collapsed = true;
 };
-
-
-// Ajax = {
-//   response: null,
-//   error: false,
-//   initialize: function(){},
-//   handler: function() {
-//     if(this.error === false)
-//     {
-//       if(this.response !== null && this.response.indexOf('Redirecting', 0) != -1)
-//       {
-//         prefManager.setCharPref('extensions.grwatcher.sid', accountManager.getCurrentSID());
-//         getReadCounter();
-//       }
-//     }
-//     else
-//     {
-//       Log.log('error: '+this.error.code+' '+this.error.text);
-//       return false;
-//     }
-//   },
-// 
-//   Request: function(url, param, method)
-//   {
-//     var req = new XMLHttpRequest();
-//     req.open(method, url, true);
-//     req.onreadystatechange = function(aEvt)
-//     {
-//       Ajax.handleResp(req)
-//     }
-//     req.setRequestHeader('User-Agent', GRWUserAgent);
-//     req.setRequestHeader('Accept-Charset','utf-8');
-//     req.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
-//     if (method.toLowerCase() == 'post')
-// 		{
-// 			req.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
-// 		}
-//     req.send(param);
-//   },
-// 
-//   handleResp: function(resp, callback)
-//   {
-//     if(resp.readyState == 4)
-//     {
-//       if(resp.status == 200)
-//       {
-//         this.response = resp.responseText;
-//       }
-//       else
-//       {
-//         this.error = {code: resp.status, text: resp.statusText}
-//         this.response = false;
-//       }
-//     }
-//     this.handler();
-//   }
-// };
-
 /**
  * request for unreaded feeds
  */
@@ -416,7 +358,6 @@ var getReadCounter = function()
   }
   req.send(null);
 };
-
 /**
  *
  * @param {Object} prReq Counter reqest object
@@ -470,7 +411,6 @@ var countUnread = function(r)
   }
   return unrcount;
 };
-
 /**
  *
  * @param {Object} req ajax response object
@@ -582,8 +522,7 @@ showNotification = function(label, value)
      * Notifier for Windows
      */
     var alertsService = Components.classes["@mozilla.org/alerts-service;1"].getService(Components.interfaces.nsIAlertsService);
-    alertsService.showAlertNotification(image , label, value,
-                                    true, "", openReaderNotify);
+    alertsService.showAlertNotification(image , label, value, true, "", openReaderNotify);
   }
   catch(e)
   {
@@ -614,10 +553,22 @@ var genStatusGrid = function(feeds)
   {
     tt.removeChild(tt.firstChild)
   }
-  var titlelength = GRPrefs.tooltiptitlelength();
-  titlelength = (titlelength > 5) ? titlelength : false;
-  var grid = document.createElement('grid'), columns = document.createElement('columns'), column = document.createElement('column'), rows = document.createElement('rows'), row = document.createElement('row'), label = document.createElement('label');
+  // Create grid elements
+  var grid = document.createElement('grid');
+  var columns = document.createElement('columns');
+  var column = document.createElement('column');
+  var rows = document.createElement('rows');
+  var row = document.createElement('row');
+  var label = document.createElement('label');
   var columnc1, columnc2, rowc, labelc1, labelc2;
+
+  // configure the length of the title
+  var titlelength = GRPrefs.tooltiptitlelength();
+  if(titlelength == 0) {
+    titlelength = false;
+  }
+  titlelength = (titlelength > 5) ? titlelength : 5;
+
   grid.flex = 1;
   grid.id = 'GRW-statusbar-tooltip-grid';
   columnc1 = column.cloneNode(true);
@@ -636,7 +587,7 @@ var genStatusGrid = function(feeds)
       {
         o.Title = o.Title.slice(0, titlelength-3)+'...'
       }
-
+      // set up the counter position
       if(GRPrefs.tooltipcounterpos() == 'left')
       {
         labelc1.value = o.Count;
@@ -719,25 +670,13 @@ var GRPrefs = {
   rememberLogin: function()
   {
     return prefManager.getBoolPref('extensions.grwatcher.rememberLogin');
+  },
+  leftClickOpen: function()
+  {
+    return prefManager.getIntPref('extensions.grwatcher.leftClickOpen');
   }
 };
 /**
- * TODO remove
- * @param {Object} value
- */
-// Array.prototype.inArray = function(value)
-// {
-//   var a = this, al = a.length, i = 0;
-//   for(i = 0; i < al; i++)
-//   {
-//     if(a[i] === value)
-//     {
-//       return true;
-//     }
-//   }
-//   return false;
-// };
- /**
  *
  */
 GoogleIt = function()
@@ -757,28 +696,59 @@ GoogleIt = function()
     GRCheck.switchErrorIcon();
     return false;
   }
-  /*
-  else
+};
+/**
+ * @var {Object} event
+ */
+var statusClickHandling =
+{
+  status: null,
+  statusBar: null,
+  observe: function()
   {
-    return getReadCounter();
+    var leftClickOpen = GRPrefs.leftClickOpen();
+    if(this.status !== false)
+    {
+      if(this.status == 1) 
+      {
+        this.statusBar.removeEventListener('click', statusClickHandling.click, false);
+      }
+      else if(this.status == 2)
+      {
+        this.statusBar.removeEventListener('dblclick', statusClickHandling.click, false);
+      }
+    }
+    if(leftClickOpen == 1)
+    {
+      document.getElementById('GRW-statusbar').addEventListener('click', statusClickHandling.click, false);
+      this.status = 1;
+    }
+    else if(leftClickOpen == 2)
+    {
+      document.getElementById('GRW-statusbar').addEventListener('dblclick', statusClickHandling.click, false);
+      this.status = 2;
+    }
+    else
+    {
+      this.status = 0; 
+    }
+  },
+  click: function(event)
+  {
+    if(event.button == 0)
+    {
+      GRCheck.openReader();
+    }
   }
-  */
 };
 /**
  * Initialiization function
  */
 var GRWinit = function()
 {
-  var g = GoogleIt();
-  var s = startInterval();
-  Log.log('Google Reader Watcher Initialized');
-  /**
-   * There is a bug, when I absolutely logged out, the first check don't show the correct value
-   */
-  /*
-  if(getReaderStatus() != 'on')
-  {
-    setTimeout(GoogleIt, 5000);
-  }
-  */
+    var g = GoogleIt();
+    var s = startInterval();
+    statusClickHandling.statusBar = document.getElementById('GRW-statusbar');
+    statusClickHandling.observe();
+    Log.log('Google Reader Watcher Initialized');
 };
