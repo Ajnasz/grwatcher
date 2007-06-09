@@ -7,7 +7,9 @@
 <!ENTITY GRWpreferences.checkfrequency "Új feedek keresése minden">
 <!ENTITY GRWpreferences.checkfrequency.unit "percben">
 <!ENTITY GRWpreferences.openinnewtab "Megnyitás új fülön">
+<!ENTITY GRWpreferences.activateOpenedTab "Google Reader fül aktiválása megnyitás után">
 <!ENTITY GRWpreferences.generalpreferencescaption "Általános tulajdonságok">
+<!ENTITY GRWpreferences.generalpreferencesopencaption "Google Reader megnyitásának beállításai">
 <!ENTITY GRWpreferences.tooltippreferencescaption "Tooltip tulajdonságok">
 <!ENTITY GRWpreferences.tabgeneral "Általános">
 <!ENTITY GRWpreferences.tabtooltip "Tooltip">

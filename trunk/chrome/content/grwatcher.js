@@ -169,6 +169,7 @@ var GRCheck = {
   /**
    * open the readader window
    */
+  readerURL: 'https://www.google.com/reader/view/',
   openReader: function()
   {
     if(GRPrefs.resetcounter())
@@ -180,11 +181,18 @@ var GRCheck = {
     this.switchOffIcon();
     if(GRPrefs.openinnewtab())
     {
-      getBrowser().addTab('http://reader.google.com');
+      if(GRPrefs.activateOpenedTab())
+      {
+        gBrowser.selectedTab = gBrowser.addTab(this.readerURL);
+      }
+      else
+      {
+        gBrowser.addTab(this.readerURL);
+      }
     }
     else
     {
-      getBrowser().loadURI('http://reader.google.com');
+      gBrowser.loadURI(this.readerURL);
     }
   },
 
@@ -338,7 +346,7 @@ var getReadCounter = function()
 {
   GRCheck.switchLoadIcon();
   var req = new XMLHttpRequest();
-  req.open('get', 'http://www.google.com/reader/api/0/unread-count?all=true&output=json', true);
+  req.open('get', 'https://www.google.com/reader/api/0/unread-count?all=true&output=json', true);
   req.setRequestHeader('User-Agent', GRWUserAgent);
   req.setRequestHeader('Accept-Charset','utf-8');
   req.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
@@ -674,6 +682,10 @@ var GRPrefs = {
   leftClickOpen: function()
   {
     return prefManager.getIntPref('extensions.grwatcher.leftClickOpen');
+  },
+  activateOpenedTab: function()
+  {
+    return prefManager.getBoolPref('extensions.grwatcher.activateOpenedTab');
   }
 };
 /**

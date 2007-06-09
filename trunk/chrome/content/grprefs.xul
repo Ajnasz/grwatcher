@@ -24,6 +24,7 @@
       <preference id="GRW-tooltiptitlelength" name="extensions.grwatcher.tooltiptitlelength" type="int" />
       <preference id="GRW-rememberlogin" name="extensions.grwatcher.rememberLogin" type="bool" />
       <preference id="GRW-leftClickOpen" name="extensions.grwatcher.leftClickOpen" type="int" />
+      <preference id="GRW-activateopenedtab" name="extensions.grwatcher.activateOpenedTab" type="bool" />
       <!-- <preference id="GRW-account-email" name="extensions.grwatcher.email" type="string" /> -->
     </preferences>
     <tabbox id="GRW-preferences-tabbox">
@@ -34,34 +35,41 @@
       </tabs>
       <tabpanels>
         <tabpanel>
-          <groupbox flex="1">
-            <caption label="&GRWpreferences.generalpreferencescaption;" />
+          <vbox align="center">
+            <groupbox flex="1">
+              <caption label="&GRWpreferences.generalpreferencescaption;" />
 
-            <hbox align="center">
-              <label control="GRW-checkfreq-field" value="&GRWpreferences.checkfrequency;" />
-              <textbox id="GRW-checkfreq-field" preference="GRW-checkfreq" size="2" cols="2" />
-              <label control="GRW-checkfreq-field" value="&GRWpreferences.checkfrequency.unit;" />
-              <description>&GRWpreferences.checkfrequencydesc;</description>
-            </hbox>
-
-            <vbox>
-              <checkbox id="GRW-openinnewtab-field" preference="GRW-openinnewtab" label="&GRWpreferences.openinnewtab;" />
-              <description>&GRWpreferences.openinnewtabdesc;</description>
               <hbox align="center">
-                <label value="&GRWpreferences.leftclickopen.description;" control="GRW-leftclickopen-field" id="GRW-leftclickopen-label" />
-                <menulist id="GRW-leftclickopen-field" preference="GRW-leftClickOpen" onchange="">
-                  <menupopup>
-                    <menuitem value="1" label="&GRWpreferences.leftclickopen.singleclick;" />
-                    <menuitem value="2" label="&GRWpreferences.leftclickopen.dblclick;" />
-                    <menuitem value="0" label="&GRWpreferences.leftclickopen.disabled;" />
-                  </menupopup>
-                </menulist>
+                <label control="GRW-checkfreq-field" value="&GRWpreferences.checkfrequency;" />
+                <textbox id="GRW-checkfreq-field" preference="GRW-checkfreq" size="2" cols="2" />
+                <label control="GRW-checkfreq-field" value="&GRWpreferences.checkfrequency.unit;" />
+                <description>&GRWpreferences.checkfrequencydesc;</description>
               </hbox>
-              <checkbox id="GRW-resetcounter-field" preference="GRW-resetcounter" label="&GRWpreferences.resetcounter;" />
-              <description>&GRWpreferences.resetcounterdesc;</description>
-            </vbox>
+              <vbox>
+                <checkbox id="GRW-resetcounter-field" preference="GRW-resetcounter" label="&GRWpreferences.resetcounter;" />
+                <description>&GRWpreferences.resetcounterdesc;</description>
+              </vbox>
+            </groupbox>
+            <groupbox flex="1">
+              <caption label="&GRWpreferences.generalpreferencesopencaption;" />
+              <vbox>
+                <checkbox id="GRW-openinnewtab-field" preference="GRW-openinnewtab" label="&GRWpreferences.openinnewtab;" />
+                <description>&GRWpreferences.openinnewtabdesc;</description>
+                <checkbox id="GRW-activateopenedtab-field" preference="GRW-activateopenedtab" label="&GRWpreferences.activateOpenedTab;" />
+                <hbox align="center">
+                  <label value="&GRWpreferences.leftclickopen.description;" control="GRW-leftclickopen-field" id="GRW-leftclickopen-label" />
+                  <menulist id="GRW-leftclickopen-field" preference="GRW-leftClickOpen" onchange="">
+                    <menupopup>
+                      <menuitem value="1" label="&GRWpreferences.leftclickopen.singleclick;" />
+                      <menuitem value="2" label="&GRWpreferences.leftclickopen.dblclick;" />
+                      <menuitem value="0" label="&GRWpreferences.leftclickopen.disabled;" />
+                    </menupopup>
+                  </menulist>
+                </hbox>
+              </vbox>
 
-          </groupbox>
+            </groupbox>
+          </vbox>
         </tabpanel>
         <tabpanel>
           <groupbox flex="1">
