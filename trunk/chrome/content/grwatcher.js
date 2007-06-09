@@ -5,7 +5,7 @@
 // mozilla preferences component service
 var prefManager = Components.classes["@mozilla.org/preferences-service;1"].getService(Components.interfaces.nsIPrefBranch);
 // user agent for Google Reader Watcher
-var GRWUserAgent = 'Google Reader Watcher 0.0.5a2';
+var GRWUserAgent = 'Google Reader Watcher 0.0.5b';
 /**
  * @param {String} message log on the javascript console
  */
@@ -648,11 +648,6 @@ var openPrefs = function(event)
 var GRPrefs = {
   intervalid: -1,
   showNotification: true,
-  init: function()
-  {
-    document.getElementById('GRW-accountmanage-pass').value = passManager.getPassword();
-    document.getElementById('GRW-accountmanage-email').value = passManager.getUserName();
-  },
   checkfreq: function() {
     return prefManager.getIntPref('extensions.grwatcher.checkfreq');
   },
@@ -681,11 +676,11 @@ var GRPrefs = {
   },
   leftClickOpen: function()
   {
-    return prefManager.getIntPref('extensions.grwatcher.leftClickOpen');
+    return prefManager.getIntPref('extensions.grwatcher.leftclickopen');
   },
   activateOpenedTab: function()
   {
-    return prefManager.getBoolPref('extensions.grwatcher.activateOpenedTab');
+    return prefManager.getBoolPref('extensions.grwatcher.activateopenedtab');
   }
 };
 /**
