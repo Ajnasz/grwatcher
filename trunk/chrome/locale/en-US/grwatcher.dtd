@@ -5,7 +5,6 @@
 <!ENTITY GRWpreferences.title "Google Reader Checker Preferences">
 <!ENTITY GRWpreferences.checkfrequency "Check for new feeds every">
 <!ENTITY GRWpreferences.checkfrequency.unit "minute(s)">
-<!ENTITY GRWpreferences.openinnewtab "Open in new tab">
 <!ENTITY GRWpreferences.activateOpenedTab "Activate Google Reader tab after open">
 <!ENTITY GRWpreferences.generalpreferencescaption "General preferences">
 <!ENTITY GRWpreferences.generalpreferencesopencaption "Google Reader open preferences">
@@ -15,7 +14,6 @@
 <!ENTITY GRWpreferences.openinnewtabdesc "Set to open Google Reader in a new or current tab (Default is new tab)">
 <!ENTITY GRWpreferences.resetcounterdesc "Resets the statusbar counter when the Google Reader window opens">
 <!ENTITY GRWpreferences.checkfrequencydesc "(Requires restart)">
-<!ENTITY GRWpreferences.resetcounter "Resets counter">
 
 <!ENTITY GRWpreferences.tooltipcounterposleft "Left">
 <!ENTITY GRWpreferences.tooltipcounterposright "Right">
