@@ -1,6 +1,10 @@
 // mozilla preferences component service
 var prefManager = Components.classes["@mozilla.org/preferences-service;1"].getService(Components.interfaces.nsIPrefBranch);
-var getPref = {
+/**
+ * returns the specified extension preference
+ */
+var getPref =
+{
   checkFreq : function()
   {
     return prefManager.getIntPref('extensions.grwatcher.checkfreq');
@@ -34,7 +38,11 @@ var getPref = {
     return prefManager.getBoolPref('extensions.grwatcher.activateopenedtab');
   }
 };
-var setPref = {
+/**
+ * set the specified extension preference
+ */
+var setPref =
+{
   checkFreq : function(value)
   {
     prefManager.setIntPref('extensions.grwatcher.checkfreq', value);
@@ -68,7 +76,10 @@ var setPref = {
     prefManager.setBoolPref('extensions.grwatcher.activateopenedtab', value);
   }
 };
-savePreferences = function()
+/**
+ * save the preferences into the chrome when the pref dialog is accepted
+ */
+var savePreferences = function()
 {
   setPref.checkFreq(document.getElementById('GRW-checkfreq-field').value);
   setPref.openInNewTab(document.getElementById('GRW-openinnewtab-field').checked);
@@ -79,7 +90,10 @@ savePreferences = function()
   setPref.leftClickOpen(document.getElementById('GRW-leftclickopen-field').value);
   setPref.activateOpenedTab(document.getElementById('GRW-activateopenedtab-field').checked);
 };
-setPrefPaneVals = function()
+/**
+ * sets the values on the pref dialog when it opens
+ */
+var setPrefPaneVals = function()
 {
   document.getElementById('GRW-checkfreq-field').value = getPref.checkFreq();
   document.getElementById('GRW-openinnewtab-field').checked = getPref.openInNewTab();
@@ -92,8 +106,10 @@ setPrefPaneVals = function()
   document.getElementById('GRW-accountmanage-pass').value = passManager.getPassword();
   document.getElementById('GRW-accountmanage-email').value = passManager.getUserName();
 };
-
-openNewTabCheckToogle = function()
+/**
+ * show/hide the newtab options
+ */
+var openNewTabCheckToogle = function()
 {
   var cbfield = document.getElementById('GRW-openinnewtab-field');
   if(cbfield.checked)
@@ -104,4 +120,4 @@ openNewTabCheckToogle = function()
   {
     document.getElementById('GRW-openinnewtab-options').style.display = 'none';
   }
-}
+};
