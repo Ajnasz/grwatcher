@@ -5,9 +5,8 @@ pref("extensions.grwatcher.resetcounter", false);
 pref("extensions.grwatcher.tooltipcounterpos", 'left');
 pref("extensions.grwatcher.tooltiptitlelength", 23);
 
-pref("extensions.grwatcher.email", '');
 pref("extensions.grwatcher.sid", '');
 pref("extensions.grwatcher.rememberLogin", false);
 
-pref("extensions.grwatcher.leftClickOpen", 1);
-pref("extensions.grwatcher.activateOpenedTab", true);
+pref("extensions.grwatcher.leftclickopen", 1);
+pref("extensions.grwatcher.activateopenedtab", true);
