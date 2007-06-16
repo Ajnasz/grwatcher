@@ -2,7 +2,6 @@
 <!ENTITY GRWstatusbar.popup.getReadCounter 'Olvasatlan feed keresése'>
 <!ENTITY GRWstatusbar.popup.openPrefs "Tulajdonságok">
 
-
 <!ENTITY GRWpreferences.title "Google Reader Watcher Tulajdonságok">
 <!ENTITY GRWpreferences.checkfrequency "Új feedek keresése minden">
 <!ENTITY GRWpreferences.checkfrequency.unit "percben">
@@ -11,10 +10,8 @@
 <!ENTITY GRWpreferences.generalpreferencesopencaption "Google Reader megnyitásának beállításai">
 <!ENTITY GRWpreferences.tooltippreferencescaption "Tooltip tulajdonságok">
 <!ENTITY GRWpreferences.tabgeneral "Általános">
-<!ENTITY GRWpreferences.tabtooltip "Tooltip">
 <!ENTITY GRWpreferences.openinnewtabdesc "Google Reader jelenlegi vagy új fülön történő megnyitása">
 <!ENTITY GRWpreferences.resetcounterdesc "A állapotsor számláló nullázása a Google Reader megnyitásakor">
-<!ENTITY GRWpreferences.checkfrequencydesc "(Újraindítás szükséges)">
 
 <!ENTITY GRWpreferences.tooltipcounterposleft "Bal">
 <!ENTITY GRWpreferences.tooltipcounterposright "Jobb">
