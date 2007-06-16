@@ -41,7 +41,6 @@
                 <label control="GRW-checkfreq-field" value="&GRWpreferences.checkfrequency;" />
                 <textbox id="GRW-checkfreq-field" size="2" cols="2" />
                 <label control="GRW-checkfreq-field" value="&GRWpreferences.checkfrequency.unit;" />
-                <description>&GRWpreferences.checkfrequencydesc;</description>
               </hbox>
               <vbox>
                 <checkbox id="GRW-resetcounter-field" label="&GRWpreferences.resetcounterdesc;" />
