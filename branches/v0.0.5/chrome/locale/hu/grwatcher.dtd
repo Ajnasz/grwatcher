@@ -1,0 +1,36 @@
+<!ENTITY GRWstatusbar.popup.openReader "Google Reader megnyitása">
+<!ENTITY GRWstatusbar.popup.getReadCounter 'Olvasatlan feed keresése'>
+<!ENTITY GRWstatusbar.popup.openPrefs "Tulajdonságok">
+
+<!ENTITY GRWpreferences.title "Google Reader Watcher Tulajdonságok">
+<!ENTITY GRWpreferences.checkfrequency "Új feedek keresése minden">
+<!ENTITY GRWpreferences.checkfrequency.unit "percben">
+<!ENTITY GRWpreferences.activateOpenedTab "Google Reader fül aktiválása megnyitás után">
+<!ENTITY GRWpreferences.generalpreferencescaption "Általános tulajdonságok">
+<!ENTITY GRWpreferences.generalpreferencesopencaption "Google Reader megnyitásának beállításai">
+<!ENTITY GRWpreferences.tooltippreferencescaption "Tooltip tulajdonságok">
+<!ENTITY GRWpreferences.tabgeneral "Általános">
+<!ENTITY GRWpreferences.openinnewtabdesc "Google Reader jelenlegi vagy új fülön történő megnyitása">
+<!ENTITY GRWpreferences.resetcounterdesc "A állapotsor számláló nullázása a Google Reader megnyitásakor">
+
+<!ENTITY GRWpreferences.tooltipcounterposleft "Bal">
+<!ENTITY GRWpreferences.tooltipcounterposright "Jobb">
+<!ENTITY GRWpreferences.tooltipcounterposdesc "A számláló helye a tooltipben:">
+<!ENTITY GRWpreferences.tooltipdesc "Ezek a tulajdonságok a következő feed keresés után leszenk láthatóak.">
+<!ENTITY GRWpreferences.tooltiptitlelengthdesc "Tooltipben a feedcímek karaktereinek száma">
+
+<!ENTITY GRWpreferences.tabaccountinfo "Fiók információk">
+<!ENTITY GRWpreferences.accountinfocaption "Google fiók információk">
+<!ENTITY GRWpreferences.accountinfodesc "Add meg a google fiókod e-mail címét és jelszavát">
+<!ENTITY GRWpreferences.accountinfoemail "Email cím:">
+<!ENTITY GRWpreferences.accountinfopassword "Jelszó:">
+<!ENTITY GRWpreferences.accountinfo.rememberLogin "Bejelentkezés megjegyzése">
+
+<!ENTITY GRWpreferences.leftclickopen.description "Google Reader megnyitása az ikonra kattintáskor">
+<!ENTITY GRWpreferences.leftclickopen.singleclick "Kattintás">
+<!ENTITY GRWpreferences.leftclickopen.dblclick "Dupla kattintás">
+<!ENTITY GRWpreferences.leftclickopen.disabled "Tiltva">
+
+<!ENTITY GRWtooltip.nonewfeed "Nincs olvastlan feeded!">
+<!ENTITY GRWtooltip.errorfeedfetch "Hiba a feed lekérdezésekkor! Be vagy jelentkezve?">
+<!ENTITY GRWtooltip.newfeed "Olvasatlan feeded van!">
