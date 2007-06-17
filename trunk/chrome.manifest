@@ -3,5 +3,6 @@ overlay chrome://browser/content/browser.xul chrome://grwatcher/content/grwatche
 
 locale grwatcher en-US jar:chrome/grwatcher.jar!/locale/en-US/
 locale grwatcher hu jar:chrome/grwatcher.jar!/locale/hu/
+locale grwatcher fr-FR jar:chrome/grwatcher.jar!/locale/fr-FR/
 
 skin grwatcher classic/1.0	jar:chrome/grwatcher.jar!/skin/classic/grwatcher/

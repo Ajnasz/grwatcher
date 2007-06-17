@@ -5,9 +5,9 @@
 <!ENTITY GRWpreferences.title "Google Reader Checker Preferences">
 <!ENTITY GRWpreferences.checkfrequency "Check for new feeds every">
 <!ENTITY GRWpreferences.checkfrequency.unit "minute(s)">
-<!ENTITY GRWpreferences.activateOpenedTab "Activate Google Reader tab after open">
+<!ENTITY GRWpreferences.activateOpenedTab "Focus/select the Google Reader tab after opening">
 <!ENTITY GRWpreferences.generalpreferencescaption "General preferences">
-<!ENTITY GRWpreferences.generalpreferencesopencaption "Google Reader opening preferences">
+<!ENTITY GRWpreferences.generalpreferencesopencaption "Opening settings of Google Reader">
 <!ENTITY GRWpreferences.tooltippreferencescaption "Tooltip preferences">
 <!ENTITY GRWpreferences.tabgeneral "General">
 <!ENTITY GRWpreferences.openinnewtabdesc "Open Google Reader in a new tab">
@@ -26,7 +26,7 @@
 <!ENTITY GRWpreferences.accountinfopassword "Password:">
 <!ENTITY GRWpreferences.accountinfo.rememberLogin "Remember login">
 
-<!ENTITY GRWpreferences.leftclickopen.description "Open Google Reader when you click on the icon via">
+<!ENTITY GRWpreferences.leftclickopen.description "Open Google Reader with">
 <!ENTITY GRWpreferences.leftclickopen.singleclick "Single click">
 <!ENTITY GRWpreferences.leftclickopen.dblclick "Double click">
 <!ENTITY GRWpreferences.leftclickopen.disabled "Disabled">

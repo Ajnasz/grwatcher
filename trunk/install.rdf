@@ -4,7 +4,7 @@
   <Description about="urn:mozilla:install-manifest">
     <em:id>grwatcher@ajnasz.hu</em:id>
     <em:name>Google Reader Watcher</em:name>
-    <em:version>0.0.5a2</em:version>
+    <em:version>0.0.5</em:version>
 
     <!-- Firefox -->
     <em:targetApplication>
@@ -36,6 +36,8 @@
     <em:homepageURL>http://ajnasz.hu/google-reader-watcher</em:homepageURL>
     <em:iconURL>chrome://grwatcher/skin/grwatcher.png</em:iconURL>
     <em:optionsURL>chrome://grwatcher/content/grprefs.xul</em:optionsURL>
+
     <em:contributor>Dave Peitler</em:contributor>
+    <em:contributor>Théophile Helleboid</em:contributor>
   </Description>
 </RDF>

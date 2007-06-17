@@ -5,7 +5,7 @@
 // mozilla preferences component service
 var prefManager = Components.classes["@mozilla.org/preferences-service;1"].getService(Components.interfaces.nsIPrefBranch);
 // user agent for Google Reader Watcher
-var GRWUserAgent = 'Google Reader Watcher 0.0.5b';
+var GRWUserAgent = 'Google Reader Watcher 0.0.5';
 /**
  * @param {String} message log on the javascript console
  */
