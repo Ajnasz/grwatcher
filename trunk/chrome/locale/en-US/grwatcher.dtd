@@ -2,7 +2,7 @@
 <!ENTITY GRWstatusbar.popup.getReadCounter 'Check for unread feeds'>
 <!ENTITY GRWstatusbar.popup.openPrefs "Preferences">
 
-<!ENTITY GRWpreferences.title "Google Reader Checker Preferences">
+<!ENTITY GRWpreferences.title "Google Reader Watcher Preferences">
 <!ENTITY GRWpreferences.checkfrequency "Check for new feeds every">
 <!ENTITY GRWpreferences.checkfrequency.unit "minute(s)">
 <!ENTITY GRWpreferences.activateOpenedTab "Focus/select the Google Reader tab after opening">
