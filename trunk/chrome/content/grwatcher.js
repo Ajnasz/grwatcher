@@ -5,7 +5,7 @@
 // mozilla preferences component service
 var prefManager = Components.classes["@mozilla.org/preferences-service;1"].getService(Components.interfaces.nsIPrefBranch);
 // user agent for Google Reader Watcher
-var GRWUserAgent = 'Google Reader Watcher 0.0.5';
+var GRWUserAgent = 'Google Reader Watcher 0.0.6a';
 /**
  * @param {String} message log on the javascript console
  */
@@ -551,7 +551,7 @@ showNotification = function(label, value)
 };
 
 /**
- *
+ * generate the grid for the tooltip
  * @param {Array} feeds
  */
 var genStatusGrid = function(feeds)
@@ -572,9 +572,12 @@ var genStatusGrid = function(feeds)
 
   // configure the length of the title
   var titlelength = GRPrefs.tooltiptitlelength();
-  if(titlelength == 0) {
+  /*
+  if(titlelength == 0)
+  {
     titlelength = false;
   }
+  */
   titlelength = (titlelength > 5) ? titlelength : 5;
 
   grid.flex = 1;
@@ -591,7 +594,7 @@ var genStatusGrid = function(feeds)
       rowc = row.cloneNode(true);
       labelc1 = label.cloneNode(true);
       labelc2 = label.cloneNode(true);
-      if(titlelength != false && o.Title.length > titlelength)
+      if(o.Title.length > titlelength)
       {
         o.Title = o.Title.slice(0, titlelength-3)+'...'
       }
@@ -620,20 +623,6 @@ var genStatusGrid = function(feeds)
   tt.appendChild(grid);
 };
 /**
- * check regulary for new feeds
- */
-var startInterval = function()
-{
-  var minCheck = 1;
-  var configuredCheck = GRPrefs.checkfreq();
-  var freq = (configuredCheck >= minCheck) ? configuredCheck : minCheck;
-  if(GRPrefs.intervalid != -1)
-  {
-    clearInterval(GRPrefs.intervalid);
-  }
-  GRPrefs.intervalid = setInterval(GoogleIt, freq*1000*60);
-};
-/**
  * opens preferences window
  * @param {Object} event
  */
@@ -646,7 +635,7 @@ var openPrefs = function(event)
  * get chrome preferences
  */
 var GRPrefs = {
-  intervalid: -1,
+  timeoutid: -1,
   showNotification: true,
   checkfreq: function() {
     return prefManager.getIntPref('extensions.grwatcher.checkfreq');
@@ -696,13 +685,20 @@ GoogleIt = function()
   {
     prefManager.setCharPref('extensions.grwatcher.sid', accountManager.getCurrentSID());
     getReadCounter();
-    return true;
   }
   if(login === -1)
   {
     GRCheck.switchErrorIcon();
-    return false;
   }
+  var minCheck = 1;
+  var configuredCheck = GRPrefs.checkfreq();
+  var freq = (configuredCheck >= minCheck) ? configuredCheck : minCheck;
+  if(GRPrefs.timeoutid)
+  {
+    clearTimeout(GRPrefs.timeoutid);
+  }
+  GRPrefs.timeoutid = setTimeout(GoogleIt, freq*1000*60);
+  return GRPrefs.timeoutid;
 };
 /**
  * @var {Object} event
@@ -754,7 +750,6 @@ var statusClickHandling =
 var GRWinit = function()
 {
     var g = GoogleIt();
-    var s = startInterval();
     statusClickHandling.statusBar = document.getElementById('GRW-statusbar');
     statusClickHandling.observe();
     Log.log('Google Reader Watcher Initialized');
