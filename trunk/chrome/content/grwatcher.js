@@ -2,14 +2,20 @@
  * @author Lajos Koszti [Ajnasz] http://ajnasz.hu ajnasz@ajnasz.hu ajnasz@gmail.com
  * @license GPL v2
  */
-// mozilla preferences component service
+
+/**
+ * mozilla preferences component service
+ */
 var prefManager = Components.classes["@mozilla.org/preferences-service;1"].getService(Components.interfaces.nsIPrefBranch);
-// user agent for Google Reader Watcher
-var GRWUserAgent = 'Google Reader Watcher 0.0.6a';
+/**
+ * user agent for Google Reader Watcher
+ */
+var GRWUserAgent = 'Google Reader Watcher 0.0.6a1';
 /**
  * @param {String} message log on the javascript console
  */
-Log = {
+var Log =
+{
   // mozilla log service
   serv: Components.classes["@mozilla.org/consoleservice;1"].getService(Components.interfaces.nsIConsoleService),
   /**
@@ -19,8 +25,11 @@ Log = {
     this.serv.logStringMessage('GRW: '+message);
   }
 }
-
-passManager = {
+/**
+ * passwod manager object
+ */
+var passManager =
+{
   // mozilla nsi password manager internal component
   passwordManagerInternal: Components.classes["@mozilla.org/passwordmanager;1"].createInstance(Components.interfaces.nsIPasswordManagerInternal),
   // mozilla nsi password manager component
@@ -74,8 +83,11 @@ passManager = {
     return user.value;
   }
 }
-
-accountManager = {
+/**
+ * account manager object
+ */
+var accountManager =
+{
   // mozilla nsi cookie manager component
   CookieManager: Components.classes["@mozilla.org/cookiemanager;1"].getService(Components.interfaces.nsICookieManager),
   accountExists: function()
@@ -161,11 +173,11 @@ accountManager = {
     return false;
   }
 };
-
 /**
  *
  */
-var GRCheck = {
+var GRCheck =
+{
   /**
    * open the readader window
    */
@@ -179,23 +191,89 @@ var GRCheck = {
       GRPrefs.showNotification = true;
     }
     this.switchOffIcon();
-    if(GRPrefs.openinnewtab())
+    var openedGR = this.getOpenedGR();
+    /**
+     * google reader din't opened yet
+     */
+    if(openedGR.grTab === false)
     {
-      if(GRPrefs.activateOpenedTab())
+      /**
+       * open in new tab
+       */
+      if(GRPrefs.openinnewtab())
       {
-        gBrowser.selectedTab = gBrowser.addTab(this.readerURL);
+        /**
+         * isn't there any blank page
+         */
+        if(openedGR.blankPage === false)
+        {
+          if(GRPrefs.activateOpenedTab())
+          {
+            gBrowser.selectedTab = gBrowser.addTab(this.readerURL);
+          }
+          else
+          {
+            gBrowser.addTab(this.readerURL);
+          }
+        }
+        else
+        {
+          /**
+           * load the GR into the blank page
+           */
+          if(GRPrefs.activateOpenedTab())
+          {
+            gBrowser.mTabContainer.selectedIndex = openedGR.blankPage;
+            gBrowser.loadURI(this.readerURL);
+
+          }
+          else
+          {
+            gBrowser.getBrowserAtIndex(openedGR.blankPage).loadURI(this.readerURL);
+          }
+        }
       }
       else
       {
-        gBrowser.addTab(this.readerURL);
+        gBrowser.loadURI(this.readerURL);
       }
     }
     else
     {
+      gBrowser.mTabContainer.selectedIndex = openedGR.grTab;
       gBrowser.loadURI(this.readerURL);
     }
-  },
+    var minCheck = 1;
+    var configuredCheck = GRPrefs.checkfreq();
+    var freq = (configuredCheck >= minCheck) ? configuredCheck : minCheck;
+    if(GRPrefs.timeoutid)
+    {
+      clearTimeout(GRPrefs.timeoutid);
+    }
+    GRPrefs.timeoutid = setTimeout(GoogleIt, freq*1000*60);
 
+  },
+  /**
+   * checks for opened GR window and blank pages
+   */
+  getOpenedGR: function()
+  {
+    var brl = gBrowser.browsers.length, i = 0;
+    var outObj = {grTab: false, blankPage: false};
+    for( ; i < brl; i++)
+    {
+      if(gBrowser.getBrowserAtIndex(i).currentURI.spec == this.readerURL)
+      {
+        outObj.grTab = i;
+        return outObj;
+      }
+      else if(gBrowser.getBrowserAtIndex(i).currentURI.spec == 'about:blank' && outObj.blankPage === false)
+      {
+        outObj.blankPage = i;
+      }
+    }
+    return outObj;
+  },
   /**
    * set the icon to off status
    */
@@ -232,7 +310,8 @@ var GRCheck = {
 /**
  *
  */
-var openReaderNotify = {
+var openReaderNotify =
+{
   /**
    *
    * @param {Object} subject
@@ -279,6 +358,9 @@ var setReaderStatus = function(status)
 {
   document.getElementById('GRW-statusbar').status = status;
 };
+/**
+ *
+ */
 var getReaderStatus = function()
 {
   return document.getElementById('GRW-statusbar').status;
@@ -513,7 +595,7 @@ var onFeedsCounterLoad = function(req, prReq)
  * @param {Object} label
  * @param {Object} value
  */
-showNotification = function(label, value)
+var showNotification = function(label, value)
 {
   if(!label)
   {
@@ -549,7 +631,6 @@ showNotification = function(label, value)
     {}
   }
 };
-
 /**
  * generate the grid for the tooltip
  * @param {Array} feeds
@@ -630,11 +711,11 @@ var openPrefs = function(event)
 {
  window.openDialog("chrome://grwatcher/content/grprefs.xul", 'GRWatcher', 'chrome,titlebar,toolbar,centerscreen,modal');
 };
-
 /**
  * get chrome preferences
  */
-var GRPrefs = {
+var GRPrefs =
+{
   timeoutid: -1,
   showNotification: true,
   checkfreq: function() {
@@ -675,7 +756,7 @@ var GRPrefs = {
 /**
  *
  */
-GoogleIt = function()
+var GoogleIt = function()
 {
   if(!accountManager.getCurrentSID())
   {
