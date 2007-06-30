@@ -1,0 +1,30 @@
+<!ENTITY GRWstatusbar.popup.openReader "Google Reader を開く">
+<!ENTITY GRWstatusbar.popup.openPrefs "設定">
+<!ENTITY GRWpreferences.title "Google Reader Watcher 設定">
+<!ENTITY GRWpreferences.checkfrequency "新着フィードを">
+<!ENTITY GRWpreferences.checkfrequency.unit "分毎に確認">
+<!ENTITY GRWpreferences.activateOpenedTab "開いた後 Google Reader のタブをフォーカス・選択する">
+<!ENTITY GRWpreferences.generalpreferencescaption "全般設定">
+<!ENTITY GRWpreferences.generalpreferencesopencaption "Google Reader の設定を開く">
+<!ENTITY GRWpreferences.tooltippreferencescaption "ツールチップ設定">
+<!ENTITY GRWpreferences.tabgeneral "全般">
+<!ENTITY GRWpreferences.openinnewtabdesc "Google Reader を新しいタブで開く">
+<!ENTITY GRWpreferences.resetcounterdesc "Google Reader のウィンドウを開いたらステータスバーのカウンターを初期化する">
+<!ENTITY GRWpreferences.tooltipcounterposleft "左">
+<!ENTITY GRWpreferences.tooltipcounterposright "右">
+<!ENTITY GRWpreferences.tooltipcounterposdesc "ツールチップでのカウンターの位置:">
+<!ENTITY GRWpreferences.tooltipdesc "これらのオプションはフィードの確認後に効果します。">
+<!ENTITY GRWpreferences.tooltiptitlelengthdesc "ツールチップでのフィードタイトルの文字数を設定">
+<!ENTITY GRWpreferences.tabaccountinfo "アカウント情報">
+<!ENTITY GRWpreferences.accountinfocaption "Google アカウント情報">
+<!ENTITY GRWpreferences.accountinfodesc "Google アカウントのメールとパスワードを指定します">
+<!ENTITY GRWpreferences.accountinfoemail "メールアドレス:">
+<!ENTITY GRWpreferences.accountinfopassword "パスワード:">
+<!ENTITY GRWpreferences.accountinfo.rememberLogin "ログイン状態を記憶">
+<!ENTITY GRWpreferences.leftclickopen.description "Google Reader を開く方法:">
+<!ENTITY GRWpreferences.leftclickopen.singleclick "クリック">
+<!ENTITY GRWpreferences.leftclickopen.dblclick "ダブルクリック">
+<!ENTITY GRWpreferences.leftclickopen.disabled "無効">
+<!ENTITY GRWtooltip.nonewfeed "未読フィードはありません">
+<!ENTITY GRWtooltip.errorfeedfetch "フィードの取得エラー！ログインしていますか？">
+<!ENTITY GRWtooltip.newfeed "未読フィードがあります">

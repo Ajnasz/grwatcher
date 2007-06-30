@@ -4,7 +4,7 @@
   <Description about="urn:mozilla:install-manifest">
     <em:id>grwatcher@ajnasz.hu</em:id>
     <em:name>Google Reader Watcher</em:name>
-    <em:version>0.0.6a</em:version>
+    <em:version>0.0.6a1</em:version>
 
     <!-- Firefox -->
     <em:targetApplication>
@@ -38,6 +38,8 @@
     <em:optionsURL>chrome://grwatcher/content/grprefs.xul</em:optionsURL>
 
     <em:contributor>Dave Peitler</em:contributor>
-    <em:contributor>Théophile Helleboid</em:contributor>
+    <em:contributor>Théophile Helleboid - fr-Fr</em:contributor>
+    <em:contributor>Ahmed Yilmaz - tr-Tr</em:contributor>
+    <em:contributor>drry ja-Jp (babelzilla)</em:contributor>
   </Description>
 </RDF>
