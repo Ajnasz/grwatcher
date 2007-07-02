@@ -1,30 +1,31 @@
 <!ENTITY GRWstatusbar.popup.openReader "打开 Google Reader">
+<!ENTITY GRWstatusbar.popup.getReadCounter "检查未读的收取点">
 <!ENTITY GRWstatusbar.popup.openPrefs "首选项">
 <!ENTITY GRWpreferences.title "Google Reader Watcher 首选项">
 <!ENTITY GRWpreferences.checkfrequency "每">
 <!ENTITY GRWpreferences.checkfrequency.unit "分钟检查新 Feeds">
-<!ENTITY GRWpreferences.activateOpenedTab "Focus/select the Google Reader tab after opening">
+<!ENTITY GRWpreferences.activateOpenedTab "打开后聚焦/选中 Google Reader 标签">
 <!ENTITY GRWpreferences.generalpreferencescaption "常规选项">
 <!ENTITY GRWpreferences.generalpreferencesopencaption "打开 Google Reader 设置">
 <!ENTITY GRWpreferences.tooltippreferencescaption "工具提示首选项">
 <!ENTITY GRWpreferences.tabgeneral "常规">
 <!ENTITY GRWpreferences.openinnewtabdesc "在新标签打开 Google Reader">
-<!ENTITY GRWpreferences.resetcounterdesc "Resets the statusbar counter when the Google Reader window opens">
-<!ENTITY GRWpreferences.tooltipcounterposleft "左">
+<!ENTITY GRWpreferences.resetcounterdesc "打开 Google Reader 窗口时重置状态栏计数器">
 <!ENTITY GRWpreferences.tooltipcounterposright "右">
-<!ENTITY GRWpreferences.tooltipcounterposdesc "The position of the counter in the tooltip:">
-<!ENTITY GRWpreferences.tooltipdesc "These options will take effect after a feed check.">
+<!ENTITY GRWpreferences.tooltipcounterposleft "Left">
+<!ENTITY GRWpreferences.tooltipcounterposdesc "工具提示中计数器的位置:">
+<!ENTITY GRWpreferences.tooltipdesc "收取点检查结束后这些选项才生效。">
 <!ENTITY GRWpreferences.tooltiptitlelengthdesc "Sets the Feed title&apos;s character number in the tooltip">
 <!ENTITY GRWpreferences.tabaccountinfo "Account information">
 <!ENTITY GRWpreferences.accountinfocaption "Google account information">
 <!ENTITY GRWpreferences.accountinfodesc "Specify your Google account e-mail and password">
 <!ENTITY GRWpreferences.accountinfoemail "Email address:">
 <!ENTITY GRWpreferences.accountinfopassword "Password:">
-<!ENTITY GRWpreferences.accountinfo.rememberLogin "Remember login">
-<!ENTITY GRWpreferences.leftclickopen.description "Open Google Reader with">
+<!ENTITY GRWpreferences.accountinfo.rememberLogin "记住此登录">
+<!ENTITY GRWpreferences.leftclickopen.description "打开 Google Reader 于">
 <!ENTITY GRWpreferences.leftclickopen.singleclick "单击">
 <!ENTITY GRWpreferences.leftclickopen.dblclick "双击">
-<!ENTITY GRWpreferences.leftclickopen.disabled "Disabled">
+<!ENTITY GRWpreferences.leftclickopen.disabled "已禁用">
 <!ENTITY GRWtooltip.nonewfeed "You haven&apos;t got any unread feeds">
 <!ENTITY GRWtooltip.errorfeedfetch "Error fetching feeds! Are you logged in?">
-<!ENTITY GRWtooltip.newfeed "You have unread feeds">
+<!ENTITY GRWtooltip.newfeed "您有未读 Feeds">

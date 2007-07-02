@@ -1,4 +1,5 @@
 <!ENTITY GRWstatusbar.popup.openReader "Google Reader を開く">
+<!ENTITY GRWstatusbar.popup.getReadCounter "未読フィードを確認">
 <!ENTITY GRWstatusbar.popup.openPrefs "設定">
 <!ENTITY GRWpreferences.title "Google Reader Watcher 設定">
 <!ENTITY GRWpreferences.checkfrequency "新着フィードを">
@@ -10,8 +11,8 @@
 <!ENTITY GRWpreferences.tabgeneral "全般">
 <!ENTITY GRWpreferences.openinnewtabdesc "Google Reader を新しいタブで開く">
 <!ENTITY GRWpreferences.resetcounterdesc "Google Reader のウィンドウを開いたらステータスバーのカウンターを初期化する">
-<!ENTITY GRWpreferences.tooltipcounterposleft "左">
 <!ENTITY GRWpreferences.tooltipcounterposright "右">
+<!ENTITY GRWpreferences.tooltipcounterposleft "左">
 <!ENTITY GRWpreferences.tooltipcounterposdesc "ツールチップでのカウンターの位置:">
 <!ENTITY GRWpreferences.tooltipdesc "これらのオプションはフィードの確認後に効果します。">
 <!ENTITY GRWpreferences.tooltiptitlelengthdesc "ツールチップでのフィードタイトルの文字数を設定">

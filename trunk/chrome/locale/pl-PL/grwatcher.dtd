@@ -1,30 +1,31 @@
 <!ENTITY GRWstatusbar.popup.openReader "Otwórz Google Reader">
+<!ENTITY GRWstatusbar.popup.getReadCounter "Sprawdź wiadomości">
 <!ENTITY GRWstatusbar.popup.openPrefs "Ustawienia">
 <!ENTITY GRWpreferences.title "Google Reader watcher - ustawienia">
-<!ENTITY GRWpreferences.checkfrequency "Check for new feeds every">
-<!ENTITY GRWpreferences.checkfrequency.unit "minut(y)">
-<!ENTITY GRWpreferences.activateOpenedTab "Focus/select the Google Reader tab after opening">
-<!ENTITY GRWpreferences.generalpreferencescaption "General preferences">
-<!ENTITY GRWpreferences.generalpreferencesopencaption "Opening settings of Google Reader">
-<!ENTITY GRWpreferences.tooltippreferencescaption "Tooltip preferences">
-<!ENTITY GRWpreferences.tabgeneral "General">
+<!ENTITY GRWpreferences.checkfrequency "Sprawdź wiadomości co">
+<!ENTITY GRWpreferences.checkfrequency.unit "min">
+<!ENTITY GRWpreferences.activateOpenedTab "Wyświetl kartę Google Reader jako aktywną">
+<!ENTITY GRWpreferences.generalpreferencescaption "Ustawienia ogólne">
+<!ENTITY GRWpreferences.generalpreferencesopencaption "Ustawienia otwierania Google Readera">
+<!ENTITY GRWpreferences.tooltippreferencescaption "Ustawienia podpowiedzi">
+<!ENTITY GRWpreferences.tabgeneral "Ogólne">
 <!ENTITY GRWpreferences.openinnewtabdesc "Otwórz Google Reader w nowej karcie">
-<!ENTITY GRWpreferences.resetcounterdesc "Resets the statusbar counter when the Google Reader window opens">
-<!ENTITY GRWpreferences.tooltipcounterposleft "z lewej">
-<!ENTITY GRWpreferences.tooltipcounterposright "z prawej">
-<!ENTITY GRWpreferences.tooltipcounterposdesc "Pozycja licznika w dymku:">
-<!ENTITY GRWpreferences.tooltipdesc "These options will take effect after a feed check.">
-<!ENTITY GRWpreferences.tooltiptitlelengthdesc "Sets the Feed title&apos;s character number in the tooltip">
-<!ENTITY GRWpreferences.tabaccountinfo "Account information">
-<!ENTITY GRWpreferences.accountinfocaption "Google account information">
-<!ENTITY GRWpreferences.accountinfodesc "Specify your Google account e-mail and password">
-<!ENTITY GRWpreferences.accountinfoemail "Adres email:">
+<!ENTITY GRWpreferences.resetcounterdesc "Wyzeruj licznik po otwarciu Google Readera">
+<!ENTITY GRWpreferences.tooltipcounterposright "z prawej strony">
+<!ENTITY GRWpreferences.tooltipcounterposleft "z lewej strony">
+<!ENTITY GRWpreferences.tooltipcounterposdesc "Pozycja licznika w podpowiedzi:">
+<!ENTITY GRWpreferences.tooltipdesc "Opcje te zostaną zastosowane po sprawdzeniu kanału">
+<!ENTITY GRWpreferences.tooltiptitlelengthdesc "Określ ilość znaków tytułu kanału wyświetlanych w podpowiedzi">
+<!ENTITY GRWpreferences.tabaccountinfo "Konto">
+<!ENTITY GRWpreferences.accountinfocaption "Informacje o koncie Google">
+<!ENTITY GRWpreferences.accountinfodesc "Określ adres e-mail i hasło do konta Google">
+<!ENTITY GRWpreferences.accountinfoemail "Adres e-mail:">
 <!ENTITY GRWpreferences.accountinfopassword "Hasło:">
-<!ENTITY GRWpreferences.accountinfo.rememberLogin "Zapamiętaj login">
+<!ENTITY GRWpreferences.accountinfo.rememberLogin "Zapamiętaj informacje logowania">
 <!ENTITY GRWpreferences.leftclickopen.description "Otwórz Google Reader za pomocą">
 <!ENTITY GRWpreferences.leftclickopen.singleclick "pojedynczego kliknięcia">
-<!ENTITY GRWpreferences.leftclickopen.dblclick "podwójnego kliknięcia">
+<!ENTITY GRWpreferences.leftclickopen.dblclick "dwukrotnego kliknięcia">
 <!ENTITY GRWpreferences.leftclickopen.disabled "wyłączone">
-<!ENTITY GRWtooltip.nonewfeed "Nie posiadasz nieprzeczytanych źródeł">
-<!ENTITY GRWtooltip.errorfeedfetch "Error fetching feeds! Are you logged in?">
-<!ENTITY GRWtooltip.newfeed "You have unread feeds">
+<!ENTITY GRWtooltip.nonewfeed "Brak nieprzeczytanych wiadomości">
+<!ENTITY GRWtooltip.errorfeedfetch "Błąd podczas pobierania wiadomości! Sprawdź czy jesteś zalogowany.">
+<!ENTITY GRWtooltip.newfeed "Są nieprzeczytane wiadomości">

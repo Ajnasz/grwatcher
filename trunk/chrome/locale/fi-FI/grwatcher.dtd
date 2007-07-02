@@ -1,4 +1,5 @@
 <!ENTITY GRWstatusbar.popup.openReader "Avaa Google Reader">
+<!ENTITY GRWstatusbar.popup.getReadCounter "Tarkista lukemattomien syötteiden varalta">
 <!ENTITY GRWstatusbar.popup.openPrefs "Asetukset">
 <!ENTITY GRWpreferences.title "Google Reader Watcher -asetukset">
 <!ENTITY GRWpreferences.checkfrequency "Tarkista uusien syötteiden varalta joka">
@@ -10,8 +11,8 @@
 <!ENTITY GRWpreferences.tabgeneral "Yleiset">
 <!ENTITY GRWpreferences.openinnewtabdesc "Avaa Google Reader uudessa välilehdessä">
 <!ENTITY GRWpreferences.resetcounterdesc "Nollaa tilarivin laskuri, kun Google Reader -ikkuna avataan">
-<!ENTITY GRWpreferences.tooltipcounterposleft "Vasen">
 <!ENTITY GRWpreferences.tooltipcounterposright "Oikea">
+<!ENTITY GRWpreferences.tooltipcounterposleft "Vasen">
 <!ENTITY GRWpreferences.tooltipcounterposdesc "Laskurin sijainti työkaluvihjeessä:">
 <!ENTITY GRWpreferences.tooltipdesc "Nämä valinnat suoritetaan syötteen tarkistuksen jälkeen.">
 <!ENTITY GRWpreferences.tooltiptitlelengthdesc "Kuinka monta merkkiä näytetään syötteen otsikosta työkaluvihjeessä?">
