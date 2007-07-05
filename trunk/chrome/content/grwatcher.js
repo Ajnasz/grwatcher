@@ -10,7 +10,7 @@ var prefManager = Components.classes["@mozilla.org/preferences-service;1"].getSe
 /**
  * user agent for Google Reader Watcher
  */
-var GRWUserAgent = 'Google Reader Watcher 0.0.6b';
+var GRWUserAgent = 'Google Reader Watcher 0.0.6';
 /**
  * @param {String} message log on the javascript console
  */

@@ -4,7 +4,7 @@
   <Description about="urn:mozilla:install-manifest">
     <em:id>grwatcher@ajnasz.hu</em:id>
     <em:name>Google Reader Watcher</em:name>
-    <em:version>0.0.6b</em:version>
+    <em:version>0.0.6</em:version>
 
     <!-- Firefox -->
     <em:targetApplication>
