@@ -10,7 +10,7 @@ var prefManager = Components.classes["@mozilla.org/preferences-service;1"].getSe
 /**
  * user agent for Google Reader Watcher
  */
-var GRWUserAgent = 'Google Reader Watcher 0.0.6a1';
+var GRWUserAgent = 'Google Reader Watcher 0.0.6b';
 /**
  * @param {String} message log on the javascript console
  */
@@ -143,22 +143,29 @@ var accountManager =
       req.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
       req.onreadystatechange = function(aEvt)
       {
-        if(req.readyState == 4)
+        try
         {
-          if(req.status == 200)
+          if(req.readyState == 4)
           {
-            prefManager.setCharPref('extensions.grwatcher.sid', accountManager.getCurrentSID());
-            getReadCounter();
+            if(req.status == 200)
+            {
+              prefManager.setCharPref('extensions.grwatcher.sid', accountManager.getCurrentSID());
+              getReadCounter();
+            }
+            else
+            {
+              GRCheck.switchErrorIcon();
+              return false;
+            }
           }
-          else
-          {
-            GRCheck.switchErrorIcon();
-            return false;
-          }
+        }
+        catch(e)
+        {
+          GRCheck.switchErrorIcon();
+          return false;
         }
       }
       req.send(param);
-      // return Ajax.Request(url, param, 'post');
     }
     else
     {
@@ -434,16 +441,34 @@ var getReadCounter = function()
   req.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
   req.onreadystatechange = function(aEvt)
   {
-    if(req.readyState == 4)
+    try
     {
-      if(req.status == 200)
+      if(req.readyState == 4)
       {
-        onCounterLoad(req);
+        if(typeof req.status != 'undefined')
+        {
+
+          if(req.status == 200)
+          {
+            onCounterLoad(req);
+          }
+          else
+          {
+            GRCheck.switchErrorIcon();
+            return false;
+          }
+        }
+        else
+        {
+          GRCheck.switchErrorIcon();
+          return false;
+        }
       }
-      else
-      {
-        GRCheck.switchErrorIcon();
-      }
+    }
+    catch(e)
+    {
+      GRCheck.switchErrorIcon();
+      return false;
     }
   }
   req.send(null);
@@ -462,16 +487,33 @@ var getReadFeedsCounter = function(prReq)
   req.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
   req.onreadystatechange = function(aEvt)
   {
-    if(req.readyState == 4)
+    try
     {
-      if(req.status == 200)
+      if(req.readyState == 4)
       {
-        onFeedsCounterLoad(req, prReq);
+        if(typeof req.status != 'undefined')
+        {
+          if(req.status == 200)
+          {
+            onFeedsCounterLoad(req, prReq);
+          }
+          else
+          {
+            GRCheck.switchErrorIcon();
+            return false;
+          }
+        }
+        else
+        {
+          GRCheck.switchErrorIcon();
+          return false;
+        }
       }
-      else
-      {
-        GRCheck.switchErrorIcon();
-      }
+    }
+    catch(e)
+    {
+      GRCheck.switchErrorIcon();
+      return false;
     }
   }
   req.send(null);

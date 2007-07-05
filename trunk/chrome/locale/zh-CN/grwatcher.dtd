@@ -16,11 +16,11 @@
 <!ENTITY GRWpreferences.tooltipcounterposdesc "工具提示中计数器的位置:">
 <!ENTITY GRWpreferences.tooltipdesc "收取点检查结束后这些选项才生效。">
 <!ENTITY GRWpreferences.tooltiptitlelengthdesc "Sets the Feed title&apos;s character number in the tooltip">
-<!ENTITY GRWpreferences.tabaccountinfo "Account information">
-<!ENTITY GRWpreferences.accountinfocaption "Google account information">
-<!ENTITY GRWpreferences.accountinfodesc "Specify your Google account e-mail and password">
-<!ENTITY GRWpreferences.accountinfoemail "Email address:">
-<!ENTITY GRWpreferences.accountinfopassword "Password:">
+<!ENTITY GRWpreferences.tabaccountinfo "账户信息">
+<!ENTITY GRWpreferences.accountinfocaption "Google 账户信息">
+<!ENTITY GRWpreferences.accountinfodesc "指定您的 Google 账户 email 和密码">
+<!ENTITY GRWpreferences.accountinfoemail "Email 地址:">
+<!ENTITY GRWpreferences.accountinfopassword "密码:">
 <!ENTITY GRWpreferences.accountinfo.rememberLogin "记住此登录">
 <!ENTITY GRWpreferences.leftclickopen.description "打开 Google Reader 于">
 <!ENTITY GRWpreferences.leftclickopen.singleclick "单击">

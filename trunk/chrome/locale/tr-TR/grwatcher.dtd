@@ -1,65 +1,31 @@
-<!ENTITY GRWstatusbar.popup.openReader "Google Reader'i Aç">
-
+<!ENTITY GRWstatusbar.popup.openReader "Google Reader&apos;i Aç">
 <!ENTITY GRWstatusbar.popup.getReadCounter "Okunmamýþ haberleri kontrol et">
-
 <!ENTITY GRWstatusbar.popup.openPrefs "Tercihler">
-
-
 <!ENTITY GRWpreferences.title "Google Reader Watcher Tercihleri">
-
 <!ENTITY GRWpreferences.checkfrequency "Haberleri">
-
 <!ENTITY GRWpreferences.checkfrequency.unit "dakikada bir kontrol et">
-
 <!ENTITY GRWpreferences.activateOpenedTab "Açýldýðýnda Google Reader sekmesine geç">
-
 <!ENTITY GRWpreferences.generalpreferencescaption "Genel Tercihler">
-
-<!ENTITY GRWpreferences.generalpreferencesopencaption "Google Reader'i yeni sekmede aç">
-
+<!ENTITY GRWpreferences.generalpreferencesopencaption "Google Reader&apos;i yeni sekmede aç">
 <!ENTITY GRWpreferences.tooltippreferencescaption "Ýmleç bilgisi tercihleri">
-
 <!ENTITY GRWpreferences.tabgeneral "Genel">
-
-<!ENTITY GRWpreferences.openinnewtabdesc "Google Reader'i yeni sekmede aç">
-
+<!ENTITY GRWpreferences.openinnewtabdesc "Google Reader&apos;i yeni sekmede aç">
 <!ENTITY GRWpreferences.resetcounterdesc "Google Reader açýldýðýnda durum çubuðundaki sayacý sýfýrla">
-
-
-<!ENTITY GRWpreferences.tooltipcounterposleft "Sol">
-
 <!ENTITY GRWpreferences.tooltipcounterposright "Sað">
-
+<!ENTITY GRWpreferences.tooltipcounterposleft "Sol">
 <!ENTITY GRWpreferences.tooltipcounterposdesc "Ýmleç bilgisindeki sayaçlarýn bulunacaðý taraf:">
-
 <!ENTITY GRWpreferences.tooltipdesc "Bu ayarlar haber kontrolünden sonra geçerli olacaktýr.">
-
 <!ENTITY GRWpreferences.tooltiptitlelengthdesc "Ýmleç bilgisindeki haber baþlýklarýnýn karakter sayýsý">
-
-
 <!ENTITY GRWpreferences.tabaccountinfo "Hesap Bilgisi">
-
 <!ENTITY GRWpreferences.accountinfocaption "Google Hesap Bilgisi">
-
 <!ENTITY GRWpreferences.accountinfodesc "Google hesabý bilgilerinizi giriniz">
-
 <!ENTITY GRWpreferences.accountinfoemail "Email Adresi:">
-
 <!ENTITY GRWpreferences.accountinfopassword "Þifre:">
-
 <!ENTITY GRWpreferences.accountinfo.rememberLogin "Giriþ bilgilerini hatýrla">
-
-
-<!ENTITY GRWpreferences.leftclickopen.description "Google Reader'i">
-
+<!ENTITY GRWpreferences.leftclickopen.description "Google Reader&apos;i">
 <!ENTITY GRWpreferences.leftclickopen.singleclick "sol týklamayla aç">
-
 <!ENTITY GRWpreferences.leftclickopen.dblclick "sað týklamayla aç">
-
 <!ENTITY GRWpreferences.leftclickopen.disabled "açma">
-
 <!ENTITY GRWtooltip.nonewfeed "Okunmamýþ haberiniz yok">
 <!ENTITY GRWtooltip.errorfeedfetch "Haberlere ulaþýrken hata oluþtu. Giriþ yaptýðýnýzdan emin misiniz?">
-
 <!ENTITY GRWtooltip.newfeed "Okunmamýþ haberleriniz var">
-<!ENTITY GRWpreferences.tooltipcounterposleft "Sol">

@@ -4,7 +4,7 @@
   <Description about="urn:mozilla:install-manifest">
     <em:id>grwatcher@ajnasz.hu</em:id>
     <em:name>Google Reader Watcher</em:name>
-    <em:version>0.0.6a1</em:version>
+    <em:version>0.0.6b</em:version>
 
     <!-- Firefox -->
     <em:targetApplication>
@@ -38,8 +38,14 @@
     <em:optionsURL>chrome://grwatcher/content/grprefs.xul</em:optionsURL>
 
     <em:contributor>Dave Peitler</em:contributor>
-    <em:contributor>Théophile Helleboid - fr-Fr</em:contributor>
-    <em:contributor>Ahmed Yilmaz - tr-Tr</em:contributor>
-    <em:contributor>drry ja-Jp (babelzilla)</em:contributor>
+    <em:contributor>Ahmed Yilmaz - tr-TR</em:contributor>
+    <em:contributor>chtitux - fr-FR (babelzilla)</em:contributor>
+    <em:contributor>AtteL fi-FI(babelzilla)</em:contributor>
+    <em:contributor>drry ja-JP (babelzilla)</em:contributor>
+    <em:contributor>fiag zh-CN (babelzilla)</em:contributor>
+    <em:contributor>pierfrancesco99 it-IT (babelzilla)</em:contributor>
+    <em:contributor>Wareczek pl-PL (babelzilla)</em:contributor>
+    <em:contributor>PAGF_LINUX es-AR (babelzilla)</em:contributor>
+    <em:contributor>PAGF_LINUX es-ES (babelzilla)</em:contributor>
   </Description>
 </RDF>

@@ -1,0 +1,31 @@
+<!ENTITY GRWstatusbar.popup.openReader "Abrir Google Reader">
+<!ENTITY GRWstatusbar.popup.getReadCounter "Verificar alimentadores sin leer">
+<!ENTITY GRWstatusbar.popup.openPrefs "Preferencias">
+<!ENTITY GRWpreferences.title "Preferencias del observador Google Reader">
+<!ENTITY GRWpreferences.checkfrequency "Verificar nuevos alimentadores cada">
+<!ENTITY GRWpreferences.checkfrequency.unit "minuto(s)">
+<!ENTITY GRWpreferences.activateOpenedTab "Enfocar/seleccionar la pestaña de Google Reader después de abrirse">
+<!ENTITY GRWpreferences.generalpreferencescaption "Preferencias generales">
+<!ENTITY GRWpreferences.generalpreferencesopencaption "Abrir configuración de Google Reader">
+<!ENTITY GRWpreferences.tooltippreferencescaption "Preferencias de Tooltip">
+<!ENTITY GRWpreferences.tabgeneral "General">
+<!ENTITY GRWpreferences.openinnewtabdesc "Abrir Google Reader en una nueva pestaña">
+<!ENTITY GRWpreferences.resetcounterdesc "Reajusta el contador de la barra de estado cuando la ventana del Google Reader se abre">
+<!ENTITY GRWpreferences.tooltipcounterposright "Derecha">
+<!ENTITY GRWpreferences.tooltipcounterposleft "Izquierda">
+<!ENTITY GRWpreferences.tooltipcounterposdesc "La posición del contador en el tooltip:">
+<!ENTITY GRWpreferences.tooltipdesc "Estas opciones entrarán en vigor después de verificar alimentadores.">
+<!ENTITY GRWpreferences.tooltiptitlelengthdesc "Fija el número del carácter del título del alimentador en el tooltip">
+<!ENTITY GRWpreferences.tabaccountinfo "Información de cuenta">
+<!ENTITY GRWpreferences.accountinfocaption "Información de cuenta Google">
+<!ENTITY GRWpreferences.accountinfodesc "Indique su cuenta de e-mail y contraseña de Google">
+<!ENTITY GRWpreferences.accountinfoemail "Dirección Email:">
+<!ENTITY GRWpreferences.accountinfopassword "Contraseña:">
+<!ENTITY GRWpreferences.accountinfo.rememberLogin "Recordar la conexión">
+<!ENTITY GRWpreferences.leftclickopen.description "Abrir Google Reader con">
+<!ENTITY GRWpreferences.leftclickopen.singleclick "Clic simple">
+<!ENTITY GRWpreferences.leftclickopen.dblclick "Doble clic">
+<!ENTITY GRWpreferences.leftclickopen.disabled "Desactivado">
+<!ENTITY GRWtooltip.nonewfeed "Tiene algún alimentador sin leer">
+<!ENTITY GRWtooltip.errorfeedfetch "¡Error recuperando alimentadores! ¿Está conectado?">
+<!ENTITY GRWtooltip.newfeed "Tiene alimentadores sin leer">
