@@ -1,31 +1,31 @@
-<!ENTITY GRWstatusbar.popup.openReader "Open Google Reader">
-<!ENTITY GRWstatusbar.popup.getReadCounter "Check for unread feeds">
-<!ENTITY GRWstatusbar.popup.openPrefs "Preferences">
-<!ENTITY GRWpreferences.title "Google Reader Watcher Preferences">
-<!ENTITY GRWpreferences.checkfrequency "Check for new feeds every">
-<!ENTITY GRWpreferences.checkfrequency.unit "minute(s)">
-<!ENTITY GRWpreferences.activateOpenedTab "Focus/select the Google Reader tab after opening">
-<!ENTITY GRWpreferences.generalpreferencescaption "General preferences">
-<!ENTITY GRWpreferences.generalpreferencesopencaption "Opening settings of Google Reader">
-<!ENTITY GRWpreferences.tooltippreferencescaption "Tooltip preferences">
-<!ENTITY GRWpreferences.tabgeneral "General">
-<!ENTITY GRWpreferences.openinnewtabdesc "Open Google Reader in a new tab">
-<!ENTITY GRWpreferences.resetcounterdesc "Resets the statusbar counter when the Google Reader window opens">
-<!ENTITY GRWpreferences.tooltipcounterposright "Right">
-<!ENTITY GRWpreferences.tooltipcounterposleft "Left">
-<!ENTITY GRWpreferences.tooltipcounterposdesc "The position of the counter in the tooltip:">
-<!ENTITY GRWpreferences.tooltipdesc "These options will take effect after a feed check.">
-<!ENTITY GRWpreferences.tooltiptitlelengthdesc "Sets the Feed title&apos;s character number in the tooltip">
-<!ENTITY GRWpreferences.tabaccountinfo "Account information">
-<!ENTITY GRWpreferences.accountinfocaption "Google account information">
-<!ENTITY GRWpreferences.accountinfodesc "Specify your Google account e-mail and password">
-<!ENTITY GRWpreferences.accountinfoemail "Email address:">
-<!ENTITY GRWpreferences.accountinfopassword "Password:">
-<!ENTITY GRWpreferences.accountinfo.rememberLogin "Remember login">
-<!ENTITY GRWpreferences.leftclickopen.description "Open Google Reader with">
-<!ENTITY GRWpreferences.leftclickopen.singleclick "Single click">
-<!ENTITY GRWpreferences.leftclickopen.dblclick "Double click">
-<!ENTITY GRWpreferences.leftclickopen.disabled "Disabled">
-<!ENTITY GRWtooltip.nonewfeed "You haven&apos;t got any unread feeds">
-<!ENTITY GRWtooltip.errorfeedfetch "Error fetching feeds! Are you logged in?">
-<!ENTITY GRWtooltip.newfeed "You have unread feeds">
+<!ENTITY GRWstatusbar.popup.openReader "Ava Google Reader">
+<!ENTITY GRWstatusbar.popup.getReadCounter "Kontrolli lugemata tellimusi">
+<!ENTITY GRWstatusbar.popup.openPrefs "Eelistused">
+<!ENTITY GRWpreferences.title "Google Reader Watcheri eelistused">
+<!ENTITY GRWpreferences.checkfrequency "Uusi tellimusi kontrollitakse iga">
+<!ENTITY GRWpreferences.checkfrequency.unit "minuti järel">
+<!ENTITY GRWpreferences.activateOpenedTab "Avamisel lülitutakse Google Readeri kaardile">
+<!ENTITY GRWpreferences.generalpreferencescaption "Üldised eelistused">
+<!ENTITY GRWpreferences.generalpreferencesopencaption "Google Readeri avamise sätted">
+<!ENTITY GRWpreferences.tooltippreferencescaption "Vihje eelistused">
+<!ENTITY GRWpreferences.tabgeneral "Üldine">
+<!ENTITY GRWpreferences.openinnewtabdesc "Google Reader avatakse uuel kaardil">
+<!ENTITY GRWpreferences.resetcounterdesc "Google Readeri akna avamisel lähtestatakse olekuriba loendur">
+<!ENTITY GRWpreferences.tooltipcounterposright "paremal">
+<!ENTITY GRWpreferences.tooltipcounterposleft "vasakul">
+<!ENTITY GRWpreferences.tooltipcounterposdesc "Lugemata tellimuste loenduri näitamise asukoht vihjes:">
+<!ENTITY GRWpreferences.tooltipdesc "Need valikud rakenduvad peale tellimuste kontrollimist.">
+<!ENTITY GRWpreferences.tooltiptitlelengthdesc "Tellimuse pealkirjas olevate tähemärkide arv vihjes:">
+<!ENTITY GRWpreferences.tabaccountinfo "Konto info">
+<!ENTITY GRWpreferences.accountinfocaption "Google konto info">
+<!ENTITY GRWpreferences.accountinfodesc "Sisesta oma Google konto e-posti aadress ja parool">
+<!ENTITY GRWpreferences.accountinfoemail "E-posti aadress:">
+<!ENTITY GRWpreferences.accountinfopassword "Parool:">
+<!ENTITY GRWpreferences.accountinfo.rememberLogin "Logimise info peetakse meeles">
+<!ENTITY GRWpreferences.leftclickopen.description "Google Reader avaneb">
+<!ENTITY GRWpreferences.leftclickopen.singleclick "ühe klõpsuga">
+<!ENTITY GRWpreferences.leftclickopen.dblclick "topeltklõpsuga">
+<!ENTITY GRWpreferences.leftclickopen.disabled "ei reageeri klõpsamisele">
+<!ENTITY GRWtooltip.nonewfeed "Sul pole ühtegi lugemata tellimust">
+<!ENTITY GRWtooltip.errorfeedfetch "Viga tellimuste kontrollimisel! Kas oled ikka sisse logitud?">
+<!ENTITY GRWtooltip.newfeed "Sul on lugemata tellimusi">
