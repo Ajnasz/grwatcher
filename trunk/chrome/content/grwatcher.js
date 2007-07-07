@@ -2,7 +2,6 @@
  * @author Lajos Koszti [Ajnasz] http://ajnasz.hu ajnasz@ajnasz.hu ajnasz@gmail.com
  * @license GPL v2
  */
-
 /**
  * mozilla preferences component service
  */
@@ -10,7 +9,7 @@ var prefManager = Components.classes["@mozilla.org/preferences-service;1"].getSe
 /**
  * user agent for Google Reader Watcher
  */
-var GRWUserAgent = 'Google Reader Watcher 0.0.6';
+var GRWUserAgent = 'Google Reader Watcher 0.0.7a';
 /**
  * @param {String} message log on the javascript console
  */
@@ -24,7 +23,8 @@ var Log =
   log: function(message){
     this.serv.logStringMessage('GRW: '+message);
   }
-}
+};
+FeedlistIds = Array();
 /**
  * passwod manager object
  */
@@ -82,7 +82,7 @@ var passManager =
     catch(error){}
     return user.value;
   }
-}
+};
 /**
  * account manager object
  */
@@ -150,7 +150,7 @@ var accountManager =
             if(req.status == 200)
             {
               prefManager.setCharPref('extensions.grwatcher.sid', accountManager.getCurrentSID());
-              getReadCounter();
+              getFeedList();
             }
             else
             {
@@ -403,30 +403,30 @@ var updateIcon = function()
  */
 var showCounter = function(val)
 {
-    var label = document.getElementById('GRW-statusbar-label');
-    label.value = val;
-    label.style.width = '';
-    label.style.margin = '';
-    label.crop = '';
-    label.collapsed = false;
-    if(GRPrefs.showNotification && val != 0)
-    {
-      var GRW_bundle = document.getElementById('grwatcher-bundles');
-      showNotification(false, GRW_bundle.getFormattedString('notifierMSG', [val]));
-      GRPrefs.showNotification = false;
-    }
+  var label = document.getElementById('GRW-statusbar-label');
+  label.value = val;
+  label.style.width = '';
+  label.style.margin = '';
+  label.crop = '';
+  label.collapsed = false;
+  if(GRPrefs.showNotification && val != 0)
+  {
+    var GRW_bundle = document.getElementById('grwatcher-bundles');
+    showNotification(false, GRW_bundle.getFormattedString('notifierMSG', [val]));
+    GRPrefs.showNotification = false;
+  }
 };
 /**
  * hide the counter text
  */
 var hideCounter = function()
 {
-    var label = document.getElementById('GRW-statusbar-label');
-    label.value = '';
-    label.crop = 'end';
-    label.style.margin = '0'
-    label.style.width = '0';
-    label.collapsed = true;
+  var label = document.getElementById('GRW-statusbar-label');
+  label.value = '';
+  label.crop = 'end';
+  label.style.margin = '0'
+  label.style.width = '0';
+  label.collapsed = true;
 };
 /**
  * request for unreaded feeds
@@ -451,6 +451,49 @@ var getReadCounter = function()
           if(req.status == 200)
           {
             onCounterLoad(req);
+          }
+          else
+          {
+            GRCheck.switchErrorIcon();
+            return false;
+          }
+        }
+        else
+        {
+          GRCheck.switchErrorIcon();
+          return false;
+        }
+      }
+    }
+    catch(e)
+    {
+      GRCheck.switchErrorIcon();
+      return false;
+    }
+  }
+  req.send(null);
+};
+var getFeedList = function()
+{
+  GRCheck.switchLoadIcon();
+  var req = new XMLHttpRequest();
+
+  req.open('get', 'https://www.google.com/reader/api/0/subscription/list?output=json', true);
+  req.setRequestHeader('User-Agent', GRWUserAgent);
+  req.setRequestHeader('Accept-Charset','utf-8');
+  req.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+  req.onreadystatechange = function(aEvt)
+  {
+    try
+    {
+      if(req.readyState == 4)
+      {
+        if(typeof req.status != 'undefined')
+        {
+
+          if(req.status == 200)
+          {
+            onFeedListLoad(req);
           }
           else
           {
@@ -536,12 +579,44 @@ var countUnread = function(r)
   if(data) {
     var uc = data.unreadcounts;
     for(var i =0 ; i<  uc.length; i++) {
+      for(var j = 0; j < FeedlistIds.length; j++)
+      {
+        rex = new RegExp('^'+FeedlistIds[j]);
+        if(rex.test(uc[i].id))
+        {
+          unrcount += uc[i].count;
+        }
+      }
+      /*
       if(uc[i].id.match('^feed')) {
         unrcount += uc[i].count;
       }
+      */
     }
   }
   return unrcount;
+};
+/**
+ * @param {Object} req ajax response object
+ */
+var onFeedListLoad = function(r)
+{
+  try
+  {
+    var data = eval('('+r.responseText+')').subscriptions;
+  }
+  catch(e)
+  {
+    return false;
+  }
+  var ids = Array();
+  for(var i = 0; i < data.length; i++)
+  {
+    ids.push(data[i].id);
+  }
+  FeedlistIds = ids;
+  getReadCounter();
+  return ids;
 };
 /**
  *
@@ -558,7 +633,7 @@ var onCounterLoad = function(req)
   }
   else if(unr > 0)
   {
-    getReadFeedsCounter(req)
+    getReadFeedsCounter(req);
     setReaderTooltip('new');
     GRCheck.switchOnIcon();
     showCounter(unr);
@@ -629,7 +704,21 @@ var onFeedsCounterLoad = function(req, prReq)
       }
     }
   }
-  genStatusGrid(feeds);
+  // filter the feeds, which aren't in the feedlist
+  var outFeeds = Array(), rex;
+  for(var i = 0; i < feeds.length; i++)
+  {
+    for(var j = 0; j < FeedlistIds.length; j++)
+    {
+      rex = new RegExp('^'+FeedlistIds[j]);
+      if(rex.test(feeds[i].Id))
+      {
+        outFeeds.push(feeds[i]);
+      }
+    }
+  }
+  // genStatusGrid(feeds);
+  genStatusGrid(outFeeds);
 };
 /**
  * shows the notification window
@@ -807,7 +896,8 @@ var GoogleIt = function()
   else
   {
     prefManager.setCharPref('extensions.grwatcher.sid', accountManager.getCurrentSID());
-    getReadCounter();
+    // getReadCounter();
+    getFeedList();
   }
   if(login === -1)
   {
@@ -835,7 +925,7 @@ var statusClickHandling =
     var leftClickOpen = GRPrefs.leftClickOpen();
     if(this.status !== false)
     {
-      if(this.status == 1) 
+      if(this.status == 1)
       {
         this.statusBar.removeEventListener('click', statusClickHandling.click, false);
       }
@@ -856,7 +946,7 @@ var statusClickHandling =
     }
     else
     {
-      this.status = 0; 
+      this.status = 0;
     }
   },
   click: function(event)
@@ -872,8 +962,8 @@ var statusClickHandling =
  */
 var GRWinit = function()
 {
-    var g = GoogleIt();
-    statusClickHandling.statusBar = document.getElementById('GRW-statusbar');
-    statusClickHandling.observe();
-    Log.log('Google Reader Watcher Initialized');
+  var g = GoogleIt();
+  statusClickHandling.statusBar = document.getElementById('GRW-statusbar');
+  statusClickHandling.observe();
+  Log.log('Google Reader Watcher Initialized');
 };
