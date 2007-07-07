@@ -4,7 +4,7 @@
   <Description about="urn:mozilla:install-manifest">
     <em:id>grwatcher@ajnasz.hu</em:id>
     <em:name>Google Reader Watcher</em:name>
-    <em:version>0.0.6</em:version>
+    <em:version>0.0.7a</em:version>
 
     <!-- Firefox -->
     <em:targetApplication>
@@ -39,6 +39,7 @@
 
     <em:contributor>Dave Peitler</em:contributor>
     <em:contributor>Ahmed Yilmaz - tr-TR</em:contributor>
+    <em:contributor>Sander Lepik - et-EE</em:contributor>
     <em:contributor>chtitux - fr-FR (babelzilla)</em:contributor>
     <em:contributor>AtteL fi-FI(babelzilla)</em:contributor>
     <em:contributor>drry ja-JP (babelzilla)</em:contributor>
