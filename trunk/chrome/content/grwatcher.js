@@ -9,7 +9,7 @@ var prefManager = Components.classes["@mozilla.org/preferences-service;1"].getSe
 /**
  * user agent for Google Reader Watcher
  */
-var GRWUserAgent = 'Google Reader Watcher 0.0.7a';
+var GRWUserAgent = 'Google Reader Watcher 0.0.8a';
 /**
  * @param {String} message log on the javascript console
  */
@@ -149,7 +149,14 @@ var accountManager =
           {
             if(req.status == 200)
             {
-              prefManager.setCharPref('extensions.grwatcher.sid', accountManager.getCurrentSID());
+              var curSid = accountManager.getCurrentSID();
+              if(!curSid)
+              {
+                GRCheck.switchErrorIcon();
+                setReaderTooltip('loginerror');
+                return false;
+              }
+              prefManager.setCharPref('extensions.grwatcher.sid', curSid);
               getFeedList();
             }
             else
@@ -355,6 +362,9 @@ var setReaderTooltip = function(t)
     case 'hide':
       statusBar.tooltip = '';
       break;
+    case 'loginerror' :
+      statusBar.tooltip = 'GRW-statusbar-tooltip-loginerror';
+      break;
   }
 };
 /**
@@ -538,7 +548,28 @@ var getReadFeedsCounter = function(prReq)
         {
           if(req.status == 200)
           {
-            onFeedsCounterLoad(req, prReq);
+            var r = onFeedsCounterLoad(req, prReq);
+            var unr = r.counter;
+            if(unr === false)
+            {
+              setReaderTooltip('error');
+              GRCheck.switchErrorIcon();
+              hideCounter();
+            }
+            else if(unr > 0)
+            {
+              setReaderTooltip('new');
+              genStatusGrid(r.feeds);
+              GRCheck.switchOnIcon();
+              showCounter(unr);
+            }
+            else
+            {
+              setReaderTooltip('nonew');
+              GRCheck.switchOffIcon();
+              hideCounter();
+              GRPrefs.showNotification = true;
+            }
           }
           else
           {
@@ -624,27 +655,9 @@ var onFeedListLoad = function(r)
  */
 var onCounterLoad = function(req)
 {
-  var unr = countUnread(req);
-  if(unr === false)
-  {
-    setReaderTooltip('error');
-    GRCheck.switchErrorIcon();
-    hideCounter();
-  }
-  else if(unr > 0)
-  {
-    getReadFeedsCounter(req);
-    setReaderTooltip('new');
-    GRCheck.switchOnIcon();
-    showCounter(unr);
-  }
-  else
-  {
-    setReaderTooltip('nonew');
-    GRCheck.switchOffIcon();
-    hideCounter();
-    GRPrefs.showNotification = true;
-  }
+  // var unr = countUnread(req);
+   getReadFeedsCounter(req);
+  
 };
 /**
  *
@@ -706,6 +719,7 @@ var onFeedsCounterLoad = function(req, prReq)
   }
   // filter the feeds, which aren't in the feedlist
   var outFeeds = Array(), rex;
+  var counter = 0;
   for(var i = 0; i < feeds.length; i++)
   {
     for(var j = 0; j < FeedlistIds.length; j++)
@@ -713,12 +727,15 @@ var onFeedsCounterLoad = function(req, prReq)
       rex = new RegExp('^'+FeedlistIds[j]);
       if(rex.test(feeds[i].Id))
       {
+        counter += feeds[i].Count;
         outFeeds.push(feeds[i]);
       }
     }
   }
   // genStatusGrid(feeds);
-  genStatusGrid(outFeeds);
+  // genStatusGrid(outFeeds);
+  
+  return {counter: counter, feeds: outFeeds};
 };
 /**
  * shows the notification window
