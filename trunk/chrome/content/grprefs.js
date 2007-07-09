@@ -114,10 +114,17 @@ var openNewTabCheckToogle = function()
   var cbfield = document.getElementById('GRW-openinnewtab-field');
   if(cbfield.checked)
   {
-    document.getElementById('GRW-openinnewtab-options').style.display = '';
+    document.getElementById('GRW-activateopenedtab-field').disabled = '';
+    document.getElementById('GRW-leftclickopen-field').disabled = '';
+    document.getElementById('GRW-leftclickopen-label').disabled = '';
+
+    // document.getElementById('GRW-openinnewtab-options').style.display = '';
   }
   else
   {
-    document.getElementById('GRW-openinnewtab-options').style.display = 'none';
+    document.getElementById('GRW-activateopenedtab-field').disabled = 'disabled';
+    document.getElementById('GRW-leftclickopen-field').disabled = 'disabled';
+    document.getElementById('GRW-leftclickopen-label').disabled = 'disabled';
+    // document.getElementById('GRW-openinnewtab-options').style.display = 'none';
   }
 };
