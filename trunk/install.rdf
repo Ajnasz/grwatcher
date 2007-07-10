@@ -37,16 +37,17 @@
     <em:iconURL>chrome://grwatcher/skin/grwatcher.png</em:iconURL>
     <em:optionsURL>chrome://grwatcher/content/grprefs.xul</em:optionsURL>
 
-    <em:contributor>Dave Peitler</em:contributor>
+    <em:contributor>7bse - de-DE (babelzilla)</em:contributor>
     <em:contributor>Ahmed Yilmaz - tr-TR</em:contributor>
-    <em:contributor>Sander Lepik - et-EE</em:contributor>
-    <em:contributor>chtitux - fr-FR (babelzilla)</em:contributor>
     <em:contributor>AtteL fi-FI(babelzilla)</em:contributor>
+    <em:contributor>chtitux - fr-FR (babelzilla)</em:contributor>
+    <em:contributor>Dave Peitler</em:contributor>
     <em:contributor>drry ja-JP (babelzilla)</em:contributor>
     <em:contributor>fiag zh-CN (babelzilla)</em:contributor>
-    <em:contributor>pierfrancesco99 it-IT (babelzilla)</em:contributor>
-    <em:contributor>Wareczek pl-PL (babelzilla)</em:contributor>
     <em:contributor>PAGF_LINUX es-AR (babelzilla)</em:contributor>
     <em:contributor>PAGF_LINUX es-ES (babelzilla)</em:contributor>
+    <em:contributor>pierfrancesco99 it-IT (babelzilla)</em:contributor>
+    <em:contributor>Sander Lepik - et-EE</em:contributor>
+    <em:contributor>Wareczek pl-PL (babelzilla)</em:contributor>
   </Description>
 </RDF>
