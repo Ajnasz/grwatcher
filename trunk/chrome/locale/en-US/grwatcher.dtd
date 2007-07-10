@@ -29,3 +29,4 @@
 <!ENTITY GRWtooltip.nonewfeed "You haven&apos;t got any unread feeds">
 <!ENTITY GRWtooltip.errorfeedfetch "Error fetching feeds! Are you logged in?">
 <!ENTITY GRWtooltip.newfeed "You have unread feeds">
+<!ENTITY GRWtooltip.errorlogin "Login failed. Make sure you have entered the correct password and/or username!">
