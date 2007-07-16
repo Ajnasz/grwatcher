@@ -10,3 +10,6 @@ pref("extensions.grwatcher.rememberLogin", false);
 
 pref("extensions.grwatcher.leftclickopen", 1);
 pref("extensions.grwatcher.activateopenedtab", true);
+
+pref("extensions.grwatcher.shownotificationwindow", true);
+pref("extensions.grwatcher.showzerocounter", false);
