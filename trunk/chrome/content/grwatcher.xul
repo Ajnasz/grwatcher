@@ -5,12 +5,7 @@
 
 <overlay id="GRWatcherOverlay" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
   <script type="application/x-javascript" src="chrome://grwatcher/content/grwatcher.js" />
-  <script type="application/x-javascript">
-  <![CDATA[
-  window.addEventListener('load', GRWinit, false);
-    ]]>
-  </script>
-
+  <script type="application/x-javascript" src="chrome://grwatcher/content/grwatcher-init.js" />
   <statusbar id="status-bar">
 
     <stringbundle id="grwatcher-bundles" src="chrome://grwatcher/locale/grwatcher.properties" />
