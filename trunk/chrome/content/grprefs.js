@@ -36,6 +36,14 @@ var getPref =
   activateOpenedTab : function(value)
   {
     return prefManager.getBoolPref('extensions.grwatcher.activateopenedtab');
+  },
+  showNotificationWindow : function(value)
+  {
+    return prefManager.getBoolPref('extensions.grwatcher.shownotificationwindow');
+  },
+  showZeroCounter : function(value)
+  {
+    return prefManager.getBoolPref('extensions.grwatcher.showzerocounter');
   }
 };
 /**
@@ -74,6 +82,14 @@ var setPref =
   activateOpenedTab : function(value)
   {
     prefManager.setBoolPref('extensions.grwatcher.activateopenedtab', value);
+  },
+  showNotificationWindow : function(value)
+  {
+   prefManager.setBoolPref('extensions.grwatcher.shownotificationwindow', value);
+  },
+  showZeroCounter : function(value)
+  {
+   prefManager.setBoolPref('extensions.grwatcher.showzerocounter', value);
   }
 };
 /**
@@ -89,6 +105,8 @@ var savePreferences = function()
   setPref.rememberLogin(document.getElementById('GRW-rememberLogin-field').checked);
   setPref.leftClickOpen(document.getElementById('GRW-leftclickopen-field').value);
   setPref.activateOpenedTab(document.getElementById('GRW-activateopenedtab-field').checked);
+  setPref.showNotificationWindow(document.getElementById('GRW-shownotificationwindow-field').checked);
+  setPref.showZeroCounter(document.getElementById('GRW-showzerocounter-field').checked);
 };
 /**
  * sets the values on the pref dialog when it opens
@@ -105,6 +123,8 @@ var setPrefPaneVals = function()
   document.getElementById('GRW-activateopenedtab-field').checked = getPref.activateOpenedTab();
   document.getElementById('GRW-accountmanage-pass').value = passManager.getPassword();
   document.getElementById('GRW-accountmanage-email').value = passManager.getUserName();
+  document.getElementById('GRW-shownotificationwindow-field').checked = getPref.showNotificationWindow();
+  document.getElementById('GRW-showzerocounter-field').checked = getPref.showZeroCounter();
 };
 /**
  * show/hide the newtab options

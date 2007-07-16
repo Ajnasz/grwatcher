@@ -45,6 +45,8 @@
             </hbox>
             <vbox>
               <checkbox id="GRW-resetcounter-field" label="&GRWpreferences.resetcounterdesc;" />
+              <checkbox id="GRW-shownotificationwindow-field" label="&GRWpreferences.shownotificationwindow;" />
+              <checkbox id="GRW-showzerocounter-field" label="&GRWpreferences.showzerocounter;" />
             </vbox>
 
           </groupbox>
