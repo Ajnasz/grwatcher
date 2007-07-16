@@ -9,7 +9,7 @@ var prefManager = Components.classes["@mozilla.org/preferences-service;1"].getSe
 /**
  * user agent for Google Reader Watcher
  */
-var GRWUserAgent = 'Google Reader Watcher 0.0.8a';
+var GRWUserAgent = 'Google Reader Watcher 0.0.8b';
 /**
  * @param {String} message log on the javascript console
  */
@@ -567,7 +567,14 @@ var getReadFeedsCounter = function(prReq)
             {
               setReaderTooltip('nonew');
               GRCheck.switchOffIcon();
-              hideCounter();
+              if(GRPrefs.showzerocounter() === false)
+              {
+                hideCounter();
+              }
+              else
+              {
+                showCounter(unr);
+              }
               GRPrefs.showNotification = true;
             }
           }
@@ -612,8 +619,14 @@ var countUnread = function(r)
     for(var i =0 ; i<  uc.length; i++) {
       for(var j = 0; j < FeedlistIds.length; j++)
       {
+        /*
         rex = new RegExp('^'+FeedlistIds[j]);
         if(rex.test(uc[i].id))
+        {
+          unrcount += uc[i].count;
+        }
+        */
+        if(FeedlistIds[j] == uc[i].id)
         {
           unrcount += uc[i].count;
         }
@@ -725,7 +738,14 @@ var onFeedsCounterLoad = function(req, prReq)
     for(var j = 0; j < FeedlistIds.length; j++)
     {
       rex = new RegExp('^'+FeedlistIds[j]);
+      /*
       if(rex.test(feeds[i].Id))
+      {
+        counter += feeds[i].Count;
+        outFeeds.push(feeds[i]);
+      }
+      */
+      if(FeedlistIds[j] == feeds[i].Id)
       {
         counter += feeds[i].Count;
         outFeeds.push(feeds[i]);
@@ -745,6 +765,10 @@ var onFeedsCounterLoad = function(req, prReq)
  */
 var showNotification = function(label, value)
 {
+  if(GRPrefs.shownotificationwindow() === false)
+  {
+    return false;
+  }
   if(!label)
   {
     label = 'Google Reader Watcher';
@@ -899,10 +923,18 @@ var GRPrefs =
   activateOpenedTab: function()
   {
     return prefManager.getBoolPref('extensions.grwatcher.activateopenedtab');
+  },
+  shownotificationwindow: function()
+  {
+    return prefManager.getBoolPref('extensions.grwatcher.shownotificationwindow');
+  },
+  showzerocounter: function()
+  {
+    return prefManager.getBoolPref('extensions.grwatcher.showzerocounter');
   }
 };
 /**
- *
+ * do the request and process the received data
  */
 var GoogleIt = function()
 {
@@ -939,39 +971,34 @@ var statusClickHandling =
   statusBar: null,
   observe: function()
   {
-    var leftClickOpen = GRPrefs.leftClickOpen();
-    if(this.status !== false)
+    this.status = GRPrefs.leftClickOpen();
+    this.statusBar.addEventListener('click', statusClickHandling.click, false);
+    if(this.status == 2)
     {
-      if(this.status == 1)
-      {
-        this.statusBar.removeEventListener('click', statusClickHandling.click, false);
-      }
-      else if(this.status == 2)
-      {
-        this.statusBar.removeEventListener('dblclick', statusClickHandling.click, false);
-      }
-    }
-    if(leftClickOpen == 1)
-    {
-      document.getElementById('GRW-statusbar').addEventListener('click', statusClickHandling.click, false);
-      this.status = 1;
-    }
-    else if(leftClickOpen == 2)
-    {
-      document.getElementById('GRW-statusbar').addEventListener('dblclick', statusClickHandling.click, false);
-      this.status = 2;
-    }
-    else
-    {
-      this.status = 0;
+      this.statusBar.addEventListener('dblclick', statusClickHandling.click, false);
     }
   },
+  /**
+   * event handler runs when user click on the statusbar icon
+   * event.button: 0 = left click, 1 = middle click, 2 = right click
+   * @param {Object} event
+   */
   click: function(event)
   {
-    if(event.button == 0)
+    switch(event.button)
     {
-      GRCheck.openReader();
+      case 0:
+        if((statusClickHandling.status == 2 && event.type == 'dblclick') || (statusClickHandling.status == 1 && event.type == 'click'))
+        {
+          GRCheck.openReader();
+        }
+      break;
+
+      case 1:
+        GoogleIt();
+      break;
     }
+    Log.log('status: '+statusClickHandling.status+', type: '+event.type);
   }
 };
 /**
