@@ -11,6 +11,8 @@
 <!ENTITY GRWpreferences.tabgeneral "Üldine">
 <!ENTITY GRWpreferences.openinnewtabdesc "Google Reader avatakse uuel kaardil">
 <!ENTITY GRWpreferences.resetcounterdesc "Google Readeri akna avamisel lähtestatakse olekuriba loendur">
+<!ENTITY GRWpreferences.shownotificationwindow "Näidatakse teavitusakent">
+<!ENTITY GRWpreferences.showzerocounter "Loendurit näidatakse ka siis, kui puuduvad lugemata tellimused">
 <!ENTITY GRWpreferences.tooltipcounterposright "paremal">
 <!ENTITY GRWpreferences.tooltipcounterposleft "vasakul">
 <!ENTITY GRWpreferences.tooltipcounterposdesc "Lugemata tellimuste loenduri näitamise asukoht vihjes:">
@@ -29,3 +31,4 @@
 <!ENTITY GRWtooltip.nonewfeed "Sul pole ühtegi lugemata tellimust">
 <!ENTITY GRWtooltip.errorfeedfetch "Viga tellimuste kontrollimisel! Kas oled ikka sisse logitud?">
 <!ENTITY GRWtooltip.newfeed "Sul on lugemata tellimusi">
+<!ENTITY GRWtooltip.errorlogin "Sisselogimine ebaõnnestus. Kontrolli sisestatud parooli ja/või kasutajanime!">

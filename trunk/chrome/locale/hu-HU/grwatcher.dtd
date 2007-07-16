@@ -27,5 +27,6 @@
 <!ENTITY GRWpreferences.leftclickopen.dblclick "Dupla kattintás">
 <!ENTITY GRWpreferences.leftclickopen.disabled "Tiltva">
 <!ENTITY GRWtooltip.nonewfeed "Nincs olvastlan feeded!">
-<!ENTITY GRWtooltip.errorfeedfetch "Hiba a feed lekérdezésekkor! Be vagy jelentkezve?">
 <!ENTITY GRWtooltip.newfeed "Olvasatlan feeded van!">
+<!ENTITY GRWtooltip.errorfeedfetch "Hiba a feedek feldolgozásakor!">
+<!ENTITY GRWtooltip.errorlogin "Sikeretelen bejelentkezés! Ellenőrzid, hogy helyesen adtad-e meg az e-mail címet és a jelszavad!">

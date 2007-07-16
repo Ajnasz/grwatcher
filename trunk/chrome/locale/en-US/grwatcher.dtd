@@ -11,6 +11,8 @@
 <!ENTITY GRWpreferences.tabgeneral "General">
 <!ENTITY GRWpreferences.openinnewtabdesc "Open Google Reader in a new tab">
 <!ENTITY GRWpreferences.resetcounterdesc "Resets the statusbar counter when the Google Reader window opens">
+<!ENTITY GRWpreferences.shownotificationwindow "Show notification window">
+<!ENTITY GRWpreferences.showzerocounter "Show the counter when there are no unread feeds available">
 <!ENTITY GRWpreferences.tooltipcounterposright "Right">
 <!ENTITY GRWpreferences.tooltipcounterposleft "Left">
 <!ENTITY GRWpreferences.tooltipcounterposdesc "The position of the counter in the tooltip:">
@@ -27,6 +29,6 @@
 <!ENTITY GRWpreferences.leftclickopen.dblclick "Double click">
 <!ENTITY GRWpreferences.leftclickopen.disabled "Disabled">
 <!ENTITY GRWtooltip.nonewfeed "You haven&apos;t got any unread feeds">
-<!ENTITY GRWtooltip.errorfeedfetch "Error fetching feeds! Are you logged in?">
+<!ENTITY GRWtooltip.errorfeedfetch "Error fetching feeds!">
 <!ENTITY GRWtooltip.newfeed "You have unread feeds">
 <!ENTITY GRWtooltip.errorlogin "Login failed. Make sure you have entered the correct password and/or username!">
