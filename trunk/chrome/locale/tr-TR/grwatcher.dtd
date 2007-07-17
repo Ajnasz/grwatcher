@@ -11,6 +11,8 @@
 <!ENTITY GRWpreferences.tabgeneral "Genel">
 <!ENTITY GRWpreferences.openinnewtabdesc "Google Reader&apos;i yeni sekmede aç">
 <!ENTITY GRWpreferences.resetcounterdesc "Google Reader açýldýðýnda durum çubuðundaki sayacý sýfýrla">
+<!ENTITY GRWpreferences.shownotificationwindow "Show notification window">
+<!ENTITY GRWpreferences.showzerocounter "Show the counter when there are no unread feeds available">
 <!ENTITY GRWpreferences.tooltipcounterposright "Sað">
 <!ENTITY GRWpreferences.tooltipcounterposleft "Sol">
 <!ENTITY GRWpreferences.tooltipcounterposdesc "Ýmleç bilgisindeki sayaçlarýn bulunacaðý taraf:">
@@ -24,8 +26,9 @@
 <!ENTITY GRWpreferences.accountinfo.rememberLogin "Giriþ bilgilerini hatýrla">
 <!ENTITY GRWpreferences.leftclickopen.description "Google Reader&apos;i">
 <!ENTITY GRWpreferences.leftclickopen.singleclick "sol týklamayla aç">
-<!ENTITY GRWpreferences.leftclickopen.dblclick "sað týklamayla aç">
+<!ENTITY GRWpreferences.leftclickopen.dblclick "çift týklamayla aç">
 <!ENTITY GRWpreferences.leftclickopen.disabled "açma">
 <!ENTITY GRWtooltip.nonewfeed "Okunmamýþ haberiniz yok">
-<!ENTITY GRWtooltip.errorfeedfetch "Haberlere ulaþýrken hata oluþtu. Giriþ yaptýðýnýzdan emin misiniz?">
-<!ENTITY GRWtooltip.newfeed "Okunmamýþ haberleriniz var">
+<!ENTITY GRWtooltip.errorfeedfetch "Haberlere ulaþýrken hata oluþtu!">
+<!ENTITY GRWtooltip.newfeed ""Okunmamýþ haberleriniz var">
+<!ENTITY GRWtooltip.errorlogin "Giriþ baþarýsýz. Doðru kullanýcý adý/þifre kombinasyonunu girdiðinizden emin olun!">
