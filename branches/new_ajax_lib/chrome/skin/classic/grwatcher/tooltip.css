@@ -1,0 +1,16 @@
+tooltip#GRW-statusbar-tooltip-new
+{
+  padding: 0;
+}
+tooltip#GRW-statusbar-tooltip-new .counterCol
+{
+  font-weight: bold;
+}
+tooltip#GRW-statusbar-tooltip-new grid
+{
+  margin: 3px;
+}
+tooltip#GRW-statusbar-tooltip-new grid *
+{
+  color: #000000;
+}
