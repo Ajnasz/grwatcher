@@ -11,6 +11,8 @@
 <!ENTITY GRWpreferences.tabgeneral "Általános">
 <!ENTITY GRWpreferences.openinnewtabdesc "Google Reader jelenlegi vagy új fülön történő megnyitása">
 <!ENTITY GRWpreferences.resetcounterdesc "A állapotsor számláló nullázása a Google Reader megnyitásakor">
+<!ENTITY GRWpreferences.shownotificationwindow "Figyelmeztető ablak mutatása">
+<!ENTITY GRWpreferences.showzerocounter "Számláló mutatása ha nincs olvasatlan feed.">
 <!ENTITY GRWpreferences.tooltipcounterposright "Jobb">
 <!ENTITY GRWpreferences.tooltipcounterposleft "Bal">
 <!ENTITY GRWpreferences.tooltipcounterposdesc "A számláló helye a tooltipben:">
@@ -27,6 +29,6 @@
 <!ENTITY GRWpreferences.leftclickopen.dblclick "Dupla kattintás">
 <!ENTITY GRWpreferences.leftclickopen.disabled "Tiltva">
 <!ENTITY GRWtooltip.nonewfeed "Nincs olvastlan feeded!">
-<!ENTITY GRWtooltip.newfeed "Olvasatlan feeded van!">
 <!ENTITY GRWtooltip.errorfeedfetch "Hiba a feedek feldolgozásakor!">
+<!ENTITY GRWtooltip.newfeed "Olvasatlan feeded van!">
 <!ENTITY GRWtooltip.errorlogin "Sikeretelen bejelentkezés! Ellenőrzid, hogy helyesen adtad-e meg az e-mail címet és a jelszavad!">
