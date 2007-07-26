@@ -4,6 +4,7 @@
 <!DOCTYPE window SYSTEM "chrome://grwatcher/locale/grwatcher.dtd">
 
 <overlay id="GRWatcherOverlay" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+  <script type="application/x-javascript" src="chrome://grwatcher/content/ajax.js" />
   <script type="application/x-javascript" src="chrome://grwatcher/content/grwatcher.js" />
   <script type="application/x-javascript" src="chrome://grwatcher/content/grwatcher-init.js" />
   <statusbar id="status-bar">
@@ -27,4 +28,12 @@
     </popup>
 
   </statusbar>
+
+	<!-- Toolbar Icon -->
+  <!--
+	<toolbarpalette id="BrowserToolbarPalette">
+		<toolbarbutton id="GRW-toolbar-button" class="toolbarbutton-1 chromeclass-toolbar-additional" label="GRW" tooltiptext="GRW tooltip" oncommand="statusClickHandling.click();" />
+	</toolbarpalette>
+  -->
+
 </overlay>
