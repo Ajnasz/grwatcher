@@ -45,16 +45,21 @@ var passManager =
     var url = this.url
     try
     {
-      this.passwordManager.removeUser( url, username );
+      this.passwordManager.removeUser(url, username);
     }
-    catch(error){}
+    catch(e)
+    {}
     try
     {
-      this.passwordManagerInternal.addUserFull( url, username, password, "", "" );
+      this.passwordManagerInternal.addUserFull(url, username, password, "", "");
     }
-    catch(error){}
+    catch(e)
+    {}
   },
-
+  /**
+   * Returns the password value
+   * @return {String}
+   */
   getPassword: function()
   {
     var url = this.url;
@@ -63,23 +68,28 @@ var passManager =
     var password = {value:""};
     try
     {
-      this.passwordManagerInternal.findPasswordEntry( url, "", "", host, user, password );
+      this.passwordManagerInternal.findPasswordEntry(url, "", "", host, user, password);
     }
-    catch(error){}
+    catch(e)
+    {}
     return password.value;
   },
-
+  /**
+   * Returns the username value
+   * @return {String}
+   */
   getUserName: function()
   {
     var url = this.url;
-    var host = {value:""};
-    var user =  {value:""};
-    var password = {value:""};
+    var host = {value: ""};
+    var user =  {value: ""};
+    var password = {value: ""};
     try
     {
-      this.passwordManagerInternal.findPasswordEntry( url, "", "", host, user, password );
+      this.passwordManagerInternal.findPasswordEntry(url, "", "", host, user, password);
     }
-    catch(error){}
+    catch(e)
+    {}
     return user.value;
   }
 };
@@ -90,6 +100,9 @@ var accountManager =
 {
   // mozilla nsi cookie manager component
   CookieManager: Components.classes["@mozilla.org/cookiemanager;1"].getService(Components.interfaces.nsICookieManager),
+  /**
+   * @return {Boolean}
+   */
   accountExists: function()
   {
     if(passManager.getUserName() && passManager.getPassword())
@@ -99,7 +112,7 @@ var accountManager =
     return false;
   },
   /**
-   * @return {String,false} returns the value of the cookie named `SID`
+   * @return {String,Boolen} returns the value of the cookie named `SID`
    */
   getCurrentSID: function()
   {
@@ -134,45 +147,24 @@ var accountManager =
       {
         param += '&PersistentCookie=yes';
       }
-      GRCheck.switchLoadIcon();
-      var req = new XMLHttpRequest();
-      req.open('post', url, true);
-      req.setRequestHeader('User-Agent', GRWUserAgent);
-      req.setRequestHeader('Accept-Charset','utf-8');
-      req.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
-      req.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
-      req.onreadystatechange = function(aEvt)
-      {
-        try
+      // GRCheck.switchLoadIcon();
+      loginAjax = new Ajax({
+        url: url,
+        pars: param,
+        method: 'post',
+        successHandler: function()
         {
-          if(req.readyState == 4)
+          var curSid = accountManager.getCurrentSID();
+          if(!curSid)
           {
-            if(req.status == 200)
-            {
-              var curSid = accountManager.getCurrentSID();
-              if(!curSid)
-              {
-                GRCheck.switchErrorIcon();
-                setReaderTooltip('loginerror');
-                return false;
-              }
-              prefManager.setCharPref('extensions.grwatcher.sid', curSid);
-              getFeedList();
-            }
-            else
-            {
-              GRCheck.switchErrorIcon();
-              return false;
-            }
+            GRCheck.switchErrorIcon();
+            setReaderTooltip('loginerror');
+            return false;
           }
+          prefManager.setCharPref('extensions.grwatcher.sid', curSid);
+          getFeedList();
         }
-        catch(e)
-        {
-          GRCheck.switchErrorIcon();
-          return false;
-        }
-      }
-      req.send(param);
+      });
     }
     else
     {
@@ -180,7 +172,9 @@ var accountManager =
       return -1;
     }
   },
-
+  /**
+   * do things when the login failed
+   */
   loginFailed: function()
   {
     GRCheck.switchErrorIcon();
@@ -192,10 +186,10 @@ var accountManager =
  */
 var GRCheck =
 {
+  readerURL: 'https://www.google.com/reader/view/',
   /**
    * open the readader window
    */
-  readerURL: 'https://www.google.com/reader/view/',
   openReader: function()
   {
     if(GRPrefs.resetcounter())
@@ -347,28 +341,32 @@ var openReaderNotify =
 var setReaderTooltip = function(t)
 {
   var statusBar = document.getElementById('GRW-statusbar');
+  if(typeof statusBar == 'undefined')
+  {
+    Log.log('GRW-statusbar object not found');
+  }
   switch(t)
   {
-    case 'error' :
+    case 'error':
       statusBar.tooltip = 'GRW-statusbar-tooltip-error';
       break;
-    case 'nonew' :
+    case 'nonew':
     default :
       statusBar.tooltip = 'GRW-statusbar-tooltip-nonew';
       break;
-    case 'new' :
+    case 'new':
       statusBar.tooltip = 'GRW-statusbar-tooltip-new';
       break;
     case 'hide':
       statusBar.tooltip = '';
       break;
-    case 'loginerror' :
+    case 'loginerror':
       statusBar.tooltip = 'GRW-statusbar-tooltip-loginerror';
       break;
   }
 };
 /**
- *
+ * change the statusbar elem status
  * @param {Object} status
  */
 var setReaderStatus = function(status)
@@ -376,7 +374,8 @@ var setReaderStatus = function(status)
   document.getElementById('GRW-statusbar').status = status;
 };
 /**
- *
+ * returns the status value of the statusbar elem
+ * @return {String}
  */
 var getReaderStatus = function()
 {
@@ -384,28 +383,33 @@ var getReaderStatus = function()
 };
 /**
  * change the statusbar icon
+ * @return {String}
  */
 var updateIcon = function()
 {
-  switch(document.getElementById('GRW-statusbar').status)
+  var stImage = document.getElementById('GRW-statusbar-image');
+  if(typeof stImage == 'undefined') { return false; }
+  var status = getReaderStatus();
+  switch(status)
   {
     case 'on':
-      document.getElementById('GRW-statusbar-image').src = 'chrome://grwatcher/content/images/googlereader.png';
+      stImage.src = 'chrome://grwatcher/content/images/googlereader.png';
       break;
 
     case 'off':
     default:
-      document.getElementById('GRW-statusbar-image').src = 'chrome://grwatcher/content/images/googlereader_grey.png';
+      stImage.src = 'chrome://grwatcher/content/images/googlereader_grey.png';
       break;
 
     case 'error':
-      document.getElementById('GRW-statusbar-image').src = 'chrome://grwatcher/content/images/googlereader_red.png';
+      stImage.src = 'chrome://grwatcher/content/images/googlereader_red.png';
       break;
 
     case 'load':
-      document.getElementById('GRW-statusbar-image').src = 'chrome://grwatcher/content/images/loader.gif';
+      stImage.src = 'chrome://grwatcher/content/images/loader.gif';
       break;
   }
+  return status;
 };
 /**
  * show the counter text
@@ -443,88 +447,31 @@ var hideCounter = function()
  */
 var getReadCounter = function()
 {
-  GRCheck.switchLoadIcon();
-  var req = new XMLHttpRequest();
-  req.open('get', 'https://www.google.com/reader/api/0/unread-count?all=true&output=json', true);
-  req.setRequestHeader('User-Agent', GRWUserAgent);
-  req.setRequestHeader('Accept-Charset','utf-8');
-  req.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
-  req.onreadystatechange = function(aEvt)
-  {
-    try
-    {
-      if(req.readyState == 4)
-      {
-        if(typeof req.status != 'undefined')
-        {
+  // GRCheck.switchLoadIcon();
 
-          if(req.status == 200)
-          {
-            onCounterLoad(req);
-          }
-          else
-          {
-            GRCheck.switchErrorIcon();
-            return false;
-          }
-        }
-        else
-        {
-          GRCheck.switchErrorIcon();
-          return false;
-        }
-      }
-    }
-    catch(e)
+  onunreadCountAjax = new Ajax(
+  {
+    url:'https://www.google.com/reader/api/0/unread-count?all=true&output=json',
+    successHandler: function()
     {
-      GRCheck.switchErrorIcon();
-      return false;
+      getReadFeedsCounter(this.req);
     }
-  }
-  req.send(null);
+  });
 };
+/**
+ *
+ */
 var getFeedList = function()
 {
-  GRCheck.switchLoadIcon();
-  var req = new XMLHttpRequest();
-
-  req.open('get', 'https://www.google.com/reader/api/0/subscription/list?output=json', true);
-  req.setRequestHeader('User-Agent', GRWUserAgent);
-  req.setRequestHeader('Accept-Charset','utf-8');
-  req.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
-  req.onreadystatechange = function(aEvt)
+  // GRCheck.switchLoadIcon();
+  getFeedListAjax = new Ajax(
   {
-    try
+    url:'https://www.google.com/reader/api/0/subscription/list?output=json',
+    successHandler: function()
     {
-      if(req.readyState == 4)
-      {
-        if(typeof req.status != 'undefined')
-        {
-
-          if(req.status == 200)
-          {
-            onFeedListLoad(req);
-          }
-          else
-          {
-            GRCheck.switchErrorIcon();
-            return false;
-          }
-        }
-        else
-        {
-          GRCheck.switchErrorIcon();
-          return false;
-        }
-      }
+      onFeedListLoad(this.req);
     }
-    catch(e)
-    {
-      GRCheck.switchErrorIcon();
-      return false;
-    }
-  }
-  req.send(null);
+  });
 };
 /**
  *
@@ -532,76 +479,48 @@ var getFeedList = function()
  */
 var getReadFeedsCounter = function(prReq)
 {
-  GRCheck.switchLoadIcon();
-  var req = new XMLHttpRequest();
-  req.open('get', 'https://www.google.com/reader/api/0/subscription/list?output=json', true);
-  req.setRequestHeader('User-Agent', GRWUserAgent);
-  req.setRequestHeader('Accept-Charset','utf-8');
-  req.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
-  req.onreadystatechange = function(aEvt)
+  // GRCheck.switchLoadIcon();
+
+  getReadFeedsCounterAjax = new Ajax(
   {
-    try
+    url:'https://www.google.com/reader/api/0/subscription/list?output=json',
+    successHandler: function()
     {
-      if(req.readyState == 4)
+      var r = onFeedsCounterLoad(this.req, onunreadCountAjax.req);
+      var unr = r.counter;
+      if(unr === false)
       {
-        if(typeof req.status != 'undefined')
+        setReaderTooltip('error');
+        GRCheck.switchErrorIcon();
+        hideCounter();
+      }
+      else if(unr > 0)
+      {
+        setReaderTooltip('new');
+        genStatusGrid(r.feeds);
+        GRCheck.switchOnIcon();
+        showCounter(unr);
+      }
+      else
+      {
+        setReaderTooltip('nonew');
+        GRCheck.switchOffIcon();
+        if(GRPrefs.showzerocounter() === false)
         {
-          if(req.status == 200)
-          {
-            var r = onFeedsCounterLoad(req, prReq);
-            var unr = r.counter;
-            if(unr === false)
-            {
-              setReaderTooltip('error');
-              GRCheck.switchErrorIcon();
-              hideCounter();
-            }
-            else if(unr > 0)
-            {
-              setReaderTooltip('new');
-              genStatusGrid(r.feeds);
-              GRCheck.switchOnIcon();
-              showCounter(unr);
-            }
-            else
-            {
-              setReaderTooltip('nonew');
-              GRCheck.switchOffIcon();
-              if(GRPrefs.showzerocounter() === false)
-              {
-                hideCounter();
-              }
-              else
-              {
-                showCounter(unr);
-              }
-              GRPrefs.showNotification = true;
-            }
-          }
-          else
-          {
-            GRCheck.switchErrorIcon();
-            return false;
-          }
+          hideCounter();
         }
         else
         {
-          GRCheck.switchErrorIcon();
-          return false;
+          showCounter(unr);
         }
+        GRPrefs.showNotification = true;
       }
     }
-    catch(e)
-    {
-      GRCheck.switchErrorIcon();
-      return false;
-    }
-  }
-  req.send(null);
+  });
 };
 /**
  * count the unreaded feeeds
- * @param {Object} r
+ * @param {Number,Boolean} r
  */
 var countUnread = function(r)
 {
@@ -619,29 +538,18 @@ var countUnread = function(r)
     for(var i =0 ; i<  uc.length; i++) {
       for(var j = 0; j < FeedlistIds.length; j++)
       {
-        /*
-        rex = new RegExp('^'+FeedlistIds[j]);
-        if(rex.test(uc[i].id))
-        {
-          unrcount += uc[i].count;
-        }
-        */
         if(FeedlistIds[j] == uc[i].id)
         {
           unrcount += uc[i].count;
         }
       }
-      /*
-      if(uc[i].id.match('^feed')) {
-        unrcount += uc[i].count;
-      }
-      */
     }
   }
   return unrcount;
 };
 /**
  * @param {Object} req ajax response object
+ * @return {Array}
  */
 var onFeedListLoad = function(r)
 {
@@ -664,17 +572,8 @@ var onFeedListLoad = function(r)
 };
 /**
  *
- * @param {Object} req ajax response object
- */
-var onCounterLoad = function(req)
-{
-  // var unr = countUnread(req);
-   getReadFeedsCounter(req);
-  
-};
-/**
- *
  * @param {Object} r
+ * @return {Object}
  */
 var feedsCounter = function(r)
 {
@@ -699,6 +598,7 @@ var feedsCounter = function(r)
  *
  * @param {Object} req FeedsCounter request object
  * @param {Object} prReq Counter request object
+ * @return {Object}
  */
 var onFeedsCounterLoad = function(req, prReq)
 {
@@ -738,13 +638,6 @@ var onFeedsCounterLoad = function(req, prReq)
     for(var j = 0; j < FeedlistIds.length; j++)
     {
       rex = new RegExp('^'+FeedlistIds[j]);
-      /*
-      if(rex.test(feeds[i].Id))
-      {
-        counter += feeds[i].Count;
-        outFeeds.push(feeds[i]);
-      }
-      */
       if(FeedlistIds[j] == feeds[i].Id)
       {
         counter += feeds[i].Count;
@@ -752,14 +645,10 @@ var onFeedsCounterLoad = function(req, prReq)
       }
     }
   }
-  // genStatusGrid(feeds);
-  // genStatusGrid(outFeeds);
-  
   return {counter: counter, feeds: outFeeds};
 };
 /**
  * shows the notification window
- *
  * @param {Object} label
  * @param {Object} value
  */
@@ -825,12 +714,6 @@ var genStatusGrid = function(feeds)
 
   // configure the length of the title
   var titlelength = GRPrefs.tooltiptitlelength();
-  /*
-  if(titlelength == 0)
-  {
-    titlelength = false;
-  }
-  */
   titlelength = (titlelength > 5) ? titlelength : 5;
 
   grid.flex = 1;
@@ -881,7 +764,7 @@ var genStatusGrid = function(feeds)
  */
 var openPrefs = function(event)
 {
- window.openDialog("chrome://grwatcher/content/grprefs.xul", 'GRWatcher', 'chrome,titlebar,toolbar,centerscreen,modal');
+  window.openDialog("chrome://grwatcher/content/grprefs.xul", 'GRWatcher', 'chrome,titlebar,toolbar,centerscreen,modal');
 };
 /**
  * get chrome preferences
@@ -935,6 +818,7 @@ var GRPrefs =
 };
 /**
  * do the request and process the received data
+ * @return {Number}
  */
 var GoogleIt = function()
 {
@@ -945,7 +829,6 @@ var GoogleIt = function()
   else
   {
     prefManager.setCharPref('extensions.grwatcher.sid', accountManager.getCurrentSID());
-    // getReadCounter();
     getFeedList();
   }
   if(login === -1)
@@ -969,6 +852,9 @@ var statusClickHandling =
 {
   status: null,
   statusBar: null,
+  /**
+   * add the event handler to the statusbar icon
+   */
   observe: function()
   {
     this.status = GRPrefs.leftClickOpen();
@@ -980,7 +866,10 @@ var statusClickHandling =
   },
   /**
    * event handler runs when user click on the statusbar icon
-   * event.button: 0 = left click, 1 = middle click, 2 = right click
+   * event.button:
+   * 0 = left click
+   * 1 = middle click
+   * 2 = right click
    * @param {Object} event
    */
   click: function(event)
@@ -998,7 +887,6 @@ var statusClickHandling =
         GoogleIt();
       break;
     }
-    Log.log('status: '+statusClickHandling.status+', type: '+event.type);
   }
 };
 /**
@@ -1009,5 +897,5 @@ var GRWinit = function()
   var g = GoogleIt();
   statusClickHandling.statusBar = document.getElementById('GRW-statusbar');
   statusClickHandling.observe();
-  Log.log('Google Reader Watcher Initialized');
+  // Log.log('Google Reader Watcher Initialized');
 };
