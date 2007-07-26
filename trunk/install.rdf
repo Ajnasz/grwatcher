@@ -4,7 +4,7 @@
   <Description about="urn:mozilla:install-manifest">
     <em:id>grwatcher@ajnasz.hu</em:id>
     <em:name>Google Reader Watcher</em:name>
-    <em:version>0.0.8b</em:version>
+    <em:version>0.0.8</em:version>
 
     <!-- Firefox -->
     <em:targetApplication>
@@ -46,8 +46,10 @@
     <em:contributor>fiag zh-CN (babelzilla)</em:contributor>
     <em:contributor>PAGF_LINUX es-AR (babelzilla)</em:contributor>
     <em:contributor>PAGF_LINUX es-ES (babelzilla)</em:contributor>
+    <em:contributor>panda2005 el-GR (babelzilla)</em:contributor>
     <em:contributor>pierfrancesco99 it-IT (babelzilla)</em:contributor>
     <em:contributor>Sander Lepik - et-EE</em:contributor>
     <em:contributor>Wareczek pl-PL (babelzilla)</em:contributor>
+    <em:contributor>zini pt-BR (babelzilla)</em:contributor>
   </Description>
 </RDF>
