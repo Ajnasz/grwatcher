@@ -23,7 +23,7 @@
 <!ENTITY GRWpreferences.accountinfodesc "Specify your Google account e-mail and password">
 <!ENTITY GRWpreferences.accountinfoemail "Email address:">
 <!ENTITY GRWpreferences.accountinfopassword "Password:">
-<!ENTITY GRWpreferences.accountinfo.rememberLogin "Remember login">
+<!ENTITY GRWpreferences.accountinfo.rememberLogin "Continue session on startup">
 <!ENTITY GRWpreferences.leftclickopen.description "Open Google Reader with">
 <!ENTITY GRWpreferences.leftclickopen.singleclick "Single click">
 <!ENTITY GRWpreferences.leftclickopen.dblclick "Double click">

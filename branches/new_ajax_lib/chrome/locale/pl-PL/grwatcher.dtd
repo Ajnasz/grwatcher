@@ -11,6 +11,8 @@
 <!ENTITY GRWpreferences.tabgeneral "Ogólne">
 <!ENTITY GRWpreferences.openinnewtabdesc "Otwórz Google Reader w nowej karcie">
 <!ENTITY GRWpreferences.resetcounterdesc "Wyzeruj licznik po otwarciu Google Readera">
+<!ENTITY GRWpreferences.shownotificationwindow "Wyświetlaj okienko powiadomienia">
+<!ENTITY GRWpreferences.showzerocounter "Wyświetlaj licznik jeśli nie ma nieprzeczytanych wiadomości">
 <!ENTITY GRWpreferences.tooltipcounterposright "z prawej strony">
 <!ENTITY GRWpreferences.tooltipcounterposleft "z lewej strony">
 <!ENTITY GRWpreferences.tooltipcounterposdesc "Pozycja licznika w podpowiedzi:">
@@ -29,3 +31,4 @@
 <!ENTITY GRWtooltip.nonewfeed "Brak nieprzeczytanych wiadomości">
 <!ENTITY GRWtooltip.errorfeedfetch "Błąd podczas pobierania wiadomości! Sprawdź czy jesteś zalogowany.">
 <!ENTITY GRWtooltip.newfeed "Są nieprzeczytane wiadomości">
+<!ENTITY GRWtooltip.errorlogin "Błąd logowania. Upewnij się, że podałeś poprawne hasło i/lub nazwę użytkownika!">
