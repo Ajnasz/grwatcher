@@ -11,6 +11,8 @@
 <!ENTITY GRWpreferences.tabgeneral "常规">
 <!ENTITY GRWpreferences.openinnewtabdesc "在新标签打开 Google Reader">
 <!ENTITY GRWpreferences.resetcounterdesc "打开 Google Reader 窗口时重置状态栏计数器">
+<!ENTITY GRWpreferences.shownotificationwindow "Show notification window">
+<!ENTITY GRWpreferences.showzerocounter "Show the counter when there are no unread feeds available">
 <!ENTITY GRWpreferences.tooltipcounterposright "右">
 <!ENTITY GRWpreferences.tooltipcounterposleft "Left">
 <!ENTITY GRWpreferences.tooltipcounterposdesc "工具提示中计数器的位置:">
@@ -29,3 +31,4 @@
 <!ENTITY GRWtooltip.nonewfeed "You haven&apos;t got any unread feeds">
 <!ENTITY GRWtooltip.errorfeedfetch "Error fetching feeds! Are you logged in?">
 <!ENTITY GRWtooltip.newfeed "您有未读 Feeds">
+<!ENTITY GRWtooltip.errorlogin "Login failed. Make sure you have entered the correct password and/or username!">
