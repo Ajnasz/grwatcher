@@ -24,6 +24,7 @@
 <!ENTITY GRWpreferences.accountinfoemail "Email address:">
 <!ENTITY GRWpreferences.accountinfopassword "Password:">
 <!ENTITY GRWpreferences.accountinfo.rememberLogin "Continue session on startup">
+<!ENTITY GRWpreferences.accountinfo.storepassword "Store your password in the Firefox password manager">
 <!ENTITY GRWpreferences.leftclickopen.description "Open Google Reader with">
 <!ENTITY GRWpreferences.leftclickopen.singleclick "Single click">
 <!ENTITY GRWpreferences.leftclickopen.dblclick "Double click">

@@ -113,6 +113,7 @@
               </row>
               <row>
                 <checkbox id="GRW-rememberLogin-field" label="&GRWpreferences.accountinfo.rememberLogin;" />
+                <checkbox id="GRW-rememberpassword-field" label="&GRWpreferences.accountinfo.storepassword;" />
               </row>
             </rows>
           </grid>

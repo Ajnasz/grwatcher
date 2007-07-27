@@ -42,16 +42,18 @@ var passManager =
    */
   setUser: function(username, password)
   {
-    var url = this.url
+    var url = this.url;
     try
     {
       this.passwordManager.removeUser(url, username);
+      accountManager.username = username;
     }
     catch(e)
     {}
     try
     {
       this.passwordManagerInternal.addUserFull(url, username, password, "", "");
+      accountManager.password = password;
     }
     catch(e)
     {}
@@ -100,6 +102,8 @@ var accountManager =
 {
   // mozilla nsi cookie manager component
   CookieManager: Components.classes["@mozilla.org/cookiemanager;1"].getService(Components.interfaces.nsICookieManager),
+  username: null,
+  password: null,
   /**
    * @return {Boolean}
    */
@@ -107,9 +111,19 @@ var accountManager =
   {
     if(passManager.getUserName() && passManager.getPassword())
     {
+      this.username = passManager.getUserName();
+      this.password = passManager.getPassword();
       return true;
     }
-    return false;
+    else
+    {
+      this.askPassword();
+      if(this.password == '' || this.username == '')
+      {
+        return false;
+      }
+      return true;
+    }
   },
   /**
    * @return {String,Boolen} returns the value of the cookie named `SID`
@@ -141,7 +155,7 @@ var accountManager =
     if(this.accountExists())
     {
       var url = 'https://www.google.com/accounts/ServiceLoginAuth';
-      var param = 'Email='+encodeURIComponent(passManager.getUserName())+'&Passwd='+encodeURIComponent(passManager.getPassword())+'&service=reader&continue=http://www.google.com';
+      var param = 'Email='+encodeURIComponent(this.username)+'&Passwd='+encodeURIComponent(this.password)+'&service=reader&continue=http://www.google.com';
       // remember the login state, possible won't ask for mozilla master password
       if(GRPrefs.rememberLogin())
       {
@@ -171,6 +185,10 @@ var accountManager =
       this.loginFailed();
       return -1;
     }
+  },
+  askPassword: function()
+  {
+    window.openDialog("chrome://grwatcher/content/ask-pass.xul", 'GRWatcher', 'chrome,titlebar,toolbar,centerscreen,modal');
   },
   /**
    * do things when the login failed

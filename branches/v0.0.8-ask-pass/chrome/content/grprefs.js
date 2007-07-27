@@ -44,7 +44,12 @@ var getPref =
   showZeroCounter : function(value)
   {
     return prefManager.getBoolPref('extensions.grwatcher.showzerocounter');
+  },
+  rememberPassword : function(value)
+  {
+    return prefManager.getBoolPref('extensions.grwatcher.rememberpassword');
   }
+}
 };
 /**
  * set the specified extension preference
@@ -91,6 +96,10 @@ var setPref =
   {
    prefManager.setBoolPref('extensions.grwatcher.showzerocounter', value);
   }
+  rememberPassword : function(value)
+  {
+    prefManager.setBoolPref('extensions.grwatcher.rememberpassword', value);
+  }
 };
 /**
  * save the preferences into the chrome when the pref dialog is accepted
@@ -107,6 +116,7 @@ var savePreferences = function()
   setPref.activateOpenedTab(document.getElementById('GRW-activateopenedtab-field').checked);
   setPref.showNotificationWindow(document.getElementById('GRW-shownotificationwindow-field').checked);
   setPref.showZeroCounter(document.getElementById('GRW-showzerocounter-field').checked);
+  setPref.rememberPassword(document.getElementById('GRW-rememberpassword-field').checked);
 };
 /**
  * sets the values on the pref dialog when it opens
@@ -125,6 +135,7 @@ var setPrefPaneVals = function()
   document.getElementById('GRW-accountmanage-email').value = passManager.getUserName();
   document.getElementById('GRW-shownotificationwindow-field').checked = getPref.showNotificationWindow();
   document.getElementById('GRW-showzerocounter-field').checked = getPref.showZeroCounter();
+  document.getElementById('GRW-rememberpassword-field').checked = getPref.rememberPassword();
 };
 /**
  * show/hide the newtab options
@@ -137,14 +148,11 @@ var openNewTabCheckToogle = function()
     document.getElementById('GRW-activateopenedtab-field').disabled = '';
     document.getElementById('GRW-leftclickopen-field').disabled = '';
     document.getElementById('GRW-leftclickopen-label').disabled = '';
-
-    // document.getElementById('GRW-openinnewtab-options').style.display = '';
   }
   else
   {
     document.getElementById('GRW-activateopenedtab-field').disabled = 'disabled';
     document.getElementById('GRW-leftclickopen-field').disabled = 'disabled';
     document.getElementById('GRW-leftclickopen-label').disabled = 'disabled';
-    // document.getElementById('GRW-openinnewtab-options').style.display = 'none';
   }
 };
