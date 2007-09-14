@@ -55,12 +55,13 @@ Ajax.prototype =
           }
           else
           {
-            return this.errorHandler();
+            return this.errorHandler('status code - ' + this.req.status);
           }
         }
         else
         {
-          return this.errorHandler();
+          return this.errorHandler('no status code');
+
         }
       }
       else
@@ -70,17 +71,19 @@ Ajax.prototype =
     }
     catch(e)
     {
-      return this.errorHandler();
+      return this.errorHandler('no readyState', e);
     }
   },
   successHandler: function()
   {
     return this.req.responseText;
   },
-  errorHandler: function()
+  errorHandler: function(msg, er)
   {
     GRCheck.switchErrorIcon();
     hideCounter();
+    Log.log('Ajax error: ' + msg + ' || ' + e);
+    Log.log(this.url);
     return false;
   },
   loadHandler: function()
