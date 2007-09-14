@@ -4,7 +4,7 @@
   <Description about="urn:mozilla:install-manifest">
     <em:id>grwatcher@ajnasz.hu</em:id>
     <em:name>Google Reader Watcher</em:name>
-    <em:version>0.0.8</em:version>
+    <em:version>0.0.8.1</em:version>
 
     <!-- Firefox -->
     <em:targetApplication>
@@ -32,7 +32,7 @@
     </em:file>
 
     <em:creator>Lajos Koszti [Ajnasz]; http://ajnasz.hu</em:creator>
-    <em:description>Checks your google reader for unreaded news</em:description>
+    <em:description>Checks your Google Reader for unread feeds</em:description>
     <em:homepageURL>http://ajnasz.hu/google-reader-watcher</em:homepageURL>
     <em:iconURL>chrome://grwatcher/skin/grwatcher.png</em:iconURL>
     <em:optionsURL>chrome://grwatcher/content/grprefs.xul</em:optionsURL>
