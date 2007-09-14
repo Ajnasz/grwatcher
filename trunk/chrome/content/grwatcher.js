@@ -9,7 +9,7 @@ var prefManager = Components.classes["@mozilla.org/preferences-service;1"].getSe
 /**
  * user agent for Google Reader Watcher
  */
-var GRWUserAgent = 'Google Reader Watcher 0.0.8';
+var GRWUserAgent = 'Google Reader Watcher 0.0.8.1';
 /**
  * @param {String} message log on the javascript console
  */
@@ -186,7 +186,7 @@ var accountManager =
  */
 var GRCheck =
 {
-  readerURL: 'https://www.google.com/reader/view/',
+  readerURL: 'https://www.google.com/reader/view',
   /**
    * open the readader window
    */
@@ -268,9 +268,10 @@ var GRCheck =
   {
     var brl = gBrowser.browsers.length, i = 0;
     var outObj = {grTab: false, blankPage: false};
+    var r = new RegExp('^'+this.readerURL);
     for( ; i < brl; i++)
     {
-      if(gBrowser.getBrowserAtIndex(i).currentURI.spec == this.readerURL)
+      if(r.test(gBrowser.getBrowserAtIndex(i).currentURI.spec))
       {
         outObj.grTab = i;
         return outObj;
