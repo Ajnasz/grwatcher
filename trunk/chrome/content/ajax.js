@@ -1,3 +1,11 @@
+/**
+ * @author Koszti Lajos [Ajnasz] http://ajnasz.hu ajnasz@ajnasz.hu 
+ * @license GPL v2
+ */
+/**
+ * @author Koszti Lajos [Ajnasz] http://ajnasz.hu ajnasz@ajnasz.hu 
+ * @param {Object} pars
+ */
 var Ajax = function(pars)
 {
   if(typeof pars.url == 'undefined')
@@ -32,7 +40,7 @@ Ajax.prototype =
   pars: null,
   req: null,
   method: 'get',
-  agent: 'Google Reader Watcher 0.0.8b',
+  agent: 'Google Reader Watcher 0.0.8.1',
   handler: function(pars)
   {
     try
