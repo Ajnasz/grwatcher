@@ -342,29 +342,35 @@ var openReaderNotify =
  */
 var setReaderTooltip = function(t)
 {
-  var statusBar = document.getElementById('GRW-statusbar');
-  if(typeof statusBar == 'undefined')
+  var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"].getService(Components.interfaces.nsIWindowMediator);
+  var enumerator = wm.getEnumerator('navigator:browser'), win;
+  while(enumerator.hasMoreElements())
   {
-    Log.log('GRW-statusbar object not found');
-  }
-  switch(t)
-  {
-    case 'error':
-      statusBar.tooltip = 'GRW-statusbar-tooltip-error';
-      break;
-    case 'nonew':
-    default :
-      statusBar.tooltip = 'GRW-statusbar-tooltip-nonew';
-      break;
-    case 'new':
-      statusBar.tooltip = 'GRW-statusbar-tooltip-new';
-      break;
-    case 'hide':
-      statusBar.tooltip = '';
-      break;
-    case 'loginerror':
-      statusBar.tooltip = 'GRW-statusbar-tooltip-loginerror';
-      break;
+    win = enumerator.getNext();
+    var statusBar = win.document.getElementById('GRW-statusbar');
+    if(typeof statusBar == 'undefined')
+    {
+      Log.log('GRW-statusbar object not found');
+    }
+    switch(t)
+    {
+      case 'error':
+        statusBar.tooltip = 'GRW-statusbar-tooltip-error';
+        break;
+      case 'nonew':
+      default :
+        statusBar.tooltip = 'GRW-statusbar-tooltip-nonew';
+        break;
+      case 'new':
+        statusBar.tooltip = 'GRW-statusbar-tooltip-new';
+        break;
+      case 'hide':
+        statusBar.tooltip = '';
+        break;
+      case 'loginerror':
+        statusBar.tooltip = 'GRW-statusbar-tooltip-loginerror';
+        break;
+    }
   }
 };
 /**
@@ -374,10 +380,32 @@ var setReaderTooltip = function(t)
 var setReaderStatus = function(status)
 {
   var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"].getService(Components.interfaces.nsIWindowMediator);
-  var enumerator = wm.getEnumerator(null), win;
-  while(enumerator.hasMoreElements()) {
+  var enumerator = wm.getEnumerator('navigator:browser'), win, stImage;
+  while(enumerator.hasMoreElements())
+  {
     win = enumerator.getNext();
     win.document.getElementById('GRW-statusbar').status = status;
+    stImage = win.document.getElementById('GRW-statusbar-image');
+    switch(status)
+    {
+      case 'on':
+        stImage.src = 'chrome://grwatcher/content/images/googlereader.png';
+        break;
+
+      case 'off':
+      default:
+        stImage.src = 'chrome://grwatcher/content/images/googlereader_grey.png';
+        break;
+
+      case 'error':
+        stImage.src = 'chrome://grwatcher/content/images/googlereader_red.png';
+        break;
+
+      case 'load':
+        stImage.src = 'chrome://grwatcher/content/images/loader.gif';
+        break;
+    }
+
   }
 
 };
@@ -395,8 +423,9 @@ var getReaderStatus = function(win)
  */
 var updateIcon = function()
 {
+  /*
   var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"].getService(Components.interfaces.nsIWindowMediator);
-  var enumerator = wm.getEnumerator(null), win;
+  var enumerator = wm.getEnumerator('navigator:browser'), win;
   while(enumerator.hasMoreElements()) {
     win = enumerator.getNext();
     var stImage = win.document.getElementById('GRW-statusbar-image');
@@ -422,6 +451,7 @@ var updateIcon = function()
         break;
     }
   }
+  */
   return status;
 };
 /**
@@ -431,7 +461,7 @@ var updateIcon = function()
 var showCounter = function(val)
 {
   var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"].getService(Components.interfaces.nsIWindowMediator);
-  var enumerator = wm.getEnumerator(null), win;
+  var enumerator = wm.getEnumerator('navigator:browser'), win;
   while(enumerator.hasMoreElements())
   {
     win = enumerator.getNext();
@@ -456,7 +486,7 @@ var showCounter = function(val)
 var hideCounter = function()
 {
   var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"].getService(Components.interfaces.nsIWindowMediator);
-  var enumerator = wm.getEnumerator(null), win;
+  var enumerator = wm.getEnumerator('navigator:browser'), win;
   while(enumerator.hasMoreElements())
   {
     win = enumerator.getNext();
@@ -527,7 +557,12 @@ var getReadFeedsCounter = function(prReq)
       else if(unr > 0)
       {
         setReaderTooltip('new');
-        genStatusGrid(r.feeds);
+        var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"].getService(Components.interfaces.nsIWindowMediator);
+        var enumerator = wm.getEnumerator('navigator:browser'), win;
+        while(enumerator.hasMoreElements()) {
+          win = enumerator.getNext();
+          win.genStatusGrid(r.feeds);
+        }
         GRCheck.switchOnIcon();
         showCounter(unr);
       }
@@ -732,7 +767,7 @@ var genStatusGrid = function(feeds)
   GRPrefs.feeds = feeds;
   if(tt.firstChild)
   {
-    tt.removeChild(tt.firstChild)
+    tt.removeChild(tt.firstChild);
   }
   // Create grid elements
   var grid = document.createElement('grid');
@@ -936,7 +971,7 @@ var statusClickHandling =
 var isActiveGRW = function()
 {
   var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"].getService(Components.interfaces.nsIWindowMediator);
-  var enumerator = wm.getEnumerator(null), win;
+  var enumerator = wm.getEnumerator('navigator:browser'), win;
   while(enumerator.hasMoreElements()) {
     win = enumerator.getNext();
     if(win.GRW === true)
@@ -950,7 +985,7 @@ var isActiveGRW = function()
 var getActiveGRW = function()
 {
   var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"].getService(Components.interfaces.nsIWindowMediator);
-  var enumerator = wm.getEnumerator(null), win;
+  var enumerator = wm.getEnumerator('navigator:browser'), win;
   while(enumerator.hasMoreElements()) {
     win = enumerator.getNext();
     if(win.GRW === true)
@@ -958,6 +993,32 @@ var getActiveGRW = function()
       return win;
     }
     // |win| is [Object ChromeWindow] (just like |window|), do something with it
+  }
+  return window;
+};
+windowCloseCheck = {
+  observe: function()
+  {
+    var grw = false;
+    var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"].getService(Components.interfaces.nsIWindowMediator);
+    var enumerator = wm.getEnumerator('navigator:browser'), win;
+    while(enumerator.hasMoreElements()) {
+      win = enumerator.getNext();
+      if(win.GRW === true)
+      {
+        grw = true;
+      }
+      // |win| is [Object ChromeWindow] (just like |window|), do something with it
+    }
+    if(grw === false)
+    {
+      win = wm.getMostRecentWindow('navigator:browser');
+      win.GRW = true;
+      var minCheck = 1;
+      var configuredCheck = GRPrefs.checkfreq();
+      var freq = (configuredCheck >= minCheck) ? configuredCheck : minCheck;
+      win.GRPrefs.timeoutid = win.setTimeout(win.GoogleIt, freq*1000*60);
+    }
   }
 }
 /**
@@ -975,7 +1036,6 @@ var GRWinit = function()
     var activeWin = getActiveGRW();
     var unr = activeWin.GRPrefs.currentNum;
     GRPrefs.showNotification = false;
-    Log.log(unr);
     if(unr === false)
     {
       setReaderTooltip('error');
@@ -985,7 +1045,12 @@ var GRWinit = function()
     else if(unr > 0)
     {
       setReaderTooltip('new');
-      genStatusGrid(activeWin.GRPrefs.feeds);
+      var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"].getService(Components.interfaces.nsIWindowMediator);
+      var enumerator = wm.getEnumerator('navigator:browser'), win;
+      while(enumerator.hasMoreElements()) {
+        win = enumerator.getNext();
+        win.genStatusGrid(activeWin.GRPrefs.feeds);
+      }
       GRCheck.switchOnIcon();
       showCounter(unr);
     }
@@ -1006,4 +1071,6 @@ var GRWinit = function()
   statusClickHandling.statusBar = document.getElementById('GRW-statusbar');
   statusClickHandling.observe();
   // Log.log('Google Reader Watcher Initialized');
+  var observerService = Components.classes["@mozilla.org/observer-service;1"].getService(Components.interfaces.nsIObserverService);
+  observerService.addObserver(windowCloseCheck, "domwindowclosed", false);
 };
