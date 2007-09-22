@@ -23,7 +23,7 @@
 <!ENTITY GRWpreferences.accountinfodesc "Add meg a google fiókod e-mail címét és jelszavát">
 <!ENTITY GRWpreferences.accountinfoemail "Email cím:">
 <!ENTITY GRWpreferences.accountinfopassword "Jelszó:">
-<!ENTITY GRWpreferences.accountinfo.rememberLogin "Bejelentkezés megjegyzése">
+<!ENTITY GRWpreferences.accountinfo.rememberLogin "Munkamenet folytatása induláskor">
 <!ENTITY GRWpreferences.leftclickopen.description "Google Reader megnyitása az ikonra kattintáskor">
 <!ENTITY GRWpreferences.leftclickopen.singleclick "Kattintás">
 <!ENTITY GRWpreferences.leftclickopen.dblclick "Dupla kattintás">

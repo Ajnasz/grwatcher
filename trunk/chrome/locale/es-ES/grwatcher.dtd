@@ -29,6 +29,6 @@
 <!ENTITY GRWpreferences.leftclickopen.dblclick "Doble clic">
 <!ENTITY GRWpreferences.leftclickopen.disabled "Desactivado">
 <!ENTITY GRWtooltip.nonewfeed "Tiene algún alimentador sin leer">
-<!ENTITY GRWtooltip.errorfeedfetch "¡Error recuperando alimentadores! ¿Está conectado?">
+<!ENTITY GRWtooltip.errorfeedfetch "¡Error recuperando alimentadores!">
 <!ENTITY GRWtooltip.newfeed "Tiene alimentadores sin leer">
 <!ENTITY GRWtooltip.errorlogin "Conexión fallida. ¡Asegúrese de introducir correctamente la clave y/o el nombre de usuario!">

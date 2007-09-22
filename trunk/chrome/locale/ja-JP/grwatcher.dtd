@@ -23,7 +23,7 @@
 <!ENTITY GRWpreferences.accountinfodesc "Google アカウントのメールとパスワードを指定します">
 <!ENTITY GRWpreferences.accountinfoemail "メールアドレス:">
 <!ENTITY GRWpreferences.accountinfopassword "パスワード:">
-<!ENTITY GRWpreferences.accountinfo.rememberLogin "ログイン状態を記憶">
+<!ENTITY GRWpreferences.accountinfo.rememberLogin "起動時にセッションを持続">
 <!ENTITY GRWpreferences.leftclickopen.description "Google Reader を開く方法:">
 <!ENTITY GRWpreferences.leftclickopen.singleclick "クリック">
 <!ENTITY GRWpreferences.leftclickopen.dblclick "ダブルクリック">
