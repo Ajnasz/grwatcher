@@ -40,7 +40,7 @@ Ajax.prototype =
   pars: null,
   req: null,
   method: 'get',
-  agent: 'Google Reader Watcher 0.0.8.1',
+  agent: 'Google Reader Watcher 0.0.9',
   handler: function(pars)
   {
     try
