@@ -9,7 +9,7 @@ var prefManager = Components.classes["@mozilla.org/preferences-service;1"].getSe
 /**
  * user agent for Google Reader Watcher
  */
-var GRWUserAgent = 'Google Reader Watcher 0.0.8.1';
+var GRWUserAgent = 'Google Reader Watcher 0.0.9';
 /**
  * @param {String} message log on the javascript console
  */
@@ -198,6 +198,8 @@ var GRCheck =
       hideCounter();
       setReaderTooltip('hide');
       GRPrefs.showNotification = true;
+      var activeWin = getActiveGRW();
+      activeWin.GRPrefs.currentNum = 0;
     }
     this.switchOffIcon();
     var openedGR = this.getOpenedGR();
@@ -264,6 +266,7 @@ var GRCheck =
   },
   /**
    * checks for opened GR window and blank pages
+   * @return {Object}
    */
   getOpenedGR: function()
   {
@@ -496,8 +499,6 @@ var hideCounter = function()
     label.style.margin = '0'
     label.style.width = '0';
     label.collapsed = true;
-
-    // |win| is [Object ChromeWindow] (just like |window|), do something with it
   }
 };
 /**
@@ -1022,6 +1023,27 @@ windowCloseCheck = {
   }
 }
 /**
+ * @author Koszti Lajos [Ajnasz] http://ajnasz.hu ajnasz@ajnasz.hu 
+ * @param {Function} fun
+ */
+/*
+var mapWindows = function(fun)
+{
+  var args = arguments;
+  a = Array();
+  for(var i = 1; i < args.length; i++)
+  {
+    a.push(args[i]);
+  }
+  var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"].getService(Components.interfaces.nsIWindowMediator);
+  var enumerator = wm.getEnumerator('navigator:browser'), win;
+    while(enumerator.hasMoreElements()) {
+    win = enumerator.getNext();
+    eval('win.'+fun.apply(eval('win.'+fun), a));
+  }
+}
+*/
+/**
  * Initialiization function
  */
 var GRWinit = function()
@@ -1051,6 +1073,7 @@ var GRWinit = function()
         win = enumerator.getNext();
         win.genStatusGrid(activeWin.GRPrefs.feeds);
       }
+      // mapWindows(genStatusGrid, activeWin.GRPrefs.feeds);
       GRCheck.switchOnIcon();
       showCounter(unr);
     }
