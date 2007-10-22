@@ -82,7 +82,7 @@ Ajax.prototype =
   {
     GRCheck.switchErrorIcon();
     hideCounter();
-    Log.log('Ajax error: ' + msg + ' || ' + e);
+    Log.log('Ajax error: ' + msg + ' || ' + er);
     Log.log(this.url);
     return false;
   },

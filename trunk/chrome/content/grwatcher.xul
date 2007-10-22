@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <?xml-stylesheet href="chrome://grwatcher/skin/tooltip.css" type="text/css"?>
+<?xml-stylesheet href="chrome://grwatcher/skin/toolbar.css" type="text/css"?>
 
 <!DOCTYPE window SYSTEM "chrome://grwatcher/locale/grwatcher.dtd">
 
@@ -30,10 +31,7 @@
   </statusbar>
 
 	<!-- Toolbar Icon -->
-  <!--
-	<toolbarpalette id="BrowserToolbarPalette">
-		<toolbarbutton id="GRW-toolbar-button" class="toolbarbutton-1 chromeclass-toolbar-additional" label="GRW" tooltiptext="GRW tooltip" oncommand="statusClickHandling.click();" />
-	</toolbarpalette>
-  -->
-
+  <toolbarpalette id="BrowserToolbarPalette">
+    <toolbarbutton id="GRW-toolbar-button" class="toolbarbutton-1 chromeclass-toolbar-additional" label="Google Reader Watcher" tooltiptext="" />
+  </toolbarpalette>
 </overlay>
