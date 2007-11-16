@@ -28,6 +28,7 @@
 <!ENTITY GRWpreferences.leftclickopen.singleclick "Kattintás">
 <!ENTITY GRWpreferences.leftclickopen.dblclick "Dupla kattintás">
 <!ENTITY GRWpreferences.leftclickopen.disabled "Tiltva">
+<!ENTITY GRWpreferences.usesecureconnection "Biztonságos kapcsolat használata">
 <!ENTITY GRWtooltip.nonewfeed "Nincs olvastlan feeded!">
 <!ENTITY GRWtooltip.errorfeedfetch "Hiba a feedek feldolgozásakor!">
 <!ENTITY GRWtooltip.newfeed "Olvasatlan feeded van!">

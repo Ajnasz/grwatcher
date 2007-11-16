@@ -28,6 +28,7 @@
 <!ENTITY GRWpreferences.leftclickopen.singleclick "Single click">
 <!ENTITY GRWpreferences.leftclickopen.dblclick "Double click">
 <!ENTITY GRWpreferences.leftclickopen.disabled "Disabled">
+<!ENTITY GRWpreferences.usesecureconnection "Use secure connection">
 <!ENTITY GRWtooltip.nonewfeed "You haven&apos;t got any unread feeds">
 <!ENTITY GRWtooltip.errorfeedfetch "Error fetching feeds!">
 <!ENTITY GRWtooltip.newfeed "You have unread feeds">

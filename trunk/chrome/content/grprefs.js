@@ -48,7 +48,12 @@ var getPref =
   showZeroCounter : function(value)
   {
     return prefManager.getBoolPref('extensions.grwatcher.showzerocounter');
+  },
+  useSecureConnection : function(value)
+  {
+    return prefManager.getBoolPref('extensions.grwatcher.usesecureconnection');
   }
+
 };
 /**
  * set the specified extension preference
@@ -94,6 +99,10 @@ var setPref =
   showZeroCounter : function(value)
   {
    prefManager.setBoolPref('extensions.grwatcher.showzerocounter', value);
+  },
+  useSecureConnection : function(value)
+  {
+   prefManager.setBoolPref('extensions.grwatcher.usesecureconnection', value);
   }
 };
 /**
@@ -111,6 +120,7 @@ var savePreferences = function()
   setPref.activateOpenedTab(document.getElementById('GRW-activateopenedtab-field').checked);
   setPref.showNotificationWindow(document.getElementById('GRW-shownotificationwindow-field').checked);
   setPref.showZeroCounter(document.getElementById('GRW-showzerocounter-field').checked);
+  setPref.useSecureConnection(document.getElementById('GRW-usesecureconnection-field').checked);
 };
 /**
  * sets the values on the pref dialog when it opens
@@ -129,6 +139,7 @@ var setPrefPaneVals = function()
   document.getElementById('GRW-accountmanage-email').value = passManager.getUserName();
   document.getElementById('GRW-shownotificationwindow-field').checked = getPref.showNotificationWindow();
   document.getElementById('GRW-showzerocounter-field').checked = getPref.showZeroCounter();
+  document.getElementById('GRW-usesecureconnection-field').checked = getPref.useSecureConnection();
 };
 /**
  * show/hide the newtab options
