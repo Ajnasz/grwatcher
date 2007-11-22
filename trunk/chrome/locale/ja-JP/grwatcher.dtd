@@ -28,7 +28,8 @@
 <!ENTITY GRWpreferences.leftclickopen.singleclick "クリック">
 <!ENTITY GRWpreferences.leftclickopen.dblclick "ダブルクリック">
 <!ENTITY GRWpreferences.leftclickopen.disabled "無効">
+<!ENTITY GRWpreferences.usesecureconnection "安全な接続を利用する">
 <!ENTITY GRWtooltip.nonewfeed "未読フィードはありません">
-<!ENTITY GRWtooltip.errorfeedfetch "フィードの取得エラー！ログインしていますか？">
+<!ENTITY GRWtooltip.errorfeedfetch "フィードの取得エラー！">
 <!ENTITY GRWtooltip.newfeed "未読フィードがあります">
-<!ENTITY GRWtooltip.errorlogin "ログインに失敗しました。入力されたパスワードとユーザ名が正しいことをご確認ください！">
+<!ENTITY GRWtooltip.errorlogin "ログインに失敗しました。入力されたパスワードとユーザー名が正しいことを確認してください！">

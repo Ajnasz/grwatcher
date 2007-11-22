@@ -28,6 +28,7 @@
 <!ENTITY GRWpreferences.leftclickopen.singleclick "Clic simple">
 <!ENTITY GRWpreferences.leftclickopen.dblclick "Doble clic">
 <!ENTITY GRWpreferences.leftclickopen.disabled "Desactivado">
+<!ENTITY GRWpreferences.usesecureconnection "">
 <!ENTITY GRWtooltip.nonewfeed "Tiene algún alimentador sin leer">
 <!ENTITY GRWtooltip.errorfeedfetch "¡Error recuperando alimentadores!">
 <!ENTITY GRWtooltip.newfeed "Tiene alimentadores sin leer">

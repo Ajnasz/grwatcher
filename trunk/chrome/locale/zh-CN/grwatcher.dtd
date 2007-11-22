@@ -28,6 +28,7 @@
 <!ENTITY GRWpreferences.leftclickopen.singleclick "单击">
 <!ENTITY GRWpreferences.leftclickopen.dblclick "双击">
 <!ENTITY GRWpreferences.leftclickopen.disabled "已禁用">
+<!ENTITY GRWpreferences.usesecureconnection "">
 <!ENTITY GRWtooltip.nonewfeed "您未获取到未读的信息">
 <!ENTITY GRWtooltip.errorfeedfetch "获取收取点错误！">
 <!ENTITY GRWtooltip.newfeed "您有未读 Feeds">

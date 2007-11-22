@@ -28,6 +28,7 @@
 <!ENTITY GRWpreferences.leftclickopen.singleclick "pojedynczego kliknięcia">
 <!ENTITY GRWpreferences.leftclickopen.dblclick "dwukrotnego kliknięcia">
 <!ENTITY GRWpreferences.leftclickopen.disabled "wyłączone">
+<!ENTITY GRWpreferences.usesecureconnection "Korzystaj z szyfrowanego połączenia">
 <!ENTITY GRWtooltip.nonewfeed "Brak nieprzeczytanych wiadomości">
 <!ENTITY GRWtooltip.errorfeedfetch "Błąd podczas pobierania wiadomości! Sprawdź czy jesteś zalogowany.">
 <!ENTITY GRWtooltip.newfeed "Są nieprzeczytane wiadomości">

@@ -33,3 +33,4 @@
 <!ENTITY GRWtooltip.errorfeedfetch "Error fetching feeds!">
 <!ENTITY GRWtooltip.newfeed "You have unread feeds">
 <!ENTITY GRWtooltip.errorlogin "Login failed. Make sure you have entered the correct password and/or username!">
+<!ENTITY GRWtooltip.networkerror "Network error!">
