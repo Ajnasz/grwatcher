@@ -82,6 +82,7 @@ Ajax.prototype =
   {
     GRCheck.switchErrorIcon();
     hideCounter();
+    setReaderTooltip('networkerror');
     Log.log('Ajax error: ' + msg + ' || ' + er);
     Log.log(this.url);
     return false;

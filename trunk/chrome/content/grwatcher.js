@@ -361,7 +361,6 @@ var GRCheck =
   switchOffIcon: function()
   {
     setReaderStatus('off');
-    updateIcon();
   },
   /**
    * set the icon to on status
@@ -369,7 +368,6 @@ var GRCheck =
   switchOnIcon: function()
   {
     setReaderStatus('on');
-    updateIcon();
   },
   /**
    * set the icon to error status
@@ -377,7 +375,6 @@ var GRCheck =
   switchErrorIcon: function()
   {
     setReaderStatus('error');
-    updateIcon();
   },
   /**
    * set the icon to load status
@@ -385,7 +382,6 @@ var GRCheck =
   switchLoadIcon: function()
   {
     setReaderStatus('load');
-    updateIcon();
   }
 };
 /**
@@ -464,6 +460,13 @@ var setReaderTooltip = function(t, unr)
           ttb.setAttribute('tooltiptext', GRW_bundle.getString('errorlogin'));
         }
         break;
+      case 'networkerror':
+        statusBar.tooltip = 'GRW-statusbar-tooltip-networkerror';
+        if(ttb)
+        {
+          ttb.setAttribute('tooltiptext', GRW_bundle.getString('networkerror'));
+        }
+        break;
     }
   }
 };
@@ -487,7 +490,7 @@ var setReaderStatus = function(status)
         stImage.src = 'chrome://grwatcher/content/images/googlereader.png';
         if(tButton)
         {
-          tButton.className = 'on';
+          tButton.setAttribute('class', 'on');
         }
         break;
 
@@ -496,7 +499,7 @@ var setReaderStatus = function(status)
         stImage.src = 'chrome://grwatcher/content/images/googlereader_grey.png';
         if(tButton)
         {
-          tButton.className = 'off';
+          tButton.setAttribute('class', 'off');
         }
         break;
 
@@ -504,18 +507,16 @@ var setReaderStatus = function(status)
         stImage.src = 'chrome://grwatcher/content/images/googlereader_red.png';
         if(tButton)
         {
-          tButton.className = 'error';
+          tButton.setAttribute('class', 'error');
         }
-
         break;
 
       case 'load':
         stImage.src = 'chrome://grwatcher/content/images/loader.gif';
         if(tButton)
         {
-          tButton.className = 'load';
+          tButton.setAttribute('class', 'load');
         }
-
         break;
     }
 
@@ -529,43 +530,6 @@ var setReaderStatus = function(status)
 var getReaderStatus = function(win)
 {
   return document.getElementById('GRW-statusbar').status;
-};
-/**
- * change the statusbar icon
- * @return {String}
- */
-var updateIcon = function()
-{
-  /*
-  var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"].getService(Components.interfaces.nsIWindowMediator);
-  var enumerator = wm.getEnumerator('navigator:browser'), win;
-  while(enumerator.hasMoreElements()) {
-    win = enumerator.getNext();
-    var stImage = win.document.getElementById('GRW-statusbar-image');
-    if(typeof stImage == 'undefined') { return false; }
-    var status = getReaderStatus(win);
-    switch(status)
-    {
-      case 'on':
-        stImage.src = 'chrome://grwatcher/content/images/googlereader.png';
-        break;
-
-      case 'off':
-      default:
-        stImage.src = 'chrome://grwatcher/content/images/googlereader_grey.png';
-        break;
-
-      case 'error':
-        stImage.src = 'chrome://grwatcher/content/images/googlereader_red.png';
-        break;
-
-      case 'load':
-        stImage.src = 'chrome://grwatcher/content/images/loader.gif';
-        break;
-    }
-  }
-  */
-  return status;
 };
 /**
  * show the counter text
@@ -918,13 +882,13 @@ var genStatusGrid = function(feeds)
       {
         labelc1.value = o.Count;
         labelc2.value = o.Title;
-        labelc1.className = 'counterCol';
+        labelc1.setAttribute('class', 'counterCol');
       }
       else
       {
         labelc1.value = o.Title;
         labelc2.value = o.Count;
-        labelc2.className = 'counterCol';
+        labelc2.setAttribute('class', 'counterCol');
       }
 
       rowc.appendChild(labelc1);
