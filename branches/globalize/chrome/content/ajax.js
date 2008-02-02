@@ -71,13 +71,15 @@ Ajax.prototype =
   },
   errorHandler: function()
   {
-    GRCheck.switchErrorIcon();
-    hideCounter();
+    // GRCheck.switchErrorIcon();
+    Log.log('Ajax error');
+    // hideCounter();
     return false;
   },
   loadHandler: function()
   {
-    GRCheck.switchLoadIcon();
+    // GRCheck.switchLoadIcon();
+    Log.log('Ajax loading');
     return true;
   }
 };

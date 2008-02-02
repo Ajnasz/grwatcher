@@ -4,9 +4,8 @@
 <!DOCTYPE window SYSTEM "chrome://grwatcher/locale/grwatcher.dtd">
 
 <overlay id="GRWatcherOverlay" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
-  <script type="application/x-javascript" src="chrome://grwatcher/content/ajax.js" />
-  <script type="application/x-javascript" src="chrome://grwatcher/content/grwatcher.js" />
-  <script type="application/x-javascript" src="chrome://grwatcher/content/grwatcher-init.js" />
+  <!--<script type="application/x-javascript" src="chrome://grwatcher/content/ajax.js" />-->
+  <script type="application/x-javascript" src="chrome://grwatcher/content/hiddenWindow.js" />
   <statusbar id="status-bar">
 
     <stringbundle id="grwatcher-bundles" src="chrome://grwatcher/locale/grwatcher.properties" />

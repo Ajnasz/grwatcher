@@ -6,15 +6,12 @@
  * @author Koszti Lajos [Ajnasz] http://ajnasz.hu ajnasz@ajnasz.hu 
  * @param {Object} pars
  */
-var Ajax = function(pars)
-{
-  if(typeof pars.url == 'undefined')
-  {
+var Ajax = function(pars) {
+  if(typeof pars.url == 'undefined') {
     return false;
   }
 
-  var stChg = function(ob, p)
-  {
+  var stChg = function(ob, p) {
     return function() { ob.handler(p); }
   }
 
@@ -29,7 +26,10 @@ var Ajax = function(pars)
   this.req.setRequestHeader('User-Agent', this.agent);
   this.req.setRequestHeader('Accept-Charset','utf-8');
   this.req.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
-  this.req.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+
+  if(this.method == 'post') {
+    this.req.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+  }
 
   this.req.onreadystatechange = stChg(this, false);
   this.req.send(this.pars); 
@@ -40,54 +40,41 @@ Ajax.prototype =
   pars: null,
   req: null,
   method: 'get',
-  agent: 'Google Reader Watcher 0.0.9',
-  handler: function(pars)
-  {
-    try
-    {
-      if (this.req.readyState == 4)
-      {
-        if(this.req.status != 'undefined')
-        {
-          if(this.req.status == 200)
-          {
+  agent: 'Google Reader Watcher 0.0.10',
+  handler: function(pars) {
+    try {
+      if(this.req.readyState == 4) {
+        if(typeof this.req.status != 'undefined') {
+          if(this.req.status == 200) {
             return this.successHandler();
           }
-          else
-          {
+          else {
             return this.errorHandler('status code - ' + this.req.status);
           }
         }
-        else
-        {
+        else {
           return this.errorHandler('no status code');
-
         }
       }
-      else
-      {
+      else {
         return this.loadHandler();
       }
     }
-    catch(e)
-    {
+    catch(e) {
       return this.errorHandler('no readyState', e);
     }
   },
-  successHandler: function()
-  {
+  successHandler: function() {
     return this.req.responseText;
   },
-  errorHandler: function(msg, er)
-  {
+  errorHandler: function(msg, er) {
     GRCheck.switchErrorIcon();
     hideCounter();
-    Log.log('Ajax error: ' + msg + ' || ' + er);
-    Log.log(this.url);
+    LOG('Ajax error: ' + msg + ' || ' + er);
+    LOG(this.url);
     return false;
   },
-  loadHandler: function()
-  {
+  loadHandler: function() {
     GRCheck.switchLoadIcon();
     return true;
   }

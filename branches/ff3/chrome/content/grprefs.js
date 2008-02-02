@@ -48,6 +48,14 @@ var getPref =
   showZeroCounter : function(value)
   {
     return prefManager.getBoolPref('extensions.grwatcher.showzerocounter');
+  },
+  useSecureConnection : function(value)
+  {
+    return prefManager.getBoolPref('extensions.grwatcher.usesecureconnection');
+  },
+  userName : function(value)
+  {
+    return prefManager.getCharPref('extensions.grwatcher.username');
   }
 };
 /**
@@ -94,6 +102,14 @@ var setPref =
   showZeroCounter : function(value)
   {
    prefManager.setBoolPref('extensions.grwatcher.showzerocounter', value);
+  },
+  useSecureConnection : function(value)
+  {
+   prefManager.setBoolPref('extensions.grwatcher.usesecureconnection', value);
+  },
+  userName : function(value)
+  {
+   prefManager.setCharPref('extensions.grwatcher.username', value);
   }
 };
 /**
@@ -111,6 +127,11 @@ var savePreferences = function()
   setPref.activateOpenedTab(document.getElementById('GRW-activateopenedtab-field').checked);
   setPref.showNotificationWindow(document.getElementById('GRW-shownotificationwindow-field').checked);
   setPref.showZeroCounter(document.getElementById('GRW-showzerocounter-field').checked);
+  setPref.useSecureConnection(document.getElementById('GRW-usesecureconnection-field').checked);
+  setPref.userName(document.getElementById('GRW-accountmanage-email').value);
+
+  passwordManager.addPassword(document.getElementById('GRW-accountmanage-pass').value);
+
 };
 /**
  * sets the values on the pref dialog when it opens
@@ -125,10 +146,11 @@ var setPrefPaneVals = function()
   document.getElementById('GRW-rememberLogin-field').checked = getPref.rememberLogin();
   document.getElementById('GRW-leftclickopen-field').value = getPref.leftClickOpen();
   document.getElementById('GRW-activateopenedtab-field').checked = getPref.activateOpenedTab();
-  document.getElementById('GRW-accountmanage-pass').value = passManager.getPassword();
-  document.getElementById('GRW-accountmanage-email').value = passManager.getUserName();
+  document.getElementById('GRW-accountmanage-pass').value = passwordManager.getPassword();
+  document.getElementById('GRW-accountmanage-email').value = getPref.userName();
   document.getElementById('GRW-shownotificationwindow-field').checked = getPref.showNotificationWindow();
   document.getElementById('GRW-showzerocounter-field').checked = getPref.showZeroCounter();
+  document.getElementById('GRW-usesecureconnection-field').checked = getPref.useSecureConnection();
 };
 /**
  * show/hide the newtab options

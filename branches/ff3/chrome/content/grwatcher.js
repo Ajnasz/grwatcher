@@ -3,199 +3,33 @@
  * @license GPL v2
  */
 /**
- * mozilla preferences component service
- */
-var prefManager = Components.classes["@mozilla.org/preferences-service;1"].getService(Components.interfaces.nsIPrefBranch);
-/**
- * user agent for Google Reader Watcher
- */
-var GRWUserAgent = 'Google Reader Watcher 0.0.9';
-/**
- * @param {String} message log on the javascript console
- */
-var Log =
-{
-  // mozilla log service
-  serv: Components.classes["@mozilla.org/consoleservice;1"].getService(Components.interfaces.nsIConsoleService),
-  /**
-   * @param {String} message
-   */
-  log: function(message){
-    this.serv.logStringMessage('GRW: '+message);
-  }
-};
-FeedlistIds = Array();
-/**
- * passwod manager object
- */
-var passManager =
-{
-  // mozilla nsi password manager internal component
-  passwordManagerInternal: Components.classes["@mozilla.org/passwordmanager;1"].createInstance(Components.interfaces.nsIPasswordManagerInternal),
-  // mozilla nsi password manager component
-  passwordManager: Components.classes["@mozilla.org/passwordmanager;1"].createInstance(Components.interfaces.nsIPasswordManager),
-  url: "https://www.google.com",
-
-  /**
-   * @param {String} username
-   * @param {String} password
-   */
-  setUser: function(username, password)
-  {
-    var url = this.url
-    try
-    {
-      this.passwordManager.removeUser(url, username);
-    }
-    catch(e)
-    {}
-    try
-    {
-      this.passwordManagerInternal.addUserFull(url, username, password, "", "");
-    }
-    catch(e)
-    {}
-  },
-  /**
-   * Returns the password value
-   * @return {String}
-   */
-  getPassword: function()
-  {
-    var url = this.url;
-    var host = {value:""};
-    var user =  {value:""};
-    var password = {value:""};
-    try
-    {
-      this.passwordManagerInternal.findPasswordEntry(url, "", "", host, user, password);
-    }
-    catch(e)
-    {}
-    return password.value;
-  },
-  /**
-   * Returns the username value
-   * @return {String}
-   */
-  getUserName: function()
-  {
-    var url = this.url;
-    var host = {value: ""};
-    var user =  {value: ""};
-    var password = {value: ""};
-    try
-    {
-      this.passwordManagerInternal.findPasswordEntry(url, "", "", host, user, password);
-    }
-    catch(e)
-    {}
-    return user.value;
-  }
-};
-/**
- * account manager object
- */
-var accountManager =
-{
-  // mozilla nsi cookie manager component
-  CookieManager: Components.classes["@mozilla.org/cookiemanager;1"].getService(Components.interfaces.nsICookieManager),
-  /**
-   * @return {Boolean}
-   */
-  accountExists: function()
-  {
-    if(passManager.getUserName() && passManager.getPassword())
-    {
-      return true;
-    }
-    return false;
-  },
-  /**
-   * @return {String,Boolen} returns the value of the cookie named `SID`
-   */
-  getCurrentSID: function()
-  {
-    var enumerator = this.CookieManager.enumerator;
-    while (enumerator.hasMoreElements())
-    {
-      var cookie = enumerator.getNext();
-      if (cookie instanceof Components.interfaces.nsICookie)
-      {
-        if (cookie.host.match("google.com"))
-        {
-          if(cookie.name == 'SID')
-          {
-            return cookie.value;
-          }
-        }
-      }
-    }
-    return false;
-  },
-  /**
-   * do the login into the google service
-   */
-  logIn: function()
-  {
-    if(this.accountExists())
-    {
-      var url = 'https://www.google.com/accounts/ServiceLoginAuth';
-      var param = 'Email='+encodeURIComponent(passManager.getUserName())+'&Passwd='+encodeURIComponent(passManager.getPassword())+'&service=reader&continue=http://www.google.com';
-      // remember the login state, possible won't ask for mozilla master password
-      if(GRPrefs.rememberLogin())
-      {
-        param += '&PersistentCookie=yes';
-      }
-      // GRCheck.switchLoadIcon();
-      loginAjax = new Ajax({
-        url: url,
-        pars: param,
-        method: 'post',
-        successHandler: function()
-        {
-          var curSid = accountManager.getCurrentSID();
-          if(!curSid)
-          {
-            GRCheck.switchErrorIcon();
-            setReaderTooltip('loginerror');
-            return false;
-          }
-          prefManager.setCharPref('extensions.grwatcher.sid', curSid);
-          getFeedList();
-        }
-      });
-    }
-    else
-    {
-      this.loginFailed();
-      return -1;
-    }
-  },
-  /**
-   * do things when the login failed
-   */
-  loginFailed: function()
-  {
-    GRCheck.switchErrorIcon();
-    Log.log('login failed');
-    return false;
-  }
-};
-/**
  *
  */
 var GRCheck =
 {
-  readerURL: 'https://www.google.com/reader/view',
+  getReaderURL: function()
+  {
+    if(!GRPrefs.conntype) {
+      GRPrefs.conntype = GRPrefs.usersecureconnection() ? 'https' : 'http';
+    }
+    return GRPrefs.conntype + '://www.google.com/reader/view';
+  },
   /**
    * open the readader window
    */
   openReader: function()
   {
+    this.getReaderURL();
     if(GRPrefs.resetcounter())
     {
-      hideCounter();
+      if(GRPrefs.showzerocounter() === false)
+      {
+        hideCounter();
+      }
+      else
+      {
+        showCounter(0);
+      }
       setReaderTooltip('hide');
       GRPrefs.showNotification = true;
       var activeWin = getActiveGRW();
@@ -220,11 +54,11 @@ var GRCheck =
         {
           if(GRPrefs.activateOpenedTab())
           {
-            gBrowser.selectedTab = gBrowser.addTab(this.readerURL);
+            gBrowser.selectedTab = gBrowser.addTab(this.getReaderURL());
           }
           else
           {
-            gBrowser.addTab(this.readerURL);
+            gBrowser.addTab(this.getReaderURL());
           }
         }
         else
@@ -235,24 +69,24 @@ var GRCheck =
           if(GRPrefs.activateOpenedTab())
           {
             gBrowser.mTabContainer.selectedIndex = openedGR.blankPage;
-            gBrowser.loadURI(this.readerURL);
+            gBrowser.loadURI(this.getReaderURL());
 
           }
           else
           {
-            gBrowser.getBrowserAtIndex(openedGR.blankPage).loadURI(this.readerURL);
+            gBrowser.getBrowserAtIndex(openedGR.blankPage).loadURI(this.getReaderURL());
           }
         }
       }
       else
       {
-        gBrowser.loadURI(this.readerURL);
+        gBrowser.loadURI(this.getReaderURL());
       }
     }
     else
     {
       gBrowser.mTabContainer.selectedIndex = openedGR.grTab;
-      gBrowser.loadURI(this.readerURL);
+      gBrowser.loadURI(this.getReaderURL());
     }
     var minCheck = 1;
     var configuredCheck = GRPrefs.checkfreq();
@@ -266,13 +100,13 @@ var GRCheck =
   },
   /**
    * checks for opened GR window and blank pages
-   * @return {Object}
+   * @type {Object}
    */
   getOpenedGR: function()
   {
     var brl = gBrowser.browsers.length, i = 0;
     var outObj = {grTab: false, blankPage: false};
-    var r = new RegExp('^'+this.readerURL);
+    var r = new RegExp('^'+this.getReaderURL());
     for( ; i < brl; i++)
     {
       if(r.test(gBrowser.getBrowserAtIndex(i).currentURI.spec))
@@ -293,7 +127,6 @@ var GRCheck =
   switchOffIcon: function()
   {
     setReaderStatus('off');
-    updateIcon();
   },
   /**
    * set the icon to on status
@@ -301,7 +134,6 @@ var GRCheck =
   switchOnIcon: function()
   {
     setReaderStatus('on');
-    updateIcon();
   },
   /**
    * set the icon to error status
@@ -309,7 +141,6 @@ var GRCheck =
   switchErrorIcon: function()
   {
     setReaderStatus('error');
-    updateIcon();
   },
   /**
    * set the icon to load status
@@ -317,33 +148,182 @@ var GRCheck =
   switchLoadIcon: function()
   {
     setReaderStatus('load');
-    updateIcon();
   }
 };
-/**
- *
- */
-var openReaderNotify =
+var accountManager =
 {
+  // mozilla nsi cookie manager component
+  CookieManager: Components.classes["@mozilla.org/cookiemanager;1"].getService(Components.interfaces.nsICookieManager),
   /**
-   *
-   * @param {Object} subject
-   * @param {Object} topic
-   * @param {Object} data
+   * @type {Boolean}
    */
-  observe: function(subject, topic, data)
+  accountExists: function()
   {
-    if(topic == 'alertclickcallback')
+    if(GRPrefs.username() && passwordManager.getPassword())
     {
-      GRCheck.openReader();
+      return true;
     }
+    return false;
+  },
+  /**
+   * @return returns the value of the cookie named `SID`
+   * @type {String,Boolean}
+   */
+  getCurrentSID: function()
+  {
+    var enumerator = this.CookieManager.enumerator;
+    var rex = new RegExp('google.com$');
+    while (enumerator.hasMoreElements())
+    {
+      var cookie = enumerator.getNext();
+      if (cookie instanceof Components.interfaces.nsICookie)
+      {
+        if (rex.test(cookie.host))
+        {
+          if(cookie.name == 'SID' && cookie)
+          {
+            return cookie.value;
+          }
+        }
+      }
+    }
+    return false;
+  },
+  /**
+   * do the login into the google service
+   */
+  logIn: function()
+  {
+    if(this.accountExists())
+    {
+      var url = GRPrefs.conntype + '://www.google.com/accounts/ServiceLoginAuth';
+      var param = 'Email='+encodeURIComponent(GRPrefs.username())+'&Passwd='+encodeURIComponent(passwordManager.getPassword())+'&service=reader&continue=http://www.google.com';
+      // remember the login state, possible won't ask for mozilla master password
+      if(GRPrefs.rememberLogin())
+      {
+        param += '&PersistentCookie=yes';
+      }
+      // GRCheck.switchLoadIcon();
+      loginAjax = new Ajax({
+        url: url,
+        pars: param,
+        method: 'post',
+        successHandler: function()
+        {
+          var curSid = accountManager.getCurrentSID();
+          if(curSid === false)
+          {
+            GRCheck.switchErrorIcon();
+            setReaderTooltip('loginerror');
+            return false;
+          }
+          prefManager.setCharPref('extensions.grwatcher.sid', curSid);
+          getFeedList();
+          return true;
+        }
+      });
+    }
+    else
+    {
+      this.loginFailed();
+      return -1;
+    }
+    return true;
+  },
+  /**
+   * do things when the login failed
+   */
+  loginFailed: function()
+  {
+    GRCheck.switchErrorIcon();
+    LOG('login failed');
+    return false;
   }
+};
+
+/**
+ * @returns the active, recently opened google reader watcher window
+ * @type Window
+ */
+var getActiveGRW = function()
+{
+  if(typeof Components == 'undefined')
+  {
+    return;
+  }
+  var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"].getService(Components.interfaces.nsIWindowMediator);
+  var enumerator = wm.getEnumerator('navigator:browser'), win;
+  while(enumerator.hasMoreElements())
+  {
+    win = enumerator.getNext();
+    if(win.GRW === true)
+    {
+      return win;
+    }
+    // |win| is [Object ChromeWindow] (just like |window|), do something with it
+  }
+  return window;
+};
+
+/**
+ * change the statusbar elem status
+ * @param {Object} status
+ */
+var setReaderStatus = function(status)
+{
+  var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"].getService(Components.interfaces.nsIWindowMediator);
+  var enumerator = wm.getEnumerator('navigator:browser'), win, stImage, ttb;
+  while(enumerator.hasMoreElements())
+  {
+    win = enumerator.getNext();
+    win.document.getElementById('GRW-statusbar').status = status;
+    stImage = win.document.getElementById('GRW-statusbar-image');
+    ttb = win.document.getElementById('GRW-toolbar-button');
+    switch(status)
+    {
+      case 'on':
+        stImage.src = 'chrome://grwatcher/content/images/googlereader.png';
+        if(ttb)
+        {
+          ttb.setAttribute('class', 'on');
+        }
+        break;
+
+      case 'off':
+      default:
+        stImage.src = 'chrome://grwatcher/content/images/googlereader_grey.png';
+        if(ttb)
+        {
+          ttb.setAttribute('class', 'off');
+        }
+        break;
+
+      case 'error':
+        stImage.src = 'chrome://grwatcher/content/images/googlereader_red.png';
+        if(ttb)
+        {
+          ttb.setAttribute('class', 'error');
+        }
+        break;
+
+      case 'load':
+        stImage.src = 'chrome://grwatcher/content/images/loader.gif';
+        if(ttb)
+        {
+          ttb.setAttribute('class', 'load');
+        }
+        break;
+    }
+
+  }
+
 };
 /**
  * change the reader tooltiptext
  * @param {Object} txt
+ * @param {Number} [unr]
  */
-var setReaderTooltip = function(t)
+var setReaderTooltip = function(t, unr)
 {
   var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"].getService(Components.interfaces.nsIWindowMediator);
   var enumerator = wm.getEnumerator('navigator:browser'), win;
@@ -354,17 +334,16 @@ var setReaderTooltip = function(t)
     var ttb = win.document.getElementById('GRW-toolbar-button');
     if(typeof statusBar == 'undefined')
     {
-      Log.log('GRW-statusbar object not found');
+      LOG('GRW-statusbar object not found');
     }
-    Log.log(t);
+    var GRW_bundle = win.document.getElementById('grwatcher-bundles');
     switch(t)
     {
       case 'error':
         statusBar.tooltip = 'GRW-statusbar-tooltip-error';
         if(ttb)
         {
-          var GRW_bundle = win.document.getElementById('grwatcher-bundles');
-          ttb.tooltiptext = GRW_bundle.getString('errorfeedfetch');
+          ttb.setAttribute('tooltiptext', GRW_bundle.getString('errorfeedfetch'));
         }
         break;
       case 'nonew':
@@ -372,161 +351,38 @@ var setReaderTooltip = function(t)
         statusBar.tooltip = 'GRW-statusbar-tooltip-nonew';
         if(ttb)
         {
-          var GRW_bundle = win.document.getElementById('grwatcher-bundles');
-          ttb.tooltiptext = GRW_bundle.getString('nonewfeed');
+          ttb.setAttribute('tooltiptext', GRW_bundle.getString('nonewfeed'));
         }
         break;
       case 'new':
         statusBar.tooltip = 'GRW-statusbar-tooltip-new';
         if(ttb)
         {
-          var GRW_bundle = win.document.getElementById('grwatcher-bundles');
-          ttb.tooltiptext = 'you have new unread feed';
+          ttb.setAttribute('tooltiptext', GRW_bundle.getFormattedString('notifierMSG', [unr]));
         }
         break;
       case 'hide':
         statusBar.tooltip = '';
         if(ttb)
         {
-          // ttb.tooltiptext = '';
+          ttb.removeAttribute('tooltiptext');
         }
         break;
       case 'loginerror':
         statusBar.tooltip = 'GRW-statusbar-tooltip-loginerror';
         if(ttb)
         {
-          var GRW_bundle = win.document.getElementById('grwatcher-bundles');
-          ttb.tooltiptext = GRW_bundle.getString('errorlogin');
+          ttb.setAttribute('tooltiptext', GRW_bundle.getString('errorlogin'));
+        }
+        break;
+      case 'networkerror':
+        statusBar.tooltip = 'GRW-statusbar-tooltip-networkerror';
+        if(ttb)
+        {
+          ttb.setAttribute('tooltiptext', GRW_bundle.getString('networkerror'));
         }
         break;
     }
-  }
-};
-/**
- * change the statusbar elem status
- * @param {Object} status
- */
-var setReaderStatus = function(status)
-{
-  var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"].getService(Components.interfaces.nsIWindowMediator);
-  var enumerator = wm.getEnumerator('navigator:browser'), win, stImage, tButton;
-  while(enumerator.hasMoreElements())
-  {
-    win = enumerator.getNext();
-    win.document.getElementById('GRW-statusbar').status = status;
-    stImage = win.document.getElementById('GRW-statusbar-image');
-    tButton = win.document.getElementById('GRW-toolbar-button');
-    switch(status)
-    {
-      case 'on':
-        stImage.src = 'chrome://grwatcher/content/images/googlereader.png';
-        if(tButton)
-        {
-          tButton.className = 'on';
-        }
-        break;
-
-      case 'off':
-      default:
-        stImage.src = 'chrome://grwatcher/content/images/googlereader_grey.png';
-        if(tButton)
-        {
-          tButton.className = 'off';
-        }
-        break;
-
-      case 'error':
-        stImage.src = 'chrome://grwatcher/content/images/googlereader_red.png';
-        if(tButton)
-        {
-          tButton.className = 'error';
-        }
-
-        break;
-
-      case 'load':
-        stImage.src = 'chrome://grwatcher/content/images/loader.gif';
-        if(tButton)
-        {
-          tButton.className = 'load';
-        }
-
-        break;
-    }
-
-  }
-
-};
-/**
- * returns the status value of the statusbar elem
- * @return {String}
- */
-var getReaderStatus = function(win)
-{
-  return document.getElementById('GRW-statusbar').status;
-};
-/**
- * change the statusbar icon
- * @return {String}
- */
-var updateIcon = function()
-{
-  /*
-  var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"].getService(Components.interfaces.nsIWindowMediator);
-  var enumerator = wm.getEnumerator('navigator:browser'), win;
-  while(enumerator.hasMoreElements()) {
-    win = enumerator.getNext();
-    var stImage = win.document.getElementById('GRW-statusbar-image');
-    if(typeof stImage == 'undefined') { return false; }
-    var status = getReaderStatus(win);
-    switch(status)
-    {
-      case 'on':
-        stImage.src = 'chrome://grwatcher/content/images/googlereader.png';
-        break;
-
-      case 'off':
-      default:
-        stImage.src = 'chrome://grwatcher/content/images/googlereader_grey.png';
-        break;
-
-      case 'error':
-        stImage.src = 'chrome://grwatcher/content/images/googlereader_red.png';
-        break;
-
-      case 'load':
-        stImage.src = 'chrome://grwatcher/content/images/loader.gif';
-        break;
-    }
-  }
-  */
-  return status;
-};
-/**
- * show the counter text
- * @param {Number} val
- */
-var showCounter = function(val)
-{
-  var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"].getService(Components.interfaces.nsIWindowMediator);
-  var enumerator = wm.getEnumerator('navigator:browser'), win;
-  while(enumerator.hasMoreElements())
-  {
-    win = enumerator.getNext();
-
-    var label = win.document.getElementById('GRW-statusbar-label');
-    label.value = val;
-    label.style.width = '';
-    label.style.margin = '';
-    label.crop = '';
-    label.collapsed = false;
-    
-  }
-  if(GRPrefs.showNotification && val != 0)
-  {
-    var GRW_bundle = document.getElementById('grwatcher-bundles');
-    showNotification(false, GRW_bundle.getFormattedString('notifierMSG', [val]));
-    GRPrefs.showNotification = false;
   }
 };
 /**
@@ -548,22 +404,6 @@ var hideCounter = function()
   }
 };
 /**
- * request for unreaded feeds
- */
-var getReadCounter = function()
-{
-  // GRCheck.switchLoadIcon();
-
-  onunreadCountAjax = new Ajax(
-  {
-    url:'https://www.google.com/reader/api/0/unread-count?all=true&output=json',
-    successHandler: function()
-    {
-      getReadFeedsCounter(this.req);
-    }
-  });
-};
-/**
  *
  */
 var getFeedList = function()
@@ -571,7 +411,7 @@ var getFeedList = function()
   // GRCheck.switchLoadIcon();
   var getFeedListAjax = new Ajax(
   {
-    url:'https://www.google.com/reader/api/0/subscription/list?output=json',
+    url: GRPrefs.conntype + '://www.google.com/reader/api/0/subscription/list?output=json',
     successHandler: function()
     {
       onFeedListLoad(this.req);
@@ -579,101 +419,8 @@ var getFeedList = function()
   });
 };
 /**
- *
- * @param {Object} prReq Counter reqest object
- */
-var getReadFeedsCounter = function(prReq)
-{
-  // GRCheck.switchLoadIcon();
-
-  getReadFeedsCounterAjax = new Ajax(
-  {
-    url:'https://www.google.com/reader/api/0/subscription/list?output=json',
-    successHandler: function()
-    {
-      var r = onFeedsCounterLoad(this.req, onunreadCountAjax.req);
-      var unr = r.counter;
-      GRPrefs.currentNum = unr;
-      if(unr === false)
-      {
-        setReaderTooltip('error');
-        GRCheck.switchErrorIcon();
-        Log.log('unr = false');
-        hideCounter();
-      }
-      else if(unr > 0)
-      {
-        setReaderTooltip('new');
-        var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"].getService(Components.interfaces.nsIWindowMediator);
-        var enumerator = wm.getEnumerator('navigator:browser'), win;
-        while(enumerator.hasMoreElements()) {
-          win = enumerator.getNext();
-          win.genStatusGrid(r.feeds);
-          var ttb = win.document.getElementById('GRW-toolbar-button');
-          if(ttb)
-          {
-            var GRW_bundle = win.document.getElementById('grwatcher-bundles');
-            Log.log('TTB');
-            // ttb.tooltiptext = 'VAn uj feeded, geco';
-            // ttb.tooltiptext = GRW_bundle.getFormattedString('notifierMSG', [unr]);
-          }
-          else
-          {
-            Log.log('NO TTB');
-          }
-        }
-        GRCheck.switchOnIcon();
-        showCounter(unr);
-      }
-      else
-      {
-        setReaderTooltip('nonew');
-        GRCheck.switchOffIcon();
-        if(GRPrefs.showzerocounter() === false)
-        {
-          hideCounter();
-        }
-        else
-        {
-          showCounter(unr);
-        }
-        GRPrefs.showNotification = true;
-      }
-    }
-  });
-};
-/**
- * count the unreaded feeeds
- * @param {Number,Boolean} r
- */
-var countUnread = function(r)
-{
-  try
-  {
-    var data = eval('('+r.responseText+')');
-  }
-  catch (e)
-  {
-    return false;
-  }
-  var unrcount = 0;
-  if(data) {
-    var uc = data.unreadcounts;
-    for(var i =0 ; i<  uc.length; i++) {
-      for(var j = 0; j < FeedlistIds.length; j++)
-      {
-        if(FeedlistIds[j] == uc[i].id)
-        {
-          unrcount += uc[i].count;
-        }
-      }
-    }
-  }
-  return unrcount;
-};
-/**
  * @param {Object} req ajax response object
- * @return {Array}
+ * @type {Array}
  */
 var onFeedListLoad = function(r)
 {
@@ -696,33 +443,9 @@ var onFeedListLoad = function(r)
 };
 /**
  *
- * @param {Object} r
- * @return {Object}
- */
-var feedsCounter = function(r)
-{
-  try
-  {
-    data = eval('('+r.responseText+')');
-    data = data.subscriptions;
-  }
-  catch (e)
-  {
-    return false;
-  }
-  var datai, i, datal = data.length, out = Array();
-  for(i = 0; i < datal; i++)
-  {
-    datai = data[i];
-    out.push({title: datai.title, id: datai.id});
-  }
-  return out;
-};
-/**
- *
  * @param {Object} req FeedsCounter request object
  * @param {Object} prReq Counter request object
- * @return {Object}
+ * @type {Object}
  */
 var onFeedsCounterLoad = function(req, prReq)
 {
@@ -772,53 +495,102 @@ var onFeedsCounterLoad = function(req, prReq)
   return {counter: counter, feeds: outFeeds};
 };
 /**
+ *
+ */
+var openReaderNotify =
+{
+  /**
+   *
+   * @param {Object} subject
+   * @param {Object} topic
+   * @param {Object} data
+   */
+  observe: function(subject, topic, data)
+  {
+    if(topic == 'alertclickcallback')
+    {
+      GRCheck.openReader();
+    }
+  }
+};
+/**
  * shows the notification window
  * @param {Object} label
  * @param {Object} value
  */
 var showNotification = function(label, value)
 {
-  if(GRPrefs.shownotificationwindow() === false)
+  if(GRPrefs.shownotificationwindow() !== false)
   {
-    return false;
-  }
-  if(!label)
-  {
-    label = 'Google Reader Watcher';
-  }
-  if(!value)
-  {
-    value = 'Google Reader Watcher Notification';
-  }
-  var image = "chrome://grwatcher/skin/grwatcher.png";
-  try
-  {
-    /**
-     * Notifier for Windows
-     */
-    var alertsService = Components.classes["@mozilla.org/alerts-service;1"].getService(Components.interfaces.nsIAlertsService);
-    alertsService.showAlertNotification(image , label, value, true, "", openReaderNotify);
-  }
-  catch(e)
-  {
+    if(!label)
+    {
+      label = 'Google Reader Watcher';
+    }
+    if(!value)
+    {
+      value = 'Google Reader Watcher Notification';
+    }
+    var image = "chrome://grwatcher/skin/grwatcher.png";
     try
     {
       /**
-      * Notifier for Linux
+      * Notifier for Windows
       */
-      var alertWin = Components.classes["@mozilla.org/embedcomp/window-watcher;1"]
-        .getService(Components.interfaces.nsIWindowWatcher)
-        .openWindow(null, "chrome://global/content/alerts/alert.xul", "_blank", "chrome,titlebar=no,popup=yes", null);
-        alertWin.arguments = [image, label, value, true, "", 0, openReaderNotify];
-        alertWin.setTimeout(function(){alertWin.close()},10000);
+      var alertsService = Components.classes["@mozilla.org/alerts-service;1"].getService(Components.interfaces.nsIAlertsService);
+      alertsService.showAlertNotification(image , label, value, true, "", openReaderNotify);
     }
     catch(e)
-    {}
+    {
+      try
+      {
+        /**
+        * Notifier for Linux
+        */
+        var alertWin = Components.classes["@mozilla.org/embedcomp/window-watcher;1"]
+          .getService(Components.interfaces.nsIWindowWatcher)
+          .openWindow(null, "chrome://global/content/alerts/alert.xul", "_blank", "chrome,titlebar=no,popup=yes", null);
+          alertWin.arguments = [image, label, value, true, "", 0, openReaderNotify];
+          alertWin.setTimeout(function(){alertWin.close()},10000);
+      }
+      catch(e)
+      {
+        LOG(e);
+      }
+    }
+  }
+};
+/**
+ * show the counter text
+ * @param {Number} val the number of the unread items
+ */
+var showCounter = function(val)
+{
+  var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"].getService(Components.interfaces.nsIWindowMediator);
+  var enumerator = wm.getEnumerator('navigator:browser'), win;
+  while(enumerator.hasMoreElements())
+  {
+    win = enumerator.getNext();
+
+    var label = win.document.getElementById('GRW-statusbar-label');
+    label.value = val;
+    label.style.width = '';
+    label.style.margin = '';
+    label.crop = '';
+    label.collapsed = false;
+    
+  }
+  if(GRPrefs.showNotification && val != 0)
+  {
+    var GRW_bundle = document.getElementById('grwatcher-bundles');
+    showNotification(false, GRW_bundle.getFormattedString('notifierMSG', [val]));
+    GRPrefs.showNotification = false;
   }
 };
 /**
  * generate the grid for the tooltip
  * @param {Array} feeds
+ * @returns a grid element which is filled with the unread feeds data
+ * @type Element
  */
 var genStatusGrid = function(feeds)
 {
@@ -864,13 +636,13 @@ var genStatusGrid = function(feeds)
       {
         labelc1.value = o.Count;
         labelc2.value = o.Title;
-        labelc1.className = 'counterCol';
+        labelc1.setAttribute('class', 'counterCol');
       }
       else
       {
         labelc1.value = o.Title;
         labelc2.value = o.Count;
-        labelc2.className = 'counterCol';
+        labelc2.setAttribute('class', 'counterCol');
       }
 
       rowc.appendChild(labelc1);
@@ -882,78 +654,114 @@ var genStatusGrid = function(feeds)
   grid.appendChild(columnc2);
   grid.appendChild(rows);
   tt.appendChild(grid);
+  return grid;
 };
 /**
- * opens preferences window
- * @param {Object} event
+ *
+ * @param {Object} r Ajax response
+ * @returns an array with the processed feeds object
+ * @type {Array}
  */
-var openPrefs = function(event)
+var feedsCounter = function(r)
 {
-  window.openDialog("chrome://grwatcher/content/grprefs.xul", 'GRWatcher', 'chrome,titlebar,toolbar,centerscreen,modal');
-};
-/**
- * get chrome preferences
- */
-var GRPrefs =
-{
-  timeoutid: -1,
-  showNotification: true,
-  currentNum: null,
-  feeds: null,
-  checkfreq: function() {
-    return prefManager.getIntPref('extensions.grwatcher.checkfreq');
-  },
-  openinnewtab: function() {
-    return prefManager.getBoolPref('extensions.grwatcher.openinnewtab');
-  },
-  resetcounter: function()
+  try
   {
-    return prefManager.getBoolPref('extensions.grwatcher.resetcounter');
-  },
-  tooltipcounterpos: function()
-  {
-    return prefManager.getCharPref('extensions.grwatcher.tooltipcounterpos');
-  },
-  tooltiptitlelength: function()
-  {
-    return prefManager.getIntPref('extensions.grwatcher.tooltiptitlelength');
-  },
-  email: function()
-  {
-    return prefManager.getCharPref('extensions.grwatcher.email');
-  },
-  rememberLogin: function()
-  {
-    return prefManager.getBoolPref('extensions.grwatcher.rememberLogin');
-  },
-  leftClickOpen: function()
-  {
-    return prefManager.getIntPref('extensions.grwatcher.leftclickopen');
-  },
-  activateOpenedTab: function()
-  {
-    return prefManager.getBoolPref('extensions.grwatcher.activateopenedtab');
-  },
-  shownotificationwindow: function()
-  {
-    return prefManager.getBoolPref('extensions.grwatcher.shownotificationwindow');
-  },
-  showzerocounter: function()
-  {
-    return prefManager.getBoolPref('extensions.grwatcher.showzerocounter');
+    data = eval('('+r.responseText+')');
+    data = data.subscriptions;
   }
+  catch (e)
+  {
+    return false;
+  }
+  var datai, i, datal = data.length, out = Array();
+  for(i = 0; i < datal; i++)
+  {
+    datai = data[i];
+    out.push({title: datai.title, id: datai.id});
+  }
+  return out;
+};
+/**
+ *
+ * @param {Object} prReq Counter reqest object
+ */
+var getReadFeedsCounter = function(prReq)
+{
+  // GRCheck.switchLoadIcon();
+
+  getReadFeedsCounterAjax = new Ajax(
+  {
+    url: GRPrefs.conntype + '://www.google.com/reader/api/0/subscription/list?output=json',
+    successHandler: function()
+    {
+      var r = onFeedsCounterLoad(this.req, onunreadCountAjax.req);
+      var unr = r.counter;
+      GRPrefs.currentNum = unr;
+      if(unr === false)
+      {
+        setReaderTooltip('error');
+        GRCheck.switchErrorIcon();
+        // Log.log('unr = false');
+        hideCounter();
+      }
+      else if(unr > 0)
+      {
+        setReaderTooltip('new', unr);
+        var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"].getService(Components.interfaces.nsIWindowMediator);
+        var enumerator = wm.getEnumerator('navigator:browser'), win;
+        while(enumerator.hasMoreElements())
+        {
+          win = enumerator.getNext();
+          win.genStatusGrid(r.feeds);
+        }
+        GRCheck.switchOnIcon();
+        showCounter(unr);
+      }
+      else
+      {
+        setReaderTooltip('nonew');
+        GRCheck.switchOffIcon();
+        if(GRPrefs.showzerocounter() === false)
+        {
+          hideCounter();
+        }
+        else
+        {
+          showCounter(unr);
+        }
+        GRPrefs.showNotification = true;
+      }
+    }
+  });
+};
+/**
+ * request for unreaded feeds
+ */
+var getReadCounter = function()
+{
+  // GRCheck.switchLoadIcon();
+
+  onunreadCountAjax = new Ajax(
+  {
+    url: GRPrefs.conntype + '://www.google.com/reader/api/0/unread-count?all=true&output=json',
+    successHandler: function()
+    {
+      getReadFeedsCounter(this.req);
+    }
+  });
 };
 /**
  * do the request and process the received data
- * @return {Number}
+ * @type {Number}
  */
 var GoogleIt = function()
 {
+  GRPrefs.conntype = GRPrefs.usersecureconnection() ? 'https' : 'http';
   var activeWin = getActiveGRW();
   if(activeWin !== window)
   {
     activeWin.GoogleIt();
-    return;
+    return false;
   }
   if(!accountManager.getCurrentSID())
   {
@@ -967,7 +775,6 @@ var GoogleIt = function()
   if(login === -1)
   {
     GRCheck.switchErrorIcon();
-    Log.log('Login failed');
   }
   var minCheck = 1;
   var configuredCheck = GRPrefs.checkfreq();
@@ -979,12 +786,15 @@ var GoogleIt = function()
   GRPrefs.timeoutid = setTimeout(GoogleIt, freq*1000*60);
   return GRPrefs.timeoutid;
 };
+
+
 /**
  * @var {Object} event
  */
 var statusClickHandling = function(ob)
 {
   this.statusBar = ob;
+  if(!this.statusBar) { return; }
   this.st = GRPrefs.leftClickOpen();
   this.observe();
 };
@@ -1006,9 +816,9 @@ statusClickHandling.prototype =
   /**
    * event handler runs when user click on the statusbar icon
    * event.button:
-   * 0 = left click
-   * 1 = middle click
-   * 2 = right click
+   *   0 = left click
+   *   1 = middle click
+   *   2 = right click
    * @param {Object} event
    */
   click: function(event)
@@ -1031,13 +841,17 @@ statusClickHandling.prototype =
 };
 /**
  * @author Koszti Lajos [Ajnasz] http://ajnasz.hu ajnasz@ajnasz.hu 
- * @return {Boolean}
+ * @type {Boolean}
  */
-var isActiveGRW = function()
-{
+var isActiveGRW = function() {
+  if(typeof Components == 'undefined')
+  {
+    return;
+  }
   var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"].getService(Components.interfaces.nsIWindowMediator);
   var enumerator = wm.getEnumerator('navigator:browser'), win;
-  while(enumerator.hasMoreElements()) {
+  while(enumerator.hasMoreElements())
+  {
     win = enumerator.getNext();
     if(win.GRW === true)
     {
@@ -1046,28 +860,31 @@ var isActiveGRW = function()
     // |win| is [Object ChromeWindow] (just like |window|), do something with it
   }
   return false;
-}
-var getActiveGRW = function()
-{
-  var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"].getService(Components.interfaces.nsIWindowMediator);
-  var enumerator = wm.getEnumerator('navigator:browser'), win;
-  while(enumerator.hasMoreElements()) {
-    win = enumerator.getNext();
-    if(win.GRW === true)
-    {
-      return win;
-    }
-    // |win| is [Object ChromeWindow] (just like |window|), do something with it
-  }
-  return window;
 };
-windowCloseCheck = {
-  observe: function()
+/**
+ * opens preferences window
+ * @param {Object} event
+ */
+var openPrefs = function(event)
+{
+  window.openDialog("chrome://grwatcher/content/grprefs.xul", 'GRWatcher', 'chrome,titlebar,toolbar,centerscreen,modal');
+};
+
+var windowCloseCheck = {
+  observe: function(aSubject, aTopic, aData)
   {
+    var observerService = Components.classes["@mozilla.org/observer-service;1"].getService(Components.interfaces.nsIObserverService);
+    observerService.removeObserver(windowCloseCheck, "domwindowclosed");
+   
+    if(typeof Components == 'undefined')
+    {
+      return;
+    }
     var grw = false;
     var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"].getService(Components.interfaces.nsIWindowMediator);
     var enumerator = wm.getEnumerator('navigator:browser'), win;
-    while(enumerator.hasMoreElements()) {
+    while(enumerator.hasMoreElements())
+    {
       win = enumerator.getNext();
       if(win.GRW === true)
       {
@@ -1087,38 +904,18 @@ windowCloseCheck = {
   }
 }
 /**
- * @author Koszti Lajos [Ajnasz] http://ajnasz.hu ajnasz@ajnasz.hu 
- * @param {Function} fun
- */
-/*
-var mapWindows = function(fun)
-{
-  var args = arguments;
-  a = Array();
-  for(var i = 1; i < args.length; i++)
-  {
-    a.push(args[i]);
-  }
-  var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"].getService(Components.interfaces.nsIWindowMediator);
-  var enumerator = wm.getEnumerator('navigator:browser'), win;
-    while(enumerator.hasMoreElements()) {
-    win = enumerator.getNext();
-    eval('win.'+fun.apply(eval('win.'+fun), a));
-  }
-}
-*/
-/**
- * Initialiization function
+ * initialization function
  */
 var GRWinit = function()
 {
-  if(isActiveGRW() === false)
-  {
+  LOG('Starting Google Reader Watcher');
+  passwordManager = new _passwordManager();
+  if(isActiveGRW() === false) {
     window.GRW = true;
     var g = GoogleIt();
   }
-  else
-  {
+  else {
+    GRPrefs.conntype = GRPrefs.usersecureconnection() ? 'https' : 'http';
     var activeWin = getActiveGRW();
     var unr = activeWin.GRPrefs.currentNum;
     GRPrefs.showNotification = false;
@@ -1130,26 +927,13 @@ var GRWinit = function()
     }
     else if(unr > 0)
     {
-      setReaderTooltip('new');
+      setReaderTooltip('new', unr);
       var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"].getService(Components.interfaces.nsIWindowMediator);
       var enumerator = wm.getEnumerator('navigator:browser'), win;
-      while(enumerator.hasMoreElements()) {
+      while(enumerator.hasMoreElements())
+      {
         win = enumerator.getNext();
         win.genStatusGrid(activeWin.GRPrefs.feeds);
-/************************************** 
-        var ttb = win.document.getElementById('GRW-toolbar-button');
-        if(ttb)
-        {
-          var GRW_bundle = win.document.getElementById('grwatcher-bundles');
-          Log.log('TTB');
-          ttb.tooltiptext = 'VAn uj feeded, geco';
-          // ttb.tooltiptext = GRW_bundle.getFormattedString('notifierMSG', [unr]);
-        }
-        else
-        {
-          Log.log('No TTB');
-        }
- **************************************/ 
       }
       GRCheck.switchOnIcon();
       showCounter(unr);
@@ -1166,7 +950,7 @@ var GRWinit = function()
       {
         showCounter(unr);
       }
-    }
+    } 
   }
   new statusClickHandling(document.getElementById('GRW-statusbar'));
   if(document.getElementById('GRW-toolbar-button'))
@@ -1174,8 +958,10 @@ var GRWinit = function()
     new statusClickHandling(document.getElementById('GRW-toolbar-button'));
   }
 
-  // statusClickHandling.observe();
-  // Log.log('Google Reader Watcher Initialized');
   var observerService = Components.classes["@mozilla.org/observer-service;1"].getService(Components.interfaces.nsIObserverService);
   observerService.addObserver(windowCloseCheck, "domwindowclosed", false);
+
+    LOG('Google Reader Watcher initialized');
 };
+
+window.addEventListener('load', GRWinit, false);

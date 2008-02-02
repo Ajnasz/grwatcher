@@ -9,7 +9,7 @@
 <!ENTITY GRWpreferences.generalpreferencesopencaption "Google Reader megnyitásának beállításai">
 <!ENTITY GRWpreferences.tooltippreferencescaption "Tooltip tulajdonságok">
 <!ENTITY GRWpreferences.tabgeneral "Általános">
-<!ENTITY GRWpreferences.openinnewtabdesc "Google Reader jelenlegi vagy új fülön történő megnyitása">
+<!ENTITY GRWpreferences.openinnewtabdesc "Google Reader megnyitása új fülön">
 <!ENTITY GRWpreferences.resetcounterdesc "A állapotsor számláló nullázása a Google Reader megnyitásakor">
 <!ENTITY GRWpreferences.shownotificationwindow "Figyelmeztető ablak mutatása">
 <!ENTITY GRWpreferences.showzerocounter "Számláló mutatása ha nincs olvasatlan feed.">
@@ -28,7 +28,9 @@
 <!ENTITY GRWpreferences.leftclickopen.singleclick "Kattintás">
 <!ENTITY GRWpreferences.leftclickopen.dblclick "Dupla kattintás">
 <!ENTITY GRWpreferences.leftclickopen.disabled "Tiltva">
+<!ENTITY GRWpreferences.usesecureconnection "Biztonságos kapcsolat használata">
 <!ENTITY GRWtooltip.nonewfeed "Nincs olvastlan feeded!">
 <!ENTITY GRWtooltip.errorfeedfetch "Hiba a feedek feldolgozásakor!">
 <!ENTITY GRWtooltip.newfeed "Olvasatlan feeded van!">
 <!ENTITY GRWtooltip.errorlogin "Sikeretelen bejelentkezés! Ellenőrzid, hogy helyesen adtad-e meg az e-mail címet és a jelszavad!">
+<!ENTITY GRWtooltip.networkerror "Hálózati hiba!">

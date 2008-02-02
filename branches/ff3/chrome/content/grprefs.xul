@@ -11,13 +11,16 @@
   ondialogaccept="savePreferences();"
   flex="1"
   xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
-  <script type="application/x-javascript" src="chrome://grwatcher/content/grwatcher.js" />
+  <script type="application/x-javascript" src="chrome://grwatcher/content/log.js" />
+  <script type="application/x-javascript" src="chrome://grwatcher/content/preferences.js" />
+  <script type="application/x-javascript" src="chrome://grwatcher/content/passmanager.js" />
   <script type="application/x-javascript" src="chrome://grwatcher/content/grprefs.js" />
   <script type="application/x-javascript">
   <![CDATA[
     window.addEventListener('load',
       function()
       {
+        passwordManager = new _passwordManager();
         setPrefPaneVals();
         openNewTabCheckToogle();
         document.getElementById('GRW-openinnewtab-field').addEventListener('command', openNewTabCheckToogle, false);
@@ -47,6 +50,7 @@
               <checkbox id="GRW-resetcounter-field" label="&GRWpreferences.resetcounterdesc;" />
               <checkbox id="GRW-shownotificationwindow-field" label="&GRWpreferences.shownotificationwindow;" />
               <checkbox id="GRW-showzerocounter-field" label="&GRWpreferences.showzerocounter;" />
+              <checkbox id="GRW-usesecureconnection-field" label="&GRWpreferences.usesecureconnection;" />
             </vbox>
 
           </groupbox>
@@ -105,11 +109,11 @@
             <rows>
               <row align="center">
                 <label control="GRW-accountmanage-email" value="&GRWpreferences.accountinfoemail;" />
-                <textbox id="GRW-accountmanage-email" onchange="passManager.setUser(this.value, document.getElementById('GRW-accountmanage-pass').value)" maxlength="100" />
+                <textbox id="GRW-accountmanage-email" maxlength="100" />
               </row>
               <row align="center">
                 <label control="GRW-accountmanage-pass" value="&GRWpreferences.accountinfopassword;" />
-                <textbox id="GRW-accountmanage-pass" onchange="passManager.setUser(document.getElementById('GRW-accountmanage-email').value, this.value)" type="password" maxlength="50" />
+                <textbox id="GRW-accountmanage-pass" type="password" maxlength="50" />
               </row>
               <row>
                 <checkbox id="GRW-rememberLogin-field" label="&GRWpreferences.accountinfo.rememberLogin;" />
