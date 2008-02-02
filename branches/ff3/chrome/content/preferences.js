@@ -33,71 +33,61 @@ var GRPrefs = {
   /**
    * @type Boolean
    */
-  resetcounter: function()
-  {
+  resetcounter: function() {
     return prefManager.getBoolPref('extensions.grwatcher.resetcounter');
   },
   /**
    * @type String
    */
-  tooltipcounterpos: function()
-  {
+  tooltipcounterpos: function() {
     return prefManager.getCharPref('extensions.grwatcher.tooltipcounterpos');
   },
   /**
    * @type Int
    */
-  tooltiptitlelength: function()
-  {
+  tooltiptitlelength: function() {
     return prefManager.getIntPref('extensions.grwatcher.tooltiptitlelength');
   },
   /**
    * @type String
    */
-  email: function()
-  {
+  email: function() {
     return prefManager.getCharPref('extensions.grwatcher.email');
   },
   /**
    * @type Boolean
    */
-  rememberLogin: function()
-  {
+  rememberLogin: function() {
     return prefManager.getBoolPref('extensions.grwatcher.rememberLogin');
   },
   /**
    * @type Int
    */
-  leftClickOpen: function()
-  {
+  leftClickOpen: function() {
     return prefManager.getIntPref('extensions.grwatcher.leftclickopen');
   },
   /**
    * @type Boolean
    */
-  activateOpenedTab: function()
-  {
+  activateOpenedTab: function() {
     return prefManager.getBoolPref('extensions.grwatcher.activateopenedtab');
   },
   /**
    * @type Boolean
    */
-  shownotificationwindow: function()
-  {
+  shownotificationwindow: function() {
     return prefManager.getBoolPref('extensions.grwatcher.shownotificationwindow');
   },
   /**
    * @type Boolean
    */
-  showzerocounter: function()
-  {
+  showzerocounter: function() {
     return prefManager.getBoolPref('extensions.grwatcher.showzerocounter');
   },
   /**
    * @type Boolean
    */
-  usersecureconnection: function()
-  {
+  usersecureconnection: function() {
     return prefManager.getBoolPref('extensions.grwatcher.usesecureconnection');
   },
   /**

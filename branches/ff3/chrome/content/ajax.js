@@ -34,8 +34,7 @@ var Ajax = function(pars) {
   this.req.onreadystatechange = stChg(this, false);
   this.req.send(this.pars); 
 };
-Ajax.prototype =
-{
+Ajax.prototype = {
   url: null,
   pars: null,
   req: null,

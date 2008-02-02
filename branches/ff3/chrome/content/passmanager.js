@@ -8,8 +8,7 @@
  * @constructor
  * @class _passwordManager Interface to handle easily the user accounts on ff2 and ff3
  */
-var _passwordManager = function()
-{
+var _passwordManager = function() {
   this.url = 'chrome://grwatcher';
   this.username = 'GoogleReaderWatcher';
 
@@ -19,10 +18,8 @@ var _passwordManager = function()
 
     this.formSubmitURL = 'https://www.google.com';  // not http://www.example.com/foo/auth.cgi
 
-    this.getPassword = function()
-    {
-      try
-      {
+    this.getPassword = function() {
+      try {
         // Find users for the given parameters
         var logins = this.loginManager.findLogins({}, this.url, this.formSubmitURL, null);
         // Find user from returned array of nsILoginInfo objects
