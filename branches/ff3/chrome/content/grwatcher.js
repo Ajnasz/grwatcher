@@ -125,81 +125,6 @@ var GRCheck = {
     setReaderStatus('load');
   }
 };
-var accountManager = {
-  // mozilla nsi cookie manager component
-  CookieManager: Components.classes["@mozilla.org/cookiemanager;1"].getService(Components.interfaces.nsICookieManager),
-  /**
-   * @type {Boolean}
-   */
-  accountExists: function() {
-    if(GRPrefs.username() && passwordManager.getPassword()) {
-      return true;
-    }
-    return false;
-  },
-  /**
-   * @return returns the value of the cookie named `SID`
-   * @type {String,Boolean}
-   */
-  getCurrentSID: function() {
-    var enumerator = this.CookieManager.enumerator;
-    var rex = new RegExp('google.com$');
-    while (enumerator.hasMoreElements()) {
-      var cookie = enumerator.getNext();
-      if (cookie instanceof Components.interfaces.nsICookie) {
-        if (rex.test(cookie.host)) {
-          if(cookie.name == 'SID' && cookie) {
-            return cookie.value;
-          }
-        }
-      }
-    }
-    return false;
-  },
-  /**
-   * do the login into the google service
-   */
-  logIn: function() {
-    if(this.accountExists()) {
-      var url = GRPrefs.conntype + '://www.google.com/accounts/ServiceLoginAuth';
-      var param = 'Email='+encodeURIComponent(GRPrefs.username())+'&Passwd='+encodeURIComponent(passwordManager.getPassword())+'&service=reader&continue=http://www.google.com';
-      // remember the login state, possible won't ask for mozilla master password
-      if(GRPrefs.rememberLogin()) {
-        param += '&PersistentCookie=yes';
-      }
-      // GRCheck.switchLoadIcon();
-      loginAjax = new Ajax({
-        url: url,
-        pars: param,
-        method: 'post',
-        successHandler: function() {
-          var curSid = accountManager.getCurrentSID();
-          if(curSid === false) {
-            GRCheck.switchErrorIcon();
-            setReaderTooltip('loginerror');
-            return false;
-          }
-          prefManager.setCharPref('extensions.grwatcher.sid', curSid);
-          getFeedList();
-          return true;
-        }
-      });
-    }
-    else {
-      this.loginFailed();
-      return -1;
-    }
-    return true;
-  },
-  /**
-   * do things when the login failed
-   */
-  loginFailed: function() {
-    GRCheck.switchErrorIcon();
-    LOG('login failed');
-    return false;
-  }
-};
 
 /**
  * @returns the active, recently opened google reader watcher window
@@ -418,7 +343,6 @@ var onFeedsCounterLoad = function(req, prReq) {
  */
 var openReaderNotify = {
   /**
-   *
    * @param {Object} subject
    * @param {Object} topic
    * @param {Object} data
@@ -624,8 +548,6 @@ var getReadFeedsCounter = function(prReq) {
  * request for unreaded feeds
  */
 var getReadCounter = function() {
-  // GRCheck.switchLoadIcon();
-
   onunreadCountAjax = new Ajax( {
     url: GRPrefs.conntype + '://www.google.com/reader/api/0/unread-count?all=true&output=json',
     successHandler: function() {
@@ -648,7 +570,6 @@ var GoogleIt = function() {
     var login = accountManager.logIn();
   }
   else {
-    prefManager.setCharPref('extensions.grwatcher.sid', accountManager.getCurrentSID());
     getFeedList();
   }
   if(login === -1) {
@@ -666,7 +587,7 @@ var GoogleIt = function() {
 
 
 /**
- * @var {Object} event
+ * @param {Object} event
  */
 var statusClickHandling = function(ob) {
   this.statusBar = ob;
@@ -814,7 +735,7 @@ var GRWinit = function() {
   var observerService = Components.classes["@mozilla.org/observer-service;1"].getService(Components.interfaces.nsIObserverService);
   observerService.addObserver(windowCloseCheck, "domwindowclosed", false);
 
-    LOG('Google Reader Watcher initialized');
+  LOG('Google Reader Watcher initialized');
 };
 
 window.addEventListener('load', GRWinit, false);
