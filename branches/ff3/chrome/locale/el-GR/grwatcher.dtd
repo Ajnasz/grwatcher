@@ -1,34 +1,36 @@
 <!ENTITY GRWstatusbar.popup.openReader "Άνοιγμα Google Reader">
-<!ENTITY GRWstatusbar.popup.getReadCounter "Έλεγχος για μη αναγνωσμένα feeds">
-<!ENTITY GRWstatusbar.popup.openPrefs "Προτιμήσεις">
-<!ENTITY GRWpreferences.title "Προτιμήσεις για Google Reader Watcher">
-<!ENTITY GRWpreferences.checkfrequency "Έλεγχος για νέα feeds κάθε">
+<!ENTITY GRWstatusbar.popup.getReadCounter "Έλεγχος για μη αναγνωσμένες εγγραφές στα αρχεία ροής">
+<!ENTITY GRWstatusbar.popup.openPrefs "Επιλογές">
+<!ENTITY GRWpreferences.title "Επιλογές Google Reader Watcher">
+<!ENTITY GRWpreferences.checkfrequency "Έλεγχος για νέες εγγραφές σε αρχεία ροής κάθε">
 <!ENTITY GRWpreferences.checkfrequency.unit "λεπτά(-ο)">
-<!ENTITY GRWpreferences.activateOpenedTab "Εστιάση/επιλογή της ταμπέλας Google Reader μετά το άνοιγμα">
+<!ENTITY GRWpreferences.activateOpenedTab "Εστιάση/επιλογή της καρτέλας Google Reader μετά το άνοιγμα">
 <!ENTITY GRWpreferences.generalpreferencescaption "Γενικές προτιμήσεις">
 <!ENTITY GRWpreferences.generalpreferencesopencaption "Άνοιγμα ρυθμίσεων του Google Reader">
-<!ENTITY GRWpreferences.tooltippreferencescaption "Προτιμήσεις tooltip">
+<!ENTITY GRWpreferences.tooltippreferencescaption "Προτιμήσεις συμβουλής εργαλείου">
 <!ENTITY GRWpreferences.tabgeneral "Γενικά">
-<!ENTITY GRWpreferences.openinnewtabdesc "Άνοιγμα του Google Reader σε νέα ταμπέλα">
-<!ENTITY GRWpreferences.resetcounterdesc "Μηδενισμός του μετρητή της γραμμής κατάστασης κατά το άνοιγμα του παραθύρου Google Reader">
-<!ENTITY GRWpreferences.shownotificationwindow "Εμφάνιση παραθύρου ειδοποίησης">
-<!ENTITY GRWpreferences.showzerocounter "Εμφάνιση του μετρητή όταν δεν υπάρχουν διαθέσιμα μη αναγνωσμένα feeds">
+<!ENTITY GRWpreferences.openinnewtabdesc "Άνοιγμα του Google Reader σε νέα καρτέλα">
+<!ENTITY GRWpreferences.resetcounterdesc "Επαναφορά μετρητή της γραμμής κατάστασης μετά το άνοιγμα του Google Reader">
+<!ENTITY GRWpreferences.shownotificationwindow "Προβολή αναδυόμενου ειδοποίησης">
+<!ENTITY GRWpreferences.showzerocounter "Προβολή του μετρητή ακόμα κι αν δεν υπάρχουν μη αναγνωσμένες εγγραφές">
 <!ENTITY GRWpreferences.tooltipcounterposright "Δεξιά">
 <!ENTITY GRWpreferences.tooltipcounterposleft "Αριστερά">
-<!ENTITY GRWpreferences.tooltipcounterposdesc "Θέση του μετρητή στο tooltip:">
-<!ENTITY GRWpreferences.tooltipdesc "Οι επιλογές θα ενεργοποιηθούν μετά από έλεγχο για feed">
-<!ENTITY GRWpreferences.tooltiptitlelengthdesc "Ορισμός του αριθμού χαρακτήρων του Feed στο tooltip">
+<!ENTITY GRWpreferences.tooltipcounterposdesc "Θέση του μετρητή στη συμβουλή εργαλείου :">
+<!ENTITY GRWpreferences.tooltipdesc "Αυτές οι επιλογές θα ενεργοποιηθούν μετά από τον επόμενο έλεγχο για εγγραφές">
+<!ENTITY GRWpreferences.tooltiptitlelengthdesc "Αριθμός χαρακτήρων τίτλου του αρχείου ροής στη συμβουλή εργαλείου">
 <!ENTITY GRWpreferences.tabaccountinfo "Πληροφορίες λογαριασμού">
 <!ENTITY GRWpreferences.accountinfocaption "Πληροφορίες λογαριασμού Google">
-<!ENTITY GRWpreferences.accountinfodesc "Καθορισμός ηλ.διεύθυνσης και κωδικού λογαριασμού Google">
-<!ENTITY GRWpreferences.accountinfoemail "Ηλεκτρονική διεύθυνση:">
-<!ENTITY GRWpreferences.accountinfopassword "Κωδικός:">
+<!ENTITY GRWpreferences.accountinfodesc "Ορισμός ηλ.διεύθυνσης και κωδικού λογαριασμού Google">
+<!ENTITY GRWpreferences.accountinfoemail "Ηλεκτρονική διεύθυνση :">
+<!ENTITY GRWpreferences.accountinfopassword "Κωδικός :">
 <!ENTITY GRWpreferences.accountinfo.rememberLogin "Απομνημόνευση στοιχείων σύνδεσης">
 <!ENTITY GRWpreferences.leftclickopen.description "Άνοιγμα Google Reader με">
 <!ENTITY GRWpreferences.leftclickopen.singleclick "Απλό κλικ">
 <!ENTITY GRWpreferences.leftclickopen.dblclick "Διπλό κλικ">
 <!ENTITY GRWpreferences.leftclickopen.disabled "Απενεργοποιημένο">
-<!ENTITY GRWtooltip.nonewfeed "Δεν υπάρχει κανένα μη αναγνωσμένο feeds">
-<!ENTITY GRWtooltip.errorfeedfetch "Σφάλμα κατα τη μεταφορά των feeds!">
-<!ENTITY GRWtooltip.newfeed "Υπάρχουν μη αναγνωσμένο feeds">
-<!ENTITY GRWtooltip.errorlogin "Αποτυχία σύνδεσης. Βεβαιωθείτε για τη σωστή εισαγωγή κωδικού και/ή ονόματος χρήστη!">
+<!ENTITY GRWpreferences.usesecureconnection "Χρήση ασφαλούς σύνδεσης">
+<!ENTITY GRWtooltip.nonewfeed "Δεν υπάρχουν μη αναγνωσμένες εγγραφές στα αρχεία ροής">
+<!ENTITY GRWtooltip.errorfeedfetch "Σφάλμα κατα τη διακομιδή των αρχείων ροής">
+<!ENTITY GRWtooltip.newfeed "Υπάρχουν μη αναγνωσμένες εγγραφές στα αρχεία ροής">
+<!ENTITY GRWtooltip.errorlogin "Αποτυχία σύνδεσης. Βεβαιωθείτε για τη σωστή εισαγωγή κωδικού και/ή ονόματος χρήστη">
+<!ENTITY GRWtooltip.networkerror "Σφάλμα δικτύου">

@@ -28,7 +28,9 @@
 <!ENTITY GRWpreferences.leftclickopen.singleclick "Yhdellä klikkauksella">
 <!ENTITY GRWpreferences.leftclickopen.dblclick "Tuplaklikkauksella">
 <!ENTITY GRWpreferences.leftclickopen.disabled "Ei käytössä">
+<!ENTITY GRWpreferences.usesecureconnection "Käytä suojattua yhteyttä">
 <!ENTITY GRWtooltip.nonewfeed "Lukemattomia syötteitä ei löytynyt">
 <!ENTITY GRWtooltip.errorfeedfetch "Virhe noutaessa syötteitä!">
 <!ENTITY GRWtooltip.newfeed "Sinulle on uusia syötteitä">
 <!ENTITY GRWtooltip.errorlogin "Kirjautuminen epäonnistui. Varmista, että syötit oikean käyttäjätunnuksen ja salasanan.">
+<!ENTITY GRWtooltip.networkerror "Verkkovirhe!">

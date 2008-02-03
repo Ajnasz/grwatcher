@@ -28,7 +28,9 @@
 <!ENTITY GRWpreferences.leftclickopen.singleclick "Clique único">
 <!ENTITY GRWpreferences.leftclickopen.dblclick "Clique duplo">
 <!ENTITY GRWpreferences.leftclickopen.disabled "Desativado">
+<!ENTITY GRWpreferences.usesecureconnection "Usar conexão segura">
 <!ENTITY GRWtooltip.nonewfeed "Você não tem feeds não lidos">
 <!ENTITY GRWtooltip.errorfeedfetch "Erro ao obter feeds! Você está logado?">
 <!ENTITY GRWtooltip.newfeed "Você tem feeds não lidos">
 <!ENTITY GRWtooltip.errorlogin "Falha de login. Verifique se login e senha estão corretos!">
+<!ENTITY GRWtooltip.networkerror "Erro na rede!">

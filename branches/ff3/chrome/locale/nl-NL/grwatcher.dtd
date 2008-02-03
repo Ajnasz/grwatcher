@@ -1,0 +1,36 @@
+<!ENTITY GRWstatusbar.popup.openReader "Google Reader openen">
+<!ENTITY GRWstatusbar.popup.getReadCounter "Controleer op ongelezen feeds">
+<!ENTITY GRWstatusbar.popup.openPrefs "Voorkeuren">
+<!ENTITY GRWpreferences.title "Google Reader Watcher Voorkeuren">
+<!ENTITY GRWpreferences.checkfrequency "Controleer voor nieuwe feeds elke">
+<!ENTITY GRWpreferences.checkfrequency.unit "minu(u)t(en)">
+<!ENTITY GRWpreferences.activateOpenedTab "Focus/selecteer de Google Reader tab na openen">
+<!ENTITY GRWpreferences.generalpreferencescaption "Algemene voorkeuren">
+<!ENTITY GRWpreferences.generalpreferencesopencaption "Instellingen voor het openen van Google Reader">
+<!ENTITY GRWpreferences.tooltippreferencescaption "Instellingen voor tooltip">
+<!ENTITY GRWpreferences.tabgeneral "Algemeen">
+<!ENTITY GRWpreferences.openinnewtabdesc "Google Reader openen in een nieuwe tab">
+<!ENTITY GRWpreferences.resetcounterdesc "Reset de statusbalk teller bij het openen van Google Reader">
+<!ENTITY GRWpreferences.shownotificationwindow "Toon notificatiescherm">
+<!ENTITY GRWpreferences.showzerocounter "Toon de teller wanneer er geen ongelezen feeds zijn">
+<!ENTITY GRWpreferences.tooltipcounterposright "Rechts">
+<!ENTITY GRWpreferences.tooltipcounterposleft "Links">
+<!ENTITY GRWpreferences.tooltipcounterposdesc "De positie van de teller in de tooltip:">
+<!ENTITY GRWpreferences.tooltipdesc "Deze opties zijn pas van kracht na het controleren op feeds.">
+<!ENTITY GRWpreferences.tooltiptitlelengthdesc "Maximum aantal karakters van feedtitel in tooltip">
+<!ENTITY GRWpreferences.tabaccountinfo "Account-informatie">
+<!ENTITY GRWpreferences.accountinfocaption "Google account-informatie">
+<!ENTITY GRWpreferences.accountinfodesc "Het e-mailadres en wachtwoord van je Google account">
+<!ENTITY GRWpreferences.accountinfoemail "Emailadres:">
+<!ENTITY GRWpreferences.accountinfopassword "Wachtwoord:">
+<!ENTITY GRWpreferences.accountinfo.rememberLogin "Sessie hervatten bij opstarten">
+<!ENTITY GRWpreferences.leftclickopen.description "Google Reader openen met">
+<!ENTITY GRWpreferences.leftclickopen.singleclick "Enkele klik">
+<!ENTITY GRWpreferences.leftclickopen.dblclick "Dubbelklik">
+<!ENTITY GRWpreferences.leftclickopen.disabled "Uitgeschakeld">
+<!ENTITY GRWpreferences.usesecureconnection "Gebruik beveiligde verbinding">
+<!ENTITY GRWtooltip.nonewfeed "Je hebt geen ongelezen feeds">
+<!ENTITY GRWtooltip.errorfeedfetch "Error bij het fetchen van feeds!">
+<!ENTITY GRWtooltip.newfeed "Je hebt ongelezen feeds">
+<!ENTITY GRWtooltip.errorlogin "Inloggen mislukt. Controleer je gebruikersnaam en/of wachtwoord!">
+<!ENTITY GRWtooltip.networkerror "Netwerk error!">

@@ -28,7 +28,9 @@
 <!ENTITY GRWpreferences.leftclickopen.singleclick "sol týklamayla aç">
 <!ENTITY GRWpreferences.leftclickopen.dblclick "çift týklamayla aç">
 <!ENTITY GRWpreferences.leftclickopen.disabled "açma">
+<!ENTITY GRWpreferences.usesecureconnection "">
 <!ENTITY GRWtooltip.nonewfeed "Okunmamýţ haberiniz yok">
 <!ENTITY GRWtooltip.errorfeedfetch "Haberlere ulaţýrken hata oluţtu!">
 <!ENTITY GRWtooltip.newfeed "Okunmamýţ haberleriniz var">
 <!ENTITY GRWtooltip.errorlogin "Giriţ baţarýsýz. Dođru kullanýcý adý/ţifre kombinasyonunu girdiđinizden emin olun!">
+<!ENTITY GRWtooltip.networkerror "">
