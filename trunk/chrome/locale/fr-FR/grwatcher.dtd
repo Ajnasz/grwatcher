@@ -11,8 +11,8 @@
 <!ENTITY GRWpreferences.tabgeneral "Général">
 <!ENTITY GRWpreferences.openinnewtabdesc "Ouvrir Google Reader dans un nouvel onglet">
 <!ENTITY GRWpreferences.resetcounterdesc "Remettre à zéro le comtpeur de la barre d&apos;état quand la fenêtre de Google Reader est ouverte">
-<!ENTITY GRWpreferences.shownotificationwindow "">
-<!ENTITY GRWpreferences.showzerocounter "">
+<!ENTITY GRWpreferences.shownotificationwindow "Show notification window">
+<!ENTITY GRWpreferences.showzerocounter "Show the counter when there are no unread feeds available">
 <!ENTITY GRWpreferences.tooltipcounterposright "Droite">
 <!ENTITY GRWpreferences.tooltipcounterposleft "Left">
 <!ENTITY GRWpreferences.tooltipcounterposdesc "La position du compteur dans l&apos;infobulle :">
@@ -28,9 +28,9 @@
 <!ENTITY GRWpreferences.leftclickopen.singleclick "un siple clic">
 <!ENTITY GRWpreferences.leftclickopen.dblclick "un double clic">
 <!ENTITY GRWpreferences.leftclickopen.disabled "Désactivé">
-<!ENTITY GRWpreferences.usesecureconnection "">
+<!ENTITY GRWpreferences.usesecureconnection "Use secure connection">
 <!ENTITY GRWtooltip.nonewfeed "Vous n&apos;avez aucun flux non lus">
 <!ENTITY GRWtooltip.errorfeedfetch "Erreur lors du téléchargement des flux! Êtes vous enregistré ?">
 <!ENTITY GRWtooltip.newfeed "Vous avez des flux non lus">
-<!ENTITY GRWtooltip.errorlogin "">
-<!ENTITY GRWtooltip.networkerror "">
+<!ENTITY GRWtooltip.errorlogin "Login failed. Make sure you have entered the correct password and/or username!">
+<!ENTITY GRWtooltip.networkerror "Network error!">

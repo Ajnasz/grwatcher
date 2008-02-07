@@ -28,9 +28,9 @@
 <!ENTITY GRWpreferences.leftclickopen.singleclick "ühe klõpsuga">
 <!ENTITY GRWpreferences.leftclickopen.dblclick "topeltklõpsuga">
 <!ENTITY GRWpreferences.leftclickopen.disabled "ei reageeri klõpsamisele">
-<!ENTITY GRWpreferences.usesecureconnection "">
+<!ENTITY GRWpreferences.usesecureconnection "Use secure connection">
 <!ENTITY GRWtooltip.nonewfeed "Sul pole ühtegi lugemata tellimust">
 <!ENTITY GRWtooltip.errorfeedfetch "Viga tellimuste kontrollimisel! Kas oled ikka sisse logitud?">
 <!ENTITY GRWtooltip.newfeed "Sul on lugemata tellimusi">
 <!ENTITY GRWtooltip.errorlogin "Sisselogimine ebaõnnestus. Kontrolli sisestatud parooli ja/või kasutajanime!">
-<!ENTITY GRWtooltip.networkerror "">
+<!ENTITY GRWtooltip.networkerror "Network error!">
