@@ -1,0 +1,36 @@
+<!ENTITY GRWstatusbar.popup.openReader "Abrir Google Reader">
+<!ENTITY GRWstatusbar.popup.getReadCounter "Verificar feeds não lidos">
+<!ENTITY GRWstatusbar.popup.openPrefs "Preferências">
+<!ENTITY GRWpreferences.title "Preferências do Google Reader Watcher">
+<!ENTITY GRWpreferences.checkfrequency "Verificar novos feeds a cada">
+<!ENTITY GRWpreferences.checkfrequency.unit "minuto(s)">
+<!ENTITY GRWpreferences.activateOpenedTab "Selecionar a aba do Google Reader após abertura">
+<!ENTITY GRWpreferences.generalpreferencescaption "Preferências gerais">
+<!ENTITY GRWpreferences.generalpreferencesopencaption "Abrindo configurações do Google Reader">
+<!ENTITY GRWpreferences.tooltippreferencescaption "Preferências de aviso">
+<!ENTITY GRWpreferences.tabgeneral "Geral">
+<!ENTITY GRWpreferences.openinnewtabdesc "Abrir Google Reader em uma nova aba">
+<!ENTITY GRWpreferences.resetcounterdesc "Resetar o contador da barra de status quando a janela do Google Reader abrir">
+<!ENTITY GRWpreferences.shownotificationwindow "Exibir Janela de Aviso">
+<!ENTITY GRWpreferences.showzerocounter "Mostrar contador quando não houverem feeds disponíveis">
+<!ENTITY GRWpreferences.tooltipcounterposright "Direita">
+<!ENTITY GRWpreferences.tooltipcounterposleft "Esquerda">
+<!ENTITY GRWpreferences.tooltipcounterposdesc "A posição do contador no aviso">
+<!ENTITY GRWpreferences.tooltipdesc "Estas opções terão efeito após a checagem do feed">
+<!ENTITY GRWpreferences.tooltiptitlelengthdesc "Define o tamanho de caractere do título do feed no aviso">
+<!ENTITY GRWpreferences.tabaccountinfo "Informação da conta">
+<!ENTITY GRWpreferences.accountinfocaption "Informação da conta Google">
+<!ENTITY GRWpreferences.accountinfodesc "Especifique o e-mail e a senha de sua conta Google">
+<!ENTITY GRWpreferences.accountinfoemail "Endereço de e-mail:">
+<!ENTITY GRWpreferences.accountinfopassword "Senha:">
+<!ENTITY GRWpreferences.accountinfo.rememberLogin "Lembrar Login">
+<!ENTITY GRWpreferences.leftclickopen.description "Abrir Google Reader com">
+<!ENTITY GRWpreferences.leftclickopen.singleclick "Clique único">
+<!ENTITY GRWpreferences.leftclickopen.dblclick "Clique duplo">
+<!ENTITY GRWpreferences.leftclickopen.disabled "Desativado">
+<!ENTITY GRWpreferences.usesecureconnection "Usar conexão segura">
+<!ENTITY GRWtooltip.nonewfeed "Você não tem feeds não lidos">
+<!ENTITY GRWtooltip.errorfeedfetch "Erro ao obter feeds! Você está logado?">
+<!ENTITY GRWtooltip.newfeed "Você tem feeds não lidos">
+<!ENTITY GRWtooltip.errorlogin "Falha de login. Verifique se login e senha estão corretos!">
+<!ENTITY GRWtooltip.networkerror "Erro na rede!">
