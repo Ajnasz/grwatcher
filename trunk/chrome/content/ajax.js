@@ -45,7 +45,7 @@ Ajax.prototype = {
       if(this.req.readyState == 4) {
         if(typeof this.req.status != 'undefined') {
           if(this.req.status == 200) {
-            return this.successHandler();
+            return this.successHandler(this.req);
           }
           else {
             return this.errorHandler('status code - ' + this.req.status);

@@ -268,80 +268,6 @@ var hideCounter = function() {
 /**
  *
  */
-var getFeedList = function() {
-  // GRCheck.switchLoadIcon();
-  var getFeedListAjax = new Ajax( {
-    url: GRPrefs.conntype + '://www.google.com/reader/api/0/subscription/list?output=json',
-    successHandler: function() {
-      GRW_subscriptionsList = this.req.responseText;
-      onFeedListLoad(this.req);
-    }
-  });
-};
-/**
- * @param {Object} req ajax response object
- * @type {Array}
- */
-var onFeedListLoad = function(r) {
-  try {
-    var data = eval('('+r.responseText+')').subscriptions;
-  }
-  catch(e) {
-    return false;
-  }
-  var ids = Array();
-  for(var i = 0; i < data.length; i++) {
-    ids.push(data[i].id);
-  }
-  FeedlistIds = ids;
-  getReadCounter();
-  return ids;
-};
-/**
- *
- * @param {Object} req FeedsCounter request object
- * @param {Object} prReq Counter request object
- * @type {Object}
- */
-var onFeedsCounterLoad = function(req, prReq) {
-  if(prReq != false) {
-    try {
-      var prc = eval('('+prReq.responseText+')');
-      prc = prc.unreadcounts;
-    }
-    catch (e) {
-      var prc = false;
-    }
-  }
-  else {
-    var prc = false;
-  }
-  var feeds = Array();
-  var unr = feedsCounter(req);
-  for(var i = 0; i < unr.length; i++) {
-    for(var j = 0; j < prc.length; j++) {
-      if(unr[i].id == prc[j].id && prc[j].count > 0) {
-        feeds.push({Title: unr[i].title, Id: unr[i].id, Count: prc[j].count})
-      }
-    }
-  }
-  // filter the feeds, which aren't in the feedlist
-  var outFeeds = Array(), rex;
-  var counter = 0;
-  for(var i = 0; i < feeds.length; i++) {
-    for(var j = 0; j < FeedlistIds.length; j++) {
-      rex = new RegExp('^'+FeedlistIds[j]);
-      if(FeedlistIds[j] == feeds[i].Id) {
-        counter += feeds[i].Count;
-        outFeeds.push(feeds[i]);
-      }
-    }
-  }
-  return {counter: counter, feeds: outFeeds};
-};
-/**
- *
- */
 var openReaderNotify = {
   /**
    * @param {Object} subject
@@ -504,41 +430,6 @@ var feedsCounter = function(r) {
   }
   return out;
 };
-
-
-var FinishLoad = function(prReq) {
-  var r = GRPrefs.sortbylabels() ?countLabeled(collectByLabels(GRW_subscriptionsList), GRW_onunreadCountAjax.req) : onFeedsCounterLoad(GRW_subscriptionsList, GRW_onunreadCountAjax.req);
-  var unr = r.counter;
-  GRPrefs.currentNum = unr;
-  if(unr === false) {
-    setReaderTooltip('error');
-    GRCheck.switchErrorIcon();
-    hideCounter();
-  }
-  else if(unr > 0) {
-    setReaderTooltip('new', unr);
-    var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"].getService(Components.interfaces.nsIWindowMediator);
-    var enumerator = wm.getEnumerator('navigator:browser'), win;
-    while(enumerator.hasMoreElements()) {
-      win = enumerator.getNext();
-      win.genStatusGrid(r.feeds);
-    }
-    GRCheck.switchOnIcon();
-    showCounter(unr);
-  }
-  else {
-    setReaderTooltip('nonew');
-    GRCheck.switchOffIcon();
-    if(GRPrefs.showzerocounter() === false) {
-      hideCounter();
-    }
-    else {
-      showCounter(unr);
-    }
-    GRPrefs.showNotification = true;
-  }
-}
-
 /**
  *
  * @param {Object} prReq Counter reqest object
@@ -582,18 +473,6 @@ var getReadFeedsCounter = function(prReq) {
   });
 };
 /**
- * request for unreaded feeds
- */
-var getReadCounter = function() {
-  GRW_onunreadCountAjax = new Ajax( {
-    url: GRPrefs.conntype + '://www.google.com/reader/api/0/unread-count?all=true&output=json',
-    successHandler: function() {
-      // getReadFeedsCounter(this.req);
-      FinishLoad(this.req);
-    }
-  });
-};
-/**
  * do the request and process the received data
  * @type {Number}
  */
@@ -608,7 +487,8 @@ var GoogleIt = function() {
     var login = accountManager.logIn();
   }
   else {
-    getFeedList();
+    GRW_FeedList = new GetList();
+    // getFeedList();
   }
   if(login === -1) {
     GRCheck.switchErrorIcon();
@@ -752,32 +632,6 @@ var collectByLabels = function(ob) {
   }
   return labels;
 };
-
-var countLabeled = function(labeled, prReq) {
-  var prc = eval('('+prReq.responseText+')');
-  uc = prc.unreadcounts;
-
-  LOG(labeled.toString());
-
-  var i, l, all = 0, out = Array();
-  for(label in labeled) {
-      labeled[label].count = 0;
-      l = labeled[label];
-      for(var j = 0; j < l.length; j++) {
-          for(var i = 0; i < uc.length; i++) {
-              if(uc[i].id == l[j].id) {
-                  labeled[label].count += uc[i].count;
-                  all += uc[i].count;
-              }
-          }
-      }
-      if(labeled[label].count > 0) {
-        out.push({Title: label, Id: null, Count: labeled[label].count});
-      }
-  }
-  return {counter: all, feeds: out};
-}
-
 /**
  * initialization function
  */

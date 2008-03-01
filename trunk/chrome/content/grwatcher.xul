@@ -10,6 +10,7 @@
   <script type="application/x-javascript" src="chrome://grwatcher/content/passmanager.js" />
   <script type="application/x-javascript" src="chrome://grwatcher/content/accountmanager.js" />
   <script type="application/x-javascript" src="chrome://grwatcher/content/ajax.js" />
+  <script type="application/x-javascript" src="chrome://grwatcher/content/getlist.js" />
   <script type="application/x-javascript" src="chrome://grwatcher/content/grwatcher.js" />
 <!--  <script type="application/x-javascript" src="chrome://grwatcher/content/grwatcher-init.js" /> -->
 
