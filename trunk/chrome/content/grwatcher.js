@@ -19,12 +19,12 @@ var GRCheck = {
     this.getReaderURL();
     if(GRPrefs.resetcounter()) {
       if(GRPrefs.showzerocounter() === false) {
-        hideCounter();
+        GRW_StatusBar.hideCounter();
       }
       else {
-        showCounter(0);
+        GRW_StatusBar.showCounter(0);
       }
-      setReaderTooltip('hide');
+      GRW_StatusBar.setReaderTooltip('hide');
       GRPrefs.showNotification = true;
       var activeWin = getActiveGRW();
       activeWin.GRPrefs.currentNum = 0;
@@ -104,25 +104,25 @@ var GRCheck = {
    * set the icon to off status
    */
   switchOffIcon: function() {
-    setReaderStatus('off');
+    GRW_StatusBar.setReaderStatus('off');
   },
   /**
    * set the icon to on status
    */
   switchOnIcon: function() {
-    setReaderStatus('on');
+    GRW_StatusBar.setReaderStatus('on');
   },
   /**
    * set the icon to error status
    */
   switchErrorIcon: function() {
-    setReaderStatus('error');
+    GRW_StatusBar.setReaderStatus('error');
   },
   /**
    * set the icon to load status
    */
   switchLoadIcon: function() {
-    setReaderStatus('load');
+    GRW_StatusBar.setReaderStatus('load');
   }
 };
 
@@ -146,123 +146,148 @@ var getActiveGRW = function() {
   return window;
 };
 
+var GRW_StatusBar = {
 /**
  * change the statusbar elem status
  * @param {Object} status
  */
-var setReaderStatus = function(status) {
-  var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"].getService(Components.interfaces.nsIWindowMediator);
-  var enumerator = wm.getEnumerator('navigator:browser'), win, stImage, ttb;
-  while(enumerator.hasMoreElements()) {
-    win = enumerator.getNext();
-    win.document.getElementById('GRW-statusbar').status = status;
-    stImage = win.document.getElementById('GRW-statusbar-image');
-    ttb = win.document.getElementById('GRW-toolbar-button');
-    switch(status) {
-      case 'on':
-        stImage.src = 'chrome://grwatcher/content/images/googlereader.png';
-        if(ttb) {
-          ttb.setAttribute('class', 'on');
-        }
-        break;
+  setReaderStatus: function(status) {
+    var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"].getService(Components.interfaces.nsIWindowMediator);
+    var enumerator = wm.getEnumerator('navigator:browser'), win, stImage, ttb;
+    while(enumerator.hasMoreElements()) {
+      win = enumerator.getNext();
+      win.document.getElementById('GRW-statusbar').status = status;
+      stImage = win.document.getElementById('GRW-statusbar-image');
+      ttb = win.document.getElementById('GRW-toolbar-button');
+      switch(status) {
+        case 'on':
+          stImage.src = 'chrome://grwatcher/content/images/googlereader.png';
+          if(ttb) {
+            ttb.setAttribute('class', 'on');
+          }
+          break;
 
-      case 'off':
-      default:
-        stImage.src = 'chrome://grwatcher/content/images/googlereader_grey.png';
-        if(ttb) {
-          ttb.setAttribute('class', 'off');
-        }
-        break;
+        case 'off':
+        default:
+          stImage.src = 'chrome://grwatcher/content/images/googlereader_grey.png';
+          if(ttb) {
+            ttb.setAttribute('class', 'off');
+          }
+          break;
 
-      case 'error':
-        stImage.src = 'chrome://grwatcher/content/images/googlereader_red.png';
-        if(ttb) {
-          ttb.setAttribute('class', 'error');
-        }
-        break;
+        case 'error':
+          stImage.src = 'chrome://grwatcher/content/images/googlereader_red.png';
+          if(ttb) {
+            ttb.setAttribute('class', 'error');
+          }
+          break;
 
-      case 'load':
-        stImage.src = 'chrome://grwatcher/content/images/loader.gif';
-        if(ttb) {
-          ttb.setAttribute('class', 'load');
-        }
-        break;
+        case 'load':
+          stImage.src = 'chrome://grwatcher/content/images/loader.gif';
+          if(ttb) {
+            ttb.setAttribute('class', 'load');
+          }
+          break;
+      }
     }
-
-  }
-
-};
+  },
 /**
  * change the reader tooltiptext
  * @param {Object} txt
  * @param {Number} [unr]
  */
-var setReaderTooltip = function(t, unr) {
-  var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"].getService(Components.interfaces.nsIWindowMediator);
-  var enumerator = wm.getEnumerator('navigator:browser'), win;
-  while(enumerator.hasMoreElements()) {
-    win = enumerator.getNext();
-    var statusBar = win.document.getElementById('GRW-statusbar');
-    var ttb = win.document.getElementById('GRW-toolbar-button');
-    if(typeof statusBar == 'undefined') {
-      LOG('GRW-statusbar object not found');
+  setReaderTooltip: function(t, unr) {
+    var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"].getService(Components.interfaces.nsIWindowMediator);
+    var enumerator = wm.getEnumerator('navigator:browser'), win;
+    while(enumerator.hasMoreElements()) {
+      win = enumerator.getNext();
+      var statusBar = win.document.getElementById('GRW-statusbar');
+      var ttb = win.document.getElementById('GRW-toolbar-button');
+      if(typeof statusBar == 'undefined') {
+        LOG('GRW-statusbar object not found');
+      }
+      var GRW_bundle = win.document.getElementById('grwatcher-bundles');
+      switch(t) {
+        case 'error':
+          statusBar.tooltip = 'GRW-statusbar-tooltip-error';
+          if(ttb) {
+            ttb.setAttribute('tooltiptext', GRW_bundle.getString('errorfeedfetch'));
+          }
+          break;
+        case 'nonew':
+        default :
+          statusBar.tooltip = 'GRW-statusbar-tooltip-nonew';
+          if(ttb) {
+            ttb.setAttribute('tooltiptext', GRW_bundle.getString('nonewfeed'));
+          }
+          break;
+        case 'new':
+          statusBar.tooltip = 'GRW-statusbar-tooltip-new';
+          if(ttb) {
+            ttb.setAttribute('tooltiptext', GRW_bundle.getFormattedString('notifierMSG', [unr]));
+          }
+          break;
+        case 'hide':
+          statusBar.tooltip = '';
+          if(ttb) {
+            ttb.removeAttribute('tooltiptext');
+          }
+          break;
+        case 'loginerror':
+          statusBar.tooltip = 'GRW-statusbar-tooltip-loginerror';
+          if(ttb) {
+            ttb.setAttribute('tooltiptext', GRW_bundle.getString('errorlogin'));
+          }
+          break;
+        case 'networkerror':
+          statusBar.tooltip = 'GRW-statusbar-tooltip-networkerror';
+          if(ttb) {
+            ttb.setAttribute('tooltiptext', GRW_bundle.getString('networkerror'));
+          }
+          break;
+      }
     }
-    var GRW_bundle = win.document.getElementById('grwatcher-bundles');
-    switch(t) {
-      case 'error':
-        statusBar.tooltip = 'GRW-statusbar-tooltip-error';
-        if(ttb) {
-          ttb.setAttribute('tooltiptext', GRW_bundle.getString('errorfeedfetch'));
-        }
-        break;
-      case 'nonew':
-      default :
-        statusBar.tooltip = 'GRW-statusbar-tooltip-nonew';
-        if(ttb) {
-          ttb.setAttribute('tooltiptext', GRW_bundle.getString('nonewfeed'));
-        }
-        break;
-      case 'new':
-        statusBar.tooltip = 'GRW-statusbar-tooltip-new';
-        if(ttb) {
-          ttb.setAttribute('tooltiptext', GRW_bundle.getFormattedString('notifierMSG', [unr]));
-        }
-        break;
-      case 'hide':
-        statusBar.tooltip = '';
-        if(ttb) {
-          ttb.removeAttribute('tooltiptext');
-        }
-        break;
-      case 'loginerror':
-        statusBar.tooltip = 'GRW-statusbar-tooltip-loginerror';
-        if(ttb) {
-          ttb.setAttribute('tooltiptext', GRW_bundle.getString('errorlogin'));
-        }
-        break;
-      case 'networkerror':
-        statusBar.tooltip = 'GRW-statusbar-tooltip-networkerror';
-        if(ttb) {
-          ttb.setAttribute('tooltiptext', GRW_bundle.getString('networkerror'));
-        }
-        break;
+  },
+
+  /**
+   * hide the counter text
+   */
+  hideCounter: function() {
+    var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"].getService(Components.interfaces.nsIWindowMediator);
+    var enumerator = wm.getEnumerator('navigator:browser'), win;
+    while(enumerator.hasMoreElements()) {
+      win = enumerator.getNext();
+      var label = win.document.getElementById('GRW-statusbar-label');
+      label.value = '';
+      label.crop = 'end';
+      label.style.margin = '0'
+      label.style.width = '0';
+      label.collapsed = true;
     }
-  }
-};
+  },
 /**
- * hide the counter text
+ * show the counter text
+ * @param {Number} val the number of the unread items
  */
-var hideCounter = function() {
-  var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"].getService(Components.interfaces.nsIWindowMediator);
-  var enumerator = wm.getEnumerator('navigator:browser'), win;
-  while(enumerator.hasMoreElements()) {
-    win = enumerator.getNext();
-    var label = win.document.getElementById('GRW-statusbar-label');
-    label.value = '';
-    label.crop = 'end';
-    label.style.margin = '0'
-    label.style.width = '0';
-    label.collapsed = true;
+  showCounter: function(val) {
+    var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"].getService(Components.interfaces.nsIWindowMediator);
+    var enumerator = wm.getEnumerator('navigator:browser'), win;
+    while(enumerator.hasMoreElements()) {
+      win = enumerator.getNext();
+
+      var label = win.document.getElementById('GRW-statusbar-label');
+      label.value = val;
+      label.style.width = '';
+      label.style.margin = '';
+      label.crop = '';
+      label.collapsed = false;
+      
+    }
+    if(GRPrefs.showNotification && val != 0) {
+      var GRW_bundle = document.getElementById('grwatcher-bundles');
+      showNotification(false, GRW_bundle.getFormattedString('notifierMSG', [val]));
+      GRPrefs.showNotification = false;
+    }
   }
 };
 /**
@@ -316,30 +341,6 @@ var showNotification = function(label, value) {
         LOG(e);
       }
     }
-  }
-};
-/**
- * show the counter text
- * @param {Number} val the number of the unread items
- */
-var showCounter = function(val) {
-  var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"].getService(Components.interfaces.nsIWindowMediator);
-  var enumerator = wm.getEnumerator('navigator:browser'), win;
-  while(enumerator.hasMoreElements()) {
-    win = enumerator.getNext();
-
-    var label = win.document.getElementById('GRW-statusbar-label');
-    label.value = val;
-    label.style.width = '';
-    label.style.margin = '';
-    label.crop = '';
-    label.collapsed = false;
-    
-  }
-  if(GRPrefs.showNotification && val != 0) {
-    var GRW_bundle = document.getElementById('grwatcher-bundles');
-    showNotification(false, GRW_bundle.getFormattedString('notifierMSG', [val]));
-    GRPrefs.showNotification = false;
   }
 };
 /**
@@ -409,7 +410,6 @@ var genStatusGrid = function(feeds) {
   return grid;
 };
 /**
- *
  * @param {Object} r Ajax response
  * @returns an array with the processed feeds object
  * @type {Array}
@@ -431,49 +431,8 @@ var feedsCounter = function(r) {
   return out;
 };
 /**
- *
- * @param {Object} prReq Counter reqest object
- */
-var getReadFeedsCounter = function(prReq) {
-
-  getReadFeedsCounterAjax = new Ajax( {
-    url: GRPrefs.conntype + '://www.google.com/reader/api/0/subscription/list?output=json',
-    successHandler: function() {
-      var r = countLabeled(collectByLabels(this.req), GRW_onunreadCountAjax.req);
-      var unr = r.counter;
-      GRPrefs.currentNum = unr;
-      if(unr === false) {
-        setReaderTooltip('error');
-        GRCheck.switchErrorIcon();
-        hideCounter();
-      }
-      else if(unr > 0) {
-        setReaderTooltip('new', unr);
-        var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"].getService(Components.interfaces.nsIWindowMediator);
-        var enumerator = wm.getEnumerator('navigator:browser'), win;
-        while(enumerator.hasMoreElements()) {
-          win = enumerator.getNext();
-          win.genStatusGrid(r.feeds);
-        }
-        GRCheck.switchOnIcon();
-        showCounter(unr);
-      }
-      else {
-        setReaderTooltip('nonew');
-        GRCheck.switchOffIcon();
-        if(GRPrefs.showzerocounter() === false) {
-          hideCounter();
-        }
-        else {
-          showCounter(unr);
-        }
-        GRPrefs.showNotification = true;
-      }
-    }
-  });
-};
-/**
  * do the request and process the received data
+ * @returns the timeout id which will runs next time the #GoogleIt function
  * @type {Number}
  */
 var GoogleIt = function() {
@@ -487,8 +446,7 @@ var GoogleIt = function() {
     var login = accountManager.logIn();
   }
   else {
-    GRW_FeedList = new GetList();
-    // getFeedList();
+    new GetList();
   }
   if(login === -1) {
     GRCheck.switchErrorIcon();
@@ -502,8 +460,6 @@ var GoogleIt = function() {
   GRPrefs.timeoutid = setTimeout(GoogleIt, freq*1000*60);
   return GRPrefs.timeoutid;
 };
-
-
 /**
  * @param {Object} event
  */
@@ -576,6 +532,11 @@ var openPrefs = function(event) {
 };
 
 var windowCloseCheck = {
+  /**
+   * @param {String} aSubject
+   * @param {String} aTopic
+   * @param {String} aData
+   */
   observe: function(aSubject, aTopic, aData) {
     var observerService = Components.classes["@mozilla.org/observer-service;1"].getService(Components.interfaces.nsIObserverService);
     observerService.removeObserver(windowCloseCheck, "domwindowclosed");
@@ -604,35 +565,6 @@ var windowCloseCheck = {
   }
 };
 /**
- * Separate the feeds by labels
- * @returns an array with the feed objects which have labels, grouped by feeds
- * @type Object
- */
-var collectByLabels = function(ob) {
-  try {
-    var ob = eval('('+ob+')').subscriptions;
-  }
-  catch(e) {
-    return false;
-  }
-  var labels = new Object();
-  labels.nolabel = new Array();
-  for(var i = 0; i < ob.length; i++) {
-    if(ob[i].categories.length) {
-      for(var j = 0; j < ob[i].categories.length; j++) {
-        if(typeof labels[ob[i].categories[j].label] == 'undefined') {
-          labels[ob[i].categories[j].label] = new Array();
-        }
-        labels[ob[i].categories[j].label].push(ob[i]);
-      }
-    }
-    else {
-      labels.nolabel.push(ob[i]);
-    }
-  }
-  return labels;
-};
-/**
  * initialization function
  */
 var GRWinit = function() {
@@ -648,12 +580,12 @@ var GRWinit = function() {
     var unr = activeWin.GRPrefs.currentNum;
     GRPrefs.showNotification = false;
     if(unr === false) {
-      setReaderTooltip('error');
+      GRW_StatusBar.setReaderTooltip('error');
       GRCheck.switchErrorIcon();
-      hideCounter();
+      GRW_StatusBar.hideCounter();
     }
     else if(unr > 0) {
-      setReaderTooltip('new', unr);
+      GRW_StatusBar.setReaderTooltip('new', unr);
       var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"].getService(Components.interfaces.nsIWindowMediator);
       var enumerator = wm.getEnumerator('navigator:browser'), win;
       while(enumerator.hasMoreElements()) {
@@ -661,16 +593,16 @@ var GRWinit = function() {
         win.genStatusGrid(activeWin.GRPrefs.feeds);
       }
       GRCheck.switchOnIcon();
-      showCounter(unr);
+      GRW_StatusBar.showCounter(unr);
     }
     else {
-      setReaderTooltip('nonew');
+      GRW_StatusBar.setReaderTooltip('nonew');
       GRCheck.switchOffIcon();
       if(GRPrefs.showzerocounter() === false) {
-        hideCounter();
+        GRW_StatusBar.hideCounter();
       }
       else {
-        showCounter(unr);
+        GRW_StatusBar.showCounter(unr);
       }
     } 
   }

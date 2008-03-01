@@ -1,6 +1,6 @@
 var GetList = function() {
   this.getFeedList();
-}
+};
 GetList.prototype = {
   getFeedList: function() {
     var THIS = this;
@@ -39,22 +39,24 @@ GetList.prototype = {
     this.onunreadCountAjax = new Ajax( {
       url: GRPrefs.conntype + '://www.google.com/reader/api/0/unread-count?all=true&output=json',
       successHandler: function() {
-        // getReadFeedsCounter(this.req);
-        THIS.FinishLoad(this.req);
+        THIS.finishLoad(this.req);
       }
     });
   },
-  FinishLoad: function(req) {
-    var r = GRPrefs.sortbylabels() ? this.countLabeled(this.collectByLabels(), this.onunreadCountAjax.req) : this.onFeedsCounterLoad(this.subscriptionsList, this.onunreadCountAjax.req);
+  /**
+   *
+   */
+  finishLoad: function(req) {
+    var r = GRPrefs.sortbylabels() ? this.countLabeled() : this.onFeedsCounterLoad();
     var unr = r.counter;
     GRPrefs.currentNum = unr;
     if(unr === false) {
-      setReaderTooltip('error');
+      GRW_StatusBar.setReaderTooltip('error');
       GRCheck.switchErrorIcon();
-      hideCounter();
+      GRW_StatusBar.hideCounter();
     }
     else if(unr > 0) {
-      setReaderTooltip('new', unr);
+      GRW_StatusBar.setReaderTooltip('new', unr);
       var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"].getService(Components.interfaces.nsIWindowMediator);
       var enumerator = wm.getEnumerator('navigator:browser'), win;
       while(enumerator.hasMoreElements()) {
@@ -62,22 +64,26 @@ GetList.prototype = {
         win.genStatusGrid(r.feeds);
       }
       GRCheck.switchOnIcon();
-      showCounter(unr);
+      GRW_StatusBar.showCounter(unr);
     }
     else {
-      setReaderTooltip('nonew');
+      GRW_StatusBar.setReaderTooltip('nonew');
       GRCheck.switchOffIcon();
       if(GRPrefs.showzerocounter() === false) {
-        hideCounter();
+        GRW_StatusBar.hideCounter();
       }
       else {
-        showCounter(unr);
+        GRW_StatusBar.showCounter(unr);
       }
       GRPrefs.showNotification = true;
     }
   },
-  countLabeled: function(labeled, prReq) {
-    var prc = eval('('+prReq.responseText+')');
+  /**
+   * 
+   */
+  countLabeled: function() {
+    var labeled = this.collectByLabels();
+    var prc = eval('('+this.onunreadCountAjax.req.responseText+')');
     uc = prc.unreadcounts;
     var i, l, all = 0, out = Array();
     for(label in labeled) {
@@ -97,6 +103,11 @@ GetList.prototype = {
     }
     return {counter: all, feeds: out};
   },
+  /**
+   * Separate the feeds by labels
+   * @returns an array with the feed objects which have labels, grouped by feeds
+   * @type Object
+   */
   collectByLabels: function() {
     try {
       var ob = eval('('+this.subscriptionsList+')').subscriptions;
@@ -121,16 +132,14 @@ GetList.prototype = {
     }
     return labels;
   },
-/**
- *
- * @param {Object} req FeedsCounter request object
- * @param {Object} prReq Counter request object
- * @type {Object}
- */
-  onFeedsCounterLoad: function(req, prReq) {
-    if(prReq != false) {
+  /**
+   * @returns an object with the number of the unread feeds and the feedlist
+   * @type {Object}
+   */
+  onFeedsCounterLoad: function() {
+    if(this.onunreadCountAjax.req != false) {
       try {
-        var prc = eval('('+prReq.responseText+')');
+        var prc = eval('('+this.onunreadCountAjax.req.responseText+')');
         prc = prc.unreadcounts;
       }
       catch (e) {
@@ -141,7 +150,7 @@ GetList.prototype = {
       var prc = false;
     }
     var feeds = Array();
-    var unr = feedsCounter(req);
+    var unr = feedsCounter(this.subscriptionsList);
     for(var i = 0; i < unr.length; i++) {
       for(var j = 0; j < prc.length; j++) {
         if(unr[i].id == prc[j].id && prc[j].count > 0) {
@@ -163,4 +172,4 @@ GetList.prototype = {
     }
     return {counter: counter, feeds: outFeeds};
   }
-}
+};

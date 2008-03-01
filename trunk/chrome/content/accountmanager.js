@@ -80,7 +80,7 @@ var accountManager = {
     var curSid = accountManager.getCurrentSID();
     if(curSid === false) {
       GRCheck.switchErrorIcon();
-      setReaderTooltip('loginerror');
+      GRW_StatusBar.setReaderTooltip('loginerror');
       return false;
     }
     getFeedList();

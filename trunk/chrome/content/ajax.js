@@ -68,7 +68,7 @@ Ajax.prototype = {
   },
   errorHandler: function(msg, er) {
     GRCheck.switchErrorIcon();
-    hideCounter();
+    GRW_StatusBar.hideCounter();
     LOG('Ajax error: ' + msg + ' || ' + er);
     LOG(this.url);
     return false;
