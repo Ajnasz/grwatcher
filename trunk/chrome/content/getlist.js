@@ -45,7 +45,7 @@ GetList.prototype = {
     });
   },
   FinishLoad: function(req) {
-    var r = GRPrefs.sortbylabels() ? this.countLabeled(this.collectByLabels(this.subscriptionsList), this.onunreadCountAjax.req) : this.onFeedsCounterLoad(this.subscriptionsList, this.onunreadCountAjax.req);
+    var r = GRPrefs.sortbylabels() ? this.countLabeled(this.collectByLabels(), this.onunreadCountAjax.req) : this.onFeedsCounterLoad(this.subscriptionsList, this.onunreadCountAjax.req);
     var unr = r.counter;
     GRPrefs.currentNum = unr;
     if(unr === false) {
@@ -97,7 +97,7 @@ GetList.prototype = {
     }
     return {counter: all, feeds: out};
   },
-  collectByLabels: function(ob) {
+  collectByLabels: function() {
     try {
       var ob = eval('('+this.subscriptionsList+')').subscriptions;
     }
