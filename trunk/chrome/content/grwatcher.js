@@ -273,6 +273,7 @@ var getFeedList = function() {
   var getFeedListAjax = new Ajax( {
     url: GRPrefs.conntype + '://www.google.com/reader/api/0/subscription/list?output=json',
     successHandler: function() {
+      GRW_subscriptionsList = this.req.responseText;
       onFeedListLoad(this.req);
     }
   });
@@ -422,11 +423,8 @@ var showCounter = function(val) {
  * @type Element
  */
 var genStatusGrid = function(feeds) {
-  var tt = document.getElementById('GRW-statusbar-tooltip-new');
   GRPrefs.feeds = feeds;
-  if(tt.firstChild) {
-    tt.removeChild(tt.firstChild);
-  }
+  
   // Create grid elements
   var grid = document.createElement('grid');
   var columns = document.createElement('columns');
@@ -454,7 +452,7 @@ var genStatusGrid = function(feeds) {
       labelc1 = label.cloneNode(true);
       labelc2 = label.cloneNode(true);
       if(o.Title.length > titlelength) {
-        o.Title = o.Title.slice(0, titlelength-3)+'...'
+        o.Title = o.Title.slice(0, titlelength-3)+'...';
       }
       // set up the counter position
       if(GRPrefs.tooltipcounterpos() == 'left') {
@@ -476,6 +474,11 @@ var genStatusGrid = function(feeds) {
   grid.appendChild(columnc1);
   grid.appendChild(columnc2);
   grid.appendChild(rows);
+
+  var tt = document.getElementById('GRW-statusbar-tooltip-new');
+  if(tt.firstChild) {
+    tt.removeChild(tt.firstChild);
+  }
   tt.appendChild(grid);
   return grid;
 };
@@ -487,10 +490,11 @@ var genStatusGrid = function(feeds) {
  */
 var feedsCounter = function(r) {
   try {
-    data = eval('('+r.responseText+')');
+    data = eval('('+r+')');
     data = data.subscriptions;
   }
   catch (e) {
+    LOG(e.message);
     return false;
   }
   var datai, i, datal = data.length, out = Array();
@@ -500,23 +504,56 @@ var feedsCounter = function(r) {
   }
   return out;
 };
+
+
+var FinishLoad = function(prReq) {
+  var r = GRPrefs.sortbylabels() ?countLabeled(collectByLabels(GRW_subscriptionsList), GRW_onunreadCountAjax.req) : onFeedsCounterLoad(GRW_subscriptionsList, GRW_onunreadCountAjax.req);
+  var unr = r.counter;
+  GRPrefs.currentNum = unr;
+  if(unr === false) {
+    setReaderTooltip('error');
+    GRCheck.switchErrorIcon();
+    hideCounter();
+  }
+  else if(unr > 0) {
+    setReaderTooltip('new', unr);
+    var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"].getService(Components.interfaces.nsIWindowMediator);
+    var enumerator = wm.getEnumerator('navigator:browser'), win;
+    while(enumerator.hasMoreElements()) {
+      win = enumerator.getNext();
+      win.genStatusGrid(r.feeds);
+    }
+    GRCheck.switchOnIcon();
+    showCounter(unr);
+  }
+  else {
+    setReaderTooltip('nonew');
+    GRCheck.switchOffIcon();
+    if(GRPrefs.showzerocounter() === false) {
+      hideCounter();
+    }
+    else {
+      showCounter(unr);
+    }
+    GRPrefs.showNotification = true;
+  }
+}
+
 /**
  *
  * @param {Object} prReq Counter reqest object
  */
 var getReadFeedsCounter = function(prReq) {
-  // GRCheck.switchLoadIcon();
 
   getReadFeedsCounterAjax = new Ajax( {
     url: GRPrefs.conntype + '://www.google.com/reader/api/0/subscription/list?output=json',
     successHandler: function() {
-      var r = onFeedsCounterLoad(this.req, onunreadCountAjax.req);
+      var r = countLabeled(collectByLabels(this.req), GRW_onunreadCountAjax.req);
       var unr = r.counter;
       GRPrefs.currentNum = unr;
       if(unr === false) {
         setReaderTooltip('error');
         GRCheck.switchErrorIcon();
-        // Log.log('unr = false');
         hideCounter();
       }
       else if(unr > 0) {
@@ -548,10 +585,11 @@ var getReadFeedsCounter = function(prReq) {
  * request for unreaded feeds
  */
 var getReadCounter = function() {
-  onunreadCountAjax = new Ajax( {
+  GRW_onunreadCountAjax = new Ajax( {
     url: GRPrefs.conntype + '://www.google.com/reader/api/0/unread-count?all=true&output=json',
     successHandler: function() {
-      getReadFeedsCounter(this.req);
+      // getReadFeedsCounter(this.req);
+      FinishLoad(this.req);
     }
   });
 };
@@ -684,7 +722,62 @@ var windowCloseCheck = {
       win.GRPrefs.timeoutid = win.setTimeout(win.GoogleIt, freq*1000*60);
     }
   }
+};
+/**
+ * Separate the feeds by labels
+ * @returns an array with the feed objects which have labels, grouped by feeds
+ * @type Object
+ */
+var collectByLabels = function(ob) {
+  try {
+    var ob = eval('('+ob+')').subscriptions;
+  }
+  catch(e) {
+    return false;
+  }
+  var labels = new Object();
+  labels.nolabel = new Array();
+  for(var i = 0; i < ob.length; i++) {
+    if(ob[i].categories.length) {
+      for(var j = 0; j < ob[i].categories.length; j++) {
+        if(typeof labels[ob[i].categories[j].label] == 'undefined') {
+          labels[ob[i].categories[j].label] = new Array();
+        }
+        labels[ob[i].categories[j].label].push(ob[i]);
+      }
+    }
+    else {
+      labels.nolabel.push(ob[i]);
+    }
+  }
+  return labels;
+};
+
+var countLabeled = function(labeled, prReq) {
+  var prc = eval('('+prReq.responseText+')');
+  uc = prc.unreadcounts;
+
+  LOG(labeled.toString());
+
+  var i, l, all = 0, out = Array();
+  for(label in labeled) {
+      labeled[label].count = 0;
+      l = labeled[label];
+      for(var j = 0; j < l.length; j++) {
+          for(var i = 0; i < uc.length; i++) {
+              if(uc[i].id == l[j].id) {
+                  labeled[label].count += uc[i].count;
+                  all += uc[i].count;
+              }
+          }
+      }
+      if(labeled[label].count > 0) {
+        out.push({Title: label, Id: null, Count: labeled[label].count});
+      }
+  }
+  return {counter: all, feeds: out};
 }
+
 /**
  * initialization function
  */
@@ -737,5 +830,5 @@ var GRWinit = function() {
 
   LOG('Google Reader Watcher initialized');
 };
-
+ 
 window.addEventListener('load', GRWinit, false);

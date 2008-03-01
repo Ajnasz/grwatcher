@@ -95,6 +95,9 @@ var GRPrefs = {
    */
   username: function() {
    return prefManager.getCharPref('extensions.grwatcher.username');
+  },
+  sortbylabels: function() {
+   return prefManager.getBoolPref('extensions.grwatcher.sortbylabels');
   }
 };
 
