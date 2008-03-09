@@ -57,7 +57,6 @@ var accountManager = {
       if(GRPrefs.rememberLogin()) {
         param += '&PersistentCookie=yes';
       }
-      // GRCheck.switchLoadIcon();
       loginAjax = new Ajax({
         url: url,
         pars: param,
@@ -79,7 +78,7 @@ var accountManager = {
   ajaxSuccess: function(e) {
     var curSid = accountManager.getCurrentSID();
     if(curSid === false) {
-      GRCheck.switchErrorIcon();
+      GRW_StatusBar.switchErrorIcon();
       GRW_StatusBar.setReaderTooltip('loginerror');
       return false;
     }
@@ -92,7 +91,7 @@ var accountManager = {
    * @type Boolean
    */
   loginFailed: function() {
-    GRCheck.switchErrorIcon();
+    GRW_StatusBar.switchErrorIcon();
     LOG('login failed');
     return false;
   }
