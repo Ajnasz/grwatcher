@@ -1,6 +1,7 @@
 <!ENTITY GRWstatusbar.popup.openReader "Open Google Reader">
 <!ENTITY GRWstatusbar.popup.getReadCounter "Check for unread feeds">
 <!ENTITY GRWstatusbar.popup.openPrefs "Preferences">
+<!ENTITY GRWstatusbar.popup.markAllAsRead "Mark all as read">
 <!ENTITY GRWpreferences.title "Google Reader Watcher Preferences">
 <!ENTITY GRWpreferences.checkfrequency "Check for new feeds every">
 <!ENTITY GRWpreferences.checkfrequency.unit "minute(s)">
@@ -29,6 +30,8 @@
 <!ENTITY GRWpreferences.leftclickopen.dblclick "Double click">
 <!ENTITY GRWpreferences.leftclickopen.disabled "Disabled">
 <!ENTITY GRWpreferences.usesecureconnection "Use secure connection">
+<!ENTITY GRWpreferences.sortbylabels "In the tooltip sort the feeds by label">
+
 <!ENTITY GRWtooltip.nonewfeed "You haven&apos;t got any unread feeds">
 <!ENTITY GRWtooltip.errorfeedfetch "Error fetching feeds!">
 <!ENTITY GRWtooltip.newfeed "You have unread feeds">

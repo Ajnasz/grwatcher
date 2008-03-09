@@ -51,6 +51,7 @@
               <checkbox id="GRW-shownotificationwindow-field" label="&GRWpreferences.shownotificationwindow;" />
               <checkbox id="GRW-showzerocounter-field" label="&GRWpreferences.showzerocounter;" />
               <checkbox id="GRW-usesecureconnection-field" label="&GRWpreferences.usesecureconnection;" />
+              <checkbox id="GRW-sortbylabels-field" label="&GRWpreferences.sortbylabels;" />
             </vbox>
 
           </groupbox>

@@ -1,6 +1,7 @@
 <!ENTITY GRWstatusbar.popup.openReader "Google Reader megnyitása">
 <!ENTITY GRWstatusbar.popup.getReadCounter "Olvasatlan feed keresése">
 <!ENTITY GRWstatusbar.popup.openPrefs "Tulajdonságok">
+<!ENTITY GRWstatusbar.popup.markAllAsRead "Mind megjelölése olvasottként">
 <!ENTITY GRWpreferences.title "Google Reader Watcher Tulajdonságok">
 <!ENTITY GRWpreferences.checkfrequency "Új feedek keresése minden">
 <!ENTITY GRWpreferences.checkfrequency.unit "percben">
@@ -29,6 +30,8 @@
 <!ENTITY GRWpreferences.leftclickopen.dblclick "Dupla kattintás">
 <!ENTITY GRWpreferences.leftclickopen.disabled "Tiltva">
 <!ENTITY GRWpreferences.usesecureconnection "Biztonságos kapcsolat használata">
+<!ENTITY GRWpreferences.sortbylabels "A feedek címke szerinti rendezése a tooltipben">
+
 <!ENTITY GRWtooltip.nonewfeed "Nincs olvastlan feeded!">
 <!ENTITY GRWtooltip.errorfeedfetch "Hiba a feedek feldolgozásakor!">
 <!ENTITY GRWtooltip.newfeed "Olvasatlan feeded van!">
