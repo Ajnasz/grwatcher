@@ -1,21 +1,39 @@
-var GetList = function() {
-  this.getFeedList();
+/**
+ * This class will retreive, process, sort the user feeds
+ * @constructor
+ * @class GetLIst
+ */
+var GetList = function(getuserid) {
+  this.getuserid = getuserid;
+  if(this.getuserid) {
+    this.getReadCounter();
+  } else {
+    this.getFeedList();
+  }
 };
 GetList.prototype = {
+  subscriptionsList: null,
+  FeedlistIds: null,
+  unreadCount: null,
+  feeds: null,
+  userFeeds: null,
+  /**
+   * Receives the users subscriptbion list
+   */
   getFeedList: function() {
     var THIS = this;
     new Ajax({
       url: GRPrefs.conntype + '://www.google.com/reader/api/0/subscription/list?output=json',
       successHandler: function(request) {
-        THIS.subscriptionsList = this.req.responseText;
+        THIS.subscriptionsList = eval('(' + this.req.responseText + ')').subscriptions;
         THIS.onFeedListLoad(this.req);
       }
     });
   },
-/**
- * @param {Object} req ajax response object
- * @type {Array}
- */
+  /**
+   * @param {XMLHtpRequest} request ajax response object
+   * @type {Array}
+   */
   onFeedListLoad: function(request) {
     try {
       var data = eval('('+request.responseText+')').subscriptions;
@@ -24,27 +42,43 @@ GetList.prototype = {
       return false;
     }
     var ids = Array();
-    for(var i = 0; i < data.length; i++) {
-      ids.push(data[i].id);
-    }
-    FeedlistIds = ids;
+    data.map(function(d) {
+      ids.push(d.id);
+    });
+    this.FeedlistIds = ids;
     this.getReadCounter();
     return ids;
   },
-/**
- * request for unreaded feeds
- */
+  /**
+   * request for unreaded feeds
+   */
   getReadCounter: function() {
     var THIS = this;
-    this.onunreadCountAjax = new Ajax( {
+    new Ajax( {
       url: GRPrefs.conntype + '://www.google.com/reader/api/0/unread-count?all=true&output=json',
       successHandler: function() {
-        THIS.finishLoad(this.req);
+        THIS.unreadCount = eval('('+this.req.responseText+')').unreadcounts;
+        THIS.feeds = new Array();
+        THIS.userFeeds = new Array();
+        THIS.unreadCount.map(function(o) {
+          if(/^feed/.test(o.id)) {
+            THIS.feeds.push(o);
+          } else {
+            if(/reading-list/.test(o.id)) {
+              var rex = new RegExp('^user\/([^/]+)\/.*');
+              GRPrefs.userid = o.id.replace(rex, '$1');
+            }
+            THIS.userFeeds.push(o);
+          }
+        });
+        if(!THIS.getuserid) {
+          THIS.finishLoad(this.req);
+        }
       }
     });
   },
   /**
-   *
+   * @param {XMLHttpRequest} req HTTP request object
    */
   finishLoad: function(req) {
     var r = GRPrefs.sortbylabels() ? this.countLabeled() : this.onFeedsCounterLoad();
@@ -52,7 +86,7 @@ GetList.prototype = {
     GRPrefs.currentNum = unr;
     if(unr === false) {
       GRW_StatusBar.setReaderTooltip('error');
-      GRCheck.switchErrorIcon();
+      GRW_StatusBar.switchErrorIcon();
       GRW_StatusBar.hideCounter();
     }
     else if(unr > 0) {
@@ -63,12 +97,12 @@ GetList.prototype = {
         win = enumerator.getNext();
         win.genStatusGrid(r.feeds);
       }
-      GRCheck.switchOnIcon();
+      GRW_StatusBar.switchOnIcon();
       GRW_StatusBar.showCounter(unr);
     }
     else {
       GRW_StatusBar.setReaderTooltip('nonew');
-      GRCheck.switchOffIcon();
+      GRW_StatusBar.switchOffIcon();
       if(GRPrefs.showzerocounter() === false) {
         GRW_StatusBar.hideCounter();
       }
@@ -79,29 +113,32 @@ GetList.prototype = {
     }
   },
   /**
-   * 
+   * @returns an object which contains the number of the unread feeds and an array which contains the feed objects
+   * @type Obect
    */
   countLabeled: function() {
     var labeled = this.collectByLabels();
-    var prc = eval('('+this.onunreadCountAjax.req.responseText+')');
-    uc = prc.unreadcounts;
-    var i, l, all = 0, out = Array();
+    var uc = this.feeds;
+    var i, l, la, u, all = 0, feeds = Array();
     for(label in labeled) {
       labeled[label].count = 0;
-      l = labeled[label];
-      for(var j = 0; j < l.length; j++) {
-        for(var i = 0; i < uc.length; i++) {
-            if(uc[i].id == l[j].id) {
-              labeled[label].count += uc[i].count;
-              all += uc[i].count;
-            }
-        }
-      }
+      labeled[label].map(function(l) {
+        uc.map(function(u) {
+          if(u.id == l.id) {
+            labeled[label].count += u.count;
+          }
+        });
+      });
       if(labeled[label].count > 0) {
-        out.push({Title: label, Id: null, Count: labeled[label].count});
+        feeds.push({Title: label, Id: null, Count: labeled[label].count});
       }
     }
-    return {counter: all, feeds: out};
+    uc.map(function(u) {
+      if(/^feed/.test(u.id)) {
+        all += u.count;
+      }
+    });
+    return {counter: all, feeds: feeds};
   },
   /**
    * Separate the feeds by labels
@@ -109,26 +146,24 @@ GetList.prototype = {
    * @type Object
    */
   collectByLabels: function() {
-    try {
-      var ob = eval('('+this.subscriptionsList+')').subscriptions;
-    }
-    catch(e) {
-      return false;
-    }
-    var labels = new Object();
+    var ob = this.subscriptionsList, labels = new Object(), o, u;
     labels.nolabel = new Array();
-    for(var i = 0; i < ob.length; i++) {
-      if(ob[i].categories.length) {
-        for(var j = 0; j < ob[i].categories.length; j++) {
-          if(typeof labels[ob[i].categories[j].label] == 'undefined') {
-            labels[ob[i].categories[j].label] = new Array();
-          }
-          labels[ob[i].categories[j].label].push(ob[i]);
-        }
+    ob.map(function(o) {
+      if(/^feed/.test(o.id)) {
+        if(o.categories.length) {
+          o.categories.map(function(u) {
+            if(typeof labels[u.label] == 'undefined') {
+              labels[u.label] = new Array();
+            }
+            labels[u.label].push(o);
+          });
+        } else {
+          labels.nolabel.push(o);
+        } 
       }
-      else {
-        labels.nolabel.push(ob[i]);
-      }
+    });
+    if(labels.nolabel.length == 0) {
+      delete labels.nolabel;
     }
     return labels;
   },
@@ -137,39 +172,39 @@ GetList.prototype = {
    * @type {Object}
    */
   onFeedsCounterLoad: function() {
-    if(this.onunreadCountAjax.req != false) {
-      try {
-        var prc = eval('('+this.onunreadCountAjax.req.responseText+')');
-        prc = prc.unreadcounts;
-      }
-      catch (e) {
-        var prc = false;
-      }
-    }
-    else {
-      var prc = false;
-    }
-    var feeds = Array();
-    var unr = feedsCounter(this.subscriptionsList);
-    for(var i = 0; i < unr.length; i++) {
-      for(var j = 0; j < prc.length; j++) {
-        if(unr[i].id == prc[j].id && prc[j].count > 0) {
-          feeds.push({Title: unr[i].title, Id: unr[i].id, Count: prc[j].count})
+    var prc = this.feeds;
+    var feeds = Array(), unr = this.feedsCounter(), o, u;
+    unr.map(function(o) {
+      prc.map(function(u) {
+        if(o.id == u.id && u.count > 0) {
+          feeds.push({Title: o.title, Id: o.id, Count: u.count})
         }
-      }
-    }
+      });
+    });
     // filter the feeds, which aren't in the feedlist
-    var outFeeds = Array(), rex;
+    var outFeeds = Array();
     var counter = 0;
-    for(var i = 0; i < feeds.length; i++) {
-      for(var j = 0; j < FeedlistIds.length; j++) {
-        rex = new RegExp('^'+FeedlistIds[j]);
-        if(FeedlistIds[j] == feeds[i].Id) {
-          counter += feeds[i].Count;
-          outFeeds.push(feeds[i]);
+    var THIS = this;
+    feeds.map(function(o) {
+      THIS.FeedlistIds.map(function(u) {
+        if(o.Id == u)  {
+          counter += o.Count;
+          outFeeds.push(o);
         }
-      }
-    }
+      });
+    });
     return {counter: counter, feeds: outFeeds};
+  },
+  /**
+  * @returns an array with the processed feeds object
+  * @type {Array}
+  */
+  feedsCounter: function() {
+    var data = this.subscriptionsList;
+    var feeds = Array();
+    data.map(function(d) {
+      feeds.push({title: d.title, id:d.id});
+    });
+    return feeds;
   }
 };
