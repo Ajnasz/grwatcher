@@ -18,6 +18,7 @@ var GRPrefs = {
   currentNum: null,
   feeds: null,
   conntype: null,
+  userid: null,
   /**
    * @type Int
    */
