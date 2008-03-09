@@ -6,7 +6,7 @@
  * @author Koszti Lajos [Ajnasz] http://ajnasz.hu ajnasz@ajnasz.hu 
  * @param {Object} pars
  */
-var Ajax = function(pars) {
+var Ajax = function(pars, parameters) {
   if(typeof pars.url == 'undefined') {
     return false;
   }
@@ -30,16 +30,16 @@ var Ajax = function(pars) {
   if(this.method == 'post') {
     this.req.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
   }
-
+  this.parameters = typeof parameters != 'undefined' ? parameters : null;
   this.req.onreadystatechange = stChg(this, false);
-  this.req.send(this.pars); 
+  this.req.send(this.parameters); 
 };
 Ajax.prototype = {
   url: null,
   pars: null,
   req: null,
   method: 'get',
-  agent: 'Google Reader Watcher 0.0.10',
+  agent: 'Google Reader Watcher 0.0.12b',
   handler: function(pars) {
     try {
       if(this.req.readyState == 4) {
@@ -67,14 +67,14 @@ Ajax.prototype = {
     return this.req.responseText;
   },
   errorHandler: function(msg, er) {
-    GRCheck.switchErrorIcon();
+    GRW_StatusBar.switchErrorIcon();
     GRW_StatusBar.hideCounter();
-    LOG('Ajax error: ' + msg + ' || ' + er);
-    LOG(this.url);
+    GRW_LOG('Ajax error: ' + msg + ' || ' + er);
+    GRW_LOG(this.url);
     return false;
   },
   loadHandler: function() {
-    GRCheck.switchLoadIcon();
+    GRW_StatusBar.switchLoadIcon();
     return true;
   }
 };
