@@ -6,6 +6,12 @@
  *
  */
 var GRCheck = {
+  getUserId: function(json) {
+    if(!GRPrefs.userid) {
+      var list = new GetList(true);
+    }
+    return GRPrefs.userid;
+  },
   getReaderURL: function() {
     if(!GRPrefs.conntype) {
       GRPrefs.conntype = GRPrefs.usersecureconnection() ? 'https' : 'http';
@@ -29,7 +35,7 @@ var GRCheck = {
       var activeWin = getActiveGRW();
       activeWin.GRPrefs.currentNum = 0;
     }
-    this.switchOffIcon();
+    GRW_StatusBar.switchOffIcon();
     var openedGR = this.getOpenedGR();
     /**
      * google reader din't opened yet
@@ -45,12 +51,10 @@ var GRCheck = {
         if(openedGR.blankPage === false) {
           if(GRPrefs.activateOpenedTab()) {
             gBrowser.selectedTab = gBrowser.addTab(this.getReaderURL());
-          }
-          else {
+          } else {
             gBrowser.addTab(this.getReaderURL());
           }
-        }
-        else {
+        } else {
           /**
            * load the GR into the blank page
            */
@@ -58,17 +62,14 @@ var GRCheck = {
             gBrowser.mTabContainer.selectedIndex = openedGR.blankPage;
             gBrowser.loadURI(this.getReaderURL());
 
-          }
-          else {
+          } else {
             gBrowser.getBrowserAtIndex(openedGR.blankPage).loadURI(this.getReaderURL());
           }
         }
-      }
-      else {
+      } else {
         gBrowser.loadURI(this.getReaderURL());
       }
-    }
-    else {
+    } else {
       gBrowser.mTabContainer.selectedIndex = openedGR.grTab;
       gBrowser.loadURI(this.getReaderURL());
     }
@@ -79,7 +80,6 @@ var GRCheck = {
       clearTimeout(GRPrefs.timeoutid);
     }
     GRPrefs.timeoutid = setTimeout(GoogleIt, freq*1000*60);
-
   },
   /**
    * checks for opened GR window and blank pages
@@ -99,30 +99,34 @@ var GRCheck = {
       }
     }
     return outObj;
+  }
+};
+
+var markAllAsRead = function() {
+  GRCheck.getUserId();
+  this.getToken();
+}
+markAllAsRead.prototype = {
+  token: null,
+  getToken: function() {
+    var THIS = this;
+    new Ajax({
+      url: GRPrefs.conntype + '://www.google.com/reader/api/0/token',
+      successHandler: function(request) {
+        THIS.token = this.req.responseText;
+        THIS.markAsRead();
+      }
+    });
   },
-  /**
-   * set the icon to off status
-   */
-  switchOffIcon: function() {
-    GRW_StatusBar.setReaderStatus('off');
-  },
-  /**
-   * set the icon to on status
-   */
-  switchOnIcon: function() {
-    GRW_StatusBar.setReaderStatus('on');
-  },
-  /**
-   * set the icon to error status
-   */
-  switchErrorIcon: function() {
-    GRW_StatusBar.setReaderStatus('error');
-  },
-  /**
-   * set the icon to load status
-   */
-  switchLoadIcon: function() {
-    GRW_StatusBar.setReaderStatus('load');
+  markAsRead: function() {
+    var THIS = this;
+    var parameters = 'T=' + this.token + '&ts=' + (new Date()).getTime() + '999&s=user/' + GRPrefs.userid  + '/state/com.google/reading-list';
+    new Ajax({method: 'post',url: GRPrefs.conntype + ':www.google.com/reader/api/0/mark-all-as-read?client=scroll',successHandler: function(request) {
+        if(this.req.responseText == 'OK') {
+          GoogleIt();
+        }
+      }
+    }, parameters);
   }
 };
 
@@ -204,7 +208,7 @@ var GRW_StatusBar = {
       var statusBar = win.document.getElementById('GRW-statusbar');
       var ttb = win.document.getElementById('GRW-toolbar-button');
       if(typeof statusBar == 'undefined') {
-        LOG('GRW-statusbar object not found');
+        GRW_LOG('GRW-statusbar object not found');
       }
       var GRW_bundle = win.document.getElementById('grwatcher-bundles');
       switch(t) {
@@ -285,15 +289,39 @@ var GRW_StatusBar = {
     }
     if(GRPrefs.showNotification && val != 0) {
       var GRW_bundle = document.getElementById('grwatcher-bundles');
-      showNotification(false, GRW_bundle.getFormattedString('notifierMSG', [val]));
+      GRW_showNotification(false, GRW_bundle.getFormattedString('notifierMSG', [val]));
       GRPrefs.showNotification = false;
     }
+  },
+  /**
+   * set the icon to off status
+   */
+  switchOffIcon: function() {
+    this.setReaderStatus('off');
+  },
+  /**
+   * set the icon to on status
+   */
+  switchOnIcon: function() {
+    this.setReaderStatus('on');
+  },
+  /**
+   * set the icon to error status
+   */
+  switchErrorIcon: function() {
+    this.setReaderStatus('error');
+  },
+  /**
+   * set the icon to load status
+   */
+  switchLoadIcon: function() {
+    this.setReaderStatus('load');
   }
 };
 /**
  *
  */
-var openReaderNotify = {
+var GRW_openReaderNotify = {
   /**
    * @param {Object} subject
    * @param {Object} topic
@@ -310,7 +338,7 @@ var openReaderNotify = {
  * @param {Object} label
  * @param {Object} value
  */
-var showNotification = function(label, value) {
+var GRW_showNotification = function(label, value) {
   if(GRPrefs.shownotificationwindow() !== false) {
     if(!label) {
       label = 'Google Reader Watcher';
@@ -324,7 +352,7 @@ var showNotification = function(label, value) {
       * Notifier for Windows
       */
       var alertsService = Components.classes["@mozilla.org/alerts-service;1"].getService(Components.interfaces.nsIAlertsService);
-      alertsService.showAlertNotification(image , label, value, true, "", openReaderNotify);
+      alertsService.showAlertNotification(image , label, value, true, "", GRW_openReaderNotify);
     }
     catch(e) {
       try {
@@ -334,11 +362,11 @@ var showNotification = function(label, value) {
         var alertWin = Components.classes["@mozilla.org/embedcomp/window-watcher;1"]
           .getService(Components.interfaces.nsIWindowWatcher)
           .openWindow(null, "chrome://global/content/alerts/alert.xul", "_blank", "chrome,titlebar=no,popup=yes", null);
-          alertWin.arguments = [image, label, value, true, "", 0, openReaderNotify];
+          alertWin.arguments = [image, label, value, true, "", 0, GRW_openReaderNotify];
           alertWin.setTimeout(function(){alertWin.close()},10000);
       }
       catch(e) {
-        LOG(e);
+        GRW_LOG(e.message);
       }
     }
   }
@@ -410,27 +438,6 @@ var genStatusGrid = function(feeds) {
   return grid;
 };
 /**
- * @param {Object} r Ajax response
- * @returns an array with the processed feeds object
- * @type {Array}
- */
-var feedsCounter = function(r) {
-  try {
-    data = eval('('+r+')');
-    data = data.subscriptions;
-  }
-  catch (e) {
-    LOG(e.message);
-    return false;
-  }
-  var datai, i, datal = data.length, out = Array();
-  for(i = 0; i < datal; i++) {
-    datai = data[i];
-    out.push({title: datai.title, id: datai.id});
-  }
-  return out;
-};
-/**
  * do the request and process the received data
  * @returns the timeout id which will runs next time the #GoogleIt function
  * @type {Number}
@@ -449,7 +456,7 @@ var GoogleIt = function() {
     new GetList();
   }
   if(login === -1) {
-    GRCheck.switchErrorIcon();
+    GRW_StatusBar.switchErrorIcon();
   }
   var minCheck = 1;
   var configuredCheck = GRPrefs.checkfreq();
@@ -567,8 +574,8 @@ var windowCloseCheck = {
 /**
  * initialization function
  */
-var GRWinit = function() {
-  LOG('Starting Google Reader Watcher');
+var GRW_init = function() {
+  GRW_LOG('Starting Google Reader Watcher');
   passwordManager = new _passwordManager();
   if(isActiveGRW() === false) {
     window.GRW = true;
@@ -581,7 +588,7 @@ var GRWinit = function() {
     GRPrefs.showNotification = false;
     if(unr === false) {
       GRW_StatusBar.setReaderTooltip('error');
-      GRCheck.switchErrorIcon();
+      GRW_StatusBar.switchErrorIcon();
       GRW_StatusBar.hideCounter();
     }
     else if(unr > 0) {
@@ -592,12 +599,12 @@ var GRWinit = function() {
         win = enumerator.getNext();
         win.genStatusGrid(activeWin.GRPrefs.feeds);
       }
-      GRCheck.switchOnIcon();
+      GRW_StatusBar.switchOnIcon();
       GRW_StatusBar.showCounter(unr);
     }
     else {
       GRW_StatusBar.setReaderTooltip('nonew');
-      GRCheck.switchOffIcon();
+      GRW_StatusBar.switchOffIcon();
       if(GRPrefs.showzerocounter() === false) {
         GRW_StatusBar.hideCounter();
       }
@@ -614,7 +621,7 @@ var GRWinit = function() {
   var observerService = Components.classes["@mozilla.org/observer-service;1"].getService(Components.interfaces.nsIObserverService);
   observerService.addObserver(windowCloseCheck, "domwindowclosed", false);
 
-  LOG('Google Reader Watcher initialized');
+  GRW_LOG('Google Reader Watcher initialized');
 };
  
-window.addEventListener('load', GRWinit, false);
+window.addEventListener('load', GRW_init, false);
