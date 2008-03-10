@@ -57,7 +57,7 @@ var accountManager = {
       if(GRPrefs.rememberLogin()) {
         param += '&PersistentCookie=yes';
       }
-      loginAjax = new Ajax({
+      new Ajax({
         url: url,
         pars: param,
         method: 'post',

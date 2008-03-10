@@ -1,6 +1,8 @@
 /**
  * @author Lajos Koszti [Ajnasz] http://ajnasz.hu ajnasz@ajnasz.hu ajnasz@gmail.com
  * @license GPL v2
+ * @requires chrome/content/grprefs.js
+ * @requires chrome/content/ajax.js
  */
 /**
  *
@@ -374,68 +376,87 @@ var GRW_showNotification = function(label, value) {
 /**
  * generate the grid for the tooltip
  * @param {Array} feeds
+ * @param {String} [class]
+ * @param {Boolean} [justRow]
  * @returns a grid element which is filled with the unread feeds data
  * @type Element
  */
-var genStatusGrid = function(feeds) {
+var genStatusGrid = function(feeds, class, justRows) {
   GRPrefs.feeds = feeds;
-  
-  // Create grid elements
-  var grid = document.createElement('grid');
-  var columns = document.createElement('columns');
-  var column = document.createElement('column');
-  var rows = document.createElement('rows');
-  var row = document.createElement('row');
-  var label = document.createElement('label');
-  var columnc1, columnc2, rowc, labelc1, labelc2;
+  this.class = class || '';
+  this.justRows = justRows || false;
+  var rows = this.genRows(feeds);
+  this.grid = this.genGrid(rows);
+}
+genStatusGrid.prototype = {
 
-  // configure the length of the title
-  var titlelength = GRPrefs.tooltiptitlelength();
-  titlelength = (titlelength > 5) ? titlelength : 5;
+  genRows: function(feeds) {
+    var row = document.createElement('row');
+    var label = document.createElement('label');
+    var rowsArray = new Array();
+    var THIS = this;
+    feeds.map(
+      function(o) {
+        /**
+        * create cells
+        */
+        rowc = row.cloneNode(true);
+        labelc1 = label.cloneNode(true);
+        labelc2 = label.cloneNode(true);
 
-  grid.flex = 1;
-  grid.id = 'GRW-statusbar-tooltip-grid';
-  columnc1 = column.cloneNode(true);
-  columnc1.flex = 1;
-  columnc2 = column.cloneNode(true);
-  feeds.map(
-    function(o) {
-      /**
-       * create cells
-       */
-      rowc = row.cloneNode(true);
-      labelc1 = label.cloneNode(true);
-      labelc2 = label.cloneNode(true);
-      if(o.Title.length > titlelength) {
-        o.Title = o.Title.slice(0, titlelength-3)+'...';
+        // configure the length of the title
+        var titlelength = GRPrefs.tooltiptitlelength();
+        titlelength = (titlelength > 5) ? titlelength : 5;
+        if(o.Title.length > titlelength) {
+          o.Title = o.Title.slice(0, titlelength-3)+'...';
+        }
+        // set up the counter position
+        if(GRPrefs.tooltipcounterpos() == 'left') {
+          labelc1.value = o.Count;
+          labelc2.value = o.Title;
+          labelc1.setAttribute('class', 'counterCol');
+        }
+        else {
+          labelc1.value = o.Title;
+          labelc2.value = o.Count;
+          labelc2.setAttribute('class', 'counterCol');
+        }
+
+        rowc.appendChild(labelc1);
+        rowc.appendChild(labelc2);
+        rowsArray.push(rowc);
+        if(o.Subs) {
+          rowc.setAttribute('class', 'tag');
+          var subRows = THIS.genRows(o.Subs);
+          rowsArray = rowsArray.concat(subRows)
+        }
       }
-      // set up the counter position
-      if(GRPrefs.tooltipcounterpos() == 'left') {
-        labelc1.value = o.Count;
-        labelc2.value = o.Title;
-        labelc1.setAttribute('class', 'counterCol');
-      }
-      else {
-        labelc1.value = o.Title;
-        labelc2.value = o.Count;
-        labelc2.setAttribute('class', 'counterCol');
-      }
+    );
+    return rowsArray;
+  },
+  genGrid: function(rowsArray) {
+    
+    // Create grid elements
+    var grid = document.createElement('grid');
+    var columns = document.createElement('columns');
+    var column = document.createElement('column');
+    var rows = document.createElement('rows');
+    var columnc1, columnc2, rowc, labelc1, labelc2;
+    grid.flex = 1;
+    grid.setAttribute('class', 'GRW-statusbar-tooltip-grid ' + this.class)
+    grid.id = '';
+    columnc1 = column.cloneNode(true);
+    columnc1.flex = 1;
+    columnc2 = column.cloneNode(true);
+    rowsArray.map(function(o){
+      rows.appendChild(o);
+    });
+    grid.appendChild(columnc1);
+    grid.appendChild(columnc2);
+    grid.appendChild(rows);
 
-      rowc.appendChild(labelc1);
-      rowc.appendChild(labelc2);
-      rows.appendChild(rowc);
-    }
-  );
-  grid.appendChild(columnc1);
-  grid.appendChild(columnc2);
-  grid.appendChild(rows);
-
-  var tt = document.getElementById('GRW-statusbar-tooltip-new');
-  if(tt.firstChild) {
-    tt.removeChild(tt.firstChild);
+    return grid;
   }
-  tt.appendChild(grid);
-  return grid;
 };
 /**
  * do the request and process the received data
@@ -594,10 +615,15 @@ var GRW_init = function() {
     else if(unr > 0) {
       GRW_StatusBar.setReaderTooltip('new', unr);
       var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"].getService(Components.interfaces.nsIWindowMediator);
-      var enumerator = wm.getEnumerator('navigator:browser'), win;
+      var enumerator = wm.getEnumerator('navigator:browser'), win, grid, tt;
       while(enumerator.hasMoreElements()) {
         win = enumerator.getNext();
-        win.genStatusGrid(activeWin.GRPrefs.feeds);
+        grid = new win.genStatusGrid(activeWin.GRPrefs.feeds);
+        tt = win.document.getElementById('GRW-statusbar-tooltip-new');
+        if(tt.firstChild) {
+          tt.removeChild(tt.firstChild);
+        }
+        tt.appendChild(grid.grid);
       }
       GRW_StatusBar.switchOnIcon();
       GRW_StatusBar.showCounter(unr);

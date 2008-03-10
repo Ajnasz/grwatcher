@@ -1,5 +1,6 @@
 /**
  * This class will retreive, process, sort the user feeds
+ * @requires chrome/content/grwatcher.js
  * @constructor
  * @class GetLIst
  */
@@ -37,8 +38,7 @@ GetList.prototype = {
   onFeedListLoad: function(request) {
     try {
       var data = eval('('+request.responseText+')').subscriptions;
-    }
-    catch(e) {
+    } catch(e) {
       return false;
     }
     var ids = Array();
@@ -92,10 +92,15 @@ GetList.prototype = {
     else if(unr > 0) {
       GRW_StatusBar.setReaderTooltip('new', unr);
       var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"].getService(Components.interfaces.nsIWindowMediator);
-      var enumerator = wm.getEnumerator('navigator:browser'), win;
+      var enumerator = wm.getEnumerator('navigator:browser'), win, grid, tt;
       while(enumerator.hasMoreElements()) {
         win = enumerator.getNext();
-        win.genStatusGrid(r.feeds);
+        grid = new win.genStatusGrid(r.feeds);
+        tt = win.document.getElementById('GRW-statusbar-tooltip-new');
+        if(tt.firstChild) {
+          tt.removeChild(tt.firstChild);
+        }
+        tt.appendChild(grid.grid);
       }
       GRW_StatusBar.switchOnIcon();
       GRW_StatusBar.showCounter(unr);
@@ -121,16 +126,18 @@ GetList.prototype = {
     var uc = this.feeds;
     var i, l, la, u, all = 0, feeds = Array();
     for(label in labeled) {
-      labeled[label].count = 0;
+      labeled[label].count = 0,
+      labeled[label].subs = new Array();
       labeled[label].map(function(l) {
         uc.map(function(u) {
-          if(u.id == l.id) {
+          if(u.id == l.id && u.count > 0) {
             labeled[label].count += u.count;
+            labeled[label].subs.push({Title: l.title, Id: l.id, Count: u.count});
           }
         });
       });
       if(labeled[label].count > 0) {
-        feeds.push({Title: label, Id: null, Count: labeled[label].count});
+        feeds.push({Title: label, Id: null, Count: labeled[label].count, Subs: labeled[label].subs});
       }
     }
     uc.map(function(u) {
@@ -165,6 +172,17 @@ GetList.prototype = {
     if(labels.nolabel.length == 0) {
       delete labels.nolabel;
     }
+    var a = new Array();
+    for(label in labels) {
+      a.push({name: label, value: labels[label]});
+    }
+    a.sort(function(a,b) {
+      return a.name > b.name;
+    });
+    var labels = new Object();
+    a.map(function(o) {
+      labels[o.name] = o.value;
+    });
     return labels;
   },
   /**
