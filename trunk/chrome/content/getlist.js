@@ -1,6 +1,8 @@
 /**
  * This class will retreive, process, sort the user feeds
  * @requires chrome/content/grwatcher.js
+ * @requires chrome/content/preferences.js
+ * @requires defaults/preferences/grwatcher.js
  * @constructor
  * @class GetLIst
  */
@@ -125,26 +127,27 @@ GetList.prototype = {
     var labeled = this.collectByLabels();
     var uc = this.feeds;
     var i, l, la, u, all = 0, feeds = Array();
+    var filteredLabels = GRPrefs.filteredlabels();
+    var rex;
     for(label in labeled) {
-      labeled[label].count = 0,
-      labeled[label].subs = new Array();
-      labeled[label].map(function(l) {
-        uc.map(function(u) {
-          if(u.id == l.id && u.count > 0) {
-            labeled[label].count += u.count;
-            labeled[label].subs.push({Title: l.title, Id: l.id, Count: u.count});
-          }
+      rex = new RegExp('(?:^|,)' + label +'(?:$|,)', 'i');
+      if(!rex.test(filteredLabels)) {
+        labeled[label].count = 0;
+        labeled[label].subs = new Array();
+        labeled[label].map(function(l) {
+          uc.map(function(u) {
+            if(u.id == l.id && u.count > 0) {
+              labeled[label].count += u.count;
+              labeled[label].subs.push({Title: l.title, Id: l.id, Count: u.count});
+              all += u.count;
+            }
+          });
         });
-      });
-      if(labeled[label].count > 0) {
-        feeds.push({Title: label, Id: null, Count: labeled[label].count, Subs: labeled[label].subs});
+        if(labeled[label].count > 0) {
+          feeds.push({Title: label, Id: null, Count: labeled[label].count, Subs: labeled[label].subs});
+        }
       }
     }
-    uc.map(function(u) {
-      if(/^feed/.test(u.id)) {
-        all += u.count;
-      }
-    });
     return {counter: all, feeds: feeds};
   },
   /**
@@ -154,7 +157,7 @@ GetList.prototype = {
    */
   collectByLabels: function() {
     var ob = this.subscriptionsList, labels = new Object(), o, u;
-    labels.nolabel = new Array();
+    var nolabel = new Array();
     ob.map(function(o) {
       if(/^feed/.test(o.id)) {
         if(o.categories.length) {
@@ -165,13 +168,10 @@ GetList.prototype = {
             labels[u.label].push(o);
           });
         } else {
-          labels.nolabel.push(o);
+          nolabel.push(o);
         } 
       }
     });
-    if(labels.nolabel.length == 0) {
-      delete labels.nolabel;
-    }
     var a = new Array();
     for(label in labels) {
       a.push({name: label, value: labels[label]});
@@ -183,6 +183,7 @@ GetList.prototype = {
     a.map(function(o) {
       labels[o.name] = o.value;
     });
+    labels['-'] = nolabel;
     return labels;
   },
   /**

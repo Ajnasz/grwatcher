@@ -415,8 +415,7 @@ genStatusGrid.prototype = {
           labelc1.value = o.Count;
           labelc2.value = o.Title;
           labelc1.setAttribute('class', 'counterCol');
-        }
-        else {
+        } else {
           labelc1.value = o.Title;
           labelc2.value = o.Count;
           labelc2.setAttribute('class', 'counterCol');
@@ -427,6 +426,9 @@ genStatusGrid.prototype = {
         rowsArray.push(rowc);
         if(o.Subs) {
           rowc.setAttribute('class', 'tag');
+          if(o.Title == '-') {
+            rowc.setAttribute('class', 'notitle tag');
+          }
           var subRows = THIS.genRows(o.Subs);
           rowsArray = rowsArray.concat(subRows)
         }
