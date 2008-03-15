@@ -31,6 +31,7 @@
 <!ENTITY GRWpreferences.leftclickopen.disabled "Tiltva">
 <!ENTITY GRWpreferences.usesecureconnection "Biztonságos kapcsolat használata">
 <!ENTITY GRWpreferences.sortbylabels "A feedek címke szerinti rendezése a tooltipben">
+<!ENTITY GRWpreferences.filteredlabels "A következő címkékkel ellátott feedek szűrése (vesszővel elválasztott lista)">
 
 <!ENTITY GRWtooltip.nonewfeed "Nincs olvastlan feeded!">
 <!ENTITY GRWtooltip.errorfeedfetch "Hiba a feedek feldolgozásakor!">
