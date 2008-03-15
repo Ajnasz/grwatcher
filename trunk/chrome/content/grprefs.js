@@ -46,6 +46,9 @@ var getPref = {
   },
   sortByLabels: function(value) {
     return prefManager.getBoolPref('extensions.grwatcher.sortbylabels');
+  },
+  filteredLabels: function(value) {
+    return prefManager.getCharPref('extensions.grwatcher.filteredlabels');
   }
 };
 /**
@@ -91,6 +94,9 @@ var setPref = {
   sortByLabels : function(value) {
    prefManager.setBoolPref('extensions.grwatcher.sortbylabels', value);
   },
+  filteredLabels : function(value) {
+   prefManager.setCharPref('extensions.grwatcher.filteredlabels', value);
+  }
 };
 /**
  * save the preferences into the chrome when the pref dialog is accepted
@@ -108,6 +114,7 @@ var savePreferences = function() {
   setPref.showZeroCounter(document.getElementById('GRW-showzerocounter-field').checked);
   setPref.useSecureConnection(document.getElementById('GRW-usesecureconnection-field').checked);
   setPref.sortByLabels(document.getElementById('GRW-sortbylabels-field').checked);
+  setPref.filteredLabels(document.getElementById('GRW-filteredlabels-field').value);
 
   setPref.userName(document.getElementById('GRW-accountmanage-email').value);
   passwordManager.addPassword(document.getElementById('GRW-accountmanage-pass').value);
@@ -131,6 +138,7 @@ var setPrefPaneVals = function() {
   document.getElementById('GRW-showzerocounter-field').checked = getPref.showZeroCounter();
   document.getElementById('GRW-usesecureconnection-field').checked = getPref.useSecureConnection();
   document.getElementById('GRW-sortbylabels-field').checked = getPref.sortByLabels();
+  document.getElementById('GRW-filteredlabels-field').value = getPref.filteredLabels();
 };
 /**
  * show/hide the newtab options

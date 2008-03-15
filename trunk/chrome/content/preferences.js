@@ -99,6 +99,9 @@ var GRPrefs = {
   },
   sortbylabels: function() {
    return prefManager.getBoolPref('extensions.grwatcher.sortbylabels');
+  },
+  filteredlabels: function() {
+   return prefManager.getCharPref('extensions.grwatcher.filteredlabels');
   }
 };
 
