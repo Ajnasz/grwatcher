@@ -69,7 +69,7 @@ Ajax.prototype = {
   errorHandler: function(msg, er) {
     GRW_StatusBar.switchErrorIcon();
     GRW_StatusBar.hideCounter();
-    GRW_LOG('Ajax error: ' + msg + ' || ' + er);
+    GRW_LOG('Ajax error: ' + msg + ' || ' + er.message + ' - ' + er.line);
     GRW_LOG(this.url);
     return false;
   },
