@@ -28,9 +28,9 @@
 <!ENTITY GRWpreferences.leftclickopen.singleclick "Einzelklick">
 <!ENTITY GRWpreferences.leftclickopen.dblclick "Doppelklick">
 <!ENTITY GRWpreferences.leftclickopen.disabled "Deaktiviert">
-<!ENTITY GRWpreferences.usesecureconnection "Use secure connection">
+<!ENTITY GRWpreferences.usesecureconnection "">
 <!ENTITY GRWtooltip.nonewfeed "Sie haben keine ungelesenen Feeds">
 <!ENTITY GRWtooltip.errorfeedfetch "Fehler beim Laden der Feeds! Sind Sie angemeldet?">
 <!ENTITY GRWtooltip.newfeed "Sie haben ungelesene Feeds">
-<!ENTITY GRWtooltip.errorlogin "Login failed. Make sure you have entered the correct password and/or username!">
-<!ENTITY GRWtooltip.networkerror "Network error!">
+<!ENTITY GRWtooltip.errorlogin "">
+<!ENTITY GRWtooltip.networkerror "">
