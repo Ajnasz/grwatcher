@@ -28,8 +28,7 @@ var GRCheck = {
     if(GRPrefs.resetcounter()) {
       if(GRPrefs.showzerocounter() === false) {
         GRW_StatusBar.hideCounter();
-      }
-      else {
+      } else {
         GRW_StatusBar.showCounter(0);
       }
       GRW_StatusBar.setReaderTooltip('hide');
@@ -40,7 +39,7 @@ var GRCheck = {
     GRW_StatusBar.switchOffIcon();
     var openedGR = this.getOpenedGR();
     /**
-     * google reader din't opened yet
+     * google reader doesn't opened yet
      */
     if(openedGR.grTab === false) {
       /**
@@ -278,6 +277,9 @@ var GRW_StatusBar = {
   showCounter: function(val) {
     var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"].getService(Components.interfaces.nsIWindowMediator);
     var enumerator = wm.getEnumerator('navigator:browser'), win;
+    if(GRW_StatusBar.maxCount && val > GRW_StatusBar.maxCount) {
+      val = GRW_StatusBar.maxCount + '+';
+    }
     while(enumerator.hasMoreElements()) {
       win = enumerator.getNext();
 
@@ -287,7 +289,7 @@ var GRW_StatusBar = {
       label.style.margin = '';
       label.crop = '';
       label.collapsed = false;
-      
+
     }
     if(GRPrefs.showNotification && val != 0) {
       var GRW_bundle = document.getElementById('grwatcher-bundles');
@@ -385,8 +387,7 @@ var genStatusGrid = function(feeds, class, justRows) {
   GRPrefs.feeds = feeds;
   this.class = class || '';
   this.justRows = justRows || false;
-  var rows = this.genRows(feeds);
-  this.grid = this.genGrid(rows);
+  this.grid = this.genGrid(this.genRows(feeds));
 }
 genStatusGrid.prototype = {
 
@@ -410,6 +411,7 @@ genStatusGrid.prototype = {
         if(o.Title.length > titlelength) {
           o.Title = o.Title.slice(0, titlelength-3)+'...';
         }
+        o.Count = (GRW_StatusBar.maxCount && o.Count > GRW_StatusBar.maxCount) ? GRW_StatusBar.maxCount + '+' : o.Count;
         // set up the counter position
         if(GRPrefs.tooltipcounterpos() == 'left') {
           labelc1.value = o.Count;
@@ -437,7 +439,6 @@ genStatusGrid.prototype = {
     return rowsArray;
   },
   genGrid: function(rowsArray) {
-    
     // Create grid elements
     var grid = document.createElement('grid');
     var columns = document.createElement('columns');
@@ -474,9 +475,8 @@ var GoogleIt = function() {
   }
   if(!accountManager.getCurrentSID()) {
     var login = accountManager.logIn();
-  }
-  else {
-    new GetList();
+  } else {
+    var list = new GetList();
   }
   if(login === -1) {
     GRW_StatusBar.switchErrorIcon();
@@ -570,7 +570,7 @@ var windowCloseCheck = {
   observe: function(aSubject, aTopic, aData) {
     var observerService = Components.classes["@mozilla.org/observer-service;1"].getService(Components.interfaces.nsIObserverService);
     observerService.removeObserver(windowCloseCheck, "domwindowclosed");
-   
+
     if(typeof Components == 'undefined') {
       return;
     }
@@ -603,23 +603,23 @@ var GRW_init = function() {
   if(isActiveGRW() === false) {
     window.GRW = true;
     var g = GoogleIt();
-  }
-  else {
+  } else {
     GRPrefs.conntype = GRPrefs.usersecureconnection() ? 'https' : 'http';
     var activeWin = getActiveGRW();
     var unr = activeWin.GRPrefs.currentNum;
+    var maxCount = activeWin.GRW_StatusBar.maxCount;
     GRPrefs.showNotification = false;
     if(unr === false) {
       GRW_StatusBar.setReaderTooltip('error');
       GRW_StatusBar.switchErrorIcon();
       GRW_StatusBar.hideCounter();
-    }
-    else if(unr > 0) {
+    } else if(unr > 0) {
       GRW_StatusBar.setReaderTooltip('new', unr);
       var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"].getService(Components.interfaces.nsIWindowMediator);
       var enumerator = wm.getEnumerator('navigator:browser'), win, grid, tt;
       while(enumerator.hasMoreElements()) {
         win = enumerator.getNext();
+        win.GRW_StatusBar.maxCount = maxCount;
         grid = new win.genStatusGrid(activeWin.GRPrefs.feeds);
         tt = win.document.getElementById('GRW-statusbar-tooltip-new');
         if(tt.firstChild) {
@@ -629,17 +629,15 @@ var GRW_init = function() {
       }
       GRW_StatusBar.switchOnIcon();
       GRW_StatusBar.showCounter(unr);
-    }
-    else {
+    } else {
       GRW_StatusBar.setReaderTooltip('nonew');
       GRW_StatusBar.switchOffIcon();
       if(GRPrefs.showzerocounter() === false) {
         GRW_StatusBar.hideCounter();
-      }
-      else {
+      } else {
         GRW_StatusBar.showCounter(unr);
       }
-    } 
+    }
   }
   new statusClickHandling(document.getElementById('GRW-statusbar'));
   if(document.getElementById('GRW-toolbar-button')) {
@@ -651,5 +649,5 @@ var GRW_init = function() {
 
   GRW_LOG('Google Reader Watcher initialized');
 };
- 
+
 window.addEventListener('load', GRW_init, false);

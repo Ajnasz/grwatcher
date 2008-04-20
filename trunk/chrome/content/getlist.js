@@ -18,6 +18,7 @@ GetList.prototype = {
   subscriptionsList: null,
   FeedlistIds: null,
   unreadCount: null,
+  maxCount: null,
   feeds: null,
   userFeeds: null,
   /**
@@ -59,7 +60,9 @@ GetList.prototype = {
     new Ajax( {
       url: GRPrefs.conntype + '://www.google.com/reader/api/0/unread-count?all=true&output=json',
       successHandler: function() {
-        THIS.unreadCount = eval('('+this.req.responseText+')').unreadcounts;
+        var data = eval('('+this.req.responseText+')');
+        THIS.unreadCount = data.unreadcounts;
+        THIS.maxCount = GRW_StatusBar.maxCount = data.max;
         THIS.feeds = new Array();
         THIS.userFeeds = new Array();
         THIS.unreadCount.map(function(o) {
@@ -126,7 +129,7 @@ GetList.prototype = {
   countLabeled: function() {
     var labeled = this.collectByLabels();
     var uc = this.feeds;
-    var i, l, la, u, all = 0, feeds = Array();
+    var i, l, la, u, all = 0, feeds = new Array(), counted = new Object();
     var filteredLabels = GRPrefs.filteredlabels();
     var rex;
     for(label in labeled) {
@@ -139,7 +142,10 @@ GetList.prototype = {
             if(u.id == l.id && u.count > 0) {
               labeled[label].count += u.count;
               labeled[label].subs.push({Title: l.title, Id: l.id, Count: u.count});
-              all += u.count;
+              if(counted[l.id] !== true) {
+                all += u.count;
+                counted[l.id] = true;
+              }
             }
           });
         });
