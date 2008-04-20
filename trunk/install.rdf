@@ -11,7 +11,7 @@
       <Description>
         <em:id>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</em:id>
         <em:minVersion>1.5</em:minVersion>
-        <em:maxVersion>3.0b4</em:maxVersion>
+        <em:maxVersion>3.0b5</em:maxVersion>
       </Description>
     </em:targetApplication>
 
@@ -28,6 +28,7 @@
     <em:iconURL>chrome://grwatcher/skin/grwatcher.png</em:iconURL>
     <em:optionsURL>chrome://grwatcher/content/grprefs.xul</em:optionsURL>
 
+    <em:contributor>David Peitler</em:contributor>
     <em:contributor>7bse - de-DE (babelzilla)</em:contributor>
     <em:contributor>panda2005 el-GR (babelzilla)</em:contributor>
     <em:contributor>PAGF_LINUX es-AR (babelzilla)</em:contributor>
@@ -45,6 +46,5 @@
     <em:contributor>morpher sk-SK (babelzilla)</em:contributor>
     <em:contributor>Ahmed Yilmaz - tr-TR</em:contributor>
     <em:contributor>fiag zh-CN (babelzilla)</em:contributor>
-    <em:contributor>Dave Peitler</em:contributor>
   </Description>
 </RDF>
