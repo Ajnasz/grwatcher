@@ -59,10 +59,9 @@ var accountManager = {
       }
       new Ajax({
         url: url,
-        pars: param,
         method: 'post',
         successHandler: this.ajaxSuccess
-      });
+      }, param);
     }
     else {
       this.loginFailed();
