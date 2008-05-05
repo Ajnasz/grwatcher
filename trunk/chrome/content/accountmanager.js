@@ -17,6 +17,7 @@
 var accountManager = {
   // mozilla nsi cookie manager component
   CookieManager: Components.classes["@mozilla.org/cookiemanager;1"].getService(Components.interfaces.nsICookieManager),
+  CookieManager2: Components.classes["@mozilla.org/cookiemanager;1"].getService(Components.interfaces.nsICookieManager2),
   /**
    * Check, that the account is configured
    * @type {Boolean}
@@ -51,38 +52,61 @@ var accountManager = {
    */
   logIn: function() {
     if(this.accountExists()) {
-      var url = GRPrefs.conntype + '://www.google.com/accounts/ServiceLoginAuth';
-      var param = 'Email='+encodeURIComponent(GRPrefs.username())+'&Passwd='+encodeURIComponent(passwordManager.getPassword())+'&service=reader&continue=http://www.google.com';
+      var url = GRPrefs.conntype + '://www.google.com/accounts/ClientLogin';
+      var param = 'source=' + encodeURIComponent('Google Reader Watcher') + '&Email='+encodeURIComponent(GRPrefs.username())+'&Passwd='+encodeURIComponent(passwordManager.getPassword())+'&service=reader&continue=' + encodeURIComponent('http://www.google.com/');
       // remember the login state, possible won't ask for mozilla master password
       if(GRPrefs.rememberLogin()) {
-        param += '&PersistentCookie=yes';
+        // param += '&PersistentCookie=yes';
       }
+      var THIS = this;
       new Ajax({
         url: url,
         method: 'post',
-        successHandler: this.ajaxSuccess
+        successHandler: function(event){THIS.ajaxSuccess(event, this.req);}
       }, param);
-    }
-    else {
+    } else {
       this.loginFailed();
       return -1;
     }
     return true;
+  },
+  setGoogleCookie: function(name, value) {
+    this.CookieManager2.add('google.com', '/', name, value, false, GRPrefs.rememberLogin(), 1600000000);
   },
   /**
    * @param {Event} e event object
    * @returns true if the login was succes and false if wasn't
    * @type Boolean
    */
-  ajaxSuccess: function(e) {
+  ajaxSuccess: function(e, request) {
+    var response = request.responseText;
+    var rex = {
+      sid: new RegExp('^SID=([-_a-zA-Z0-9]+)', 'm'),
+      lsid: new RegExp('^LSID=([-_a-zA-Z0-9]+)', 'm'),
+      auth: new RegExp('^Auth=([-_a-zA-Z0-9]+)', 'm')
+    }
+    var SID = response.replace(rex.sid, '$1');
+    var LSID = response.replace(rex.lsid, '$1');
+    var Auth = response.replace(rex.auth, '$1');
+    GRW_LOG('SID: ' + SID, 'LSID: ' + LSID, 'Auth: ' + Auth);
+    if(SID != '') {
+      this.setGoogleCookie('SID', SID);
+      if(LSID != '') {
+        this.setGoogleCookie('LSID', LSID);
+      }
+      if(Auth != '') {
+        this.setGoogleCookie('Auth', Auth);
+      }
+    }
     var curSid = accountManager.getCurrentSID();
     if(curSid === false) {
       GRW_StatusBar.switchErrorIcon();
       GRW_StatusBar.setReaderTooltip('loginerror');
       return false;
+    } else {
+      new GetList();
+      return true;
     }
-    getFeedList();
-    return true;
   },
   /**
    * do things when the login failed
@@ -91,7 +115,7 @@ var accountManager = {
    */
   loginFailed: function() {
     GRW_StatusBar.switchErrorIcon();
-    LOG('login failed');
+    GRW_LOG('login failed');
     return false;
   }
 };
