@@ -1,9 +1,10 @@
 <!ENTITY GRWstatusbar.popup.openReader "Avaa Google Reader">
 <!ENTITY GRWstatusbar.popup.getReadCounter "Tarkista, jos lukemattomia syötteitä">
 <!ENTITY GRWstatusbar.popup.openPrefs "Asetukset">
+<!ENTITY GRWstatusbar.popup.markAllAsRead "Merkitse kaikki luetuksi">
 <!ENTITY GRWpreferences.title "Google Reader Watcher -asetukset">
-<!ENTITY GRWpreferences.checkfrequency "Tarkista uusien syötteiden varalta joka">
-<!ENTITY GRWpreferences.checkfrequency.unit "minuutti">
+<!ENTITY GRWpreferences.checkfrequency "Tarkista uusien syötteiden varalta">
+<!ENTITY GRWpreferences.checkfrequency.unit "minuutin välein">
 <!ENTITY GRWpreferences.activateOpenedTab "Valitse Google Reader -välilehti avaamisen jälkeen">
 <!ENTITY GRWpreferences.generalpreferencescaption "Yleiset asetukset">
 <!ENTITY GRWpreferences.generalpreferencesopencaption "Google Reader -avausasetukset">
@@ -29,6 +30,8 @@
 <!ENTITY GRWpreferences.leftclickopen.dblclick "Tuplaklikkauksella">
 <!ENTITY GRWpreferences.leftclickopen.disabled "Ei käytössä">
 <!ENTITY GRWpreferences.usesecureconnection "Käytä suojattua yhteyttä">
+<!ENTITY GRWpreferences.sortbylabels "Järjestä syötteet työkaluvihjeessä otsikon mukaan">
+<!ENTITY GRWpreferences.filteredlabels "Suodata otsikoidut syötteet seuraavien otsikoiden mukaan (pilkulla eroteltu lista)">
 <!ENTITY GRWtooltip.nonewfeed "Lukemattomia syötteitä ei löytynyt">
 <!ENTITY GRWtooltip.errorfeedfetch "Virhe noutaessa syötteitä!">
 <!ENTITY GRWtooltip.newfeed "Sinulle on uusia syötteitä">

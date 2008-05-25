@@ -1,6 +1,7 @@
 <!ENTITY GRWstatusbar.popup.openReader "Otvoriť Google Reader">
 <!ENTITY GRWstatusbar.popup.getReadCounter "Skontrolovať neprečítané správy">
 <!ENTITY GRWstatusbar.popup.openPrefs "Nastavenia">
+<!ENTITY GRWstatusbar.popup.markAllAsRead "Mark all as read">
 <!ENTITY GRWpreferences.title "Google Reader Watcher Nastavenia">
 <!ENTITY GRWpreferences.checkfrequency "Skontrolovať nové správy každých">
 <!ENTITY GRWpreferences.checkfrequency.unit "minút">
@@ -29,6 +30,8 @@
 <!ENTITY GRWpreferences.leftclickopen.dblclick "dvojitým kliknutím">
 <!ENTITY GRWpreferences.leftclickopen.disabled "zakázané">
 <!ENTITY GRWpreferences.usesecureconnection "Použiť zabezpečené spojenie">
+<!ENTITY GRWpreferences.sortbylabels "In the tooltip sort the feeds by label">
+<!ENTITY GRWpreferences.filteredlabels "Filter feeds which are labeled with these labels (comma separated list)">
 <!ENTITY GRWtooltip.nonewfeed "Nemáte žiadne neprečítané správy">
 <!ENTITY GRWtooltip.errorfeedfetch "Chyba pri kontrole správ.">
 <!ENTITY GRWtooltip.newfeed "Máte neprečítané správy">

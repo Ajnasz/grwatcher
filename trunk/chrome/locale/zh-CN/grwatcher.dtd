@@ -1,6 +1,7 @@
 <!ENTITY GRWstatusbar.popup.openReader "打开 Google Reader">
 <!ENTITY GRWstatusbar.popup.getReadCounter "检查未读的收取点">
 <!ENTITY GRWstatusbar.popup.openPrefs "首选项">
+<!ENTITY GRWstatusbar.popup.markAllAsRead "Mark all as read">
 <!ENTITY GRWpreferences.title "Google Reader Watcher 首选项">
 <!ENTITY GRWpreferences.checkfrequency "每">
 <!ENTITY GRWpreferences.checkfrequency.unit "分钟检查新 Feeds">
@@ -29,6 +30,8 @@
 <!ENTITY GRWpreferences.leftclickopen.dblclick "双击">
 <!ENTITY GRWpreferences.leftclickopen.disabled "已禁用">
 <!ENTITY GRWpreferences.usesecureconnection "使用安全连接">
+<!ENTITY GRWpreferences.sortbylabels "In the tooltip sort the feeds by label">
+<!ENTITY GRWpreferences.filteredlabels "Filter feeds which are labeled with these labels (comma separated list)">
 <!ENTITY GRWtooltip.nonewfeed "您未获取到未读的信息">
 <!ENTITY GRWtooltip.errorfeedfetch "获取收取点错误！">
 <!ENTITY GRWtooltip.newfeed "您有未读 Feeds">

@@ -1,36 +1,39 @@
-<!ENTITY GRWstatusbar.popup.openReader "Google Reader öffnen">
+<!ENTITY GRWstatusbar.popup.openReader "&quot;Google Reader&quot; öffnen">
 <!ENTITY GRWstatusbar.popup.getReadCounter "Auf ungelesene Feeds überprüfen">
 <!ENTITY GRWstatusbar.popup.openPrefs "Einstellungen">
-<!ENTITY GRWpreferences.title "Google Reader Watcher Einstellungen">
-<!ENTITY GRWpreferences.checkfrequency "Alle ... auf neue Feeds überprüfen">
-<!ENTITY GRWpreferences.checkfrequency.unit "Minute(n)">
-<!ENTITY GRWpreferences.activateOpenedTab "Den Google Reader Tab nach dem Öffnen Fokusieren/Auswählen">
+<!ENTITY GRWstatusbar.popup.markAllAsRead "Alle als gelesen markieren">
+<!ENTITY GRWpreferences.title "Google Reader Watcher - Einstellungen">
+<!ENTITY GRWpreferences.checkfrequency "Auf neue Feeds überprüfen alle">
+<!ENTITY GRWpreferences.checkfrequency.unit "Minuten">
+<!ENTITY GRWpreferences.activateOpenedTab "Den &quot;Google Reader&quot;-Tab nach dem Öffnen fokusieren">
 <!ENTITY GRWpreferences.generalpreferencescaption "Allgemeine Einstellungen">
-<!ENTITY GRWpreferences.generalpreferencesopencaption "Google Reader Einstellungen öffnen">
-<!ENTITY GRWpreferences.tooltippreferencescaption "Tooltip Einstellungen">
+<!ENTITY GRWpreferences.generalpreferencesopencaption "&quot;Google Reader&quot;-Einstellungen öffnen">
+<!ENTITY GRWpreferences.tooltippreferencescaption "Tooltip-Einstellungen">
 <!ENTITY GRWpreferences.tabgeneral "Allgemein">
-<!ENTITY GRWpreferences.openinnewtabdesc "Google Reader in einem neuen Tab öffnen">
-<!ENTITY GRWpreferences.resetcounterdesc "Setzt den Statusleistenzähler zurück, wenn das Google Reader Fenster geöffnet wird">
-<!ENTITY GRWpreferences.shownotificationwindow "Show notification window">
-<!ENTITY GRWpreferences.showzerocounter "Show the counter when there are no unread feeds available">
+<!ENTITY GRWpreferences.openinnewtabdesc "&quot;Google Reader&quot; in einem neuen Tab öffnen">
+<!ENTITY GRWpreferences.resetcounterdesc "Setzt den Statusleistenzähler zurück, wenn das &quot;Google Reader&quot;-Fenster geöffnet wird">
+<!ENTITY GRWpreferences.shownotificationwindow "Benachrichtigungsfenster anzeigen">
+<!ENTITY GRWpreferences.showzerocounter "Zähler immer anzeigen">
 <!ENTITY GRWpreferences.tooltipcounterposright "Rechts">
 <!ENTITY GRWpreferences.tooltipcounterposleft "Links">
-<!ENTITY GRWpreferences.tooltipcounterposdesc "Position des Counters im Tooltip">
-<!ENTITY GRWpreferences.tooltipdesc "Diese Optionen werden nach einem erneutem Laden der Feeds übernommen.">
-<!ENTITY GRWpreferences.tooltiptitlelengthdesc "Zeigt die Zeichennummer des Feeds im Tooltip">
-<!ENTITY GRWpreferences.tabaccountinfo "Account Informationen">
-<!ENTITY GRWpreferences.accountinfocaption "Google Account Informationen">
-<!ENTITY GRWpreferences.accountinfodesc "Geben Sie Ihre Google Account E-Mail-Adresse und Passwort an">
+<!ENTITY GRWpreferences.tooltipcounterposdesc "Position des Zählers im Tooltip:">
+<!ENTITY GRWpreferences.tooltipdesc "Diese Einstellungen werden nach einem erneutem Laden der Feeds übernommen.">
+<!ENTITY GRWpreferences.tooltiptitlelengthdesc "Zeichenlänge des Feed-Titels im Tooltip">
+<!ENTITY GRWpreferences.tabaccountinfo "Kontoinformationen">
+<!ENTITY GRWpreferences.accountinfocaption "&quot;Google Konto&quot;-Informationen">
+<!ENTITY GRWpreferences.accountinfodesc "Geben Sie Ihre &quot;Google Konto&quot;-E-Mail-Adresse und Passwort an">
 <!ENTITY GRWpreferences.accountinfoemail "E-Mail-Adresse:">
 <!ENTITY GRWpreferences.accountinfopassword "Passwort:">
-<!ENTITY GRWpreferences.accountinfo.rememberLogin "Login merken">
-<!ENTITY GRWpreferences.leftclickopen.description "Google Reader öffnen mit">
+<!ENTITY GRWpreferences.accountinfo.rememberLogin "Sitzung beim Start fortsetzen">
+<!ENTITY GRWpreferences.leftclickopen.description "&quot;Google Reader&quot; öffnen mit">
 <!ENTITY GRWpreferences.leftclickopen.singleclick "Einzelklick">
 <!ENTITY GRWpreferences.leftclickopen.dblclick "Doppelklick">
 <!ENTITY GRWpreferences.leftclickopen.disabled "Deaktiviert">
-<!ENTITY GRWpreferences.usesecureconnection "">
+<!ENTITY GRWpreferences.usesecureconnection "Sichere Verbindung verwenden">
+<!ENTITY GRWpreferences.sortbylabels "Feeds im Tooltip nach Label sortieren">
+<!ENTITY GRWpreferences.filteredlabels "Feeds nicht anzeigen, die zu folgenden Labels gehören (Kommagetrennte Liste)">
 <!ENTITY GRWtooltip.nonewfeed "Sie haben keine ungelesenen Feeds">
 <!ENTITY GRWtooltip.errorfeedfetch "Fehler beim Laden der Feeds! Sind Sie angemeldet?">
 <!ENTITY GRWtooltip.newfeed "Sie haben ungelesene Feeds">
-<!ENTITY GRWtooltip.errorlogin "">
-<!ENTITY GRWtooltip.networkerror "">
+<!ENTITY GRWtooltip.errorlogin "Anmeldung fehlgeschlagen. Bitte überprüfen Sie Passwort und/oder Benutzername!">
+<!ENTITY GRWtooltip.networkerror "Netzwerkfehler">

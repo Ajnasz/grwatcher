@@ -1,13 +1,14 @@
-<!ENTITY GRWstatusbar.popup.openReader "Google Reader'i Aç">
+﻿<!ENTITY GRWstatusbar.popup.openReader "Google Reader'i Aç">
 <!ENTITY GRWstatusbar.popup.getReadCounter "Okunmamış haberleri kontrol et">
 <!ENTITY GRWstatusbar.popup.openPrefs "Tercihler">
+<!ENTITY GRWstatusbar.popup.markAllAsRead "Hepsini okunmuş say">
 <!ENTITY GRWpreferences.title "Google Reader İzleyicisi Tercihleri">
 <!ENTITY GRWpreferences.checkfrequency "Haberleri">
 <!ENTITY GRWpreferences.checkfrequency.unit "dakikada bir kontrol et">
 <!ENTITY GRWpreferences.activateOpenedTab "Açıldığında Google Reader sekmesine geç">
 <!ENTITY GRWpreferences.generalpreferencescaption "Genel Tercihler">
 <!ENTITY GRWpreferences.generalpreferencesopencaption "Google Reader'i yeni sekmede aç">
-<!ENTITY GRWpreferences.tooltippreferencescaption "imleç bilgisi tercihleri">
+<!ENTITY GRWpreferences.tooltippreferencescaption "İmleç bilgisi tercihleri">
 <!ENTITY GRWpreferences.tabgeneral "Genel">
 <!ENTITY GRWpreferences.openinnewtabdesc "Google Reader'i yeni sekmede aç">
 <!ENTITY GRWpreferences.resetcounterdesc "Google Reader açıldığında durum çubuğundaki sayacı sıfırla">
@@ -15,20 +16,22 @@
 <!ENTITY GRWpreferences.showzerocounter "Okunmamış beslemeler yokken de sayacı göster">
 <!ENTITY GRWpreferences.tooltipcounterposright "Sağ">
 <!ENTITY GRWpreferences.tooltipcounterposleft "Sol">
-<!ENTITY GRWpreferences.tooltipcounterposdesc "imleç bilgisindeki sayaçların bulunacağı taraf:">
+<!ENTITY GRWpreferences.tooltipcounterposdesc "İmleç bilgisindeki sayaçların bulunacağı taraf:">
 <!ENTITY GRWpreferences.tooltipdesc "Bu ayarlar haber kontrolünden sonra geçerli olacaktır.">
-<!ENTITY GRWpreferences.tooltiptitlelengthdesc "imleç bilgisindeki haber başlıklarının karakter sayısı">
+<!ENTITY GRWpreferences.tooltiptitlelengthdesc "İmleç bilgisindeki haber başlıklarının karakter sayısı">
 <!ENTITY GRWpreferences.tabaccountinfo "Hesap Bilgisi">
 <!ENTITY GRWpreferences.accountinfocaption "Google Hesap Bilgisi">
 <!ENTITY GRWpreferences.accountinfodesc "Google hesabı bilgilerinizi giriniz">
 <!ENTITY GRWpreferences.accountinfoemail "Email Adresi:">
-<!ENTITY GRWpreferences.accountinfopassword "şifre:">
+<!ENTITY GRWpreferences.accountinfopassword "Şifre:">
 <!ENTITY GRWpreferences.accountinfo.rememberLogin "Giriş bilgilerini hatırla">
 <!ENTITY GRWpreferences.leftclickopen.description "Google Reader'i">
 <!ENTITY GRWpreferences.leftclickopen.singleclick "sol tıklamayla aç">
 <!ENTITY GRWpreferences.leftclickopen.dblclick "çift tıklamayla aç">
 <!ENTITY GRWpreferences.leftclickopen.disabled "açma">
 <!ENTITY GRWpreferences.usesecureconnection "Güvenli bağlantı kullan">
+<!ENTITY GRWpreferences.sortbylabels "İmleç bilgisindeki beslemeleri etikete göre sırala">
+<!ENTITY GRWpreferences.filteredlabels "Bu etiketlere sahip beslemeleri filtrele (etiketleri virgüllerle ayırınız)">
 <!ENTITY GRWtooltip.nonewfeed "Okunmamış haberiniz yok">
 <!ENTITY GRWtooltip.errorfeedfetch "Beslemelere ulaşırken hata oluştu!">
 <!ENTITY GRWtooltip.newfeed "Okunmamış haberleriniz var">

@@ -1,6 +1,7 @@
 <!ENTITY GRWstatusbar.popup.openReader "Otwórz Google Reader">
 <!ENTITY GRWstatusbar.popup.getReadCounter "Sprawdź wiadomości">
 <!ENTITY GRWstatusbar.popup.openPrefs "Ustawienia">
+<!ENTITY GRWstatusbar.popup.markAllAsRead "Oznacz wszystkie jako przeczytane">
 <!ENTITY GRWpreferences.title "Google Reader watcher - ustawienia">
 <!ENTITY GRWpreferences.checkfrequency "Sprawdź wiadomości co">
 <!ENTITY GRWpreferences.checkfrequency.unit "min">
@@ -29,6 +30,8 @@
 <!ENTITY GRWpreferences.leftclickopen.dblclick "dwukrotnego kliknięcia">
 <!ENTITY GRWpreferences.leftclickopen.disabled "wyłączone">
 <!ENTITY GRWpreferences.usesecureconnection "Korzystaj z szyfrowanego połączenia">
+<!ENTITY GRWpreferences.sortbylabels "W podpowiedzi sortuj kanały wg etykiet">
+<!ENTITY GRWpreferences.filteredlabels "Filtruj kanały wg etykiet (odziel przecinkiem)">
 <!ENTITY GRWtooltip.nonewfeed "Brak nieprzeczytanych wiadomości">
 <!ENTITY GRWtooltip.errorfeedfetch "Błąd podczas pobierania wiadomości! Sprawdź czy jesteś zalogowany.">
 <!ENTITY GRWtooltip.newfeed "Są nieprzeczytane wiadomości">

@@ -32,7 +32,6 @@
 <!ENTITY GRWpreferences.usesecureconnection "Secure connection">
 <!ENTITY GRWpreferences.sortbylabels "In the tooltip sort the feeds by label">
 <!ENTITY GRWpreferences.filteredlabels "Filter feeds which are labeled with these labels (comma separated list)">
-
 <!ENTITY GRWtooltip.nonewfeed "You haven&apos;t got any unread feeds">
 <!ENTITY GRWtooltip.errorfeedfetch "Error fetching feeds!">
 <!ENTITY GRWtooltip.newfeed "You have unread feeds">

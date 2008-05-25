@@ -1,6 +1,7 @@
 <!ENTITY GRWstatusbar.popup.openReader "Ava Google Reader">
 <!ENTITY GRWstatusbar.popup.getReadCounter "Kontrolli lugemata tellimusi">
 <!ENTITY GRWstatusbar.popup.openPrefs "Eelistused">
+<!ENTITY GRWstatusbar.popup.markAllAsRead "Märgi kõik loetuks">
 <!ENTITY GRWpreferences.title "Google Reader Watcheri eelistused">
 <!ENTITY GRWpreferences.checkfrequency "Uusi tellimusi kontrollitakse iga">
 <!ENTITY GRWpreferences.checkfrequency.unit "minuti järel">
@@ -28,9 +29,11 @@
 <!ENTITY GRWpreferences.leftclickopen.singleclick "ühe klõpsuga">
 <!ENTITY GRWpreferences.leftclickopen.dblclick "topeltklõpsuga">
 <!ENTITY GRWpreferences.leftclickopen.disabled "ei reageeri klõpsamisele">
-<!ENTITY GRWpreferences.usesecureconnection "">
+<!ENTITY GRWpreferences.usesecureconnection "Kasutatakse turvalist ühendust">
+<!ENTITY GRWpreferences.sortbylabels "Vihjes sorteeritakse tellimused nime järgi">
+<!ENTITY GRWpreferences.filteredlabels "Filtreeritakse järgnevate nimedega tellimused (eralda komadega)">
 <!ENTITY GRWtooltip.nonewfeed "Sul pole ühtegi lugemata tellimust">
 <!ENTITY GRWtooltip.errorfeedfetch "Viga tellimuste kontrollimisel! Kas oled ikka sisse logitud?">
 <!ENTITY GRWtooltip.newfeed "Sul on lugemata tellimusi">
 <!ENTITY GRWtooltip.errorlogin "Sisselogimine ebaõnnestus. Kontrolli sisestatud parooli ja/või kasutajanime!">
-<!ENTITY GRWtooltip.networkerror "">
+<!ENTITY GRWtooltip.networkerror "Ühendumine ebaõnnestus. Tee kindlaks, et sul on töötav internetiühendus!">

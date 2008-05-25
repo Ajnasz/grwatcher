@@ -1,6 +1,7 @@
 <!ENTITY GRWstatusbar.popup.openReader "Abrir Google Reader">
 <!ENTITY GRWstatusbar.popup.getReadCounter "Verificar alimentadores sin leer">
 <!ENTITY GRWstatusbar.popup.openPrefs "Preferencias">
+<!ENTITY GRWstatusbar.popup.markAllAsRead "Mark all as read">
 <!ENTITY GRWpreferences.title "Preferencias del observador Google Reader">
 <!ENTITY GRWpreferences.checkfrequency "Verificar nuevos alimentadores cada">
 <!ENTITY GRWpreferences.checkfrequency.unit "minuto(s)">
@@ -29,6 +30,8 @@
 <!ENTITY GRWpreferences.leftclickopen.dblclick "Doble clic">
 <!ENTITY GRWpreferences.leftclickopen.disabled "Desactivado">
 <!ENTITY GRWpreferences.usesecureconnection "Utilizar conexión segura">
+<!ENTITY GRWpreferences.sortbylabels "In the tooltip sort the feeds by label">
+<!ENTITY GRWpreferences.filteredlabels "Filter feeds which are labeled with these labels (comma separated list)">
 <!ENTITY GRWtooltip.nonewfeed "Tiene algún alimentador sin leer">
 <!ENTITY GRWtooltip.errorfeedfetch "¡Error recuperando alimentadores!">
 <!ENTITY GRWtooltip.newfeed "Tiene alimentadores sin leer">
