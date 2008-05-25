@@ -38,7 +38,7 @@ Ajax.prototype = {
   pars: null,
   req: null,
   method: 'get',
-  agent: 'Google Reader Watcher 0.0.12',
+  agent: 'Google Reader Watcher 0.0.12.1',
   handler: function(pars) {
     try {
       if(this.req.readyState == 4) {
