@@ -1,9 +1,8 @@
 /**
- * @author Koszti Lajos [Ajnasz] http://ajnasz.hu ajnasz@ajnasz.hu 
+ * @author Koszti Lajos [Ajnasz] http://ajnasz.hu ajnasz@ajnasz.hu
  * @license GPL v2
  */
 /**
- * @author Koszti Lajos [Ajnasz] http://ajnasz.hu ajnasz@ajnasz.hu 
  * @param {Object} pars
  */
 var Ajax = function(pars, parameters) {
@@ -32,14 +31,14 @@ var Ajax = function(pars, parameters) {
   }
   this.parameters = typeof parameters != 'undefined' ? parameters : null;
   this.req.onreadystatechange = stChg(this, false);
-  this.req.send(this.parameters); 
+  this.req.send(this.parameters);
 };
 Ajax.prototype = {
   url: null,
   pars: null,
   req: null,
   method: 'get',
-  agent: 'Google Reader Watcher 0.0.12b',
+  agent: 'Google Reader Watcher 0.0.12',
   handler: function(pars) {
     try {
       if(this.req.readyState == 4) {
@@ -58,8 +57,7 @@ Ajax.prototype = {
       else {
         return this.loadHandler();
       }
-    }
-    catch(e) {
+    } catch(e) {
       return this.errorHandler('no readyState', e);
     }
   },
