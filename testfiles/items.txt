@@ -1,0 +1,3 @@
+s = user/12181831902988724490/state/com.google/reading-list" // User subscription list
+ts = (new Date()).getTime(); // timestamp
+T = TOKEN // see urls
