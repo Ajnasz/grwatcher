@@ -1,5 +1,5 @@
 /**
- * @author Koszti Lajos [Ajnasz] http://ajnasz.hu ajnasz@ajnasz.hu 
+ * @author Koszti Lajos [Ajnasz] http://ajnasz.hu ajnasz@ajnasz.hu
  * @license GPL v2
  * for more details see the license.txt
  */
@@ -31,7 +31,7 @@ var _passwordManager = function() {
         return false;
       }
       catch(ex){
-       LOG(ex); 
+       GRW_LOG(ex);
       }
     };
 
@@ -47,7 +47,7 @@ var _passwordManager = function() {
         var extLoginInfo = new this.nsLoginInfo(this.url, this.formSubmitURL, null, this.username, password, "", "");
         this.loginManager.addLogin(extLoginInfo);
       } catch(ex) {
-        LOG(ex);
+        GRW_LOG(ex);
       }
 
     }
@@ -70,7 +70,7 @@ var _passwordManager = function() {
             return pass.password
           }
         } catch (ex){
-          LOG(ex); 
+          GRW_LOG(ex);
         }
       }
     },
@@ -82,12 +82,12 @@ var _passwordManager = function() {
         this.passwordManager.removeUser(this.url, this.username);
       }
       catch (ex) {
-        LOG(ex);
+        GRW_LOG(ex);
       }
       try {
         this.passwordManager.addUser(this.url, this.username, password);
       } catch(ex) {
-        LOG(ex);
+        GRW_LOG(ex);
       }
     }
   }
