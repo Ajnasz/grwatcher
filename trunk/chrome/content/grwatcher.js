@@ -94,8 +94,7 @@ var GRCheck = {
       if(r.test(gBrowser.getBrowserAtIndex(i).currentURI.spec)) {
         outObj.grTab = i;
         return outObj;
-      }
-      else if(gBrowser.getBrowserAtIndex(i).currentURI.spec == 'about:blank' && outObj.blankPage === false) {
+      } else if(gBrowser.getBrowserAtIndex(i).currentURI.spec == 'about:blank' && outObj.blankPage === false) {
         outObj.blankPage = i;
       }
     }
@@ -357,8 +356,7 @@ var GRW_showNotification = function(label, value) {
       */
       var alertsService = Components.classes["@mozilla.org/alerts-service;1"].getService(Components.interfaces.nsIAlertsService);
       alertsService.showAlertNotification(image , label, value, true, "", GRW_openReaderNotify);
-    }
-    catch(e) {
+    } catch(e) {
       try {
         /**
         * Notifier for Linux
@@ -368,8 +366,7 @@ var GRW_showNotification = function(label, value) {
           .openWindow(null, "chrome://global/content/alerts/alert.xul", "_blank", "chrome,titlebar=no,popup=yes", null);
           alertWin.arguments = [image, label, value, true, "", 0, GRW_openReaderNotify];
           alertWin.setTimeout(function(){alertWin.close()},10000);
-      }
-      catch(e) {
+      } catch(e) {
         GRW_LOG(e.message);
       }
     }
