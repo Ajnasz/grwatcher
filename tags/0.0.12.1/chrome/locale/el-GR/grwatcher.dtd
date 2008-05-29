@@ -1,0 +1,39 @@
+<!ENTITY GRWstatusbar.popup.openReader "Άνοιγμα Google Reader">
+<!ENTITY GRWstatusbar.popup.getReadCounter "Έλεγχος για μη αναγνωσμένες εγγραφές στα αρχεία ροής">
+<!ENTITY GRWstatusbar.popup.openPrefs "Προτιμήσεις">
+<!ENTITY GRWstatusbar.popup.markAllAsRead "Σημείωση όλων ως αναγνωσμένων">
+<!ENTITY GRWpreferences.title "Προτιμήσεις Google Reader Watcher">
+<!ENTITY GRWpreferences.checkfrequency "Έλεγχος για νέες εγγραφές σε αρχεία ροής κάθε">
+<!ENTITY GRWpreferences.checkfrequency.unit "λεπτά(-ο)">
+<!ENTITY GRWpreferences.activateOpenedTab "Εστιάση στην καρτέλα Reader μετά το άνοιγμα">
+<!ENTITY GRWpreferences.generalpreferencescaption "Γενικές προτιμήσεις">
+<!ENTITY GRWpreferences.generalpreferencesopencaption "Άνοιγμα ρυθμίσεων του Google Reader">
+<!ENTITY GRWpreferences.tooltippreferencescaption "Προτιμήσεις συμβουλής εργαλείου">
+<!ENTITY GRWpreferences.tabgeneral "Γενικά">
+<!ENTITY GRWpreferences.openinnewtabdesc "Άνοιγμα του Google Reader σε νέα καρτέλα">
+<!ENTITY GRWpreferences.resetcounterdesc "Επαναφορά μετρητή της γραμμής κατάστασης μετά το άνοιγμα του Google Reader">
+<!ENTITY GRWpreferences.shownotificationwindow "Προβολή ειδοποίησης σε αναδυόμενο παράθυρο">
+<!ENTITY GRWpreferences.showzerocounter "Πάντα προβολή του μετρητή">
+<!ENTITY GRWpreferences.tooltipcounterposright "Δεξιά">
+<!ENTITY GRWpreferences.tooltipcounterposleft "Αριστερά">
+<!ENTITY GRWpreferences.tooltipcounterposdesc "Θέση του μετρητή στη συμβουλή εργαλείου :">
+<!ENTITY GRWpreferences.tooltipdesc "Αυτές οι επιλογές θα ενεργοποιηθούν μετά από τον επόμενο έλεγχο για εγγραφές">
+<!ENTITY GRWpreferences.tooltiptitlelengthdesc "Αριθμός χαρακτήρων τίτλου του αρχείου ροής στη συμβουλή εργαλείου">
+<!ENTITY GRWpreferences.tabaccountinfo "Πληροφορίες λογαριασμού">
+<!ENTITY GRWpreferences.accountinfocaption "Πληροφορίες λογαριασμού Google">
+<!ENTITY GRWpreferences.accountinfodesc "Ορισμός ηλ.διεύθυνσης και κωδικού λογαριασμού Google">
+<!ENTITY GRWpreferences.accountinfoemail "Ηλεκτρονική διεύθυνση :">
+<!ENTITY GRWpreferences.accountinfopassword "Κωδικός :">
+<!ENTITY GRWpreferences.accountinfo.rememberLogin "Συνέχιση συνεδρίας στην εκκίνηση">
+<!ENTITY GRWpreferences.leftclickopen.description "Άνοιγμα Google Reader με">
+<!ENTITY GRWpreferences.leftclickopen.singleclick "Απλό κλικ">
+<!ENTITY GRWpreferences.leftclickopen.dblclick "Διπλό κλικ">
+<!ENTITY GRWpreferences.leftclickopen.disabled "Απενεργοποιημένο">
+<!ENTITY GRWpreferences.usesecureconnection "Χρήση ασφαλούς σύνδεσης">
+<!ENTITY GRWpreferences.sortbylabels "Ταξινόμηση των εγγραφών κατά ετικέτα στη συμβουλή εργαλείου">
+<!ENTITY GRWpreferences.filteredlabels "Φιλτράρισμα εγγραφών που περιλαμβάνουν αυτές τις λέξεις στην ετικέτα (διαχωρισμός με κόμματα)">
+<!ENTITY GRWtooltip.nonewfeed "Δεν υπάρχουν μη αναγνωσμένες εγγραφές στα αρχεία ροής">
+<!ENTITY GRWtooltip.errorfeedfetch "Σφάλμα κατα τη διακομιδή των αρχείων ροής">
+<!ENTITY GRWtooltip.newfeed "Υπάρχουν μη αναγνωσμένες εγγραφές στα αρχεία ροής">
+<!ENTITY GRWtooltip.errorlogin "Αποτυχία σύνδεσης. Βεβαιωθείτε για τη σωστή εισαγωγή κωδικού και/ή ονόματος χρήστη">
+<!ENTITY GRWtooltip.networkerror "Σφάλμα δικτύου">

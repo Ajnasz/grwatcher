@@ -1,0 +1,39 @@
+<!ENTITY GRWstatusbar.popup.openReader "Ava Google Reader">
+<!ENTITY GRWstatusbar.popup.getReadCounter "Kontrolli lugemata tellimusi">
+<!ENTITY GRWstatusbar.popup.openPrefs "Eelistused">
+<!ENTITY GRWstatusbar.popup.markAllAsRead "Märgi kõik loetuks">
+<!ENTITY GRWpreferences.title "Google Reader Watcheri eelistused">
+<!ENTITY GRWpreferences.checkfrequency "Uusi tellimusi kontrollitakse iga">
+<!ENTITY GRWpreferences.checkfrequency.unit "minuti järel">
+<!ENTITY GRWpreferences.activateOpenedTab "Avamisel lülitutakse Google Readeri kaardile">
+<!ENTITY GRWpreferences.generalpreferencescaption "Üldised eelistused">
+<!ENTITY GRWpreferences.generalpreferencesopencaption "Google Readeri avamise sätted">
+<!ENTITY GRWpreferences.tooltippreferencescaption "Vihje eelistused">
+<!ENTITY GRWpreferences.tabgeneral "Üldine">
+<!ENTITY GRWpreferences.openinnewtabdesc "Google Reader avatakse uuel kaardil">
+<!ENTITY GRWpreferences.resetcounterdesc "Google Readeri akna avamisel lähtestatakse olekuriba loendur">
+<!ENTITY GRWpreferences.shownotificationwindow "Näidatakse teavitusakent">
+<!ENTITY GRWpreferences.showzerocounter "Loendurit näidatakse ka siis, kui puuduvad lugemata tellimused">
+<!ENTITY GRWpreferences.tooltipcounterposright "paremal">
+<!ENTITY GRWpreferences.tooltipcounterposleft "vasakul">
+<!ENTITY GRWpreferences.tooltipcounterposdesc "Lugemata tellimuste loenduri näitamise asukoht vihjes:">
+<!ENTITY GRWpreferences.tooltipdesc "Need valikud rakenduvad peale tellimuste kontrollimist.">
+<!ENTITY GRWpreferences.tooltiptitlelengthdesc "Tellimuse pealkirjas olevate tähemärkide arv vihjes:">
+<!ENTITY GRWpreferences.tabaccountinfo "Konto info">
+<!ENTITY GRWpreferences.accountinfocaption "Google konto info">
+<!ENTITY GRWpreferences.accountinfodesc "Sisesta oma Google konto e-posti aadress ja parool">
+<!ENTITY GRWpreferences.accountinfoemail "E-posti aadress:">
+<!ENTITY GRWpreferences.accountinfopassword "Parool:">
+<!ENTITY GRWpreferences.accountinfo.rememberLogin "Logimise info peetakse meeles">
+<!ENTITY GRWpreferences.leftclickopen.description "Google Reader avaneb">
+<!ENTITY GRWpreferences.leftclickopen.singleclick "ühe klõpsuga">
+<!ENTITY GRWpreferences.leftclickopen.dblclick "topeltklõpsuga">
+<!ENTITY GRWpreferences.leftclickopen.disabled "ei reageeri klõpsamisele">
+<!ENTITY GRWpreferences.usesecureconnection "Kasutatakse turvalist ühendust">
+<!ENTITY GRWpreferences.sortbylabels "Vihjes sorteeritakse tellimused nime järgi">
+<!ENTITY GRWpreferences.filteredlabels "Filtreeritakse järgnevate nimedega tellimused (eralda komadega)">
+<!ENTITY GRWtooltip.nonewfeed "Sul pole ühtegi lugemata tellimust">
+<!ENTITY GRWtooltip.errorfeedfetch "Viga tellimuste kontrollimisel! Kas oled ikka sisse logitud?">
+<!ENTITY GRWtooltip.newfeed "Sul on lugemata tellimusi">
+<!ENTITY GRWtooltip.errorlogin "Sisselogimine ebaõnnestus. Kontrolli sisestatud parooli ja/või kasutajanime!">
+<!ENTITY GRWtooltip.networkerror "Ühendumine ebaõnnestus. Tee kindlaks, et sul on töötav internetiühendus!">
