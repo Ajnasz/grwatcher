@@ -39,13 +39,15 @@ GetList.prototype = {
    * @type {Array}
    */
   onFeedListLoad: function(request) {
+    /*
     try {
-      var data = eval('('+request.responseText+')').subscriptions;
+      //var data = eval('('+request.responseText+')').subscriptions;
     } catch(e) {
       return false;
     }
-    var ids = Array();
-    data.map(function(d) {
+    */
+    var ids = new Array();
+    this.subscriptionsList.map(function(d) {
       ids.push(d.id);
     });
     this.FeedlistIds = ids;
