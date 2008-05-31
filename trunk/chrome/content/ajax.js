@@ -57,8 +57,8 @@ Ajax.prototype = {
       else {
         return this.loadHandler();
       }
-    } catch(e) {
-      return this.errorHandler('no readyState', e);
+    } catch(er) {
+      return this.errorHandler('no readyState', er);
     }
   },
   successHandler: function() {
@@ -67,7 +67,7 @@ Ajax.prototype = {
   errorHandler: function(msg, er) {
     GRW_StatusBar.switchErrorIcon();
     GRW_StatusBar.hideCounter();
-    GRW_LOG('Ajax error: ' + msg + ' || ' + er.message + ' - ' + er.line);
+    GRW_LOG('Ajax error: ' + msg, 'e: ' + er, 'm: ' + er.message, 'ln: ' + er.lineNumber, 'fn: ' + er.fileName, 'sr: ' + er.source);
     GRW_LOG(this.url);
     return false;
   },

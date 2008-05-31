@@ -7,5 +7,5 @@ GRW_LOG = function() {
     msg.push(arguments[i]);
   }
   var consoleService = Components.classes["@mozilla.org/consoleservice;1"].getService(Components.interfaces.nsIConsoleService);
-  consoleService.logStringMessage('GRW: ' + msg.join(', '));
+  consoleService.logStringMessage('GRW: ' + msg.join(',\n'));
 };
