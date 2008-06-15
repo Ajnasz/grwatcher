@@ -28,6 +28,7 @@ GetList.prototype = {
     var THIS = this;
     new Ajax({
       url: GRPrefs.conntype + '://www.google.com/reader/api/0/subscription/list?output=json',
+      // url: GRPrefs.conntype + '://www.googler.com/reader/api/0/subscription/list?output=json',
       successHandler: function(request) {
         THIS.subscriptionsList = eval('(' + this.req.responseText + ')').subscriptions;
         THIS.onFeedListLoad(this.req);
@@ -177,7 +178,7 @@ GetList.prototype = {
           });
         } else {
           nolabel.push(o);
-        } 
+        }
       }
     });
     var a = new Array();

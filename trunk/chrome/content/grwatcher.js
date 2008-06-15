@@ -87,10 +87,10 @@ var GRCheck = {
    * @type {Object}
    */
   getOpenedGR: function() {
-    var brl = gBrowser.browsers.length, i = 0;
+    var brl = gBrowser.browsers.length;
     var outObj = {grTab: false, blankPage: false};
     var r = new RegExp('^'+this.getReaderURL());
-    for( ; i < brl; i++) {
+    for(var i = 0 ; i < brl; i++) {
       if(r.test(gBrowser.getBrowserAtIndex(i).currentURI.spec)) {
         outObj.grTab = i;
         return outObj;
@@ -490,13 +490,13 @@ var GoogleIt = function() {
 /**
  * @param {Object} event
  */
-var statusClickHandling = function(ob) {
+var GRW_statusClickHandling = function(ob) {
   this.statusBar = ob;
   if(!this.statusBar) { return; }
   this.st = GRPrefs.leftClickOpen();
   this.observe();
 };
-statusClickHandling.prototype = {
+GRW_statusClickHandling.prototype = {
   st: null,
   statusBar: null,
   /**
@@ -636,9 +636,9 @@ var GRW_init = function() {
       }
     }
   }
-  new statusClickHandling(document.getElementById('GRW-statusbar'));
+  new GRW_statusClickHandling(document.getElementById('GRW-statusbar'));
   if(document.getElementById('GRW-toolbar-button')) {
-    new statusClickHandling(document.getElementById('GRW-toolbar-button'));
+    new GRW_statusClickHandling(document.getElementById('GRW-toolbar-button'));
   }
 
   var observerService = Components.classes["@mozilla.org/observer-service;1"].getService(Components.interfaces.nsIObserverService);
