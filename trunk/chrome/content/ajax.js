@@ -48,7 +48,7 @@ Ajax.prototype = {
           }
           else {
             return this.errorHandler('status code - ' + this.req.status);
-          }
+          };
         }
         else {
           return this.errorHandler('no status code');
@@ -57,17 +57,42 @@ Ajax.prototype = {
       else {
         return this.loadHandler();
       }
-    } catch(er) {
-      return this.errorHandler('no readyState', er);
+    } catch(error) {
+      return this.errorHandler('no readyState', error);
     }
   },
   successHandler: function() {
     return this.req.responseText;
   },
-  errorHandler: function(msg, er) {
+  errorHandler: function(msg, error) {
     GRW_StatusBar.switchErrorIcon();
     GRW_StatusBar.hideCounter();
-    GRW_LOG('Ajax error: ' + msg, 'e: ' + er, 'm: ' + er.message, 'ln: ' + er.lineNumber, 'fn: ' + er.fileName, 'sr: ' + er.source);
+    var msgs = new Array();
+    if(this.req.status == 401) {
+      // not authorized
+    }
+    msgs.push('Ajax error: ' + msg, 'e: ' + error, 'm: ' + error.message, 'ln: ' + error.lineNumber, 'fn: ' + error.fileName, 'sr: ' + error.source);
+    try {
+      msgs.push('dsc: ' + this.req.readyState);
+    } catch(e) {
+      msgs.push(e.message);
+    }
+    try {
+      msgs.push('st: ' + this.req.status);
+    } catch(e) {
+      msgs.push(e.message);
+    }
+    try {
+      msgs.push('stt: ' + this.req.statusText);
+    } catch(e) {
+      msgs.push(e.message);
+    }
+    try {
+      GRW_LOG(this.req.getAllResponseHeaders());
+    } catch(e) {
+      msgs.push(e.message)
+    }
+    GRW_LOG(msgs.join('\n'));
     GRW_LOG(this.url);
     return false;
   },
