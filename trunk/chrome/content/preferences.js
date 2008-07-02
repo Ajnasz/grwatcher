@@ -102,6 +102,9 @@ var GRPrefs = {
   },
   filteredlabels: function() {
    return prefManager.getCharPref('extensions.grwatcher.filteredlabels');
+  },
+  maximizeCounter: function() {
+   return prefManager.getBoolPref('extensions.grwatcher.maximizecounter');
   }
 };
 
