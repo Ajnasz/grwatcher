@@ -276,7 +276,7 @@ var GRW_StatusBar = {
   showCounter: function(val) {
     var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"].getService(Components.interfaces.nsIWindowMediator);
     var enumerator = wm.getEnumerator('navigator:browser'), win;
-    if(GRW_StatusBar.maxCount && val > GRW_StatusBar.maxCount) {
+    if(GRPrefs.maximizeCounter() && GRW_StatusBar.maxCount && val > GRW_StatusBar.maxCount) {
       val = GRW_StatusBar.maxCount + '+';
     }
     while(enumerator.hasMoreElements()) {
@@ -407,7 +407,7 @@ genStatusGrid.prototype = {
         if(o.Title.length > titlelength) {
           o.Title = o.Title.slice(0, titlelength-3)+'...';
         }
-        o.Count = (GRW_StatusBar.maxCount && o.Count > GRW_StatusBar.maxCount) ? GRW_StatusBar.maxCount + '+' : o.Count;
+        o.Count = (GRPrefs.maximizeCounter() && GRW_StatusBar.maxCount && o.Count > GRW_StatusBar.maxCount) ? GRW_StatusBar.maxCount + '+' : o.Count;
         // set up the counter position
         if(GRPrefs.tooltipcounterpos() == 'left') {
           labelc1.value = o.Count;
