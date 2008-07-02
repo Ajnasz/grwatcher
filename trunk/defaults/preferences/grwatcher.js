@@ -20,3 +20,4 @@ pref("extensions.grwatcher.username", "");
 pref("extensions.grwatcher.sortbylabels", false);
 
 pref("extensions.grwatcher.filteredlabels", "");
+pref("extensions.grwatcher.maximizecounter", true);
