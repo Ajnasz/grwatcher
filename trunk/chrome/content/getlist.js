@@ -60,7 +60,7 @@ GetList.prototype = {
    */
   getReadCounter: function() {
     var THIS = this;
-    new Ajax( {
+    new Ajax({
       url: GRPrefs.conntype + '://www.google.com/reader/api/0/unread-count?all=true&output=json',
       successHandler: function() {
         var data = eval('('+this.req.responseText+')');
@@ -96,8 +96,7 @@ GetList.prototype = {
       GRW_StatusBar.setReaderTooltip('error');
       GRW_StatusBar.switchErrorIcon();
       GRW_StatusBar.hideCounter();
-    }
-    else if(unr > 0) {
+    } else if(unr > 0) {
       GRW_StatusBar.setReaderTooltip('new', unr);
       var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"].getService(Components.interfaces.nsIWindowMediator);
       var enumerator = wm.getEnumerator('navigator:browser'), win, grid, tt;
@@ -112,14 +111,12 @@ GetList.prototype = {
       }
       GRW_StatusBar.switchOnIcon();
       GRW_StatusBar.showCounter(unr);
-    }
-    else {
+    } else {
       GRW_StatusBar.setReaderTooltip('nonew');
       GRW_StatusBar.switchOffIcon();
       if(GRPrefs.showzerocounter() === false) {
         GRW_StatusBar.hideCounter();
-      }
-      else {
+      } else {
         GRW_StatusBar.showCounter(unr);
       }
       GRPrefs.showNotification = true;
