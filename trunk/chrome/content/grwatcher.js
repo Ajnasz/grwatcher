@@ -281,7 +281,6 @@ var GRW_StatusBar = {
     }
     while(enumerator.hasMoreElements()) {
       win = enumerator.getNext();
-
       var label = win.document.getElementById('GRW-statusbar-label');
       label.value = val;
       label.style.width = '';
@@ -583,6 +582,7 @@ var windowCloseCheck = {
     }
     if(grw === false) {
       win = wm.getMostRecentWindow('navigator:browser');
+      if(!win) {return false;}
       win.GRW = true;
       var minCheck = 1;
       var configuredCheck = GRPrefs.checkfreq();
