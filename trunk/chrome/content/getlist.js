@@ -13,6 +13,7 @@ var GetList = function(getuserid) {
   } else {
     this.getFeedList();
   }
+  this.nativeJSON = Components.classes["@mozilla.org/dom/json;1"].createInstance(Components.interfaces.nsIJSON);
 };
 GetList.prototype = {
   subscriptionsList: null,
@@ -30,7 +31,7 @@ GetList.prototype = {
       url: GRPrefs.conntype + '://www.google.com/reader/api/0/subscription/list?output=json',
       // url: GRPrefs.conntype + '://www.googler.com/reader/api/0/subscription/list?output=json',
       successHandler: function(request) {
-        THIS.subscriptionsList = eval('(' + this.req.responseText + ')').subscriptions;
+        THIS.subscriptionsList = THIS.decodeJSON(this.req.responseText).subscriptions;
         THIS.onFeedListLoad(this.req);
       }
     });
@@ -40,13 +41,6 @@ GetList.prototype = {
    * @type {Array}
    */
   onFeedListLoad: function(request) {
-    /*
-    try {
-      //var data = eval('('+request.responseText+')').subscriptions;
-    } catch(e) {
-      return false;
-    }
-    */
     var ids = new Array();
     this.subscriptionsList.map(function(d) {
       ids.push(d.id);
@@ -63,7 +57,7 @@ GetList.prototype = {
     new Ajax({
       url: GRPrefs.conntype + '://www.google.com/reader/api/0/unread-count?all=true&output=json',
       successHandler: function() {
-        var data = eval('('+this.req.responseText+')');
+        var data = THIS.decodeJSON(this.req.responseText);
         THIS.unreadCount = data.unreadcounts;
         THIS.maxCount = GRW_StatusBar.maxCount = data.max;
         THIS.feeds = new Array();
@@ -231,5 +225,18 @@ GetList.prototype = {
       feeds.push({title: d.title, id:d.id});
     });
     return feeds;
+  },
+  /**
+   * decode a json text
+   * @param {String} text JSON string to decode
+   * @return JavaScript object
+   * @type {Object}
+   */
+  decodeJSON: function(text) {
+    if(this.nativeJSON) {
+      return this.nativeJSON.decode(text);
+    } else {
+      return eval('(' + text + ')');
+    }
   }
 };
