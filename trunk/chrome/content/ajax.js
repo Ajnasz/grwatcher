@@ -28,7 +28,7 @@ var Ajax = function(pars, parameters) {
   /**
    * @private
    */
-  var agent = 'Google Reader Watcher 0.0.12.1';
+  var agent = 'Google Reader Watcher 0.0.13a';
 
   this.url = pars.url;
   this.pars = typeof pars.pars != 'undefined' ? pars.pars : this.pars;
