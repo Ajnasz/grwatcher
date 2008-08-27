@@ -123,11 +123,10 @@ GetList.prototype = {
   countLabeled: function() {
     var labeled = this.collectByLabels();
     var uc = this.feeds;
-    var i, l, la, u, all = 0, feeds = new Array(), counted = new Object();
     var filteredLabels = GRPrefs.filteredlabels();
-    var rex;
+    var i, l, la, u, all = 0, feeds = new Array(), counted = new Object(), rex, label;
     for(label in labeled) {
-      rex = new RegExp('(?:^|,)' + label +'(?:$|,)', 'i');
+      rex = new RegExp('(?:^|,\\s*)' + label +'(?:$|,\\s*)', 'i');
       if(!rex.test(filteredLabels)) {
         labeled[label].count = 0;
         labeled[label].subs = new Array();
