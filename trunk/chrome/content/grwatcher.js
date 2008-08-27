@@ -62,7 +62,6 @@ var GRCheck = {
           if(GRPrefs.activateOpenedTab()) {
             gBrowser.mTabContainer.selectedIndex = openedGR.blankPage;
             gBrowser.loadURI(this.getReaderURL());
-
           } else {
             gBrowser.getBrowserAtIndex(openedGR.blankPage).loadURI(this.getReaderURL());
           }
@@ -157,10 +156,12 @@ var GRW_StatusBar = {
  */
   setReaderStatus: function(status) {
     var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"].getService(Components.interfaces.nsIWindowMediator);
-    var enumerator = wm.getEnumerator('navigator:browser'), win, stImage, ttb;
+    var enumerator = wm.getEnumerator('navigator:browser'), win, stImage, ttb, statusElem;
     while(enumerator.hasMoreElements()) {
       win = enumerator.getNext();
-      win.document.getElementById('GRW-statusbar').status = status;
+      statusElem = win.document.getElementById('GRW-statusbar');
+      if(!statusElem) { return; }
+      statusElem.status = status;
       stImage = win.document.getElementById('GRW-statusbar-image');
       ttb = win.document.getElementById('GRW-toolbar-button');
       switch(status) {
@@ -388,6 +389,7 @@ var genStatusGrid = function(feeds, class, justRows) {
 genStatusGrid.prototype = {
 
   genRows: function(feeds) {
+    if(!feeds) { return false; }
     var row = document.createElement('row');
     var label = document.createElement('label');
     var rowsArray = new Array();
