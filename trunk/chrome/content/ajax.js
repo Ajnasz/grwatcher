@@ -18,7 +18,6 @@ var Ajax = function(pars, parameters) {
   if(typeof pars.url == 'undefined') {
     return false;
   }
-
   /**
    * @private
    */
@@ -28,7 +27,7 @@ var Ajax = function(pars, parameters) {
   /**
    * @private
    */
-  var agent = 'Google Reader Watcher 0.0.13a';
+  var agent = 'Google Reader Watcher 0.0.13b';
 
   this.url = pars.url;
   this.pars = typeof pars.pars != 'undefined' ? pars.pars : this.pars;
@@ -37,7 +36,16 @@ var Ajax = function(pars, parameters) {
   this.successHandler = typeof pars.successHandler != 'undefined' ? pars.successHandler : this.successHandler;
 
   this.req = new XMLHttpRequest();
+  // Fix Firefox 3 third party cookie related bug
+  // https://bugzilla.mozilla.org/show_bug.cgi?id=437174#c32
+  var ds = Cc["@mozilla.org/webshell;1"].createInstance(Ci.nsIDocShellTreeItem).QueryInterface(Ci.nsIInterfaceRequestor);
+  ds.itemType = Ci.nsIDocShellTreeItem.typeContent;
+
+  //this.req = Cc["@mozilla.org/xmlextras/xmlhttprequest;1"].createInstance(Ci.nsIXMLHttpRequest);
+
   this.req.open(this.method, this.url, true);
+  this.req.channel.loadGroup = ds.getInterface(Ci.nsILoadGroup); // fix ff3
+  this.req.channel.loadFlags |= Ci.nsIChannel.LOAD_DOCUMENT_URI; // fix ff3
   this.req.setRequestHeader('User-Agent', agent);
   this.req.setRequestHeader('Accept-Charset','utf-8');
   this.req.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
@@ -56,7 +64,6 @@ Ajax.prototype = {
   method: 'get',
   /**
    * readystatechange handler function
-   * @param 
    * @returns the successHandler return value, if the request status was 200
    *   or the errorHandler return value,
    *   or the loadHandler return value while the request is not finished
