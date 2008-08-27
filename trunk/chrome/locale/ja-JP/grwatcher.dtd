@@ -14,6 +14,7 @@
 <!ENTITY GRWpreferences.resetcounterdesc "Google Reader のウィンドウを開いたらステータスバーのカウンターを初期化する">
 <!ENTITY GRWpreferences.shownotificationwindow "通知ウィンドウを表示する">
 <!ENTITY GRWpreferences.showzerocounter "常にカウンターを表示する">
+<!ENTITY GRWpreferences.maximizecounter "未読項目が1000以上ある場合はステータスバーに1000+と表示する">
 <!ENTITY GRWpreferences.tooltipcounterposright "右">
 <!ENTITY GRWpreferences.tooltipcounterposleft "左">
 <!ENTITY GRWpreferences.tooltipcounterposdesc "カウンターツールチップの位置:">
@@ -36,4 +37,4 @@
 <!ENTITY GRWtooltip.errorfeedfetch "フィードの取得エラー！">
 <!ENTITY GRWtooltip.newfeed "未読フィードがあります">
 <!ENTITY GRWtooltip.errorlogin "ログインに失敗しました。正確なアカウント情報を入力したかどうかご確認ください！">
-<!ENTITY GRWtooltip.networkerror "接続に失敗しました。接続が正常に機能していることを確認してください。">
+<!ENTITY GRWtooltip.networkerror "接続に失敗しました。接続が正常に機能していることを確認してください！">

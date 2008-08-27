@@ -14,6 +14,7 @@
 <!ENTITY GRWpreferences.resetcounterdesc "A állapotsor számláló nullázása a Google Reader megnyitásakor">
 <!ENTITY GRWpreferences.shownotificationwindow "Figyelmeztető ablak mutatása">
 <!ENTITY GRWpreferences.showzerocounter "Számláló mutatása ha nincs olvasatlan feed.">
+<!ENTITY GRWpreferences.maximizecounter "1000+ mutatása az állapotsorban, ha több mint 1000 olvasatlan feeded van">
 <!ENTITY GRWpreferences.tooltipcounterposright "Jobb">
 <!ENTITY GRWpreferences.tooltipcounterposleft "Bal">
 <!ENTITY GRWpreferences.tooltipcounterposdesc "A számláló helye a tooltipben:">

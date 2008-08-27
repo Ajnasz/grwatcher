@@ -14,6 +14,7 @@
 <!ENTITY GRWpreferences.resetcounterdesc "Обнулять счетчик в строке состояния при открытии Google Reader">
 <!ENTITY GRWpreferences.shownotificationwindow "Показывать окно уведомления">
 <!ENTITY GRWpreferences.showzerocounter "Показывать счетчик при отсутствии непрочитанных лент">
+<!ENTITY GRWpreferences.maximizecounter "Show 1000+ in the statusbar if you have more than 1000 unread items">
 <!ENTITY GRWpreferences.tooltipcounterposright "Справа">
 <!ENTITY GRWpreferences.tooltipcounterposleft "Слева">
 <!ENTITY GRWpreferences.tooltipcounterposdesc "Позиция счетчика во всплывающем сообщении">

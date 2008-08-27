@@ -14,6 +14,7 @@
 <!ENTITY GRWpreferences.resetcounterdesc "當開啟 Google 閱讀器時計數歸零">
 <!ENTITY GRWpreferences.shownotificationwindow "顯示提醒視窗">
 <!ENTITY GRWpreferences.showzerocounter "總是顯示未讀訊息數量">
+<!ENTITY GRWpreferences.maximizecounter "顯示 1000+ 在狀態列上，如果超過 1000 個未讀訊息。">
 <!ENTITY GRWpreferences.tooltipcounterposright "右">
 <!ENTITY GRWpreferences.tooltipcounterposleft "左">
 <!ENTITY GRWpreferences.tooltipcounterposdesc "提示視窗的位置:">

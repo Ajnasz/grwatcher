@@ -14,6 +14,7 @@
 <!ENTITY GRWpreferences.resetcounterdesc "Επαναφορά μετρητή της γραμμής κατάστασης μετά το άνοιγμα του Google Reader">
 <!ENTITY GRWpreferences.shownotificationwindow "Προβολή ειδοποίησης σε αναδυόμενο παράθυρο">
 <!ENTITY GRWpreferences.showzerocounter "Πάντα προβολή του μετρητή">
+<!ENTITY GRWpreferences.maximizecounter "Προβολή του αριθμού «1000+» στη γραμμή κατάστασης αν οι μη αναγνωσμένες εγγραφές υπερβαίνουν τις 1000">
 <!ENTITY GRWpreferences.tooltipcounterposright "Δεξιά">
 <!ENTITY GRWpreferences.tooltipcounterposleft "Αριστερά">
 <!ENTITY GRWpreferences.tooltipcounterposdesc "Θέση του μετρητή στη συμβουλή εργαλείου :">
@@ -36,4 +37,4 @@
 <!ENTITY GRWtooltip.errorfeedfetch "Σφάλμα κατα τη διακομιδή των αρχείων ροής">
 <!ENTITY GRWtooltip.newfeed "Υπάρχουν μη αναγνωσμένες εγγραφές στα αρχεία ροής">
 <!ENTITY GRWtooltip.errorlogin "Αποτυχία σύνδεσης. Βεβαιωθείτε για τη σωστή εισαγωγή κωδικού και/ή ονόματος χρήστη">
-<!ENTITY GRWtooltip.networkerror "Σφάλμα δικτύου">
+<!ENTITY GRWtooltip.networkerror "Αποτυχία σύνδεσης. Βεβαιωθείτε πως είστε συνδεμένοι στο δίκτυο.">

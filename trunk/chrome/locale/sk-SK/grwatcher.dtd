@@ -14,6 +14,7 @@
 <!ENTITY GRWpreferences.resetcounterdesc "Vynulovať počítadlo správ keď sa otvorí Google Reader">
 <!ENTITY GRWpreferences.shownotificationwindow "Zobrazovať upozornenia">
 <!ENTITY GRWpreferences.showzerocounter "Zobraziť počítadlo aj keď nie sú žiadne neprečítané správy">
+<!ENTITY GRWpreferences.maximizecounter "Show 1000+ in the statusbar if you have more than 1000 unread items">
 <!ENTITY GRWpreferences.tooltipcounterposright "Vpravo">
 <!ENTITY GRWpreferences.tooltipcounterposleft "Vľavo">
 <!ENTITY GRWpreferences.tooltipcounterposdesc "Pozícia počítadla správ v bublinovej nápovede">

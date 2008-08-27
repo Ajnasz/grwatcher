@@ -5,7 +5,7 @@
 <!ENTITY GRWpreferences.title "Google Reader Watcher - Einstellungen">
 <!ENTITY GRWpreferences.checkfrequency "Auf neue Feeds überprüfen alle">
 <!ENTITY GRWpreferences.checkfrequency.unit "Minuten">
-<!ENTITY GRWpreferences.activateOpenedTab "Den &quot;Google Reader&quot;-Tab nach dem Öffnen fokusieren">
+<!ENTITY GRWpreferences.activateOpenedTab "Den &quot;Google Reader&quot;-Tab nach dem Öffnen fokussieren">
 <!ENTITY GRWpreferences.generalpreferencescaption "Allgemeine Einstellungen">
 <!ENTITY GRWpreferences.generalpreferencesopencaption "&quot;Google Reader&quot;-Einstellungen öffnen">
 <!ENTITY GRWpreferences.tooltippreferencescaption "Tooltip-Einstellungen">
@@ -14,6 +14,7 @@
 <!ENTITY GRWpreferences.resetcounterdesc "Setzt den Statusleistenzähler zurück, wenn das &quot;Google Reader&quot;-Fenster geöffnet wird">
 <!ENTITY GRWpreferences.shownotificationwindow "Benachrichtigungsfenster anzeigen">
 <!ENTITY GRWpreferences.showzerocounter "Zähler immer anzeigen">
+<!ENTITY GRWpreferences.maximizecounter "1000+ in der Statusleiste anzeigen, falls mehr als 1000 ungelesene Artikel vorhanden sind">
 <!ENTITY GRWpreferences.tooltipcounterposright "Rechts">
 <!ENTITY GRWpreferences.tooltipcounterposleft "Links">
 <!ENTITY GRWpreferences.tooltipcounterposdesc "Position des Zählers im Tooltip:">
@@ -36,4 +37,4 @@
 <!ENTITY GRWtooltip.errorfeedfetch "Fehler beim Laden der Feeds! Sind Sie angemeldet?">
 <!ENTITY GRWtooltip.newfeed "Sie haben ungelesene Feeds">
 <!ENTITY GRWtooltip.errorlogin "Anmeldung fehlgeschlagen. Bitte überprüfen Sie Passwort und/oder Benutzername!">
-<!ENTITY GRWtooltip.networkerror "Netzwerkfehler">
+<!ENTITY GRWtooltip.networkerror "Netzwerkfehler. Kontrollieren Sie Ihre Verbindung!">

@@ -14,6 +14,7 @@
 <!ENTITY GRWpreferences.resetcounterdesc "Remettre à zéro le comtpeur de la barre d&apos;état quand la fenêtre de Google Reader est ouverte">
 <!ENTITY GRWpreferences.shownotificationwindow "Show notification window">
 <!ENTITY GRWpreferences.showzerocounter "Always show the counter">
+<!ENTITY GRWpreferences.maximizecounter "Show 1000+ in the statusbar if you have more than 1000 unread items">
 <!ENTITY GRWpreferences.tooltipcounterposright "Droite">
 <!ENTITY GRWpreferences.tooltipcounterposleft "Left">
 <!ENTITY GRWpreferences.tooltipcounterposdesc "La position du compteur dans l&apos;infobulle :">

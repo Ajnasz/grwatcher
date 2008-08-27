@@ -14,6 +14,7 @@
 <!ENTITY GRWpreferences.resetcounterdesc "Nollaa tilarivin laskuri, kun Google Reader -ikkuna avataan">
 <!ENTITY GRWpreferences.shownotificationwindow "Näytä ilmoitusikkuna">
 <!ENTITY GRWpreferences.showzerocounter "Näytä laskuri, kun ei ole lukemattomia syötteitä">
+<!ENTITY GRWpreferences.maximizecounter "Näytä 1000+ tilapalkissa, jos lukemattomia kohteita on enemmän kuin 1000">
 <!ENTITY GRWpreferences.tooltipcounterposright "Oikea">
 <!ENTITY GRWpreferences.tooltipcounterposleft "Vasen">
 <!ENTITY GRWpreferences.tooltipcounterposdesc "Laskurin sijainti työkaluvihjeessä:">
@@ -25,15 +26,15 @@
 <!ENTITY GRWpreferences.accountinfoemail "Sähköpostiosoite:">
 <!ENTITY GRWpreferences.accountinfopassword "Salasana:">
 <!ENTITY GRWpreferences.accountinfo.rememberLogin "Muista kirjautuminen">
-<!ENTITY GRWpreferences.leftclickopen.description "Tarvittavat klikkaukset Google Readerin avaamiseen">
-<!ENTITY GRWpreferences.leftclickopen.singleclick "Yhdellä klikkauksella">
-<!ENTITY GRWpreferences.leftclickopen.dblclick "Tuplaklikkauksella">
+<!ENTITY GRWpreferences.leftclickopen.description "Google Reader avataan">
+<!ENTITY GRWpreferences.leftclickopen.singleclick "Yhdellä napsautuksella">
+<!ENTITY GRWpreferences.leftclickopen.dblclick "Kaksoisnapsautuksella">
 <!ENTITY GRWpreferences.leftclickopen.disabled "Ei käytössä">
 <!ENTITY GRWpreferences.usesecureconnection "Käytä suojattua yhteyttä">
 <!ENTITY GRWpreferences.sortbylabels "Järjestä syötteet työkaluvihjeessä otsikon mukaan">
 <!ENTITY GRWpreferences.filteredlabels "Suodata otsikoidut syötteet seuraavien otsikoiden mukaan (pilkulla eroteltu lista)">
 <!ENTITY GRWtooltip.nonewfeed "Lukemattomia syötteitä ei löytynyt">
 <!ENTITY GRWtooltip.errorfeedfetch "Virhe noutaessa syötteitä!">
-<!ENTITY GRWtooltip.newfeed "Sinulle on uusia syötteitä">
+<!ENTITY GRWtooltip.newfeed "Sinulla on lukemattomia syötteitä">
 <!ENTITY GRWtooltip.errorlogin "Kirjautuminen epäonnistui. Varmista, että syötit oikean käyttäjätunnuksen ja salasanan.">
-<!ENTITY GRWtooltip.networkerror "Verkkovirhe!">
+<!ENTITY GRWtooltip.networkerror "Yhdistäminen epäonnistui. Varmista, että käytät toimivaa yhteyttä.">

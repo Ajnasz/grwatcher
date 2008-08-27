@@ -14,6 +14,7 @@
 <!ENTITY GRWpreferences.resetcounterdesc "Statusbalkteller resetten bij het openen van het Google Reader-venster">
 <!ENTITY GRWpreferences.shownotificationwindow "Notificatievenster weergeven">
 <!ENTITY GRWpreferences.showzerocounter "Teller altijd weergeven">
+<!ENTITY GRWpreferences.maximizecounter "1000+ in de statusbalk zetten als er meer dan 1000 ongelezen berichten zijn">
 <!ENTITY GRWpreferences.tooltipcounterposright "Rechts">
 <!ENTITY GRWpreferences.tooltipcounterposleft "Links">
 <!ENTITY GRWpreferences.tooltipcounterposdesc "De positie van de teller in de tooltip:">

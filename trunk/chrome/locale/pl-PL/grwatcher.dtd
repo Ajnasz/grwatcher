@@ -14,6 +14,7 @@
 <!ENTITY GRWpreferences.resetcounterdesc "Wyzeruj licznik po otwarciu Google Readera">
 <!ENTITY GRWpreferences.shownotificationwindow "Wyświetlaj okienko powiadomienia">
 <!ENTITY GRWpreferences.showzerocounter "Wyświetlaj licznik jeśli nie ma nieprzeczytanych wiadomości">
+<!ENTITY GRWpreferences.maximizecounter "Pokazuj &quot;1000+&quot; na pasku stanu jeśli masz więcej niż 1000 nieprzeczytanych wiadomości">
 <!ENTITY GRWpreferences.tooltipcounterposright "z prawej strony">
 <!ENTITY GRWpreferences.tooltipcounterposleft "z lewej strony">
 <!ENTITY GRWpreferences.tooltipcounterposdesc "Pozycja licznika w podpowiedzi:">
