@@ -1,7 +1,7 @@
 <!ENTITY GRWstatusbar.popup.openReader "Ava Google Reader">
 <!ENTITY GRWstatusbar.popup.getReadCounter "Kontrolli lugemata tellimusi">
 <!ENTITY GRWstatusbar.popup.openPrefs "Eelistused">
-<!ENTITY GRWstatusbar.popup.markAllAsRead "Mark all as read">
+<!ENTITY GRWstatusbar.popup.markAllAsRead "Märgi kõik loetuks">
 <!ENTITY GRWpreferences.title "Google Reader Watcheri eelistused">
 <!ENTITY GRWpreferences.checkfrequency "Uusi tellimusi kontrollitakse iga">
 <!ENTITY GRWpreferences.checkfrequency.unit "minuti järel">
@@ -14,7 +14,7 @@
 <!ENTITY GRWpreferences.resetcounterdesc "Google Readeri akna avamisel lähtestatakse olekuriba loendur">
 <!ENTITY GRWpreferences.shownotificationwindow "Näidatakse teavitusakent">
 <!ENTITY GRWpreferences.showzerocounter "Loendurit näidatakse ka siis, kui puuduvad lugemata tellimused">
-<!ENTITY GRWpreferences.maximizecounter "Show 1000+ in the statusbar if you have more than 1000 unread items">
+<!ENTITY GRWpreferences.maximizecounter "Olekuribal kuvatakse 1000+ kui 1000 tellimust on lugemata">
 <!ENTITY GRWpreferences.tooltipcounterposright "paremal">
 <!ENTITY GRWpreferences.tooltipcounterposleft "vasakul">
 <!ENTITY GRWpreferences.tooltipcounterposdesc "Lugemata tellimuste loenduri näitamise asukoht vihjes:">
@@ -30,11 +30,11 @@
 <!ENTITY GRWpreferences.leftclickopen.singleclick "ühe klõpsuga">
 <!ENTITY GRWpreferences.leftclickopen.dblclick "topeltklõpsuga">
 <!ENTITY GRWpreferences.leftclickopen.disabled "ei reageeri klõpsamisele">
-<!ENTITY GRWpreferences.usesecureconnection "Secure connection">
-<!ENTITY GRWpreferences.sortbylabels "In the tooltip sort the feeds by label">
-<!ENTITY GRWpreferences.filteredlabels "Filter feeds which are labeled with these labels (comma separated list)">
+<!ENTITY GRWpreferences.usesecureconnection "Turvaline ühendus">
+<!ENTITY GRWpreferences.sortbylabels "Vihjes sorteeritakse tellimused nime järgi">
+<!ENTITY GRWpreferences.filteredlabels "Filtreeritakse järgnevate nimedega tellimused (eralda komaga)">
 <!ENTITY GRWtooltip.nonewfeed "Sul pole ühtegi lugemata tellimust">
 <!ENTITY GRWtooltip.errorfeedfetch "Viga tellimuste kontrollimisel! Kas oled ikka sisse logitud?">
 <!ENTITY GRWtooltip.newfeed "Sul on lugemata tellimusi">
 <!ENTITY GRWtooltip.errorlogin "Sisselogimine ebaõnnestus. Kontrolli sisestatud parooli ja/või kasutajanime!">
-<!ENTITY GRWtooltip.networkerror "Connecting failed. Make sure you have a working connection!">
+<!ENTITY GRWtooltip.networkerror "Ühendus ebaõnnestus. Tee kindlaks, et sinu internetiühendus töötab!">
