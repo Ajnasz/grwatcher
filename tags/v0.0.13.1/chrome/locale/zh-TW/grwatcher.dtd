@@ -1,0 +1,40 @@
+<!ENTITY GRWstatusbar.popup.openReader "開啟 Google 閱讀器">
+<!ENTITY GRWstatusbar.popup.getReadCounter "檢查未讀訊息">
+<!ENTITY GRWstatusbar.popup.openPrefs "選項">
+<!ENTITY GRWstatusbar.popup.markAllAsRead "全部標示已閱讀">
+<!ENTITY GRWpreferences.title "Google Reader Watcher 選項">
+<!ENTITY GRWpreferences.checkfrequency "每">
+<!ENTITY GRWpreferences.checkfrequency.unit "分鐘">
+<!ENTITY GRWpreferences.activateOpenedTab "開啟後移至該開啟頁面">
+<!ENTITY GRWpreferences.generalpreferencescaption "一般選項">
+<!ENTITY GRWpreferences.generalpreferencesopencaption "開啟 Google 閱讀器設定">
+<!ENTITY GRWpreferences.tooltippreferencescaption "提醒視窗選項">
+<!ENTITY GRWpreferences.tabgeneral "一般">
+<!ENTITY GRWpreferences.openinnewtabdesc "在心分頁中開啟 Google 閱讀器">
+<!ENTITY GRWpreferences.resetcounterdesc "當開啟 Google 閱讀器時計數歸零">
+<!ENTITY GRWpreferences.shownotificationwindow "顯示提醒視窗">
+<!ENTITY GRWpreferences.showzerocounter "總是顯示未讀訊息數量">
+<!ENTITY GRWpreferences.maximizecounter "顯示 1000+ 在狀態列上，如果超過 1000 個未讀訊息。">
+<!ENTITY GRWpreferences.tooltipcounterposright "右">
+<!ENTITY GRWpreferences.tooltipcounterposleft "左">
+<!ENTITY GRWpreferences.tooltipcounterposdesc "提示視窗的位置:">
+<!ENTITY GRWpreferences.tooltipdesc "這選項將在檢查訊息後生效">
+<!ENTITY GRWpreferences.tooltiptitlelengthdesc "設定在提示視窗上顯示的字數">
+<!ENTITY GRWpreferences.tabaccountinfo "帳戶資訊">
+<!ENTITY GRWpreferences.accountinfocaption "Google 帳戶資訊">
+<!ENTITY GRWpreferences.accountinfodesc "您的 Google 帳戶與密碼">
+<!ENTITY GRWpreferences.accountinfoemail "E-mail:">
+<!ENTITY GRWpreferences.accountinfopassword "密碼:">
+<!ENTITY GRWpreferences.accountinfo.rememberLogin "記住我的登入資料">
+<!ENTITY GRWpreferences.leftclickopen.description "開啟 Google 閱讀器使用">
+<!ENTITY GRWpreferences.leftclickopen.singleclick "單鍵">
+<!ENTITY GRWpreferences.leftclickopen.dblclick "雙鍵">
+<!ENTITY GRWpreferences.leftclickopen.disabled "停用">
+<!ENTITY GRWpreferences.usesecureconnection "使用安全連線">
+<!ENTITY GRWpreferences.sortbylabels "依標籤排序">
+<!ENTITY GRWpreferences.filteredlabels "新增標籤(以 &quot;,&quot; 分隔)">
+<!ENTITY GRWtooltip.nonewfeed "沒有任何未閱讀訊息">
+<!ENTITY GRWtooltip.errorfeedfetch "無法擷取 Feeds！">
+<!ENTITY GRWtooltip.newfeed "你有未閱讀訊息">
+<!ENTITY GRWtooltip.errorlogin "登入錯誤！請確認您的登入資料！">
+<!ENTITY GRWtooltip.networkerror "連線錯誤！請確認您是否可以連線！">

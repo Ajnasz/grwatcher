@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<RDF xmlns="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:em="http://www.mozilla.org/2004/em-rdf#">
+
+  <Description about="urn:mozilla:install-manifest">
+    <em:id>grwatcher@ajnasz.hu</em:id>
+    <em:name>Google Reader Watcher</em:name>
+    <em:version>0.0.13.1</em:version>
+
+    <!-- Firefox -->
+    <em:targetApplication>
+      <Description>
+        <em:id>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</em:id>
+        <em:minVersion>1.5</em:minVersion>
+        <em:maxVersion>3.1b1pre</em:maxVersion>
+      </Description>
+    </em:targetApplication>
+
+    <em:file>
+      <Description about="urn:mozilla:extension:file:grwatcher.jar">
+        <em:package>content/grwatcher/</em:package>
+        <em:skin>skin/classic/grwatcher/</em:skin>
+      </Description>
+    </em:file>
+
+    <em:creator>Lajos Koszti [Ajnasz]; http://ajnasz.hu</em:creator>
+    <em:description>Checks your Google Reader for unread feeds</em:description>
+    <em:homepageURL>http://ajnasz.hu/google-reader-watcher</em:homepageURL>
+    <em:iconURL>chrome://grwatcher/skin/grwatcher.png</em:iconURL>
+    <em:optionsURL>chrome://grwatcher/content/grprefs.xul</em:optionsURL>
+
+    <em:contributor>David Peitler</em:contributor>
+    <em:contributor>7bse - de-DE (babelzilla)</em:contributor>
+    <em:contributor>panda2005 el-GR (babelzilla)</em:contributor>
+    <em:contributor>PAGF_LINUX es-AR (babelzilla)</em:contributor>
+    <em:contributor>PAGF_LINUX es-ES (babelzilla)</em:contributor>
+    <em:contributor>Sander Lepik - et-EE</em:contributor>
+    <em:contributor>AtteL fi-FI (babelzilla)</em:contributor>
+    <em:contributor>chtitux - fr-FR (babelzilla)</em:contributor>
+    <em:contributor>pierfrancesco99 it-IT (babelzilla)</em:contributor>
+    <em:contributor>drry ja-JP (babelzilla)</em:contributor>
+    <em:contributor>Hans nl-NL (babelzilla)</em:contributor>
+    <em:contributor>Wareczek pl-PL (babelzilla)</em:contributor>
+    <em:contributor>zini pt-BR (babelzilla)</em:contributor>
+    <em:contributor>promatik pt-PT (babelzilla)</em:contributor>
+    <em:contributor>dvdianov ru-RU (babelzilla)</em:contributor>
+    <em:contributor>morpher sk-SK (babelzilla)</em:contributor>
+    <em:contributor>Ahmed Yilmaz - tr-TR</em:contributor>
+    <em:contributor>fiag zh-CN (babelzilla)</em:contributor>
+    <em:contributor>toomore zh-TW (babelzilla)</em:contributor>
+  </Description>
+</RDF>
