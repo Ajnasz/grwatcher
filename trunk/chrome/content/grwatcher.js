@@ -52,6 +52,7 @@ var GRCheck = {
         if(openedGR.blankPage === false) {
           if(GRPrefs.activateOpenedTab()) {
             gBrowser.selectedTab = gBrowser.addTab(this.getReaderURL());
+            gBrowser.getBrowserAtIndex(gBrowser.mTabContainer.selectedIndex).contentWindow.focus();
           } else {
             gBrowser.addTab(this.getReaderURL());
           }
@@ -62,6 +63,7 @@ var GRCheck = {
           if(GRPrefs.activateOpenedTab()) {
             gBrowser.mTabContainer.selectedIndex = openedGR.blankPage;
             gBrowser.loadURI(this.getReaderURL());
+            gBrowser.getBrowserAtIndex(gBrowser.mTabContainer.selectedIndex).contentWindow.focus();
           } else {
             gBrowser.getBrowserAtIndex(openedGR.blankPage).loadURI(this.getReaderURL());
           }
