@@ -21,3 +21,6 @@ pref("extensions.grwatcher.sortbylabels", false);
 
 pref("extensions.grwatcher.filteredlabels", "");
 pref("extensions.grwatcher.maximizecounter", true);
+
+pref("extensions.grwatcher.delaystart", 0);
+pref("extensions.grwatcher.forcelogin", false);
