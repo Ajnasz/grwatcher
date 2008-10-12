@@ -83,7 +83,7 @@ GetList.prototype = {
    * @param {XMLHttpRequest} req HTTP request object
    */
   finishLoad: function(req) {
-    var r = GRPrefs.getPref.sortbylabels() ? this.countLabeled() : this.onFeedsCounterLoad();
+    var r = GRPrefs.getPref.sortByLabels() ? this.countLabeled() : this.onFeedsCounterLoad();
     var unr = r.counter;
     GRStates.currentNum = unr;
     if(unr === false) {
@@ -108,7 +108,7 @@ GetList.prototype = {
     } else {
       GRW_StatusBar.setReaderTooltip('nonew');
       GRW_StatusBar.switchOffIcon();
-      if(GRPrefs.getPref.showzerocounter() === false) {
+      if(GRPrefs.getPref.showZeroCounter() === false) {
         GRW_StatusBar.hideCounter();
       } else {
         GRW_StatusBar.showCounter(unr);
@@ -123,7 +123,7 @@ GetList.prototype = {
   countLabeled: function() {
     var labeled = this.collectByLabels();
     var uc = this.feeds;
-    var filteredLabels = GRPrefs.getPref.filteredlabels();
+    var filteredLabels = GRPrefs.getPref.filteredLabels();
     var i, l, la, u, all = 0, feeds = new Array(), counted = new Object(), rex, label;
     for(label in labeled) {
       rex = new RegExp('(?:^|,\\s*)' + label +'(?:$|,\\s*)', 'i');

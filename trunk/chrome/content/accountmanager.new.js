@@ -23,7 +23,7 @@ var accountManager = {
    * @type {Boolean}
    */
   accountExists: function() {
-    if(GRPrefs.getPref.username() && passwordManager.getPassword()) {
+    if(GRPrefs.getPref.userName() && passwordManager.getPassword()) {
       return true;
     }
     return false;
@@ -53,7 +53,7 @@ var accountManager = {
   logIn: function() {
     if(this.accountExists()) {
       var url = GRStates.conntype + '://www.google.com/accounts/ClientLogin';
-      var param = 'source=' + encodeURIComponent('Google Reader Watcher') + '&Email='+encodeURIComponent(GRPrefs.getPref.username())+'&Passwd='+encodeURIComponent(passwordManager.getPassword())+'&service=reader&continue=' + encodeURIComponent('http://www.google.com/');
+      var param = 'source=' + encodeURIComponent('Google Reader Watcher') + '&Email='+encodeURIComponent(GRPrefs.getPref.userName())+'&Passwd='+encodeURIComponent(passwordManager.getPassword())+'&service=reader&continue=' + encodeURIComponent('http://www.google.com/');
       // remember the login state, possible won't ask for mozilla master password
       if(GRPrefs.getPref.rememberLogin()) {
         // param += '&PersistentCookie=yes';
