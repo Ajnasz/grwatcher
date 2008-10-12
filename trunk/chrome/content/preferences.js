@@ -17,38 +17,32 @@ var GRPrefs = {
    /**
     * @type Int
     */
-    checkfreq: function() {
+    checkFreq: function() {
       return prefManager.getIntPref('extensions.grwatcher.checkfreq');
     },
    /**
     * @type Boolean
     */
-    openinnewtab: function() {
+    openInNewTab: function() {
       return prefManager.getBoolPref('extensions.grwatcher.openinnewtab');
     },
    /**
     * @type Boolean
     */
-    resetcounter: function() {
+    resetCounter: function() {
       return prefManager.getBoolPref('extensions.grwatcher.resetcounter');
     },
    /**
     * @type String
     */
-    tooltipcounterpos: function() {
+    tooltipCounterPos: function() {
       return prefManager.getCharPref('extensions.grwatcher.tooltipcounterpos');
     },
    /**
     * @type Int
     */
-    tooltiptitlelength: function() {
+    tooltipTitleLength: function() {
       return prefManager.getIntPref('extensions.grwatcher.tooltiptitlelength');
-    },
-   /**
-    * @type String
-    */
-    email: function() {
-      return prefManager.getCharPref('extensions.grwatcher.email');
     },
    /**
     * @type Boolean
@@ -71,44 +65,44 @@ var GRPrefs = {
    /**
     * @type Boolean
     */
-    shownotificationwindow: function() {
+    showNotificationWindow: function() {
       return prefManager.getBoolPref('extensions.grwatcher.shownotificationwindow');
     },
    /**
     * @type Boolean
     */
-    showzerocounter: function() {
+    showZeroCounter: function() {
       return prefManager.getBoolPref('extensions.grwatcher.showzerocounter');
     },
    /**
     * @type Boolean
     */
-    usersecureconnection: function() {
+    useSecureConnection: function() {
       return prefManager.getBoolPref('extensions.grwatcher.usesecureconnection');
     },
    /**
     * @type String
     */
-    username: function() {
-    return prefManager.getCharPref('extensions.grwatcher.username');
+    userName: function() {
+      return prefManager.getCharPref('extensions.grwatcher.username');
     },
    /**
     * @type Boolean
     */
-    sortbylabels: function() {
-    return prefManager.getBoolPref('extensions.grwatcher.sortbylabels');
+    sortByLabels: function() {
+      return prefManager.getBoolPref('extensions.grwatcher.sortbylabels');
     },
    /**
     * @type String
     */
-    filteredlabels: function() {
-    return prefManager.getCharPref('extensions.grwatcher.filteredlabels');
+    filteredLabels: function() {
+      return prefManager.getCharPref('extensions.grwatcher.filteredlabels');
     },
    /**
     * @type Boolean
     */
     maximizeCounter: function() {
-    return prefManager.getBoolPref('extensions.grwatcher.maximizecounter');
+      return prefManager.getBoolPref('extensions.grwatcher.maximizecounter');
     },
    /**
     * @type Boolean
@@ -122,6 +116,53 @@ var GRPrefs = {
     forceLogin: function() {
       return prefManager.getBoolPref('extensions.grwatcher.forcelogin');
     }
+  },
+  setPref: {
+    checkFreq : function(value) {
+      prefManager.setIntPref('extensions.grwatcher.checkfreq', value);
+    },
+    openInNewTab : function(value) {
+      prefManager.setBoolPref('extensions.grwatcher.openinnewtab', value);
+    },
+    resetCounter : function(value) {
+      prefManager.setBoolPref('extensions.grwatcher.resetcounter', value);
+    },
+    tooltipCounterPos : function(value) {
+      prefManager.setCharPref('extensions.grwatcher.tooltipcounterpos', value);
+    },
+    tooltipTitleLength : function(value) {
+      prefManager.setIntPref('extensions.grwatcher.tooltiptitlelength', value);
+    },
+    rememberLogin : function(value) {
+      prefManager.setBoolPref('extensions.grwatcher.rememberLogin', value);
+    },
+    leftClickOpen : function(value) {
+      prefManager.setIntPref('extensions.grwatcher.leftclickopen', value);
+    },
+    activateOpenedTab : function(value) {
+      prefManager.setBoolPref('extensions.grwatcher.activateopenedtab', value);
+    },
+    showNotificationWindow : function(value) {
+    prefManager.setBoolPref('extensions.grwatcher.shownotificationwindow', value);
+    },
+    showZeroCounter : function(value) {
+    prefManager.setBoolPref('extensions.grwatcher.showzerocounter', value);
+    },
+    useSecureConnection : function(value) {
+    prefManager.setBoolPref('extensions.grwatcher.usesecureconnection', value);
+    },
+    userName: function(value) {
+      prefManager.setCharPref('extensions.grwatcher.username', value);
+    },
+    sortByLabels : function(value) {
+      prefManager.setBoolPref('extensions.grwatcher.sortbylabels', value);
+    },
+    filteredLabels : function(value) {
+      prefManager.setCharPref('extensions.grwatcher.filteredlabels', value);
+    },
+    maximizeCounter : function(value) {
+      prefManager.setBoolPref('extensions.grwatcher.maximizecounter', value);
+    },
   }
 };
 GRStates = {
