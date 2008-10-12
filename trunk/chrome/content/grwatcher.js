@@ -9,32 +9,32 @@
  */
 var GRCheck = {
   getUserId: function(json) {
-    if(!GRPrefs.userid) {
+    if(!GRStates.userid) {
       var list = new GetList(true);
     }
-    return GRPrefs.userid;
+    return GRStates.userid;
   },
   getReaderURL: function() {
-    if(!GRPrefs.conntype) {
-      GRPrefs.conntype = GRPrefs.usersecureconnection() ? 'https' : 'http';
+    if(!GRStates.conntype) {
+      GRStates.conntype = GRPrefs.getPref.usersecureconnection() ? 'https' : 'http';
     }
-    return GRPrefs.conntype + '://www.google.com/reader/view';
+    return GRStates.conntype + '://www.google.com/reader/view';
   },
   /**
    * open the readader window
    */
   openReader: function() {
     this.getReaderURL();
-    if(GRPrefs.resetcounter()) {
-      if(GRPrefs.showzerocounter() === false) {
+    if(GRPrefs.getPref.resetcounter()) {
+      if(GRPrefs.getPref.showzerocounter() === false) {
         GRW_StatusBar.hideCounter();
       } else {
         GRW_StatusBar.showCounter(0);
       }
       GRW_StatusBar.setReaderTooltip('hide');
-      GRPrefs.showNotification = true;
+      GRStates.showNotification = true;
       var activeWin = getActiveGRW();
-      activeWin.GRPrefs.currentNum = 0;
+      activeWin.GRStates.currentNum = 0;
     }
     GRW_StatusBar.switchOffIcon();
     var openedGR = this.getOpenedGR();
@@ -45,12 +45,12 @@ var GRCheck = {
       /**
        * open in new tab
        */
-      if(GRPrefs.openinnewtab()) {
+      if(GRPrefs.getPref.openinnewtab()) {
         /**
          * isn't there any blank page
          */
         if(openedGR.blankPage === false) {
-          if(GRPrefs.activateOpenedTab()) {
+          if(GRPrefs.getPref.activateOpenedTab()) {
             gBrowser.selectedTab = gBrowser.addTab(this.getReaderURL());
             gBrowser.getBrowserAtIndex(gBrowser.mTabContainer.selectedIndex).contentWindow.focus();
           } else {
@@ -60,7 +60,7 @@ var GRCheck = {
           /**
            * load the GR into the blank page
            */
-          if(GRPrefs.activateOpenedTab()) {
+          if(GRPrefs.getPref.activateOpenedTab()) {
             gBrowser.mTabContainer.selectedIndex = openedGR.blankPage;
             gBrowser.loadURI(this.getReaderURL());
             gBrowser.getBrowserAtIndex(gBrowser.mTabContainer.selectedIndex).contentWindow.focus();
@@ -76,12 +76,12 @@ var GRCheck = {
       gBrowser.loadURI(this.getReaderURL());
     }
     var minCheck = 1;
-    var configuredCheck = GRPrefs.checkfreq();
+    var configuredCheck = GRPrefs.getPref.checkfreq();
     var freq = (configuredCheck >= minCheck) ? configuredCheck : minCheck;
-    if(GRPrefs.timeoutid) {
-      clearTimeout(GRPrefs.timeoutid);
+    if(GRStates.timeoutid) {
+      clearTimeout(GRStates.timeoutid);
     }
-    GRPrefs.timeoutid = setTimeout(GoogleIt, freq*1000*60);
+    GRStates.timeoutid = setTimeout(GoogleIt, freq*1000*60);
   },
   /**
    * checks for opened GR window and blank pages
@@ -112,7 +112,7 @@ markAllAsRead.prototype = {
   getToken: function() {
     var THIS = this;
     new Ajax({
-      url: GRPrefs.conntype + '://www.google.com/reader/api/0/token',
+      url: GRStates.conntype + '://www.google.com/reader/api/0/token',
       successHandler: function(request) {
         THIS.token = this.req.responseText;
         THIS.markAsRead();
@@ -121,8 +121,8 @@ markAllAsRead.prototype = {
   },
   markAsRead: function() {
     var THIS = this;
-    var parameters = 'T=' + this.token + '&ts=' + (new Date()).getTime() + '999&s=user/' + GRPrefs.userid  + '/state/com.google/reading-list';
-    new Ajax({method: 'post',url: GRPrefs.conntype + ':www.google.com/reader/api/0/mark-all-as-read?client=scroll',successHandler: function(request) {
+    var parameters = 'T=' + this.token + '&ts=' + (new Date()).getTime() + '999&s=user/' + GRStates.userid  + '/state/com.google/reading-list';
+    new Ajax({method: 'post',url: GRStates.conntype + ':www.google.com/reader/api/0/mark-all-as-read?client=scroll',successHandler: function(request) {
         if(this.req.responseText == 'OK') {
           GoogleIt();
         }
@@ -279,7 +279,7 @@ var GRW_StatusBar = {
   showCounter: function(val) {
     var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"].getService(Components.interfaces.nsIWindowMediator);
     var enumerator = wm.getEnumerator('navigator:browser'), win;
-    if(GRPrefs.maximizeCounter() && GRW_StatusBar.maxCount && val > GRW_StatusBar.maxCount) {
+    if(GRPrefs.getPref.maximizeCounter() && GRW_StatusBar.maxCount && val > GRW_StatusBar.maxCount) {
       val = GRW_StatusBar.maxCount + '+';
     }
     while(enumerator.hasMoreElements()) {
@@ -292,10 +292,10 @@ var GRW_StatusBar = {
       label.collapsed = false;
 
     }
-    if(GRPrefs.showNotification && val != 0) {
+    if(GRStates.showNotification && val != 0) {
       var GRW_bundle = document.getElementById('grwatcher-bundles');
       GRW_showNotification(false, GRW_bundle.getFormattedString('notifierMSG', [val]));
-      GRPrefs.showNotification = false;
+      GRStates.showNotification = false;
     }
   },
   /**
@@ -344,7 +344,7 @@ var GRW_openReaderNotify = {
  * @param {Object} value
  */
 var GRW_showNotification = function(label, value) {
-  if(GRPrefs.shownotificationwindow() !== false) {
+  if(GRPrefs.getPref.shownotificationwindow() !== false) {
     if(!label) {
       label = 'Google Reader Watcher';
     }
@@ -383,7 +383,7 @@ var GRW_showNotification = function(label, value) {
  * @type Element
  */
 var genStatusGrid = function(feeds, class, justRows) {
-  GRPrefs.feeds = feeds;
+  GRStates.feeds = feeds;
   this.class = class || '';
   this.justRows = justRows || false;
   this.grid = this.genGrid(this.genRows(feeds));
@@ -406,14 +406,14 @@ genStatusGrid.prototype = {
         labelc2 = label.cloneNode(true);
 
         // configure the length of the title
-        var titlelength = GRPrefs.tooltiptitlelength();
+        var titlelength = GRPrefs.getPref.tooltiptitlelength();
         titlelength = (titlelength > 5) ? titlelength : 5;
         if(o.Title.length > titlelength) {
           o.Title = o.Title.slice(0, titlelength-3)+'...';
         }
-        o.Count = (GRPrefs.maximizeCounter() && GRW_StatusBar.maxCount && o.Count > GRW_StatusBar.maxCount) ? GRW_StatusBar.maxCount + '+' : o.Count;
+        o.Count = (GRPrefs.getPref.maximizeCounter() && GRW_StatusBar.maxCount && o.Count > GRW_StatusBar.maxCount) ? GRW_StatusBar.maxCount + '+' : o.Count;
         // set up the counter position
-        if(GRPrefs.tooltipcounterpos() == 'left') {
+        if(GRPrefs.getPref.tooltipcounterpos() == 'left') {
           labelc1.value = o.Count;
           labelc2.value = o.Title;
           labelc1.setAttribute('class', 'counterCol');
@@ -467,13 +467,14 @@ genStatusGrid.prototype = {
  * @type {Number}
  */
 var GoogleIt = function() {
-  GRPrefs.conntype = GRPrefs.usersecureconnection() ? 'https' : 'http';
+  GRStates.conntype = GRPrefs.getPref.usersecureconnection() ? 'https' : 'http';
   var activeWin = getActiveGRW();
   if(activeWin !== window) {
     activeWin.GoogleIt();
     return false;
   }
-  if(!accountManager.getCurrentSID()) {
+  if(!accountManager.getCurrentSID() || GRPrefs.getPref.forceLogin()) {
+    GRW_LOG('login');
     var login = accountManager.logIn();
   } else {
     var list = new GetList();
@@ -482,13 +483,13 @@ var GoogleIt = function() {
     GRW_StatusBar.switchErrorIcon();
   }
   var minCheck = 1;
-  var configuredCheck = GRPrefs.checkfreq();
+  var configuredCheck = GRPrefs.getPref.checkfreq();
   var freq = (configuredCheck >= minCheck) ? configuredCheck : minCheck;
-  if(GRPrefs.timeoutid) {
-    clearTimeout(GRPrefs.timeoutid);
+  if(GRStates.timeoutid) {
+    clearTimeout(GRStates.timeoutid);
   }
-  GRPrefs.timeoutid = setTimeout(GoogleIt, freq*1000*60);
-  return GRPrefs.timeoutid;
+  GRStates.timeoutid = setTimeout(GoogleIt, freq*1000*60);
+  return GRStates.timeoutid;
 };
 /**
  * @param {Object} event
@@ -496,7 +497,7 @@ var GoogleIt = function() {
 var GRW_statusClickHandling = function(ob) {
   this.statusBar = ob;
   if(!this.statusBar) { return; }
-  this.st = GRPrefs.leftClickOpen();
+  this.st = GRPrefs.getPref.leftClickOpen();
   this.observe();
 };
 GRW_statusClickHandling.prototype = {
@@ -520,7 +521,7 @@ GRW_statusClickHandling.prototype = {
    * @param {Object} event
    */
   click: function(event) {
-    var st = GRPrefs.leftClickOpen();
+    var st = GRPrefs.getPref.leftClickOpen();
     switch(event.button) {
       case 0:
         if((st == 2 && event.type == 'dblclick') || (st == 1 && event.type == 'click')) {
@@ -589,9 +590,9 @@ var windowCloseCheck = {
       if(!win) {return false;}
       win.GRW = true;
       var minCheck = 1;
-      var configuredCheck = GRPrefs.checkfreq();
+      var configuredCheck = GRPrefs.getPref.checkfreq();
       var freq = (configuredCheck >= minCheck) ? configuredCheck : minCheck;
-      win.GRPrefs.timeoutid = win.setTimeout(win.GoogleIt, freq*1000*60);
+      win.GRStates.timeoutid = win.setTimeout(win.GoogleIt, freq*1000*60);
     }
   }
 };
@@ -603,13 +604,16 @@ var GRW_init = function() {
   passwordManager = new _passwordManager();
   if(isActiveGRW() === false) {
     window.GRW = true;
-    var g = GoogleIt();
+    var g;
+    setTimeout(function(){
+      g = GoogleIt();
+    }, GRPrefs.getPref.delayStart());
   } else {
-    GRPrefs.conntype = GRPrefs.usersecureconnection() ? 'https' : 'http';
+    GRStates.conntype = GRPrefs.getPref.usersecureconnection() ? 'https' : 'http';
     var activeWin = getActiveGRW();
-    var unr = activeWin.GRPrefs.currentNum;
+    var unr = activeWin.GRStates.currentNum;
     var maxCount = activeWin.GRW_StatusBar.maxCount;
-    GRPrefs.showNotification = false;
+    GRStates.showNotification = false;
     if(unr === false) {
       GRW_StatusBar.setReaderTooltip('error');
       GRW_StatusBar.switchErrorIcon();
@@ -621,7 +625,7 @@ var GRW_init = function() {
       while(enumerator.hasMoreElements()) {
         win = enumerator.getNext();
         win.GRW_StatusBar.maxCount = maxCount;
-        grid = new win.genStatusGrid(activeWin.GRPrefs.feeds);
+        grid = new win.genStatusGrid(activeWin.GRStates.feeds);
         tt = win.document.getElementById('GRW-statusbar-tooltip-new');
         if(tt.firstChild) {
           tt.removeChild(tt.firstChild);
@@ -633,7 +637,7 @@ var GRW_init = function() {
     } else {
       GRW_StatusBar.setReaderTooltip('nonew');
       GRW_StatusBar.switchOffIcon();
-      if(GRPrefs.showzerocounter() === false) {
+      if(GRPrefs.getPref.showzerocounter() === false) {
         GRW_StatusBar.hideCounter();
       } else {
         GRW_StatusBar.showCounter(unr);
