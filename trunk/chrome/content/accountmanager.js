@@ -22,7 +22,7 @@ var accountManager = {
    * @type {Boolean}
    */
   accountExists: function() {
-    if(GRPrefs.username() && passwordManager.getPassword()) {
+    if(GRPrefs.getPref.username() && passwordManager.getPassword()) {
       return true;
     }
     return false;
@@ -51,11 +51,11 @@ var accountManager = {
    */
   logIn: function() {
     if(this.accountExists()) {
-      // var url = GRPrefs.conntype + '://www.google.com/accounts/ServiceLoginAuth';
+      // var url = GRStates.conntype + '://www.google.com/accounts/ServiceLoginAuth';
       var url = 'https://www.google.com/accounts/ServiceLoginAuth';
-      var param = 'Email='+encodeURIComponent(GRPrefs.username())+'&Passwd='+encodeURIComponent(passwordManager.getPassword())+'&service=reader&continue=http://www.google.com';
+      var param = 'Email='+encodeURIComponent(GRPrefs.getPref.username())+'&Passwd='+encodeURIComponent(passwordManager.getPassword())+'&service=reader&continue=http://www.google.com';
       // remember the login state, possible won't ask for mozilla master password
-      if(GRPrefs.rememberLogin()) {
+      if(GRPrefs.getPref.rememberLogin()) {
         param += '&PersistentCookie=yes';
       }
       new Ajax({

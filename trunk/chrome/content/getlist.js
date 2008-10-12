@@ -28,8 +28,8 @@ GetList.prototype = {
   getFeedList: function() {
     var THIS = this;
     new Ajax({
-      url: GRPrefs.conntype + '://www.google.com/reader/api/0/subscription/list?output=json',
-      // url: GRPrefs.conntype + '://www.googler.com/reader/api/0/subscription/list?output=json',
+      url: GRStates.conntype + '://www.google.com/reader/api/0/subscription/list?output=json',
+      // url: GRStates.conntype + '://www.googler.com/reader/api/0/subscription/list?output=json',
       successHandler: function(request) {
         THIS.subscriptionsList = THIS.decodeJSON(this.req.responseText).subscriptions;
         THIS.onFeedListLoad(this.req);
@@ -55,7 +55,7 @@ GetList.prototype = {
   getReadCounter: function() {
     var THIS = this;
     new Ajax({
-      url: GRPrefs.conntype + '://www.google.com/reader/api/0/unread-count?all=true&output=json',
+      url: GRStates.conntype + '://www.google.com/reader/api/0/unread-count?all=true&output=json',
       successHandler: function() {
         var data = THIS.decodeJSON(this.req.responseText);
         THIS.unreadCount = data.unreadcounts;
@@ -68,7 +68,7 @@ GetList.prototype = {
           } else {
             if(/reading-list/.test(o.id)) {
               var rex = new RegExp('^user\/([^/]+)\/.*');
-              GRPrefs.userid = o.id.replace(rex, '$1');
+              GRStates.userid = o.id.replace(rex, '$1');
             }
             THIS.userFeeds.push(o);
           }
@@ -83,9 +83,9 @@ GetList.prototype = {
    * @param {XMLHttpRequest} req HTTP request object
    */
   finishLoad: function(req) {
-    var r = GRPrefs.sortbylabels() ? this.countLabeled() : this.onFeedsCounterLoad();
+    var r = GRPrefs.getPref.sortbylabels() ? this.countLabeled() : this.onFeedsCounterLoad();
     var unr = r.counter;
-    GRPrefs.currentNum = unr;
+    GRStates.currentNum = unr;
     if(unr === false) {
       GRW_StatusBar.setReaderTooltip('error');
       GRW_StatusBar.switchErrorIcon();
@@ -108,12 +108,12 @@ GetList.prototype = {
     } else {
       GRW_StatusBar.setReaderTooltip('nonew');
       GRW_StatusBar.switchOffIcon();
-      if(GRPrefs.showzerocounter() === false) {
+      if(GRPrefs.getPref.showzerocounter() === false) {
         GRW_StatusBar.hideCounter();
       } else {
         GRW_StatusBar.showCounter(unr);
       }
-      GRPrefs.showNotification = true;
+      GRStates.showNotification = true;
     }
   },
   /**
@@ -123,7 +123,7 @@ GetList.prototype = {
   countLabeled: function() {
     var labeled = this.collectByLabels();
     var uc = this.feeds;
-    var filteredLabels = GRPrefs.filteredlabels();
+    var filteredLabels = GRPrefs.getPref.filteredlabels();
     var i, l, la, u, all = 0, feeds = new Array(), counted = new Object(), rex, label;
     for(label in labeled) {
       rex = new RegExp('(?:^|,\\s*)' + label +'(?:$|,\\s*)', 'i');

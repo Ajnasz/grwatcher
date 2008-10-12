@@ -23,7 +23,7 @@ var accountManager = {
    * @type {Boolean}
    */
   accountExists: function() {
-    if(GRPrefs.username() && passwordManager.getPassword()) {
+    if(GRPrefs.getPref.username() && passwordManager.getPassword()) {
       return true;
     }
     return false;
@@ -52,10 +52,10 @@ var accountManager = {
    */
   logIn: function() {
     if(this.accountExists()) {
-      var url = GRPrefs.conntype + '://www.google.com/accounts/ClientLogin';
-      var param = 'source=' + encodeURIComponent('Google Reader Watcher') + '&Email='+encodeURIComponent(GRPrefs.username())+'&Passwd='+encodeURIComponent(passwordManager.getPassword())+'&service=reader&continue=' + encodeURIComponent('http://www.google.com/');
+      var url = GRStates.conntype + '://www.google.com/accounts/ClientLogin';
+      var param = 'source=' + encodeURIComponent('Google Reader Watcher') + '&Email='+encodeURIComponent(GRPrefs.getPref.username())+'&Passwd='+encodeURIComponent(passwordManager.getPassword())+'&service=reader&continue=' + encodeURIComponent('http://www.google.com/');
       // remember the login state, possible won't ask for mozilla master password
-      if(GRPrefs.rememberLogin()) {
+      if(GRPrefs.getPref.rememberLogin()) {
         // param += '&PersistentCookie=yes';
       }
       var THIS = this;
@@ -71,7 +71,7 @@ var accountManager = {
     return true;
   },
   setGoogleCookie: function(name, value) {
-    this.CookieManager2.add('google.com', '/', name, value, false, GRPrefs.rememberLogin(), 1600000000);
+    this.CookieManager2.add('google.com', '/', name, value, false, GRPrefs.getPref.rememberLogin(), 1600000000);
   },
   /**
    * @param {Event} e event object
