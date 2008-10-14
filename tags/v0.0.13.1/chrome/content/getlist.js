@@ -13,7 +13,9 @@ var GetList = function(getuserid) {
   } else {
     this.getFeedList();
   }
-  this.nativeJSON = Components.classes["@mozilla.org/dom/json;1"].createInstance(Components.interfaces.nsIJSON);
+  try {
+    this.nativeJSON = Components.classes["@mozilla.org/dom/json;1"].createInstance(Components.interfaces.nsIJSON);
+  } catch(e){}
 };
 GetList.prototype = {
   subscriptionsList: null,
