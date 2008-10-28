@@ -1,7 +1,7 @@
 /**
  * accountmanager.js
  *
- * @author Koszti Lajos [Ajnasz] http://ajnasz.hu ajnasz@ajnasz.hu 
+ * @author Koszti Lajos [Ajnasz] http://ajnasz.hu ajnasz@ajnasz.hu
  * @license GPL v2
  * for more details see the license.txt file
  */
@@ -38,8 +38,8 @@ var accountManager = {
       var cookie = enumerator.getNext();
       if (cookie instanceof Components.interfaces.nsICookie) {
         if (rex.test(cookie.host)) {
-          if(cookie.name == 'SID' && cookie) {
-            return true;
+          if(cookie && cookie.name == 'SID') {
+            return cookie.value;
           }
         }
       }
@@ -48,8 +48,10 @@ var accountManager = {
   },
   /**
    * do the login into the google service
+   * @param {Function} onLoad run after successful login
+   * @param {Boolean} [noGetList] if true, won't send a request after a successfull login
    */
-  logIn: function() {
+  logIn: function(onLogin, noGetList) {
     if(this.accountExists()) {
       // var url = GRStates.conntype + '://www.google.com/accounts/ServiceLoginAuth';
       var url = 'https://www.google.com/accounts/ServiceLoginAuth';
@@ -58,10 +60,19 @@ var accountManager = {
       if(GRPrefs.getPref.rememberLogin()) {
         param += '&PersistentCookie=yes';
       }
+      var _this = this;
       new Ajax({
         url: url,
         method: 'post',
-        successHandler: this.ajaxSuccess
+        successHandler: function(e) {
+          _this.ajaxSuccess(e);
+          if(onLogin) {
+            onLogin();
+          }
+          if(!noGetList) {
+            new GetList();
+          }
+        }
       }, param);
     } else {
       this.loginFailed();
@@ -81,7 +92,7 @@ var accountManager = {
       GRW_StatusBar.setReaderTooltip('loginerror');
       return false;
     }
-    new GetList();
+    GRPrefs.setPref.sid(curSid);
     return true;
   },
   /**
