@@ -46,6 +46,10 @@
               <textbox id="GRW-checkfreq-field" size="2" cols="2" />
               <label control="GRW-checkfreq-field" value="&GRWpreferences.checkfrequency.unit;" />
             </hbox>
+            <hbox>
+              <label control="GRW-delayStart-field" value="&GRWpreferences.delaystart;" />
+              <textbox id="GRW-delayStart-field" size="2" cols="2" />
+            </hbox>
             <vbox>
               <checkbox id="GRW-resetcounter-field" label="&GRWpreferences.resetcounterdesc;" />
               <checkbox id="GRW-shownotificationwindow-field" label="&GRWpreferences.shownotificationwindow;" />
@@ -121,6 +125,7 @@
               </row>
               <row>
                 <checkbox id="GRW-rememberLogin-field" label="&GRWpreferences.accountinfo.rememberLogin;" />
+                <checkbox id="GRW-forceLogin-field" label="&GRWpreferences.accountinfo.forceLogin;" />
               </row>
             </rows>
           </grid>
