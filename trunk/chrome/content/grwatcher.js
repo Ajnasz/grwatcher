@@ -23,7 +23,9 @@ var GRCheck = {
   /**
    * open the readader window
    */
-  openReader: function() {
+  openReader: function(url) {
+    GRW_LOG(url);
+    var url = url || '';
     this.getReaderURL();
     if(GRPrefs.getPref.resetCounter()) {
       if(GRPrefs.getPref.showZeroCounter() === false) {
@@ -51,10 +53,10 @@ var GRCheck = {
          */
         if(openedGR.blankPage === false) {
           if(GRPrefs.getPref.activateOpenedTab()) {
-            gBrowser.selectedTab = gBrowser.addTab(this.getReaderURL());
+            gBrowser.selectedTab = gBrowser.addTab(this.getReaderURL() + '/' + url);
             gBrowser.getBrowserAtIndex(gBrowser.mTabContainer.selectedIndex).contentWindow.focus();
           } else {
-            gBrowser.addTab(this.getReaderURL());
+            gBrowser.addTab(this.getReaderURL() + '/' + url);
           }
         } else {
           /**
@@ -62,18 +64,18 @@ var GRCheck = {
            */
           if(GRPrefs.getPref.activateOpenedTab()) {
             gBrowser.mTabContainer.selectedIndex = openedGR.blankPage;
-            gBrowser.loadURI(this.getReaderURL());
+            gBrowser.loadURI(this.getReaderURL() + '/' + url);
             gBrowser.getBrowserAtIndex(gBrowser.mTabContainer.selectedIndex).contentWindow.focus();
           } else {
-            gBrowser.getBrowserAtIndex(openedGR.blankPage).loadURI(this.getReaderURL());
+            gBrowser.getBrowserAtIndex(openedGR.blankPage).loadURI(this.getReaderURL() + '/' + url);
           }
         }
       } else {
-        gBrowser.loadURI(this.getReaderURL());
+        gBrowser.loadURI(this.getReaderURL() + '/' + url);
       }
     } else {
       gBrowser.mTabContainer.selectedIndex = openedGR.grTab;
-      gBrowser.loadURI(this.getReaderURL());
+      gBrowser.loadURI(this.getReaderURL() + '/' + url);
     }
     var minCheck = 1;
     var configuredCheck = GRPrefs.getPref.checkFreq();
@@ -401,9 +403,9 @@ genStatusGrid.prototype = {
         /**
         * create cells
         */
-        rowc = row.cloneNode(true);
-        labelc1 = label.cloneNode(true);
-        labelc2 = label.cloneNode(true);
+        var rowc = row.cloneNode(true);
+        var labelc1 = label.cloneNode(true);
+        var labelc2 = label.cloneNode(true);
 
         // configure the length of the title
         var titlelength = GRPrefs.getPref.tooltipTitleLength();
@@ -462,6 +464,69 @@ genStatusGrid.prototype = {
   }
 };
 /**
+ * generate a menu item instead of the tooltip
+ * @param {Array} feeds
+ * @param {String} [class]
+ * @param {Boolean} [justRow]
+ * @returns a grid element which is filled with the unread feeds data
+ * @type Element
+ */
+var genStatusMenu = function(feeds, class, justRows) {
+  GRStates.feeds = feeds;
+  this.class = class || '';
+  this.justRows = justRows || false;
+  this.popup = this.genPopup(this.genMenu(feeds));
+}
+genStatusMenu.prototype = {
+  genMenu: function(feeds) {
+    if(!feeds) { return false; }
+    var menuitem = document.createElement('menuitem'), menuitemc;
+    var rowsArray = new Array();
+    var THIS = this;
+    feeds.map(
+      function(o) {
+        /**
+        * create menu items
+        */
+        menuitemc = menuitem.cloneNode(true);
+
+        // configure the length of the title
+        var titlelength = GRPrefs.getPref.tooltipTitleLength();
+        titlelength = (titlelength > 5) ? titlelength : 5;
+        if(o.Title.length > titlelength) {
+          o.Title = o.Title.slice(0, titlelength-3)+'...';
+        }
+        o.Count = (GRPrefs.getPref.maximizeCounter() && GRW_StatusBar.maxCount && o.Count > GRW_StatusBar.maxCount) ? GRW_StatusBar.maxCount + '+' : o.Count;
+        // set up the counter position
+        menuitemc.label = (GRPrefs.getPref.tooltipCounterPos() == 'left') ? o.Count + ' ' + o.Title : o.Title + ' ' + o.Count;
+        menuitemc.setAttribute('url', o.Id);
+        menuitemc.addEventListener('command', function(){GRCheck.openReader(this.getAttribute('url'));}, false);
+        rowsArray.push(menuitemc);
+        if(o.Subs) {
+          menuitemc.setAttribute('class', 'tag');
+          if(o.Title == '-') {
+            menuitemc.setAttribute('class', 'notitle tag');
+          }
+          var subRows = THIS.genMenu(o.Subs);
+          rowsArray = rowsArray.concat(subRows);
+        }
+      }
+    );
+    return rowsArray;
+  },
+  genPopup: function(rowsArray) {
+    // Create popup elements
+    GRW_LOG(rowsArray.length);
+    var popup = document.createElement('menupopup');
+    popup.setAttribute('class', 'GRW-statusbar-feeds-menu ' + this.class);
+    rowsArray.map(function(o){
+      GRW_LOG(o.label);
+      popup.appendChild(o);
+    });
+    return popup;
+  }
+};
+/**
  * do the request and process the received data
  * @returns the timeout id which will runs next time the #GoogleIt function
  * @type {Number}
@@ -476,11 +541,11 @@ var GoogleIt = function() {
   if(!accountManager.getCurrentSID() || GRPrefs.getPref.forceLogin()) {
     GRW_LOG('login');
     var login = accountManager.logIn();
+    if(login === -1) {
+      GRW_StatusBar.switchErrorIcon();
+    }
   } else {
     var list = new GetList();
-  }
-  if(login === -1) {
-    GRW_StatusBar.switchErrorIcon();
   }
   var minCheck = 1;
   var configuredCheck = GRPrefs.getPref.checkFreq();
@@ -525,7 +590,16 @@ GRW_statusClickHandling.prototype = {
     switch(event.button) {
       case 0:
         if((st == 2 && event.type == 'dblclick') || (st == 1 && event.type == 'click')) {
-          GRCheck.openReader();
+          if(GRPrefs.getPref.forceLogin()) {
+            var login = accountManager.logIn(function(){
+                GRCheck.openReader();
+            }, true);
+            if(login === -1) {
+              GRW_StatusBar.switchErrorIcon();
+            }
+          } else {
+            GRCheck.openReader();
+          }
         }
       break;
 
@@ -620,16 +694,22 @@ var GRW_init = function() {
     } else if(unr > 0) {
       GRW_StatusBar.setReaderTooltip('new', unr);
       var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"].getService(Components.interfaces.nsIWindowMediator);
-      var enumerator = wm.getEnumerator('navigator:browser'), win, grid, tt;
+      var enumerator = wm.getEnumerator('navigator:browser'), win, grid, tt, pp, tm;
       while(enumerator.hasMoreElements()) {
         win = enumerator.getNext();
         win.GRW_StatusBar.maxCount = maxCount;
-        grid = new win.genStatusGrid(activeWin.GRStates.feeds);
         tt = win.document.getElementById('GRW-statusbar-tooltip-new');
-        if(tt.firstChild) {
+        tm = win.document.getElementById('GRW-open-feeds-menu');
+        while(tt.firstChild) {
           tt.removeChild(tt.firstChild);
         }
+        while(tm.firstChild) {
+          tm.removeChild(tm.firstChild);
+        }
+        grid = new win.genStatusGrid(activeWin.GRStates.feeds);
         tt.appendChild(grid.grid);
+        pp = new win.genStatusMenu(activeWin.GRStates.feeds);
+        tm.appendChild(pp.popup);
       }
       GRW_StatusBar.switchOnIcon();
       GRW_StatusBar.showCounter(unr);
