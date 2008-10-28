@@ -34,6 +34,7 @@
       <menuitem label="&GRWstatusbar.popup.getReadCounter;" oncommand="GoogleIt();" />
       <menuitem label="&GRWstatusbar.popup.markAllAsRead;" oncommand="new markAllAsRead();" />
       <menuitem label="&GRWstatusbar.popup.openPrefs;" oncommand="openPrefs();" />
+      <menu label="&GRWstatusbar.popup.openFeed;" id="GRW-open-feeds-menu"></menu>
     </popup>
 
   </statusbar>
