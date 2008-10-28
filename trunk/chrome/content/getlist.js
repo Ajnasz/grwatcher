@@ -98,12 +98,18 @@ GetList.prototype = {
       var enumerator = wm.getEnumerator('navigator:browser'), win, grid, tt;
       while(enumerator.hasMoreElements()) {
         win = enumerator.getNext();
-        grid = new win.genStatusGrid(r.feeds);
         tt = win.document.getElementById('GRW-statusbar-tooltip-new');
-        if(tt.firstChild) {
+        tm = win.document.getElementById('GRW-open-feeds-menu');
+        while(tt.firstChild) {
           tt.removeChild(tt.firstChild);
         }
+        while(tm.firstChild) {
+          tm.removeChild(tm.firstChild);
+        }
+        grid = new win.genStatusGrid(r.feeds);
         tt.appendChild(grid.grid);
+        pp = new win.genStatusMenu(r.feeds);
+        tm.appendChild(pp.popup);
       }
       GRW_StatusBar.switchOnIcon();
       GRW_StatusBar.showCounter(unr);
