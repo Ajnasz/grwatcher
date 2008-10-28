@@ -9,6 +9,7 @@ var prefManager = Components.classes["@mozilla.org/preferences-service;1"].getSe
  */
 var savePreferences = function() {
   GRPrefs.setPref.checkFreq(document.getElementById('GRW-checkfreq-field').value);
+  GRPrefs.setPref.delayStart(document.getElementById('GRW-delayStart-field').value);
   GRPrefs.setPref.openInNewTab(document.getElementById('GRW-openinnewtab-field').checked);
   GRPrefs.setPref.resetCounter(document.getElementById('GRW-resetcounter-field').checked);
   GRPrefs.setPref.tooltipCounterPos(document.getElementById('GRW-tooltipcounterpos-field').value);
@@ -24,6 +25,7 @@ var savePreferences = function() {
   GRPrefs.setPref.maximizeCounter(document.getElementById('GRW-maximizecounter-field').checked);
 
   GRPrefs.setPref.userName(document.getElementById('GRW-accountmanage-email').value);
+  GRPrefs.setPref.forceLogin(document.getElementById('GRW-forceLogin-field').checked);
   passwordManager.addPassword(document.getElementById('GRW-accountmanage-pass').value);
 
 };
@@ -32,6 +34,7 @@ var savePreferences = function() {
  */
 var setPrefPaneVals = function() {
   document.getElementById('GRW-checkfreq-field').value = GRPrefs.getPref.checkFreq();
+  document.getElementById('GRW-delayStart-field').value = GRPrefs.getPref.delayStart();
   document.getElementById('GRW-openinnewtab-field').checked = GRPrefs.getPref.openInNewTab();
   document.getElementById('GRW-resetcounter-field').checked = GRPrefs.getPref.resetCounter();
   document.getElementById('GRW-tooltipcounterpos-field').value = GRPrefs.getPref.tooltipCounterPos();
@@ -47,6 +50,7 @@ var setPrefPaneVals = function() {
   document.getElementById('GRW-sortbylabels-field').checked = GRPrefs.getPref.sortByLabels();
   document.getElementById('GRW-filteredlabels-field').value = GRPrefs.getPref.filteredLabels();
   document.getElementById('GRW-maximizecounter-field').checked = GRPrefs.getPref.maximizeCounter();
+  document.getElementById('GRW-forceLogin-field').checked = GRPrefs.getPref.forceLogin();
 };
 /**
  * show/hide the newtab options
