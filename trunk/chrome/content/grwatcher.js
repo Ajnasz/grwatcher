@@ -497,7 +497,7 @@ genStatusMenu.prototype = {
         }
         o.Count = (GRPrefs.getPref.maximizeCounter() && GRW_StatusBar.maxCount && o.Count > GRW_StatusBar.maxCount) ? GRW_StatusBar.maxCount + '+' : o.Count;
         // set up the counter position
-        menuitemc.label = (GRPrefs.getPref.tooltipCounterPos() == 'left') ? o.Count + ' ' + o.Title : o.Title + ' ' + o.Count;
+        menuitemc.label = o.Count + ' ' + o.Title;
         menuitemc.setAttribute('url', o.Id);
         menuitemc.addEventListener('command', function(){GRCheck.openReader(this.getAttribute('url'));}, false);
         rowsArray.push(menuitemc);
