@@ -150,7 +150,7 @@ GetList.prototype = {
             }
             friendAdded = true;
           } else {
-            labeled[label].map(function(l) {
+            labeled[label].value.map(function(l) {
               if(u.id == l.id && u.count > 0) {
                 labeled[label].count += u.count;
                 labeled[label].subs.push({Title: l.title, Id: l.id, Count: u.count});
@@ -163,7 +163,7 @@ GetList.prototype = {
           }
         });
         if(labeled[label].count > 0) {
-          feeds.push({Title: label, Id: null, Count: labeled[label].count, Subs: labeled[label].subs});
+          feeds.push({Title: label, Id: labeled[label].Id, Count: labeled[label].count, Subs: labeled[label].subs});
         }
       }
     }
@@ -176,34 +176,37 @@ GetList.prototype = {
    */
   collectByLabels: function() {
     var ob = this.subscriptionsList, labels = new Object(), o, u;
-    var nolabel = new Array();
+    var nolabel = {Id: '', value: new Array()};
     var rex = new RegExp('^(?:user/\\d+/state/com.google/broadcast-friends|feed)');
     ob.map(function(o) {
       if(rex.test(o.id)) {
         if(o.categories.length) {
           o.categories.map(function(u) {
             if(typeof labels[u.label] == 'undefined') {
-              labels[u.label] = new Array();
+              labels[u.label] = {
+                value: new Array(),
+                id: u.id
+              }
             }
-            labels[u.label].push(o);
+            labels[u.label].value.push(o);
           });
         } else {
-          nolabel.push(o);
+          nolabel.value.push(o);
         }
       }
     });
     var a = new Array();
     for(label in labels) {
-      a.push({name: label, value: labels[label]});
+      a.push({name: label, value: labels[label].value, Id: labels[label].id});
     }
     a.sort(function(a,b) {
       return a.name > b.name;
     });
     var labels = new Object();
     a.map(function(o) {
-      labels[o.name] = o.value;
+      labels[o.name] ={value: o.value, Id: o.Id};
     });
-    labels['-'] = nolabel;
+    labels['-'] = {value: nolabel.value, Id: ''};
     return labels;
   },
   /**
