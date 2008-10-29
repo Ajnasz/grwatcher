@@ -24,7 +24,6 @@ var GRCheck = {
    * open the readader window
    */
   openReader: function(url) {
-    GRW_LOG(url);
     var url = url || '';
     this.getReaderURL();
     if(GRPrefs.getPref.resetCounter()) {
@@ -516,11 +515,9 @@ genStatusMenu.prototype = {
   },
   genPopup: function(rowsArray) {
     // Create popup elements
-    GRW_LOG(rowsArray.length);
     var popup = document.createElement('menupopup');
     popup.setAttribute('class', 'GRW-statusbar-feeds-menu ' + this.class);
     rowsArray.map(function(o){
-      GRW_LOG(o.label);
       popup.appendChild(o);
     });
     return popup;
@@ -539,7 +536,6 @@ var GoogleIt = function() {
     return false;
   }
   if(!accountManager.getCurrentSID() || GRPrefs.getPref.forceLogin()) {
-    GRW_LOG('login');
     var login = accountManager.logIn();
     if(login === -1) {
       GRW_StatusBar.switchErrorIcon();
