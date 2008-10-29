@@ -64,13 +64,13 @@ GetList.prototype = {
         THIS.maxCount = GRW_StatusBar.maxCount = data.max;
         THIS.feeds = new Array();
         THIS.userFeeds = new Array();
+        var rex1 = new RegExp('^(?:user/\\d+/state/com.google/broadcast-friends|feed)'), rex2 = new RegExp('^user\/([^/]+)\/.*');
         THIS.unreadCount.map(function(o) {
-          if(/^feed/.test(o.id)) {
+          if(rex1.test(o.id)) {
             THIS.feeds.push(o);
           } else {
             if(/reading-list/.test(o.id)) {
-              var rex = new RegExp('^user\/([^/]+)\/.*');
-              GRStates.userid = o.id.replace(rex, '$1');
+              GRStates.userid = o.id.replace(rex2, '$1');
             }
             THIS.userFeeds.push(o);
           }
@@ -133,22 +133,34 @@ GetList.prototype = {
     var uc = this.feeds;
     var filteredLabels = GRPrefs.getPref.filteredLabels();
     var i, l, la, u, all = 0, feeds = new Array(), counted = new Object(), rex, label;
+    var friendRex = new RegExp('^user/\\d+/state/com.google/broadcast-friends'), friendAdded = false;
     for(label in labeled) {
       rex = new RegExp('(?:^|,\\s*)' + label +'(?:$|,\\s*)', 'i');
       if(!rex.test(filteredLabels)) {
         labeled[label].count = 0;
         labeled[label].subs = new Array();
-        labeled[label].map(function(l) {
-          uc.map(function(u) {
-            if(u.id == l.id && u.count > 0) {
-              labeled[label].count += u.count;
-              labeled[label].subs.push({Title: l.title, Id: l.id, Count: u.count});
-              if(counted[l.id] !== true) {
-                all += u.count;
-                counted[l.id] = true;
-              }
+        uc.map(function(u) {
+          if(friendRex.test(u.id) && label == '-') {
+            feeds.push({Title: 'Shared items', Id: u.id, Count: u.count});
+            labeled[label].count += u.count;
+            labeled[label].subs.push({Title: 'Shared items', Id: u.id, Count: u.count});
+            if(counted[u.id] !== true) {
+              all += u.count;
+              counted[u.id] = true;
             }
-          });
+            friendAdded = true;
+          } else {
+            labeled[label].map(function(l) {
+              if(u.id == l.id && u.count > 0) {
+                labeled[label].count += u.count;
+                labeled[label].subs.push({Title: l.title, Id: l.id, Count: u.count});
+                if(counted[l.id] !== true) {
+                  all += u.count;
+                  counted[l.id] = true;
+                }
+              }
+            });
+          }
         });
         if(labeled[label].count > 0) {
           feeds.push({Title: label, Id: null, Count: labeled[label].count, Subs: labeled[label].subs});
@@ -165,8 +177,9 @@ GetList.prototype = {
   collectByLabels: function() {
     var ob = this.subscriptionsList, labels = new Object(), o, u;
     var nolabel = new Array();
+    var rex = new RegExp('^(?:user/\\d+/state/com.google/broadcast-friends|feed)');
     ob.map(function(o) {
-      if(/^feed/.test(o.id)) {
+      if(rex.test(o.id)) {
         if(o.categories.length) {
           o.categories.map(function(u) {
             if(typeof labels[u.label] == 'undefined') {
@@ -200,24 +213,31 @@ GetList.prototype = {
   onFeedsCounterLoad: function() {
     var prc = this.feeds;
     var feeds = Array(), unr = this.feedsCounter(), o, u;
-    unr.map(function(o) {
-      prc.map(function(u) {
-        if(o.id == u.id && u.count > 0) {
-          feeds.push({Title: o.title, Id: o.id, Count: u.count})
-        }
-      });
+    var friendRex = new RegExp('^user/\\d+/state/com.google/broadcast-friends');
+    prc.map(function(u) {
+      if(friendRex.test(u.id)) {
+        feeds.push({Title: 'Shared items', Id: u.id, Count: u.count});
+      } else {
+        unr.map(function(o) {
+          if(o.id == u.id && u.count > 0) {
+            feeds.push({Title: o.title, Id: o.id, Count: u.count})
+          }
+        });
+      }
     });
     // filter the feeds, which aren't in the feedlist
-    var outFeeds = Array();
-    var counter = 0;
-    var THIS = this;
+    var outFeeds = Array(), counter = 0, THIS = this;
     feeds.map(function(o) {
-      THIS.FeedlistIds.map(function(u) {
-        if(o.Id == u)  {
-          counter += o.Count;
-          outFeeds.push(o);
-        }
-      });
+      if(friendRex.test(o.Id)) {
+        outFeeds.push(o);
+      } else {
+        THIS.FeedlistIds.map(function(u) {
+          if(o.Id == u)  {
+            counter += o.Count;
+            outFeeds.push(o);
+          }
+        });
+      }
     });
     return {counter: counter, feeds: outFeeds};
   },
