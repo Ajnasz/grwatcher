@@ -22,30 +22,52 @@
       </Description>
     </em:file>
 
-    <em:creator>Lajos Koszti [Ajnasz]; http://ajnasz.hu</em:creator>
+    <em:localized>
+      <Description>
+        <em:locale>en-US</em:locale>
+        <em:name>Google Reader Watcher</em:name>
+        <em:creator>Lajos Koszti</em:creator>
+        <em:description>Checks your Google Reader for unread feeds</em:description>
+        <em:homepageURL>http://ajnasz.hu/google-reader-watcher</em:homepageURL>
+        <em:contributor>David Peitler</em:contributor>
+      </Description>
+    </em:localized>
+    <em:localized>
+      <Description>
+        <em:locale>hu-HU</em:locale>
+        <em:name>Google Reader Watcher</em:name>
+        <em:creator>Koszti Lajos</em:creator>
+        <em:description>Rendszeresen ellenőrzi a Google Readert, olvasatlan hírek után kutatva</em:description>
+        <em:homepageURL>http://ajnasz.hu/google-reader-watcher</em:homepageURL>
+        <em:contributor>David Peitler</em:contributor>
+        <em:translator>Koszti Lajos hu-HU</em:translator>
+      </Description>
+    </em:localized>
+
+    <em:creator>Lajos Koszti</em:creator>
     <em:description>Checks your Google Reader for unread feeds</em:description>
-    <em:homepageURL>http://ajnasz.hu/google-reader-watcher</em:homepageURL>
     <em:iconURL>chrome://grwatcher/skin/grwatcher.png</em:iconURL>
     <em:optionsURL>chrome://grwatcher/content/grprefs.xul</em:optionsURL>
-
+    <em:homepageURL>http://ajnasz.hu/google-reader-watcher</em:homepageURL>
     <em:contributor>David Peitler</em:contributor>
-    <em:contributor>7bse - de-DE (babelzilla)</em:contributor>
-    <em:contributor>panda2005 el-GR (babelzilla)</em:contributor>
-    <em:contributor>PAGF_LINUX es-AR (babelzilla)</em:contributor>
-    <em:contributor>PAGF_LINUX es-ES (babelzilla)</em:contributor>
-    <em:contributor>Sander Lepik - et-EE</em:contributor>
-    <em:contributor>AtteL fi-FI (babelzilla)</em:contributor>
-    <em:contributor>chtitux - fr-FR (babelzilla)</em:contributor>
-    <em:contributor>pierfrancesco99 it-IT (babelzilla)</em:contributor>
-    <em:contributor>drry ja-JP (babelzilla)</em:contributor>
-    <em:contributor>Hans nl-NL (babelzilla)</em:contributor>
-    <em:contributor>Wareczek pl-PL (babelzilla)</em:contributor>
-    <em:contributor>zini pt-BR (babelzilla)</em:contributor>
-    <em:contributor>promatik pt-PT (babelzilla)</em:contributor>
-    <em:contributor>dvdianov ru-RU (babelzilla)</em:contributor>
-    <em:contributor>morpher sk-SK (babelzilla)</em:contributor>
-    <em:contributor>Ahmed Yilmaz - tr-TR</em:contributor>
-    <em:contributor>fiag zh-CN (babelzilla)</em:contributor>
-    <em:contributor>toomore zh-TW (babelzilla)</em:contributor>
+    <em:translator>7bse - de-DE (babelzilla)</em:translator>
+    <em:translator>panda2005 el-GR (babelzilla)</em:translator>
+    <em:translator>PAGF_LINUX es-AR (babelzilla)</em:translator>
+    <em:translator>PAGF_LINUX es-ES (babelzilla)</em:translator>
+    <em:translator>Sander Lepik - et-EE</em:translator>
+    <em:translator>AtteL fi-FI (babelzilla)</em:translator>
+    <em:translator>chtitux - fr-FR (babelzilla)</em:translator>
+    <em:translator>pierfrancesco99 it-IT (babelzilla)</em:translator>
+    <em:translator>drry ja-JP (babelzilla)</em:translator>
+    <em:translator>Hans nl-NL (babelzilla)</em:translator>
+    <em:translator>Wareczek pl-PL (babelzilla)</em:translator>
+    <em:translator>zini pt-BR (babelzilla)</em:translator>
+    <em:translator>promatik pt-PT (babelzilla)</em:translator>
+    <em:translator>dvdianov ru-RU (babelzilla)</em:translator>
+    <em:translator>morpher sk-SK (babelzilla)</em:translator>
+    <em:translator>Ahmed Yilmaz - tr-TR</em:translator>
+    <em:translator>fiag zh-CN (babelzilla)</em:translator>
+    <em:translator>toomore zh-TW (babelzilla)</em:translator>
+
   </Description>
 </RDF>
