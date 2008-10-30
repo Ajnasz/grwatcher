@@ -99,23 +99,29 @@ GetList.prototype = {
       while(enumerator.hasMoreElements()) {
         win = enumerator.getNext();
         tt = win.document.getElementById('GRW-statusbar-tooltip-new');
-        tm = win.document.getElementById('GRW-open-feeds-menu');
+        tm = win.document.getElementById('GRW-statusbar-menu');
         while(tt.firstChild) {
           tt.removeChild(tt.firstChild);
         }
-        while(tm.firstChild) {
-          tm.removeChild(tm.firstChild);
-        }
         grid = new win.genStatusGrid(r.feeds);
         tt.appendChild(grid.grid);
-        pp = new win.genStatusMenu(r.feeds);
-        tm.appendChild(pp.popup);
+        var menu = new win.genStatusMenu(tm);
+        menu.addItems(r.feeds);
+        // tm.appendChild(pp.popup);
       }
       GRW_StatusBar.switchOnIcon();
       GRW_StatusBar.showCounter(unr);
     } else {
       GRW_StatusBar.setReaderTooltip('nonew');
       GRW_StatusBar.switchOffIcon();
+      var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"].getService(Components.interfaces.nsIWindowMediator);
+      var enumerator = wm.getEnumerator('navigator:browser'), win, tm, menu;
+      while(enumerator.hasMoreElements()) {
+        win = enumerator.getNext();
+        tm = win.document.getElementById('GRW-statusbar-menu');
+        menu = new win.genStatusMenu(tm);
+        menu.clearItems();
+      }
       if(GRPrefs.getPref.showZeroCounter() === false) {
         GRW_StatusBar.hideCounter();
       } else {

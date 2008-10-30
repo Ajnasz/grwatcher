@@ -199,11 +199,11 @@ var GRW_StatusBar = {
       }
     }
   },
-/**
- * change the reader tooltiptext
- * @param {Object} txt
- * @param {Number} [unr]
- */
+  /**
+   * change the reader tooltiptext
+   * @param {Object} txt
+   * @param {Number} [unr]
+   */
   setReaderTooltip: function(t, unr) {
     var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"].getService(Components.interfaces.nsIWindowMediator);
     var enumerator = wm.getEnumerator('navigator:browser'), win;
@@ -465,20 +465,16 @@ genStatusGrid.prototype = {
 /**
  * generate a menu item instead of the tooltip
  * @param {Array} feeds
- * @param {String} [class]
- * @param {Boolean} [justRow]
  * @returns a grid element which is filled with the unread feeds data
  * @type Element
  */
-var genStatusMenu = function(feeds, class, justRows) {
-  GRStates.feeds = feeds;
-  this.class = class || '';
-  this.justRows = justRows || false;
-  this.popup = this.genPopup(this.genMenu(feeds));
+var genStatusMenu = function(tm) {
+  this.tm = tm;
 }
 genStatusMenu.prototype = {
   genMenu: function(feeds) {
     if(!feeds) { return false; }
+    GRStates.feeds = feeds;
     var menuitem = document.createElement('menuitem'), menuitemc;
     var rowsArray = new Array();
     var THIS = this;
@@ -499,6 +495,7 @@ genStatusMenu.prototype = {
         // set up the counter position
         menuitemc.label = o.Count + ' ' + o.Title;
         menuitemc.setAttribute('url', o.Id);
+        menuitemc.setAttribute('class', 'feed');
         menuitemc.addEventListener('command', function(){GRCheck.openReader(this.getAttribute('url'));}, false);
         rowsArray.push(menuitemc);
         if(o.Subs) {
@@ -513,14 +510,29 @@ genStatusMenu.prototype = {
     );
     return rowsArray;
   },
-  genPopup: function(rowsArray) {
+  addItems: function(feeds) {
     // Create popup elements
-    var popup = document.createElement('menupopup');
-    popup.setAttribute('class', 'GRW-statusbar-feeds-menu ' + this.class);
+    //var popup = document.createElement('menupopup');
+    //popup.setAttribute('class', 'GRW-statusbar-feeds-menu ' + this.class);
+    this.clearItems();
+    var rowsArray = this.genMenu(feeds);
+    var firstChild = this.tm.firstChild;
+    var _this = this;
     rowsArray.map(function(o){
-      popup.appendChild(o);
+      GRW_LOG(_this.tm.tagName, firstChild.tagName);
+      _this.tm.insertBefore(o, firstChild);
     });
-    return popup;
+  },
+  clearItems: function() {
+    var removable = new Array();
+    for(var i = 0, tl = this.tm.childNodes.length; i < tl; i++) {
+      if(/feed|tag/.test(this.tm.childNodes[i].getAttribute('class'))) {
+          removable.push(this.tm.childNodes[i]);
+      }
+    }
+    var _this = this;
+    removable.map(function(tmc) {_this.tm.removeChild(tmc)});
+    return true;
   }
 };
 /**
@@ -695,23 +707,30 @@ var GRW_init = function() {
         win = enumerator.getNext();
         win.GRW_StatusBar.maxCount = maxCount;
         tt = win.document.getElementById('GRW-statusbar-tooltip-new');
-        tm = win.document.getElementById('GRW-open-feeds-menu');
+        // tm = win.document.getElementById('GRW-open-feeds-menu');
+        tm = win.document.getElementById('GRW-statusbar-menu');
         while(tt.firstChild) {
           tt.removeChild(tt.firstChild);
         }
-        while(tm.firstChild) {
-          tm.removeChild(tm.firstChild);
-        }
         grid = new win.genStatusGrid(activeWin.GRStates.feeds);
         tt.appendChild(grid.grid);
-        pp = new win.genStatusMenu(activeWin.GRStates.feeds);
-        tm.appendChild(pp.popup);
+        var menu = new win.genStatusMenu(tm);
+        menu.addItems(activeWin.GRStates.feeds);
+        // tm.appendChild(pp.popup);
       }
       GRW_StatusBar.switchOnIcon();
       GRW_StatusBar.showCounter(unr);
     } else {
       GRW_StatusBar.setReaderTooltip('nonew');
       GRW_StatusBar.switchOffIcon();
+      var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"].getService(Components.interfaces.nsIWindowMediator);
+      var enumerator = wm.getEnumerator('navigator:browser'), win, tm, menu;
+      while(enumerator.hasMoreElements()) {
+        win = enumerator.getNext();
+        tm = win.document.getElementById('GRW-statusbar-menu');
+        menu = new win.genStatusMenu(tm);
+        menu.clearItems();
+      }
       if(GRPrefs.getPref.showZeroCounter() === false) {
         GRW_StatusBar.hideCounter();
       } else {
