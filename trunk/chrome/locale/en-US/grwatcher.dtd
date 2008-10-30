@@ -2,16 +2,17 @@
 <!ENTITY GRWstatusbar.popup.getReadCounter "Check for unread feeds">
 <!ENTITY GRWstatusbar.popup.openPrefs "Preferences">
 <!ENTITY GRWstatusbar.popup.markAllAsRead "Mark all as read">
-<!ENTITY GRWstatusbar.popup.openFeed "Open a feed">
 <!ENTITY GRWpreferences.title "Google Reader Watcher Preferences">
-<!ENTITY GRWpreferences.checkfrequency "Check for new feeds every">
-<!ENTITY GRWpreferences.checkfrequency.unit "minute(s)">
-<!ENTITY GRWpreferences.delaystart "Check for new feeds after the browser started (seconds)">
+<!ENTITY GRWpreferences.checkfrequency "Check frequency (minutes)">
+<!ENTITY GRWpreferences.delaystart "Start the first check after the browser started (milliseconds)">
 <!ENTITY GRWpreferences.activateOpenedTab "Focus on the Reader tab after opening">
 <!ENTITY GRWpreferences.generalpreferencescaption "General preferences">
 <!ENTITY GRWpreferences.generalpreferencesopencaption "Opening settings of Google Reader">
 <!ENTITY GRWpreferences.tooltippreferencescaption "Tooltip preferences">
 <!ENTITY GRWpreferences.tabgeneral "General">
+<!ENTITY GRWpreferences.tabaccountinfo "Account information">
+<!ENTITY GRWpreferences.tabopening "Window opening settings">
+<!ENTITY GRWpreferences.tabtooltip "Tooltip settings">
 <!ENTITY GRWpreferences.openinnewtabdesc "Open Google Reader in a new tab">
 <!ENTITY GRWpreferences.resetcounterdesc "Resets the statusbar counter when the Google Reader window opens">
 <!ENTITY GRWpreferences.shownotificationwindow "Show notification window">
@@ -22,9 +23,7 @@
 <!ENTITY GRWpreferences.tooltipcounterposdesc "Counter tooltip position:">
 <!ENTITY GRWpreferences.tooltipdesc "These options will take effect after a feed check.">
 <!ENTITY GRWpreferences.tooltiptitlelengthdesc "Sets the feed title&apos;s character number in the tooltip">
-<!ENTITY GRWpreferences.tabaccountinfo "Account information">
 <!ENTITY GRWpreferences.accountinfocaption "Google account information">
-<!ENTITY GRWpreferences.accountinfodesc "Specify your Google account e-mail and password">
 <!ENTITY GRWpreferences.accountinfoemail "E-mail address:">
 <!ENTITY GRWpreferences.accountinfopassword "Password:">
 <!ENTITY GRWpreferences.accountinfo.rememberLogin "Continue session on startup">

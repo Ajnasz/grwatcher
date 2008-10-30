@@ -4,12 +4,15 @@
 <!ENTITY GRWstatusbar.popup.markAllAsRead "Mind megjelölése olvasottként">
 <!ENTITY GRWpreferences.title "Google Reader Watcher Tulajdonságok">
 <!ENTITY GRWpreferences.checkfrequency "Új feedek keresése minden">
-<!ENTITY GRWpreferences.checkfrequency.unit "percben">
+<!ENTITY GRWpreferences.delaystart "Új feedek keresése a böngésző megnyitása után (másodpercek)">
 <!ENTITY GRWpreferences.activateOpenedTab "Google Reader fül aktiválása megnyitás után">
 <!ENTITY GRWpreferences.generalpreferencescaption "Általános tulajdonságok">
 <!ENTITY GRWpreferences.generalpreferencesopencaption "Google Reader megnyitásának beállításai">
 <!ENTITY GRWpreferences.tooltippreferencescaption "Tooltip tulajdonságok">
 <!ENTITY GRWpreferences.tabgeneral "Általános">
+<!ENTITY GRWpreferences.tabaccountinfo "Fiók információk">
+<!ENTITY GRWpreferences.tabopening "Ablak nyitás beállítások">
+<!ENTITY GRWpreferences.tabtooltip "Tooltip beállítások">
 <!ENTITY GRWpreferences.openinnewtabdesc "Google Reader megnyitása új fülön">
 <!ENTITY GRWpreferences.resetcounterdesc "A állapotsor számláló nullázása a Google Reader megnyitásakor">
 <!ENTITY GRWpreferences.shownotificationwindow "Figyelmeztető ablak mutatása">
@@ -20,12 +23,11 @@
 <!ENTITY GRWpreferences.tooltipcounterposdesc "A számláló helye a tooltipben:">
 <!ENTITY GRWpreferences.tooltipdesc "Ezek a tulajdonságok a következő feed keresés után leszenk láthatóak.">
 <!ENTITY GRWpreferences.tooltiptitlelengthdesc "Tooltipben a feedcímek karaktereinek száma">
-<!ENTITY GRWpreferences.tabaccountinfo "Fiók információk">
 <!ENTITY GRWpreferences.accountinfocaption "Google fiók információk">
-<!ENTITY GRWpreferences.accountinfodesc "Add meg a google fiókod e-mail címét és jelszavát">
 <!ENTITY GRWpreferences.accountinfoemail "Email cím:">
 <!ENTITY GRWpreferences.accountinfopassword "Jelszó:">
 <!ENTITY GRWpreferences.accountinfo.rememberLogin "Munkamenet folytatása induláskor">
+<!ENTITY GRWpreferences.accountinfo.forceLogin "Bejelentkezés minden ellenőrzés és ablaknyitás előtt">
 <!ENTITY GRWpreferences.leftclickopen.description "Google Reader megnyitása az ikonra kattintáskor">
 <!ENTITY GRWpreferences.leftclickopen.singleclick "Kattintás">
 <!ENTITY GRWpreferences.leftclickopen.dblclick "Dupla kattintás">
