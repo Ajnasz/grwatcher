@@ -2,8 +2,7 @@ tooltip#GRW-statusbar-tooltip-new {
   padding: 0;
 }
 tooltip#GRW-statusbar-tooltip-new .counterCol,
-tooltip#GRW-statusbar-tooltip-new .tag,
-menu#GRW-open-feeds-menu .tag {
+tooltip#GRW-statusbar-tooltip-new .tag {
   font-weight: bold;
 }
 tooltip#GRW-statusbar-tooltip-new .notitle {
