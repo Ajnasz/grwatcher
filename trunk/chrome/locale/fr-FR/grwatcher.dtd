@@ -1,22 +1,22 @@
 <!ENTITY GRWstatusbar.popup.openReader "Ouvrir Google Reader">
-<!ENTITY GRWstatusbar.popup.getReadCounter "Check for unread feeds">
+<!ENTITY GRWstatusbar.popup.getReadCounter "Actualiser les flux">
 <!ENTITY GRWstatusbar.popup.openPrefs "Préférences">
-<!ENTITY GRWstatusbar.popup.markAllAsRead "Mark all as read">
+<!ENTITY GRWstatusbar.popup.markAllAsRead "Tout marquer comme lu">
 <!ENTITY GRWpreferences.title "Préférences de Google Reader Watcher">
 <!ENTITY GRWpreferences.checkfrequency "Vérifiez les flux non lus toutes les">
 <!ENTITY GRWpreferences.checkfrequency.unit "minute(s)">
-<!ENTITY GRWpreferences.activateOpenedTab "Activer l&apos;onglet de l&apos;onglet de Google Reader après l&apos;ouverture">
+<!ENTITY GRWpreferences.activateOpenedTab "Basculez vers l&apos;onglet de Google Reader après son ouverture">
 <!ENTITY GRWpreferences.generalpreferencescaption "Préférences générales">
-<!ENTITY GRWpreferences.generalpreferencesopencaption "Goolge Reader ouvre les préférences">
+<!ENTITY GRWpreferences.generalpreferencesopencaption "Ouvrir les préférences de Goolge Reader">
 <!ENTITY GRWpreferences.tooltippreferencescaption "Préférences de l&apos;infobulle">
 <!ENTITY GRWpreferences.tabgeneral "Général">
 <!ENTITY GRWpreferences.openinnewtabdesc "Ouvrir Google Reader dans un nouvel onglet">
-<!ENTITY GRWpreferences.resetcounterdesc "Remettre à zéro le comtpeur de la barre d&apos;état quand la fenêtre de Google Reader est ouverte">
-<!ENTITY GRWpreferences.shownotificationwindow "Show notification window">
-<!ENTITY GRWpreferences.showzerocounter "Always show the counter">
-<!ENTITY GRWpreferences.maximizecounter "Show 1000+ in the statusbar if you have more than 1000 unread items">
+<!ENTITY GRWpreferences.resetcounterdesc "Remettre à zéro le compteur lors de l&apos;ouverture de Google Reader">
+<!ENTITY GRWpreferences.shownotificationwindow "Afficher la fenêtre de notification">
+<!ENTITY GRWpreferences.showzerocounter "Toujours montrer le compteur">
+<!ENTITY GRWpreferences.maximizecounter "Montrer 1000+ si vous avez plus de 1000 items non lus">
 <!ENTITY GRWpreferences.tooltipcounterposright "Droite">
-<!ENTITY GRWpreferences.tooltipcounterposleft "Left">
+<!ENTITY GRWpreferences.tooltipcounterposleft "Gauche">
 <!ENTITY GRWpreferences.tooltipcounterposdesc "La position du compteur dans l&apos;infobulle :">
 <!ENTITY GRWpreferences.tooltipdesc "Ces options prendront effet après une vérification des flux.">
 <!ENTITY GRWpreferences.tooltiptitlelengthdesc "Indiquer le nombre de caractères du titre du flux dans l&apos;infobulle">
@@ -27,14 +27,14 @@
 <!ENTITY GRWpreferences.accountinfopassword "Mot de passe :">
 <!ENTITY GRWpreferences.accountinfo.rememberLogin "Se souvenir du login">
 <!ENTITY GRWpreferences.leftclickopen.description "Ouvrir Google Reader lors d&apos;un clic sur l&apos;icône via">
-<!ENTITY GRWpreferences.leftclickopen.singleclick "un siple clic">
+<!ENTITY GRWpreferences.leftclickopen.singleclick "un simple clic">
 <!ENTITY GRWpreferences.leftclickopen.dblclick "un double clic">
 <!ENTITY GRWpreferences.leftclickopen.disabled "Désactivé">
-<!ENTITY GRWpreferences.usesecureconnection "Secure connection">
-<!ENTITY GRWpreferences.sortbylabels "In the tooltip sort the feeds by label">
-<!ENTITY GRWpreferences.filteredlabels "Filter feeds which are labeled with these labels (comma separated list)">
+<!ENTITY GRWpreferences.usesecureconnection "Connexion sécurisée">
+<!ENTITY GRWpreferences.sortbylabels "Dans l&apos;infobulle trier par tag">
+<!ENTITY GRWpreferences.filteredlabels "Filtrer les flux qui ont ce tag (liste séparée par des virgules)">
 <!ENTITY GRWtooltip.nonewfeed "Vous n&apos;avez aucun flux non lus">
-<!ENTITY GRWtooltip.errorfeedfetch "Erreur lors du téléchargement des flux! Êtes vous enregistré ?">
+<!ENTITY GRWtooltip.errorfeedfetch "Erreur lors du téléchargement des flux!">
 <!ENTITY GRWtooltip.newfeed "Vous avez des flux non lus">
-<!ENTITY GRWtooltip.errorlogin "Login failed. Make sure you have entered the correct account credentials!">
-<!ENTITY GRWtooltip.networkerror "Connecting failed. Make sure you have a working connection!">
+<!ENTITY GRWtooltip.errorlogin "La connexion a échouée. Assurez-vous d&apos;avoir entré le bon nom d&apos;utilisateur/mot de passe!">
+<!ENTITY GRWtooltip.networkerror "La connexion a échouée. Assurez-vous d&apos;avoir une connexion à internet fonctionnelle!">
