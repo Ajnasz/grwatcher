@@ -14,7 +14,7 @@
 <!ENTITY GRWpreferences.resetcounterdesc "Обнулять счетчик в строке состояния при открытии Google Reader">
 <!ENTITY GRWpreferences.shownotificationwindow "Показывать окно уведомления">
 <!ENTITY GRWpreferences.showzerocounter "Показывать счетчик при отсутствии непрочитанных лент">
-<!ENTITY GRWpreferences.maximizecounter "Show 1000+ in the statusbar if you have more than 1000 unread items">
+<!ENTITY GRWpreferences.maximizecounter "Показывать в панели статуса числа больше 1000, если у вас столько непрочитанных статей">
 <!ENTITY GRWpreferences.tooltipcounterposright "Справа">
 <!ENTITY GRWpreferences.tooltipcounterposleft "Слева">
 <!ENTITY GRWpreferences.tooltipcounterposdesc "Позиция счетчика во всплывающем сообщении">
@@ -37,4 +37,4 @@
 <!ENTITY GRWtooltip.errorfeedfetch "Ошибка при получении лент!">
 <!ENTITY GRWtooltip.newfeed "У вас есть непрочитанные ленты">
 <!ENTITY GRWtooltip.errorlogin "Ошибка входа. Проверьте правильность ввода имени пользователя и пароля!">
-<!ENTITY GRWtooltip.networkerror "Сетевая ошибка!">
+<!ENTITY GRWtooltip.networkerror "Сетевая ошибка! Убедитесь, что сетевое соединение работает.">
