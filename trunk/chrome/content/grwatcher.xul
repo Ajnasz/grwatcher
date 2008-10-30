@@ -1,6 +1,8 @@
 <?xml version="1.0"?>
 <?xml-stylesheet href="chrome://grwatcher/skin/tooltip.css" type="text/css"?>
 <?xml-stylesheet href="chrome://grwatcher/skin/toolbar.css" type="text/css"?>
+<?xml-stylesheet href="chrome://grwatcher/skin/statusbar.css" type="text/css"?>
+<?xml-stylesheet href="chrome://grwatcher/skin/menu.css" type="text/css"?>
 
 <!DOCTYPE window SYSTEM "chrome://grwatcher/locale/grwatcher.dtd">
 
@@ -21,7 +23,7 @@
 
     <statusbarpanel class="statusbarpanel-iconic" id="GRW-statusbar" status="none" tooltip="GRW-statusbar-tooltip" context="GRW-statusbar-menu">
       <image id="GRW-statusbar-image" width="16" height="16" src="chrome://grwatcher/content/images/googlereader_grey.png" />
-      <label id="GRW-statusbar-label" value="GRW" collapsed="true" crop="end" style="width:0;margin:0" />
+      <label id="GRW-statusbar-label" value="GRW" collapsed="true" crop="end" />
     </statusbarpanel>
 
     <tooltip id="GRW-statusbar-tooltip-error" position="before_end"><description id="GRW-statusbar-tooltip-error-description" value="&GRWtooltip.errorfeedfetch;" /></tooltip>
@@ -30,11 +32,11 @@
     <tooltip id="GRW-statusbar-tooltip-new" position="before_end"></tooltip>
 
     <popup id="GRW-statusbar-menu" position="before_end">
+      <menuseparator/>
       <menuitem label="&GRWstatusbar.popup.openReader;" oncommand="GRCheck.openReader();" />
       <menuitem label="&GRWstatusbar.popup.getReadCounter;" oncommand="GoogleIt();" />
       <menuitem label="&GRWstatusbar.popup.markAllAsRead;" oncommand="new markAllAsRead();" />
       <menuitem label="&GRWstatusbar.popup.openPrefs;" oncommand="openPrefs();" />
-      <menu label="&GRWstatusbar.popup.openFeed;" id="GRW-open-feeds-menu"></menu>
     </popup>
 
   </statusbar>
