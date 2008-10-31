@@ -21,7 +21,7 @@
         <em:skin>skin/classic/grwatcher/</em:skin>
       </Description>
     </em:file>
-
+    <!--
     <em:localized>
       <Description>
         <em:locale>en-US</em:locale>
@@ -43,6 +43,7 @@
         <em:translator>Koszti Lajos hu-HU</em:translator>
       </Description>
     </em:localized>
+    -->
 
     <em:creator>Lajos Koszti</em:creator>
     <em:description>Checks your Google Reader for unread feeds</em:description>
