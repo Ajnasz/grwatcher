@@ -7,7 +7,7 @@
 <!ENTITY GRWpreferences.delaystart "Start the first check after the browser started (milliseconds)">
 <!ENTITY GRWpreferences.activateOpenedTab "Focus on the Reader tab after opening">
 <!ENTITY GRWpreferences.generalpreferencescaption "General preferences">
-<!ENTITY GRWpreferences.generalpreferencesopencaption "Opening settings of Google Reader">
+<!ENTITY GRWpreferences.generalpreferencesopencaption "How to open the Google Reader">
 <!ENTITY GRWpreferences.tooltippreferencescaption "Tooltip preferences">
 <!ENTITY GRWpreferences.tabgeneral "General">
 <!ENTITY GRWpreferences.tabaccountinfo "Account information">
