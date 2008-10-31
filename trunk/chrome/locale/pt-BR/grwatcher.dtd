@@ -14,7 +14,6 @@
 <!ENTITY GRWpreferences.resetcounterdesc "Resetar o contador da barra de status quando a janela do Google Reader abrir">
 <!ENTITY GRWpreferences.shownotificationwindow "Exibir Janela de Aviso">
 <!ENTITY GRWpreferences.showzerocounter "Mostrar contador quando não houverem feeds disponíveis">
-<!ENTITY GRWpreferences.maximizecounter "Show 1000+ in the statusbar if you have more than 1000 unread items">
 <!ENTITY GRWpreferences.tooltipcounterposright "Direita">
 <!ENTITY GRWpreferences.tooltipcounterposleft "Esquerda">
 <!ENTITY GRWpreferences.tooltipcounterposdesc "A posição do contador no aviso">

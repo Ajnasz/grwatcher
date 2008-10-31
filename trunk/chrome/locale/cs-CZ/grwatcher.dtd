@@ -14,7 +14,6 @@
 <!ENTITY GRWpreferences.resetcounterdesc "Vynuluje počítadlo na liště při otevření okna s Google Readerem">
 <!ENTITY GRWpreferences.shownotificationwindow "Zobrazit okno s upozorněním">
 <!ENTITY GRWpreferences.showzerocounter "Ukázat počítadlo i když nejsou žádné nepřečtené zdroje k dispozici">
-<!ENTITY GRWpreferences.maximizecounter "Show 1000+ in the statusbar if you have more than 1000 unread items">
 <!ENTITY GRWpreferences.tooltipcounterposright "Vpravo">
 <!ENTITY GRWpreferences.tooltipcounterposleft "Vlevo">
 <!ENTITY GRWpreferences.tooltipcounterposdesc "Pozice počítadla v">

@@ -1,7 +1,6 @@
 <!ENTITY GRWstatusbar.popup.openReader "Apri Google Reader">
 <!ENTITY GRWstatusbar.popup.getReadCounter "Controlla i feeds non letti">
 <!ENTITY GRWstatusbar.popup.openPrefs "Opzioni">
-<!ENTITY GRWstatusbar.popup.markAllAsRead "Mark all as read">
 <!ENTITY GRWpreferences.title "Opzioni Google Reader Watcher">
 <!ENTITY GRWpreferences.checkfrequency "Controlla i feeds non letti ogni">
 <!ENTITY GRWpreferences.checkfrequency.unit "minuto(i)">
@@ -14,9 +13,7 @@
 <!ENTITY GRWpreferences.resetcounterdesc "Resets the statusbar counter when the Google Reader window opens">
 <!ENTITY GRWpreferences.shownotificationwindow "Show notification window">
 <!ENTITY GRWpreferences.showzerocounter "Show the counter when there are no unread feeds available">
-<!ENTITY GRWpreferences.maximizecounter "Show 1000+ in the statusbar if you have more than 1000 unread items">
 <!ENTITY GRWpreferences.tooltipcounterposright "Destra">
-<!ENTITY GRWpreferences.tooltipcounterposleft "Left">
 <!ENTITY GRWpreferences.tooltipcounterposdesc "The position of the counter in the tooltip:">
 <!ENTITY GRWpreferences.tooltipdesc "Queste opzioni diventeranno operative dopo che avrai effettuato un controllo dei feed.">
 <!ENTITY GRWpreferences.tooltiptitlelengthdesc "Sets the Feed title&apos;s character number in the tooltip">
@@ -30,11 +27,5 @@
 <!ENTITY GRWpreferences.leftclickopen.singleclick "Click">
 <!ENTITY GRWpreferences.leftclickopen.dblclick "Doppio click">
 <!ENTITY GRWpreferences.leftclickopen.disabled "Disabilitato">
-<!ENTITY GRWpreferences.usesecureconnection "Secure connection">
-<!ENTITY GRWpreferences.sortbylabels "In the tooltip sort the feeds by label">
-<!ENTITY GRWpreferences.filteredlabels "Filter feeds which are labeled with these labels (comma separated list)">
-<!ENTITY GRWtooltip.nonewfeed "You haven&apos;t got any unread feeds">
 <!ENTITY GRWtooltip.errorfeedfetch "Errore nel controllo dei feeds! Hai effettuato il login?">
 <!ENTITY GRWtooltip.newfeed "Hai feeds non letti">
-<!ENTITY GRWtooltip.errorlogin "Login failed. Make sure you have entered the correct account credentials!">
-<!ENTITY GRWtooltip.networkerror "Connecting failed. Make sure you have a working connection!">
