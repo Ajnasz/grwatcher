@@ -219,25 +219,26 @@ var GRW_StatusBar = {
       if(typeof statusBar == 'undefined') {
         GRW_LOG('GRW-statusbar object not found');
       }
-      var GRW_bundle = win.document.getElementById('grwatcher-bundles');
+      // var GRW_strings = win.document.getElementById('grwatcher-bundles');
       switch(t) {
         case 'error':
           statusBar.tooltip = 'GRW-statusbar-tooltip-error';
           if(ttb) {
-            ttb.setAttribute('tooltiptext', GRW_bundle.getString('errorfeedfetch'));
+            ttb.setAttribute('tooltiptext', GRW_strings.getString('errorfeedfetch'));
           }
           break;
         case 'nonew':
         default :
           statusBar.tooltip = 'GRW-statusbar-tooltip-nonew';
           if(ttb) {
-            ttb.setAttribute('tooltiptext', GRW_bundle.getString('nonewfeed'));
+            ttb.setAttribute('tooltiptext', GRW_strings.getString('nonewfeed'));
           }
           break;
         case 'new':
           statusBar.tooltip = 'GRW-statusbar-tooltip-new';
           if(ttb) {
-            ttb.setAttribute('tooltiptext', GRW_bundle.getFormattedString('notifierMSG', [unr]));
+            GRW_LOG(GRPrefs, GRW_strings);
+            ttb.setAttribute('tooltiptext', GRW_strings.getFormattedString('notifierMSG', [unr]));
           }
           break;
         case 'hide':
@@ -249,13 +250,13 @@ var GRW_StatusBar = {
         case 'loginerror':
           statusBar.tooltip = 'GRW-statusbar-tooltip-loginerror';
           if(ttb) {
-            ttb.setAttribute('tooltiptext', GRW_bundle.getString('errorlogin'));
+            ttb.setAttribute('tooltiptext', GRW_strings.getString('errorlogin'));
           }
           break;
         case 'networkerror':
           statusBar.tooltip = 'GRW-statusbar-tooltip-networkerror';
           if(ttb) {
-            ttb.setAttribute('tooltiptext', GRW_bundle.getString('networkerror'));
+            ttb.setAttribute('tooltiptext', GRW_strings.getString('networkerror'));
           }
           break;
       }
@@ -292,8 +293,7 @@ var GRW_StatusBar = {
       label.collapsed = false;
     });
     if(GRStates.showNotification && val != 0) {
-      var GRW_bundle = document.getElementById('grwatcher-bundles');
-      GRW_showNotification(false, GRW_bundle.getFormattedString('notifierMSG', [val]));
+      GRW_showNotification(false, GRW_strings.getFormattedString('notifierMSG', [val]));
       GRStates.showNotification = false;
     }
   },
@@ -673,6 +673,7 @@ var windowCloseCheck = {
  */
 var GRW_init = function() {
   GRW_LOG('Starting Google Reader Watcher');
+  GRW_strings = document.getElementById('grwatcher-strings');
   passwordManager = new _passwordManager();
   if(isActiveGRW() === false) {
     window.GRW = true;

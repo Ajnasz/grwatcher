@@ -142,9 +142,9 @@ GetList.prototype = {
         labeled[label].subs = new Array();
         uc.map(function(u) {
           if(friendRex.test(u.id) && label == '-') {
-            feeds.push({Title: 'Shared items', Id: u.id, Count: u.count});
+            feeds.push({Title: GRW_strings.getString('shareditems'), Id: u.id, Count: u.count});
             labeled[label].count += u.count;
-            labeled[label].subs.push({Title: 'Shared items', Id: u.id, Count: u.count});
+            labeled[label].subs.push({Title: GRW_strings.getString('shareditems'), Id: u.id, Count: u.count});
             if(counted[u.id] !== true) {
               all += u.count;
               counted[u.id] = true;
