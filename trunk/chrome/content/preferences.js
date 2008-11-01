@@ -1,7 +1,7 @@
 /**
  * preferences.js
- * 
- * @author Koszti Lajos [Ajnasz] http://ajnasz.hu ajnasz@ajnasz.hu 
+ *
+ * @author Koszti Lajos [Ajnasz] http://ajnasz.hu ajnasz@ajnasz.hu
  * @license GPL v2
  * for more details see the license.txt file
  */
