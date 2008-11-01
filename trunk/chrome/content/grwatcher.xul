@@ -19,7 +19,9 @@
 
   <statusbar id="status-bar">
 
-    <stringbundle id="grwatcher-bundles" src="chrome://grwatcher/locale/grwatcher.properties" />
+    <stringbundleset id="grwatcher-stringset">
+      <stringbundle id="grwatcher-strings" src="chrome://grwatcher/locale/grwatcher.properties" />
+    </stringbundleset>
 
     <statusbarpanel class="statusbarpanel-iconic" id="GRW-statusbar" status="none" tooltip="GRW-statusbar-tooltip" context="GRW-statusbar-menu">
       <image id="GRW-statusbar-image" width="16" height="16" src="chrome://grwatcher/content/images/googlereader_grey.png" />
