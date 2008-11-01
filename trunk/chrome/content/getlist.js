@@ -103,42 +103,20 @@ GetList.prototype = {
         }
         grid = new win.genStatusGrid(r.feeds);
         tt.appendChild(grid.grid);
-        var menu = new win.genStatusMenu(tm);
-        menu.addItems(r.feeds);
+        var menu = new win.genStatusMenu(tm, r.feeds);
+        menu.addItems();
       });
-      /*
-      var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"].getService(Components.interfaces.nsIWindowMediator);
-      var enumerator = wm.getEnumerator('navigator:browser'), win, grid, tt;
-      while(enumerator.hasMoreElements()) {
-        win = enumerator.getNext();
-        if(typeof win != 'undefined') {
-          tt = win.document.getElementById('GRW-statusbar-tooltip-new');
-          tm = win.document.getElementById('GRW-statusbar-menu');
-          while(tt.firstChild) {
-            tt.removeChild(tt.firstChild);
-          }
-          grid = new win.genStatusGrid(r.feeds);
-          tt.appendChild(grid.grid);
-          var menu = new win.genStatusMenu(tm);
-          menu.addItems(r.feeds);
-        }
-      }
-      */
       GRW_StatusBar.switchOnIcon();
       GRW_StatusBar.showCounter(unr);
     } else {
       GRW_StatusBar.setReaderTooltip('nonew');
       GRW_StatusBar.switchOffIcon();
-      var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"].getService(Components.interfaces.nsIWindowMediator);
-      var enumerator = wm.getEnumerator('navigator:browser'), win, tm, menu;
-      while(enumerator.hasMoreElements()) {
-        win = enumerator.getNext();
-        if(typeof win != 'undefined') {
-          tm = win.document.getElementById('GRW-statusbar-menu');
-          menu = new win.genStatusMenu(tm);
-          menu.clearItems();
-        }
-      }
+      var tm, menu;
+      mapWindows(function(win) {
+        tm = win.document.getElementById('GRW-statusbar-menu');
+        menu = new win.genStatusMenu(tm);
+        menu.clearItems();
+      });
       if(GRPrefs.getPref.showZeroCounter() === false) {
         GRW_StatusBar.hideCounter();
       } else {
