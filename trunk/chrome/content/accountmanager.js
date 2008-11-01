@@ -66,7 +66,7 @@ var accountManager = {
         method: 'post',
         successHandler: function(e) {
           _this.ajaxSuccess(e);
-          if(onLogin) {
+          if(typeof onLogin == 'function') {
             onLogin();
           }
           if(!noGetList) {
