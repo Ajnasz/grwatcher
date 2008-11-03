@@ -20,7 +20,7 @@
     window.addEventListener('load',
       function()
       {
-        passwordManager = new _passwordManager();
+        GRWPasswordManager = new _GRWPasswordManager();
         setPrefPaneVals();
         openNewTabCheckToogle();
         document.getElementById('GRW-openinnewtab-field').addEventListener('command', openNewTabCheckToogle, false);

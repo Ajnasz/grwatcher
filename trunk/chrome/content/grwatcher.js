@@ -544,8 +544,8 @@ var GoogleIt = function() {
     activeWin.GoogleIt();
     return false;
   }
-  if(!accountManager.getCurrentSID() || GRPrefs.getPref.forceLogin()) {
-    var login = accountManager.logIn();
+  if(!GRWAccountManager.getCurrentSID() || GRPrefs.getPref.forceLogin()) {
+    var login = GRWAccountManager.logIn();
     if(login === -1) {
       GRW_StatusBar.switchErrorIcon();
     }
@@ -596,7 +596,7 @@ GRW_statusClickHandling.prototype = {
       case 0:
         if((st == 2 && event.type == 'dblclick') || (st == 1 && event.type == 'click')) {
           if(GRPrefs.getPref.forceLogin()) {
-            var login = accountManager.logIn(function(){
+            var login = GRWAccountManager.logIn(function(){
                 GRCheck.openReader();
             }, true);
             if(login === -1) {
@@ -674,7 +674,7 @@ var windowCloseCheck = {
 var GRW_init = function() {
   GRW_LOG('Starting Google Reader Watcher');
   GRW_strings = document.getElementById('grwatcher-strings');
-  passwordManager = new _passwordManager();
+  GRWPasswordManager = new _GRWPasswordManager();
   if(isActiveGRW() === false) {
     window.GRW = true;
     var g;

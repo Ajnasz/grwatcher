@@ -8,7 +8,7 @@
  * @constructor
  * @class _passwordManager Interface to handle easily the user accounts on ff2 and ff3
  */
-var _passwordManager = function() {
+var _GRWPasswordManager = function() {
   this.url = 'chrome://grwatcher';
   this.username = 'GoogleReaderWatcher';
 
@@ -23,7 +23,7 @@ var _passwordManager = function() {
         // Find users for the given parameters
         var logins = this.loginManager.findLogins({}, this.url, this.formSubmitURL, null);
         // Find user from returned array of nsILoginInfo objects
-        for (var i = 0; i < logins.length; i++) {
+        for (var i = 0, ll = logins.length; i < ll; i++) {
           if (logins[i].username == this.username) {
             return logins[i].password;
           }
@@ -31,7 +31,7 @@ var _passwordManager = function() {
         return false;
       }
       catch(ex){
-       GRW_LOG(ex);
+       GRW_LOG('get pass failed:', ex);
       }
     };
 

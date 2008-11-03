@@ -11,10 +11,10 @@
  * check that the user is logged in,
  * logging in the user
  * @requires GRPrefs to get the preferences
- * @requires _passwordManager to get the users password
+ * @requires _GRWPasswordManager to get the users password
  * @requires #getFeedList function, to gets the feeds
  */
-var accountManager = {
+var GRWAccountManager = {
   // mozilla nsi cookie manager component
   CookieManager: Components.classes["@mozilla.org/cookiemanager;1"].getService(Components.interfaces.nsICookieManager),
   /**
@@ -22,7 +22,8 @@ var accountManager = {
    * @type {Boolean}
    */
   accountExists: function() {
-    if(GRPrefs.getPref.userName() && passwordManager.getPassword()) {
+    GRW_LOG(GRPrefs.getPref.userName(),  GRWPasswordManager.getPassword())
+    if(GRPrefs.getPref.userName() && GRWPasswordManager.getPassword()) {
       return true;
     }
     return false;
@@ -55,7 +56,7 @@ var accountManager = {
     if(this.accountExists()) {
       // var url = GRStates.conntype + '://www.google.com/accounts/ServiceLoginAuth';
       var url = 'https://www.google.com/accounts/ServiceLoginAuth';
-      var param = 'Email='+encodeURIComponent(GRPrefs.getPref.userName())+'&Passwd='+encodeURIComponent(passwordManager.getPassword())+'&service=reader&continue=http://www.google.com';
+      var param = 'Email='+encodeURIComponent(GRPrefs.getPref.userName())+'&Passwd='+encodeURIComponent(GRWPasswordManager.getPassword())+'&service=reader&continue=http://www.google.com';
       // remember the login state, possible won't ask for mozilla master password
       if(GRPrefs.getPref.rememberLogin()) {
         param += '&PersistentCookie=yes';
@@ -86,7 +87,7 @@ var accountManager = {
    * @type Boolean
    */
   ajaxSuccess: function(e) {
-    var curSid = accountManager.getCurrentSID();
+    var curSid = GRWAccountManager.getCurrentSID();
     if(curSid === false) {
       GRW_StatusBar.switchErrorIcon();
       GRW_StatusBar.setReaderTooltip('loginerror');

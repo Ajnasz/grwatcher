@@ -26,7 +26,7 @@ var savePreferences = function() {
 
   GRPrefs.setPref.userName(document.getElementById('GRW-accountmanage-email').value);
   GRPrefs.setPref.forceLogin(document.getElementById('GRW-forceLogin-field').checked);
-  passwordManager.addPassword(document.getElementById('GRW-accountmanage-pass').value);
+  GRWPasswordManager.addPassword(document.getElementById('GRW-accountmanage-pass').value);
 
 };
 /**
@@ -42,7 +42,7 @@ var setPrefPaneVals = function() {
   document.getElementById('GRW-rememberLogin-field').checked = GRPrefs.getPref.rememberLogin();
   document.getElementById('GRW-leftclickopen-field').value = GRPrefs.getPref.leftClickOpen();
   document.getElementById('GRW-activateopenedtab-field').checked = GRPrefs.getPref.activateOpenedTab();
-  document.getElementById('GRW-accountmanage-pass').value = passwordManager.getPassword();
+  document.getElementById('GRW-accountmanage-pass').value = GRWPasswordManager.getPassword();
   document.getElementById('GRW-accountmanage-email').value = GRPrefs.getPref.userName();
   document.getElementById('GRW-shownotificationwindow-field').checked = GRPrefs.getPref.showNotificationWindow();
   document.getElementById('GRW-showzerocounter-field').checked = GRPrefs.getPref.showZeroCounter();
