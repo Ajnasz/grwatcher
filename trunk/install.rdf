@@ -51,6 +51,7 @@
     <em:optionsURL>chrome://grwatcher/content/grprefs.xul</em:optionsURL>
     <em:homepageURL>http://ajnasz.hu/google-reader-watcher</em:homepageURL>
     <em:contributor>David Peitler</em:contributor>
+    <em:translator>AlleyKat - da-DK (babelzilla)</em:translator>
     <em:translator>7bse - de-DE (babelzilla)</em:translator>
     <em:translator>panda2005 el-GR (babelzilla)</em:translator>
     <em:translator>PAGF_LINUX es-AR (babelzilla)</em:translator>
