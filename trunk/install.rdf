@@ -43,6 +43,15 @@
         <em:translator>Koszti Lajos hu-HU</em:translator>
       </Description>
     </em:localized>
+    <em:localized>
+      <Description>
+        <em:locale>el-GR</em:locale>
+        <em:name>Google Reader Watcher</em:name>
+        <em:creator>Koszti Lajos</em:creator>
+        <em:description>Ελέγχει για νέες ειδήσεις στο Google Reader.</em:description>
+        <em:homepageURL>http://ajnasz.hu/google-reader-watcher</em:homepageURL>
+      </Description>
+    </em:localized>
     -->
 
     <em:creator>Lajos Koszti</em:creator>
