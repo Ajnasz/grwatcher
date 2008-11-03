@@ -4,12 +4,12 @@
 <!ENTITY GRWstatusbar.popup.markAllAsRead "Σημείωση όλων ως αναγνωσμένων">
 <!ENTITY GRWpreferences.title "Προτιμήσεις Google Reader Watcher">
 <!ENTITY GRWpreferences.checkfrequency "Έλεγχος για νέες εγγραφές σε αρχεία ροής κάθε">
-<!ENTITY GRWpreferences.checkfrequency.unit "λεπτά(-ο)">
 <!ENTITY GRWpreferences.activateOpenedTab "Εστιάση στην καρτέλα Reader μετά το άνοιγμα">
 <!ENTITY GRWpreferences.generalpreferencescaption "Γενικές προτιμήσεις">
 <!ENTITY GRWpreferences.generalpreferencesopencaption "Άνοιγμα ρυθμίσεων του Google Reader">
 <!ENTITY GRWpreferences.tooltippreferencescaption "Προτιμήσεις συμβουλής εργαλείου">
 <!ENTITY GRWpreferences.tabgeneral "Γενικά">
+<!ENTITY GRWpreferences.tabaccountinfo "Πληροφορίες λογαριασμού">
 <!ENTITY GRWpreferences.openinnewtabdesc "Άνοιγμα του Google Reader σε νέα καρτέλα">
 <!ENTITY GRWpreferences.resetcounterdesc "Επαναφορά μετρητή της γραμμής κατάστασης μετά το άνοιγμα του Google Reader">
 <!ENTITY GRWpreferences.shownotificationwindow "Προβολή ειδοποίησης σε αναδυόμενο παράθυρο">
@@ -20,9 +20,7 @@
 <!ENTITY GRWpreferences.tooltipcounterposdesc "Θέση του μετρητή στη συμβουλή εργαλείου :">
 <!ENTITY GRWpreferences.tooltipdesc "Αυτές οι επιλογές θα ενεργοποιηθούν μετά από τον επόμενο έλεγχο για εγγραφές">
 <!ENTITY GRWpreferences.tooltiptitlelengthdesc "Αριθμός χαρακτήρων τίτλου του αρχείου ροής στη συμβουλή εργαλείου">
-<!ENTITY GRWpreferences.tabaccountinfo "Πληροφορίες λογαριασμού">
 <!ENTITY GRWpreferences.accountinfocaption "Πληροφορίες λογαριασμού Google">
-<!ENTITY GRWpreferences.accountinfodesc "Ορισμός ηλ.διεύθυνσης και κωδικού λογαριασμού Google">
 <!ENTITY GRWpreferences.accountinfoemail "Ηλεκτρονική διεύθυνση :">
 <!ENTITY GRWpreferences.accountinfopassword "Κωδικός :">
 <!ENTITY GRWpreferences.accountinfo.rememberLogin "Συνέχιση συνεδρίας στην εκκίνηση">

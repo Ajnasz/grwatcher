@@ -4,12 +4,15 @@
 <!ENTITY GRWstatusbar.popup.markAllAsRead "모두 읽은 상태로 표시">
 <!ENTITY GRWpreferences.title "Google Reader Watcher 설정">
 <!ENTITY GRWpreferences.checkfrequency "읽지 않은 글을">
-<!ENTITY GRWpreferences.checkfrequency.unit "분마다 점검합니다.">
+<!ENTITY GRWpreferences.delaystart "파이어폭스 실행 후 지정된 시간 뒤에 첫번째 점검을 합니다. (밀리초 단위로 입력. 1000ms=1초)">
 <!ENTITY GRWpreferences.activateOpenedTab "탭을 활성화 합니다.">
 <!ENTITY GRWpreferences.generalpreferencescaption "일반">
 <!ENTITY GRWpreferences.generalpreferencesopencaption "구글 리더를 열때">
 <!ENTITY GRWpreferences.tooltippreferencescaption "툴팁 설정">
 <!ENTITY GRWpreferences.tabgeneral "일반 설정">
+<!ENTITY GRWpreferences.tabaccountinfo "계정 정보">
+<!ENTITY GRWpreferences.tabopening "창 열림 설정">
+<!ENTITY GRWpreferences.tabtooltip "툴팁 설정">
 <!ENTITY GRWpreferences.openinnewtabdesc "새탭으로 엽니다.">
 <!ENTITY GRWpreferences.resetcounterdesc "구글 리더를 열때 상태표시줄의 카운트를 초기화 합니다.">
 <!ENTITY GRWpreferences.shownotificationwindow "새 글이 있으면 알림창을 보여줍니다.">
@@ -18,21 +21,20 @@
 <!ENTITY GRWpreferences.tooltipcounterposright "오른쪽">
 <!ENTITY GRWpreferences.tooltipcounterposleft "왼쪽">
 <!ENTITY GRWpreferences.tooltipcounterposdesc "툴팁에서 읽지 않은 글의 개수를 표시할 위치:">
-<!ENTITY GRWpreferences.tooltipdesc "이 옵션들은 다음 글을 가져올 때 적용됩니다.">
+<!ENTITY GRWpreferences.tooltipdesc "이 옵션들은 다음 글을 점검할 때 적용됩니다.">
 <!ENTITY GRWpreferences.tooltiptitlelengthdesc "툴팁에서 표시할 구독항목의 문자길이">
-<!ENTITY GRWpreferences.tabaccountinfo "계정 정보">
 <!ENTITY GRWpreferences.accountinfocaption "구글 계정 설정">
-<!ENTITY GRWpreferences.accountinfodesc "구글 계정과 비밀번호를 입력하세요.">
 <!ENTITY GRWpreferences.accountinfoemail "E-mail 주소:">
 <!ENTITY GRWpreferences.accountinfopassword "비밀번호:">
 <!ENTITY GRWpreferences.accountinfo.rememberLogin "접속 유지">
+<!ENTITY GRWpreferences.accountinfo.forceLogin "매번 창을 열어 점검할때 강제 로그인 하기">
 <!ENTITY GRWpreferences.leftclickopen.description "구글 리더를 다음 동작으로 엽니다.">
 <!ENTITY GRWpreferences.leftclickopen.singleclick "클릭">
 <!ENTITY GRWpreferences.leftclickopen.dblclick "더블 클릭">
 <!ENTITY GRWpreferences.leftclickopen.disabled "사용안함">
 <!ENTITY GRWpreferences.usesecureconnection "보안접속을 합니다.">
 <!ENTITY GRWpreferences.sortbylabels "툴팁에서 레이블(폴더)별로 항목을 정렬하여 보여줍니다">
-<!ENTITY GRWpreferences.filteredlabels "구독하지 않을 항목의 레이블을 아래에 적으세요. (콤마로 구분)">
+<!ENTITY GRWpreferences.filteredlabels "구독하지 않을 폴더를 아래에 적으세요. (콤마로 구분)">
 <!ENTITY GRWtooltip.nonewfeed "모든 글을 읽었습니다.">
 <!ENTITY GRWtooltip.errorfeedfetch "정보를 가져올 수 없습니다.">
 <!ENTITY GRWtooltip.newfeed "읽지 않은 글이 있습니다.">

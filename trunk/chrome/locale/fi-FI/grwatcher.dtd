@@ -4,12 +4,15 @@
 <!ENTITY GRWstatusbar.popup.markAllAsRead "Merkitse kaikki luetuksi">
 <!ENTITY GRWpreferences.title "Google Reader Watcher -asetukset">
 <!ENTITY GRWpreferences.checkfrequency "Tarkista uusien syötteiden varalta">
-<!ENTITY GRWpreferences.checkfrequency.unit "minuutin välein">
+<!ENTITY GRWpreferences.delaystart "Ensimmäisen tarkistuksen ajankohta selaimen käynnistyksen jälkeen (millisekunneissa)">
 <!ENTITY GRWpreferences.activateOpenedTab "Valitse Google Reader -välilehti avaamisen jälkeen">
 <!ENTITY GRWpreferences.generalpreferencescaption "Yleiset asetukset">
 <!ENTITY GRWpreferences.generalpreferencesopencaption "Google Reader -avausasetukset">
 <!ENTITY GRWpreferences.tooltippreferencescaption "Työkaluvihjeiden asetukset">
 <!ENTITY GRWpreferences.tabgeneral "Yleiset">
+<!ENTITY GRWpreferences.tabaccountinfo "Käyttäjätilitiedot">
+<!ENTITY GRWpreferences.tabopening "Ikkunan avausasetukset">
+<!ENTITY GRWpreferences.tabtooltip "Työkaluvihjeen asetukset">
 <!ENTITY GRWpreferences.openinnewtabdesc "Avaa Google Reader uudessa välilehdessä">
 <!ENTITY GRWpreferences.resetcounterdesc "Nollaa tilarivin laskuri, kun Google Reader -ikkuna avataan">
 <!ENTITY GRWpreferences.shownotificationwindow "Näytä ilmoitusikkuna">
@@ -20,12 +23,11 @@
 <!ENTITY GRWpreferences.tooltipcounterposdesc "Laskurin sijainti työkaluvihjeessä:">
 <!ENTITY GRWpreferences.tooltipdesc "Nämä valinnat suoritetaan syötteen tarkistuksen jälkeen.">
 <!ENTITY GRWpreferences.tooltiptitlelengthdesc "Kuinka monta merkkiä näytetään syötteen otsikosta työkaluvihjeessä?">
-<!ENTITY GRWpreferences.tabaccountinfo "Käyttäjätilitiedot">
 <!ENTITY GRWpreferences.accountinfocaption "Google-tilin tiedot">
-<!ENTITY GRWpreferences.accountinfodesc "Määritä Google-tilisi sähköpostiosoite ja salasana">
 <!ENTITY GRWpreferences.accountinfoemail "Sähköpostiosoite:">
 <!ENTITY GRWpreferences.accountinfopassword "Salasana:">
 <!ENTITY GRWpreferences.accountinfo.rememberLogin "Muista kirjautuminen">
+<!ENTITY GRWpreferences.accountinfo.forceLogin "Pakota kirjautuminen aina kun tarkistetaan tai ikkuna avataan">
 <!ENTITY GRWpreferences.leftclickopen.description "Google Reader avataan">
 <!ENTITY GRWpreferences.leftclickopen.singleclick "Yhdellä napsautuksella">
 <!ENTITY GRWpreferences.leftclickopen.dblclick "Kaksoisnapsautuksella">

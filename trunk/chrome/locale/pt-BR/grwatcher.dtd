@@ -4,12 +4,12 @@
 <!ENTITY GRWstatusbar.popup.markAllAsRead "Marcar todas como lidas">
 <!ENTITY GRWpreferences.title "Preferências do Google Reader Watcher">
 <!ENTITY GRWpreferences.checkfrequency "Verificar novos feeds a cada">
-<!ENTITY GRWpreferences.checkfrequency.unit "minuto(s)">
 <!ENTITY GRWpreferences.activateOpenedTab "Selecionar a aba do Google Reader após abertura">
 <!ENTITY GRWpreferences.generalpreferencescaption "Preferências gerais">
 <!ENTITY GRWpreferences.generalpreferencesopencaption "Abrindo configurações do Google Reader">
 <!ENTITY GRWpreferences.tooltippreferencescaption "Preferências de aviso">
 <!ENTITY GRWpreferences.tabgeneral "Geral">
+<!ENTITY GRWpreferences.tabaccountinfo "Informação da conta">
 <!ENTITY GRWpreferences.openinnewtabdesc "Abrir Google Reader em uma nova aba">
 <!ENTITY GRWpreferences.resetcounterdesc "Resetar o contador da barra de status quando a janela do Google Reader abrir">
 <!ENTITY GRWpreferences.shownotificationwindow "Exibir Janela de Aviso">
@@ -19,9 +19,7 @@
 <!ENTITY GRWpreferences.tooltipcounterposdesc "A posição do contador no aviso">
 <!ENTITY GRWpreferences.tooltipdesc "Estas opções terão efeito após a checagem do feed">
 <!ENTITY GRWpreferences.tooltiptitlelengthdesc "Define o tamanho de caractere do título do feed no aviso">
-<!ENTITY GRWpreferences.tabaccountinfo "Informação da conta">
 <!ENTITY GRWpreferences.accountinfocaption "Informação da conta Google">
-<!ENTITY GRWpreferences.accountinfodesc "Especifique o e-mail e a senha de sua conta Google">
 <!ENTITY GRWpreferences.accountinfoemail "Endereço de e-mail:">
 <!ENTITY GRWpreferences.accountinfopassword "Senha:">
 <!ENTITY GRWpreferences.accountinfo.rememberLogin "Lembrar Login">

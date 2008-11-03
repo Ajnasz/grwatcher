@@ -4,12 +4,12 @@
 <!ENTITY GRWstatusbar.popup.markAllAsRead "Märgi kõik loetuks">
 <!ENTITY GRWpreferences.title "Google Reader Watcheri eelistused">
 <!ENTITY GRWpreferences.checkfrequency "Uusi tellimusi kontrollitakse iga">
-<!ENTITY GRWpreferences.checkfrequency.unit "minuti järel">
 <!ENTITY GRWpreferences.activateOpenedTab "Avamisel lülitutakse Google Readeri kaardile">
 <!ENTITY GRWpreferences.generalpreferencescaption "Üldised eelistused">
 <!ENTITY GRWpreferences.generalpreferencesopencaption "Google Readeri avamise sätted">
 <!ENTITY GRWpreferences.tooltippreferencescaption "Vihje eelistused">
 <!ENTITY GRWpreferences.tabgeneral "Üldine">
+<!ENTITY GRWpreferences.tabaccountinfo "Konto info">
 <!ENTITY GRWpreferences.openinnewtabdesc "Google Reader avatakse uuel kaardil">
 <!ENTITY GRWpreferences.resetcounterdesc "Google Readeri akna avamisel lähtestatakse olekuriba loendur">
 <!ENTITY GRWpreferences.shownotificationwindow "Näidatakse teavitusakent">
@@ -20,9 +20,7 @@
 <!ENTITY GRWpreferences.tooltipcounterposdesc "Lugemata tellimuste loenduri näitamise asukoht vihjes:">
 <!ENTITY GRWpreferences.tooltipdesc "Need valikud rakenduvad peale tellimuste kontrollimist.">
 <!ENTITY GRWpreferences.tooltiptitlelengthdesc "Tellimuse pealkirjas olevate tähemärkide arv vihjes:">
-<!ENTITY GRWpreferences.tabaccountinfo "Konto info">
 <!ENTITY GRWpreferences.accountinfocaption "Google konto info">
-<!ENTITY GRWpreferences.accountinfodesc "Sisesta oma Google konto e-posti aadress ja parool">
 <!ENTITY GRWpreferences.accountinfoemail "E-posti aadress:">
 <!ENTITY GRWpreferences.accountinfopassword "Parool:">
 <!ENTITY GRWpreferences.accountinfo.rememberLogin "Logimise info peetakse meeles">

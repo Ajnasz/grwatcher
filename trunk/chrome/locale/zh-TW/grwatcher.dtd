@@ -4,12 +4,14 @@
 <!ENTITY GRWstatusbar.popup.markAllAsRead "全部標示已閱讀">
 <!ENTITY GRWpreferences.title "Google Reader Watcher 選項">
 <!ENTITY GRWpreferences.checkfrequency "每">
-<!ENTITY GRWpreferences.checkfrequency.unit "分鐘">
 <!ENTITY GRWpreferences.activateOpenedTab "開啟後移至該開啟頁面">
 <!ENTITY GRWpreferences.generalpreferencescaption "一般選項">
 <!ENTITY GRWpreferences.generalpreferencesopencaption "開啟 Google 閱讀器設定">
 <!ENTITY GRWpreferences.tooltippreferencescaption "提醒視窗選項">
 <!ENTITY GRWpreferences.tabgeneral "一般">
+<!ENTITY GRWpreferences.tabaccountinfo "帳戶資訊">
+<!ENTITY GRWpreferences.tabopening "視窗開啟設定">
+<!ENTITY GRWpreferences.tabtooltip "提示視窗設定">
 <!ENTITY GRWpreferences.openinnewtabdesc "在心分頁中開啟 Google 閱讀器">
 <!ENTITY GRWpreferences.resetcounterdesc "當開啟 Google 閱讀器時計數歸零">
 <!ENTITY GRWpreferences.shownotificationwindow "顯示提醒視窗">
@@ -20,12 +22,11 @@
 <!ENTITY GRWpreferences.tooltipcounterposdesc "提示視窗的位置:">
 <!ENTITY GRWpreferences.tooltipdesc "這選項將在檢查訊息後生效">
 <!ENTITY GRWpreferences.tooltiptitlelengthdesc "設定在提示視窗上顯示的字數">
-<!ENTITY GRWpreferences.tabaccountinfo "帳戶資訊">
 <!ENTITY GRWpreferences.accountinfocaption "Google 帳戶資訊">
-<!ENTITY GRWpreferences.accountinfodesc "您的 Google 帳戶與密碼">
 <!ENTITY GRWpreferences.accountinfoemail "E-mail:">
 <!ENTITY GRWpreferences.accountinfopassword "密碼:">
 <!ENTITY GRWpreferences.accountinfo.rememberLogin "記住我的登入資料">
+<!ENTITY GRWpreferences.accountinfo.forceLogin "強迫在檢查及視窗開啟之前登入">
 <!ENTITY GRWpreferences.leftclickopen.description "開啟 Google 閱讀器使用">
 <!ENTITY GRWpreferences.leftclickopen.singleclick "單鍵">
 <!ENTITY GRWpreferences.leftclickopen.dblclick "雙鍵">

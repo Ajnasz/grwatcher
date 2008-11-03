@@ -3,12 +3,12 @@
 <!ENTITY GRWstatusbar.popup.openPrefs "Nastavenia">
 <!ENTITY GRWpreferences.title "Google Reader Watcher Nastavenia">
 <!ENTITY GRWpreferences.checkfrequency "Skontrolovať nové správy každých">
-<!ENTITY GRWpreferences.checkfrequency.unit "minút">
 <!ENTITY GRWpreferences.activateOpenedTab "Aktivovať kartu Google Reader po otvorení">
 <!ENTITY GRWpreferences.generalpreferencescaption "Všeobecné nastavenia">
 <!ENTITY GRWpreferences.generalpreferencesopencaption "Nastavenia zobrazenia karty Google Reader">
 <!ENTITY GRWpreferences.tooltippreferencescaption "Nastavenia bublinovej nápovedy">
 <!ENTITY GRWpreferences.tabgeneral "Všeobecné">
+<!ENTITY GRWpreferences.tabaccountinfo "Informácie o účte">
 <!ENTITY GRWpreferences.openinnewtabdesc "Otvoriť Google reader na novej karte">
 <!ENTITY GRWpreferences.resetcounterdesc "Vynulovať počítadlo správ keď sa otvorí Google Reader">
 <!ENTITY GRWpreferences.shownotificationwindow "Zobrazovať upozornenia">
@@ -18,9 +18,7 @@
 <!ENTITY GRWpreferences.tooltipcounterposdesc "Pozícia počítadla správ v bublinovej nápovede">
 <!ENTITY GRWpreferences.tooltipdesc "Tieto nastavenia sa prejavia keď sa skontrolujú správy">
 <!ENTITY GRWpreferences.tooltiptitlelengthdesc "Počet zobrazených znakov v názve RSS kanála">
-<!ENTITY GRWpreferences.tabaccountinfo "Informácie o účte">
 <!ENTITY GRWpreferences.accountinfocaption "Informácie o Google účte">
-<!ENTITY GRWpreferences.accountinfodesc "Zadajte svoje meno a heslo pre Google účet">
 <!ENTITY GRWpreferences.accountinfoemail "e-mailová adresa :">
 <!ENTITY GRWpreferences.accountinfopassword "Heslo :">
 <!ENTITY GRWpreferences.accountinfo.rememberLogin "Prihlásiť znovu pri spustení prehliadača">

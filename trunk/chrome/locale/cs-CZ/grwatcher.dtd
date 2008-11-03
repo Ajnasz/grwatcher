@@ -4,12 +4,12 @@
 <!ENTITY GRWstatusbar.popup.markAllAsRead "Mark all as read">
 <!ENTITY GRWpreferences.title "Volby pro Google Reader Watcher">
 <!ENTITY GRWpreferences.checkfrequency "Kontrolovat nové zdroje každé/každou">
-<!ENTITY GRWpreferences.checkfrequency.unit "minutu/y">
 <!ENTITY GRWpreferences.activateOpenedTab "Zobrazit Google Reader panel při otevření">
 <!ENTITY GRWpreferences.generalpreferencescaption "Obecné volby">
 <!ENTITY GRWpreferences.generalpreferencesopencaption "Nastavení Google Readeru">
 <!ENTITY GRWpreferences.tooltippreferencescaption "Nastavení tooltipu">
 <!ENTITY GRWpreferences.tabgeneral "Obecné">
+<!ENTITY GRWpreferences.tabaccountinfo "Uživatelské údaje">
 <!ENTITY GRWpreferences.openinnewtabdesc "Otevřít Google Reader v novém panelu">
 <!ENTITY GRWpreferences.resetcounterdesc "Vynuluje počítadlo na liště při otevření okna s Google Readerem">
 <!ENTITY GRWpreferences.shownotificationwindow "Zobrazit okno s upozorněním">
@@ -19,9 +19,7 @@
 <!ENTITY GRWpreferences.tooltipcounterposdesc "Pozice počítadla v">
 <!ENTITY GRWpreferences.tooltipdesc "Tyto volby se aplikují až po zkontrolování zdrojů">
 <!ENTITY GRWpreferences.tooltiptitlelengthdesc "Nastaví počet znaků pro název zdroje v tooltipu">
-<!ENTITY GRWpreferences.tabaccountinfo "Uživatelské údaje">
 <!ENTITY GRWpreferences.accountinfocaption "Údaje o Google účtu">
-<!ENTITY GRWpreferences.accountinfodesc "Zadejte svůj Google mail a heslo">
 <!ENTITY GRWpreferences.accountinfoemail "Emailová adresa:">
 <!ENTITY GRWpreferences.accountinfopassword "Heslo:">
 <!ENTITY GRWpreferences.accountinfo.rememberLogin "Pamatovat si přihlašovací údaje">

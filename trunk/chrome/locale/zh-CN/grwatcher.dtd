@@ -4,12 +4,12 @@
 <!ENTITY GRWstatusbar.popup.markAllAsRead "标记所有为已读">
 <!ENTITY GRWpreferences.title "Google Reader Watcher 首选项">
 <!ENTITY GRWpreferences.checkfrequency "每">
-<!ENTITY GRWpreferences.checkfrequency.unit "分钟检查收取点的更新">
 <!ENTITY GRWpreferences.activateOpenedTab "打开后选中阅读器标签">
 <!ENTITY GRWpreferences.generalpreferencescaption "常规选项">
 <!ENTITY GRWpreferences.generalpreferencesopencaption "打开 Google 阅读器设置">
 <!ENTITY GRWpreferences.tooltippreferencescaption "工具提示选项">
 <!ENTITY GRWpreferences.tabgeneral "常规">
+<!ENTITY GRWpreferences.tabaccountinfo "账户信息">
 <!ENTITY GRWpreferences.openinnewtabdesc "在新标签中打开 Google 阅读器">
 <!ENTITY GRWpreferences.resetcounterdesc "Google 阅读器窗口打开时重置状态栏计数器">
 <!ENTITY GRWpreferences.shownotificationwindow "显示提示窗口">
@@ -20,9 +20,7 @@
 <!ENTITY GRWpreferences.tooltipcounterposdesc "计数器工具提示的位置:">
 <!ENTITY GRWpreferences.tooltipdesc "检查收取点之后，选项才会生效。">
 <!ENTITY GRWpreferences.tooltiptitlelengthdesc "设置在工具提示中收取点标题的字长">
-<!ENTITY GRWpreferences.tabaccountinfo "账户信息">
 <!ENTITY GRWpreferences.accountinfocaption "Google 账户信息">
-<!ENTITY GRWpreferences.accountinfodesc "设定 Google 账户 e-mail 和密码">
 <!ENTITY GRWpreferences.accountinfoemail "Email 地址:">
 <!ENTITY GRWpreferences.accountinfopassword "密码:">
 <!ENTITY GRWpreferences.accountinfo.rememberLogin "记住此登录">

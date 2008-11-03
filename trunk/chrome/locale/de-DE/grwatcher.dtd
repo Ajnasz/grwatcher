@@ -4,12 +4,12 @@
 <!ENTITY GRWstatusbar.popup.markAllAsRead "Alle als gelesen markieren">
 <!ENTITY GRWpreferences.title "Google Reader Watcher - Einstellungen">
 <!ENTITY GRWpreferences.checkfrequency "Auf neue Feeds überprüfen alle">
-<!ENTITY GRWpreferences.checkfrequency.unit "Minuten">
 <!ENTITY GRWpreferences.activateOpenedTab "Den &quot;Google Reader&quot;-Tab nach dem Öffnen fokussieren">
 <!ENTITY GRWpreferences.generalpreferencescaption "Allgemeine Einstellungen">
 <!ENTITY GRWpreferences.generalpreferencesopencaption "&quot;Google Reader&quot;-Einstellungen öffnen">
 <!ENTITY GRWpreferences.tooltippreferencescaption "Tooltip-Einstellungen">
 <!ENTITY GRWpreferences.tabgeneral "Allgemein">
+<!ENTITY GRWpreferences.tabaccountinfo "Kontoinformationen">
 <!ENTITY GRWpreferences.openinnewtabdesc "&quot;Google Reader&quot; in einem neuen Tab öffnen">
 <!ENTITY GRWpreferences.resetcounterdesc "Setzt den Statusleistenzähler zurück, wenn das &quot;Google Reader&quot;-Fenster geöffnet wird">
 <!ENTITY GRWpreferences.shownotificationwindow "Benachrichtigungsfenster anzeigen">
@@ -20,9 +20,7 @@
 <!ENTITY GRWpreferences.tooltipcounterposdesc "Position des Zählers im Tooltip:">
 <!ENTITY GRWpreferences.tooltipdesc "Diese Einstellungen werden nach einem erneutem Laden der Feeds übernommen.">
 <!ENTITY GRWpreferences.tooltiptitlelengthdesc "Zeichenlänge des Feed-Titels im Tooltip">
-<!ENTITY GRWpreferences.tabaccountinfo "Kontoinformationen">
 <!ENTITY GRWpreferences.accountinfocaption "&quot;Google Konto&quot;-Informationen">
-<!ENTITY GRWpreferences.accountinfodesc "Geben Sie Ihre &quot;Google Konto&quot;-E-Mail-Adresse und Passwort an">
 <!ENTITY GRWpreferences.accountinfoemail "E-Mail-Adresse:">
 <!ENTITY GRWpreferences.accountinfopassword "Passwort:">
 <!ENTITY GRWpreferences.accountinfo.rememberLogin "Sitzung beim Start fortsetzen">

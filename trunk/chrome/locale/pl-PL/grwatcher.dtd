@@ -4,12 +4,12 @@
 <!ENTITY GRWstatusbar.popup.markAllAsRead "Oznacz wszystkie jako przeczytane">
 <!ENTITY GRWpreferences.title "Google Reader watcher - ustawienia">
 <!ENTITY GRWpreferences.checkfrequency "Sprawdź wiadomości co">
-<!ENTITY GRWpreferences.checkfrequency.unit "min">
 <!ENTITY GRWpreferences.activateOpenedTab "Wyświetl kartę Google Reader jako aktywną">
 <!ENTITY GRWpreferences.generalpreferencescaption "Ustawienia ogólne">
 <!ENTITY GRWpreferences.generalpreferencesopencaption "Ustawienia otwierania Google Readera">
 <!ENTITY GRWpreferences.tooltippreferencescaption "Ustawienia podpowiedzi">
 <!ENTITY GRWpreferences.tabgeneral "Ogólne">
+<!ENTITY GRWpreferences.tabaccountinfo "Konto">
 <!ENTITY GRWpreferences.openinnewtabdesc "Otwórz Google Reader w nowej karcie">
 <!ENTITY GRWpreferences.resetcounterdesc "Wyzeruj licznik po otwarciu Google Readera">
 <!ENTITY GRWpreferences.shownotificationwindow "Wyświetlaj okienko powiadomienia">
@@ -20,9 +20,7 @@
 <!ENTITY GRWpreferences.tooltipcounterposdesc "Pozycja licznika w podpowiedzi:">
 <!ENTITY GRWpreferences.tooltipdesc "Opcje te zostaną zastosowane po sprawdzeniu kanału">
 <!ENTITY GRWpreferences.tooltiptitlelengthdesc "Określ ilość znaków tytułu kanału wyświetlanych w podpowiedzi">
-<!ENTITY GRWpreferences.tabaccountinfo "Konto">
 <!ENTITY GRWpreferences.accountinfocaption "Informacje o koncie Google">
-<!ENTITY GRWpreferences.accountinfodesc "Określ adres e-mail i hasło do konta Google">
 <!ENTITY GRWpreferences.accountinfoemail "Adres e-mail:">
 <!ENTITY GRWpreferences.accountinfopassword "Hasło:">
 <!ENTITY GRWpreferences.accountinfo.rememberLogin "Zapamiętaj informacje logowania">
