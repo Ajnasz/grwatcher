@@ -48,8 +48,10 @@
         <em:locale>el-GR</em:locale>
         <em:name>Google Reader Watcher</em:name>
         <em:creator>Koszti Lajos</em:creator>
-        <em:description>Ελέγχει για νέες ειδήσεις στο Google Reader.</em:description>
+        <em:description>Ελέγχει το Google Reader για μη αναγνωσμένες εγγραφές στα αρχεία ροής</em:description>
         <em:homepageURL>http://ajnasz.hu/google-reader-watcher</em:homepageURL>
+        <em:contributor>David Peitler</em:contributor>
+        <em:translator>Sonickydon (el-GR)</em:translator>
       </Description>
     </em:localized>
     -->
