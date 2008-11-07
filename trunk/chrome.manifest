@@ -4,6 +4,7 @@ overlay chrome://browser/content/browser.xul chrome://grwatcher/content/grwatche
 skin grwatcher classic/1.0	jar:chrome/grwatcher.jar!/skin/classic/grwatcher/
 style	chrome://global/content/customizeToolbar.xul	chrome://grwatcher/skin/toolbar.css
 
+locale grwatcher ca-AD jar:chrome/grwatcher.jar!/locale/ca-AD/
 locale grwatcher cs-CZ jar:chrome/grwatcher.jar!/locale/cs-CZ/
 locale grwatcher da-DK jar:chrome/grwatcher.jar!/locale/da-DK/
 locale grwatcher de-DE jar:chrome/grwatcher.jar!/locale/de-DE/
