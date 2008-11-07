@@ -4,6 +4,7 @@
 <!ENTITY GRWstatusbar.popup.markAllAsRead "全部標示已閱讀">
 <!ENTITY GRWpreferences.title "Google Reader Watcher 選項">
 <!ENTITY GRWpreferences.checkfrequency "每">
+<!ENTITY GRWpreferences.delaystart "當瀏覽器開啟時執行第一次檢查（毫秒）">
 <!ENTITY GRWpreferences.activateOpenedTab "開啟後移至該開啟頁面">
 <!ENTITY GRWpreferences.generalpreferencescaption "一般選項">
 <!ENTITY GRWpreferences.generalpreferencesopencaption "開啟 Google 閱讀器設定">

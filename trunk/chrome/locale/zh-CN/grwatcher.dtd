@@ -4,12 +4,15 @@
 <!ENTITY GRWstatusbar.popup.markAllAsRead "标记所有为已读">
 <!ENTITY GRWpreferences.title "Google Reader Watcher 首选项">
 <!ENTITY GRWpreferences.checkfrequency "每">
+<!ENTITY GRWpreferences.delaystart "在浏览器启动后开始检查的延迟（毫秒）">
 <!ENTITY GRWpreferences.activateOpenedTab "打开后选中阅读器标签">
 <!ENTITY GRWpreferences.generalpreferencescaption "常规选项">
 <!ENTITY GRWpreferences.generalpreferencesopencaption "打开 Google 阅读器设置">
 <!ENTITY GRWpreferences.tooltippreferencescaption "工具提示选项">
 <!ENTITY GRWpreferences.tabgeneral "常规">
 <!ENTITY GRWpreferences.tabaccountinfo "账户信息">
+<!ENTITY GRWpreferences.tabopening "窗口开启设置">
+<!ENTITY GRWpreferences.tabtooltip "工具提示设置">
 <!ENTITY GRWpreferences.openinnewtabdesc "在新标签中打开 Google 阅读器">
 <!ENTITY GRWpreferences.resetcounterdesc "Google 阅读器窗口打开时重置状态栏计数器">
 <!ENTITY GRWpreferences.shownotificationwindow "显示提示窗口">
@@ -24,6 +27,7 @@
 <!ENTITY GRWpreferences.accountinfoemail "Email 地址:">
 <!ENTITY GRWpreferences.accountinfopassword "密码:">
 <!ENTITY GRWpreferences.accountinfo.rememberLogin "记住此登录">
+<!ENTITY GRWpreferences.accountinfo.forceLogin "每次检查和窗口打开前强制登录">
 <!ENTITY GRWpreferences.leftclickopen.description "打开 Google Reader 于">
 <!ENTITY GRWpreferences.leftclickopen.singleclick "单击">
 <!ENTITY GRWpreferences.leftclickopen.dblclick "双击">

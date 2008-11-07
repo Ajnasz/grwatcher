@@ -4,12 +4,15 @@
 <!ENTITY GRWstatusbar.popup.markAllAsRead "Oznacz wszystkie jako przeczytane">
 <!ENTITY GRWpreferences.title "Google Reader watcher - ustawienia">
 <!ENTITY GRWpreferences.checkfrequency "Sprawdź wiadomości co">
+<!ENTITY GRWpreferences.delaystart "Sprawdź wiadomości od razu po uruchomieniu przeglądarki">
 <!ENTITY GRWpreferences.activateOpenedTab "Wyświetl kartę Google Reader jako aktywną">
 <!ENTITY GRWpreferences.generalpreferencescaption "Ustawienia ogólne">
 <!ENTITY GRWpreferences.generalpreferencesopencaption "Ustawienia otwierania Google Readera">
 <!ENTITY GRWpreferences.tooltippreferencescaption "Ustawienia podpowiedzi">
 <!ENTITY GRWpreferences.tabgeneral "Ogólne">
 <!ENTITY GRWpreferences.tabaccountinfo "Konto">
+<!ENTITY GRWpreferences.tabopening "Ustawienia otwierania okna">
+<!ENTITY GRWpreferences.tabtooltip "Ustawienia podpowiedzi">
 <!ENTITY GRWpreferences.openinnewtabdesc "Otwórz Google Reader w nowej karcie">
 <!ENTITY GRWpreferences.resetcounterdesc "Wyzeruj licznik po otwarciu Google Readera">
 <!ENTITY GRWpreferences.shownotificationwindow "Wyświetlaj okienko powiadomienia">
@@ -24,6 +27,7 @@
 <!ENTITY GRWpreferences.accountinfoemail "Adres e-mail:">
 <!ENTITY GRWpreferences.accountinfopassword "Hasło:">
 <!ENTITY GRWpreferences.accountinfo.rememberLogin "Zapamiętaj informacje logowania">
+<!ENTITY GRWpreferences.accountinfo.forceLogin "Loguj się przed każdym sprawdzeniem wiadomości oraz otwarciem okna">
 <!ENTITY GRWpreferences.leftclickopen.description "Otwórz Google Reader za pomocą">
 <!ENTITY GRWpreferences.leftclickopen.singleclick "pojedynczego kliknięcia">
 <!ENTITY GRWpreferences.leftclickopen.dblclick "dwukrotnego kliknięcia">
