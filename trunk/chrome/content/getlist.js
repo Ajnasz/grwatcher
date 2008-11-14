@@ -103,7 +103,7 @@ GetList.prototype = {
         }
         grid = new win.genStatusGrid(r.feeds);
         tt.appendChild(grid.grid);
-        var menu = new win.genStatusMenu(tm, r.feeds);
+        var menu = new win.genStatusMenu(win, r.feeds);
         menu.addItems();
       });
       GRW_StatusBar.switchOnIcon();
@@ -111,10 +111,9 @@ GetList.prototype = {
     } else {
       GRW_StatusBar.setReaderTooltip('nonew');
       GRW_StatusBar.switchOffIcon();
-      var tm, menu;
+      var menu;
       mapWindows(function(win) {
-        tm = win.document.getElementById('GRW-statusbar-menu');
-        menu = new win.genStatusMenu(tm);
+        menu = new win.genStatusMenu(win);
         menu.clearItems();
       });
       if(GRPrefs.getPref.showZeroCounter() === false) {
