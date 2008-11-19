@@ -466,8 +466,8 @@ genStatusGrid.prototype = {
  * @returns a grid element which is filled with the unread feeds data
  * @type Element
  */
-var genStatusMenu = function(tm, feeds) {
-  this.tm = tm;
+var genStatusMenu = function(win, feeds) {
+  this.tm = win.document.getElementById('GRW-statusbar-menu');
   this.feeds = GRStates.feeds = feeds;
 }
 genStatusMenu.prototype = {
@@ -696,13 +696,12 @@ var GRW_init = function() {
       var grid, tt;
       mapWindows(function(win) {
         tt = win.document.getElementById('GRW-statusbar-tooltip-new');
-        tm = win.document.getElementById('GRW-statusbar-menu');
         while(tt.firstChild) {
           tt.removeChild(tt.firstChild);
         }
         grid = new win.genStatusGrid(activeWin.GRStates.feeds);
         tt.appendChild(grid.grid);
-        var menu = new win.genStatusMenu(tm, activeWin.GRStates.feeds);
+        var menu = new win.genStatusMenu(win, activeWin.GRStates.feeds);
         menu.addItems();
       });
       GRW_StatusBar.switchOnIcon();
@@ -712,8 +711,7 @@ var GRW_init = function() {
       GRW_StatusBar.switchOffIcon();
       var tm, menu;
       mapWindows(function(win) {
-        tm = win.document.getElementById('GRW-statusbar-menu');
-        menu = new win.genStatusMenu(tm);
+        menu = new win.genStatusMenu(win);
         menu.clearItems();
       });
       if(GRPrefs.getPref.showZeroCounter() === false) {
