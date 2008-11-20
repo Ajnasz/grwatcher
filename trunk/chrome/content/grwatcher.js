@@ -237,7 +237,6 @@ var GRW_StatusBar = {
         case 'new':
           statusBar.tooltip = 'GRW-statusbar-tooltip-new';
           if(ttb) {
-            GRW_LOG(GRPrefs, GRW_strings);
             ttb.setAttribute('tooltiptext', GRW_strings.getFormattedString('notifierMSG', [unr]));
           }
           break;
@@ -577,9 +576,10 @@ GRW_statusClickHandling.prototype = {
    * add the event handler to the statusbar icon
    */
   observe: function() {
-    this.statusBar.addEventListener('click', this.click, false);
+    var _this = this;
+    this.statusBar.addEventListener('click', function(event){_this.click(event)}, false);
     if(this.st == 2) {
-      this.statusBar.addEventListener('dblclick', this.click, false);
+      this.statusBar.addEventListener('dblclick', function(event){_this.click(event)}, false);
     }
   },
   /**
@@ -592,6 +592,8 @@ GRW_statusClickHandling.prototype = {
    */
   click: function(event) {
     var st = GRPrefs.getPref.leftClickOpen();
+    GRW_LOG(event.originalTarget);
+    if(event.originalTarget != this.statusBar) {return;}
     switch(event.button) {
       case 0:
         if((st == 2 && event.type == 'dblclick') || (st == 1 && event.type == 'click')) {
