@@ -564,23 +564,27 @@ var GoogleIt = function() {
  * @param {Object} event
  */
 var GRW_statusClickHandling = function(ob) {
-  this.statusBar = ob;
-  if(!this.statusBar) { return; }
+  this.ob = ob;
+  if(!this.ob || !this.ob.length) {GRW_LOG('no ob'); return; }
   this.st = GRPrefs.getPref.leftClickOpen();
   this.observe();
 };
 GRW_statusClickHandling.prototype = {
   st: null,
-  statusBar: null,
+  ob: null,
   /**
    * add the event handler to the statusbar icon
    */
   observe: function() {
+    GRW_LOG('observe');
     var _this = this;
-    this.statusBar.addEventListener('click', function(event){_this.click(event)}, false);
-    if(this.st == 2) {
-      this.statusBar.addEventListener('dblclick', function(event){_this.click(event)}, false);
-    }
+    this.ob.forEach(function(element){
+      GRW_LOG('inobserve', _this, _this.click);
+      if(element) element.addEventListener('click', function(event){GRW_LOG('click');_this.click(event)}, true);
+      if(this.st == 2) {
+        this.ob.addEventListener('dblclick', function(event){_this.click(event)}, true);
+      }
+    })
   },
   /**
    * event handler runs when user click on the statusbar icon
@@ -593,7 +597,9 @@ GRW_statusClickHandling.prototype = {
   click: function(event) {
     var st = GRPrefs.getPref.leftClickOpen();
     GRW_LOG(event.originalTarget);
-    if(event.originalTarget != this.statusBar) {return;}
+    var originalClicked = false;
+    this.ob.forEach(function(element){if(event.originalTarget == element) {originalClicked = true;}})
+    if(!originalClicked) {GRW_LOG('target mismatch');return;}
     switch(event.button) {
       case 0:
         if((st == 2 && event.type == 'dblclick') || (st == 1 && event.type == 'click')) {
@@ -723,10 +729,7 @@ var GRW_init = function() {
       }
     }
   }
-  new GRW_statusClickHandling(document.getElementById('GRW-statusbar'));
-  if(document.getElementById('GRW-toolbar-button')) {
-    new GRW_statusClickHandling(document.getElementById('GRW-toolbar-button'));
-  }
+  new GRW_statusClickHandling([document.getElementById('GRW-statusbar'), document.getElementById('GRW-toolbar-button')]);
 
   var observerService = Components.classes["@mozilla.org/observer-service;1"].getService(Components.interfaces.nsIObserverService);
   observerService.addObserver(windowCloseCheck, "domwindowclosed", false);
