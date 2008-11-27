@@ -4,12 +4,15 @@
 <!ENTITY GRWstatusbar.popup.markAllAsRead "Märgi kõik loetuks">
 <!ENTITY GRWpreferences.title "Google Reader Watcheri eelistused">
 <!ENTITY GRWpreferences.checkfrequency "Uusi tellimusi kontrollitakse iga">
+<!ENTITY GRWpreferences.delaystart "Viivitus esimese kontrollini pärast brauseri starti (millisekundites)">
 <!ENTITY GRWpreferences.activateOpenedTab "Avamisel lülitutakse Google Readeri kaardile">
 <!ENTITY GRWpreferences.generalpreferencescaption "Üldised eelistused">
 <!ENTITY GRWpreferences.generalpreferencesopencaption "Google Readeri avamise sätted">
 <!ENTITY GRWpreferences.tooltippreferencescaption "Vihje eelistused">
 <!ENTITY GRWpreferences.tabgeneral "Üldine">
 <!ENTITY GRWpreferences.tabaccountinfo "Konto info">
+<!ENTITY GRWpreferences.tabopening "Akna avamise sätted">
+<!ENTITY GRWpreferences.tabtooltip "Vihje sätted">
 <!ENTITY GRWpreferences.openinnewtabdesc "Google Reader avatakse uuel kaardil">
 <!ENTITY GRWpreferences.resetcounterdesc "Google Readeri akna avamisel lähtestatakse olekuriba loendur">
 <!ENTITY GRWpreferences.shownotificationwindow "Näidatakse teavitusakent">
@@ -24,6 +27,7 @@
 <!ENTITY GRWpreferences.accountinfoemail "E-posti aadress:">
 <!ENTITY GRWpreferences.accountinfopassword "Parool:">
 <!ENTITY GRWpreferences.accountinfo.rememberLogin "Logimise info peetakse meeles">
+<!ENTITY GRWpreferences.accountinfo.forceLogin "Logimist sunnitakse enne iga kontrolli ja akna avamist">
 <!ENTITY GRWpreferences.leftclickopen.description "Google Reader avaneb">
 <!ENTITY GRWpreferences.leftclickopen.singleclick "ühe klõpsuga">
 <!ENTITY GRWpreferences.leftclickopen.dblclick "topeltklõpsuga">
