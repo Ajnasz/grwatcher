@@ -1,15 +1,18 @@
-<!ENTITY GRWstatusbar.popup.openReader "Google Reader&apos;i Aç">
+﻿<!ENTITY GRWstatusbar.popup.openReader "Google Reader&apos;i Aç">
 <!ENTITY GRWstatusbar.popup.getReadCounter "Okunmamış haberleri kontrol et">
 <!ENTITY GRWstatusbar.popup.openPrefs "Tercihler">
 <!ENTITY GRWstatusbar.popup.markAllAsRead "Hepsini okunmuş işaretle">
 <!ENTITY GRWpreferences.title "Google Reader İzleyicisi Tercihleri">
 <!ENTITY GRWpreferences.checkfrequency "Haberleri">
+<!ENTITY GRWpreferences.delaystart "Tarayıcı açıldıktan sonraki ilk kontrol için gereken gecikme (milisaniye)">
 <!ENTITY GRWpreferences.activateOpenedTab "Açıldığında Google Reader sekmesine geç">
 <!ENTITY GRWpreferences.generalpreferencescaption "Genel Tercihler">
 <!ENTITY GRWpreferences.generalpreferencesopencaption "Google Reader&apos;i yeni sekmede aç">
 <!ENTITY GRWpreferences.tooltippreferencescaption "imleç bilgisi tercihleri">
 <!ENTITY GRWpreferences.tabgeneral "Genel">
 <!ENTITY GRWpreferences.tabaccountinfo "Hesap Bilgisi">
+<!ENTITY GRWpreferences.tabopening "Pencere açma ayarları">
+<!ENTITY GRWpreferences.tabtooltip "İmleç bilgisi ayarları">
 <!ENTITY GRWpreferences.openinnewtabdesc "Google Reader&apos;i yeni sekmede aç">
 <!ENTITY GRWpreferences.resetcounterdesc "Google Reader açıldığında durum çubuğundaki sayacı sıfırla">
 <!ENTITY GRWpreferences.shownotificationwindow "Duyuru penceresini göster">
@@ -24,6 +27,7 @@
 <!ENTITY GRWpreferences.accountinfoemail "Email Adresi:">
 <!ENTITY GRWpreferences.accountinfopassword "şifre:">
 <!ENTITY GRWpreferences.accountinfo.rememberLogin "Giriş bilgilerini hatırla">
+<!ENTITY GRWpreferences.accountinfo.forceLogin "Her kontrol ve pencere açma öncesi giriş yapmaya zorla">
 <!ENTITY GRWpreferences.leftclickopen.description "Google Reader&apos;i">
 <!ENTITY GRWpreferences.leftclickopen.singleclick "sol tıklamayla aç">
 <!ENTITY GRWpreferences.leftclickopen.dblclick "çift tıklamayla aç">
