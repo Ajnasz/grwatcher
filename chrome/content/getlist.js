@@ -44,7 +44,7 @@ GetList.prototype = {
    */
   onFeedListLoad: function(request) {
     var ids = new Array();
-    this.subscriptionsList.map(function(d) {
+    this.subscriptionsList.forEach(function(d) {
       ids.push(d.id);
     });
     this.FeedlistIds = ids;
@@ -65,7 +65,7 @@ GetList.prototype = {
         THIS.feeds = new Array();
         THIS.userFeeds = new Array();
         var rex1 = new RegExp('^(?:user/\\d+/state/com.google/broadcast-friends|feed)'), rex2 = new RegExp('^user\/([^/]+)\/.*');
-        THIS.unreadCount.map(function(o) {
+        THIS.unreadCount.forEach(function(o) {
           if(rex1.test(o.id)) {
             THIS.feeds.push(o);
           } else {
@@ -139,18 +139,18 @@ GetList.prototype = {
       if(!rex.test(filteredLabels)) {
         labeled[label].count = 0;
         labeled[label].subs = new Array();
-        uc.map(function(u) {
+        uc.forEach(function(u) {
           if(friendRex.test(u.id) && label == '-') {
             feeds.push({Title: GRW_strings.getString('shareditems'), Id: u.id, Count: u.count});
             labeled[label].count += u.count;
-            labeled[label].subs.push({Title: GRW_strings.getString('shareditems'), Id: u.id, Count: u.count});
+            labeled[label].subs.push({Title: GRW_strings.getString('shareditems'), Id: u.id, Count: u.count, Shared: true});
             if(counted[u.id] !== true) {
               all += u.count;
               counted[u.id] = true;
             }
             friendAdded = true;
           } else {
-            labeled[label].value.map(function(l) {
+            labeled[label].value.forEach(function(l) {
               if(u.id == l.id && u.count > 0) {
                 labeled[label].count += u.count;
                 labeled[label].subs.push({Title: l.title, Id: l.id, Count: u.count});
@@ -178,10 +178,10 @@ GetList.prototype = {
     var ob = this.subscriptionsList, labels = new Object(), o, u;
     var nolabel = {Id: '', value: new Array()};
     var rex = new RegExp('^(?:user/\\d+/state/com.google/broadcast-friends|feed)');
-    ob.map(function(o) {
+    ob.forEach(function(o) {
       if(rex.test(o.id)) {
         if(o.categories.length) {
-          o.categories.map(function(u) {
+          o.categories.forEach(function(u) {
             if(typeof labels[u.label] == 'undefined') {
               labels[u.label] = {
                 value: new Array(),
@@ -203,7 +203,7 @@ GetList.prototype = {
       return a.name > b.name;
     });
     var labels = new Object();
-    a.map(function(o) {
+    a.forEach(function(o) {
       labels[o.name] ={value: o.value, Id: o.Id};
     });
     labels['-'] = {value: nolabel.value, Id: ''};
@@ -217,11 +217,12 @@ GetList.prototype = {
     var prc = this.feeds;
     var feeds = Array(), unr = this.feedsCounter(), o, u;
     var friendRex = new RegExp('^user/\\d+/state/com.google/broadcast-friends');
-    prc.map(function(u) {
+    prc.forEach(function(u) {
+      GRW_LOG(u.id);
       if(friendRex.test(u.id)) {
-        feeds.push({Title: 'Shared items', Id: u.id, Count: u.count});
+        feeds.push({Title: GRW_strings.getString('shareditems'), Id: u.id, Count: u.count});
       } else {
-        unr.map(function(o) {
+        unr.forEach(function(o) {
           if(o.id == u.id && u.count > 0) {
             feeds.push({Title: o.title, Id: o.id, Count: u.count})
           }
@@ -230,11 +231,12 @@ GetList.prototype = {
     });
     // filter the feeds, which aren't in the feedlist
     var outFeeds = Array(), counter = 0, THIS = this;
-    feeds.map(function(o) {
+    feeds.forEach(function(o) {
       if(friendRex.test(o.Id)) {
         outFeeds.push(o);
+        counter += o.Count;
       } else {
-        THIS.FeedlistIds.map(function(u) {
+        THIS.FeedlistIds.forEach(function(u) {
           if(o.Id == u)  {
             counter += o.Count;
             outFeeds.push(o);
@@ -251,7 +253,7 @@ GetList.prototype = {
   feedsCounter: function() {
     var data = this.subscriptionsList;
     var feeds = Array();
-    data.map(function(d) {
+    data.forEach(function(d) {
       feeds.push({title: d.title, id:d.id});
     });
     return feeds;
