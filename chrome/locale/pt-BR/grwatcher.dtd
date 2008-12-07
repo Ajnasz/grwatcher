@@ -4,16 +4,20 @@
 <!ENTITY GRWstatusbar.popup.markAllAsRead "Marcar todas como lidas">
 <!ENTITY GRWpreferences.title "Preferências do Google Reader Watcher">
 <!ENTITY GRWpreferences.checkfrequency "Verificar novos feeds a cada">
+<!ENTITY GRWpreferences.delaystart "Start the first check after the browser started (milliseconds)">
 <!ENTITY GRWpreferences.activateOpenedTab "Selecionar a aba do Google Reader após abertura">
 <!ENTITY GRWpreferences.generalpreferencescaption "Preferências gerais">
 <!ENTITY GRWpreferences.generalpreferencesopencaption "Abrindo configurações do Google Reader">
 <!ENTITY GRWpreferences.tooltippreferencescaption "Preferências de aviso">
 <!ENTITY GRWpreferences.tabgeneral "Geral">
 <!ENTITY GRWpreferences.tabaccountinfo "Informação da conta">
+<!ENTITY GRWpreferences.tabopening "Window opening settings">
+<!ENTITY GRWpreferences.tabtooltip "Tooltip settings">
 <!ENTITY GRWpreferences.openinnewtabdesc "Abrir Google Reader em uma nova aba">
 <!ENTITY GRWpreferences.resetcounterdesc "Resetar o contador da barra de status quando a janela do Google Reader abrir">
 <!ENTITY GRWpreferences.shownotificationwindow "Exibir Janela de Aviso">
 <!ENTITY GRWpreferences.showzerocounter "Mostrar contador quando não houverem feeds disponíveis">
+<!ENTITY GRWpreferences.maximizecounter "Show 1000+ in the statusbar if you have more than 1000 unread items">
 <!ENTITY GRWpreferences.tooltipcounterposright "Direita">
 <!ENTITY GRWpreferences.tooltipcounterposleft "Esquerda">
 <!ENTITY GRWpreferences.tooltipcounterposdesc "A posição do contador no aviso">
@@ -23,6 +27,7 @@
 <!ENTITY GRWpreferences.accountinfoemail "Endereço de e-mail:">
 <!ENTITY GRWpreferences.accountinfopassword "Senha:">
 <!ENTITY GRWpreferences.accountinfo.rememberLogin "Lembrar Login">
+<!ENTITY GRWpreferences.accountinfo.forceLogin "Force login before every checking and window opening">
 <!ENTITY GRWpreferences.leftclickopen.description "Abrir Google Reader com">
 <!ENTITY GRWpreferences.leftclickopen.singleclick "Clique único">
 <!ENTITY GRWpreferences.leftclickopen.dblclick "Clique duplo">

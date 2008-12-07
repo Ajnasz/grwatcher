@@ -4,16 +4,20 @@
 <!ENTITY GRWstatusbar.popup.markAllAsRead "Mark all as read">
 <!ENTITY GRWpreferences.title "Volby pro Google Reader Watcher">
 <!ENTITY GRWpreferences.checkfrequency "Kontrolovat nové zdroje každé/každou">
+<!ENTITY GRWpreferences.delaystart "Start the first check after the browser started (milliseconds)">
 <!ENTITY GRWpreferences.activateOpenedTab "Zobrazit Google Reader panel při otevření">
 <!ENTITY GRWpreferences.generalpreferencescaption "Obecné volby">
 <!ENTITY GRWpreferences.generalpreferencesopencaption "Nastavení Google Readeru">
 <!ENTITY GRWpreferences.tooltippreferencescaption "Nastavení tooltipu">
 <!ENTITY GRWpreferences.tabgeneral "Obecné">
 <!ENTITY GRWpreferences.tabaccountinfo "Uživatelské údaje">
+<!ENTITY GRWpreferences.tabopening "Window opening settings">
+<!ENTITY GRWpreferences.tabtooltip "Tooltip settings">
 <!ENTITY GRWpreferences.openinnewtabdesc "Otevřít Google Reader v novém panelu">
 <!ENTITY GRWpreferences.resetcounterdesc "Vynuluje počítadlo na liště při otevření okna s Google Readerem">
 <!ENTITY GRWpreferences.shownotificationwindow "Zobrazit okno s upozorněním">
 <!ENTITY GRWpreferences.showzerocounter "Ukázat počítadlo i když nejsou žádné nepřečtené zdroje k dispozici">
+<!ENTITY GRWpreferences.maximizecounter "Show 1000+ in the statusbar if you have more than 1000 unread items">
 <!ENTITY GRWpreferences.tooltipcounterposright "Vpravo">
 <!ENTITY GRWpreferences.tooltipcounterposleft "Vlevo">
 <!ENTITY GRWpreferences.tooltipcounterposdesc "Pozice počítadla v">
@@ -23,6 +27,7 @@
 <!ENTITY GRWpreferences.accountinfoemail "Emailová adresa:">
 <!ENTITY GRWpreferences.accountinfopassword "Heslo:">
 <!ENTITY GRWpreferences.accountinfo.rememberLogin "Pamatovat si přihlašovací údaje">
+<!ENTITY GRWpreferences.accountinfo.forceLogin "Force login before every checking and window opening">
 <!ENTITY GRWpreferences.leftclickopen.description "Otevřít Google Reader s">
 <!ENTITY GRWpreferences.leftclickopen.singleclick "Jedno kliknutí">
 <!ENTITY GRWpreferences.leftclickopen.dblclick "Dvojité kliknutí">

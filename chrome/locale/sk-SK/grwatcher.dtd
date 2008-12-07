@@ -1,18 +1,23 @@
 <!ENTITY GRWstatusbar.popup.openReader "Otvoriť Google Reader">
 <!ENTITY GRWstatusbar.popup.getReadCounter "Skontrolovať neprečítané správy">
 <!ENTITY GRWstatusbar.popup.openPrefs "Nastavenia">
+<!ENTITY GRWstatusbar.popup.markAllAsRead "Mark all as read">
 <!ENTITY GRWpreferences.title "Google Reader Watcher Nastavenia">
 <!ENTITY GRWpreferences.checkfrequency "Skontrolovať nové správy každých">
+<!ENTITY GRWpreferences.delaystart "Start the first check after the browser started (milliseconds)">
 <!ENTITY GRWpreferences.activateOpenedTab "Aktivovať kartu Google Reader po otvorení">
 <!ENTITY GRWpreferences.generalpreferencescaption "Všeobecné nastavenia">
 <!ENTITY GRWpreferences.generalpreferencesopencaption "Nastavenia zobrazenia karty Google Reader">
 <!ENTITY GRWpreferences.tooltippreferencescaption "Nastavenia bublinovej nápovedy">
 <!ENTITY GRWpreferences.tabgeneral "Všeobecné">
 <!ENTITY GRWpreferences.tabaccountinfo "Informácie o účte">
+<!ENTITY GRWpreferences.tabopening "Window opening settings">
+<!ENTITY GRWpreferences.tabtooltip "Tooltip settings">
 <!ENTITY GRWpreferences.openinnewtabdesc "Otvoriť Google reader na novej karte">
 <!ENTITY GRWpreferences.resetcounterdesc "Vynulovať počítadlo správ keď sa otvorí Google Reader">
 <!ENTITY GRWpreferences.shownotificationwindow "Zobrazovať upozornenia">
 <!ENTITY GRWpreferences.showzerocounter "Zobraziť počítadlo aj keď nie sú žiadne neprečítané správy">
+<!ENTITY GRWpreferences.maximizecounter "Show 1000+ in the statusbar if you have more than 1000 unread items">
 <!ENTITY GRWpreferences.tooltipcounterposright "Vpravo">
 <!ENTITY GRWpreferences.tooltipcounterposleft "Vľavo">
 <!ENTITY GRWpreferences.tooltipcounterposdesc "Pozícia počítadla správ v bublinovej nápovede">
@@ -22,11 +27,14 @@
 <!ENTITY GRWpreferences.accountinfoemail "e-mailová adresa :">
 <!ENTITY GRWpreferences.accountinfopassword "Heslo :">
 <!ENTITY GRWpreferences.accountinfo.rememberLogin "Prihlásiť znovu pri spustení prehliadača">
+<!ENTITY GRWpreferences.accountinfo.forceLogin "Force login before every checking and window opening">
 <!ENTITY GRWpreferences.leftclickopen.description "Otvoriť Google Reader">
 <!ENTITY GRWpreferences.leftclickopen.singleclick "kliknutím">
 <!ENTITY GRWpreferences.leftclickopen.dblclick "dvojitým kliknutím">
 <!ENTITY GRWpreferences.leftclickopen.disabled "zakázané">
 <!ENTITY GRWpreferences.usesecureconnection "Použiť zabezpečené spojenie">
+<!ENTITY GRWpreferences.sortbylabels "In the tooltip sort the feeds by label">
+<!ENTITY GRWpreferences.filteredlabels "Filter feeds which are labeled with these labels (comma separated list)">
 <!ENTITY GRWtooltip.nonewfeed "Nemáte žiadne neprečítané správy">
 <!ENTITY GRWtooltip.errorfeedfetch "Chyba pri kontrole správ.">
 <!ENTITY GRWtooltip.newfeed "Máte neprečítané správy">

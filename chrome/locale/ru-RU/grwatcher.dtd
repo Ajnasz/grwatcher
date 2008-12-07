@@ -4,12 +4,15 @@
 <!ENTITY GRWstatusbar.popup.markAllAsRead "Отметить все как прочитанные">
 <!ENTITY GRWpreferences.title "Настройки Google Reader Watcher">
 <!ENTITY GRWpreferences.checkfrequency "Проверять ленты каждые">
+<!ENTITY GRWpreferences.delaystart "Start the first check after the browser started (milliseconds)">
 <!ENTITY GRWpreferences.activateOpenedTab "Переместить фокус на вкладку Google Reader после ее открытия">
 <!ENTITY GRWpreferences.generalpreferencescaption "Основные настройки">
 <!ENTITY GRWpreferences.generalpreferencesopencaption "Настройки открытия">
 <!ENTITY GRWpreferences.tooltippreferencescaption "Настройки всплывающих сообщений">
 <!ENTITY GRWpreferences.tabgeneral "Основные">
 <!ENTITY GRWpreferences.tabaccountinfo "Информация об учетной записи">
+<!ENTITY GRWpreferences.tabopening "Window opening settings">
+<!ENTITY GRWpreferences.tabtooltip "Tooltip settings">
 <!ENTITY GRWpreferences.openinnewtabdesc "Открывать Google Reader в новой вкладке">
 <!ENTITY GRWpreferences.resetcounterdesc "Обнулять счетчик в строке состояния при открытии Google Reader">
 <!ENTITY GRWpreferences.shownotificationwindow "Показывать окно уведомления">
@@ -24,6 +27,7 @@
 <!ENTITY GRWpreferences.accountinfoemail "E-Mail:">
 <!ENTITY GRWpreferences.accountinfopassword "Пароль:">
 <!ENTITY GRWpreferences.accountinfo.rememberLogin "Восстанавливать сессию при запуске">
+<!ENTITY GRWpreferences.accountinfo.forceLogin "Force login before every checking and window opening">
 <!ENTITY GRWpreferences.leftclickopen.description "Открывать Google Reader по:">
 <!ENTITY GRWpreferences.leftclickopen.singleclick "одиночному щелчку">
 <!ENTITY GRWpreferences.leftclickopen.dblclick "двойному щелчку">
