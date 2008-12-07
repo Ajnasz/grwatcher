@@ -4,12 +4,15 @@
 <!ENTITY GRWstatusbar.popup.markAllAsRead "Alle als gelesen markieren">
 <!ENTITY GRWpreferences.title "Google Reader Watcher - Einstellungen">
 <!ENTITY GRWpreferences.checkfrequency "Auf neue Feeds überprüfen alle">
+<!ENTITY GRWpreferences.delaystart "Start der ersten Überprüfung nach Browser-Start (in Millisekunden)">
 <!ENTITY GRWpreferences.activateOpenedTab "Den &quot;Google Reader&quot;-Tab nach dem Öffnen fokussieren">
 <!ENTITY GRWpreferences.generalpreferencescaption "Allgemeine Einstellungen">
 <!ENTITY GRWpreferences.generalpreferencesopencaption "&quot;Google Reader&quot;-Einstellungen öffnen">
 <!ENTITY GRWpreferences.tooltippreferencescaption "Tooltip-Einstellungen">
 <!ENTITY GRWpreferences.tabgeneral "Allgemein">
 <!ENTITY GRWpreferences.tabaccountinfo "Kontoinformationen">
+<!ENTITY GRWpreferences.tabopening "Einstellungen zum Öffnen des Fensters">
+<!ENTITY GRWpreferences.tabtooltip "Tooltip-Einstellungen">
 <!ENTITY GRWpreferences.openinnewtabdesc "&quot;Google Reader&quot; in einem neuen Tab öffnen">
 <!ENTITY GRWpreferences.resetcounterdesc "Setzt den Statusleistenzähler zurück, wenn das &quot;Google Reader&quot;-Fenster geöffnet wird">
 <!ENTITY GRWpreferences.shownotificationwindow "Benachrichtigungsfenster anzeigen">
@@ -24,6 +27,7 @@
 <!ENTITY GRWpreferences.accountinfoemail "E-Mail-Adresse:">
 <!ENTITY GRWpreferences.accountinfopassword "Passwort:">
 <!ENTITY GRWpreferences.accountinfo.rememberLogin "Sitzung beim Start fortsetzen">
+<!ENTITY GRWpreferences.accountinfo.forceLogin "Anmeldung erzwingen vor jedem Überprüfen und Öffnen des Fensters">
 <!ENTITY GRWpreferences.leftclickopen.description "&quot;Google Reader&quot; öffnen mit">
 <!ENTITY GRWpreferences.leftclickopen.singleclick "Einzelklick">
 <!ENTITY GRWpreferences.leftclickopen.dblclick "Doppelklick">
