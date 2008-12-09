@@ -576,11 +576,9 @@ GRW_statusClickHandling.prototype = {
    * add the event handler to the statusbar icon
    */
   observe: function() {
-    GRW_LOG('observe');
     var _this = this;
     this.ob.forEach(function(element){
-      GRW_LOG('inobserve', _this, _this.click);
-      if(element) element.addEventListener('click', function(event){GRW_LOG('click');_this.click(event)}, true);
+      if(element) element.addEventListener('click', function(event){_this.click(event)}, true);
       if(this.st == 2) {
         this.ob.addEventListener('dblclick', function(event){_this.click(event)}, true);
       }
@@ -596,7 +594,6 @@ GRW_statusClickHandling.prototype = {
    */
   click: function(event) {
     var st = GRPrefs.getPref.leftClickOpen();
-    GRW_LOG(event.originalTarget);
     var originalClicked = false;
     this.ob.forEach(function(element){if(event.originalTarget == element) {originalClicked = true;}})
     if(!originalClicked) {GRW_LOG('target mismatch');return;}
