@@ -215,15 +215,21 @@ GetList.prototype = {
    */
   onFeedsCounterLoad: function() {
     var prc = this.feeds;
-    var feeds = Array(), unr = this.feedsCounter(), o, u;
+    var feeds = Array(), unr = this.feedsCounter(), o, u, filteredLabels = GRPrefs.getPref.filteredLabels();
     var friendRex = new RegExp('^user/\\d+/state/com.google/broadcast-friends');
     prc.forEach(function(u) {
-      GRW_LOG(u.id);
       if(friendRex.test(u.id)) {
         feeds.push({Title: GRW_strings.getString('shareditems'), Id: u.id, Count: u.count});
       } else {
         unr.forEach(function(o) {
-          if(o.id == u.id && u.count > 0) {
+          o.filtered = false;
+          o.categories.forEach(function(category) {
+            var rex = new RegExp('(?:^|,\\s*)' + category.label +'(?:$|,\\s*)', 'i');
+            if(rex.test(filteredLabels)) {
+              o.filtered = true;
+            }
+          });
+          if(o.id == u.id && u.count > 0 && !o.filtered) {
             feeds.push({Title: o.title, Id: o.id, Count: u.count})
           }
         });
@@ -232,7 +238,7 @@ GetList.prototype = {
     // filter the feeds, which aren't in the feedlist
     var outFeeds = Array(), counter = 0, THIS = this;
     feeds.forEach(function(o) {
-      if(friendRex.test(o.Id)) {
+      if(friendRex.test(o.Id)) { // put the friends feed into the list
         outFeeds.push(o);
         counter += o.Count;
       } else {
@@ -254,7 +260,7 @@ GetList.prototype = {
     var data = this.subscriptionsList;
     var feeds = Array();
     data.forEach(function(d) {
-      feeds.push({title: d.title, id:d.id});
+      feeds.push({title: d.title, id:d.id, categories: d.categories});
     });
     return feeds;
   },
