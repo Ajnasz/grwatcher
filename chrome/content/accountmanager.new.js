@@ -88,7 +88,6 @@ var GRWAccountManager = {
     var SID = response.replace(rex.sid, '$1');
     var LSID = response.replace(rex.lsid, '$1');
     var Auth = response.replace(rex.auth, '$1');
-    GRW_LOG('SID: ' + SID, 'LSID: ' + LSID, 'Auth: ' + Auth);
     if(SID != '') {
       this.setGoogleCookie('SID', SID);
       if(LSID != '') {

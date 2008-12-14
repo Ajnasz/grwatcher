@@ -22,7 +22,6 @@ var GRWAccountManager = {
    * @type {Boolean}
    */
   accountExists: function() {
-    GRW_LOG(GRPrefs.getPref.userName(),  GRWPasswordManager.getPassword())
     if(GRPrefs.getPref.userName() && GRWPasswordManager.getPassword()) {
       return true;
     }
