@@ -579,8 +579,8 @@ GRW_statusClickHandling.prototype = {
     var _this = this;
     this.ob.forEach(function(element){
       if(element) element.addEventListener('click', function(event){_this.click(event)}, true);
-      if(this.st == 2) {
-        this.ob.addEventListener('dblclick', function(event){_this.click(event)}, true);
+      if(_this.st == 2) {
+        element.addEventListener('dblclick', function(event){_this.click(event)}, true);
       }
     })
   },
@@ -595,7 +595,9 @@ GRW_statusClickHandling.prototype = {
   click: function(event) {
     var st = GRPrefs.getPref.leftClickOpen();
     var originalClicked = false;
-    this.ob.forEach(function(element){if(event.originalTarget == element) {originalClicked = true;}})
+    this.ob.forEach(function(element){
+      if(event.originalTarget == element) {originalClicked = true;}
+    });
     if(!originalClicked) {GRW_LOG('target mismatch');return;}
     switch(event.button) {
       case 0:
