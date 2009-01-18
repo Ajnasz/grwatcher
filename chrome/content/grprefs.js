@@ -63,8 +63,7 @@ var openNewTabCheckToogle = function() {
     document.getElementById('GRW-leftclickopen-label').disabled = '';
 
     // document.getElementById('GRW-openinnewtab-options').style.display = '';
-  }
-  else {
+  } else {
     document.getElementById('GRW-activateopenedtab-field').disabled = 'disabled';
     document.getElementById('GRW-leftclickopen-field').disabled = 'disabled';
     document.getElementById('GRW-leftclickopen-label').disabled = 'disabled';
