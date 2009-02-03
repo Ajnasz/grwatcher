@@ -8,6 +8,7 @@
 
 <overlay id="GRWatcherOverlay" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
   <script type="application/x-javascript" src="chrome://grwatcher/content/log.js" />
+  <script type="application/x-javascript" src="chrome://grwatcher/content/general.js" />
   <script type="application/x-javascript" src="chrome://grwatcher/content/preferences.js" />
   <script type="application/x-javascript" src="chrome://grwatcher/content/passmanager.js" />
   <script type="application/x-javascript" src="chrome://grwatcher/content/accountmanager.js" />
