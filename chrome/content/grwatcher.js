@@ -475,7 +475,7 @@ genStatusMenu.prototype = {
     var menuitem = document.createElement('menuitem'), menuitemc;
     var rowsArray = new Array();
     var THIS = this;
-    feeds.map(
+    feeds.forEach(
       function(o) {
         /**
         * create menu items
@@ -513,11 +513,18 @@ genStatusMenu.prototype = {
     //popup.setAttribute('class', 'GRW-statusbar-feeds-menu ' + this.class);
     this.clearItems();
     var rowsArray = this.genMenu(this.feeds);
-    var firstChild = this.tm.firstChild;
-    var _this = this;
-    rowsArray.map(function(o){
-      _this.tm.insertBefore(o, firstChild);
-    });
+    if(rowsArray.length > 0) {
+      GRW_LOG('show menuseparator', rowsArray.length);
+      this.showHideSeparator(false);
+      var firstChild = this.tm.firstChild;
+      var _this = this;
+      rowsArray.forEach(function(o){
+        _this.tm.insertBefore(o, firstChild);
+      });
+    } else {
+      GRW_LOG('hide menuseparator');
+      this.showHideSeparator(true);
+    }
   },
   clearItems: function() {
     var removable = new Array();
@@ -529,6 +536,20 @@ genStatusMenu.prototype = {
     var _this = this;
     removable.map(function(tmc) {_this.tm.removeChild(tmc)});
     return true;
+  },
+  /**
+   * shows or hides the menu separator in the right click menu
+   * @param {Boolean} [hide] set to true if you want to hide the menuseparator element
+   */
+  showHideSeparator: function(hide) {
+    var separator = this.tm.getElementsByTagName('menuseparator');  
+    if(separator.length) {
+      if(hide) {
+        separator[0].setAttribute('class', 'grw-hidden');
+      } else {
+        separator[0].setAttribute('class', '');
+      }
+    }
   }
 };
 /**

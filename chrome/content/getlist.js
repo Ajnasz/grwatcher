@@ -115,6 +115,7 @@ GetList.prototype = {
       mapWindows(function(win) {
         menu = new win.genStatusMenu(win);
         menu.clearItems();
+        menu.showHideSeparator(true);
       });
       if(GRPrefs.getPref.showZeroCounter() === false) {
         GRW_StatusBar.hideCounter();
