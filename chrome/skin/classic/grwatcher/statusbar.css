@@ -1,3 +1,6 @@
 label#GRW-statusbar-label {
   margin-right:0;
 }
+.grw-hidden {
+  display: none;
+}
