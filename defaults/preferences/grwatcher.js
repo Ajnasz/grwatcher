@@ -4,6 +4,8 @@ pref("extensions.grwatcher.resetcounter", false);
 
 pref("extensions.grwatcher.tooltipcounterpos", 'left');
 pref("extensions.grwatcher.tooltiptitlelength", 23);
+pref("extensions.grwatcher.showitemsintooltip", true);
+pref("extensions.grwatcher.showitemsincontextmenu", true);
 
 pref("extensions.grwatcher.sid", '');
 pref("extensions.grwatcher.rememberLogin", false);
@@ -24,3 +26,4 @@ pref("extensions.grwatcher.maximizecounter", true);
 
 pref("extensions.grwatcher.delaystart", 0);
 pref("extensions.grwatcher.forcelogin", false);
+
