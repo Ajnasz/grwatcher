@@ -732,7 +732,7 @@ var GRW_init = function() {
           tt.removeChild(tt.firstChild);
         }
         grid = new win.GenStatusGrid(activeWin.GRStates.feeds);
-        tt.appendChild(grid.grid);
+        if(grid) tt.appendChild(grid.grid);
         var menu = new win.GenStatusMenu(win, activeWin.GRStates.feeds);
         menu.addItems();
       });
