@@ -374,19 +374,21 @@ var GRW_showNotification = function(label, value) {
 };
 /**
  * generate the grid for the tooltip
+ * @constructor
  * @param {Array} feeds
  * @param {String} [class]
  * @param {Boolean} [justRow]
  * @returns a grid element which is filled with the unread feeds data
  * @type Element
  */
-var genStatusGrid = function(feeds, class, justRows) {
+var GenStatusGrid = function(feeds, class, justRows) {
   GRStates.feeds = feeds;
   this.class = class || '';
   this.justRows = justRows || false;
-  this.grid = this.genGrid(this.genRows(feeds));
+  this.grid = GRPrefs.getPref.showitemsintooltip() ? this.genGrid(this.genRows(feeds)) : false;
+
 }
-genStatusGrid.prototype = {
+GenStatusGrid.prototype = {
 
   genRows: function(feeds) {
     if(!feeds) { return false; }
@@ -394,7 +396,7 @@ genStatusGrid.prototype = {
     var label = document.createElement('label');
     var rowsArray = new Array();
     var THIS = this;
-    feeds.map(
+    feeds.forEach(
       function(o) {
         /**
         * create cells
@@ -465,11 +467,11 @@ genStatusGrid.prototype = {
  * @returns a grid element which is filled with the unread feeds data
  * @type Element
  */
-var genStatusMenu = function(win, feeds) {
+var GenStatusMenu = function(win, feeds) {
   this.tm = win.document.getElementById('GRW-statusbar-menu');
   this.feeds = GRStates.feeds = feeds;
 }
-genStatusMenu.prototype = {
+GenStatusMenu.prototype = {
   genMenu: function(feeds) {
     if(!feeds) { return false; }
     var menuitem = document.createElement('menuitem'), menuitemc;
@@ -508,22 +510,24 @@ genStatusMenu.prototype = {
     return rowsArray;
   },
   addItems: function() {
-    // Create popup elements
-    //var popup = document.createElement('menupopup');
-    //popup.setAttribute('class', 'GRW-statusbar-feeds-menu ' + this.class);
-    this.clearItems();
-    var rowsArray = this.genMenu(this.feeds);
-    if(rowsArray.length > 0) {
-      GRW_LOG('show menuseparator', rowsArray.length);
-      this.showHideSeparator(false);
-      var firstChild = this.tm.firstChild;
-      var _this = this;
-      rowsArray.forEach(function(o){
-        _this.tm.insertBefore(o, firstChild);
-      });
-    } else {
-      GRW_LOG('hide menuseparator');
-      this.showHideSeparator(true);
+    if(GRPrefs.getPref.showitemsincontextmenu()) {
+      // Create popup elements
+      //var popup = document.createElement('menupopup');
+      //popup.setAttribute('class', 'GRW-statusbar-feeds-menu ' + this.class);
+      this.clearItems();
+      var rowsArray = this.genMenu(this.feeds);
+      if(rowsArray.length > 0) {
+        GRW_LOG('show menuseparator', rowsArray.length);
+        this.showHideSeparator(false);
+        var firstChild = this.tm.firstChild;
+        var _this = this;
+        rowsArray.forEach(function(o){
+          _this.tm.insertBefore(o, firstChild);
+        });
+      } else {
+        GRW_LOG('hide menuseparator');
+        this.showHideSeparator(true);
+      }
     }
   },
   clearItems: function() {
@@ -727,9 +731,9 @@ var GRW_init = function() {
         while(tt.firstChild) {
           tt.removeChild(tt.firstChild);
         }
-        grid = new win.genStatusGrid(activeWin.GRStates.feeds);
+        grid = new win.GenStatusGrid(activeWin.GRStates.feeds);
         tt.appendChild(grid.grid);
-        var menu = new win.genStatusMenu(win, activeWin.GRStates.feeds);
+        var menu = new win.GenStatusMenu(win, activeWin.GRStates.feeds);
         menu.addItems();
       });
       GRW_StatusBar.switchOnIcon();
@@ -739,7 +743,7 @@ var GRW_init = function() {
       GRW_StatusBar.switchOffIcon();
       var tm, menu;
       mapWindows(function(win) {
-        menu = new win.genStatusMenu(win);
+        menu = new win.GenStatusMenu(win);
         menu.clearItems();
       });
       if(GRPrefs.getPref.showZeroCounter() === false) {
