@@ -23,6 +23,8 @@ var savePreferences = function() {
   GRPrefs.setPref.sortByLabels(document.getElementById('GRW-sortbylabels-field').checked);
   GRPrefs.setPref.filteredLabels(document.getElementById('GRW-filteredlabels-field').value);
   GRPrefs.setPref.maximizeCounter(document.getElementById('GRW-maximizecounter-field').checked);
+  GRPrefs.setPref.showitemsintooltip(document.getElementById('GRW-showitemsintooltip-field').checked);
+  GRPrefs.setPref.showitemsincontextmenu(document.getElementById('GRW-showitemsincontextmenu-field').checked);
 
   GRPrefs.setPref.userName(document.getElementById('GRW-accountmanage-email').value);
   GRPrefs.setPref.forceLogin(document.getElementById('GRW-forceLogin-field').checked);
@@ -51,6 +53,8 @@ var setPrefPaneVals = function() {
   document.getElementById('GRW-filteredlabels-field').value = GRPrefs.getPref.filteredLabels();
   document.getElementById('GRW-maximizecounter-field').checked = GRPrefs.getPref.maximizeCounter();
   document.getElementById('GRW-forceLogin-field').checked = GRPrefs.getPref.forceLogin();
+  document.getElementById('GRW-showitemsintooltip-field').checked = GRPrefs.getPref.showitemsintooltip();
+  document.getElementById('GRW-showitemsincontextmenu-field').checked = GRPrefs.getPref.showitemsincontextmenu();
 };
 /**
  * show/hide the newtab options

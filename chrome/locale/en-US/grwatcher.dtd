@@ -40,3 +40,5 @@
 <!ENTITY GRWtooltip.newfeed "You have unread feeds">
 <!ENTITY GRWtooltip.errorlogin "Login failed. Make sure you have entered the correct account credentials!">
 <!ENTITY GRWtooltip.networkerror "Connecting failed. Make sure you have a working connection!">
+<!ENTITY GRWpreferences.showitemsintooltip "Enable to display unread items in the tooltip statusbar icon">
+<!ENTITY GRWpreferences.showitemsincontextmenu "Enable to add the unread items in the context menu of the statusbar icon">

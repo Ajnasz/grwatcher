@@ -736,6 +736,7 @@ var GRW_init = function() {
         var menu = new win.GenStatusMenu(win, activeWin.GRStates.feeds);
         menu.addItems();
       });
+      delete grid, tt;
       GRW_StatusBar.switchOnIcon();
       GRW_StatusBar.showCounter(unr);
     } else {
@@ -762,3 +763,6 @@ var GRW_init = function() {
 };
 
 window.addEventListener('load', GRW_init, false);
+window.addEventListener('unload', function(event) {
+  this.removeEventListener('load', GRW_init, false);
+}, false);

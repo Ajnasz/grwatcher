@@ -24,7 +24,7 @@
       <image id="GRW-statusbar-image" width="16" height="16" src="chrome://grwatcher/content/images/googlereader_grey.png" />
       <label id="GRW-statusbar-label" value="GRW" collapsed="true" crop="end" />
       <menupopup id="GRW-statusbar-menu" position="before_end">
-        <menuseparator/>
+        <menuseparator class="grw-hidden" />
         <menuitem label="&GRWstatusbar.popup.openReader;" oncommand="GRCheck.openReader();" />
         <menuitem label="&GRWstatusbar.popup.getReadCounter;" oncommand="GoogleIt();" />
         <menuitem label="&GRWstatusbar.popup.markAllAsRead;" oncommand="new markAllAsRead();" />

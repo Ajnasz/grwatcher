@@ -254,7 +254,7 @@ var GRPrefs = {
      * @type {Boolean} value
      */
     showitemsincontextmenu: function(value) {
-      return prefManager.getBoolPref('extensions.grwatcher.showitemsincontextmenu', value);
+      return prefManager.setBoolPref('extensions.grwatcher.showitemsincontextmenu', value);
     }
   }
 };

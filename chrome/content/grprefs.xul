@@ -106,6 +106,8 @@
               <radio label="&GRWpreferences.tooltipcounterposleft;" value="left" selected="true" />
               <radio label="&GRWpreferences.tooltipcounterposright;" value="right" />
             </radiogroup>
+            <checkbox id="GRW-showitemsintooltip-field" label="&GRWpreferences.showitemsintooltip;" />
+            <checkbox id="GRW-showitemsincontextmenu-field" label="&GRWpreferences.showitemsincontextmenu;" />
           </vbox>
         </groupbox>
       <tabpanel>

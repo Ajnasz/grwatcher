@@ -106,6 +106,7 @@ GetList.prototype = {
         var menu = new win.GenStatusMenu(win, r.feeds);
         menu.addItems();
       });
+      delete grid, tt;
       GRW_StatusBar.switchOnIcon();
       GRW_StatusBar.showCounter(unr);
     } else {
