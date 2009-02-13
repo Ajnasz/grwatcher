@@ -121,6 +121,18 @@ var GRPrefs = {
     */
     sid: function() {
       return prefManager.getCharPref('extensions.grwatcher.sid');
+    },
+    /**
+     * @type Boolean
+     */
+    showitemsintooltip: function() {
+      return prefManager.getBoolPref('extensions.grwatcher.showitemsintooltip');
+    },
+    /**
+     * @type Boolean
+     */
+    showitemsincontextmenu: function() {
+      return prefManager.getBoolPref('extensions.grwatcher.showitemsincontextmenu');
     }
   },
   setPref: {
@@ -231,6 +243,18 @@ var GRPrefs = {
     */
     delayStart: function(value) {
       return prefManager.setIntPref('extensions.grwatcher.delaystart', value);
+    },
+    /**
+     * @param {Boolean} value
+     */
+    showitemsintooltip: function(value) {
+      return prefManager.setBoolPref('extensions.grwatcher.showitemsintooltip', value);
+    },
+    /**
+     * @type {Boolean} value
+     */
+    showitemsincontextmenu: function(value) {
+      return prefManager.getBoolPref('extensions.grwatcher.showitemsincontextmenu', value);
     }
   }
 };
