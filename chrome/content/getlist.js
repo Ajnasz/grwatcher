@@ -102,7 +102,7 @@ GetList.prototype = {
           tt.removeChild(tt.firstChild);
         }
         grid = new win.GenStatusGrid(r.feeds);
-        if(grid) tt.appendChild(grid.grid);
+        if(grid.grid) tt.appendChild(grid.grid);
         var menu = new win.GenStatusMenu(win, r.feeds);
         menu.addItems();
       });

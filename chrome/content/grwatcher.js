@@ -82,7 +82,7 @@ var GRCheck = {
     if(GRStates.timeoutid) {
       clearTimeout(GRStates.timeoutid);
     }
-    GRStates.timeoutid = setTimeout(GoogleIt, freq*1000*60);
+    GRStates.timeoutid = setTimeout(GRW_GoogleIt, freq*1000*60);
   },
   /**
    * checks for opened GR window and blank pages
@@ -138,7 +138,7 @@ markAllAsRead.prototype = {
     var parameters = 'T=' + this.token + '&ts=' + (new Date()).getTime() + '999&s=user/' + GRStates.userid  + '/state/com.google/reading-list';
     new Ajax({method: 'post',url: GRStates.conntype + ':www.google.com/reader/api/0/mark-all-as-read?client=scroll',successHandler: function(request) {
         if(this.req.responseText == 'OK') {
-          GoogleIt();
+          GRW_GoogleIt();
         }
       }
     }, parameters);
@@ -558,14 +558,14 @@ GenStatusMenu.prototype = {
 };
 /**
  * do the request and process the received data
- * @returns the timeout id which will runs next time the #GoogleIt function
+ * @returns the timeout id which will runs next time the #GRW_GoogleIt function
  * @type {Number}
  */
-var GoogleIt = function() {
+var GRW_GoogleIt = function() {
   GRStates.conntype = GRPrefs.getPref.useSecureConnection() ? 'https' : 'http';
   var activeWin = getActiveGRW();
   if(activeWin !== window) {
-    activeWin.GoogleIt();
+    activeWin.GRW_GoogleIt();
     return false;
   }
   if(!GRWAccountManager.getCurrentSID() || GRPrefs.getPref.forceLogin()) {
@@ -582,7 +582,7 @@ var GoogleIt = function() {
   if(GRStates.timeoutid) {
     clearTimeout(GRStates.timeoutid);
   }
-  GRStates.timeoutid = setTimeout(GoogleIt, freq*1000*60);
+  GRStates.timeoutid = setTimeout(GRW_GoogleIt, freq*1000*60);
   return GRStates.timeoutid;
 };
 /**
@@ -641,7 +641,7 @@ GRW_statusClickHandling.prototype = {
       break;
 
       case 1:
-        GoogleIt();
+        GRW_GoogleIt();
       break;
     }
   }
@@ -696,7 +696,7 @@ var windowCloseCheck = {
       var minCheck = 1;
       var configuredCheck = GRPrefs.getPref.checkFreq();
       var freq = (configuredCheck >= minCheck) ? configuredCheck : minCheck;
-      win.GRStates.timeoutid = win.setTimeout(win.GoogleIt, freq*1000*60);
+      win.GRStates.timeoutid = win.setTimeout(win.GRW_GoogleIt, freq*1000*60);
     }
   }
 };
@@ -711,7 +711,7 @@ var GRW_init = function() {
     window.GRW = true;
     var g;
     setTimeout(function(){
-      g = GoogleIt();
+      g = GRW_GoogleIt();
     }, GRPrefs.getPref.delayStart());
   } else {
     GRStates.conntype = GRPrefs.getPref.useSecureConnection() ? 'https' : 'http';
@@ -732,7 +732,7 @@ var GRW_init = function() {
           tt.removeChild(tt.firstChild);
         }
         grid = new win.GenStatusGrid(activeWin.GRStates.feeds);
-        if(grid) tt.appendChild(grid.grid);
+        if(grid.grid) tt.appendChild(grid.grid);
         var menu = new win.GenStatusMenu(win, activeWin.GRStates.feeds);
         menu.addItems();
       });

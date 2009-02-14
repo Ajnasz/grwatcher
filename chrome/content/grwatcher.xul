@@ -26,7 +26,7 @@
       <menupopup id="GRW-statusbar-menu" position="before_end">
         <menuseparator class="grw-hidden" />
         <menuitem label="&GRWstatusbar.popup.openReader;" oncommand="GRCheck.openReader();" />
-        <menuitem label="&GRWstatusbar.popup.getReadCounter;" oncommand="GoogleIt();" />
+        <menuitem label="&GRWstatusbar.popup.getReadCounter;" oncommand="GRW_GoogleIt();" />
         <menuitem label="&GRWstatusbar.popup.markAllAsRead;" oncommand="new markAllAsRead();" />
         <menuitem label="&GRWstatusbar.popup.openPrefs;" oncommand="openPrefs();" />
       </menupopup>
