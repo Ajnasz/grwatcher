@@ -517,7 +517,6 @@ GenStatusMenu.prototype = {
       this.clearItems();
       var rowsArray = this.genMenu(this.feeds);
       if(rowsArray.length > 0) {
-        GRW_LOG('show menuseparator', rowsArray.length);
         this.showHideSeparator(false);
         var firstChild = this.tm.firstChild;
         var _this = this;
@@ -546,7 +545,7 @@ GenStatusMenu.prototype = {
    * @param {Boolean} [hide] set to true if you want to hide the menuseparator element
    */
   showHideSeparator: function(hide) {
-    var separator = this.tm.getElementsByTagName('menuseparator');  
+    var separator = this.tm.getElementsByTagName('menuseparator');
     if(separator.length) {
       if(hide) {
         separator[0].setAttribute('class', 'grw-hidden');
