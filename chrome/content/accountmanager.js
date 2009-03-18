@@ -69,8 +69,15 @@ var GRWAccountManager = {
           if(typeof onLogin == 'function') {
             onLogin();
           }
-          if(!noGetList) {
-            new GetList();
+          if(_this.getCurrentSID()) {
+            if(!noGetList) {
+              new GetList();
+            }
+          } else {
+            var cookieBehavior = GRPrefs.getInt('network.cookie.cookieBehavior');
+            if(cookieBehavior != 0) {
+              GRW_LOG('bad cookie behavior', cookieBehavior);
+            }
           }
         }
       }, param);
