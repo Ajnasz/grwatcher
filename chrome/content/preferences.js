@@ -13,6 +13,15 @@ var prefManager = Components.classes["@mozilla.org/preferences-service;1"].getSe
  * namespace to handle the stored configurations
  */
 var GRPrefs = {
+  getChar: function(pref) {
+      return prefManager.getCharPref(pref);
+  },
+  getInt: function(pref) {
+      return prefManager.getIntPref(pref);
+  },
+  getBool: function(pref) {
+      return prefManager.getBoolPref(pref);
+  },
   getPref: {
    /**
     * @type Int
