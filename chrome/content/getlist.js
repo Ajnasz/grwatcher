@@ -101,11 +101,12 @@ GetList.prototype = {
         while(tt.firstChild) {
           tt.removeChild(tt.firstChild);
         }
-        grid = new win.genStatusGrid(r.feeds);
-        tt.appendChild(grid.grid);
-        var menu = new win.genStatusMenu(win, r.feeds);
+        grid = new win.GenStatusGrid(r.feeds);
+        if(grid.grid) tt.appendChild(grid.grid);
+        var menu = new win.GenStatusMenu(win, r.feeds);
         menu.addItems();
       });
+      delete grid, tt;
       GRW_StatusBar.switchOnIcon();
       GRW_StatusBar.showCounter(unr);
     } else {
@@ -113,7 +114,7 @@ GetList.prototype = {
       GRW_StatusBar.switchOffIcon();
       var menu;
       mapWindows(function(win) {
-        menu = new win.genStatusMenu(win);
+        menu = new win.GenStatusMenu(win);
         menu.clearItems();
         menu.showHideSeparator(true);
       });

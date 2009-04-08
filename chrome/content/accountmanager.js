@@ -63,7 +63,6 @@ var GRWAccountManager = {
       }
 
     }
-
     return false;
   },
   /**
@@ -82,6 +81,7 @@ var GRWAccountManager = {
         url: url,
         method: 'post',
         successHandler: function(e) {
+          _this.goodCookieBehavior();
           _this.ajaxSuccess(e);
           if(typeof onLogin == 'function') {
             onLogin();
@@ -91,7 +91,14 @@ var GRWAccountManager = {
               new GetList();
             }
           } else {
-            _this.loginFailed(e.responseText);
+            var cookieBehavior = GRPrefs.getInt('network.cookie.cookieBehavior');
+            if(cookieBehavior != 0) {
+              _this.loginFailed(e.responseText);
+              _this.badCookieBehavior();
+              GRW_LOG('bad cookie behavior', cookieBehavior);
+            } else {
+              _this.loginFailed(e.responseText);
+            }
           }
         }
       }, param);
@@ -128,6 +135,12 @@ var GRWAccountManager = {
       GRW_LOG(msg);
     }
     return false;
+  },
+  badCookieBehavior: function() {
+    document.getElementById('GRW-statusbar-menuitem-enablecookies').setAttribute('class', '');
+  },
+  goodCookieBehavior: function() {
+    document.getElementById('GRW-statusbar-menuitem-enablecookies').setAttribute('class', 'grw-hidden');
   },
   setCookie: function(name, value, permanent) {
     if(permanent) {
