@@ -11,6 +11,7 @@
   <script type="application/x-javascript" src="chrome://grwatcher/content/general.js" />
   <script type="application/x-javascript" src="chrome://grwatcher/content/preferences.js" />
   <script type="application/x-javascript" src="chrome://grwatcher/content/passmanager.js" />
+  <script type="application/x-javascript" src="chrome://grwatcher/content/cookie.js" />
   <script type="application/x-javascript" src="chrome://grwatcher/content/accountmanager.js" />
   <script type="application/x-javascript" src="chrome://grwatcher/content/ajax.js" />
   <script type="application/x-javascript" src="chrome://grwatcher/content/getlist.js" />
