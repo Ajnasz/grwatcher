@@ -16,7 +16,7 @@
  */
 var GRWAccountManager = {
   // mozilla nsi cookie manager component
-  CookieManager: Components.classes["@mozilla.org/cookiemanager;1"].getService(Components.interfaces.nsICookieManager),
+  CookieManager: Components.classes["@mozilla.org/cookiemanager;1"].getService(Components.interfaces.nsICookieManager2),
   /**
    * Check, that the account is configured
    * @type {Boolean}
@@ -31,7 +31,7 @@ var GRWAccountManager = {
    * @return returns the value of the cookie named `SID`
    * @type {String,Boolean}
    */
-  getCurrentSID: function() {
+  getCurrentSID: function(response) {
     var enumerator = this.CookieManager.enumerator;
     var rex = new RegExp('google.com$');
     while (enumerator.hasMoreElements()) {
@@ -44,6 +44,26 @@ var GRWAccountManager = {
         }
       }
     }
+    if(response) {
+      if(response.responseText) {
+        var auths = response.responseText.split('\n');
+        if(auths.length) {
+          var sid = '';
+          for (var i = 0; i < auths.length; i++) {
+            if(/^SID/.test(auths[i])) {
+              sid = new String(auths[i]);
+              break;
+            }
+          }
+          if(sid.length) {
+            this.setCookie('SID', sid.split('=')[1], GRPrefs.getPref.rememberLogin());
+            return sid.split('=')[1];
+          }
+        }
+      }
+
+    }
+
     return false;
   },
   /**
@@ -54,12 +74,9 @@ var GRWAccountManager = {
   logIn: function(onLogin, noGetList) {
     if(this.accountExists()) {
       // var url = GRStates.conntype + '://www.google.com/accounts/ServiceLoginAuth';
-      var url = 'https://www.google.com/accounts/ServiceLoginAuth';
-      var param = 'Email='+encodeURIComponent(GRPrefs.getPref.userName())+'&Passwd='+encodeURIComponent(GRWPasswordManager.getPassword())+'&service=reader&continue=http://www.google.com';
-      // remember the login state, possible won't ask for mozilla master password
-      if(GRPrefs.getPref.rememberLogin()) {
-        param += '&PersistentCookie=yes';
-      }
+      // var url = 'https://www.google.com/accounts/ServiceLoginAuth?service=reader';
+      var url = 'https://www.google.com/accounts/ClientLogin?service=reader';
+      var param = 'service=reader&Email='+encodeURIComponent(GRPrefs.getPref.userName())+'&Passwd='+encodeURIComponent(GRWPasswordManager.getPassword())+'&continue=http://www.google.com/reader/';
       var _this = this;
       new Ajax({
         url: url,
@@ -69,8 +86,12 @@ var GRWAccountManager = {
           if(typeof onLogin == 'function') {
             onLogin();
           }
-          if(!noGetList) {
-            new GetList();
+          if(_this.getCurrentSID()) {
+            if(!noGetList) {
+              new GetList();
+            }
+          } else {
+            _this.loginFailed(e.responseText);
           }
         }
       }, param);
@@ -86,10 +107,9 @@ var GRWAccountManager = {
    * @type Boolean
    */
   ajaxSuccess: function(e) {
-    var curSid = GRWAccountManager.getCurrentSID();
+    var curSid = GRWAccountManager.getCurrentSID(e);
     if(curSid === false) {
-      GRW_StatusBar.switchErrorIcon();
-      GRW_StatusBar.setReaderTooltip('loginerror');
+      this.loginFailed(e.responseText);
       return false;
     }
     GRPrefs.setPref.sid(curSid);
@@ -100,9 +120,20 @@ var GRWAccountManager = {
    * @returns false
    * @type Boolean
    */
-  loginFailed: function() {
+  loginFailed: function(msg) {
     GRW_StatusBar.switchErrorIcon();
+    GRW_StatusBar.setReaderTooltip('loginerror');
     GRW_LOG('login failed');
+    if(msg) {
+      GRW_LOG(msg);
+    }
     return false;
+  },
+  setCookie: function(name, value, permanent) {
+    if(permanent) {
+      new GRW_Cookie('.google.com', name, value, new Date(new Date().setFullYear(new Date().getFullYear()+10)));
+    } else {
+      new GRW_Cookie('.google.com', name, value);
+    }
   }
 };
