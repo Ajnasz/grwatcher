@@ -514,7 +514,6 @@ genStatusMenu.prototype = {
     this.clearItems();
     var rowsArray = this.genMenu(this.feeds);
     if(rowsArray.length > 0) {
-      GRW_LOG('show menuseparator', rowsArray.length);
       this.showHideSeparator(false);
       var firstChild = this.tm.firstChild;
       var _this = this;
@@ -522,7 +521,6 @@ genStatusMenu.prototype = {
         _this.tm.insertBefore(o, firstChild);
       });
     } else {
-      GRW_LOG('hide menuseparator');
       this.showHideSeparator(true);
     }
   },
@@ -619,7 +617,7 @@ GRW_statusClickHandling.prototype = {
     this.ob.forEach(function(element){
       if(event.originalTarget == element) {originalClicked = true;}
     });
-    if(!originalClicked) {GRW_LOG('target mismatch');return;}
+    if(!originalClicked) return;
     switch(event.button) {
       case 0:
         if((st == 2 && event.type == 'dblclick') || (st == 1 && event.type == 'click')) {
