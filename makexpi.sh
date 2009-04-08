@@ -1,7 +1,7 @@
 #!/bin/bash
 ########################## Configuration ################################
 if [ -z $1 ];then
-  GRWVER='0.0.14.2';
+  GRWVER='0.0.14.3';
 else
   GRWVER=$1;
 fi
