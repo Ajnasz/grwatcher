@@ -31,7 +31,7 @@ var GRWAccountManager = {
    * @return returns the value of the cookie named `SID`
    * @type {String,Boolean}
    */
-  getCurrentSID: function() {
+  getCurrentSID: function(response) {
     var enumerator = this.CookieManager.enumerator;
     var rex = new RegExp('google.com$');
     while (enumerator.hasMoreElements()) {
@@ -44,6 +44,30 @@ var GRWAccountManager = {
         }
       }
     }
+    if(response) {
+      if(response.responseText) {
+        var auths = response.responseText.split('\n');
+        if(auths.length) {
+          var sid = '';
+          for (var i = 0; i < auths.length; i++) {
+            if(/^SID/.test(auths[i])) {
+              sid = auths[i];
+              break;
+            }
+          }
+          if(sid.length) {
+            var ios = Components.classes["@mozilla.org/network/io-service;1"].getService(Components.interfaces.nsIIOService);
+            var cookieUri = ios.newURI("http://www.google.com/", null, null);
+            var cookieSvc = Components.classes["@mozilla.org/cookieService;1"].getService(Components.interfaces.nsICookieService);
+
+            cookieSvc.setCookieString(cookieUri, null, sid, null);
+            return sid.split('=')[1];
+          }
+        }
+      }
+
+    }
+    
     return false;
   },
   /**
@@ -54,8 +78,9 @@ var GRWAccountManager = {
   logIn: function(onLogin, noGetList) {
     if(this.accountExists()) {
       // var url = GRStates.conntype + '://www.google.com/accounts/ServiceLoginAuth';
-      var url = 'https://www.google.com/accounts/ServiceLoginAuth';
-      var param = 'Email='+encodeURIComponent(GRPrefs.getPref.userName())+'&Passwd='+encodeURIComponent(GRWPasswordManager.getPassword())+'&service=reader&continue=http://www.google.com/reader/&nui=1&rmShown=1';
+      // var url = 'https://www.google.com/accounts/ServiceLoginAuth?service=reader';
+      var url = 'https://www.google.com/accounts/ClientLogin?service=reader';
+      var param = 'service=reader&Email='+encodeURIComponent(GRPrefs.getPref.userName())+'&Passwd='+encodeURIComponent(GRWPasswordManager.getPassword())+'&continue=http://www.google.com/reader/';
       // remember the login state, possible won't ask for mozilla master password
       if(GRPrefs.getPref.rememberLogin()) {
         param += '&PersistentCookie=yes';
@@ -65,6 +90,7 @@ var GRWAccountManager = {
         url: url,
         method: 'post',
         successHandler: function(e) {
+          _this.goodCookieBehavior();
           _this.ajaxSuccess(e);
           if(typeof onLogin == 'function') {
             onLogin();
@@ -76,7 +102,11 @@ var GRWAccountManager = {
           } else {
             var cookieBehavior = GRPrefs.getInt('network.cookie.cookieBehavior');
             if(cookieBehavior != 0) {
+              _this.loginFailed(e.responseText);
+              _this.badCookieBehavior();
               GRW_LOG('bad cookie behavior', cookieBehavior);
+            } else {
+              _this.loginFailed(e.responseText);
             }
           }
         }
@@ -93,11 +123,16 @@ var GRWAccountManager = {
    * @type Boolean
    */
   ajaxSuccess: function(e) {
-    var curSid = GRWAccountManager.getCurrentSID();
+    var curSid = GRWAccountManager.getCurrentSID(e);
     if(curSid === false) {
-      GRW_StatusBar.switchErrorIcon();
-      GRW_StatusBar.setReaderTooltip('loginerror');
-      return false;
+      s = e.responseText.match(/SID=(.+)/);
+      curSid = e[1];
+      if(curSid) {
+      } else {
+        GRW_StatusBar.switchErrorIcon();
+        GRW_StatusBar.setReaderTooltip('loginerror');
+        return false;
+      }
     }
     GRPrefs.setPref.sid(curSid);
     return true;
@@ -107,9 +142,18 @@ var GRWAccountManager = {
    * @returns false
    * @type Boolean
    */
-  loginFailed: function() {
+  loginFailed: function(msg) {
     GRW_StatusBar.switchErrorIcon();
     GRW_LOG('login failed');
+    if(msg) {
+      GRW_LOG(msg);
+    }
     return false;
+  },
+  badCookieBehavior: function() {
+    document.getElementById('GRW-statusbar-menuitem-enablecookies').setAttribute('class', '');
+  },
+  goodCookieBehavior: function() {
+    document.getElementById('GRW-statusbar-menuitem-enablecookies').setAttribute('class', 'grw-hidden');
   }
 };
