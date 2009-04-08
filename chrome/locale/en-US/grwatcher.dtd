@@ -2,6 +2,7 @@
 <!ENTITY GRWstatusbar.popup.getReadCounter "Check for unread feeds">
 <!ENTITY GRWstatusbar.popup.openPrefs "Preferences">
 <!ENTITY GRWstatusbar.popup.markAllAsRead "Mark all as read">
+<!ENTITY GRWstatusbar.popup.enableCookies "Enable cookies">
 <!ENTITY GRWpreferences.title "Google Reader Watcher Preferences">
 <!ENTITY GRWpreferences.checkfrequency "Check frequency (minutes)">
 <!ENTITY GRWpreferences.delaystart "Start the first check after the browser started (milliseconds)">
@@ -40,3 +41,6 @@
 <!ENTITY GRWtooltip.newfeed "You have unread feeds">
 <!ENTITY GRWtooltip.errorlogin "Login failed. Make sure you have entered the correct account credentials!">
 <!ENTITY GRWtooltip.networkerror "Connecting failed. Make sure you have a working connection!">
+<!ENTITY GRWtooltip.cookieerror "The third-party cookies are not enabled! Press right mouse button on the icon to enable it.">
+<!ENTITY GRWpreferences.showitemsintooltip "Enable to display unread items in the tooltip statusbar icon">
+<!ENTITY GRWpreferences.showitemsincontextmenu "Enable to add the unread items in the context menu of the statusbar icon">

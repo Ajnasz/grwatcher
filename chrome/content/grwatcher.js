@@ -82,7 +82,7 @@ var GRCheck = {
     if(GRStates.timeoutid) {
       clearTimeout(GRStates.timeoutid);
     }
-    GRStates.timeoutid = setTimeout(GoogleIt, freq*1000*60);
+    GRStates.timeoutid = setTimeout(GRW_GoogleIt, freq*1000*60);
   },
   /**
    * checks for opened GR window and blank pages
@@ -138,7 +138,7 @@ markAllAsRead.prototype = {
     var parameters = 'T=' + this.token + '&ts=' + (new Date()).getTime() + '999&s=user/' + GRStates.userid  + '/state/com.google/reading-list';
     new Ajax({method: 'post',url: GRStates.conntype + ':www.google.com/reader/api/0/mark-all-as-read?client=scroll',successHandler: function(request) {
         if(this.req.responseText == 'OK') {
-          GoogleIt();
+          GRW_GoogleIt();
         }
       }
     }, parameters);
@@ -192,6 +192,13 @@ var GRW_StatusBar = {
           break;
 
         case 'error':
+          stImage.src = 'chrome://grwatcher/content/images/googlereader_red.png';
+          if(ttb) {
+            ttb.setAttribute('class', 'error');
+          }
+          break;
+
+        case 'cookieerror':
           stImage.src = 'chrome://grwatcher/content/images/googlereader_red.png';
           if(ttb) {
             ttb.setAttribute('class', 'error');
@@ -258,6 +265,13 @@ var GRW_StatusBar = {
             ttb.setAttribute('tooltiptext', GRW_strings.getString('networkerror'));
           }
           break;
+        case 'cookieerror':
+          statusBar.tooltip = 'GRW-statusbar-tooltip-cookieerror';
+          if(ttb) {
+            ttb.setAttribute('tooltiptext', GRW_strings.getString('cookieerror'));
+          }
+          break;
+        
       }
     });
   },
@@ -374,19 +388,21 @@ var GRW_showNotification = function(label, value) {
 };
 /**
  * generate the grid for the tooltip
+ * @constructor
  * @param {Array} feeds
  * @param {String} [class]
  * @param {Boolean} [justRow]
  * @returns a grid element which is filled with the unread feeds data
  * @type Element
  */
-var genStatusGrid = function(feeds, class, justRows) {
+var GenStatusGrid = function(feeds, class, justRows) {
   GRStates.feeds = feeds;
   this.class = class || '';
   this.justRows = justRows || false;
-  this.grid = this.genGrid(this.genRows(feeds));
+  this.grid = GRPrefs.getPref.showitemsintooltip() ? this.genGrid(this.genRows(feeds)) : false;
+
 }
-genStatusGrid.prototype = {
+GenStatusGrid.prototype = {
 
   genRows: function(feeds) {
     if(!feeds) { return false; }
@@ -394,7 +410,7 @@ genStatusGrid.prototype = {
     var label = document.createElement('label');
     var rowsArray = new Array();
     var THIS = this;
-    feeds.map(
+    feeds.forEach(
       function(o) {
         /**
         * create cells
@@ -465,11 +481,11 @@ genStatusGrid.prototype = {
  * @returns a grid element which is filled with the unread feeds data
  * @type Element
  */
-var genStatusMenu = function(win, feeds) {
+var GenStatusMenu = function(win, feeds) {
   this.tm = win.document.getElementById('GRW-statusbar-menu');
   this.feeds = GRStates.feeds = feeds;
 }
-genStatusMenu.prototype = {
+GenStatusMenu.prototype = {
   genMenu: function(feeds) {
     if(!feeds) { return false; }
     var menuitem = document.createElement('menuitem'), menuitemc;
@@ -508,22 +524,23 @@ genStatusMenu.prototype = {
     return rowsArray;
   },
   addItems: function() {
-    // Create popup elements
-    //var popup = document.createElement('menupopup');
-    //popup.setAttribute('class', 'GRW-statusbar-feeds-menu ' + this.class);
-    this.clearItems();
-    var rowsArray = this.genMenu(this.feeds);
-    if(rowsArray.length > 0) {
-      GRW_LOG('show menuseparator', rowsArray.length);
-      this.showHideSeparator(false);
-      var firstChild = this.tm.firstChild;
-      var _this = this;
-      rowsArray.forEach(function(o){
-        _this.tm.insertBefore(o, firstChild);
-      });
-    } else {
-      GRW_LOG('hide menuseparator');
-      this.showHideSeparator(true);
+    if(GRPrefs.getPref.showitemsincontextmenu()) {
+      // Create popup elements
+      //var popup = document.createElement('menupopup');
+      //popup.setAttribute('class', 'GRW-statusbar-feeds-menu ' + this.class);
+      this.clearItems();
+      var rowsArray = this.genMenu(this.feeds);
+      if(rowsArray.length > 0) {
+        this.showHideSeparator(false);
+        var firstChild = this.tm.firstChild;
+        var _this = this;
+        rowsArray.forEach(function(o){
+          _this.tm.insertBefore(o, firstChild);
+        });
+      } else {
+        GRW_LOG('hide menuseparator');
+        this.showHideSeparator(true);
+      }
     }
   },
   clearItems: function() {
@@ -542,7 +559,7 @@ genStatusMenu.prototype = {
    * @param {Boolean} [hide] set to true if you want to hide the menuseparator element
    */
   showHideSeparator: function(hide) {
-    var separator = this.tm.getElementsByTagName('menuseparator');  
+    var separator = this.tm.getElementsByTagName('menuseparator');
     if(separator.length) {
       if(hide) {
         separator[0].setAttribute('class', 'grw-hidden');
@@ -554,14 +571,14 @@ genStatusMenu.prototype = {
 };
 /**
  * do the request and process the received data
- * @returns the timeout id which will runs next time the #GoogleIt function
+ * @returns the timeout id which will runs next time the #GRW_GoogleIt function
  * @type {Number}
  */
-var GoogleIt = function() {
+var GRW_GoogleIt = function() {
   GRStates.conntype = GRPrefs.getPref.useSecureConnection() ? 'https' : 'http';
   var activeWin = getActiveGRW();
   if(activeWin !== window) {
-    activeWin.GoogleIt();
+    activeWin.GRW_GoogleIt();
     return false;
   }
   if(!GRWAccountManager.getCurrentSID() || GRPrefs.getPref.forceLogin()) {
@@ -578,7 +595,7 @@ var GoogleIt = function() {
   if(GRStates.timeoutid) {
     clearTimeout(GRStates.timeoutid);
   }
-  GRStates.timeoutid = setTimeout(GoogleIt, freq*1000*60);
+  GRStates.timeoutid = setTimeout(GRW_GoogleIt, freq*1000*60);
   return GRStates.timeoutid;
 };
 /**
@@ -637,7 +654,7 @@ GRW_statusClickHandling.prototype = {
       break;
 
       case 1:
-        GoogleIt();
+        GRW_GoogleIt();
       break;
     }
   }
@@ -692,7 +709,7 @@ var windowCloseCheck = {
       var minCheck = 1;
       var configuredCheck = GRPrefs.getPref.checkFreq();
       var freq = (configuredCheck >= minCheck) ? configuredCheck : minCheck;
-      win.GRStates.timeoutid = win.setTimeout(win.GoogleIt, freq*1000*60);
+      win.GRStates.timeoutid = win.setTimeout(win.GRW_GoogleIt, freq*1000*60);
     }
   }
 };
@@ -707,7 +724,7 @@ var GRW_init = function() {
     window.GRW = true;
     var g;
     setTimeout(function(){
-      g = GoogleIt();
+      g = GRW_GoogleIt();
     }, GRPrefs.getPref.delayStart());
   } else {
     GRStates.conntype = GRPrefs.getPref.useSecureConnection() ? 'https' : 'http';
@@ -727,11 +744,12 @@ var GRW_init = function() {
         while(tt.firstChild) {
           tt.removeChild(tt.firstChild);
         }
-        grid = new win.genStatusGrid(activeWin.GRStates.feeds);
-        tt.appendChild(grid.grid);
-        var menu = new win.genStatusMenu(win, activeWin.GRStates.feeds);
+        grid = new win.GenStatusGrid(activeWin.GRStates.feeds);
+        if(grid.grid) tt.appendChild(grid.grid);
+        var menu = new win.GenStatusMenu(win, activeWin.GRStates.feeds);
         menu.addItems();
       });
+      delete grid, tt;
       GRW_StatusBar.switchOnIcon();
       GRW_StatusBar.showCounter(unr);
     } else {
@@ -739,7 +757,7 @@ var GRW_init = function() {
       GRW_StatusBar.switchOffIcon();
       var tm, menu;
       mapWindows(function(win) {
-        menu = new win.genStatusMenu(win);
+        menu = new win.GenStatusMenu(win);
         menu.clearItems();
       });
       if(GRPrefs.getPref.showZeroCounter() === false) {
@@ -758,3 +776,6 @@ var GRW_init = function() {
 };
 
 window.addEventListener('load', GRW_init, false);
+window.addEventListener('unload', function(event) {
+  this.removeEventListener('load', GRW_init, false);
+}, false);

@@ -13,6 +13,15 @@ var prefManager = Components.classes["@mozilla.org/preferences-service;1"].getSe
  * namespace to handle the stored configurations
  */
 var GRPrefs = {
+  getChar: function(pref) {
+      return prefManager.getCharPref(pref);
+  },
+  getInt: function(pref) {
+      return prefManager.getIntPref(pref);
+  },
+  getBool: function(pref) {
+      return prefManager.getBoolPref(pref);
+  },
   getPref: {
    /**
     * @type Int
@@ -121,6 +130,18 @@ var GRPrefs = {
     */
     sid: function() {
       return prefManager.getCharPref('extensions.grwatcher.sid');
+    },
+    /**
+     * @type Boolean
+     */
+    showitemsintooltip: function() {
+      return prefManager.getBoolPref('extensions.grwatcher.showitemsintooltip');
+    },
+    /**
+     * @type Boolean
+     */
+    showitemsincontextmenu: function() {
+      return prefManager.getBoolPref('extensions.grwatcher.showitemsincontextmenu');
     }
   },
   setPref: {
@@ -231,6 +252,18 @@ var GRPrefs = {
     */
     delayStart: function(value) {
       return prefManager.setIntPref('extensions.grwatcher.delaystart', value);
+    },
+    /**
+     * @param {Boolean} value
+     */
+    showitemsintooltip: function(value) {
+      return prefManager.setBoolPref('extensions.grwatcher.showitemsintooltip', value);
+    },
+    /**
+     * @type {Boolean} value
+     */
+    showitemsincontextmenu: function(value) {
+      return prefManager.setBoolPref('extensions.grwatcher.showitemsincontextmenu', value);
     }
   }
 };

@@ -106,19 +106,26 @@ Ajax.prototype = {
     var msgs = new Array();
     if(this.req.status == 401) {
       // not authorized
+      msgs.push('not authorized, third party cookies enabled?');
     }
-    msgs.push('Ajax error: ' + msg, 'e: ' + Exception, 'm: ' + Exception.message, 'ln: ' + Exception.lineNumber, 'fn: ' + Exception.fileName, 'sr: ' + Exception.source);
-    try {
+    msgs.push('Ajax error: ');
+    if(msg) {
+      msgs.push('msg: ', msg);
+    }
+    if(Exception) {
+      msgs.push('e: ' + Exception, 'm: ' + Exception.message, 'ln: ' + Exception.lineNumber, 'fn: ' + Exception.fileName, 'sr: ' + Exception.source);
+    }
+    try { // ready state
       msgs.push('dsc: ' + this.req.readyState);
     } catch(e) {
       msgs.push(e.message);
     }
-    try {
+    try { // status code
       msgs.push('st: ' + this.req.status);
     } catch(e) {
       msgs.push(e.message);
     }
-    try {
+    try { // status text
       msgs.push('stt: ' + this.req.statusText);
     } catch(e) {
       msgs.push(e.message);
