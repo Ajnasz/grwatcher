@@ -198,6 +198,13 @@ var GRW_StatusBar = {
           }
           break;
 
+        case 'cookieerror':
+          stImage.src = 'chrome://grwatcher/content/images/googlereader_red.png';
+          if(ttb) {
+            ttb.setAttribute('class', 'error');
+          }
+          break;
+
         case 'load':
           stImage.src = 'chrome://grwatcher/content/images/loader.gif';
           if(ttb) {
@@ -258,6 +265,13 @@ var GRW_StatusBar = {
             ttb.setAttribute('tooltiptext', GRW_strings.getString('networkerror'));
           }
           break;
+        case 'cookieerror':
+          statusBar.tooltip = 'GRW-statusbar-tooltip-cookieerror';
+          if(ttb) {
+            ttb.setAttribute('tooltiptext', GRW_strings.getString('cookieerror'));
+          }
+          break;
+        
       }
     });
   },
