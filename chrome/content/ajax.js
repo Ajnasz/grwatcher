@@ -107,7 +107,9 @@ Ajax.prototype = {
     if(this.req.status == 401) {
       // not authorized
     }
-    msgs.push('Ajax error: ' + msg, 'e: ' + Exception, 'm: ' + Exception.message, 'ln: ' + Exception.lineNumber, 'fn: ' + Exception.fileName, 'sr: ' + Exception.source);
+    if(Exception) {
+      msgs.push('Ajax error: ' + msg, 'e: ' + Exception, 'm: ' + Exception.message, 'ln: ' + Exception.lineNumber, 'fn: ' + Exception.fileName, 'sr: ' + Exception.source);
+    }
     try {
       msgs.push('dsc: ' + this.req.readyState);
     } catch(e) {
