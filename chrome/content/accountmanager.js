@@ -16,7 +16,7 @@
  */
 var GRWAccountManager = {
   // mozilla nsi cookie manager component
-  CookieManager: Components.classes["@mozilla.org/cookiemanager;1"].getService(Components.interfaces.nsICookieManager),
+  CookieManager: Components.classes["@mozilla.org/cookiemanager;1"].getService(Components.interfaces.nsICookieManager2),
   /**
    * Check, that the account is configured
    * @type {Boolean}
@@ -51,23 +51,18 @@ var GRWAccountManager = {
           var sid = '';
           for (var i = 0; i < auths.length; i++) {
             if(/^SID/.test(auths[i])) {
-              sid = auths[i];
+              sid = new String(auths[i]);
               break;
             }
           }
           if(sid.length) {
-            var ios = Components.classes["@mozilla.org/network/io-service;1"].getService(Components.interfaces.nsIIOService);
-            var cookieUri = ios.newURI("http://www.google.com/", null, null);
-            var cookieSvc = Components.classes["@mozilla.org/cookieService;1"].getService(Components.interfaces.nsICookieService);
-
-            cookieSvc.setCookieString(cookieUri, null, sid, null);
+            this.setCookie('SID', sid.split('=')[1], GRPrefs.getPref.rememberLogin());
             return sid.split('=')[1];
           }
         }
       }
 
     }
-    
     return false;
   },
   /**
@@ -81,10 +76,6 @@ var GRWAccountManager = {
       // var url = 'https://www.google.com/accounts/ServiceLoginAuth?service=reader';
       var url = 'https://www.google.com/accounts/ClientLogin?service=reader';
       var param = 'service=reader&Email='+encodeURIComponent(GRPrefs.getPref.userName())+'&Passwd='+encodeURIComponent(GRWPasswordManager.getPassword())+'&continue=http://www.google.com/reader/';
-      // remember the login state, possible won't ask for mozilla master password
-      if(GRPrefs.getPref.rememberLogin()) {
-        param += '&PersistentCookie=yes';
-      }
       var _this = this;
       new Ajax({
         url: url,
@@ -125,14 +116,8 @@ var GRWAccountManager = {
   ajaxSuccess: function(e) {
     var curSid = GRWAccountManager.getCurrentSID(e);
     if(curSid === false) {
-      s = e.responseText.match(/SID=(.+)/);
-      curSid = e[1];
-      if(curSid) {
-      } else {
-        GRW_StatusBar.switchErrorIcon();
-        GRW_StatusBar.setReaderTooltip('loginerror');
-        return false;
-      }
+      this.loginFailed(e.responseText);
+      return false;
     }
     GRPrefs.setPref.sid(curSid);
     return true;
@@ -144,6 +129,7 @@ var GRWAccountManager = {
    */
   loginFailed: function(msg) {
     GRW_StatusBar.switchErrorIcon();
+    GRW_StatusBar.setReaderTooltip('loginerror');
     GRW_LOG('login failed');
     if(msg) {
       GRW_LOG(msg);
@@ -155,5 +141,12 @@ var GRWAccountManager = {
   },
   goodCookieBehavior: function() {
     document.getElementById('GRW-statusbar-menuitem-enablecookies').setAttribute('class', 'grw-hidden');
+  },
+  setCookie: function(name, value, permanent) {
+    if(permanent) {
+      new GRW_Cookie('.google.com', name, value, new Date(new Date().setFullYear(new Date().getFullYear()+10)));
+    } else {
+      new GRW_Cookie('.google.com', name, value);
+    }
   }
 };
