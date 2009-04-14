@@ -137,7 +137,7 @@ GetList.prototype = {
     var i, l, la, u, all = 0, feeds = new Array(), counted = new Object(), rex, label;
     var friendRex = new RegExp('^user/\\d+/state/com.google/broadcast-friends'), friendAdded = false;
     for(label in labeled) {
-      rex = new RegExp('(?:^|,\\s*)' + GRW_escapeForRegExp(label) +'(?:$|,\\s*)', 'i');
+      rex = new RegExp('(?:^|,\\s*)' + GRW.escapeForRegExp(label) +'(?:$|,\\s*)', 'i');
       if(!rex.test(filteredLabels)) {
         labeled[label].count = 0;
         labeled[label].subs = new Array();
@@ -226,7 +226,7 @@ GetList.prototype = {
         unr.forEach(function(o) {
           o.filtered = false;
           o.categories.forEach(function(category) {
-            var rex = new RegExp('(?:^|,\\s*)' + GRW_escapeForRegExp(category.label) +'(?:$|,\\s*)', 'i');
+            var rex = new RegExp('(?:^|,\\s*)' + GRW.escapeForRegExp(category.label) +'(?:$|,\\s*)', 'i');
             if(rex.test(filteredLabels)) {
               o.filtered = true;
             }
