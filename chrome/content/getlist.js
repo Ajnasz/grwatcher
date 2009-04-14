@@ -6,7 +6,7 @@
  * @constructor
  * @class GetLIst
  */
-var GetList = function(getuserid) {
+GRW.GetList = function(getuserid) {
   this.getuserid = getuserid;
   if(this.getuserid) {
     this.getReadCounter();
@@ -17,7 +17,7 @@ var GetList = function(getuserid) {
     this.nativeJSON = Components.classes["@mozilla.org/dom/json;1"].createInstance(Components.interfaces.nsIJSON);
   } catch(e) {this.nativeJSON = null;}
 };
-GetList.prototype = {
+GRW.GetList.prototype = {
   subscriptionsList: null,
   FeedlistIds: null,
   unreadCount: null,
@@ -61,7 +61,7 @@ GetList.prototype = {
       successHandler: function() {
         var data = THIS.decodeJSON(this.req.responseText);
         THIS.unreadCount = data.unreadcounts;
-        THIS.maxCount = GRW_StatusBar.maxCount = data.max;
+        THIS.maxCount = GRW.StatusBar.maxCount = data.max;
         THIS.feeds = new Array();
         THIS.userFeeds = new Array();
         var rex1 = new RegExp('^(?:user/\\d+/state/com.google/broadcast-friends|feed)'), rex2 = new RegExp('^user\/([^/]+)\/.*');
@@ -89,11 +89,11 @@ GetList.prototype = {
     var unr = r.counter;
     GRStates.currentNum = unr;
     if(unr === false) {
-      GRW_StatusBar.setReaderTooltip('error');
-      GRW_StatusBar.switchErrorIcon();
-      GRW_StatusBar.hideCounter();
+      GRW.StatusBar.setReaderTooltip('error');
+      GRW.StatusBar.switchErrorIcon();
+      GRW.StatusBar.hideCounter();
     } else if(unr > 0) {
-      GRW_StatusBar.setReaderTooltip('new', unr);
+      GRW.StatusBar.setReaderTooltip('new', unr);
       var grid, tt;
       mapWindows(function(win){
         tt = win.document.getElementById('GRW-statusbar-tooltip-new');
@@ -107,11 +107,11 @@ GetList.prototype = {
         menu.addItems();
       });
       delete grid, tt;
-      GRW_StatusBar.switchOnIcon();
-      GRW_StatusBar.showCounter(unr);
+      GRW.StatusBar.switchOnIcon();
+      GRW.StatusBar.showCounter(unr);
     } else {
-      GRW_StatusBar.setReaderTooltip('nonew');
-      GRW_StatusBar.switchOffIcon();
+      GRW.StatusBar.setReaderTooltip('nonew');
+      GRW.StatusBar.switchOffIcon();
       var menu;
       mapWindows(function(win) {
         menu = new win.GenStatusMenu(win);
@@ -119,9 +119,9 @@ GetList.prototype = {
         menu.showHideSeparator(true);
       });
       if(GRPrefs.getPref.showZeroCounter() === false) {
-        GRW_StatusBar.hideCounter();
+        GRW.StatusBar.hideCounter();
       } else {
-        GRW_StatusBar.showCounter(unr);
+        GRW.StatusBar.showCounter(unr);
       }
       GRStates.showNotification = true;
     }

@@ -99,11 +99,11 @@ var GRWAccountManager = {
     }
     var curSid = GRWAccountManager.getCurrentSID();
     if(curSid === false) {
-      GRW_StatusBar.switchErrorIcon();
-      GRW_StatusBar.setReaderTooltip('loginerror');
+      GRW.StatusBar.switchErrorIcon();
+      GRW.StatusBar.setReaderTooltip('loginerror');
       return false;
     } else {
-      new GetList();
+      new GRW.GetList();
       return true;
     }
   },
@@ -113,7 +113,7 @@ var GRWAccountManager = {
    * @type Boolean
    */
   loginFailed: function() {
-    GRW_StatusBar.switchErrorIcon();
+    GRW.StatusBar.switchErrorIcon();
     GRW_LOG('login failed');
     return false;
   }

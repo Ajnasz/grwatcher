@@ -88,7 +88,7 @@ var GRWAccountManager = {
           }
           if(_this.getCurrentSID()) {
             if(!noGetList) {
-              new GetList();
+              new GRW.GetList();
             }
           } else {
             var cookieBehavior = GRPrefs.getInt('network.cookie.cookieBehavior');
@@ -128,8 +128,8 @@ var GRWAccountManager = {
    * @type Boolean
    */
   loginFailed: function(msg) {
-    GRW_StatusBar.switchErrorIcon();
-    GRW_StatusBar.setReaderTooltip('loginerror');
+    GRW.StatusBar.switchErrorIcon();
+    GRW.StatusBar.setReaderTooltip('loginerror');
     GRW_LOG('login failed');
     if(msg) {
       GRW_LOG(msg);

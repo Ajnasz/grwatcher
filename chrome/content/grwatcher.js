@@ -10,7 +10,7 @@
 var GRCheck = {
   getUserId: function(json) {
     if(!GRStates.userid) {
-      var list = new GetList(true);
+      var list = new GRW.GetList(true);
     }
     return GRStates.userid;
   },
@@ -28,16 +28,16 @@ var GRCheck = {
     this.getReaderURL();
     if(GRPrefs.getPref.resetCounter()) {
       if(GRPrefs.getPref.showZeroCounter() === false) {
-        GRW_StatusBar.hideCounter();
+        GRW.StatusBar.hideCounter();
       } else {
-        GRW_StatusBar.showCounter(0);
+        GRW.StatusBar.showCounter(0);
       }
-      GRW_StatusBar.setReaderTooltip('hide');
+      GRW.StatusBar.setReaderTooltip('hide');
       GRStates.showNotification = true;
       var activeWin = getActiveGRW();
       activeWin.GRStates.currentNum = 0;
     }
-    GRW_StatusBar.switchOffIcon();
+    GRW.StatusBar.switchOffIcon();
     var openedGR = this.getOpenedGR();
     /**
      * google reader doesn't opened yet
@@ -162,7 +162,7 @@ var getActiveGRW = function() {
   return (activeWin === false) ? window : activeWin;
 };
 
-var GRW_StatusBar = {
+GRW.StatusBar = {
 /**
  * change the statusbar elem status
  * @param {Object} status
@@ -294,8 +294,8 @@ var GRW_StatusBar = {
  * @param {Number} val the number of the unread items
  */
   showCounter: function(val) {
-    if(GRPrefs.getPref.maximizeCounter() && GRW_StatusBar.maxCount && val > GRW_StatusBar.maxCount) {
-      val = GRW_StatusBar.maxCount + '+';
+    if(GRPrefs.getPref.maximizeCounter() && GRW.StatusBar.maxCount && val > GRW.StatusBar.maxCount) {
+      val = GRW.StatusBar.maxCount + '+';
     }
     mapWindows(function(win){
       var label = win.document.getElementById('GRW-statusbar-label');
@@ -425,7 +425,7 @@ GenStatusGrid.prototype = {
         if(o.Title.length > titlelength) {
           o.Title = o.Title.slice(0, titlelength-3)+'...';
         }
-        o.Count = (GRPrefs.getPref.maximizeCounter() && GRW_StatusBar.maxCount && o.Count > GRW_StatusBar.maxCount) ? GRW_StatusBar.maxCount + '+' : o.Count;
+        o.Count = (GRPrefs.getPref.maximizeCounter() && GRW.StatusBar.maxCount && o.Count > GRW.StatusBar.maxCount) ? GRW.StatusBar.maxCount + '+' : o.Count;
         // set up the counter position
         if(GRPrefs.getPref.tooltipCounterPos() == 'left') {
           labelc1.value = o.Count;
@@ -504,7 +504,7 @@ GenStatusMenu.prototype = {
         if(o.Title.length > titlelength) {
           o.Title = o.Title.slice(0, titlelength-3)+'...';
         }
-        o.Count = (GRPrefs.getPref.maximizeCounter() && GRW_StatusBar.maxCount && o.Count > GRW_StatusBar.maxCount) ? GRW_StatusBar.maxCount + '+' : o.Count;
+        o.Count = (GRPrefs.getPref.maximizeCounter() && GRW.StatusBar.maxCount && o.Count > GRW.StatusBar.maxCount) ? GRW.StatusBar.maxCount + '+' : o.Count;
         // set up the counter position
         menuitemc.label = o.Count + ' ' + o.Title;
         menuitemc.setAttribute('url', o.Id);
@@ -583,10 +583,10 @@ var GRW_GoogleIt = function() {
   if(!GRWAccountManager.getCurrentSID() || GRPrefs.getPref.forceLogin()) {
     var login = GRWAccountManager.logIn();
     if(login === -1) {
-      GRW_StatusBar.switchErrorIcon();
+      GRW.StatusBar.switchErrorIcon();
     }
   } else {
-    var list = new GetList();
+    var list = new GRW.GetList();
   }
   var minCheck = 1;
   var configuredCheck = GRPrefs.getPref.checkFreq();
@@ -644,7 +644,7 @@ GRW_statusClickHandling.prototype = {
                 GRCheck.openReader();
             }, true);
             if(login === -1) {
-              GRW_StatusBar.switchErrorIcon();
+              GRW.StatusBar.switchErrorIcon();
             }
           } else {
             GRCheck.openReader();
@@ -677,9 +677,15 @@ var isActiveGRW = function() {
  * opens preferences window
  * @param {Object} event
  */
-var openPrefs = function(event) {
+GRW.openPrefs = function(event) {
   window.openDialog("chrome://grwatcher/content/grprefs.xul", 'GRWatcher', 'chrome,titlebar,toolbar,centerscreen,modal');
 };
+var GRW.enableCookies = function(event) {
+  if(confirm('Would you like to enable third party cookies?')) {
+    GRPrefs.setPref.setCookieBehaviour(0);
+    GRW_GoogleIt();
+  }
+}
 
 var windowCloseCheck = {
   /**
@@ -729,14 +735,14 @@ var GRW_init = function() {
     GRStates.conntype = GRPrefs.getPref.useSecureConnection() ? 'https' : 'http';
     var activeWin = getActiveGRW();
     var unr = activeWin.GRStates.currentNum;
-    var maxCount = activeWin.GRW_StatusBar.maxCount;
+    var maxCount = activeWin.GRW.StatusBar.maxCount;
     GRStates.showNotification = false;
     if(unr === false) {
-      GRW_StatusBar.setReaderTooltip('error');
-      GRW_StatusBar.switchErrorIcon();
-      GRW_StatusBar.hideCounter();
+      GRW.StatusBar.setReaderTooltip('error');
+      GRW.StatusBar.switchErrorIcon();
+      GRW.StatusBar.hideCounter();
     } else if(unr > 0) {
-      GRW_StatusBar.setReaderTooltip('new', unr);
+      GRW.StatusBar.setReaderTooltip('new', unr);
       var grid, tt;
       mapWindows(function(win) {
         tt = win.document.getElementById('GRW-statusbar-tooltip-new');
@@ -749,20 +755,20 @@ var GRW_init = function() {
         menu.addItems();
       });
       delete grid, tt;
-      GRW_StatusBar.switchOnIcon();
-      GRW_StatusBar.showCounter(unr);
+      GRW.StatusBar.switchOnIcon();
+      GRW.StatusBar.showCounter(unr);
     } else {
-      GRW_StatusBar.setReaderTooltip('nonew');
-      GRW_StatusBar.switchOffIcon();
+      GRW.StatusBar.setReaderTooltip('nonew');
+      GRW.StatusBar.switchOffIcon();
       var tm, menu;
       mapWindows(function(win) {
         menu = new win.GenStatusMenu(win);
         menu.clearItems();
       });
       if(GRPrefs.getPref.showZeroCounter() === false) {
-        GRW_StatusBar.hideCounter();
+        GRW.StatusBar.hideCounter();
       } else {
-        GRW_StatusBar.showCounter(unr);
+        GRW.StatusBar.showCounter(unr);
       }
     }
   }
