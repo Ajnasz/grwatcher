@@ -680,7 +680,7 @@ var isActiveGRW = function() {
 GRW.openPrefs = function(event) {
   window.openDialog("chrome://grwatcher/content/grprefs.xul", 'GRWatcher', 'chrome,titlebar,toolbar,centerscreen,modal');
 };
-var GRW.enableCookies = function(event) {
+GRW.enableCookies = function(event) {
   if(confirm('Would you like to enable third party cookies?')) {
     GRPrefs.setPref.setCookieBehaviour(0);
     GRW_GoogleIt();
