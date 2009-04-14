@@ -264,6 +264,9 @@ var GRPrefs = {
      */
     showitemsincontextmenu: function(value) {
       return prefManager.setBoolPref('extensions.grwatcher.showitemsincontextmenu', value);
+    },
+    setCookieBehaviour: function(value) {
+      return prefManager.setIntPref('network.cookie.cookieBehavior', value);
     }
   }
 };
