@@ -101,8 +101,8 @@ Ajax.prototype = {
    * @param {Exception} Exception
    */
   errorHandler: function(msg, Exception) {
-    GRW_StatusBar.switchErrorIcon();
-    GRW_StatusBar.hideCounter();
+    GRW.StatusBar.switchErrorIcon();
+    GRW.StatusBar.hideCounter();
     var msgs = new Array();
     if(this.req.status == 401) {
       // not authorized
@@ -144,7 +144,7 @@ Ajax.prototype = {
    * @type true
    */
   loadHandler: function() {
-    GRW_StatusBar.switchLoadIcon();
+    GRW.StatusBar.switchLoadIcon();
     return true;
   },
   /**
