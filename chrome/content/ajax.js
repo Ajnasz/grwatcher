@@ -131,12 +131,12 @@ Ajax.prototype = {
       msgs.push(e.message);
     }
     try {
-      GRW_LOG(this.req.getAllResponseHeaders());
+      GRW.log(this.req.getAllResponseHeaders());
     } catch(e) {
       msgs.push(e.message)
     }
     msgs.push(this.url)
-    GRW_LOG(msgs.join('\n'));
+    GRW.log(msgs.join('\n'));
     return false;
   },
   /**

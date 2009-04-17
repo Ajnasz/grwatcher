@@ -7,8 +7,8 @@
 <!DOCTYPE window SYSTEM "chrome://grwatcher/locale/grwatcher.dtd">
 
 <overlay id="GRWatcherOverlay" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
-  <script type="application/x-javascript" src="chrome://grwatcher/content/log.js" />
   <script type="application/x-javascript" src="chrome://grwatcher/content/general.js" />
+  <script type="application/x-javascript" src="chrome://grwatcher/content/log.js" />
   <script type="application/x-javascript" src="chrome://grwatcher/content/preferences.js" />
   <script type="application/x-javascript" src="chrome://grwatcher/content/passmanager.js" />
   <script type="application/x-javascript" src="chrome://grwatcher/content/cookie.js" />
@@ -27,7 +27,7 @@
       <menupopup id="GRW-statusbar-menu" position="before_end">
         <menuseparator class="grw-hidden" />
         <menuitem label="&GRWstatusbar.popup.openReader;" oncommand="GRCheck.openReader();" />
-        <menuitem label="&GRWstatusbar.popup.getReadCounter;" oncommand="GRW_GoogleIt();" />
+        <menuitem label="&GRWstatusbar.popup.getReadCounter;" oncommand="GRW.GoogleIt();" />
         <menuitem label="&GRWstatusbar.popup.markAllAsRead;" oncommand="new markAllAsRead();" />
         <menuitem label="&GRWstatusbar.popup.openPrefs;" oncommand="GRW.openPrefs();" />
         <menuitem label="&GRWstatusbar.popup.enableCookies;" oncommand="GRW.enableCookies(true);" class="grw-hidden" id="GRW-statusbar-menuitem-enablecookies" />

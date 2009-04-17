@@ -1,7 +1,7 @@
 /**
  * @param {String} message log on the javascript console
  */
-GRW_LOG = function() {
+GRW.log = function() {
   var msg = new Array();
   for(var i = 0; i < arguments.length; i++) {
     msg.push(arguments[i]);

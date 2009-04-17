@@ -14,7 +14,7 @@
  * @requires _GRWPasswordManager to get the users password
  * @requires #getFeedList function, to gets the feeds
  */
-var GRWAccountManager = {
+GRWAccountManager = {
   // mozilla nsi cookie manager component
   CookieManager: Components.classes["@mozilla.org/cookiemanager;1"].getService(Components.interfaces.nsICookieManager2),
   /**
@@ -95,7 +95,7 @@ var GRWAccountManager = {
             if(cookieBehavior != 0) {
               _this.loginFailed(e.responseText);
               _this.badCookieBehavior();
-              GRW_LOG('bad cookie behavior', cookieBehavior);
+              GRW.log('bad cookie behavior', cookieBehavior);
             } else {
               _this.loginFailed(e.responseText);
             }
@@ -130,9 +130,9 @@ var GRWAccountManager = {
   loginFailed: function(msg) {
     GRW.StatusBar.switchErrorIcon();
     GRW.StatusBar.setReaderTooltip('loginerror');
-    GRW_LOG('login failed');
+    GRW.log('login failed');
     if(msg) {
-      GRW_LOG(msg);
+      GRW.log(msg);
     }
     return false;
   },
@@ -144,9 +144,9 @@ var GRWAccountManager = {
   },
   setCookie: function(name, value, permanent) {
     if(permanent) {
-      new GRW_Cookie('.google.com', name, value, new Date(new Date().setFullYear(new Date().getFullYear()+10)));
+      new GRW.Cookie('.google.com', name, value, new Date(new Date().setFullYear(new Date().getFullYear()+10)));
     } else {
-      new GRW_Cookie('.google.com', name, value);
+      new GRW.Cookie('.google.com', name, value);
     }
   }
 };

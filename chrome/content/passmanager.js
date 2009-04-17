@@ -31,7 +31,7 @@ var _GRWPasswordManager = function() {
         return false;
       }
       catch(ex){
-       GRW_LOG('get pass failed:', ex);
+       GRW.log('get pass failed:', ex);
       }
     };
 
@@ -47,7 +47,7 @@ var _GRWPasswordManager = function() {
         var extLoginInfo = new this.nsLoginInfo(this.url, this.formSubmitURL, null, this.username, password, "", "");
         this.loginManager.addLogin(extLoginInfo);
       } catch(ex) {
-        GRW_LOG(ex);
+        GRW.log(ex);
       }
 
     }
@@ -70,7 +70,7 @@ var _GRWPasswordManager = function() {
             return pass.password
           }
         } catch (ex){
-          GRW_LOG(ex);
+          GRW.log(ex);
         }
       }
     },
@@ -82,12 +82,12 @@ var _GRWPasswordManager = function() {
         this.passwordManager.removeUser(this.url, this.username);
       }
       catch (ex) {
-        GRW_LOG(ex);
+        GRW.log(ex);
       }
       try {
         this.passwordManager.addUser(this.url, this.username, password);
       } catch(ex) {
-        GRW_LOG(ex);
+        GRW.log(ex);
       }
     }
   }

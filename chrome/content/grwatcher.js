@@ -4,9 +4,7 @@
  * @requires chrome/content/grprefs.js
  * @requires chrome/content/ajax.js
  */
-/**
- *
- */
+if(typeof GRW == 'undefined') GRW = {};
 var GRCheck = {
   getUserId: function(json) {
     if(!GRStates.userid) {
@@ -82,7 +80,7 @@ var GRCheck = {
     if(GRStates.timeoutid) {
       clearTimeout(GRStates.timeoutid);
     }
-    GRStates.timeoutid = setTimeout(GRW_GoogleIt, freq*1000*60);
+    GRStates.timeoutid = setTimeout(GRW.GoogleIt, freq*1000*60);
   },
   /**
    * checks for opened GR window and blank pages
@@ -138,7 +136,7 @@ markAllAsRead.prototype = {
     var parameters = 'T=' + this.token + '&ts=' + (new Date()).getTime() + '999&s=user/' + GRStates.userid  + '/state/com.google/reading-list';
     new Ajax({method: 'post',url: GRStates.conntype + ':www.google.com/reader/api/0/mark-all-as-read?client=scroll',successHandler: function(request) {
         if(this.req.responseText == 'OK') {
-          GRW_GoogleIt();
+          GRW.GoogleIt();
         }
       }
     }, parameters);
@@ -155,7 +153,7 @@ var getActiveGRW = function() {
   }
   var activeWin = false;
   mapWindows(function(win) {
-    if(win.GRW === true) {
+    if(win.GRWActive === true) {
       activeWin = win;
     }
   });
@@ -224,27 +222,27 @@ GRW.StatusBar = {
       var statusBar = win.document.getElementById('GRW-statusbar');
       var ttb = win.document.getElementById('GRW-toolbar-button');
       if(typeof statusBar == 'undefined') {
-        GRW_LOG('GRW-statusbar object not found');
+        GRW.log('GRW-statusbar object not found');
       }
-      // var GRW_strings = win.document.getElementById('grwatcher-bundles');
+      // var GRW.strings = win.document.getElementById('grwatcher-bundles');
       switch(t) {
         case 'error':
           statusBar.tooltip = 'GRW-statusbar-tooltip-error';
           if(ttb) {
-            ttb.setAttribute('tooltiptext', GRW_strings.getString('errorfeedfetch'));
+            ttb.setAttribute('tooltiptext', GRW.strings.getString('errorfeedfetch'));
           }
           break;
         case 'nonew':
         default :
           statusBar.tooltip = 'GRW-statusbar-tooltip-nonew';
           if(ttb) {
-            ttb.setAttribute('tooltiptext', GRW_strings.getString('nonewfeed'));
+            ttb.setAttribute('tooltiptext', GRW.strings.getString('nonewfeed'));
           }
           break;
         case 'new':
           statusBar.tooltip = 'GRW-statusbar-tooltip-new';
           if(ttb) {
-            ttb.setAttribute('tooltiptext', GRW_strings.getFormattedString('notifierMSG', [unr]));
+            ttb.setAttribute('tooltiptext', GRW.strings.getFormattedString('notifierMSG', [unr]));
           }
           break;
         case 'hide':
@@ -256,19 +254,19 @@ GRW.StatusBar = {
         case 'loginerror':
           statusBar.tooltip = 'GRW-statusbar-tooltip-loginerror';
           if(ttb) {
-            ttb.setAttribute('tooltiptext', GRW_strings.getString('errorlogin'));
+            ttb.setAttribute('tooltiptext', GRW.strings.getString('errorlogin'));
           }
           break;
         case 'networkerror':
           statusBar.tooltip = 'GRW-statusbar-tooltip-networkerror';
           if(ttb) {
-            ttb.setAttribute('tooltiptext', GRW_strings.getString('networkerror'));
+            ttb.setAttribute('tooltiptext', GRW.strings.getString('networkerror'));
           }
           break;
         case 'cookieerror':
           statusBar.tooltip = 'GRW-statusbar-tooltip-cookieerror';
           if(ttb) {
-            ttb.setAttribute('tooltiptext', GRW_strings.getString('cookieerror'));
+            ttb.setAttribute('tooltiptext', GRW.strings.getString('cookieerror'));
           }
           break;
         
@@ -306,7 +304,7 @@ GRW.StatusBar = {
       label.collapsed = false;
     });
     if(GRStates.showNotification && val != 0) {
-      GRW_showNotification(false, GRW_strings.getFormattedString('notifierMSG', [val]));
+      GRW.showNotification(false, GRW.strings.getFormattedString('notifierMSG', [val]));
       GRStates.showNotification = false;
     }
   },
@@ -338,7 +336,7 @@ GRW.StatusBar = {
 /**
  *
  */
-var GRW_openReaderNotify = {
+GRW.openReaderNotify = {
   /**
    * @param {Object} subject
    * @param {Object} topic
@@ -355,7 +353,7 @@ var GRW_openReaderNotify = {
  * @param {Object} label
  * @param {Object} value
  */
-var GRW_showNotification = function(label, value) {
+GRW.showNotification = function(label, value) {
   if(GRPrefs.getPref.showNotificationWindow() !== false) {
     if(!label) {
       label = 'Google Reader Watcher';
@@ -369,7 +367,7 @@ var GRW_showNotification = function(label, value) {
       * Notifier for Windows
       */
       var alertsService = Components.classes["@mozilla.org/alerts-service;1"].getService(Components.interfaces.nsIAlertsService);
-      alertsService.showAlertNotification(image , label, value, true, "", GRW_openReaderNotify);
+      alertsService.showAlertNotification(image , label, value, true, "", GRW.openReaderNotify);
     } catch(e) {
       try {
         /**
@@ -378,10 +376,10 @@ var GRW_showNotification = function(label, value) {
         var alertWin = Components.classes["@mozilla.org/embedcomp/window-watcher;1"]
           .getService(Components.interfaces.nsIWindowWatcher)
           .openWindow(null, "chrome://global/content/alerts/alert.xul", "_blank", "chrome,titlebar=no,popup=yes", null);
-          alertWin.arguments = [image, label, value, true, "", 0, GRW_openReaderNotify];
+          alertWin.arguments = [image, label, value, true, "", 0, GRW.openReaderNotify];
           alertWin.setTimeout(function(){alertWin.close()},10000);
       } catch(e) {
-        GRW_LOG(e.message);
+        GRW.log(e.message);
       }
     }
   }
@@ -570,14 +568,14 @@ GenStatusMenu.prototype = {
 };
 /**
  * do the request and process the received data
- * @returns the timeout id which will runs next time the #GRW_GoogleIt function
+ * @returns the timeout id which will runs next time the #GRW.GoogleIt function
  * @type {Number}
  */
-var GRW_GoogleIt = function() {
+GRW.GoogleIt = function() {
   GRStates.conntype = GRPrefs.getPref.useSecureConnection() ? 'https' : 'http';
   var activeWin = getActiveGRW();
   if(activeWin !== window) {
-    activeWin.GRW_GoogleIt();
+    activeWin.GRW.GoogleIt();
     return false;
   }
   if(!GRWAccountManager.getCurrentSID() || GRPrefs.getPref.forceLogin()) {
@@ -594,19 +592,19 @@ var GRW_GoogleIt = function() {
   if(GRStates.timeoutid) {
     clearTimeout(GRStates.timeoutid);
   }
-  GRStates.timeoutid = setTimeout(GRW_GoogleIt, freq*1000*60);
+  GRStates.timeoutid = setTimeout(GRW.GoogleIt, freq*1000*60);
   return GRStates.timeoutid;
 };
 /**
  * @param {Object} event
  */
-var GRW_statusClickHandling = function(ob) {
+GRW.statusClickHandling = function(ob) {
   this.ob = ob;
-  if(!this.ob || !this.ob.length) {GRW_LOG('no ob'); return; }
+  if(!this.ob || !this.ob.length) {GRW.log('no ob'); return; }
   this.st = GRPrefs.getPref.leftClickOpen();
   this.observe();
 };
-GRW_statusClickHandling.prototype = {
+GRW.statusClickHandling.prototype = {
   st: null,
   ob: null,
   /**
@@ -653,7 +651,7 @@ GRW_statusClickHandling.prototype = {
       break;
 
       case 1:
-        GRW_GoogleIt();
+        GRW.GoogleIt();
       break;
     }
   }
@@ -667,7 +665,7 @@ var isActiveGRW = function() {
   }
   var isActive = false;
   mapWindows(function(win) {
-    if(win.GRW === true) {
+    if(win.GRWActive === true) {
       isActive = true;
     }
   });
@@ -683,7 +681,7 @@ GRW.openPrefs = function(event) {
 GRW.enableCookies = function(event) {
   if(confirm('Would you like to enable third party cookies?')) {
     GRPrefs.setPref.setCookieBehaviour(0);
-    GRW_GoogleIt();
+    GRW.GoogleIt();
   }
 }
 
@@ -714,22 +712,22 @@ var windowCloseCheck = {
       var minCheck = 1;
       var configuredCheck = GRPrefs.getPref.checkFreq();
       var freq = (configuredCheck >= minCheck) ? configuredCheck : minCheck;
-      win.GRStates.timeoutid = win.setTimeout(win.GRW_GoogleIt, freq*1000*60);
+      win.GRStates.timeoutid = win.setTimeout(win.GRW.GoogleIt, freq*1000*60);
     }
   }
 };
 /**
  * initialization function
  */
-var GRW_init = function() {
-  GRW_LOG('Starting Google Reader Watcher');
-  GRW_strings = document.getElementById('grwatcher-strings');
+GRW.init = function() {
+  GRW.log('Starting Google Reader Watcher');
+  GRW.strings = document.getElementById('grwatcher-strings');
   GRWPasswordManager = new _GRWPasswordManager();
   if(isActiveGRW() === false) {
-    window.GRW = true;
+    window.GRWActive = true;
     var g;
     setTimeout(function(){
-      g = GRW_GoogleIt();
+      g = GRW.GoogleIt();
     }, GRPrefs.getPref.delayStart());
   } else {
     GRStates.conntype = GRPrefs.getPref.useSecureConnection() ? 'https' : 'http';
@@ -772,15 +770,15 @@ var GRW_init = function() {
       }
     }
   }
-  new GRW_statusClickHandling([document.getElementById('GRW-statusbar'), document.getElementById('GRW-toolbar-button')]);
+  new GRW.statusClickHandling([document.getElementById('GRW-statusbar'), document.getElementById('GRW-toolbar-button')]);
 
   var observerService = Components.classes["@mozilla.org/observer-service;1"].getService(Components.interfaces.nsIObserverService);
   observerService.addObserver(windowCloseCheck, "domwindowclosed", false);
 
-  GRW_LOG('Google Reader Watcher initialized');
+  GRW.log('Google Reader Watcher initialized');
 };
 
-window.addEventListener('load', GRW_init, false);
+window.addEventListener('load', GRW.init, false);
 window.addEventListener('unload', function(event) {
-  this.removeEventListener('load', GRW_init, false);
+  this.removeEventListener('load', GRW.init, false);
 }, false);

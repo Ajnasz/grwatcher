@@ -143,9 +143,9 @@ GRW.GetList.prototype = {
         labeled[label].subs = new Array();
         uc.forEach(function(u) {
           if(friendRex.test(u.id) && label == '-') {
-            feeds.push({Title: GRW_strings.getString('shareditems'), Id: u.id, Count: u.count});
+            feeds.push({Title: GRW.strings.getString('shareditems'), Id: u.id, Count: u.count});
             labeled[label].count += u.count;
-            labeled[label].subs.push({Title: GRW_strings.getString('shareditems'), Id: u.id, Count: u.count, Shared: true});
+            labeled[label].subs.push({Title: GRW.strings.getString('shareditems'), Id: u.id, Count: u.count, Shared: true});
             if(counted[u.id] !== true) {
               all += u.count;
               counted[u.id] = true;
@@ -221,7 +221,7 @@ GRW.GetList.prototype = {
     var friendRex = new RegExp('^user/\\d+/state/com.google/broadcast-friends');
     prc.forEach(function(u) {
       if(friendRex.test(u.id)) {
-        feeds.push({Title: GRW_strings.getString('shareditems'), Id: u.id, Count: u.count});
+        feeds.push({Title: GRW.strings.getString('shareditems'), Id: u.id, Count: u.count});
       } else {
         unr.forEach(function(o) {
           o.filtered = false;

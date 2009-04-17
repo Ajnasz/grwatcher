@@ -5,7 +5,7 @@
  * @param {Date} [date] (optional) The expires date of the cookie
  * @param {String} [path] (optional) The path of the cookie
  */
-var GRW_Cookie = function(domain, name, value, date, path) {
+GRW.Cookie = function(domain, name, value, date, path) {
   var cookieUri = Components.classes["@mozilla.org/network/io-service;1"].getService(Components.interfaces.nsIIOService).newURI('http://' + domain, null, null);
   var cookieSvc = Components.classes["@mozilla.org/cookieService;1"].getService(Components.interfaces.nsICookieService);
   this.cookie = name + '=' + value + ';domain=' + domain;

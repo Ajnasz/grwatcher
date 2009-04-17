@@ -14,7 +14,7 @@
  * @requires _GRWPasswordManager to get the users password
  * @requires #getFeedList function, to gets the feeds
  */
-var GRWAccountManager = {
+GRWAccountManager = {
   // mozilla nsi cookie manager component
   CookieManager: Components.classes["@mozilla.org/cookiemanager;1"].getService(Components.interfaces.nsICookieManager),
   CookieManager2: Components.classes["@mozilla.org/cookiemanager;1"].getService(Components.interfaces.nsICookieManager2),
@@ -114,7 +114,7 @@ var GRWAccountManager = {
    */
   loginFailed: function() {
     GRW.StatusBar.switchErrorIcon();
-    GRW_LOG('login failed');
+    GRW.log('login failed');
     return false;
   }
 };
