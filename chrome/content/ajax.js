@@ -35,7 +35,8 @@ var Ajax = function(pars, parameters) {
   this.method = typeof pars.method != 'undefined' ? pars.method : 'get';
   this.successHandler = typeof pars.successHandler != 'undefined' ? pars.successHandler : this.successHandler;
 
-  this.req = new XMLHttpRequest();
+  //this.req = new XMLHttpRequest();
+  this.req = Components.classes["@mozilla.org/xmlextras/xmlhttprequest;1"].createInstance(Components.interfaces.nsIXMLHttpRequest);  
   // Fix Firefox 3 third party cookie related bug
   // https://bugzilla.mozilla.org/show_bug.cgi?id=437174#c32
   var ds = Cc["@mozilla.org/webshell;1"].createInstance(Ci.nsIDocShellTreeItem).QueryInterface(Ci.nsIInterfaceRequestor);
