@@ -1,14 +1,16 @@
 #!/bin/bash
 ########################## Configuration ################################
 if [ -z $1 ];then
-  GRWVER='0.0.15a';
+  VER='0.0.5.4a'`date '+%Y%m%d%H%M%S'`;
 else
-  GRWVER=$1;
+  VER=$1;
 fi
 
+PROJECT_NAME='grwatcher';
 START_DIR=`pwd`;
+DOWNLOAD_DIR='/var/www/grwatcher/cvs/downloads';
 TMP_DIR=/tmp;
-BUILD_DIR=$TMP_DIR/grwatcher_$GRWVER;
+BUILD_DIR=$TMP_DIR/$PROJECT_NAME'_'$VER;
 ######################## Configuration END ##############################
 
 function cleanBuild {
@@ -18,36 +20,46 @@ function cleanBuild {
   fi
 }
 function buildXPI {
-  echo "Creating Hupper installation package";
+  echo "Creating $PROJECT_NAME installation package";
   cd chrome;
-  if [ -f grwatcher.jar ];then
-    echo "Delete grwatcher.jar";
-    rm grwatcher.jar;
+  if [ -f $PROJECT_NAME.jar ];then
+    echo "Delete $PROJECT_NAME.jar";
+    rm $PROJECT_NAME.jar;
   fi;
-  zip -r grwatcher.jar content/* -x \*.svn/\*;
-  zip -r grwatcher.jar locale/* -x \*.svn/*;
-  zip -r grwatcher.jar skin/* -x \*.svn/\*;
+  zip -r $PROJECT_NAME.jar content/* -x \*.svn/\*;
+  zip -r $PROJECT_NAME.jar locale/* -x \*.svn/*;
+  zip -r $PROJECT_NAME.jar skin/* -x \*.svn/\*;
 
   cd ..;
-  echo "Build package grwatcher.xpi";
-  rm grwatcher.xpi;
-  zip grwatcher.xpi chrome.manifest install.rdf chrome/grwatcher.jar defaults/preferences/grwatcher.js license.txt -x \*.svn/\*
+  echo "Build package $PROJECT_NAME.xpi";
+  rm $PROJECT_NAME*.xpi;
+  zip $PROJECT_NAME.xpi chrome.manifest install.rdf chrome/$PROJECT_NAME.jar defaults/preferences/$PROJECT_NAME.js license.txt -x \*.svn/\*
 
   echo "Replace old XPIs with the new one";
-  if [ -f $START_DIR/grwatcher.xpi ];then
-    rm $START_DIR/grwatcher.xpi;
+  if [ -d $DOWNLOAD_DIR ]; then
+    if [ -f $DOWNLOAD_DIR/$PROJECT_NAME'_'$VER.xpi ];then
+      rm $DOWNLOAD_DIR/$PROJECT_NAME'_'$VER.xpi;
+    fi;
+    cp $PROJECT_NAME.xpi $DOWNLOAD_DIR/$PROJECT_NAME'_'$VER.xpi;
+  else
+    echo "Warning: Download dir does not exists!";
   fi;
-  cp grwatcher.xpi $START_DIR/;
+  #if [ -f $START_DIR/$PROJECT_NAME.xpi ];then
+    rm $START_DIR/$PROJECT_NAME*.xpi;
+  #fi;
+  cp $PROJECT_NAME.xpi $START_DIR/$PROJECT_NAME$VER.xpi;
   echo "Build finished!";
 }
 function setVersion {
   if [ `pwd` != $BUILD_DIR ];then
     cd $BUILD_DIR;
   fi
-  echo "Set version to $GRWVER";
-  sed "s/###VERSION###/$GRWVER/g" install.rdf > install.rdf.tmp;
+  echo "Set version to $VER";
+
+  sed "s/###VERSION###/$VER/g" install.rdf > install.rdf.tmp;
   mv install.rdf.tmp install.rdf;
-  sed "s/###VERSION###/$GRWVER/g" chrome/content/ajax.js > chrome/content/ajax.js.tmp;
+
+  sed "s/###VERSION###/$VER/g" chrome/content/ajax.js > chrome/content/ajax.js.tmp;
   mv chrome/content/ajax.js.tmp chrome/content/ajax.js;
 }
 
