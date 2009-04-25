@@ -27,5 +27,6 @@ locale grwatcher pt-PT jar:chrome/grwatcher.jar!/locale/pt-PT/
 locale grwatcher ru-RU jar:chrome/grwatcher.jar!/locale/ru-RU/
 locale grwatcher sk-SK jar:chrome/grwatcher.jar!/locale/sk-SK/
 locale grwatcher tr-TR jar:chrome/grwatcher.jar!/locale/tr-TR/
+locale grwatcher vi-VN jar:chrome/grwatcher.jar!/locale/vi-VN/
 locale grwatcher zh-CN jar:chrome/grwatcher.jar!/locale/zh-CN/
 locale grwatcher zh-TW jar:chrome/grwatcher.jar!/locale/zh-TW/
