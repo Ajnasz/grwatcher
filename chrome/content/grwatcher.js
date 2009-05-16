@@ -116,8 +116,10 @@ var mapWindows = function(onMap) {
   }
 };
 var markAllAsRead = function() {
-  GRCheck.getUserId();
-  this.getToken();
+  if(confirm('Are you sure you wan\'t to mark all items as read?')) {
+    GRCheck.getUserId();
+    this.getToken();
+  }
 }
 markAllAsRead.prototype = {
   token: null,
