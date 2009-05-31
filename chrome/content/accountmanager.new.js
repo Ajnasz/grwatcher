@@ -5,16 +5,15 @@
  * @license GPL v2
  * for more details see the license.txt file
  */
-
 /**
  * Google account manager namespace,
  * check that the user is logged in,
  * logging in the user
- * @requires GRPrefs to get the preferences
- * @requires _GRWPasswordManager to get the users password
+ * @requires GRW.Prefs to get the preferences
+ * @requires GRW._PasswordManager to get the users password
  * @requires #getFeedList function, to gets the feeds
  */
-GRWAccountManager = {
+GRW.AccountManager = {
   // mozilla nsi cookie manager component
   CookieManager: Components.classes["@mozilla.org/cookiemanager;1"].getService(Components.interfaces.nsICookieManager),
   CookieManager2: Components.classes["@mozilla.org/cookiemanager;1"].getService(Components.interfaces.nsICookieManager2),
@@ -23,7 +22,7 @@ GRWAccountManager = {
    * @type {Boolean}
    */
   accountExists: function() {
-    if(GRPrefs.getPref.userName() && GRWPasswordManager.getPassword()) {
+    if(GRW.Prefs.getPref.userName() && GRW.PasswordManager.getPassword()) {
       return true;
     }
     return false;
@@ -53,13 +52,13 @@ GRWAccountManager = {
   logIn: function() {
     if(this.accountExists()) {
       var url = GRStates.conntype + '://www.google.com/accounts/ClientLogin';
-      var param = 'source=' + encodeURIComponent('Google Reader Watcher') + '&Email='+encodeURIComponent(GRPrefs.getPref.userName())+'&Passwd='+encodeURIComponent(GRWPasswordManager.getPassword())+'&service=reader&continue=' + encodeURIComponent('http://www.google.com/');
+      var param = 'source=' + encodeURIComponent('Google Reader Watcher') + '&Email='+encodeURIComponent(GRW.Prefs.getPref.userName())+'&Passwd='+encodeURIComponent(GRW.PasswordManager.getPassword())+'&service=reader&continue=' + encodeURIComponent('http://www.google.com/');
       // remember the login state, possible won't ask for mozilla master password
-      if(GRPrefs.getPref.rememberLogin()) {
+      if(GRW.Prefs.getPref.rememberLogin()) {
         // param += '&PersistentCookie=yes';
       }
       var THIS = this;
-      new Ajax({
+      new GRW.Ajax({
         url: url,
         method: 'post',
         successHandler: function(event){THIS.ajaxSuccess(event, this.req);}
@@ -71,7 +70,7 @@ GRWAccountManager = {
     return true;
   },
   setGoogleCookie: function(name, value) {
-    this.CookieManager2.add('google.com', '/', name, value, false, GRPrefs.getPref.rememberLogin(), 1600000000);
+    this.CookieManager2.add('google.com', '/', name, value, false, GRW.Prefs.getPref.rememberLogin(), 1600000000);
   },
   /**
    * @param {Event} e event object
@@ -97,7 +96,7 @@ GRWAccountManager = {
         this.setGoogleCookie('Auth', Auth);
       }
     }
-    var curSid = GRWAccountManager.getCurrentSID();
+    var curSid = GRW.AccountManager.getCurrentSID();
     if(curSid === false) {
       GRW.StatusBar.switchErrorIcon();
       GRW.StatusBar.setReaderTooltip('loginerror');

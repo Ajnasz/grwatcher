@@ -6,9 +6,10 @@
 
 /**
  * @constructor
- * @class _passwordManager Interface to handle easily the user accounts on ff2 and ff3
+ * @class _PasswordManager Interface to handle easily the user accounts on ff2 and ff3
+ * @namespace GRW
  */
-var _GRWPasswordManager = function() {
+GRW._PasswordManager = function() {
   this.url = 'chrome://grwatcher';
   this.username = 'GoogleReaderWatcher';
 

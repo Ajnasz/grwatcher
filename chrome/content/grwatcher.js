@@ -4,8 +4,7 @@
  * @requires chrome/content/grprefs.js
  * @requires chrome/content/ajax.js
  */
-if(typeof GRW == 'undefined') GRW = {};
-var GRCheck = {
+GRW.GRCheck = {
   getUserId: function(json) {
     if(!GRStates.userid) {
       var list = new GRW.GetList(true);
@@ -14,7 +13,7 @@ var GRCheck = {
   },
   getReaderURL: function() {
     if(!GRStates.conntype) {
-      GRStates.conntype = GRPrefs.getPref.useSecureConnection() ? 'https' : 'http';
+      GRStates.conntype = GRW.Prefs.getPref.useSecureConnection() ? 'https' : 'http';
     }
     return GRStates.conntype + '://www.google.com/reader/view';
   },
@@ -24,15 +23,15 @@ var GRCheck = {
   openReader: function(url) {
     var url = url || '';
     this.getReaderURL();
-    if(GRPrefs.getPref.resetCounter()) {
-      if(GRPrefs.getPref.showZeroCounter() === false) {
+    if(GRW.Prefs.getPref.resetCounter()) {
+      if(GRW.Prefs.getPref.showZeroCounter() === false) {
         GRW.StatusBar.hideCounter();
       } else {
         GRW.StatusBar.showCounter(0);
       }
       GRW.StatusBar.setReaderTooltip('hide');
       GRStates.showNotification = true;
-      var activeWin = getActiveGRW();
+      var activeWin = GRW.getActiveGRW();
       activeWin.GRStates.currentNum = 0;
     }
     GRW.StatusBar.switchOffIcon();
@@ -44,12 +43,12 @@ var GRCheck = {
       /**
        * open in new tab
        */
-      if(GRPrefs.getPref.openInNewTab()) {
+      if(GRW.Prefs.getPref.openInNewTab()) {
         /**
          * isn't there any blank page
          */
         if(openedGR.blankPage === false) {
-          if(GRPrefs.getPref.activateOpenedTab()) {
+          if(GRW.Prefs.getPref.activateOpenedTab()) {
             gBrowser.selectedTab = gBrowser.addTab(this.getReaderURL() + '/' + url);
             gBrowser.getBrowserAtIndex(gBrowser.mTabContainer.selectedIndex).contentWindow.focus();
           } else {
@@ -59,7 +58,7 @@ var GRCheck = {
           /**
            * load the GR into the blank page
            */
-          if(GRPrefs.getPref.activateOpenedTab()) {
+          if(GRW.Prefs.getPref.activateOpenedTab()) {
             gBrowser.mTabContainer.selectedIndex = openedGR.blankPage;
             gBrowser.loadURI(this.getReaderURL() + '/' + url);
             gBrowser.getBrowserAtIndex(gBrowser.mTabContainer.selectedIndex).contentWindow.focus();
@@ -75,7 +74,7 @@ var GRCheck = {
       gBrowser.loadURI(this.getReaderURL() + '/' + url);
     }
     var minCheck = 1;
-    var configuredCheck = GRPrefs.getPref.checkFreq();
+    var configuredCheck = GRW.Prefs.getPref.checkFreq();
     var freq = (configuredCheck >= minCheck) ? configuredCheck : minCheck;
     if(GRStates.timeoutid) {
       clearTimeout(GRStates.timeoutid);
@@ -105,7 +104,7 @@ var GRCheck = {
  * Run the given parameter for every window
  * @param {Function} onMap A function which should run for every opened window
  */
-var mapWindows = function(onMap) {
+GRW.mapWindows = function(onMap) {
   var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"].getService(Components.interfaces.nsIWindowMediator);
   var enumerator = wm.getEnumerator('navigator:browser'), win, grid, tt;
   while(enumerator.hasMoreElements()) {
@@ -115,17 +114,17 @@ var mapWindows = function(onMap) {
     }
   }
 };
-var markAllAsRead = function() {
+GRW.markAllAsRead = function() {
   if(confirm('Are you sure you wan\'t to mark all items as read?')) {
-    GRCheck.getUserId();
+    GRW.GRCheck.getUserId();
     this.getToken();
   }
 }
-markAllAsRead.prototype = {
+GRW.markAllAsRead.prototype = {
   token: null,
   getToken: function() {
     var THIS = this;
-    new Ajax({
+    new GRW.Ajax({
       url: GRStates.conntype + '://www.google.com/reader/api/0/token',
       successHandler: function(request) {
         THIS.token = this.req.responseText;
@@ -136,7 +135,7 @@ markAllAsRead.prototype = {
   markAsRead: function() {
     var THIS = this;
     var parameters = 'T=' + this.token + '&ts=' + (new Date()).getTime() + '999&s=user/' + GRStates.userid  + '/state/com.google/reading-list';
-    new Ajax({method: 'post',url: GRStates.conntype + ':www.google.com/reader/api/0/mark-all-as-read?client=scroll',successHandler: function(request) {
+    new GRW.Ajax({method: 'post',url: GRStates.conntype + ':www.google.com/reader/api/0/mark-all-as-read?client=scroll',successHandler: function(request) {
         if(this.req.responseText == 'OK') {
           GRW.GoogleIt();
         }
@@ -144,24 +143,22 @@ markAllAsRead.prototype = {
     }, parameters);
   }
 };
-
 /**
  * @returns the active, recently opened google reader watcher window
  * @type Window
  */
-var getActiveGRW = function() {
+GRW.getActiveGRW = function() {
   if(typeof Components == 'undefined') {
     return;
   }
   var activeWin = false;
-  mapWindows(function(win) {
+  GRW.mapWindows(function(win) {
     if(win.GRWActive === true) {
       activeWin = win;
     }
   });
   return (activeWin === false) ? window : activeWin;
 };
-
 GRW.StatusBar = {
 /**
  * change the statusbar elem status
@@ -169,7 +166,7 @@ GRW.StatusBar = {
  */
   setReaderStatus: function(status) {
     var stImage, ttb, statusElem;
-    mapWindows(function(win) {
+    GRW.mapWindows(function(win) {
       statusElem = win.document.getElementById('GRW-statusbar');
       if(!statusElem) { return; }
       statusElem.status = status;
@@ -220,7 +217,7 @@ GRW.StatusBar = {
    * @param {Number} [unr]
    */
   setReaderTooltip: function(t, unr) {
-    mapWindows(function(win) {
+    GRW.mapWindows(function(win) {
       var statusBar = win.document.getElementById('GRW-statusbar');
       var ttb = win.document.getElementById('GRW-toolbar-button');
       if(typeof statusBar == 'undefined') {
@@ -280,7 +277,7 @@ GRW.StatusBar = {
    * hide the counter text
    */
   hideCounter: function() {
-    mapWindows(function(win){
+    GRW.mapWindows(function(win){
       var label = win.document.getElementById('GRW-statusbar-label');
       label.value = '';
       label.crop = 'end';
@@ -294,10 +291,10 @@ GRW.StatusBar = {
  * @param {Number} val the number of the unread items
  */
   showCounter: function(val) {
-    if(GRPrefs.getPref.maximizeCounter() && GRW.StatusBar.maxCount && val > GRW.StatusBar.maxCount) {
+    if(GRW.Prefs.getPref.maximizeCounter() && GRW.StatusBar.maxCount && val > GRW.StatusBar.maxCount) {
       val = GRW.StatusBar.maxCount + '+';
     }
-    mapWindows(function(win){
+    GRW.mapWindows(function(win){
       var label = win.document.getElementById('GRW-statusbar-label');
       label.value = val;
       label.style.width = '';
@@ -346,7 +343,7 @@ GRW.openReaderNotify = {
    */
   observe: function(subject, topic, data) {
     if(topic == 'alertclickcallback') {
-      GRCheck.openReader();
+      GRW.GRCheck.openReader();
     }
   }
 };
@@ -356,7 +353,7 @@ GRW.openReaderNotify = {
  * @param {Object} value
  */
 GRW.showNotification = function(label, value) {
-  if(GRPrefs.getPref.showNotificationWindow() !== false) {
+  if(GRW.Prefs.getPref.showNotificationWindow() !== false) {
     if(!label) {
       label = 'Google Reader Watcher';
     }
@@ -395,14 +392,14 @@ GRW.showNotification = function(label, value) {
  * @returns a grid element which is filled with the unread feeds data
  * @type Element
  */
-var GenStatusGrid = function(feeds, class, justRows) {
+GRW.GenStatusGrid = function(feeds, class, justRows) {
   GRStates.feeds = feeds;
   this.class = class || '';
   this.justRows = justRows || false;
-  this.grid = GRPrefs.getPref.showitemsintooltip() ? this.genGrid(this.genRows(feeds)) : false;
+  this.grid = GRW.Prefs.getPref.showitemsintooltip() ? this.genGrid(this.genRows(feeds)) : false;
 
 }
-GenStatusGrid.prototype = {
+GRW.GenStatusGrid.prototype = {
 
   genRows: function(feeds) {
     if(!feeds) { return false; }
@@ -420,14 +417,14 @@ GenStatusGrid.prototype = {
         var labelc2 = label.cloneNode(true);
 
         // configure the length of the title
-        var titlelength = GRPrefs.getPref.tooltipTitleLength();
+        var titlelength = GRW.Prefs.getPref.tooltipTitleLength();
         titlelength = (titlelength > 5) ? titlelength : 5;
         if(o.Title.length > titlelength) {
           o.Title = o.Title.slice(0, titlelength-3)+'...';
         }
-        o.Count = (GRPrefs.getPref.maximizeCounter() && GRW.StatusBar.maxCount && o.Count > GRW.StatusBar.maxCount) ? GRW.StatusBar.maxCount + '+' : o.Count;
+        o.Count = (GRW.Prefs.getPref.maximizeCounter() && GRW.StatusBar.maxCount && o.Count > GRW.StatusBar.maxCount) ? GRW.StatusBar.maxCount + '+' : o.Count;
         // set up the counter position
-        if(GRPrefs.getPref.tooltipCounterPos() == 'left') {
+        if(GRW.Prefs.getPref.tooltipCounterPos() == 'left') {
           labelc1.value = o.Count;
           labelc2.value = o.Title;
           labelc1.setAttribute('class', 'counterCol');
@@ -481,11 +478,11 @@ GenStatusGrid.prototype = {
  * @returns a grid element which is filled with the unread feeds data
  * @type Element
  */
-var GenStatusMenu = function(win, feeds) {
+GRW.GenStatusMenu = function(win, feeds) {
   this.tm = win.document.getElementById('GRW-statusbar-menu');
   this.feeds = GRStates.feeds = feeds;
 }
-GenStatusMenu.prototype = {
+GRW.GenStatusMenu.prototype = {
   genMenu: function(feeds) {
     if(!feeds) { return false; }
     var menuitem = document.createElement('menuitem'), menuitemc;
@@ -499,17 +496,17 @@ GenStatusMenu.prototype = {
         menuitemc = menuitem.cloneNode(true);
 
         // configure the length of the title
-        var titlelength = GRPrefs.getPref.tooltipTitleLength();
+        var titlelength = GRW.Prefs.getPref.tooltipTitleLength();
         titlelength = (titlelength > 5) ? titlelength : 5;
         if(o.Title.length > titlelength) {
           o.Title = o.Title.slice(0, titlelength-3)+'...';
         }
-        o.Count = (GRPrefs.getPref.maximizeCounter() && GRW.StatusBar.maxCount && o.Count > GRW.StatusBar.maxCount) ? GRW.StatusBar.maxCount + '+' : o.Count;
+        o.Count = (GRW.Prefs.getPref.maximizeCounter() && GRW.StatusBar.maxCount && o.Count > GRW.StatusBar.maxCount) ? GRW.StatusBar.maxCount + '+' : o.Count;
         // set up the counter position
         menuitemc.label = o.Count + ' ' + o.Title;
         menuitemc.setAttribute('url', o.Id);
         menuitemc.setAttribute('class', 'feed');
-        menuitemc.addEventListener('command', function(){GRCheck.openReader(this.getAttribute('url'));}, false);
+        menuitemc.addEventListener('command', function(){GRW.GRCheck.openReader(this.getAttribute('url'));}, false);
         rowsArray.push(menuitemc);
         if(o.Subs) {
           menuitemc.setAttribute('class', 'tag');
@@ -524,7 +521,7 @@ GenStatusMenu.prototype = {
     return rowsArray;
   },
   addItems: function() {
-    if(GRPrefs.getPref.showitemsincontextmenu()) {
+    if(GRW.Prefs.getPref.showitemsincontextmenu()) {
       // Create popup elements
       //var popup = document.createElement('menupopup');
       //popup.setAttribute('class', 'GRW-statusbar-feeds-menu ' + this.class);
@@ -574,14 +571,14 @@ GenStatusMenu.prototype = {
  * @type {Number}
  */
 GRW.GoogleIt = function() {
-  GRStates.conntype = GRPrefs.getPref.useSecureConnection() ? 'https' : 'http';
-  var activeWin = getActiveGRW();
+  GRStates.conntype = GRW.Prefs.getPref.useSecureConnection() ? 'https' : 'http';
+  var activeWin = GRW.getActiveGRW();
   if(activeWin !== window) {
     activeWin.GRW.GoogleIt();
     return false;
   }
-  if(!GRWAccountManager.getCurrentSID() || GRPrefs.getPref.forceLogin()) {
-    var login = GRWAccountManager.logIn();
+  if(!GRW.AccountManager.getCurrentSID() || GRW.Prefs.getPref.forceLogin()) {
+    var login = GRW.AccountManager.logIn();
     if(login === -1) {
       GRW.StatusBar.switchErrorIcon();
     }
@@ -589,7 +586,7 @@ GRW.GoogleIt = function() {
     var list = new GRW.GetList();
   }
   var minCheck = 1;
-  var configuredCheck = GRPrefs.getPref.checkFreq();
+  var configuredCheck = GRW.Prefs.getPref.checkFreq();
   var freq = (configuredCheck >= minCheck) ? configuredCheck : minCheck;
   if(GRStates.timeoutid) {
     clearTimeout(GRStates.timeoutid);
@@ -603,7 +600,7 @@ GRW.GoogleIt = function() {
 GRW.statusClickHandling = function(ob) {
   this.ob = ob;
   if(!this.ob || !this.ob.length) {GRW.log('no ob'); return; }
-  this.st = GRPrefs.getPref.leftClickOpen();
+  this.st = GRW.Prefs.getPref.leftClickOpen();
   this.observe();
 };
 GRW.statusClickHandling.prototype = {
@@ -630,7 +627,7 @@ GRW.statusClickHandling.prototype = {
    * @param {Object} event
    */
   click: function(event) {
-    var st = GRPrefs.getPref.leftClickOpen();
+    var st = GRW.Prefs.getPref.leftClickOpen();
     var originalClicked = false;
     this.ob.forEach(function(element){
       if(event.originalTarget == element) {originalClicked = true;}
@@ -639,15 +636,15 @@ GRW.statusClickHandling.prototype = {
     switch(event.button) {
       case 0:
         if((st == 2 && event.type == 'dblclick') || (st == 1 && event.type == 'click')) {
-          if(GRPrefs.getPref.forceLogin()) {
-            var login = GRWAccountManager.logIn(function(){
-                GRCheck.openReader();
+          if(GRW.Prefs.getPref.forceLogin()) {
+            var login = GRW.AccountManager.logIn(function(){
+                GRW.GRCheck.openReader();
             }, true);
             if(login === -1) {
               GRW.StatusBar.switchErrorIcon();
             }
           } else {
-            GRCheck.openReader();
+            GRW.GRCheck.openReader();
           }
         }
       break;
@@ -661,12 +658,12 @@ GRW.statusClickHandling.prototype = {
 /**
  * @type {Boolean}
  */
-var isActiveGRW = function() {
+GRW.isActiveGRW = function() {
   if(typeof Components == 'undefined') {
     return;
   }
   var isActive = false;
-  mapWindows(function(win) {
+  GRW.mapWindows(function(win) {
     if(win.GRWActive === true) {
       isActive = true;
     }
@@ -682,12 +679,11 @@ GRW.openPrefs = function(event) {
 };
 GRW.enableCookies = function(event) {
   if(confirm('Would you like to enable third party cookies?')) {
-    GRPrefs.setPref.setCookieBehaviour(0);
+    GRW.Prefs.setPref.setCookieBehaviour(0);
     GRW.GoogleIt();
   }
 }
-
-var windowCloseCheck = {
+GRW.windowCloseCheck = {
   /**
    * @param {String} aSubject
    * @param {String} aTopic
@@ -695,13 +691,13 @@ var windowCloseCheck = {
    */
   observe: function(aSubject, aTopic, aData) {
     var observerService = Components.classes["@mozilla.org/observer-service;1"].getService(Components.interfaces.nsIObserverService);
-    observerService.removeObserver(windowCloseCheck, "domwindowclosed");
+    observerService.removeObserver(GRW.windowCloseCheck, "domwindowclosed");
 
     if(typeof Components == 'undefined') {
       return;
     }
     var grw = false;
-    mapWindows(function(win) {
+    GRW.mapWindows(function(win) {
       if(win.GRW === true) {
         grw = true;
       }
@@ -712,7 +708,7 @@ var windowCloseCheck = {
       if(typeof win != 'undefined' || !win) {return false;}
       win.GRW = true;
       var minCheck = 1;
-      var configuredCheck = GRPrefs.getPref.checkFreq();
+      var configuredCheck = GRW.Prefs.getPref.checkFreq();
       var freq = (configuredCheck >= minCheck) ? configuredCheck : minCheck;
       win.GRStates.timeoutid = win.setTimeout(win.GRW.GoogleIt, freq*1000*60);
     }
@@ -724,16 +720,16 @@ var windowCloseCheck = {
 GRW.init = function() {
   GRW.log('Starting Google Reader Watcher');
   GRW.strings = document.getElementById('grwatcher-strings');
-  GRWPasswordManager = new _GRWPasswordManager();
-  if(isActiveGRW() === false) {
+  GRW.PasswordManager = new GRW._PasswordManager();
+  if(GRW.isActiveGRW() === false) {
     window.GRWActive = true;
     var g;
     setTimeout(function(){
       g = GRW.GoogleIt();
-    }, GRPrefs.getPref.delayStart());
+    }, GRW.Prefs.getPref.delayStart());
   } else {
-    GRStates.conntype = GRPrefs.getPref.useSecureConnection() ? 'https' : 'http';
-    var activeWin = getActiveGRW();
+    GRStates.conntype = GRW.Prefs.getPref.useSecureConnection() ? 'https' : 'http';
+    var activeWin = GRW.getActiveGRW();
     var unr = activeWin.GRStates.currentNum;
     var maxCount = activeWin.GRW.StatusBar.maxCount;
     GRStates.showNotification = false;
@@ -744,14 +740,14 @@ GRW.init = function() {
     } else if(unr > 0) {
       GRW.StatusBar.setReaderTooltip('new', unr);
       var grid, tt;
-      mapWindows(function(win) {
+      GRW.mapWindows(function(win) {
         tt = win.document.getElementById('GRW-statusbar-tooltip-new');
         while(tt.firstChild) {
           tt.removeChild(tt.firstChild);
         }
-        grid = new win.GenStatusGrid(activeWin.GRStates.feeds);
+        grid = new win.GRW.GenStatusGrid(activeWin.GRStates.feeds);
         if(grid.grid) tt.appendChild(grid.grid);
-        var menu = new win.GenStatusMenu(win, activeWin.GRStates.feeds);
+        var menu = new win.GRW.GenStatusMenu(win, activeWin.GRStates.feeds);
         menu.addItems();
       });
       delete grid, tt;
@@ -761,11 +757,11 @@ GRW.init = function() {
       GRW.StatusBar.setReaderTooltip('nonew');
       GRW.StatusBar.switchOffIcon();
       var tm, menu;
-      mapWindows(function(win) {
-        menu = new win.GenStatusMenu(win);
+      GRW.mapWindows(function(win) {
+        menu = new win.GRW.GenStatusMenu(win);
         menu.clearItems();
       });
-      if(GRPrefs.getPref.showZeroCounter() === false) {
+      if(GRW.Prefs.getPref.showZeroCounter() === false) {
         GRW.StatusBar.hideCounter();
       } else {
         GRW.StatusBar.showCounter(unr);
@@ -775,11 +771,10 @@ GRW.init = function() {
   new GRW.statusClickHandling([document.getElementById('GRW-statusbar'), document.getElementById('GRW-toolbar-button')]);
 
   var observerService = Components.classes["@mozilla.org/observer-service;1"].getService(Components.interfaces.nsIObserverService);
-  observerService.addObserver(windowCloseCheck, "domwindowclosed", false);
+  observerService.addObserver(GRW.windowCloseCheck, "domwindowclosed", false);
 
   GRW.log('Google Reader Watcher initialized');
 };
-
 window.addEventListener('load', GRW.init, false);
 window.addEventListener('unload', function(event) {
   this.removeEventListener('load', GRW.init, false);

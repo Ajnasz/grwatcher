@@ -29,7 +29,7 @@ GRW.GetList.prototype = {
    */
   getFeedList: function() {
     var THIS = this;
-    new Ajax({
+    new GRW.Ajax({
       url: GRStates.conntype + '://www.google.com/reader/api/0/subscription/list?output=json',
       // url: GRStates.conntype + '://www.googler.com/reader/api/0/subscription/list?output=json',
       successHandler: function(request) {
@@ -56,7 +56,7 @@ GRW.GetList.prototype = {
    */
   getReadCounter: function() {
     var THIS = this;
-    new Ajax({
+    new GRW.Ajax({
       url: GRStates.conntype + '://www.google.com/reader/api/0/unread-count?all=true&output=json',
       successHandler: function() {
         var data = THIS.decodeJSON(this.req.responseText);
@@ -85,7 +85,7 @@ GRW.GetList.prototype = {
    * @param {XMLHttpRequest} req HTTP request object
    */
   finishLoad: function(req) {
-    var r = GRPrefs.getPref.sortByLabels() ? this.countLabeled() : this.onFeedsCounterLoad();
+    var r = GRW.Prefs.getPref.sortByLabels() ? this.countLabeled() : this.onFeedsCounterLoad();
     var unr = r.counter;
     GRStates.currentNum = unr;
     if(unr === false) {
@@ -95,15 +95,15 @@ GRW.GetList.prototype = {
     } else if(unr > 0) {
       GRW.StatusBar.setReaderTooltip('new', unr);
       var grid, tt;
-      mapWindows(function(win){
+      GRW.mapWindows(function(win){
         tt = win.document.getElementById('GRW-statusbar-tooltip-new');
         tm = win.document.getElementById('GRW-statusbar-menu');
         while(tt.firstChild) {
           tt.removeChild(tt.firstChild);
         }
-        grid = new win.GenStatusGrid(r.feeds);
+        grid = new win.GRW.GenStatusGrid(r.feeds);
         if(grid.grid) tt.appendChild(grid.grid);
-        var menu = new win.GenStatusMenu(win, r.feeds);
+        var menu = new win.GRW.GenStatusMenu(win, r.feeds);
         menu.addItems();
       });
       delete grid, tt;
@@ -113,12 +113,12 @@ GRW.GetList.prototype = {
       GRW.StatusBar.setReaderTooltip('nonew');
       GRW.StatusBar.switchOffIcon();
       var menu;
-      mapWindows(function(win) {
-        menu = new win.GenStatusMenu(win);
+      GRW.mapWindows(function(win) {
+        menu = new win.GRW.GenStatusMenu(win);
         menu.clearItems();
         menu.showHideSeparator(true);
       });
-      if(GRPrefs.getPref.showZeroCounter() === false) {
+      if(GRW.Prefs.getPref.showZeroCounter() === false) {
         GRW.StatusBar.hideCounter();
       } else {
         GRW.StatusBar.showCounter(unr);
@@ -133,7 +133,7 @@ GRW.GetList.prototype = {
   countLabeled: function() {
     var labeled = this.collectByLabels();
     var uc = this.feeds;
-    var filteredLabels = GRPrefs.getPref.filteredLabels();
+    var filteredLabels = GRW.Prefs.getPref.filteredLabels();
     var i, l, la, u, all = 0, feeds = new Array(), counted = new Object(), rex, label;
     var friendRex = new RegExp('^user/\\d+/state/com.google/broadcast-friends'), friendAdded = false;
     for(label in labeled) {
@@ -217,7 +217,7 @@ GRW.GetList.prototype = {
    */
   onFeedsCounterLoad: function() {
     var prc = this.feeds;
-    var feeds = Array(), unr = this.feedsCounter(), o, u, filteredLabels = GRPrefs.getPref.filteredLabels();
+    var feeds = Array(), unr = this.feedsCounter(), o, u, filteredLabels = GRW.Prefs.getPref.filteredLabels();
     var friendRex = new RegExp('^user/\\d+/state/com.google/broadcast-friends');
     prc.forEach(function(u) {
       if(friendRex.test(u.id)) {

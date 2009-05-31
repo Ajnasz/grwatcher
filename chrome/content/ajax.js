@@ -6,6 +6,7 @@
  * AJAX requester class
  * @constructor
  * @class Ajax
+ * @namespace GRW
  *
  * @param {Object} pars  object to configure the AJAX request
  *  {String} url the url of the request
@@ -14,7 +15,7 @@
  *  {String} [method] request method (eg.: get, post, head)
  * @param {String} [parameters] if the method should be post, this variable contains the request parameters
  */
-var Ajax = function(pars, parameters) {
+GRW.Ajax = function(pars, parameters) {
   if(typeof pars.url == 'undefined') {
     return false;
   }
@@ -58,7 +59,7 @@ var Ajax = function(pars, parameters) {
   this.req.onreadystatechange = stChg(this, false);
   this.req.send(this.createParameters());
 };
-Ajax.prototype = {
+GRW.Ajax.prototype = {
   url: null,
   pars: null,
   req: null,
