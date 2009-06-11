@@ -2,10 +2,11 @@
 <!ENTITY GRWstatusbar.popup.getReadCounter "Έλεγχος για μη αναγνωσμένες εγγραφές στα αρχεία ροής">
 <!ENTITY GRWstatusbar.popup.openPrefs "Προτιμήσεις">
 <!ENTITY GRWstatusbar.popup.markAllAsRead "Σημείωση όλων ως αναγνωσμένων">
+<!ENTITY GRWstatusbar.popup.enableCookies "Να επιτρέπονται τα cookies">
 <!ENTITY GRWpreferences.title "Προτιμήσεις Google Reader Watcher">
 <!ENTITY GRWpreferences.checkfrequency "Έλεγχος για νέες εγγραφές σε αρχεία ροής κάθε">
 <!ENTITY GRWpreferences.delaystart "Μετά την εκκίνηση του περιηγητή, να γίνει αρχικός έλεγχος σε (χιλιοστά δευτερολέπτου)">
-<!ENTITY GRWpreferences.activateOpenedTab "Εστιάση στην καρτέλα Reader μετά το άνοιγμα">
+<!ENTITY GRWpreferences.activateOpenedTab "Εστίαση στην καρτέλα Reader μετά το άνοιγμα">
 <!ENTITY GRWpreferences.generalpreferencescaption "Γενικές προτιμήσεις">
 <!ENTITY GRWpreferences.generalpreferencesopencaption "Άνοιγμα του Google Reader">
 <!ENTITY GRWpreferences.tooltippreferencescaption "Προτιμήσεις συμβουλής εργαλείου">
@@ -36,7 +37,10 @@
 <!ENTITY GRWpreferences.sortbylabels "Ταξινόμηση των εγγραφών κατά ετικέτα στη συμβουλή εργαλείου">
 <!ENTITY GRWpreferences.filteredlabels "Φιλτράρισμα εγγραφών που περιλαμβάνουν αυτές τις λέξεις στην ετικέτα (διαχωρισμός με κόμματα)">
 <!ENTITY GRWtooltip.nonewfeed "Δεν υπάρχουν μη αναγνωσμένες εγγραφές στα αρχεία ροής">
-<!ENTITY GRWtooltip.errorfeedfetch "Σφάλμα κατα τη διακομιδή των αρχείων ροής">
+<!ENTITY GRWtooltip.errorfeedfetch "Σφάλμα κατά τη διακομιδή των αρχείων ροής">
 <!ENTITY GRWtooltip.newfeed "Υπάρχουν μη αναγνωσμένες εγγραφές στα αρχεία ροής">
 <!ENTITY GRWtooltip.errorlogin "Αποτυχία σύνδεσης. Βεβαιωθείτε για τη σωστή εισαγωγή κωδικού και/ή ονόματος χρήστη">
-<!ENTITY GRWtooltip.networkerror "Αποτυχία σύνδεσης. Βεβαιωθείτε πως είστε συνδεμένοι στο δίκτυο.">
+<!ENTITY GRWtooltip.networkerror "Αποτυχία σύνδεσης. Βεβαιωθείτε πως είστε συνδεδεμένοι στο δίκτυο.">
+<!ENTITY GRWtooltip.cookieerror "Δεν επιτρέπονται τα cookies τρίτων! Κάντε δεξί κλικ στο εικονίδιο για να επιτραπούν.">
+<!ENTITY GRWpreferences.showitemsintooltip "Ενεργοποιήστε το για να εμφανίζονται οι μη αναγνωσμένες εγγραφές στη συμβουλή εργαλείου του εικονιδίου γραμμής κατάστασης.">
+<!ENTITY GRWpreferences.showitemsincontextmenu "Ενεργοποιήστε το για να προστίθενται στο μενού περιεχομένου του εικονιδίου γραμμής κατάστασης οι μη αναγνωσμένες εγγραφές.">

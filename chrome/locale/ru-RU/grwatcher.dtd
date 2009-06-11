@@ -2,6 +2,7 @@
 <!ENTITY GRWstatusbar.popup.getReadCounter "Проверить ленты">
 <!ENTITY GRWstatusbar.popup.openPrefs "Настройки">
 <!ENTITY GRWstatusbar.popup.markAllAsRead "Отметить все как прочитанные">
+<!ENTITY GRWstatusbar.popup.enableCookies "Разрешить куки (cookies)">
 <!ENTITY GRWpreferences.title "Настройки Google Reader Watcher">
 <!ENTITY GRWpreferences.checkfrequency "Проверять ленты каждые">
 <!ENTITY GRWpreferences.delaystart "Начинать проверку после запуска браузера (задержка в миллисекундах)">
@@ -40,3 +41,6 @@
 <!ENTITY GRWtooltip.newfeed "У вас есть непрочитанные ленты">
 <!ENTITY GRWtooltip.errorlogin "Ошибка входа. Проверьте правильность ввода имени пользователя и пароля!">
 <!ENTITY GRWtooltip.networkerror "Сетевая ошибка! Убедитесь, что сетевое соединение работает.">
+<!ENTITY GRWtooltip.cookieerror "Куки с других сайтов запрещены. Щелкните правой кнопкой по иконке, чтобы включить их.">
+<!ENTITY GRWpreferences.showitemsintooltip "Включить отображение непрочитанных статей в подсказке иконки в статусной строке.">
+<!ENTITY GRWpreferences.showitemsincontextmenu "Включить отображение непрочитанных статей в контекстном меню иконки в статусной строке.">

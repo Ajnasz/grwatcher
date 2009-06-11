@@ -2,6 +2,7 @@
 <!ENTITY GRWstatusbar.popup.getReadCounter "未読フィードを確認">
 <!ENTITY GRWstatusbar.popup.openPrefs "設定">
 <!ENTITY GRWstatusbar.popup.markAllAsRead "すべて既読にする">
+<!ENTITY GRWstatusbar.popup.enableCookies "Cookie を有効にする">
 <!ENTITY GRWpreferences.title "Google Reader Watcher 設定">
 <!ENTITY GRWpreferences.checkfrequency "確認間隔 (分)">
 <!ENTITY GRWpreferences.delaystart "ブラウザ起動後に最初の確認を開始するまでの待ち時間 (ミリ秒)">
@@ -40,3 +41,6 @@
 <!ENTITY GRWtooltip.newfeed "未読フィードがあります">
 <!ENTITY GRWtooltip.errorlogin "ログインに失敗しました。正確なアカウント情報を入力したかどうかご確認ください！">
 <!ENTITY GRWtooltip.networkerror "接続に失敗しました。接続が正常に機能していることを確認してください！">
+<!ENTITY GRWtooltip.cookieerror "サードパーティの Cookie は有効になっていません！アイコンの上でマウス右ボタンを押して有効にします。">
+<!ENTITY GRWpreferences.showitemsintooltip "ステータスバーアイコンのツールチップに未読の項目を表示する">
+<!ENTITY GRWpreferences.showitemsincontextmenu "ステータスバーアイコンのコンテキストメニューに未読の項目を追加する">

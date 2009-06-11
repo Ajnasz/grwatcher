@@ -2,6 +2,7 @@
 <!ENTITY GRWstatusbar.popup.getReadCounter "Olvasatlan feed keresése">
 <!ENTITY GRWstatusbar.popup.openPrefs "Tulajdonságok">
 <!ENTITY GRWstatusbar.popup.markAllAsRead "Mind megjelölése olvasottként">
+<!ENTITY GRWstatusbar.popup.enableCookies "Sütik engedélyezése">
 <!ENTITY GRWpreferences.title "Google Reader Watcher Tulajdonságok">
 <!ENTITY GRWpreferences.checkfrequency "Új feedek keresése minden">
 <!ENTITY GRWpreferences.delaystart "Új feedek keresése a böngésző megnyitása után (másodpercek)">
@@ -40,3 +41,6 @@
 <!ENTITY GRWtooltip.newfeed "Olvasatlan feeded van!">
 <!ENTITY GRWtooltip.errorlogin "Sikeretelen bejelentkezés! Ellenőrzid, hogy helyesen adtad-e meg az e-mail címet és a jelszavad!">
 <!ENTITY GRWtooltip.networkerror "Hálózati hiba!">
+<!ENTITY GRWtooltip.cookieerror "A harmadik féltől származó sütik nincsenek engedélyzve. Engedélyezéshez kattints jobb egérgombbal az állapotsor ikonon.">
+<!ENTITY GRWpreferences.showitemsintooltip "Olvasatlan hírek megjelenítése az állapotsor ikon tooltippjében">
+<!ENTITY GRWpreferences.showitemsincontextmenu "Olvasatlan hírek megjelenítése az állapotsor ikon helyi menüjében">

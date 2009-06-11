@@ -2,6 +2,7 @@
 <!ENTITY GRWstatusbar.popup.getReadCounter "Kiểm tra các feed chưa đọc">
 <!ENTITY GRWstatusbar.popup.openPrefs "Tùy chỉnh">
 <!ENTITY GRWstatusbar.popup.markAllAsRead "Đánh dấu tất cả là đã đọc">
+<!ENTITY GRWstatusbar.popup.enableCookies "Bật cookie">
 <!ENTITY GRWpreferences.title "Tùy chỉnh Google Reader Watcher">
 <!ENTITY GRWpreferences.checkfrequency "Tần suất kiểm tra (phút)">
 <!ENTITY GRWpreferences.delaystart "Bắt đầu lần kiểm tra đầu tiên sau khi trình duyệt khởi động (miligiây)">
@@ -40,3 +41,6 @@
 <!ENTITY GRWtooltip.newfeed "Bạn có feed chưa đọc">
 <!ENTITY GRWtooltip.errorlogin "Đăng nhập thất bại. Hãy chắc chắn rằng bạn đã đưa vào thông tin tài khoản chính xác!">
 <!ENTITY GRWtooltip.networkerror "Kết nối thất bại. Hãy chắc chắn rằng bạn vẫn đang có kết nối mạng tốt!">
+<!ENTITY GRWtooltip.cookieerror "Cookie của bên thứ ba chưa được bật! Hãy nhấn chuột phải lên biểu tượng để bật nó.">
+<!ENTITY GRWpreferences.showitemsintooltip "Cho phép hiển thị các mục tin chưa đọc trong biểu tượng trạng thái chú thích">
+<!ENTITY GRWpreferences.showitemsincontextmenu "Cho phép thêm các mục tin chưa đọc trong trình đơn ngữ cảnh của biểu tượng thanh trạng thái">

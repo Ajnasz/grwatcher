@@ -2,6 +2,7 @@
 <!ENTITY GRWstatusbar.popup.getReadCounter "Tarkista, jos lukemattomia syötteitä">
 <!ENTITY GRWstatusbar.popup.openPrefs "Asetukset">
 <!ENTITY GRWstatusbar.popup.markAllAsRead "Merkitse kaikki luetuksi">
+<!ENTITY GRWstatusbar.popup.enableCookies "Ota evästeet käyttöön">
 <!ENTITY GRWpreferences.title "Google Reader Watcher -asetukset">
 <!ENTITY GRWpreferences.checkfrequency "Tarkista uusien syötteiden varalta">
 <!ENTITY GRWpreferences.delaystart "Ensimmäisen tarkistuksen ajankohta selaimen käynnistyksen jälkeen (millisekunneissa)">
@@ -40,3 +41,6 @@
 <!ENTITY GRWtooltip.newfeed "Sinulla on lukemattomia syötteitä">
 <!ENTITY GRWtooltip.errorlogin "Kirjautuminen epäonnistui. Varmista, että syötit oikean käyttäjätunnuksen ja salasanan.">
 <!ENTITY GRWtooltip.networkerror "Yhdistäminen epäonnistui. Varmista, että käytät toimivaa yhteyttä.">
+<!ENTITY GRWtooltip.cookieerror "Kolmannen osapuolen evästeet eivät ole käytössä! Napsauta oikealla hiiren painikkeella kuvakkeen päällä ottaaksesi ne käyttöön.">
+<!ENTITY GRWpreferences.showitemsintooltip "Ota käyttöön, jotta lukemattomat kohteet näytetään tilapalkin kuvakkeen työkaluvihjeessä">
+<!ENTITY GRWpreferences.showitemsincontextmenu "Ota käyttöön, jotta lukemattomat kohteet näytetään tilapalkin kuvakkeen kontekstivalikossa">

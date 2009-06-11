@@ -2,6 +2,7 @@
 <!ENTITY GRWstatusbar.popup.getReadCounter "Controleren op ongelezen feeds">
 <!ENTITY GRWstatusbar.popup.openPrefs "Voorkeuren">
 <!ENTITY GRWstatusbar.popup.markAllAsRead "Alles als gelezen markeren">
+<!ENTITY GRWstatusbar.popup.enableCookies "Cookies inschakelen">
 <!ENTITY GRWpreferences.title "Google Reader Watcher voorkeuren">
 <!ENTITY GRWpreferences.checkfrequency "Controlefrequentie (minuten)">
 <!ENTITY GRWpreferences.delaystart "Eerste controle starten na start van browser (milliseconden)">
@@ -40,3 +41,6 @@
 <!ENTITY GRWtooltip.newfeed "U hebt ongelezen feeds">
 <!ENTITY GRWtooltip.errorlogin "Inloggen mislukt. Controleer uw gebruikersnaam en/of wachtwoord!">
 <!ENTITY GRWtooltip.networkerror "Verbinding leggen mislukt. Controleer a.u.b. of u een werkende netwerkverbinding heeft!">
+<!ENTITY GRWtooltip.cookieerror "Cookies van derden zijn niet ingeschakeld! Klik met uw rechtermuisknop op het pictogram om dit in te schakelen.">
+<!ENTITY GRWpreferences.showitemsintooltip "Inschakelen om ongelezen berichten in de tooltip van het statusbalkpictogram weer te geven">
+<!ENTITY GRWpreferences.showitemsincontextmenu "Inschakelen om de ongeleazen berichten toe te voegen aan het contextmenu van het statusbalkpictogram">
