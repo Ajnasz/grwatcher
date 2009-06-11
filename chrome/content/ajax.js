@@ -35,6 +35,7 @@ GRW.Ajax = function(pars, parameters) {
   this.handler = typeof pars.handler != 'undefined' ? pars.handler : this.handler;
   this.method = typeof pars.method != 'undefined' ? pars.method : 'get';
   this.successHandler = typeof pars.successHandler != 'undefined' ? pars.successHandler : this.successHandler;
+  this.onError = typeof pars.onError == 'function' ? pars.onError : null;
 
   //this.req = new XMLHttpRequest();
   this.req = Components.classes["@mozilla.org/xmlextras/xmlhttprequest;1"].createInstance(Components.interfaces.nsIXMLHttpRequest);  
@@ -103,6 +104,9 @@ GRW.Ajax.prototype = {
    * @param {Exception} Exception
    */
   errorHandler: function(msg, Exception) {
+    if(typeof this.onError == 'function') {
+      this.onError();
+    }
     GRW.StatusBar.switchErrorIcon();
     GRW.StatusBar.hideCounter();
     var msgs = new Array();
