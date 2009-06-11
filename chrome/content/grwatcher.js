@@ -73,9 +73,9 @@ GRW.GRCheck = {
       gBrowser.mTabContainer.selectedIndex = openedGR.grTab;
       gBrowser.loadURI(this.getReaderURL() + '/' + url);
     }
-    var minCheck = 1;
-    var configuredCheck = GRW.Prefs.getPref.checkFreq();
-    var freq = (configuredCheck >= minCheck) ? configuredCheck : minCheck;
+    var minCheck = 1,
+    configuredCheck = GRW.Prefs.getPref.checkFreq(),
+    freq = (configuredCheck >= minCheck) ? configuredCheck : minCheck;
     if(GRStates.timeoutid) {
       clearTimeout(GRStates.timeoutid);
     }
@@ -115,7 +115,7 @@ GRW.mapWindows = function(onMap) {
   }
 };
 GRW.markAllAsRead = function() {
-  if(confirm('Are you sure you wan\'t to mark all items as read?')) {
+  if(confirm(GRW.strings.getString('confirmmarkallasread'))) {
     GRW.GRCheck.getUserId();
     this.getToken();
   }
@@ -403,21 +403,21 @@ GRW.GenStatusGrid.prototype = {
 
   genRows: function(feeds) {
     if(!feeds) { return false; }
-    var row = document.createElement('row');
-    var label = document.createElement('label');
-    var rowsArray = new Array();
-    var THIS = this;
+    var row = document.createElement('row'),
+    label = document.createElement('label'),
+    rowsArray = new Array(),
+    THIS = this;
+
     feeds.forEach(
       function(o) {
         /**
         * create cells
         */
-        var rowc = row.cloneNode(true);
-        var labelc1 = label.cloneNode(true);
-        var labelc2 = label.cloneNode(true);
+        var rowc = row.cloneNode(true), labelc1 = label.cloneNode(true), labelc2 = label.cloneNode(true),
 
         // configure the length of the title
-        var titlelength = GRW.Prefs.getPref.tooltipTitleLength();
+        titlelength = GRW.Prefs.getPref.tooltipTitleLength();
+
         titlelength = (titlelength > 5) ? titlelength : 5;
         if(o.Title.length > titlelength) {
           o.Title = o.Title.slice(0, titlelength-3)+'...';
@@ -442,8 +442,7 @@ GRW.GenStatusGrid.prototype = {
           if(o.Title == '-') {
             rowc.setAttribute('class', 'notitle tag');
           }
-          var subRows = THIS.genRows(o.Subs);
-          rowsArray = rowsArray.concat(subRows)
+          rowsArray = rowsArray.concat(THIS.genRows(o.Subs))
         }
       }
     );
@@ -451,11 +450,11 @@ GRW.GenStatusGrid.prototype = {
   },
   genGrid: function(rowsArray) {
     // Create grid elements
-    var grid = document.createElement('grid');
-    var columns = document.createElement('columns');
-    var column = document.createElement('column');
-    var rows = document.createElement('rows');
-    var columnc1, columnc2, rowc, labelc1, labelc2;
+    var grid = document.createElement('grid'),
+    columns = document.createElement('columns'),
+    column = document.createElement('column'),
+    rows = document.createElement('rows'),
+    columnc1, columnc2, rowc, labelc1, labelc2;
     grid.flex = 1;
     grid.setAttribute('class', 'GRW-statusbar-tooltip-grid ' + this.class)
     grid.id = '';
@@ -547,7 +546,7 @@ GRW.GenStatusMenu.prototype = {
       }
     }
     var _this = this;
-    removable.map(function(tmc) {_this.tm.removeChild(tmc)});
+    removable.forEach(function(tmc) {_this.tm.removeChild(tmc)});
     return true;
   },
   /**
@@ -585,9 +584,9 @@ GRW.GoogleIt = function() {
   } else {
     var list = new GRW.GetList();
   }
-  var minCheck = 1;
-  var configuredCheck = GRW.Prefs.getPref.checkFreq();
-  var freq = (configuredCheck >= minCheck) ? configuredCheck : minCheck;
+  var minCheck = 1,
+  configuredCheck = GRW.Prefs.getPref.checkFreq(),
+  freq = (configuredCheck >= minCheck) ? configuredCheck : minCheck;
   if(GRStates.timeoutid) {
     clearTimeout(GRStates.timeoutid);
   }
@@ -627,8 +626,8 @@ GRW.statusClickHandling.prototype = {
    * @param {Object} event
    */
   click: function(event) {
-    var st = GRW.Prefs.getPref.leftClickOpen();
-    var originalClicked = false;
+    var st = GRW.Prefs.getPref.leftClickOpen(),
+    originalClicked = false;
     this.ob.forEach(function(element){
       if(event.originalTarget == element) {originalClicked = true;}
     });
@@ -707,9 +706,9 @@ GRW.windowCloseCheck = {
       win = wm.getMostRecentWindow('navigator:browser');
       if(typeof win != 'undefined' || !win) {return false;}
       win.GRW = true;
-      var minCheck = 1;
-      var configuredCheck = GRW.Prefs.getPref.checkFreq();
-      var freq = (configuredCheck >= minCheck) ? configuredCheck : minCheck;
+      var minCheck = 1,
+      configuredCheck = GRW.Prefs.getPref.checkFreq(),
+      freq = (configuredCheck >= minCheck) ? configuredCheck : minCheck;
       win.GRStates.timeoutid = win.setTimeout(win.GRW.GoogleIt, freq*1000*60);
     }
   }
