@@ -28,13 +28,13 @@ GRW.GetList.prototype = {
    * Receives the users subscriptbion list
    */
   getFeedList: function() {
-    var THIS = this;
+    var _this = this;
     new GRW.Ajax({
       url: GRStates.conntype + '://www.google.com/reader/api/0/subscription/list?output=json',
       // url: GRStates.conntype + '://www.googler.com/reader/api/0/subscription/list?output=json',
       successHandler: function(request) {
-        THIS.subscriptionsList = THIS.decodeJSON(this.req.responseText).subscriptions;
-        THIS.onFeedListLoad(this.req);
+        _this.subscriptionsList = _this.decodeJSON(this.req.responseText).subscriptions;
+        _this.onFeedListLoad(this.req);
       }
     });
   },
@@ -55,30 +55,39 @@ GRW.GetList.prototype = {
    * request for unreaded feeds
    */
   getReadCounter: function() {
-    var THIS = this;
+    var _this = this;
+    //var tries = 0;
     new GRW.Ajax({
       url: GRStates.conntype + '://www.google.com/reader/api/0/unread-count?all=true&output=json',
       successHandler: function() {
-        var data = THIS.decodeJSON(this.req.responseText);
-        THIS.unreadCount = data.unreadcounts;
-        THIS.maxCount = GRW.StatusBar.maxCount = data.max;
-        THIS.feeds = new Array();
-        THIS.userFeeds = new Array();
+        var data = _this.decodeJSON(this.req.responseText);
+        _this.unreadCount = data.unreadcounts;
+        _this.maxCount = GRW.StatusBar.maxCount = data.max;
+        _this.feeds = new Array();
+        _this.userFeeds = new Array();
         var rex1 = new RegExp('^(?:user/\\d+/state/com.google/broadcast-friends|feed)'), rex2 = new RegExp('^user\/([^/]+)\/.*');
-        THIS.unreadCount.forEach(function(o) {
+        _this.unreadCount.forEach(function(o) {
           if(rex1.test(o.id)) {
-            THIS.feeds.push(o);
+            _this.feeds.push(o);
           } else {
             if(/reading-list/.test(o.id)) {
               GRStates.userid = o.id.replace(rex2, '$1');
             }
-            THIS.userFeeds.push(o);
+            _this.userFeeds.push(o);
           }
         });
-        if(!THIS.getuserid) {
-          THIS.finishLoad(this.req);
+        if(!_this.getuserid) {
+          _this.finishLoad(this.req);
+        }
+      //  tries = false;
+      }
+      /*
+      onError: function() {
+        if(tries < 1) {
+          _this.getReadCounter();
         }
       }
+      */
     });
   },
   /**
@@ -238,13 +247,13 @@ GRW.GetList.prototype = {
       }
     });
     // filter the feeds, which aren't in the feedlist
-    var outFeeds = Array(), counter = 0, THIS = this;
+    var outFeeds = Array(), counter = 0, _this = this;
     feeds.forEach(function(o) {
       if(friendRex.test(o.Id)) { // put the friends feed into the list
         outFeeds.push(o);
         counter += o.Count;
       } else {
-        THIS.FeedlistIds.forEach(function(u) {
+        _this.FeedlistIds.forEach(function(u) {
           if(o.Id == u)  {
             counter += o.Count;
             outFeeds.push(o);
