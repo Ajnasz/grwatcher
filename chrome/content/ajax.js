@@ -141,6 +141,11 @@ GRW.Ajax.prototype = {
     } catch(e) {
       msgs.push(e.message)
     }
+    try {
+      GRW.log('responsetext:' + this.req.responseText);
+    } catch(e) {
+      msgs.push(e.message)
+    }
     msgs.push(this.url)
     GRW.log(msgs.join('\n'));
     return false;
