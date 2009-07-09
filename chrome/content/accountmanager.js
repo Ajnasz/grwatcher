@@ -55,7 +55,8 @@ GRW.AccountManager = {
             }
           }
           if(sid.length) {
-            this.setCookie('SID', sid.split('=')[1], GRW.Prefs.getPref.rememberLogin());
+            GRW.setCookie('SID', sid.split('=')[1], GRW.Prefs.getPref.rememberLogin());
+            GRW.getToken();
             return sid.split('=')[1];
           }
         }
@@ -140,12 +141,5 @@ GRW.AccountManager = {
   },
   goodCookieBehavior: function() {
     document.getElementById('GRW-statusbar-menuitem-enablecookies').setAttribute('class', 'grw-hidden');
-  },
-  setCookie: function(name, value, permanent) {
-    if(permanent) {
-      new GRW.Cookie('.google.com', name, value, new Date(new Date().setFullYear(new Date().getFullYear()+10)));
-    } else {
-      new GRW.Cookie('.google.com', name, value);
-    }
   }
 };
