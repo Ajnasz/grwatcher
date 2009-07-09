@@ -8,14 +8,12 @@
  */
 GRW.GetList = function(getuserid) {
   this.getuserid = getuserid;
-  if(this.getuserid) {
-    this.getReadCounter();
-  } else {
-    this.getFeedList();
+  var _this = this;
+  if(!GRW.token) {
+    GRW.getToken(function(arg){_this.init(arg)});
+    return;
   }
-  try {
-    this.nativeJSON = Components.classes["@mozilla.org/dom/json;1"].createInstance(Components.interfaces.nsIJSON);
-  } catch(e) {this.nativeJSON = null;}
+  this.init();
 };
 GRW.GetList.prototype = {
   subscriptionsList: null,
@@ -24,6 +22,16 @@ GRW.GetList.prototype = {
   maxCount: null,
   feeds: null,
   userFeeds: null,
+  init: function() {
+    if(this.getuserid) {
+      this.getReadCounter();
+    } else {
+      this.getFeedList();
+    }
+    try {
+      this.nativeJSON = Components.classes["@mozilla.org/dom/json;1"].createInstance(Components.interfaces.nsIJSON);
+    } catch(e) {this.nativeJSON = null;}
+  },
   /**
    * Receives the users subscriptbion list
    */
