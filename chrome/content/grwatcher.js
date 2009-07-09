@@ -114,12 +114,28 @@ GRW.mapWindows = function(onMap) {
     }
   }
 };
+GRW.getToken = function(fn, o) {
+  new GRW.Ajax({
+    url: GRStates.conntype + '://www.google.com/reader/api/0/token',
+    successHandler: function(r) {
+      GRW.setCookie('T', r.responseText);
+      GRW.token = r.responseText;
+    }
+  });
+};
+GRW.setCookie = function(name, value, permanent) {
+  if(permanent) {
+    new GRW.Cookie('.google.com', name, value, new Date(new Date().setFullYear(new Date().getFullYear()+10)));
+  } else {
+    new GRW.Cookie('.google.com', name, value);
+  }
+};
 GRW.markAllAsRead = function() {
   if(confirm(GRW.strings.getString('confirmmarkallasread'))) {
     GRW.GRCheck.getUserId();
     this.getToken();
   }
-}
+};
 GRW.markAllAsRead.prototype = {
   token: null,
   getToken: function() {
