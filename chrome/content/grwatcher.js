@@ -114,12 +114,13 @@ GRW.mapWindows = function(onMap) {
     }
   }
 };
-GRW.getToken = function(fn, o) {
+GRW.getToken = function(fn, arg) {
   new GRW.Ajax({
     url: GRStates.conntype + '://www.google.com/reader/api/0/token',
     successHandler: function(r) {
       GRW.setCookie('T', r.responseText);
       GRW.token = r.responseText;
+      if(typeof fn == 'function') fn.call(arg);
     }
   });
 };
