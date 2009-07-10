@@ -56,7 +56,7 @@ GRW.AccountManager = {
           }
           if(sid.length) {
             GRW.setCookie('SID', sid.split('=')[1], GRW.Prefs.getPref.rememberLogin());
-            GRW.getToken();
+            GRW.Token();
             return sid.split('=')[1];
           }
         }

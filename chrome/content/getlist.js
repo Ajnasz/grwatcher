@@ -9,11 +9,7 @@
 GRW.GetList = function(getuserid) {
   this.getuserid = getuserid;
   var _this = this;
-  if(!GRW.token) {
-    GRW.getToken(function(arg){_this.init(arg)});
-    return;
-  }
-  this.init();
+  GRW.Token(function(arg){_this.init(arg)});
 };
 GRW.GetList.prototype = {
   subscriptionsList: null,

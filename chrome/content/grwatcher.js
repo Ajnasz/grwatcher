@@ -114,15 +114,37 @@ GRW.mapWindows = function(onMap) {
     }
   }
 };
-GRW.getToken = function(fn, arg) {
-  new GRW.Ajax({
-    url: GRStates.conntype + '://www.google.com/reader/api/0/token',
-    successHandler: function(r) {
-      GRW.setCookie('T', r.responseText);
-      GRW.token = r.responseText;
-      if(typeof fn == 'function') fn.call(arg);
+GRW.Token = function(fn, arg, thisArg, force) {
+  var runFn = function(fn, arg) {
+    if(typeof fn == 'function') fn.call(thisArg || this, arg);
+  }
+  var update = function(fn, arg) {
+    new GRW.Ajax({
+      url: GRStates.conntype + '://www.google.com/reader/api/0/token',
+      successHandler: function(r) {
+        GRW.setCookie('T', r.responseText);
+        GRW.token = {
+          token: r.responseText,
+          date: new Date()
+        }
+        runFn(fn, arg)
+      }
+    });
+  };
+  var isValid = function() {
+    return !(!GRW.token || !GRW.token.date || Math.round(((new Date()).getTime() - GRW.token.date.getTime())/1000/60) > 5 );
+  };
+  var get = function() {
+    if(this.isValid()) {
+      return GRW.token.token;
     }
-  });
+    return null;
+  };
+  if(!isValid() || force) {
+    update(fn, arg);
+    return;
+  }
+  runFn(fn, arg)
 };
 GRW.setCookie = function(name, value, permanent) {
   if(permanent) {
@@ -134,25 +156,18 @@ GRW.setCookie = function(name, value, permanent) {
 GRW.markAllAsRead = function() {
   if(confirm(GRW.strings.getString('confirmmarkallasread'))) {
     GRW.GRCheck.getUserId();
-    this.getToken();
+    var _this = this;
+    GRW.Token(this.markAllAsRead(), null, this, true);
   }
 };
 GRW.markAllAsRead.prototype = {
-  token: null,
-  getToken: function() {
-    var THIS = this;
-    new GRW.Ajax({
-      url: GRStates.conntype + '://www.google.com/reader/api/0/token',
-      successHandler: function(request) {
-        THIS.token = this.req.responseText;
-        THIS.markAsRead();
-      }
-    });
-  },
   markAsRead: function() {
     var THIS = this;
-    var parameters = 'T=' + this.token + '&ts=' + (new Date()).getTime() + '999&s=user/' + GRStates.userid  + '/state/com.google/reading-list';
-    new GRW.Ajax({method: 'post',url: GRStates.conntype + ':www.google.com/reader/api/0/mark-all-as-read?client=scroll',successHandler: function(request) {
+    var parameters = 'T=' + GRW.token.token + '&ts=' + (new Date()).getTime() + '999&s=user/' + GRStates.userid  + '/state/com.google/reading-list';
+    new GRW.Ajax({
+      method: 'post',
+      url: GRStates.conntype + ':www.google.com/reader/api/0/mark-all-as-read?client=scroll',
+      successHandler: function(request) {
         if(this.req.responseText == 'OK') {
           GRW.GoogleIt();
         }
