@@ -2,6 +2,7 @@
 <!ENTITY GRWstatusbar.popup.getReadCounter "檢查未讀訊息">
 <!ENTITY GRWstatusbar.popup.openPrefs "選項">
 <!ENTITY GRWstatusbar.popup.markAllAsRead "全部標示已閱讀">
+<!ENTITY GRWstatusbar.popup.enableCookies "">
 <!ENTITY GRWpreferences.title "Google Reader Watcher 選項">
 <!ENTITY GRWpreferences.checkfrequency "每">
 <!ENTITY GRWpreferences.delaystart "當瀏覽器開啟時執行第一次檢查（毫秒）">
@@ -40,3 +41,6 @@
 <!ENTITY GRWtooltip.newfeed "你有未閱讀訊息">
 <!ENTITY GRWtooltip.errorlogin "登入錯誤！請確認您的登入資料！">
 <!ENTITY GRWtooltip.networkerror "連線錯誤！請確認您是否可以連線！">
+<!ENTITY GRWtooltip.cookieerror "">
+<!ENTITY GRWpreferences.showitemsintooltip "">
+<!ENTITY GRWpreferences.showitemsincontextmenu "">

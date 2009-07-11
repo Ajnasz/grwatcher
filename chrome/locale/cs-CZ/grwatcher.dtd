@@ -2,6 +2,7 @@
 <!ENTITY GRWstatusbar.popup.getReadCounter "Zkontrolovat nepřečtené zdroje">
 <!ENTITY GRWstatusbar.popup.openPrefs "Volby">
 <!ENTITY GRWstatusbar.popup.markAllAsRead "Mark all as read">
+<!ENTITY GRWstatusbar.popup.enableCookies "">
 <!ENTITY GRWpreferences.title "Volby pro Google Reader Watcher">
 <!ENTITY GRWpreferences.checkfrequency "Kontrolovat nové zdroje každé/každou">
 <!ENTITY GRWpreferences.delaystart "Start the first check after the browser started (milliseconds)">
@@ -40,3 +41,6 @@
 <!ENTITY GRWtooltip.newfeed "Máte nepřečtené zdroje">
 <!ENTITY GRWtooltip.errorlogin "Přihlašování selhalo. Zkontrolujte, že jste zadali správné heslo a/nebo uživatelské jméno!">
 <!ENTITY GRWtooltip.networkerror "Síťová  chyba!">
+<!ENTITY GRWtooltip.cookieerror "">
+<!ENTITY GRWpreferences.showitemsintooltip "">
+<!ENTITY GRWpreferences.showitemsincontextmenu "">

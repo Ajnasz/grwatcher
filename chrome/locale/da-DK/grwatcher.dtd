@@ -2,6 +2,7 @@
 <!ENTITY GRWstatusbar.popup.getReadCounter "Tjek for ulæste feeds">
 <!ENTITY GRWstatusbar.popup.openPrefs "Indstillinger">
 <!ENTITY GRWstatusbar.popup.markAllAsRead "Markér alle som læste">
+<!ENTITY GRWstatusbar.popup.enableCookies "Aktiver cookies">
 <!ENTITY GRWpreferences.title "Google Reader Watcher indstillinger">
 <!ENTITY GRWpreferences.checkfrequency "Tjek-frekvens (minutter)">
 <!ENTITY GRWpreferences.delaystart "Start det første tjek efter browseren er startet (millisekunder)">
@@ -40,3 +41,6 @@
 <!ENTITY GRWtooltip.newfeed "Du har ulæste feeds">
 <!ENTITY GRWtooltip.errorlogin "Login slog fejl. Tjek at du har indtastet korrekte kontoinformationer!">
 <!ENTITY GRWtooltip.networkerror "Forbindelse slog fejl. Tjek at du har en fungerende forbindelse!">
+<!ENTITY GRWtooltip.cookieerror "Tredjeparts-cookies ikke aktiveret! Højreklik på ikonet for at aktivere dette.">
+<!ENTITY GRWpreferences.showitemsintooltip "Aktiver visning af ulæste emner i værktøjstippet i statuslinje-ikonet">
+<!ENTITY GRWpreferences.showitemsincontextmenu "Aktiver for at vise ulæste emner i kontekstmenuen på statuslinje-ikonet">

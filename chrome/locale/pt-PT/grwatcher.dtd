@@ -2,6 +2,7 @@
 <!ENTITY GRWstatusbar.popup.getReadCounter "Verificar feeds não lidos">
 <!ENTITY GRWstatusbar.popup.openPrefs "Preferências">
 <!ENTITY GRWstatusbar.popup.markAllAsRead "Mark all as read">
+<!ENTITY GRWstatusbar.popup.enableCookies "">
 <!ENTITY GRWpreferences.title "Preferências do Google Reader Watcher">
 <!ENTITY GRWpreferences.checkfrequency "Verificar novos feeds a cada">
 <!ENTITY GRWpreferences.delaystart "Start the first check after the browser started (milliseconds)">
@@ -40,3 +41,6 @@
 <!ENTITY GRWtooltip.newfeed "Há novos feeds por ler">
 <!ENTITY GRWtooltip.errorlogin "Falha no login. Verifique se o login e senha estão corretos!">
 <!ENTITY GRWtooltip.networkerror "Erro na rede!">
+<!ENTITY GRWtooltip.cookieerror "">
+<!ENTITY GRWpreferences.showitemsintooltip "">
+<!ENTITY GRWpreferences.showitemsincontextmenu "">

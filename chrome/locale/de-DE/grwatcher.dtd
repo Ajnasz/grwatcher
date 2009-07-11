@@ -2,6 +2,7 @@
 <!ENTITY GRWstatusbar.popup.getReadCounter "Auf ungelesene Feeds überprüfen">
 <!ENTITY GRWstatusbar.popup.openPrefs "Einstellungen">
 <!ENTITY GRWstatusbar.popup.markAllAsRead "Alle als gelesen markieren">
+<!ENTITY GRWstatusbar.popup.enableCookies "">
 <!ENTITY GRWpreferences.title "Google Reader Watcher - Einstellungen">
 <!ENTITY GRWpreferences.checkfrequency "Auf neue Feeds überprüfen alle">
 <!ENTITY GRWpreferences.delaystart "Start der ersten Überprüfung nach Browser-Start (in Millisekunden)">
@@ -40,3 +41,6 @@
 <!ENTITY GRWtooltip.newfeed "Sie haben ungelesene Feeds">
 <!ENTITY GRWtooltip.errorlogin "Anmeldung fehlgeschlagen. Bitte überprüfen Sie Passwort und/oder Benutzername!">
 <!ENTITY GRWtooltip.networkerror "Netzwerkfehler. Kontrollieren Sie Ihre Verbindung!">
+<!ENTITY GRWtooltip.cookieerror "">
+<!ENTITY GRWpreferences.showitemsintooltip "">
+<!ENTITY GRWpreferences.showitemsincontextmenu "">

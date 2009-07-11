@@ -2,6 +2,7 @@
 <!ENTITY GRWstatusbar.popup.getReadCounter "Okunmamış haberleri kontrol et">
 <!ENTITY GRWstatusbar.popup.openPrefs "Tercihler">
 <!ENTITY GRWstatusbar.popup.markAllAsRead "Hepsini okunmuş işaretle">
+<!ENTITY GRWstatusbar.popup.enableCookies "">
 <!ENTITY GRWpreferences.title "Google Reader İzleyicisi Tercihleri">
 <!ENTITY GRWpreferences.checkfrequency "Haberleri">
 <!ENTITY GRWpreferences.delaystart "Tarayıcı açıldıktan sonraki ilk kontrol için gereken gecikme (milisaniye)">
@@ -40,3 +41,6 @@
 <!ENTITY GRWtooltip.newfeed "Okunmamış haberleriniz var">
 <!ENTITY GRWtooltip.errorlogin "Giriş başarısız. Doğru kullanıcı adı/şifre kombinasyonunu girdiğinizden emin olun!">
 <!ENTITY GRWtooltip.networkerror "Ağ hatası!">
+<!ENTITY GRWtooltip.cookieerror "">
+<!ENTITY GRWpreferences.showitemsintooltip "">
+<!ENTITY GRWpreferences.showitemsincontextmenu "">

@@ -2,6 +2,7 @@
 <!ENTITY GRWstatusbar.popup.getReadCounter "检查未读的收取点">
 <!ENTITY GRWstatusbar.popup.openPrefs "选项">
 <!ENTITY GRWstatusbar.popup.markAllAsRead "标记所有为已读">
+<!ENTITY GRWstatusbar.popup.enableCookies "">
 <!ENTITY GRWpreferences.title "Google Reader Watcher 首选项">
 <!ENTITY GRWpreferences.checkfrequency "每">
 <!ENTITY GRWpreferences.delaystart "在浏览器启动后开始检查的延迟（毫秒）">
@@ -40,3 +41,6 @@
 <!ENTITY GRWtooltip.newfeed "您有未读收取点">
 <!ENTITY GRWtooltip.errorlogin "登录失败。请确认账户信息正确！">
 <!ENTITY GRWtooltip.networkerror "连接失败。请确认网络连接有效！">
+<!ENTITY GRWtooltip.cookieerror "">
+<!ENTITY GRWpreferences.showitemsintooltip "">
+<!ENTITY GRWpreferences.showitemsincontextmenu "">

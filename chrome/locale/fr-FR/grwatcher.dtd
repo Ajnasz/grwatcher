@@ -2,6 +2,7 @@
 <!ENTITY GRWstatusbar.popup.getReadCounter "Actualiser les flux">
 <!ENTITY GRWstatusbar.popup.openPrefs "Préférences">
 <!ENTITY GRWstatusbar.popup.markAllAsRead "Tout marquer comme lu">
+<!ENTITY GRWstatusbar.popup.enableCookies "">
 <!ENTITY GRWpreferences.title "Préférences de Google Reader Watcher">
 <!ENTITY GRWpreferences.checkfrequency "Vérifiez les flux non lus toutes les">
 <!ENTITY GRWpreferences.delaystart "Commencer la vérification après le démarrage (millisecondes)">
@@ -40,3 +41,6 @@
 <!ENTITY GRWtooltip.newfeed "Vous avez des flux non lus">
 <!ENTITY GRWtooltip.errorlogin "La connexion a échouée. Assurez-vous d&apos;avoir entré le bon nom d&apos;utilisateur/mot de passe!">
 <!ENTITY GRWtooltip.networkerror "La connexion a échouée. Assurez-vous d&apos;avoir une connexion à internet fonctionnelle!">
+<!ENTITY GRWtooltip.cookieerror "">
+<!ENTITY GRWpreferences.showitemsintooltip "">
+<!ENTITY GRWpreferences.showitemsincontextmenu "">

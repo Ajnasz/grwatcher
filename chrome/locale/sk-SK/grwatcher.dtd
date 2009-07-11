@@ -2,6 +2,7 @@
 <!ENTITY GRWstatusbar.popup.getReadCounter "Skontrolovať neprečítané správy">
 <!ENTITY GRWstatusbar.popup.openPrefs "Nastavenia">
 <!ENTITY GRWstatusbar.popup.markAllAsRead "Mark all as read">
+<!ENTITY GRWstatusbar.popup.enableCookies "">
 <!ENTITY GRWpreferences.title "Google Reader Watcher Nastavenia">
 <!ENTITY GRWpreferences.checkfrequency "Skontrolovať nové správy každých">
 <!ENTITY GRWpreferences.delaystart "Start the first check after the browser started (milliseconds)">
@@ -40,3 +41,6 @@
 <!ENTITY GRWtooltip.newfeed "Máte neprečítané správy">
 <!ENTITY GRWtooltip.errorlogin "Prihlásenie zlyhalo. Skontrolujte, či ste zadali správne meno a/alebo heslo.">
 <!ENTITY GRWtooltip.networkerror "Chyba pripojenia.">
+<!ENTITY GRWtooltip.cookieerror "">
+<!ENTITY GRWpreferences.showitemsintooltip "">
+<!ENTITY GRWpreferences.showitemsincontextmenu "">
