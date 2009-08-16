@@ -60,10 +60,11 @@ GRW.GetList.prototype = {
    */
   getReadCounter: function() {
     var _this = this;
-    //var tries = 0;
+    var tries = 0;
     new GRW.Ajax({
       url: GRStates.conntype + '://www.google.com/reader/api/0/unread-count?all=true&output=json',
       successHandler: function() {
+        tries = 0;
         var data = _this.decodeJSON(this.req.responseText);
         _this.unreadCount = data.unreadcounts;
         _this.maxCount = GRW.StatusBar.maxCount = data.max;
@@ -83,15 +84,14 @@ GRW.GetList.prototype = {
         if(!_this.getuserid) {
           _this.finishLoad(this.req);
         }
-      //  tries = false;
-      }
-      /*
+      },
       onError: function() {
-        if(tries < 1) {
+        if(tries < 2) {
           _this.getReadCounter();
+          tries++;
+          GRW.log('tries: ', tries);
         }
       }
-      */
     });
   },
   /**
