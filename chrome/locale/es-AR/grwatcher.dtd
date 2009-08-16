@@ -2,7 +2,6 @@
 <!ENTITY GRWstatusbar.popup.getReadCounter "Verificar alimentadores sin leer">
 <!ENTITY GRWstatusbar.popup.openPrefs "Preferencias">
 <!ENTITY GRWstatusbar.popup.markAllAsRead "Marcar todo como leido">
-<!ENTITY GRWstatusbar.popup.enableCookies "">
 <!ENTITY GRWpreferences.title "Preferencias del observador Google Reader">
 <!ENTITY GRWpreferences.checkfrequency "Verificar nuevos alimentadores cada">
 <!ENTITY GRWpreferences.delaystart "Start the first check after the browser started (milliseconds)">
@@ -41,6 +40,3 @@
 <!ENTITY GRWtooltip.newfeed "Tiene alimentadores sin leer">
 <!ENTITY GRWtooltip.errorlogin "Conexión fallida. ¡Asegúrese de introducir correctamente la clave y/o el nombre de usuario!">
 <!ENTITY GRWtooltip.networkerror "¡Error de Red!">
-<!ENTITY GRWtooltip.cookieerror "">
-<!ENTITY GRWpreferences.showitemsintooltip "">
-<!ENTITY GRWpreferences.showitemsincontextmenu "">

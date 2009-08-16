@@ -2,7 +2,6 @@
 <!ENTITY GRWstatusbar.popup.getReadCounter "Kontrolli lugemata tellimusi">
 <!ENTITY GRWstatusbar.popup.openPrefs "Eelistused">
 <!ENTITY GRWstatusbar.popup.markAllAsRead "Märgi kõik loetuks">
-<!ENTITY GRWstatusbar.popup.enableCookies "">
 <!ENTITY GRWpreferences.title "Google Reader Watcheri eelistused">
 <!ENTITY GRWpreferences.checkfrequency "Uusi tellimusi kontrollitakse iga">
 <!ENTITY GRWpreferences.delaystart "Viivitus esimese kontrollini pärast brauseri starti (millisekundites)">
@@ -41,6 +40,3 @@
 <!ENTITY GRWtooltip.newfeed "Sul on lugemata tellimusi">
 <!ENTITY GRWtooltip.errorlogin "Sisselogimine ebaõnnestus. Kontrolli sisestatud parooli ja/või kasutajanime!">
 <!ENTITY GRWtooltip.networkerror "Ühendus ebaõnnestus. Tee kindlaks, et sinu internetiühendus töötab!">
-<!ENTITY GRWtooltip.cookieerror "">
-<!ENTITY GRWpreferences.showitemsintooltip "">
-<!ENTITY GRWpreferences.showitemsincontextmenu "">

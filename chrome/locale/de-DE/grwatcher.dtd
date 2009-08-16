@@ -41,6 +41,3 @@
 <!ENTITY GRWtooltip.newfeed "Sie haben ungelesene Feeds">
 <!ENTITY GRWtooltip.errorlogin "Anmeldung fehlgeschlagen. Bitte überprüfen Sie Passwort und/oder Benutzernamen!">
 <!ENTITY GRWtooltip.networkerror "Netzwerkfehler. Kontrollieren Sie Ihre Verbindung!">
-<!ENTITY GRWtooltip.cookieerror "">
-<!ENTITY GRWpreferences.showitemsintooltip "">
-<!ENTITY GRWpreferences.showitemsincontextmenu "">
