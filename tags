@@ -3,50 +3,111 @@
 !_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
 !_TAG_PROGRAM_NAME	Exuberant Ctags	//
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
-!_TAG_PROGRAM_VERSION	5.7	//
-Ajax	chrome/content/ajax.js	/^Ajax.prototype = {$/;"	c
-Ajax	chrome/content/ajax.js	/^var Ajax = function(pars, parameters) {$/;"	f
-Ajax.stChg	chrome/content/ajax.js	/^  var stChg = function(ob, p) {$/;"	f
+!_TAG_PROGRAM_VERSION	5.8	//
 Auth	chrome/content/accountmanager.new.js	/^    var Auth = response.replace(rex.auth, '$1');$/;"	v
-GRW_LOG	chrome/content/log.js	/^GRW_LOG = function() {$/;"	f
-GRW_init	chrome/content/grwatcher.js	/^var GRW_init = function() {$/;"	f
-GRW_showNotification	chrome/content/grwatcher.js	/^var GRW_showNotification = function(label, value) {$/;"	f
-GRW_statusClickHandling	chrome/content/grwatcher.js	/^var GRW_statusClickHandling = function(ob) {$/;"	c
-GetList	chrome/content/getlist.js	/^var GetList = function(getuserid) {$/;"	c
-GoogleIt	chrome/content/grwatcher.js	/^var GoogleIt = function() {$/;"	f
+GRStates.timeoutid	chrome/content/preferences.js	/^  timeoutid: -1,$/;"	p
+GRW.AccountManager.CookieManager	chrome/content/accountmanager.js	/^  CookieManager: Components.classes["@mozilla.org\/cookiemanager;1"].getService(Components.interfaces.nsICookieManager2),$/;"	p
+GRW.AccountManager.CookieManager	chrome/content/accountmanager.new.js	/^  CookieManager: Components.classes["@mozilla.org\/cookiemanager;1"].getService(Components.interfaces.nsICookieManager),$/;"	p
+GRW.Ajax	chrome/content/ajax.js	/^GRW.Ajax = function(pars, parameters) {$/;"	f
+GRW.Ajax	chrome/content/ajax.js	/^GRW.Ajax.prototype = {$/;"	c
+GRW.Ajax.createParameters	chrome/content/ajax.js	/^  createParameters: function() {$/;"	m
+GRW.Ajax.errorHandler	chrome/content/ajax.js	/^  errorHandler: function(msg, Exception) {$/;"	m
+GRW.Ajax.handler	chrome/content/ajax.js	/^  handler: function() {$/;"	m
+GRW.Ajax.loadHandler	chrome/content/ajax.js	/^  loadHandler: function() {$/;"	m
+GRW.Ajax.method	chrome/content/ajax.js	/^  method: 'get',$/;"	p
+GRW.Ajax.pars	chrome/content/ajax.js	/^  pars: null,$/;"	p
+GRW.Ajax.req	chrome/content/ajax.js	/^  req: null,$/;"	p
+GRW.Ajax.stChg	chrome/content/ajax.js	/^  var stChg = function(ob, p) {$/;"	f
+GRW.Ajax.successHandler	chrome/content/ajax.js	/^  successHandler: function() {$/;"	m
+GRW.Ajax.url	chrome/content/ajax.js	/^  url: null,$/;"	p
+GRW.Cookie	chrome/content/cookie.js	/^GRW.Cookie = function(domain, name, value, date, path) {$/;"	c
+GRW.GRCheck.getOpenedGR	chrome/content/grwatcher.js	/^  getOpenedGR: function() {$/;"	m
+GRW.GRCheck.getOpenedGR.outObj.blankPage	chrome/content/grwatcher.js	/^    var outObj = {grTab: false, blankPage: false};$/;"	p
+GRW.GRCheck.getOpenedGR.outObj.grTab	chrome/content/grwatcher.js	/^    var outObj = {grTab: false, blankPage: false};$/;"	p
+GRW.GRCheck.getReaderURL	chrome/content/grwatcher.js	/^  getReaderURL: function() {$/;"	m
+GRW.GRCheck.getUserId	chrome/content/grwatcher.js	/^  getUserId: function(json) {$/;"	m
+GRW.GRCheck.openReader	chrome/content/grwatcher.js	/^  openReader: function(url) {$/;"	m
+GRW.GenStatusGrid	chrome/content/grwatcher.js	/^GRW.GenStatusGrid = function(feeds, class, justRows) {$/;"	c
+GRW.GenStatusGrid.genGrid	chrome/content/grwatcher.js	/^  genGrid: function(rowsArray) {$/;"	m
+GRW.GenStatusGrid.genRows	chrome/content/grwatcher.js	/^  genRows: function(feeds) {$/;"	m
+GRW.GenStatusMenu	chrome/content/grwatcher.js	/^GRW.GenStatusMenu = function(win, feeds) {$/;"	c
+GRW.GenStatusMenu.addItems	chrome/content/grwatcher.js	/^  addItems: function() {$/;"	m
+GRW.GenStatusMenu.clearItems	chrome/content/grwatcher.js	/^  clearItems: function() {$/;"	m
+GRW.GenStatusMenu.genMenu	chrome/content/grwatcher.js	/^  genMenu: function(feeds) {$/;"	m
+GRW.GenStatusMenu.showHideSeparator	chrome/content/grwatcher.js	/^  showHideSeparator: function(hide) {$/;"	m
+GRW.GetList	chrome/content/getlist.js	/^GRW.GetList = function(getuserid) {$/;"	c
+GRW.GetList.FeedlistIds	chrome/content/getlist.js	/^  FeedlistIds: null,$/;"	p
+GRW.GetList.countLabeled	chrome/content/getlist.js	/^  countLabeled: function() {$/;"	m
+GRW.GetList.feeds	chrome/content/getlist.js	/^  feeds: null,$/;"	p
+GRW.GetList.finishLoad	chrome/content/getlist.js	/^  finishLoad: function(req) {$/;"	m
+GRW.GetList.getFeedList	chrome/content/getlist.js	/^  getFeedList: function() {$/;"	m
+GRW.GetList.getReadCounter	chrome/content/getlist.js	/^  getReadCounter: function() {$/;"	m
+GRW.GetList.init	chrome/content/getlist.js	/^  init: function() {$/;"	m
+GRW.GetList.maxCount	chrome/content/getlist.js	/^  maxCount: null,$/;"	p
+GRW.GetList.onFeedListLoad	chrome/content/getlist.js	/^  onFeedListLoad: function(request) {$/;"	m
+GRW.GetList.subscriptionsList	chrome/content/getlist.js	/^  subscriptionsList: null,$/;"	p
+GRW.GetList.unreadCount	chrome/content/getlist.js	/^  unreadCount: null,$/;"	p
+GRW.GetList.userFeeds	chrome/content/getlist.js	/^  userFeeds: null,$/;"	p
+GRW.GoogleIt	chrome/content/grwatcher.js	/^GRW.GoogleIt = function() {$/;"	f
+GRW.Prefs.getBool	chrome/content/preferences.js	/^  getBool: function(pref) {$/;"	m
+GRW.Prefs.getChar	chrome/content/preferences.js	/^  getChar: function(pref) {$/;"	m
+GRW.Prefs.getInt	chrome/content/preferences.js	/^  getInt: function(pref) {$/;"	m
+GRW.Prefs.getPref	chrome/content/preferences.js	/^  getPref: {$/;"	p
+GRW.StatusBar.hideCounter	chrome/content/grwatcher.js	/^  hideCounter: function() {$/;"	m
+GRW.StatusBar.setReaderStatus	chrome/content/grwatcher.js	/^  setReaderStatus: function(status) {$/;"	m
+GRW.StatusBar.setReaderTooltip	chrome/content/grwatcher.js	/^  setReaderTooltip: function(t, unr) {$/;"	m
+GRW.StatusBar.showCounter	chrome/content/grwatcher.js	/^  showCounter: function(val) {$/;"	m
+GRW.StatusBar.switchErrorIcon	chrome/content/grwatcher.js	/^  switchErrorIcon: function() {$/;"	m
+GRW.StatusBar.switchLoadIcon	chrome/content/grwatcher.js	/^  switchLoadIcon: function() {$/;"	m
+GRW.StatusBar.switchOffIcon	chrome/content/grwatcher.js	/^  switchOffIcon: function() {$/;"	m
+GRW.StatusBar.switchOnIcon	chrome/content/grwatcher.js	/^  switchOnIcon: function() {$/;"	m
+GRW.Token	chrome/content/grwatcher.js	/^GRW.Token = function(fn, arg, thisArg, force) {$/;"	f
+GRW.Token.get	chrome/content/grwatcher.js	/^  var get = function() {$/;"	f
+GRW.Token.isValid	chrome/content/grwatcher.js	/^  var isValid = function() {$/;"	f
+GRW.Token.runFn	chrome/content/grwatcher.js	/^  var runFn = function(fn, arg) {$/;"	f
+GRW.Token.update	chrome/content/grwatcher.js	/^  var update = function(fn, arg) {$/;"	f
+GRW._PasswordManager	chrome/content/passmanager.js	/^GRW._PasswordManager = function() {$/;"	c
+GRW.enableCookies	chrome/content/grwatcher.js	/^GRW.enableCookies = function(event) {$/;"	f
+GRW.escapeForRegExp	chrome/content/general.js	/^GRW.escapeForRegExp = function(str) {$/;"	f
+GRW.getActiveGRW	chrome/content/grwatcher.js	/^GRW.getActiveGRW = function() {$/;"	f
+GRW.init	chrome/content/grwatcher.js	/^GRW.init = function() {$/;"	f
+GRW.isActiveGRW	chrome/content/grwatcher.js	/^GRW.isActiveGRW = function() {$/;"	f
+GRW.log	chrome/content/log.js	/^GRW.log = function() {$/;"	f
+GRW.mapWindows	chrome/content/grwatcher.js	/^GRW.mapWindows = function(onMap) {$/;"	f
+GRW.markAllAsRead	chrome/content/grwatcher.js	/^GRW.markAllAsRead = function() {$/;"	f
+GRW.markAllAsRead	chrome/content/grwatcher.js	/^GRW.markAllAsRead.prototype = {$/;"	c
+GRW.markAllAsRead.markAsRead	chrome/content/grwatcher.js	/^  markAsRead: function() {$/;"	m
+GRW.openNewTabCheckToogle	chrome/content/grprefs.js	/^GRW.openNewTabCheckToogle = function() {$/;"	f
+GRW.openPrefs	chrome/content/grwatcher.js	/^GRW.openPrefs = function(event) {$/;"	f
+GRW.openReaderNotify.observe	chrome/content/grwatcher.js	/^  observe: function(subject, topic, data) {$/;"	m
+GRW.savePreferences	chrome/content/grprefs.js	/^GRW.savePreferences = function() {$/;"	f
+GRW.setCookie	chrome/content/grwatcher.js	/^GRW.setCookie = function(name, value, permanent) {$/;"	f
+GRW.setPrefPaneVals	chrome/content/grprefs.js	/^GRW.setPrefPaneVals = function() {$/;"	f
+GRW.showNotification	chrome/content/grwatcher.js	/^GRW.showNotification = function(label, value) {$/;"	f
+GRW.statusClickHandling	chrome/content/grwatcher.js	/^GRW.statusClickHandling = function(ob) {$/;"	c
+GRW.statusClickHandling.ob	chrome/content/grwatcher.js	/^  ob: null,$/;"	p
+GRW.statusClickHandling.observe	chrome/content/grwatcher.js	/^  observe: function() {$/;"	m
+GRW.statusClickHandling.st	chrome/content/grwatcher.js	/^  st: null,$/;"	p
+GRW.windowCloseCheck.observe	chrome/content/grwatcher.js	/^  observe: function(aSubject, aTopic, aData) {$/;"	m
 LSID	chrome/content/accountmanager.new.js	/^    var LSID = response.replace(rex.lsid, '$1');$/;"	v
 SID	chrome/content/accountmanager.new.js	/^    var SID = response.replace(rex.sid, '$1');$/;"	v
-_passwordManager	chrome/content/passmanager.js	/^var _passwordManager = function() {$/;"	c
+a	testfiles/showgrwmessages.js	/^var a = Components.classes["@mozilla.org\/consoleservice;1"].getService(Components.interfaces.nsIConsoleService);var b = {};a.getMessageArray(b,{});var c = [];for(var i in b){for(var j in b[i]){if(\/GRW\/.test(b[i][j].message)){c.push(b[i][j].message);}}};a.logStringMessage('GRW messages: ' + c.join(" ====new message ==== "));$/;"	v
 agent	chrome/content/ajax.js	/^  var agent = 'Google Reader Watcher ###VERSION###';$/;"	v
-column	chrome/content/grwatcher.js	/^    var column = document.createElement('column');$/;"	v
-columnc1	chrome/content/grwatcher.js	/^    var columnc1, columnc2, rowc, labelc1, labelc2;$/;"	v
-columns	chrome/content/grwatcher.js	/^    var columns = document.createElement('columns');$/;"	v
-configuredCheck	chrome/content/grwatcher.js	/^    var configuredCheck = GRPrefs.getPref.checkFreq();$/;"	v
-curSid	chrome/content/accountmanager.new.js	/^    var curSid = accountManager.getCurrentSID();$/;"	v
+buildXPI	makexpi.sh	/^function buildXPI {$/;"	f
+c	testfiles/showgrwmessages.js	/^var a = Components.classes["@mozilla.org\/consoleservice;1"].getService(Components.interfaces.nsIConsoleService);var b = {};a.getMessageArray(b,{});var c = [];for(var i in b){for(var j in b[i]){if(\/GRW\/.test(b[i][j].message)){c.push(b[i][j].message);}}};a.logStringMessage('GRW messages: ' + c.join(" ====new message ==== "));$/;"	v
+cleanBuild	makexpi.sh	/^function cleanBuild {$/;"	f
+curSid	chrome/content/accountmanager.new.js	/^    var curSid = GRW.AccountManager.getCurrentSID();$/;"	v
 ds	chrome/content/ajax.js	/^  var ds = Cc["@mozilla.org\/webshell;1"].createInstance(Ci.nsIDocShellTreeItem).QueryInterface(Ci.nsIInterfaceRequestor);$/;"	v
-feeds	chrome/content/getlist.js	/^    var feeds = Array(), unr = this.feedsCounter(), o, u;$/;"	v
+feeds	chrome/content/getlist.js	/^    var feeds = Array(), unr = this.feedsCounter(), o, u, filteredLabels = GRW.Prefs.getPref.filteredLabels();$/;"	v
 feeds	chrome/content/getlist.js	/^    var feeds = Array();$/;"	v
-filteredLabels	chrome/content/getlist.js	/^    var filteredLabels = GRPrefs.getPref.filteredLabels();$/;"	v
-genStatusGrid	chrome/content/grwatcher.js	/^var genStatusGrid = function(feeds, class, justRows) {$/;"	c
-genStatusMenu	chrome/content/grwatcher.js	/^var genStatusMenu = function(tm) {$/;"	c
-getActiveGRW	chrome/content/grwatcher.js	/^var getActiveGRW = function() {$/;"	f
-i	chrome/content/getlist.js	/^    var i, l, la, u, all = 0, feeds = new Array(), counted = new Object(), rex, label;$/;"	v
-isActiveGRW	chrome/content/grwatcher.js	/^var isActiveGRW = function() {$/;"	f
 labels	chrome/content/getlist.js	/^    var labels = new Object();$/;"	c
-mapWindows	chrome/content/grwatcher.js	/^var mapWindows = function(onMap) {$/;"	f
-markAllAsRead	chrome/content/grwatcher.js	/^var markAllAsRead = function() {$/;"	c
-minCheck	chrome/content/grwatcher.js	/^    var minCheck = 1;$/;"	v
-openNewTabCheckToogle	chrome/content/grprefs.js	/^var openNewTabCheckToogle = function() {$/;"	f
-openPrefs	chrome/content/grwatcher.js	/^var openPrefs = function(event) {$/;"	f
-outFeeds	chrome/content/getlist.js	/^    var outFeeds = Array(), counter = 0, THIS = this;$/;"	v
-param	chrome/content/accountmanager.js	/^      var param = 'Email='+encodeURIComponent(GRPrefs.getPref.userName())+'&Passwd='+encodeURIComponent(passwordManager.getPassword())+'&service=reader&continue=http:\/\/www.google.com';$/;"	v
-param	chrome/content/accountmanager.new.js	/^      var param = 'source=' + encodeURIComponent('Google Reader Watcher') + '&Email='+encodeURIComponent(GRPrefs.getPref.userName())+'&Passwd='+encodeURIComponent(passwordManager.getPassword())+'&service=reader&continue=' + encodeURIComponent('http:\/\/www.google.com\/');$/;"	v
-parameters	chrome/content/grwatcher.js	/^    var parameters = 'T=' + this.token + '&ts=' + (new Date()).getTime() + '999&s=user\/' + GRStates.userid  + '\/state\/com.google\/reading-list';$/;"	v
-prefManager	chrome/content/grprefs.js	/^var prefManager = Components.classes["@mozilla.org\/preferences-service;1"].getService(Components.interfaces.nsIPrefBranch);$/;"	v
-prefManager	chrome/content/preferences.js	/^var prefManager = Components.classes["@mozilla.org\/preferences-service;1"].getService(Components.interfaces.nsIPrefBranch);$/;"	v
-rows	chrome/content/grwatcher.js	/^    var rows = document.createElement('rows');$/;"	v
-savePreferences	chrome/content/grprefs.js	/^var savePreferences = function() {$/;"	f
-setPrefPaneVals	chrome/content/grprefs.js	/^var setPrefPaneVals = function() {$/;"	f
+labels.value	chrome/content/getlist.js	/^    labels['-'] = {value: nolabel.value, Id: ''};$/;"	p
+nolabel.Id	chrome/content/getlist.js	/^    var nolabel = {Id: '', value: new Array()};$/;"	p
+nolabel.value	chrome/content/getlist.js	/^    var nolabel = {Id: '', value: new Array()};$/;"	p
+outFeeds	chrome/content/getlist.js	/^    var outFeeds = Array(), counter = 0, _this = this;$/;"	v
+param	chrome/content/accountmanager.js	/^      var param = 'service=reader&Email='+encodeURIComponent(GRW.Prefs.getPref.userName())+'&Passwd='+encodeURIComponent(GRW.PasswordManager.getPassword())+'&continue=http:\/\/www.google.com\/reader\/';$/;"	v
+param	chrome/content/accountmanager.new.js	/^      var param = 'source=' + encodeURIComponent('Google Reader Watcher') + '&Email='+encodeURIComponent(GRW.Prefs.getPref.userName())+'&Passwd='+encodeURIComponent(GRW.PasswordManager.getPassword())+'&service=reader&continue=' + encodeURIComponent('http:\/\/www.google.com\/');$/;"	v
+rex.sid	chrome/content/accountmanager.new.js	/^      sid: new RegExp('^SID=([-_a-zA-Z0-9]+)', 'm'),$/;"	p
+setVersion	makexpi.sh	/^function setVersion {$/;"	f
 this.addPassword	chrome/content/passmanager.js	/^    this.addPassword = function(password) {$/;"	m
 this.getPassword	chrome/content/passmanager.js	/^    this.getPassword = function() {$/;"	m
-unr	chrome/content/getlist.js	/^    var unr = r.counter;$/;"	v
