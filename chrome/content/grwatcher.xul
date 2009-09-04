@@ -27,10 +27,10 @@
       <label id="GRW-statusbar-label" value="GRW" collapsed="true" crop="end" />
       <menupopup id="GRW-statusbar-menu" position="before_end">
         <menuseparator class="grw-hidden" />
-        <menuitem label="&GRWstatusbar.popup.markAllAsRead;" oncommand="new GRW.markAllAsRead();" />
-        <menuitem label="&GRWstatusbar.popup.openReader;" oncommand="GRW.GRCheck.openReader();" />
-        <menuitem label="&GRWstatusbar.popup.getReadCounter;" oncommand="GRW.GoogleIt();" />
-        <menuitem label="&GRWstatusbar.popup.openPrefs;" oncommand="GRW.openPrefs();" />
+        <menuitem label="&GRWstatusbar.popup.markAllAsRead;" oncommand="new GRW.markAllAsRead();" id="GRW-statusbar-menuitem-markallasread" />
+        <menuitem label="&GRWstatusbar.popup.openReader;" oncommand="GRW.GRCheck.openReader();" id="GRW-statusbar-menuitem-openreader" />
+        <menuitem label="&GRWstatusbar.popup.getReadCounter;" oncommand="GRW.GoogleIt();" id="GRW-statusbar-menuitem-getcounter" />
+        <menuitem label="&GRWstatusbar.popup.openPrefs;" oncommand="GRW.openPrefs();" id="GRW-statusbar-menuitem-openprefs" />
         <menuitem label="&GRWstatusbar.popup.enableCookies;" oncommand="GRW.enableCookies(true);" class="grw-hidden" id="GRW-statusbar-menuitem-enablecookies" />
       </menupopup>
       <tooltip id="GRW-statusbar-tooltip-error" position="before_end"><description id="GRW-statusbar-tooltip-error-description" value="&GRWtooltip.errorfeedfetch;" /></tooltip>
