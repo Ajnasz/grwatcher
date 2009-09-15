@@ -2,6 +2,7 @@
 <!ENTITY GRWstatusbar.popup.getReadCounter "Comprova si hi ha canals sense llegir">
 <!ENTITY GRWstatusbar.popup.openPrefs "Preferències">
 <!ENTITY GRWstatusbar.popup.markAllAsRead "Marca com a llegits">
+<!ENTITY GRWstatusbar.popup.enableCookies "Enable cookies">
 <!ENTITY GRWpreferences.title "Preferències de l&apos;observador del lector de Google">
 <!ENTITY GRWpreferences.checkfrequency "Freqüència de comprobació (minuts)">
 <!ENTITY GRWpreferences.delaystart "Comença amb la primera comprobació un cop el navegador s&apos;hagi obert (milisegons)">
@@ -40,3 +41,6 @@
 <!ENTITY GRWtooltip.newfeed "Teniu canals sense llegir">
 <!ENTITY GRWtooltip.errorlogin "S&apos;ha produït un error a l&apos;accedir. Assegureu-vos que heu entrat de forma correcta les vostres dades!">
 <!ENTITY GRWtooltip.networkerror "S&apos;ha produït un error en la connexió. Assegureuvos que en teniu una i estigui funcionant!">
+<!ENTITY GRWtooltip.cookieerror "The third-party cookies are not enabled! Press right mouse button on the icon to enable it.">
+<!ENTITY GRWpreferences.showitemsintooltip "Enable to display unread items in the tooltip statusbar icon">
+<!ENTITY GRWpreferences.showitemsincontextmenu "Enable to add the unread items in the context menu of the statusbar icon">

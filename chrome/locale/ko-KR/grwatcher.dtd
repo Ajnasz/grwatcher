@@ -2,6 +2,7 @@
 <!ENTITY GRWstatusbar.popup.getReadCounter "읽지 않은 글 점검">
 <!ENTITY GRWstatusbar.popup.openPrefs "설정">
 <!ENTITY GRWstatusbar.popup.markAllAsRead "모두 읽은 상태로 표시">
+<!ENTITY GRWstatusbar.popup.enableCookies "Enable cookies">
 <!ENTITY GRWpreferences.title "Google Reader Watcher 설정">
 <!ENTITY GRWpreferences.checkfrequency "읽지 않은 글을">
 <!ENTITY GRWpreferences.delaystart "파이어폭스 실행 후 지정된 시간 뒤에 첫번째 점검을 합니다. (밀리초 단위로 입력. 1000ms=1초)">
@@ -40,3 +41,6 @@
 <!ENTITY GRWtooltip.newfeed "읽지 않은 글이 있습니다.">
 <!ENTITY GRWtooltip.errorlogin "로그인 실패! 계정정보가 정확한지 확인하세요.">
 <!ENTITY GRWtooltip.networkerror "접속 실패! 인터넷 연결이 올바르게 되었는지 확인하세요.">
+<!ENTITY GRWtooltip.cookieerror "The third-party cookies are not enabled! Press right mouse button on the icon to enable it.">
+<!ENTITY GRWpreferences.showitemsintooltip "Enable to display unread items in the tooltip statusbar icon">
+<!ENTITY GRWpreferences.showitemsincontextmenu "Enable to add the unread items in the context menu of the statusbar icon">

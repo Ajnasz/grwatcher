@@ -2,6 +2,7 @@
 <!ENTITY GRWstatusbar.popup.getReadCounter "Kontrolli lugemata tellimusi">
 <!ENTITY GRWstatusbar.popup.openPrefs "Eelistused">
 <!ENTITY GRWstatusbar.popup.markAllAsRead "Märgi kõik loetuks">
+<!ENTITY GRWstatusbar.popup.enableCookies "Enable cookies">
 <!ENTITY GRWpreferences.title "Google Reader Watcheri eelistused">
 <!ENTITY GRWpreferences.checkfrequency "Uusi tellimusi kontrollitakse iga">
 <!ENTITY GRWpreferences.delaystart "Viivitus esimese kontrollini pärast brauseri starti (millisekundites)">
@@ -40,3 +41,6 @@
 <!ENTITY GRWtooltip.newfeed "Sul on lugemata tellimusi">
 <!ENTITY GRWtooltip.errorlogin "Sisselogimine ebaõnnestus. Kontrolli sisestatud parooli ja/või kasutajanime!">
 <!ENTITY GRWtooltip.networkerror "Ühendus ebaõnnestus. Tee kindlaks, et sinu internetiühendus töötab!">
+<!ENTITY GRWtooltip.cookieerror "The third-party cookies are not enabled! Press right mouse button on the icon to enable it.">
+<!ENTITY GRWpreferences.showitemsintooltip "Enable to display unread items in the tooltip statusbar icon">
+<!ENTITY GRWpreferences.showitemsincontextmenu "Enable to add the unread items in the context menu of the statusbar icon">

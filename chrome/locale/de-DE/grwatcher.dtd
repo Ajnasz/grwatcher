@@ -41,3 +41,6 @@
 <!ENTITY GRWtooltip.newfeed "Sie haben ungelesene Feeds">
 <!ENTITY GRWtooltip.errorlogin "Anmeldung fehlgeschlagen. Bitte überprüfen Sie Passwort und/oder Benutzernamen!">
 <!ENTITY GRWtooltip.networkerror "Netzwerkfehler. Kontrollieren Sie Ihre Verbindung!">
+<!ENTITY GRWtooltip.cookieerror "The third-party cookies are not enabled! Press right mouse button on the icon to enable it.">
+<!ENTITY GRWpreferences.showitemsintooltip "Enable to display unread items in the tooltip statusbar icon">
+<!ENTITY GRWpreferences.showitemsincontextmenu "Enable to add the unread items in the context menu of the statusbar icon">

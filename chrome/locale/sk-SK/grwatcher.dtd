@@ -2,6 +2,7 @@
 <!ENTITY GRWstatusbar.popup.getReadCounter "Skontrolovať neprečítané správy">
 <!ENTITY GRWstatusbar.popup.openPrefs "Nastavenia">
 <!ENTITY GRWstatusbar.popup.markAllAsRead "Mark all as read">
+<!ENTITY GRWstatusbar.popup.enableCookies "Enable cookies">
 <!ENTITY GRWpreferences.title "Google Reader Watcher Nastavenia">
 <!ENTITY GRWpreferences.checkfrequency "Skontrolovať nové správy každých">
 <!ENTITY GRWpreferences.delaystart "Start the first check after the browser started (milliseconds)">
@@ -40,3 +41,6 @@
 <!ENTITY GRWtooltip.newfeed "Máte neprečítané správy">
 <!ENTITY GRWtooltip.errorlogin "Prihlásenie zlyhalo. Skontrolujte, či ste zadali správne meno a/alebo heslo.">
 <!ENTITY GRWtooltip.networkerror "Chyba pripojenia.">
+<!ENTITY GRWtooltip.cookieerror "The third-party cookies are not enabled! Press right mouse button on the icon to enable it.">
+<!ENTITY GRWpreferences.showitemsintooltip "Enable to display unread items in the tooltip statusbar icon">
+<!ENTITY GRWpreferences.showitemsincontextmenu "Enable to add the unread items in the context menu of the statusbar icon">
