@@ -1,5 +1,5 @@
 <!ENTITY GRWstatusbar.popup.openReader "Avaa Google Reader">
-<!ENTITY GRWstatusbar.popup.getReadCounter "Tarkista, jos lukemattomia syötteitä">
+<!ENTITY GRWstatusbar.popup.getReadCounter "Etsi lukemattomia syötteitä">
 <!ENTITY GRWstatusbar.popup.openPrefs "Asetukset">
 <!ENTITY GRWstatusbar.popup.markAllAsRead "Merkitse kaikki luetuksi">
 <!ENTITY GRWstatusbar.popup.enableCookies "Ota evästeet käyttöön">
@@ -8,7 +8,7 @@
 <!ENTITY GRWpreferences.delaystart "Ensimmäisen tarkistuksen ajankohta selaimen käynnistyksen jälkeen (millisekunneissa)">
 <!ENTITY GRWpreferences.activateOpenedTab "Valitse Google Reader -välilehti avaamisen jälkeen">
 <!ENTITY GRWpreferences.generalpreferencescaption "Yleiset asetukset">
-<!ENTITY GRWpreferences.generalpreferencesopencaption "Google Reader -avausasetukset">
+<!ENTITY GRWpreferences.generalpreferencesopencaption "Google Readerin avausasetukset">
 <!ENTITY GRWpreferences.tooltippreferencescaption "Työkaluvihjeiden asetukset">
 <!ENTITY GRWpreferences.tabgeneral "Yleiset">
 <!ENTITY GRWpreferences.tabaccountinfo "Käyttäjätilitiedot">
@@ -23,7 +23,7 @@
 <!ENTITY GRWpreferences.tooltipcounterposleft "Vasen">
 <!ENTITY GRWpreferences.tooltipcounterposdesc "Laskurin sijainti työkaluvihjeessä:">
 <!ENTITY GRWpreferences.tooltipdesc "Nämä valinnat suoritetaan syötteen tarkistuksen jälkeen.">
-<!ENTITY GRWpreferences.tooltiptitlelengthdesc "Kuinka monta merkkiä näytetään syötteen otsikosta työkaluvihjeessä?">
+<!ENTITY GRWpreferences.tooltiptitlelengthdesc "Syötteen otsikosta näytettävien merkkien määrä työkaluvihjeessä">
 <!ENTITY GRWpreferences.accountinfocaption "Google-tilin tiedot">
 <!ENTITY GRWpreferences.accountinfoemail "Sähköpostiosoite:">
 <!ENTITY GRWpreferences.accountinfopassword "Salasana:">
@@ -37,7 +37,7 @@
 <!ENTITY GRWpreferences.sortbylabels "Järjestä syötteet työkaluvihjeessä otsikon mukaan">
 <!ENTITY GRWpreferences.filteredlabels "Suodata otsikoidut syötteet seuraavien otsikoiden mukaan (pilkulla eroteltu lista)">
 <!ENTITY GRWtooltip.nonewfeed "Lukemattomia syötteitä ei löytynyt">
-<!ENTITY GRWtooltip.errorfeedfetch "Virhe noutaessa syötteitä!">
+<!ENTITY GRWtooltip.errorfeedfetch "Virhe syötteiden noudossa!">
 <!ENTITY GRWtooltip.newfeed "Sinulla on lukemattomia syötteitä">
 <!ENTITY GRWtooltip.errorlogin "Kirjautuminen epäonnistui. Varmista, että syötit oikean käyttäjätunnuksen ja salasanan.">
 <!ENTITY GRWtooltip.networkerror "Yhdistäminen epäonnistui. Varmista, että käytät toimivaa yhteyttä.">
