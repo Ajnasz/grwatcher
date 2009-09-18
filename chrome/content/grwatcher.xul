@@ -7,17 +7,7 @@
 <!DOCTYPE window SYSTEM "chrome://grwatcher/locale/grwatcher.dtd">
 
 <overlay id="GRWatcherOverlay" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
-  <script type="application/x-javascript" src="chrome://grwatcher/content/namespace.js" />
-  <script type="application/x-javascript" src="chrome://grwatcher/content/general.js" />
-  <script type="application/x-javascript" src="chrome://grwatcher/content/log.js" />
-  <script type="application/x-javascript" src="chrome://grwatcher/content/preferences.js" />
-  <script type="application/x-javascript" src="chrome://grwatcher/content/passmanager.js" />
-  <script type="application/x-javascript" src="chrome://grwatcher/content/cookie.js" />
-  <script type="application/x-javascript" src="chrome://grwatcher/content/accountmanager.js" />
-  <script type="application/x-javascript" src="chrome://grwatcher/content/ajax.js" />
-  <script type="application/x-javascript" src="chrome://grwatcher/content/getlist.js" />
-  <script type="application/x-javascript" src="chrome://grwatcher/content/grwatcher.js" />
-<!--  <script type="application/x-javascript" src="chrome://grwatcher/content/grwatcher-init.js" /> -->
+  <script type="application/x-javascript" src="chrome://grwatcher/content/core.js" />
 
 
   <statusbar id="status-bar">
