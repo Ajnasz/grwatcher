@@ -1,4 +1,9 @@
 /**
+ * Logger method which writes messages to the error console
+ * @method log
+ *
+ * @namespace GRW
+ *
  * @param {String} message log on the javascript console
  */
 GRW.log = function() {
