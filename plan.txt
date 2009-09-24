@@ -1,0 +1,35 @@
+= Google Reader Watcher Rewrite Plan =
+
+== Objects ==
+
+* UI:
+** Status-bar
+*** Icon
+*** Counter
+*** Toolt-ip
+*** Context menu
+* Tool-bar Icon
+** Context
+** Tool-tip?
+
+=== Status-bar Icon ===
+
+=== General rules ===
+
+Dont show tool-tip message if it's not enabled
+
+==== States ====
+
+;Default:
+:Grey Icon
+:No counter (or 0)
+:Tool-tip message
+
+;New feeds available:
+:Blue icon
+:Tool-tip grid
+
+
+== Improvements ==
+
+* Need an option to make possible to disable the 'mark all as read' option in the status-bar context menu
