@@ -289,7 +289,8 @@ GRW.GetList.prototype = {
     if(this.nativeJSON) {
       return this.nativeJSON.decode(text);
     } else {
-      return eval('(' + text + ')');
+      var s = Components.utils.Sandbox(GRStates.conntype + '://www.google.com');
+      return Components.utils.evalInSandbox('(' + text + ')', s);
     }
   }
 };
