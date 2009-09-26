@@ -271,7 +271,7 @@ GRW.Prefs = {
   }
 };
 GRStates = {
-  timeoutid: -1,
+  timeoutid: null,
   showNotification: true,
   currentNum: null,
   feeds: null,
