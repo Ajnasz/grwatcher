@@ -431,7 +431,6 @@ GRW.showNotification = function(label, value) {
           .openWindow(null, "chrome://global/content/alerts/alert.xul", "_blank", "chrome,titlebar=no,popup=yes", null);
           alertWin.arguments = [image, label, value, true, "", 0, GRW.openReaderNotify];
           GRW.timeout(function(){alertWin.close()},10000)
-          // alertWin.setTimeout(function(){alertWin.close()},10000);
       } catch(e) {
         GRW.log(e.message);
       }
