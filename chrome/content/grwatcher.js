@@ -4,6 +4,30 @@
  * @requires chrome/content/grprefs.js
  * @requires chrome/content/ajax.js
  */
+/**
+ * Implementation of window.setTimeout with nsiTimer
+ * @method setTimeout
+ * @param {Function} fn Method to run
+ * @param {Integer} timeout
+ */
+GRW.timeout = function(fn, timeout) {
+  var timer = Components.classes["@mozilla.org/timer;1"].createInstance(Components.interfaces.nsITimer);
+  var callback = {notify: fn};
+  timer.initWithCallback(callback, timeout, Components.interfaces.nsITimer.TYPE_ONE_SHOT);
+  return timer;
+};
+/**
+ * Implementation of window.clearTimeout with nsiTimer
+ * @method clrTimeout
+ */
+GRW.clrTimeout = function(timer) {
+  if(timer && typeof timer.cancel == 'function') { timer.cancel(); }
+};
+
+/**
+ * @namespace GRW
+ * @module GRCheck
+ */
 GRW.GRCheck = {
   getUserId: function(json) {
     if(!GRStates.userid) {
@@ -76,10 +100,8 @@ GRW.GRCheck = {
     var minCheck = 1,
     configuredCheck = GRW.Prefs.getPref.checkFreq(),
     freq = (configuredCheck >= minCheck) ? configuredCheck : minCheck;
-    if(GRStates.timeoutid) {
-      clearTimeout(GRStates.timeoutid);
-    }
-    GRStates.timeoutid = setTimeout(GRW.GoogleIt, freq*1000*60);
+    GRW.clrTimeout(GRStates.timeoutid);
+    GRStates.timeoutid = GRW.timeout(GRW.GoogleIt, freq*1000*60);
   },
   /**
    * checks for opened GR window and blank pages
@@ -408,7 +430,8 @@ GRW.showNotification = function(label, value) {
           .getService(Components.interfaces.nsIWindowWatcher)
           .openWindow(null, "chrome://global/content/alerts/alert.xul", "_blank", "chrome,titlebar=no,popup=yes", null);
           alertWin.arguments = [image, label, value, true, "", 0, GRW.openReaderNotify];
-          alertWin.setTimeout(function(){alertWin.close()},10000);
+          GRW.timeout(function(){alertWin.close()},10000)
+          // alertWin.setTimeout(function(){alertWin.close()},10000);
       } catch(e) {
         GRW.log(e.message);
       }
@@ -619,10 +642,8 @@ GRW.GoogleIt = function() {
   var minCheck = 1,
   configuredCheck = GRW.Prefs.getPref.checkFreq(),
   freq = (configuredCheck >= minCheck) ? configuredCheck : minCheck;
-  if(GRStates.timeoutid) {
-    clearTimeout(GRStates.timeoutid);
-  }
-  GRStates.timeoutid = setTimeout(GRW.GoogleIt, freq*1000*60);
+  GRW.clrTimeout(GRStates.timeoutid);
+  GRStates.timeoutid = GRW.timeout(GRW.GoogleIt, freq*1000*60);
   return GRStates.timeoutid;
 };
 /**
@@ -741,7 +762,7 @@ GRW.windowCloseCheck = {
       var minCheck = 1,
       configuredCheck = GRW.Prefs.getPref.checkFreq(),
       freq = (configuredCheck >= minCheck) ? configuredCheck : minCheck;
-      win.GRStates.timeoutid = win.setTimeout(win.GRW.GoogleIt, freq*1000*60);
+      win.GRStates.timeoutid = GRW.timeout(win.GRW.GoogleIt, freq*1000*60);
     }
   }
 };
@@ -755,7 +776,7 @@ GRW.init = function() {
   if(GRW.isActiveGRW() === false) {
     window.GRWActive = true;
     var g;
-    setTimeout(function(){
+    GRW.timeout(function(){
       g = GRW.GoogleIt();
     }, GRW.Prefs.getPref.delayStart());
   } else {
