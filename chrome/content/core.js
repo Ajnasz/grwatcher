@@ -42,6 +42,17 @@ GRW.SandBox = {
   }
 };
 
+
+GRW.Module = function() {
+};
+GRW.Module.prototype = {
+  register: function() {
+    GRW.SandBox.register(this.name, this.depedencies);
+  },
+  happening: function(notifier, event, context) {
+  }
+};
+
 /**
  * Applies all properties in the supplier to the receiver if the
  * receiver does not have these properties yet.  Optionally, one or 
