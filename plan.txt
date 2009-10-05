@@ -3,47 +3,111 @@
 == Objects ==
 
 * UI:
+
 ** Status-bar
+
 *** Icon
 *** Counter
 *** Tool-tip
 *** Context menu
+
 **** Mark all as read
 **** Check for unread feeds
 **** Preferences
 **** Open Google Reader
 **** '''Optionally''' link to the feeds
-* Tool-bar Icon
-** Context
-** Tool-tip?
+
+** Tool-bar Icon
+
+*** Context
+*** Tool-tip?
+
+* Functionality:
+
+** Getting the subscription list
+** Getting the data about the unread
+
+
+* Account Management
+
+** Set/modify account data
+
+*** Google login name
+*** Google password
+*** Keep signed in or not
+
+** Provide account data
+*** Google login name
+*** Google password
+*** Keep signed in or not
+
+* Authentication
+
+** Should stop if already authenticated and not forced
+** Getting user data from the account manager
+** Login through the accounts/ClientLogin URL
+*** Handle login successful and failure states
+*** Store ''SID'' value in cookie
+
+* Token (Google session management)
+
+* Ajax 
+** Getting token
 
 === Status-bar Icon ===
 
 ==== States ====
 
-;Default:
-:Icon: Grey
-:Counter: No counter
-:Tool-tip: Tool-tip message
-:Context menu: Default
+''Default:''
+* Icon: Grey
+* Counter: No counter
+* Tool-tip: Tool-tip message
+* Context menu: Default
 
-;New feeds available:
-:Icon: Blue
-:Tool-tip: grid or nothing (setting for tool-tip)
-:Context menu: gird or nothing (setting for context menu)
+''New feeds available:''
+* Icon: Blue
+* Tool-tip: grid or nothing (setting
+    for tool-tip) :Context menu: gird or nothing (setting for context
+      menu)
 
-;Feeds counter updated, but 0 new message is available
-:Icon: Grey
-:counter: No counter or 0 (counter setting)
-:Tool-tip: say no new feeds
-:Context menu: Default
+''Feeds counter updated, but 0 new message is available''
+* Icon: Grey
+* counter: No counter or 0 (counter setting)
+* Tool-tip: say no new feeds
+* Context menu: Default
 
-;On any error
-:Counter No counter
-:Tool-tip: should show something about the error
-:Context menu: Default
+''On any error''
+* Counter No counter
+* Tool-tip: should show something about the error
+* Context menu: Default
+
+
+=== Authentication ===
+
+
+
+
+=== Getting the subscription list ===
+
+URL: https://www.google.com/reader/api/0/subscription/list?output=json
+
+In the subscription list we can find all of the data about the
+subscriptions.  It contains the id, title, categories of the feed We can
+use this list to assign the unread feed counters to the feed names and
+we need that list to generate the tool-tip and the context girds 
+
+
+=== Getting data about unread feeds ===
+
+URL: https://www.google.com/reader/api/0/unread-count?all=true&output=json
+
+The unread contains only the feed id and the number of the unread items
+It's enough to know how many unread feeds do we have, but we don't know
+the name of these feeds. If we need to display them, we have to get the
+subscription list too. see #Getting the subscription list
 
 
 == Improvements ==
 
-* Need an option to make possible to disable the 'mark all as read' option in the status-bar context menu
+* Need an option to make possible to disable the 'mark all as read'
+option in the status-bar context menu
