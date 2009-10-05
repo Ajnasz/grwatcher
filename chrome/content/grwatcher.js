@@ -663,8 +663,8 @@ GRW.statusClickHandling.prototype = {
   observe: function() {
     var _this = this;
     this.ob.forEach(function(element){
-      if(element) element.addEventListener('click', function(event){_this.click(event)}, true);
-      if(_this.st == 2) {
+      if(element) {
+        element.addEventListener('click', function(event){_this.click(event)}, true);
         element.addEventListener('dblclick', function(event){_this.click(event)}, true);
       }
     })
