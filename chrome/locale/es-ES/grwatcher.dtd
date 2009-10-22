@@ -1,7 +1,7 @@
 <!ENTITY GRWstatusbar.popup.openReader "Abrir Google Reader">
 <!ENTITY GRWstatusbar.popup.getReadCounter "Revisar en busca de suscripciones sin leer">
 <!ENTITY GRWstatusbar.popup.openPrefs "Preferencias">
-<!ENTITY GRWstatusbar.popup.markAllAsRead "Marcar todo como leido">
+<!ENTITY GRWstatusbar.popup.markAllAsRead "Marcar todo como leído">
 <!ENTITY GRWstatusbar.popup.enableCookies "Habilitar cookies">
 <!ENTITY GRWpreferences.title "Preferencias de Google Reader Watcher">
 <!ENTITY GRWpreferences.checkfrequency "Revisar suscripciones cada (minutos)">
@@ -12,28 +12,28 @@
 <!ENTITY GRWpreferences.tooltippreferencescaption "Preferencias del texto emergente">
 <!ENTITY GRWpreferences.tabgeneral "General">
 <!ENTITY GRWpreferences.tabaccountinfo "Información de la cuenta">
-<!ENTITY GRWpreferences.tabopening "Apertura de la ventana">
+<!ENTITY GRWpreferences.tabopening "Apertura de Google Reader">
 <!ENTITY GRWpreferences.tabtooltip "Texto emergente">
 <!ENTITY GRWpreferences.openinnewtabdesc "Abrir Google Reader en una nueva pestaña">
-<!ENTITY GRWpreferences.resetcounterdesc "Reinicia el contador de la barra de estado cuando la ventana de Google Reader se abre">
+<!ENTITY GRWpreferences.resetcounterdesc "Reiniciar el contador de la barra de estado cuando se abra Google Reader">
 <!ENTITY GRWpreferences.shownotificationwindow "Mostrar un mensaje de notificación">
 <!ENTITY GRWpreferences.showzerocounter "Mostrar siempre el contador">
-<!ENTITY GRWpreferences.maximizecounter "Mostrar 1000+ en el contador si tiene mas de 1000 elementos sin leer">
+<!ENTITY GRWpreferences.maximizecounter "Mostrar 1000+ en el contador si tiene más de 1000 elementos sin leer">
 <!ENTITY GRWpreferences.tooltipcounterposright "Derecha">
 <!ENTITY GRWpreferences.tooltipcounterposleft "Izquierda">
 <!ENTITY GRWpreferences.tooltipcounterposdesc "Posición del contador en el texto emergente:">
 <!ENTITY GRWpreferences.tooltipdesc "Estas opciones tendrán efecto después de revisar las suscripciones.">
-<!ENTITY GRWpreferences.tooltiptitlelengthdesc "Ajusta el número del carácter del título de la suscripción en el texto emergente">
+<!ENTITY GRWpreferences.tooltiptitlelengthdesc "Ajustar el número del carácter del título de la suscripción en el texto emergente">
 <!ENTITY GRWpreferences.accountinfocaption "Información de la cuenta de Google">
 <!ENTITY GRWpreferences.accountinfoemail "Dirección de correo electrónico:">
 <!ENTITY GRWpreferences.accountinfopassword "Contraseña:">
 <!ENTITY GRWpreferences.accountinfo.rememberLogin "Recordar la contraseña">
-<!ENTITY GRWpreferences.accountinfo.forceLogin "Forzar la identificación antes de cada revisión y apertura de la ventana">
+<!ENTITY GRWpreferences.accountinfo.forceLogin "Forzar la identificación antes de cada revisión y apertura de Google Reader">
 <!ENTITY GRWpreferences.leftclickopen.description "Abrir Google Reader con">
 <!ENTITY GRWpreferences.leftclickopen.singleclick "Una pulsación">
 <!ENTITY GRWpreferences.leftclickopen.dblclick "Doble pulsación">
 <!ENTITY GRWpreferences.leftclickopen.disabled "Desactivado">
-<!ENTITY GRWpreferences.usesecureconnection "Utilizar conexión segura">
+<!ENTITY GRWpreferences.usesecureconnection "Utilizar una conexión segura">
 <!ENTITY GRWpreferences.sortbylabels "En el texto emergente ordenar las suscripciones por etiqueta">
 <!ENTITY GRWpreferences.filteredlabels "Filtrar las suscripciones que pertenezcan a estas etiquetas (lista separada por comas)">
 <!ENTITY GRWtooltip.nonewfeed "No tiene ninguna suscripción sin leer">
