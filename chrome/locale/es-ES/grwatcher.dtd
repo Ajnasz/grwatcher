@@ -1,46 +1,46 @@
 <!ENTITY GRWstatusbar.popup.openReader "Abrir Google Reader">
-<!ENTITY GRWstatusbar.popup.getReadCounter "Verificar alimentadores sin leer">
+<!ENTITY GRWstatusbar.popup.getReadCounter "Revisar en busca de suscripciones sin leer">
 <!ENTITY GRWstatusbar.popup.openPrefs "Preferencias">
 <!ENTITY GRWstatusbar.popup.markAllAsRead "Marcar todo como leido">
-<!ENTITY GRWstatusbar.popup.enableCookies "Enable cookies">
-<!ENTITY GRWpreferences.title "Preferencias del observador Google Reader">
-<!ENTITY GRWpreferences.checkfrequency "Verificar nuevos alimentadores cada">
-<!ENTITY GRWpreferences.delaystart "Start the first check after the browser started (milliseconds)">
-<!ENTITY GRWpreferences.activateOpenedTab "Enfocar/seleccionar la pestaña de Google Reader después de abrirse">
+<!ENTITY GRWstatusbar.popup.enableCookies "Habilitar cookies">
+<!ENTITY GRWpreferences.title "Preferencias de Google Reader Watcher">
+<!ENTITY GRWpreferences.checkfrequency "Revisar suscripciones cada (minutos)">
+<!ENTITY GRWpreferences.delaystart "Comenzar la primera revisión después de que el navegador se inicie (milisegundos)">
+<!ENTITY GRWpreferences.activateOpenedTab "Cambiar a la pestaña de Google Reader después de abrirse">
 <!ENTITY GRWpreferences.generalpreferencescaption "Preferencias generales">
-<!ENTITY GRWpreferences.generalpreferencesopencaption "Abrir configuración de Google Reader">
-<!ENTITY GRWpreferences.tooltippreferencescaption "Preferencias de Tooltip">
+<!ENTITY GRWpreferences.generalpreferencesopencaption "Cómo abrir Google Reader">
+<!ENTITY GRWpreferences.tooltippreferencescaption "Preferencias del texto emergente">
 <!ENTITY GRWpreferences.tabgeneral "General">
-<!ENTITY GRWpreferences.tabaccountinfo "Información de cuenta">
-<!ENTITY GRWpreferences.tabopening "Window opening settings">
-<!ENTITY GRWpreferences.tabtooltip "Tooltip settings">
+<!ENTITY GRWpreferences.tabaccountinfo "Información de la cuenta">
+<!ENTITY GRWpreferences.tabopening "Apertura de la ventana">
+<!ENTITY GRWpreferences.tabtooltip "Texto emergente">
 <!ENTITY GRWpreferences.openinnewtabdesc "Abrir Google Reader en una nueva pestaña">
-<!ENTITY GRWpreferences.resetcounterdesc "Reajusta el contador de la barra de estado cuando la ventana del Google Reader se abre">
-<!ENTITY GRWpreferences.shownotificationwindow "Mostrar ventana de notificación">
-<!ENTITY GRWpreferences.showzerocounter "Mostrar el contador cuando no hay alimentadores sin leer disponibles">
-<!ENTITY GRWpreferences.maximizecounter "Mostrar 1000+ en la barra de estado si tiene mas de 1000 elementos sin leer">
+<!ENTITY GRWpreferences.resetcounterdesc "Reinicia el contador de la barra de estado cuando la ventana de Google Reader se abre">
+<!ENTITY GRWpreferences.shownotificationwindow "Mostrar un mensaje de notificación">
+<!ENTITY GRWpreferences.showzerocounter "Mostrar siempre el contador">
+<!ENTITY GRWpreferences.maximizecounter "Mostrar 1000+ en el contador si tiene mas de 1000 elementos sin leer">
 <!ENTITY GRWpreferences.tooltipcounterposright "Derecha">
 <!ENTITY GRWpreferences.tooltipcounterposleft "Izquierda">
-<!ENTITY GRWpreferences.tooltipcounterposdesc "La posición del contador en el tooltip:">
-<!ENTITY GRWpreferences.tooltipdesc "Estas opciones entrarán en vigor después de verificar alimentadores.">
-<!ENTITY GRWpreferences.tooltiptitlelengthdesc "Fija el número del carácter del título del alimentador en el tooltip">
-<!ENTITY GRWpreferences.accountinfocaption "Información de cuenta Google">
-<!ENTITY GRWpreferences.accountinfoemail "Dirección Email:">
+<!ENTITY GRWpreferences.tooltipcounterposdesc "Posición del contador en el texto emergente:">
+<!ENTITY GRWpreferences.tooltipdesc "Estas opciones tendrán efecto después de revisar las suscripciones.">
+<!ENTITY GRWpreferences.tooltiptitlelengthdesc "Ajusta el número del carácter del título de la suscripción en el texto emergente">
+<!ENTITY GRWpreferences.accountinfocaption "Información de la cuenta de Google">
+<!ENTITY GRWpreferences.accountinfoemail "Dirección de correo electrónico:">
 <!ENTITY GRWpreferences.accountinfopassword "Contraseña:">
-<!ENTITY GRWpreferences.accountinfo.rememberLogin "Recordar la conexión">
-<!ENTITY GRWpreferences.accountinfo.forceLogin "Force login before every checking and window opening">
+<!ENTITY GRWpreferences.accountinfo.rememberLogin "Recordar la contraseña">
+<!ENTITY GRWpreferences.accountinfo.forceLogin "Forzar la identificación antes de cada revisión y apertura de la ventana">
 <!ENTITY GRWpreferences.leftclickopen.description "Abrir Google Reader con">
-<!ENTITY GRWpreferences.leftclickopen.singleclick "Clic simple">
-<!ENTITY GRWpreferences.leftclickopen.dblclick "Doble clic">
+<!ENTITY GRWpreferences.leftclickopen.singleclick "Una pulsación">
+<!ENTITY GRWpreferences.leftclickopen.dblclick "Doble pulsación">
 <!ENTITY GRWpreferences.leftclickopen.disabled "Desactivado">
 <!ENTITY GRWpreferences.usesecureconnection "Utilizar conexión segura">
-<!ENTITY GRWpreferences.sortbylabels "En el tooltip ordenar alimentadores por etiqueta">
-<!ENTITY GRWpreferences.filteredlabels "Filtro de alimentadoresque se etiquetan con estas etiquetas (lista separada por comas)">
-<!ENTITY GRWtooltip.nonewfeed "Tiene algún alimentador sin leer">
-<!ENTITY GRWtooltip.errorfeedfetch "¡Error recuperando alimentadores!">
-<!ENTITY GRWtooltip.newfeed "Tiene alimentadores sin leer">
-<!ENTITY GRWtooltip.errorlogin "Conexión fallida. ¡Asegúrese de introducir correctamente la clave y/o el nombre de usuario!">
-<!ENTITY GRWtooltip.networkerror "¡Error de Red!">
-<!ENTITY GRWtooltip.cookieerror "The third-party cookies are not enabled! Press right mouse button on the icon to enable it.">
-<!ENTITY GRWpreferences.showitemsintooltip "Enable to display unread items in the tooltip statusbar icon">
-<!ENTITY GRWpreferences.showitemsincontextmenu "Enable to add the unread items in the context menu of the statusbar icon">
+<!ENTITY GRWpreferences.sortbylabels "En el texto emergente ordenar las suscripciones por etiqueta">
+<!ENTITY GRWpreferences.filteredlabels "Filtrar las suscripciones que pertenezcan a estas etiquetas (lista separada por comas)">
+<!ENTITY GRWtooltip.nonewfeed "No tiene ninguna suscripción sin leer">
+<!ENTITY GRWtooltip.errorfeedfetch "¡Se ha producido un error al revisar las suscripciones!">
+<!ENTITY GRWtooltip.newfeed "Tiene suscripciones sin leer">
+<!ENTITY GRWtooltip.errorlogin "Error al identificarse. ¡Asegúrese de introducir correctamente el nombre de usuario y/o la contraseña!">
+<!ENTITY GRWtooltip.networkerror "Error al conectarse. ¡Asegúrese de tener una conexión funcional!">
+<!ENTITY GRWtooltip.cookieerror "¡No se han habilitado las cookies de terceras partes! Pulse el botón derecho del ratón en el icono para habilitarlas.">
+<!ENTITY GRWpreferences.showitemsintooltip "Mostrar los elementos sin leer en el texto emergente del icono de la barra de estado">
+<!ENTITY GRWpreferences.showitemsincontextmenu "Añadir los elementos sin leer en el menú contextual del icono de la barra de estado">
