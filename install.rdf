@@ -53,6 +53,18 @@
         <em:translator>Sonickydon (el-GR)</em:translator>
       </Description>
     </em:localized>
+    <em:localized>
+      <Description>
+        <em:locale>es-ES</em:locale>
+        <em:name>Google Reader Watcher</em:name>
+        <em:creator>Lajos Koszti</em:creator>
+        <em:description>Revisa sus suscripciones de Google Reader</em:description>
+        <em:homepageURL>http://ajnasz.hu/google-reader-watcher</em:homepageURL>
+        <em:contributor>David Peitler</em:contributor>
+        <em:translator>Francisco Javier Cuadrado es-ES</em:translator>
+      </Description>
+    </em:localized>
+
     <em:creator>Lajos Koszti</em:creator>
     <em:description>Checks your Google Reader for unread feeds</em:description>
     <em:iconURL>chrome://grwatcher/skin/grwatcher.png</em:iconURL>
