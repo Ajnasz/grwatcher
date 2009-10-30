@@ -25,7 +25,7 @@
 * Functionality:
 
 ** Getting the subscription list
-** Getting the data about the unread
+** Getting the data about the unread items
 
 
 * Account Management
@@ -51,7 +51,8 @@
 
 * Token (Google session management)
 
-* Ajax 
+* Ajax
+
 ** Getting token
 
 === Status-bar Icon ===
@@ -66,9 +67,8 @@
 
 ''New feeds available:''
 * Icon: Blue
-* Tool-tip: grid or nothing (setting
-    for tool-tip) :Context menu: gird or nothing (setting for context
-      menu)
+* Tool-tip: grid or nothing (setting for tool-tip)
+* Context menu: gird or nothing (setting for context menu)
 
 ''Feeds counter updated, but 0 new message is available''
 * Icon: Grey
