@@ -17,6 +17,8 @@
  */
 GRW.Ajax = function(pars, parameters) {
   if(typeof pars.url == 'undefined') {
+
+    GRW.log('send ajax, url is undefined');
     return false;
   }
   /**
@@ -37,16 +39,24 @@ GRW.Ajax = function(pars, parameters) {
   this.successHandler = typeof pars.successHandler != 'undefined' ? pars.successHandler : this.successHandler;
   this.onError = typeof pars.onError == 'function' ? pars.onError : null;
 
+GRW.log('39');
   //this.req = new XMLHttpRequest();
   this.req = Components.classes["@mozilla.org/xmlextras/xmlhttprequest;1"].createInstance(Components.interfaces.nsIXMLHttpRequest);  
   // Fix Firefox 3 third party cookie related bug
   // https://bugzilla.mozilla.org/show_bug.cgi?id=437174#c32
-  var ds = Cc["@mozilla.org/webshell;1"].createInstance(Ci.nsIDocShellTreeItem).QueryInterface(Ci.nsIInterfaceRequestor);
+  try {
+    var ds = Cc["@mozilla.org/webshell;1"].createInstance(Ci.nsIDocShellTreeItem).QueryInterface(Ci.nsIInterfaceRequestor);
+  }catch(e) {
+    var ds = Cc["@mozilla.org/docshell;1"].createInstance(Ci.nsIDocShellTreeItem).QueryInterface(Ci.nsIInterfaceRequestor);
+    GRW.log('use docshell: ', e.message);
+  }
   ds.itemType = Ci.nsIDocShellTreeItem.typeContent;
 
   //this.req = Cc["@mozilla.org/xmlextras/xmlhttprequest;1"].createInstance(Ci.nsIXMLHttpRequest);
 
+GRW.log('41');
   this.req.open(this.method, this.url, true);
+GRW.log('42');
   this.req.channel.loadGroup = ds.getInterface(Ci.nsILoadGroup); // fix ff3
   this.req.channel.loadFlags |= Ci.nsIChannel.LOAD_DOCUMENT_URI; // fix ff3
   this.req.setRequestHeader('User-Agent', agent);
