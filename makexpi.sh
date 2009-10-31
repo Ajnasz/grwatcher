@@ -1,8 +1,8 @@
 #!/bin/bash
 ########################## Configuration ################################
 if [ -z $1 ];then
-  VER='0.0.15.4a'`date '+%Y%m%d%H%M%S'`;
-  # VER='0.0.15.4';
+  # VER='0.0.15.4a'`date '+%Y%m%d%H%M%S'`;
+  VER='0.0.15.4';
 else
   VER=$1;
 fi
