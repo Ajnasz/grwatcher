@@ -1,9 +1,39 @@
-/**
- * Core JavaScript namespace for the Google Reader Watcher extension
- *
- * @module GRW
- */
-GRW = {};
+(function(){
+
+  var lang = {
+    isString: function(arg) {
+      return typeof(arg) === 'string';
+    },
+    isNumber: function(arg) {
+      return typeof(arg) === 'number';
+    },
+    isBoolean: function(arg) {
+      return typeof(arg) === 'boolean';
+    },
+    isFunction: function(arg) {
+      return typeof(arg) === 'function';
+    },
+    isNull: function(arg) {
+      return arg === null;
+    },
+    isObject: function(arg) {
+      return lang.isObject(arg) && arg !== null;
+    },
+    isUrl: function(arg) {
+      return lang.isString(arg) && /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/.test(arg);
+    },
+    isEmail: function(arg) {
+
+    },
+  };
+  /**
+  * Core JavaScript namespace for the Google Reader Watcher extension
+  *
+  * @module GRW
+  */
+  GRW = {};
+  GRW.lang = lang;
+})();
 
 
 /**
