@@ -48,7 +48,6 @@ GRW.log('39');
     var ds = Cc["@mozilla.org/webshell;1"].createInstance(Ci.nsIDocShellTreeItem).QueryInterface(Ci.nsIInterfaceRequestor);
   }catch(e) {
     var ds = Cc["@mozilla.org/docshell;1"].createInstance(Ci.nsIDocShellTreeItem).QueryInterface(Ci.nsIInterfaceRequestor);
-    GRW.log('use docshell: ', e.message);
   }
   ds.itemType = Ci.nsIDocShellTreeItem.typeContent;
 
