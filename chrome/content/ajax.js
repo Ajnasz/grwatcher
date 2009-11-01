@@ -44,11 +44,10 @@ GRW.log('39');
   this.req = Components.classes["@mozilla.org/xmlextras/xmlhttprequest;1"].createInstance(Components.interfaces.nsIXMLHttpRequest);  
   // Fix Firefox 3 third party cookie related bug
   // https://bugzilla.mozilla.org/show_bug.cgi?id=437174#c32
-  var ds;
-  if(Cc["@mozilla.org/webshell;1"]) {
-    ds = Cc["@mozilla.org/webshell;1"].createInstance(Ci.nsIDocShellTreeItem).QueryInterface(Ci.nsIInterfaceRequestor);
-  } else {
-    ds = Cc["@mozilla.org/docshell;1"].createInstance(Ci.nsIDocShellTreeItem).QueryInterface(Ci.nsIInterfaceRequestor);
+  try {
+    var ds = Cc["@mozilla.org/webshell;1"].createInstance(Ci.nsIDocShellTreeItem).QueryInterface(Ci.nsIInterfaceRequestor);
+  }catch(e) {
+    var ds = Cc["@mozilla.org/docshell;1"].createInstance(Ci.nsIDocShellTreeItem).QueryInterface(Ci.nsIInterfaceRequestor);
   }
   ds.itemType = Ci.nsIDocShellTreeItem.typeContent;
 
