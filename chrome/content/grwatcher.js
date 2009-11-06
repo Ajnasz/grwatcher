@@ -178,8 +178,7 @@ GRW.setCookie = function(name, value, permanent) {
 GRW.markAllAsRead = function() {
   if(confirm(GRW.strings.getString('confirmmarkallasread'))) {
     GRW.GRCheck.getUserId();
-    var _this = this;
-    GRW.Token(this.markAllAsRead(), null, this, true);
+    GRW.Token(this.markAsRead, null, this, true);
   }
 };
 GRW.markAllAsRead.prototype = {
