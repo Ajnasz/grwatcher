@@ -67,6 +67,7 @@ GRW.Token.isValid	chrome/content/grwatcher.js	/^  var isValid = function() {$/;"
 GRW.Token.runFn	chrome/content/grwatcher.js	/^  var runFn = function(fn, arg) {$/;"	f
 GRW.Token.update	chrome/content/grwatcher.js	/^  var update = function(fn, arg) {$/;"	f
 GRW._PasswordManager	chrome/content/passmanager.js	/^GRW._PasswordManager = function() {$/;"	c
+GRW.clrTimeout	chrome/content/grwatcher.js	/^GRW.clrTimeout = function(timer) {$/;"	f
 GRW.enableCookies	chrome/content/grwatcher.js	/^GRW.enableCookies = function(event) {$/;"	f
 GRW.escapeForRegExp	chrome/content/general.js	/^GRW.escapeForRegExp = function(str) {$/;"	f
 GRW.getActiveGRW	chrome/content/grwatcher.js	/^GRW.getActiveGRW = function() {$/;"	f
@@ -88,6 +89,8 @@ GRW.statusClickHandling	chrome/content/grwatcher.js	/^GRW.statusClickHandling = 
 GRW.statusClickHandling.ob	chrome/content/grwatcher.js	/^  ob: null,$/;"	p
 GRW.statusClickHandling.observe	chrome/content/grwatcher.js	/^  observe: function() {$/;"	m
 GRW.statusClickHandling.st	chrome/content/grwatcher.js	/^  st: null,$/;"	p
+GRW.timeout	chrome/content/grwatcher.js	/^GRW.timeout = function(fn, timeout) {$/;"	f
+GRW.timeout.callback.notify	chrome/content/grwatcher.js	/^  var callback = {notify: fn};$/;"	p
 GRW.windowCloseCheck.observe	chrome/content/grwatcher.js	/^  observe: function(aSubject, aTopic, aData) {$/;"	m
 LSID	chrome/content/accountmanager.new.js	/^    var LSID = response.replace(rex.lsid, '$1');$/;"	v
 SID	chrome/content/accountmanager.new.js	/^    var SID = response.replace(rex.sid, '$1');$/;"	v
