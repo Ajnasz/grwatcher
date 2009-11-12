@@ -3,8 +3,7 @@
  */
 GRW.init = function() {
   GRW.log('Google Reader Watcher ###VERSION### initializitaion started');
-  var a = new GRW.Ajax({url: 'http://google.com'});
-  a.send();
+  GRW.Token(function() {alert(GRW.token)});
   GRW.log('Google Reader Watcher ###VERSION### initializitaion finished');
 };
 window.addEventListener('load', GRW.init, false);

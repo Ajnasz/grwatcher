@@ -12,12 +12,6 @@ GRW.GetList = function(getuserid) {
   GRW.Token(function(arg){_this.init(arg)});
 };
 GRW.GetList.prototype = {
-  subscriptionsList: null,
-  FeedlistIds: null,
-  unreadCount: null,
-  maxCount: null,
-  feeds: null,
-  userFeeds: null,
   init: function() {
     if(this.getuserid) {
       this.getReadCounter();
@@ -288,9 +282,6 @@ GRW.GetList.prototype = {
   decodeJSON: function(text) {
     if(this.nativeJSON) {
       return this.nativeJSON.decode(text);
-    } else {
-      var s = Components.utils.Sandbox(GRStates.conntype + '://www.google.com');
-      return Components.utils.evalInSandbox('(' + text + ')', s);
     }
   }
 };

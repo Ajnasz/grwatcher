@@ -1,4 +1,5 @@
 if(typeof GRW === 'undefined') GRW = {};
+GRStates.conntype = 'https';
 (function(){
 
   var lang = {

@@ -18,18 +18,12 @@ GRW.EventProvider.fireEvent	chrome/content/core.js	/^  fireEvent: function(type,
 GRW.EventProvider.on	chrome/content/core.js	/^  on: function() {$/;"	m
 GRW.EventProvider.subscribe	chrome/content/core.js	/^  subscribe: function(type, fn, obj, overrideContext) {$/;"	m
 GRW.GetList	chrome/content/getlist.js	/^GRW.GetList = function(getuserid) {$/;"	c
-GRW.GetList.FeedlistIds	chrome/content/getlist.js	/^  FeedlistIds: null,$/;"	p
 GRW.GetList.countLabeled	chrome/content/getlist.js	/^  countLabeled: function() {$/;"	m
-GRW.GetList.feeds	chrome/content/getlist.js	/^  feeds: null,$/;"	p
 GRW.GetList.finishLoad	chrome/content/getlist.js	/^  finishLoad: function(req) {$/;"	m
 GRW.GetList.getFeedList	chrome/content/getlist.js	/^  getFeedList: function() {$/;"	m
 GRW.GetList.getReadCounter	chrome/content/getlist.js	/^  getReadCounter: function() {$/;"	m
 GRW.GetList.init	chrome/content/getlist.js	/^  init: function() {$/;"	m
-GRW.GetList.maxCount	chrome/content/getlist.js	/^  maxCount: null,$/;"	p
 GRW.GetList.onFeedListLoad	chrome/content/getlist.js	/^  onFeedListLoad: function(request) {$/;"	m
-GRW.GetList.subscriptionsList	chrome/content/getlist.js	/^  subscriptionsList: null,$/;"	p
-GRW.GetList.unreadCount	chrome/content/getlist.js	/^  unreadCount: null,$/;"	p
-GRW.GetList.userFeeds	chrome/content/getlist.js	/^  userFeeds: null,$/;"	p
 GRW.Module	chrome/content/core.js	/^GRW.Module = function() {$/;"	f
 GRW.Module	chrome/content/core.js	/^GRW.Module.prototype = {$/;"	c
 GRW.Module.happening	chrome/content/core.js	/^  happening: function(notifier, event, context) {$/;"	m
@@ -39,6 +33,8 @@ GRW.Prefs.getChar	chrome/content/preferences.js	/^  getChar: function(pref) {$/;
 GRW.Prefs.getInt	chrome/content/preferences.js	/^  getInt: function(pref) {$/;"	m
 GRW.Prefs.getPref	chrome/content/preferences.js	/^  getPref: {$/;"	p
 GRW.SandBox.modules	chrome/content/core.js	/^  modules: {},$/;"	p
+GRW.Token	chrome/content/token.js	/^GRW.Token = function(fn, arg, thisArg, force) {$/;"	f
+GRW.Token.runFn	chrome/content/token.js	/^  var runFn = function(fn, arg) {$/;"	f
 GRW._PasswordManager	chrome/content/passmanager.js	/^GRW._PasswordManager = function() {$/;"	c
 GRW.augmentObject	chrome/content/core.js	/^GRW.augmentObject = function(r, s) {$/;"	f
 GRW.augmentProto	chrome/content/core.js	/^GRW.augmentProto = function(r, s) {$/;"	f
