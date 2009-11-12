@@ -1,5 +1,7 @@
 (function(){
-  var onStartRequest = 'onStartRequest',
+  var startRequest = 'startRequest',
+      requestSuccess = 'requestSuccess',
+      requestFailed = 'requestFailed',
   /**
   * AJAX requester class
   * @constructor
@@ -8,8 +10,6 @@
   *
   * @param {Object} pars  object to configure the AJAX request
   *  {String} url the url of the request
-  *  {Function} [handler] readyStateChange handler function
-  *  {Function} [successHandler] runs, when the request was success
   *  {String} [method] request method (eg.: get, post, head)
   * @param {String} [parameters] if the method should be post, this variable contains the request parameters
   */
@@ -28,16 +28,17 @@
           isUndef = GL.isUndef,
           isFunction = GL.isFunction;
 
-      this.createEvent(onStartRequest);
+      this.createEvent(startRequest);
 
       this.url = pars.url;
       this.pars = isUndef(pars.pars) ? this.pars : pars.pars;
       this.handler = isUndef(pars.handler) ? this.handler :  pars.handler;
       this.method = isUndef(pars.method)? 'get' : pars.method;
-      this.successHandler = isUndef(pars.successHandler)? this.successHandler : pars.successHandler;
-      this.onError = isFunction(pars.onError) ? pars.onError : null;
-      this.onSuccess = isFunction(pars.onSuccess) ? pars.onSuccess : null;
-      this.parameters = typeof parameters != 'undefined' ? parameters : null;
+      this.onError = isFunction(pars.onError) ? pars.onError : function() {};
+      this.onSuccess = isFunction(pars.onSuccess) ? pars.onSuccess : function() {};
+      this.parameters = isUndef('undefined') ? null : parameters;
+      this.on(requestSuccess, this.onSuccess);
+      this.on(requestFailed, this.onError);
 
       this._initRequest();
     },
@@ -63,28 +64,28 @@
       if(this.method == 'post') {
         this.req.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
       }
-      this.req.onreadystatechange = this.handler.call(this);
+      var _this = this;
+      this.req.onreadystatechange = function() {_this.handler.call(_this);};
     },
     send: function() {
-      this.fireEvent(onStartRequest);
+      this.fireEvent(startRequest);
       this.req.send(this.createParameters());
     },
     /**
     * readystatechange handler function
-    * @returns the successHandler return value, if the request status was 200
-    *   or the errorHandler return value,
-    *   or the loadHandler return value while the request is not finished
     */
     handler: function() {
       try {
         if(this.req.readyState == 4) {
           if(typeof this.req.status != 'undefined') {
             if(this.req.status == 200) {
-              return this.successHandler(this.req);
+              this.fireEvent(requestSuccess, this.req);
             } else {
+              this.fireEvent(requestFailed);
               return this.errorHandler('status code - ' + this.req.status);
             };
           } else {
+            this.fireEvent(requestFailed);
             return this.errorHandler('no status code');
           }
         }
