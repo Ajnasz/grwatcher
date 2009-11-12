@@ -2,25 +2,29 @@
 
   var lang = {
     isString: function(arg) {
-      return typeof(arg) === 'string';
+      return typeof(arg) === 'string' || arg instanceof String;
     },
     isNumber: function(arg) {
-      return typeof(arg) === 'number';
+      return typeof(arg) === 'number' || arg instanceof Number;
     },
     isBoolean: function(arg) {
-      return typeof(arg) === 'boolean';
+      return typeof(arg) === 'boolean' || arg instanceof Boolean;
     },
     isFunction: function(arg) {
-      return typeof(arg) === 'function';
+      return typeof(arg) === 'function' || arg instanceof Function;
     },
     isNull: function(arg) {
       return arg === null;
     },
     isObject: function(arg) {
-      return lang.isObject(arg) && arg !== null;
+      return typeof(arg) === 'object' && !lang.isNull(arg) && !lang.isString(arg) && lang.isNumber(arg) && !lang.isFunction(arg) && !lang.isBoolean(arg);
     },
     isUrl: function(arg) {
       return lang.isString(arg) && /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/.test(arg);
+    },
+    isUndef: function(arg) {
+      var undefined;
+      return arg === undefined;
     },
     isEmail: function(arg) {
 
@@ -167,24 +171,29 @@ GRW.CustomEvent.prototype = {
 GRW.EventProvider = function() {
 };
 GRW.EventProvider.prototype = {
-  _subscribers: {},
-  _events: {},
   createEvent: function(type) {
+    if(!GRW.lang.isObject(this._events)) {
+      this._events = {};
+    }
     this._events[type] = true;
   },
   subscribe: function(type, fn, obj, overrideContext) {
-    var subs = this._subscribers;
-    if(!subs[type]) {
-      subs[type] = [];
+    if(!GRW.lang.isObject(this._subscribers)) {
+      this._subscribers = {};
     }
-    subs[type].push({fn:fn, obj: obj, overrideContext: overrideContext});
+    if(!this._subscribers[type]) {
+      this._subscribers[type] = [];
+    }
+    this._subscribers[type].push({fn:fn, obj: obj, overrideContext: overrideContext});
   },
   fireEvent: function(type, args) {
-    var event = this.events[type];
-    if(!event) return;
-    for (var i = 0, subscribtion; i < event.subscriptions.length; i++) {
-      subscribtion = event.subscriptions[i];
-      subscription.fn.call(subscription.context, args);
+    if(!this._subscribers) return;
+    var subscribers = this._subscribers[type];
+    for(var i in subscribers) {
+      if(subscribers.hasOwnProperty(i)) {
+        subscription = subscribers[i];
+        subscription.fn.call(subscription.context, args);
+      }
     }
   }
 };
