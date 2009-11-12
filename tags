@@ -8,33 +8,15 @@ Auth	chrome/content/accountmanager.new.js	/^    var Auth = response.replace(rex.
 GRStates.timeoutid	chrome/content/preferences.js	/^  timeoutid: -1,$/;"	p
 GRW.AccountManager.CookieManager	chrome/content/accountmanager.js	/^  CookieManager: Components.classes["@mozilla.org\/cookiemanager;1"].getService(Components.interfaces.nsICookieManager2),$/;"	p
 GRW.AccountManager.CookieManager	chrome/content/accountmanager.new.js	/^  CookieManager: Components.classes["@mozilla.org\/cookiemanager;1"].getService(Components.interfaces.nsICookieManager),$/;"	p
-GRW.Ajax	chrome/content/ajax.js	/^GRW.Ajax = function(pars, parameters) {$/;"	f
-GRW.Ajax	chrome/content/ajax.js	/^GRW.Ajax.prototype = {$/;"	c
-GRW.Ajax.createParameters	chrome/content/ajax.js	/^  createParameters: function() {$/;"	m
-GRW.Ajax.errorHandler	chrome/content/ajax.js	/^  errorHandler: function(msg, Exception) {$/;"	m
-GRW.Ajax.handler	chrome/content/ajax.js	/^  handler: function() {$/;"	m
-GRW.Ajax.loadHandler	chrome/content/ajax.js	/^  loadHandler: function() {$/;"	m
-GRW.Ajax.method	chrome/content/ajax.js	/^  method: 'get',$/;"	p
-GRW.Ajax.pars	chrome/content/ajax.js	/^  pars: null,$/;"	p
-GRW.Ajax.req	chrome/content/ajax.js	/^  req: null,$/;"	p
-GRW.Ajax.stChg	chrome/content/ajax.js	/^  var stChg = function(ob, p) {$/;"	f
-GRW.Ajax.successHandler	chrome/content/ajax.js	/^  successHandler: function() {$/;"	m
-GRW.Ajax.url	chrome/content/ajax.js	/^  url: null,$/;"	p
 GRW.Cookie	chrome/content/cookie.js	/^GRW.Cookie = function(domain, name, value, date, path) {$/;"	c
-GRW.GRCheck.getOpenedGR	chrome/content/grwatcher.js	/^  getOpenedGR: function() {$/;"	m
-GRW.GRCheck.getOpenedGR.outObj.blankPage	chrome/content/grwatcher.js	/^    var outObj = {grTab: false, blankPage: false};$/;"	p
-GRW.GRCheck.getOpenedGR.outObj.grTab	chrome/content/grwatcher.js	/^    var outObj = {grTab: false, blankPage: false};$/;"	p
-GRW.GRCheck.getReaderURL	chrome/content/grwatcher.js	/^  getReaderURL: function() {$/;"	m
-GRW.GRCheck.getUserId	chrome/content/grwatcher.js	/^  getUserId: function(json) {$/;"	m
-GRW.GRCheck.openReader	chrome/content/grwatcher.js	/^  openReader: function(url) {$/;"	m
-GRW.GenStatusGrid	chrome/content/grwatcher.js	/^GRW.GenStatusGrid = function(feeds, class, justRows) {$/;"	c
-GRW.GenStatusGrid.genGrid	chrome/content/grwatcher.js	/^  genGrid: function(rowsArray) {$/;"	m
-GRW.GenStatusGrid.genRows	chrome/content/grwatcher.js	/^  genRows: function(feeds) {$/;"	m
-GRW.GenStatusMenu	chrome/content/grwatcher.js	/^GRW.GenStatusMenu = function(win, feeds) {$/;"	c
-GRW.GenStatusMenu.addItems	chrome/content/grwatcher.js	/^  addItems: function() {$/;"	m
-GRW.GenStatusMenu.clearItems	chrome/content/grwatcher.js	/^  clearItems: function() {$/;"	m
-GRW.GenStatusMenu.genMenu	chrome/content/grwatcher.js	/^  genMenu: function(feeds) {$/;"	m
-GRW.GenStatusMenu.showHideSeparator	chrome/content/grwatcher.js	/^  showHideSeparator: function(hide) {$/;"	m
+GRW.CustomEvent	chrome/content/core.js	/^GRW.CustomEvent = function(type, scope) {$/;"	c
+GRW.CustomEvent.subscribers	chrome/content/core.js	/^  subscribers: [],$/;"	p
+GRW.EventProvider	chrome/content/core.js	/^GRW.EventProvider = function() {$/;"	f
+GRW.EventProvider	chrome/content/core.js	/^GRW.EventProvider.prototype = {$/;"	c
+GRW.EventProvider.createEvent	chrome/content/core.js	/^  createEvent: function(type) {$/;"	m
+GRW.EventProvider.fireEvent	chrome/content/core.js	/^  fireEvent: function(type, args) {$/;"	m
+GRW.EventProvider.on	chrome/content/core.js	/^  on: function() {$/;"	m
+GRW.EventProvider.subscribe	chrome/content/core.js	/^  subscribe: function(type, fn, obj, overrideContext) {$/;"	m
 GRW.GetList	chrome/content/getlist.js	/^GRW.GetList = function(getuserid) {$/;"	c
 GRW.GetList.FeedlistIds	chrome/content/getlist.js	/^  FeedlistIds: null,$/;"	p
 GRW.GetList.countLabeled	chrome/content/getlist.js	/^  countLabeled: function() {$/;"	m
@@ -48,60 +30,53 @@ GRW.GetList.onFeedListLoad	chrome/content/getlist.js	/^  onFeedListLoad: functio
 GRW.GetList.subscriptionsList	chrome/content/getlist.js	/^  subscriptionsList: null,$/;"	p
 GRW.GetList.unreadCount	chrome/content/getlist.js	/^  unreadCount: null,$/;"	p
 GRW.GetList.userFeeds	chrome/content/getlist.js	/^  userFeeds: null,$/;"	p
-GRW.GoogleIt	chrome/content/grwatcher.js	/^GRW.GoogleIt = function() {$/;"	f
+GRW.Module	chrome/content/core.js	/^GRW.Module = function() {$/;"	f
+GRW.Module	chrome/content/core.js	/^GRW.Module.prototype = {$/;"	c
+GRW.Module.happening	chrome/content/core.js	/^  happening: function(notifier, event, context) {$/;"	m
+GRW.Module.register	chrome/content/core.js	/^  register: function() {$/;"	m
 GRW.Prefs.getBool	chrome/content/preferences.js	/^  getBool: function(pref) {$/;"	m
 GRW.Prefs.getChar	chrome/content/preferences.js	/^  getChar: function(pref) {$/;"	m
 GRW.Prefs.getInt	chrome/content/preferences.js	/^  getInt: function(pref) {$/;"	m
 GRW.Prefs.getPref	chrome/content/preferences.js	/^  getPref: {$/;"	p
-GRW.StatusBar.hideCounter	chrome/content/grwatcher.js	/^  hideCounter: function() {$/;"	m
-GRW.StatusBar.setReaderStatus	chrome/content/grwatcher.js	/^  setReaderStatus: function(status) {$/;"	m
-GRW.StatusBar.setReaderTooltip	chrome/content/grwatcher.js	/^  setReaderTooltip: function(t, unr) {$/;"	m
-GRW.StatusBar.showCounter	chrome/content/grwatcher.js	/^  showCounter: function(val) {$/;"	m
-GRW.StatusBar.switchErrorIcon	chrome/content/grwatcher.js	/^  switchErrorIcon: function() {$/;"	m
-GRW.StatusBar.switchLoadIcon	chrome/content/grwatcher.js	/^  switchLoadIcon: function() {$/;"	m
-GRW.StatusBar.switchOffIcon	chrome/content/grwatcher.js	/^  switchOffIcon: function() {$/;"	m
-GRW.StatusBar.switchOnIcon	chrome/content/grwatcher.js	/^  switchOnIcon: function() {$/;"	m
-GRW.Token	chrome/content/grwatcher.js	/^GRW.Token = function(fn, arg, thisArg, force) {$/;"	f
-GRW.Token.get	chrome/content/grwatcher.js	/^  var get = function() {$/;"	f
-GRW.Token.isValid	chrome/content/grwatcher.js	/^  var isValid = function() {$/;"	f
-GRW.Token.runFn	chrome/content/grwatcher.js	/^  var runFn = function(fn, arg) {$/;"	f
-GRW.Token.update	chrome/content/grwatcher.js	/^  var update = function(fn, arg) {$/;"	f
+GRW.SandBox.modules	chrome/content/core.js	/^  modules: {},$/;"	p
 GRW._PasswordManager	chrome/content/passmanager.js	/^GRW._PasswordManager = function() {$/;"	c
-GRW.enableCookies	chrome/content/grwatcher.js	/^GRW.enableCookies = function(event) {$/;"	f
+GRW.augmentObject	chrome/content/core.js	/^GRW.augmentObject = function(r, s) {$/;"	f
+GRW.augmentProto	chrome/content/core.js	/^GRW.augmentProto = function(r, s) {$/;"	f
 GRW.escapeForRegExp	chrome/content/general.js	/^GRW.escapeForRegExp = function(str) {$/;"	f
-GRW.getActiveGRW	chrome/content/grwatcher.js	/^GRW.getActiveGRW = function() {$/;"	f
 GRW.init	chrome/content/grwatcher.js	/^GRW.init = function() {$/;"	f
-GRW.isActiveGRW	chrome/content/grwatcher.js	/^GRW.isActiveGRW = function() {$/;"	f
-GRW.log	chrome/content/log.js	/^GRW.log = function() {$/;"	f
-GRW.mapWindows	chrome/content/grwatcher.js	/^GRW.mapWindows = function(onMap) {$/;"	f
-GRW.markAllAsRead	chrome/content/grwatcher.js	/^GRW.markAllAsRead = function() {$/;"	f
-GRW.markAllAsRead	chrome/content/grwatcher.js	/^GRW.markAllAsRead.prototype = {$/;"	c
-GRW.markAllAsRead.markAsRead	chrome/content/grwatcher.js	/^  markAsRead: function() {$/;"	m
 GRW.openNewTabCheckToogle	chrome/content/grprefs.js	/^GRW.openNewTabCheckToogle = function() {$/;"	f
-GRW.openPrefs	chrome/content/grwatcher.js	/^GRW.openPrefs = function(event) {$/;"	f
-GRW.openReaderNotify.observe	chrome/content/grwatcher.js	/^  observe: function(subject, topic, data) {$/;"	m
 GRW.savePreferences	chrome/content/grprefs.js	/^GRW.savePreferences = function() {$/;"	f
-GRW.setCookie	chrome/content/grwatcher.js	/^GRW.setCookie = function(name, value, permanent) {$/;"	f
 GRW.setPrefPaneVals	chrome/content/grprefs.js	/^GRW.setPrefPaneVals = function() {$/;"	f
-GRW.showNotification	chrome/content/grwatcher.js	/^GRW.showNotification = function(label, value) {$/;"	f
-GRW.statusClickHandling	chrome/content/grwatcher.js	/^GRW.statusClickHandling = function(ob) {$/;"	c
-GRW.statusClickHandling.ob	chrome/content/grwatcher.js	/^  ob: null,$/;"	p
-GRW.statusClickHandling.observe	chrome/content/grwatcher.js	/^  observe: function() {$/;"	m
-GRW.statusClickHandling.st	chrome/content/grwatcher.js	/^  st: null,$/;"	p
-GRW.windowCloseCheck.observe	chrome/content/grwatcher.js	/^  observe: function(aSubject, aTopic, aData) {$/;"	m
 LSID	chrome/content/accountmanager.new.js	/^    var LSID = response.replace(rex.lsid, '$1');$/;"	v
 SID	chrome/content/accountmanager.new.js	/^    var SID = response.replace(rex.sid, '$1');$/;"	v
 a	testfiles/showgrwmessages.js	/^var a = Components.classes["@mozilla.org\/consoleservice;1"].getService(Components.interfaces.nsIConsoleService);var b = {};a.getMessageArray(b,{});var c = [];for(var i in b){for(var j in b[i]){if(\/GRW\/.test(b[i][j].message)){c.push(b[i][j].message);}}};a.logStringMessage('GRW messages: ' + c.join(" ====new message ==== "));$/;"	v
-agent	chrome/content/ajax.js	/^  var agent = 'Google Reader Watcher ###VERSION###';$/;"	v
 buildXPI	makexpi.sh	/^function buildXPI {$/;"	f
 c	testfiles/showgrwmessages.js	/^var a = Components.classes["@mozilla.org\/consoleservice;1"].getService(Components.interfaces.nsIConsoleService);var b = {};a.getMessageArray(b,{});var c = [];for(var i in b){for(var j in b[i]){if(\/GRW\/.test(b[i][j].message)){c.push(b[i][j].message);}}};a.logStringMessage('GRW messages: ' + c.join(" ====new message ==== "));$/;"	v
 cleanBuild	makexpi.sh	/^function cleanBuild {$/;"	f
 curSid	chrome/content/accountmanager.new.js	/^    var curSid = GRW.AccountManager.getCurrentSID();$/;"	v
-ds	chrome/content/ajax.js	/^  var ds = Cc["@mozilla.org\/webshell;1"].createInstance(Ci.nsIDocShellTreeItem).QueryInterface(Ci.nsIInterfaceRequestor);$/;"	v
 feeds	chrome/content/getlist.js	/^    var feeds = Array(), unr = this.feedsCounter(), o, u, filteredLabels = GRW.Prefs.getPref.filteredLabels();$/;"	v
 feeds	chrome/content/getlist.js	/^    var feeds = Array();$/;"	v
+grwajax	chrome/content/ajax.js	/^  grwajax.prototype = {$/;"	c
+grwajax._init	chrome/content/ajax.js	/^    _init: function(pars, parameters) {$/;"	m
+grwajax._initRequest	chrome/content/ajax.js	/^    _initRequest: function() {$/;"	m
+grwajax._initRequest.req	chrome/content/ajax.js	/^      this.req.onreadystatechange = function() {_this.handler.call(_this);};$/;"	m
+grwajax.createParameters	chrome/content/ajax.js	/^    createParameters: function() {$/;"	m
+grwajax.errorHandler	chrome/content/ajax.js	/^    errorHandler: function(msg, Exception) {$/;"	m
+grwajax.handler	chrome/content/ajax.js	/^    handler: function() {$/;"	m
+grwajax.send	chrome/content/ajax.js	/^    send: function() {$/;"	m
+grwajax.successHandler	chrome/content/ajax.js	/^    successHandler: function() {$/;"	m
+isBoolean	chrome/content/core.js	/^    isBoolean: function(arg) {$/;"	m
+isEmail	chrome/content/core.js	/^    isEmail: function(arg) {$/;"	m
+isFunction	chrome/content/core.js	/^    isFunction: function(arg) {$/;"	m
+isNull	chrome/content/core.js	/^    isNull: function(arg) {$/;"	m
+isNumber	chrome/content/core.js	/^    isNumber: function(arg) {$/;"	m
+isObject	chrome/content/core.js	/^    isObject: function(arg) {$/;"	m
+isString	chrome/content/core.js	/^    isString: function(arg) {$/;"	m
+isUndef	chrome/content/core.js	/^    isUndef: function(arg) {$/;"	m
+isUrl	chrome/content/core.js	/^    isUrl: function(arg) {$/;"	m
 labels	chrome/content/getlist.js	/^    var labels = new Object();$/;"	c
 labels.value	chrome/content/getlist.js	/^    labels['-'] = {value: nolabel.value, Id: ''};$/;"	p
+log	chrome/content/core.js	/^})();$/;"	f
 nolabel.Id	chrome/content/getlist.js	/^    var nolabel = {Id: '', value: new Array()};$/;"	p
 nolabel.value	chrome/content/getlist.js	/^    var nolabel = {Id: '', value: new Array()};$/;"	p
 outFeeds	chrome/content/getlist.js	/^    var outFeeds = Array(), counter = 0, _this = this;$/;"	v
