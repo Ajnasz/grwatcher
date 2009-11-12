@@ -1,3 +1,4 @@
+if(typeof GRW === 'undefined') GRW = {};
 (function(){
 
   var lang = {
@@ -35,8 +36,25 @@
   *
   * @module GRW
   */
-  GRW = {};
   GRW.lang = lang;
+})();
+(function() {
+  /**
+  * Logger method which writes messages to the error console
+  * @method log
+  *
+  * @namespace GRW
+  *
+  * @param {String} message log on the javascript console
+  */
+  GRW.log = function() {
+    var msg = [];
+    for(var i = 0, al = arguments.length; i< al; i++) {
+      msg.push(arguments[i]);
+    }
+    var consoleService = Components.classes["@mozilla.org/consoleservice;1"].getService(Components.interfaces.nsIConsoleService);
+    consoleService.logStringMessage('GRW: ' + msg.join(',\n'));
+  };
 })();
 
 
@@ -185,6 +203,9 @@ GRW.EventProvider.prototype = {
       this._subscribers[type] = [];
     }
     this._subscribers[type].push({fn:fn, obj: obj, overrideContext: overrideContext});
+  },
+  on: function() {
+    this.subscribe.apply(this, arguments);
   },
   fireEvent: function(type, args) {
     if(!this._subscribers) return;
