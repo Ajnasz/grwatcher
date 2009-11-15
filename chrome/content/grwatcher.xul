@@ -9,6 +9,7 @@
 <overlay id="GRWatcherOverlay" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
   <script type="application/x-javascript" src="chrome://grwatcher/content/core.js" />
   <script type="application/x-javascript" src="chrome://grwatcher/content/ajax.js" />
+  <script type="application/x-javascript" src="chrome://grwatcher/content/cookie.js" />
   <script type="application/x-javascript" src="chrome://grwatcher/content/grwatcher.js" />
 
 

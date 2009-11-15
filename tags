@@ -8,7 +8,7 @@ Auth	chrome/content/accountmanager.new.js	/^    var Auth = response.replace(rex.
 GRStates.timeoutid	chrome/content/preferences.js	/^  timeoutid: -1,$/;"	p
 GRW.AccountManager.CookieManager	chrome/content/accountmanager.js	/^  CookieManager: Components.classes["@mozilla.org\/cookiemanager;1"].getService(Components.interfaces.nsICookieManager2),$/;"	p
 GRW.AccountManager.CookieManager	chrome/content/accountmanager.new.js	/^  CookieManager: Components.classes["@mozilla.org\/cookiemanager;1"].getService(Components.interfaces.nsICookieManager),$/;"	p
-GRW.Cookie	chrome/content/cookie.js	/^GRW.Cookie = function(domain, name, value, date, path) {$/;"	c
+GRW.Cookie	chrome/content/cookie.js	/^GRW.Cookie = function(domain, name, value, date, path) {$/;"	f
 GRW.CustomEvent	chrome/content/core.js	/^GRW.CustomEvent = function(type, scope) {$/;"	c
 GRW.CustomEvent.subscribers	chrome/content/core.js	/^  subscribers: [],$/;"	p
 GRW.EventProvider	chrome/content/core.js	/^GRW.EventProvider = function() {$/;"	f
@@ -33,8 +33,6 @@ GRW.Prefs.getChar	chrome/content/preferences.js	/^  getChar: function(pref) {$/;
 GRW.Prefs.getInt	chrome/content/preferences.js	/^  getInt: function(pref) {$/;"	m
 GRW.Prefs.getPref	chrome/content/preferences.js	/^  getPref: {$/;"	p
 GRW.SandBox.modules	chrome/content/core.js	/^  modules: {},$/;"	p
-GRW.Token	chrome/content/token.js	/^GRW.Token = function(fn, arg, thisArg, force) {$/;"	f
-GRW.Token.runFn	chrome/content/token.js	/^  var runFn = function(fn, arg) {$/;"	f
 GRW._PasswordManager	chrome/content/passmanager.js	/^GRW._PasswordManager = function() {$/;"	c
 GRW.augmentObject	chrome/content/core.js	/^GRW.augmentObject = function(r, s) {$/;"	f
 GRW.augmentProto	chrome/content/core.js	/^GRW.augmentProto = function(r, s) {$/;"	f
@@ -45,6 +43,8 @@ GRW.savePreferences	chrome/content/grprefs.js	/^GRW.savePreferences = function()
 GRW.setPrefPaneVals	chrome/content/grprefs.js	/^GRW.setPrefPaneVals = function() {$/;"	f
 LSID	chrome/content/accountmanager.new.js	/^    var LSID = response.replace(rex.lsid, '$1');$/;"	v
 SID	chrome/content/accountmanager.new.js	/^    var SID = response.replace(rex.sid, '$1');$/;"	v
+Token	chrome/content/ajax.js	/^})();$/;"	f
+Token.runFn	chrome/content/ajax.js	/^    var runFn = function(fn, arg) {$/;"	f
 a	testfiles/showgrwmessages.js	/^var a = Components.classes["@mozilla.org\/consoleservice;1"].getService(Components.interfaces.nsIConsoleService);var b = {};a.getMessageArray(b,{});var c = [];for(var i in b){for(var j in b[i]){if(\/GRW\/.test(b[i][j].message)){c.push(b[i][j].message);}}};a.logStringMessage('GRW messages: ' + c.join(" ====new message ==== "));$/;"	v
 buildXPI	makexpi.sh	/^function buildXPI {$/;"	f
 c	testfiles/showgrwmessages.js	/^var a = Components.classes["@mozilla.org\/consoleservice;1"].getService(Components.interfaces.nsIConsoleService);var b = {};a.getMessageArray(b,{});var c = [];for(var i in b){for(var j in b[i]){if(\/GRW\/.test(b[i][j].message)){c.push(b[i][j].message);}}};a.logStringMessage('GRW messages: ' + c.join(" ====new message ==== "));$/;"	v
@@ -56,7 +56,6 @@ grwajax	chrome/content/ajax.js	/^  grwajax.prototype = {$/;"	c
 grwajax._init	chrome/content/ajax.js	/^    _init: function(pars, parameters) {$/;"	m
 grwajax._initRequest	chrome/content/ajax.js	/^    _initRequest: function() {$/;"	m
 grwajax._initRequest.req	chrome/content/ajax.js	/^      this.req.onreadystatechange = function() {_this.handler.call(_this);};$/;"	m
-grwajax.createParameters	chrome/content/ajax.js	/^    createParameters: function() {$/;"	m
 grwajax.errorHandler	chrome/content/ajax.js	/^    errorHandler: function(msg, Exception) {$/;"	m
 grwajax.handler	chrome/content/ajax.js	/^    handler: function() {$/;"	m
 grwajax.send	chrome/content/ajax.js	/^    send: function() {$/;"	m

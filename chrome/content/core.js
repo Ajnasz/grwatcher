@@ -1,4 +1,5 @@
 if(typeof GRW === 'undefined') GRW = {};
+GRStates = {};
 GRStates.conntype = 'https';
 (function(){
 
@@ -33,21 +34,21 @@ GRStates.conntype = 'https';
     },
   };
   /**
-  * Core JavaScript namespace for the Google Reader Watcher extension
-  *
-  * @module GRW
-  */
+   * Core JavaScript namespace for the Google Reader Watcher extension
+   *
+   * @module GRW
+   */
   GRW.lang = lang;
 })();
 (function() {
   /**
-  * Logger method which writes messages to the error console
-  * @method log
-  *
-  * @namespace GRW
-  *
-  * @param {String} message log on the javascript console
-  */
+   * Logger method which writes messages to the error console
+   * @method log
+   *
+   * @namespace GRW
+   *
+   * @param {String} message log on the javascript console
+   */
   GRW.log = function() {
     var msg = [];
     for(var i = 0, al = arguments.length; i< al; i++) {
@@ -96,6 +97,9 @@ GRW.SandBox = {
 };
 
 
+/**
+ *
+ */
 GRW.Module = function() {
 };
 GRW.Module.prototype = {
@@ -135,18 +139,18 @@ GRW.augmentObject = function(r, s) {
   }
   var a=arguments, i, p, overrideList=a[2];
   if (overrideList && overrideList!==true) { // only absorb the specified properties
-      for (i=2; i<a.length; i=i+1) {
-          r[a[i]] = s[a[i]];
-      }
+    for (i=2; i<a.length; i=i+1) {
+        r[a[i]] = s[a[i]];
+    }
   } else { // take everything, overwriting only if the third parameter is true
-      for (p in s) { 
-          if (overrideList || !(p in r)) {
-              r[p] = s[p];
-          }
+    for (p in s) {
+      if (overrideList || !(p in r)) {
+        r[p] = s[p];
       }
+    }
   }
 };
- 
+
 /**
  * Same as GRW.augmentObject, except it only applies prototype properties
  * @see GRW.augmentObject
@@ -155,11 +159,11 @@ GRW.augmentObject = function(r, s) {
  * @static
  * @param {Function} r  the object to receive the augmentation
  * @param {Function} s  the object that supplies the properties to augment
- * @param {String*|boolean}  arguments zero or more properties methods 
- *        to augment the receiver with.  If none specified, everything 
- *        in the supplier will be used unless it would overwrite an existing 
- *        property in the receiver.  if true is specified as the third 
- *        parameter, all properties will be applied and will overwrite an 
+ * @param {String*|boolean}  arguments zero or more properties methods
+ *        to augment the receiver with.  If none specified, everything
+ *        in the supplier will be used unless it would overwrite an existing
+ *        property in the receiver.  if true is specified as the third
+ *        parameter, all properties will be applied and will overwrite an
  *        existing property in the receiver
  */
 GRW.augmentProto = function(r, s) {
