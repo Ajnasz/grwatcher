@@ -3,31 +3,28 @@
       requestSuccess = 'requestSuccess',
       requestFailed = 'requestFailed',
   /**
-  * AJAX requester class
-  * @constructor
-  * @class Ajax
-  * @namespace GRW
-  *
-  * @param {Object} pars  object to configure the AJAX request
-  *  {String} url the url of the request
-  *  {String} [method] request method (eg.: get, post, head)
-  * @param {String} [parameters] if the method should be post, this variable contains the request parameters
-  */
+   * AJAX requester class
+   * @constructor
+   * @class Ajax
+   * @namespace GRW
+   *
+   * @param {Object} pars  object to configure the AJAX request
+   *  {String} url the url of the request
+   *  {String} [method] request method (eg.: get, post, head)
+   * @param {String} [parameters] if the method should be post, this variable contains the request parameters
+   */
   grwajax = function(pars, parameters) {
     this._init.apply(this, arguments);
   };
   grwajax.prototype = {
     _init: function(pars, parameters) {
-      if(typeof pars.url == 'undefined') {
-        return false;
-      }
-      /**
-      * @private
-      */
-      var  GL = GRW.lang,
+      var GL = GRW.lang,
           isUndef = GL.isUndef,
           isFunction = GL.isFunction;
-
+      if(isUndef(pars.url)) {
+        GRW.log('url is undefined');
+        return false;
+      }
       this.createEvent(startRequest);
 
       this.url = pars.url;
@@ -72,8 +69,8 @@
       this.req.send(this.createParameters());
     },
     /**
-    * readystatechange handler function
-    */
+     * readystatechange handler function
+     */
     handler: function() {
       try {
         if(this.req.readyState == 4) {
@@ -94,19 +91,20 @@
       }
     },
     /**
-    * default success handler function
-    * @returns the response text
-    * @type String
-    */
+     * default success handler function
+     * @returns the response text
+     * @type String
+     */
     successHandler: function() {
       return this.req.responseText;
     },
     /**
-    * function to catching the request errors
-    * @param {String} msg
-    * @param {Exception} Exception
-    */
+     * function to catching the request errors
+     * @param {String} msg
+     * @param {Exception} Exception
+     */
     errorHandler: function(msg, Exception) {
+      GRW.log('error handler')
       if(typeof this.onError == 'function') {
         this.onError();
       }
@@ -154,10 +152,10 @@
       return false;
     },
     /**
-    * generate the parameters for the request
-    * returns the processed parameters or null
-    * @type {String,null}
-    */
+     * generate the parameters for the request
+     * returns the processed parameters or null
+     * @type {String,null}
+     */
     createParameters: function() {
       var pt = typeof this.parameters;
       if(pt == 'string') {
@@ -174,4 +172,35 @@
   };
   GRW.augmentProto(grwajax, GRW.EventProvider);
   GRW.Ajax = grwajax;
+})();
+(function() {
+  GRW.Token = function(fn, arg, thisArg, force) {
+    var runFn = function(fn, arg) {
+      GRW.log('is fn', GRW.lang.isFunction(fn), fn)
+      if(GRW.lang.isFunction(fn)) {
+        fn.call(thisArg || this, arg);
+      }
+    },
+    update = function(fn, arg) {
+      new GRW.Ajax({
+        url: GRStates.conntype + '://www.google.com/reader/api/0/token',
+        onSuccess: function(r) {
+          // GRW.setCookie('T', r.responseText);
+          GRW.token = {
+            token: r.responseText,
+            date: new Date()
+          }
+          runFn(fn, arg)
+        }
+      }).send();
+    },
+    isValid = function() {
+      return !(!GRW.token || !GRW.token.date || Math.round(((new Date()).getTime() - GRW.token.date.getTime())/1000/60) > 5 );
+    };
+    if(!isValid() || force) {
+      update(fn, arg);
+    } else {
+      runFn(fn, arg)
+    }
+  };
 })();
