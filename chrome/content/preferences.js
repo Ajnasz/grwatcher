@@ -14,6 +14,15 @@
    * namespace to handle the stored configurations
    */
   GRW.Prefs = {
+    getChar: function(pref) {
+        return getCharPref(pref);
+    },
+    getInt: function(pref) {
+        return getIntPref(pref);
+    },
+    getBool: function(pref) {
+        return getBoolPref(pref);
+    },
     get: {
      /**
       * @type Int
@@ -134,6 +143,9 @@
        */
       showitemsincontextmenu: function() {
         return getBoolPref('extensions.grwatcher.showitemsincontextmenu');
+      },
+      cookieBehaviour: function(value) {
+        return getIntPref('network.cookie.cookieBehavior');
       }
     },
     set: {
@@ -257,7 +269,7 @@
       showitemsincontextmenu: function(value) {
         return setBoolPref('extensions.grwatcher.showitemsincontextmenu', value);
       },
-      setCookieBehaviour: function(value) {
+      cookieBehaviour: function(value) {
         return setIntPref('network.cookie.cookieBehavior', value);
       }
     }
