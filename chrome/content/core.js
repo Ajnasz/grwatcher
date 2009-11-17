@@ -1,6 +1,4 @@
 if(typeof GRW === 'undefined') GRW = {};
-GRStates = {};
-GRStates.conntype = 'https';
 (function(){
 
   var lang = {
@@ -177,49 +175,35 @@ GRW.augmentProto = function(r, s) {
   GRW.augmentObject.apply(this, a);
 };
 
-GRW.CustomEvent = function(type, scope) {
-  this.type = type;
-  this.scope = scope || window;
-}
-GRW.CustomEvent.prototype = {
-  subscribers: [],
-  subscribe: function() {
-  }
-}
 
-/**
- * @class EventProvider
- * @namespace GRW
- */
-GRW.EventProvider = function() {
-};
-GRW.EventProvider.prototype = {
-  createEvent: function(type) {
-    if(!GRW.lang.isObject(this._events)) {
-      this._events = {};
-    }
-    this._events[type] = true;
-  },
-  subscribe: function(type, fn, obj, overrideContext) {
-    if(!GRW.lang.isObject(this._subscribers)) {
-      this._subscribers = {};
-    }
-    if(!this._subscribers[type]) {
-      this._subscribers[type] = [];
-    }
-    this._subscribers[type].push({fn:fn, obj: obj, overrideContext: overrideContext});
-  },
-  on: function() {
-    this.subscribe.apply(this, arguments);
-  },
-  fireEvent: function(type, args) {
-    if(!this._subscribers) return;
-    var subscribers = this._subscribers[type];
-    for(var i in subscribers) {
-      if(subscribers.hasOwnProperty(i)) {
+(function(){
+  /**
+   * @class EventProvider
+   * @namespace GRW
+   */
+  eventProvider = function() {
+  };
+  eventProvider.prototype = {
+    subscribe: function(eventName, fn, obj, overrideContext) {
+      if(!this._subscribers) {
+        this._subscribers = {};
+      }
+      if(!this._subscribers[eventName]) {
+        this._subscribers[eventName] = [];
+      }
+      this._subscribers[eventName].push({fn:fn, obj: obj, overrideContext: overrideContext});
+    },
+    on: function() {
+      this.subscribe.apply(this, arguments);
+    },
+    fireEvent: function(eventName, args) {
+      if(!this._subscribers || !this._subscribers[eventName]) return;
+      var subscribers = this._subscribers[eventName];
+      for (var i = 0, sl = subscribers.length; i < sl; i++) {
         subscription = subscribers[i];
         subscription.fn.call(subscription.context, args);
       }
     }
-  }
-};
+  };
+  GRW.EventProvider = eventProvider;
+})();
