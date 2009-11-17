@@ -3,7 +3,10 @@
  */
 GRW.init = function() {
   GRW.log('Google Reader Watcher ###VERSION### initializitaion started');
-  GRW.Token(function() {alert(GRW.token)});
+  GRW.log('account exists', GRW.AccountManager.getCurrentSID());
+  GRW.log('account login', GRW.AccountManager.logIn(function() {
+    GRW.log('account exists2', GRW.AccountManager.getCurrentSID());
+  }));
   GRW.log('Google Reader Watcher ###VERSION### initializitaion finished');
 };
 window.addEventListener('load', GRW.init, false);
