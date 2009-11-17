@@ -105,12 +105,12 @@
      */
     errorHandler: function(msg, Exception) {
       GRW.log('error handler')
+      /*
       if(typeof this.onError == 'function') {
         this.onError();
       }
-      GRW.StatusBar.switchErrorIcon();
-      GRW.StatusBar.hideCounter();
-      var msgs = new Array();
+      */
+      var msgs = [];
       if(this.req.status == 401) {
         // not authorized
         msgs.push('not authorized, third party cookies enabled?');
@@ -138,7 +138,7 @@
         msgs.push(e.message);
       }
       try {
-        GRW.log(this.req.getAllResponseHeaders());
+        GRW.log('response headers: ', this.req.getAllResponseHeaders());
       } catch(e) {
         msgs.push(e.message)
       }
