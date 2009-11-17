@@ -21,11 +21,11 @@
       var GL = GRW.lang,
           isUndef = GL.isUndef,
           isFunction = GL.isFunction;
+
       if(isUndef(pars.url)) {
         GRW.log('url is undefined');
         return false;
       }
-      this.createEvent(startRequest);
 
       this.url = pars.url;
       this.pars = isUndef(pars.pars) ? this.pars : pars.pars;
@@ -34,8 +34,8 @@
       this.onError = isFunction(pars.onError) ? pars.onError : function() {};
       this.onSuccess = isFunction(pars.onSuccess) ? pars.onSuccess : function() {};
       this.parameters = isUndef('undefined') ? null : parameters;
-      this.on(requestSuccess, this.onSuccess);
-      this.on(requestFailed, this.onError);
+      this.subscribe(requestSuccess, this.onSuccess);
+      this.subscribe(requestFailed, this.onError);
 
       this._initRequest();
     },
@@ -176,14 +176,13 @@
 (function() {
   GRW.Token = function(fn, arg, thisArg, force) {
     var runFn = function(fn, arg) {
-      GRW.log('is fn', GRW.lang.isFunction(fn), fn)
       if(GRW.lang.isFunction(fn)) {
         fn.call(thisArg || this, arg);
       }
     },
     update = function(fn, arg) {
       new GRW.Ajax({
-        url: GRStates.conntype + '://www.google.com/reader/api/0/token',
+        url: GRW.States.conntype + '://www.google.com/reader/api/0/token',
         onSuccess: function(r) {
           // GRW.setCookie('T', r.responseText);
           GRW.token = {
