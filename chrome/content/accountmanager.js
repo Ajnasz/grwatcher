@@ -1,10 +1,7 @@
-/**
- * accountmanager.js
- *
- * @author Koszti Lajos [Ajnasz] http://ajnasz.hu ajnasz@ajnasz.hu
- * @license GPL v2
- * for more details see the license.txt file
- */
+(function() {
+  // mozilla nsi cookie manager component
+  var cookieManager = Components.classes["@mozilla.org/cookiemanager;1"].getService(Components.interfaces.nsICookieManager2),
+      enumerator = cookieManager.enumerator;
 /**
  * Google account manager namespace,
  * check that the user is logged in,
@@ -14,14 +11,12 @@
  * @requires #getFeedList function, to gets the feeds
  */
 GRW.AccountManager = {
-  // mozilla nsi cookie manager component
-  CookieManager: Components.classes["@mozilla.org/cookiemanager;1"].getService(Components.interfaces.nsICookieManager2),
   /**
    * Check, that the account is configured
    * @type {Boolean}
    */
   accountExists: function() {
-    if(GRW.Prefs.getPref.userName() && GRW.PasswordManager.getPassword()) {
+    if(GRW.Prefs.get.userName() && GRW.PasswordManager.getPassword()) {
       return true;
     }
     return false;
@@ -31,7 +26,6 @@ GRW.AccountManager = {
    * @type {String,Boolean}
    */
   getCurrentSID: function(response) {
-    var enumerator = this.CookieManager.enumerator;
     var rex = new RegExp('google.com$');
     while (enumerator.hasMoreElements()) {
       var cookie = enumerator.getNext();
@@ -55,7 +49,7 @@ GRW.AccountManager = {
             }
           }
           if(sid.length) {
-            GRW.setCookie('SID', sid.split('=')[1], GRW.Prefs.getPref.rememberLogin());
+            GRW.setCookie('SID', sid.split('=')[1], GRW.Prefs.get.rememberLogin());
             GRW.Token();
             return sid.split('=')[1];
           }
@@ -75,7 +69,7 @@ GRW.AccountManager = {
       // var url = GRStates.conntype + '://www.google.com/accounts/ServiceLoginAuth';
       // var url = 'https://www.google.com/accounts/ServiceLoginAuth?service=reader';
       var url = 'https://www.google.com/accounts/ClientLogin?service=reader';
-      var param = 'service=reader&Email='+encodeURIComponent(GRW.Prefs.getPref.userName())+'&Passwd='+encodeURIComponent(GRW.PasswordManager.getPassword())+'&continue=http://www.google.com/reader/';
+      var param = 'service=reader&Email='+encodeURIComponent(GRW.Prefs.get.userName())+'&Passwd='+encodeURIComponent(GRW.PasswordManager.getPassword())+'&continue=http://www.google.com/reader/';
       var _this = this;
       new GRW.Ajax({
         url: url,
@@ -143,3 +137,4 @@ GRW.AccountManager = {
     document.getElementById('GRW-statusbar-menuitem-enablecookies').setAttribute('class', 'grw-hidden');
   }
 };
+})();
