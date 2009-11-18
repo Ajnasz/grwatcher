@@ -8,7 +8,7 @@
        * @requires GRW._PasswordManager to get the users password
        * @requires #getFeedList function, to gets the feeds
        */
-      var accountManager = {
+      var loginManager = {
         /**
          * Check, that the account is configured
          * @type {Boolean}
@@ -25,6 +25,9 @@
          */
         getCurrentSID: function() {
           return GRW.Cookie.get('SID');
+        },
+        isLoggedIn: function() {
+          return this.getCurrentSID() != false;
         },
         setCurrentSID: function(response) {
           if(response && response.responseText) {
@@ -61,19 +64,17 @@
               method: 'post',
               onSuccess: function(e) {
                 GRW.log('login request success');
-                accountManager.goodCookieBehavior();
-                accountManager.ajaxSuccess(e);
+                loginManager.ajaxSuccess(e);
                 if(GRW.lang.isFunction(onLogin)) {
                   onLogin.call();
                 }
                 if(!_this.getCurrentSID()) {
                   var cookieBehavior = GRW.Prefs.get.cookieBehaviour();
                   if(cookieBehavior != 0) {
-                    accountManager.loginFailed(e.responseText);
-                    accountManager.badCookieBehavior();
+                    loginManager.loginFailed(e.responseText);
                     GRW.log('bad cookie behavior', cookieBehavior);
                   } else {
-                    accountManager.loginFailed(e.responseText);
+                    loginManager.loginFailed(e.responseText);
                   }
                 }
               }
@@ -90,8 +91,8 @@
          * @type Boolean
          */
         ajaxSuccess: function(e) {
-          accountManager.setCurrentSID(e);
-          var curSid = accountManager.getCurrentSID();
+          loginManager.setCurrentSID(e);
+          var curSid = loginManager.getCurrentSID();
           if(curSid === false) {
             this.loginFailed(e.responseText);
             return false;
@@ -111,13 +112,7 @@
           }
           return false;
         },
-        badCookieBehavior: function() {
-          document.getElementById('GRW-statusbar-menuitem-enablecookies').setAttribute('class', '');
-        },
-        goodCookieBehavior: function() {
-          document.getElementById('GRW-statusbar-menuitem-enablecookies').setAttribute('class', 'grw-hidden');
-        }
       };
 
-GRW.AccountManager = accountManager;
+GRW.LoginManager = loginManager;
 })();
