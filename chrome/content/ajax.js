@@ -174,32 +174,33 @@
   GRW.Ajax = grwajax;
 })();
 (function() {
-  GRW.Token = function(fn, arg, thisArg, force) {
-    var runFn = function(fn, arg) {
-      if(GRW.lang.isFunction(fn)) {
-        fn.call(thisArg || this, arg);
-      }
-    },
-    update = function(fn, arg) {
-      new GRW.Ajax({
-        url: GRW.States.conntype + '://www.google.com/reader/api/0/token',
-        onSuccess: function(r) {
-          // GRW.setCookie('T', r.responseText);
-          GRW.token = {
-            token: r.responseText,
-            date: new Date()
+    var token = function(fn, scope, force) {
+      var update = function(fn, arg) {
+        new GRW.Ajax({
+          url: GRW.States.conntype + '://www.google.com/reader/api/0/token',
+          onSuccess: function(r) {
+            // GRW.setCookie('T', r.responseText);
+            GRW.token = {
+              token: r.responseText,
+              date: new Date()
+            }
+            runFn.call();
           }
-          runFn(fn, arg)
+        }).send();
+      },
+      runFn = function() {
+        if(GRW.lang.isFunction(fn)) {
+          fn.call(scope);
         }
-      }).send();
-    },
-    isValid = function() {
-      return !(!GRW.token || !GRW.token.date || Math.round(((new Date()).getTime() - GRW.token.date.getTime())/1000/60) > 5 );
+      },
+      isValid = function() {
+        return !(!GRW.token || !GRW.token.date || Math.round(((new Date()).getTime() - GRW.token.date.getTime())/1000/60) > 5 );
+      };
+      if(!isValid() || force) {
+        update();
+      } else {
+        runFn();
+      }
     };
-    if(!isValid() || force) {
-      update(fn, arg);
-    } else {
-      runFn(fn, arg)
-    }
-  };
-})();
+    GRW.Token = token;
+  })();
