@@ -5,35 +5,23 @@
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
 !_TAG_PROGRAM_VERSION	5.8	//
 Auth	chrome/content/accountmanager.new.js	/^    var Auth = response.replace(rex.auth, '$1');$/;"	v
-GRStates.timeoutid	chrome/content/preferences.js	/^  timeoutid: -1,$/;"	p
-GRW.AccountManager.CookieManager	chrome/content/accountmanager.js	/^  CookieManager: Components.classes["@mozilla.org\/cookiemanager;1"].getService(Components.interfaces.nsICookieManager2),$/;"	p
+Cookie.get	chrome/content/cookie.js	/^    get: function(name, domain) {$/;"	m
+Cookie.set	chrome/content/cookie.js	/^    set: function(domain, name, value, date, path) {$/;"	m
 GRW.AccountManager.CookieManager	chrome/content/accountmanager.new.js	/^  CookieManager: Components.classes["@mozilla.org\/cookiemanager;1"].getService(Components.interfaces.nsICookieManager),$/;"	p
-GRW.Cookie	chrome/content/cookie.js	/^GRW.Cookie = function(domain, name, value, date, path) {$/;"	f
-GRW.CustomEvent	chrome/content/core.js	/^GRW.CustomEvent = function(type, scope) {$/;"	c
-GRW.CustomEvent.subscribers	chrome/content/core.js	/^  subscribers: [],$/;"	p
-GRW.EventProvider	chrome/content/core.js	/^GRW.EventProvider = function() {$/;"	f
-GRW.EventProvider	chrome/content/core.js	/^GRW.EventProvider.prototype = {$/;"	c
-GRW.EventProvider.createEvent	chrome/content/core.js	/^  createEvent: function(type) {$/;"	m
-GRW.EventProvider.fireEvent	chrome/content/core.js	/^  fireEvent: function(type, args) {$/;"	m
-GRW.EventProvider.on	chrome/content/core.js	/^  on: function() {$/;"	m
-GRW.EventProvider.subscribe	chrome/content/core.js	/^  subscribe: function(type, fn, obj, overrideContext) {$/;"	m
-GRW.GetList	chrome/content/getlist.js	/^GRW.GetList = function(getuserid) {$/;"	c
-GRW.GetList.countLabeled	chrome/content/getlist.js	/^  countLabeled: function() {$/;"	m
-GRW.GetList.finishLoad	chrome/content/getlist.js	/^  finishLoad: function(req) {$/;"	m
-GRW.GetList.getFeedList	chrome/content/getlist.js	/^  getFeedList: function() {$/;"	m
-GRW.GetList.getReadCounter	chrome/content/getlist.js	/^  getReadCounter: function() {$/;"	m
-GRW.GetList.init	chrome/content/getlist.js	/^  init: function() {$/;"	m
-GRW.GetList.onFeedListLoad	chrome/content/getlist.js	/^  onFeedListLoad: function(request) {$/;"	m
 GRW.Module	chrome/content/core.js	/^GRW.Module = function() {$/;"	f
 GRW.Module	chrome/content/core.js	/^GRW.Module.prototype = {$/;"	c
 GRW.Module.happening	chrome/content/core.js	/^  happening: function(notifier, event, context) {$/;"	m
 GRW.Module.register	chrome/content/core.js	/^  register: function() {$/;"	m
-GRW.Prefs.getBool	chrome/content/preferences.js	/^  getBool: function(pref) {$/;"	m
-GRW.Prefs.getChar	chrome/content/preferences.js	/^  getChar: function(pref) {$/;"	m
-GRW.Prefs.getInt	chrome/content/preferences.js	/^  getInt: function(pref) {$/;"	m
-GRW.Prefs.getPref	chrome/content/preferences.js	/^  getPref: {$/;"	p
+GRW.Prefs.get	chrome/content/preferences.js	/^    get: {$/;"	p
+GRW.Prefs.getBool	chrome/content/preferences.js	/^    getBool: function(pref) {$/;"	m
+GRW.Prefs.getChar	chrome/content/preferences.js	/^    getChar: function(pref) {$/;"	m
+GRW.Prefs.getInt	chrome/content/preferences.js	/^    getInt: function(pref) {$/;"	m
 GRW.SandBox.modules	chrome/content/core.js	/^  modules: {},$/;"	p
-GRW._PasswordManager	chrome/content/passmanager.js	/^GRW._PasswordManager = function() {$/;"	c
+GRW.States.conntype	chrome/content/preferences.js	/^    conntype: GRW.Prefs.get.useSecureConnection() ? 'https' : 'http',$/;"	p
+GRW.States.currentNum	chrome/content/preferences.js	/^    currentNum: null,$/;"	p
+GRW.States.feeds	chrome/content/preferences.js	/^    feeds: null,$/;"	p
+GRW.States.showNotification	chrome/content/preferences.js	/^    showNotification: true,$/;"	p
+GRW.States.timeoutid	chrome/content/preferences.js	/^    timeoutid: null,$/;"	p
 GRW.augmentObject	chrome/content/core.js	/^GRW.augmentObject = function(r, s) {$/;"	f
 GRW.augmentProto	chrome/content/core.js	/^GRW.augmentProto = function(r, s) {$/;"	f
 GRW.escapeForRegExp	chrome/content/general.js	/^GRW.escapeForRegExp = function(str) {$/;"	f
@@ -43,19 +31,37 @@ GRW.savePreferences	chrome/content/grprefs.js	/^GRW.savePreferences = function()
 GRW.setPrefPaneVals	chrome/content/grprefs.js	/^GRW.setPrefPaneVals = function() {$/;"	f
 LSID	chrome/content/accountmanager.new.js	/^    var LSID = response.replace(rex.lsid, '$1');$/;"	v
 SID	chrome/content/accountmanager.new.js	/^    var SID = response.replace(rex.sid, '$1');$/;"	v
-Token	chrome/content/ajax.js	/^})();$/;"	f
-Token.runFn	chrome/content/ajax.js	/^    var runFn = function(fn, arg) {$/;"	f
+_PasswordManager	chrome/content/passmanager.js	/^  var _PasswordManager = function() {$/;"	c
+_PasswordManager.addPassword	chrome/content/passmanager.js	/^    this.addPassword = function(password) {$/;"	m
+_PasswordManager.getPassword	chrome/content/passmanager.js	/^    this.getPassword = function() {$/;"	m
 a	testfiles/showgrwmessages.js	/^var a = Components.classes["@mozilla.org\/consoleservice;1"].getService(Components.interfaces.nsIConsoleService);var b = {};a.getMessageArray(b,{});var c = [];for(var i in b){for(var j in b[i]){if(\/GRW\/.test(b[i][j].message)){c.push(b[i][j].message);}}};a.logStringMessage('GRW messages: ' + c.join(" ====new message ==== "));$/;"	v
+accountExists	chrome/content/accountmanager.js	/^        accountExists: function() {$/;"	m
+ajaxSuccess	chrome/content/accountmanager.js	/^        ajaxSuccess: function(e) {$/;"	m
 buildXPI	makexpi.sh	/^function buildXPI {$/;"	f
 c	testfiles/showgrwmessages.js	/^var a = Components.classes["@mozilla.org\/consoleservice;1"].getService(Components.interfaces.nsIConsoleService);var b = {};a.getMessageArray(b,{});var c = [];for(var i in b){for(var j in b[i]){if(\/GRW\/.test(b[i][j].message)){c.push(b[i][j].message);}}};a.logStringMessage('GRW messages: ' + c.join(" ====new message ==== "));$/;"	v
 cleanBuild	makexpi.sh	/^function cleanBuild {$/;"	f
 curSid	chrome/content/accountmanager.new.js	/^    var curSid = GRW.AccountManager.getCurrentSID();$/;"	v
-feeds	chrome/content/getlist.js	/^    var feeds = Array(), unr = this.feedsCounter(), o, u, filteredLabels = GRW.Prefs.getPref.filteredLabels();$/;"	v
-feeds	chrome/content/getlist.js	/^    var feeds = Array();$/;"	v
+eventProvider	chrome/content/core.js	/^  eventProvider.prototype = {$/;"	c
+eventProvider.fireEvent	chrome/content/core.js	/^    fireEvent: function(eventName, args) {$/;"	m
+eventProvider.on	chrome/content/core.js	/^    on: function() {$/;"	m
+eventProvider.subscribe	chrome/content/core.js	/^    subscribe: function(eventName, fn, obj, overrideContext) {$/;"	m
+getCurrentSID	chrome/content/accountmanager.js	/^        getCurrentSID: function() {$/;"	m
+getList	chrome/content/getlist.js	/^      getList.prototype = {$/;"	c
+getList._initRequests	chrome/content/getlist.js	/^        _initRequests: function() {$/;"	m
+getList._processSubscriptionList	chrome/content/getlist.js	/^        _processSubscriptionList: function(response) {$/;"	m
+getList._processSubscriptionList._subscriptionList.rText	chrome/content/getlist.js	/^            rText: o.responseText,$/;"	p
+getList._processUnreadCount	chrome/content/getlist.js	/^        _processUnreadCount: function(response) {$/;"	m
+getList._processUnreadCount._unreadCount.max	chrome/content/getlist.js	/^            max: obj.max$/;"	p
+getList._processUnreadCount._unreadCount.rJSON	chrome/content/getlist.js	/^            rJSON: obj,$/;"	p
+getList._processUnreadCount._unreadCount.rText	chrome/content/getlist.js	/^            rText: text,$/;"	p
+getList.getSubscriptionList	chrome/content/getlist.js	/^        getSubscriptionList: function() {$/;"	m
+getList.getUnreadCount	chrome/content/getlist.js	/^        getUnreadCount: function() {$/;"	m
+getList.init	chrome/content/getlist.js	/^        init: function() {$/;"	m
 grwajax	chrome/content/ajax.js	/^  grwajax.prototype = {$/;"	c
 grwajax._init	chrome/content/ajax.js	/^    _init: function(pars, parameters) {$/;"	m
 grwajax._initRequest	chrome/content/ajax.js	/^    _initRequest: function() {$/;"	m
 grwajax._initRequest.req	chrome/content/ajax.js	/^      this.req.onreadystatechange = function() {_this.handler.call(_this);};$/;"	m
+grwajax.createParameters	chrome/content/ajax.js	/^    createParameters: function() {$/;"	m
 grwajax.errorHandler	chrome/content/ajax.js	/^    errorHandler: function(msg, Exception) {$/;"	m
 grwajax.handler	chrome/content/ajax.js	/^    handler: function() {$/;"	m
 grwajax.send	chrome/content/ajax.js	/^    send: function() {$/;"	m
@@ -63,21 +69,18 @@ grwajax.successHandler	chrome/content/ajax.js	/^    successHandler: function() {
 isBoolean	chrome/content/core.js	/^    isBoolean: function(arg) {$/;"	m
 isEmail	chrome/content/core.js	/^    isEmail: function(arg) {$/;"	m
 isFunction	chrome/content/core.js	/^    isFunction: function(arg) {$/;"	m
+isLoggedIn	chrome/content/accountmanager.js	/^        isLoggedIn: function() {$/;"	m
 isNull	chrome/content/core.js	/^    isNull: function(arg) {$/;"	m
 isNumber	chrome/content/core.js	/^    isNumber: function(arg) {$/;"	m
 isObject	chrome/content/core.js	/^    isObject: function(arg) {$/;"	m
 isString	chrome/content/core.js	/^    isString: function(arg) {$/;"	m
 isUndef	chrome/content/core.js	/^    isUndef: function(arg) {$/;"	m
 isUrl	chrome/content/core.js	/^    isUrl: function(arg) {$/;"	m
-labels	chrome/content/getlist.js	/^    var labels = new Object();$/;"	c
-labels.value	chrome/content/getlist.js	/^    labels['-'] = {value: nolabel.value, Id: ''};$/;"	p
 log	chrome/content/core.js	/^})();$/;"	f
-nolabel.Id	chrome/content/getlist.js	/^    var nolabel = {Id: '', value: new Array()};$/;"	p
-nolabel.value	chrome/content/getlist.js	/^    var nolabel = {Id: '', value: new Array()};$/;"	p
-outFeeds	chrome/content/getlist.js	/^    var outFeeds = Array(), counter = 0, _this = this;$/;"	v
-param	chrome/content/accountmanager.js	/^      var param = 'service=reader&Email='+encodeURIComponent(GRW.Prefs.getPref.userName())+'&Passwd='+encodeURIComponent(GRW.PasswordManager.getPassword())+'&continue=http:\/\/www.google.com\/reader\/';$/;"	v
+logIn	chrome/content/accountmanager.js	/^        logIn: function(onLogin) {$/;"	m
+loginFailed	chrome/content/accountmanager.js	/^        loginFailed: function(msg) {$/;"	m
 param	chrome/content/accountmanager.new.js	/^      var param = 'source=' + encodeURIComponent('Google Reader Watcher') + '&Email='+encodeURIComponent(GRW.Prefs.getPref.userName())+'&Passwd='+encodeURIComponent(GRW.PasswordManager.getPassword())+'&service=reader&continue=' + encodeURIComponent('http:\/\/www.google.com\/');$/;"	v
 rex.sid	chrome/content/accountmanager.new.js	/^      sid: new RegExp('^SID=([-_a-zA-Z0-9]+)', 'm'),$/;"	p
+setCurrentSID	chrome/content/accountmanager.js	/^        setCurrentSID: function(response) {$/;"	m
 setVersion	makexpi.sh	/^function setVersion {$/;"	f
-this.addPassword	chrome/content/passmanager.js	/^    this.addPassword = function(password) {$/;"	m
-this.getPassword	chrome/content/passmanager.js	/^    this.getPassword = function() {$/;"	m
+update	chrome/content/ajax.js	/^      var update = function(fn, arg) {$/;"	f
