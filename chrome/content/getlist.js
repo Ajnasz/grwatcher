@@ -26,9 +26,12 @@
           this.getSubscriptionList();
         },
         _processUnreadCount: function(response) {
+          var text = response.responseText,
+              obj = JSON.parse(text);
           this._unreadCount = {
-            rText: o.responseText,
-            rJSON: json.decode(o.responseText)
+            rText: text,
+            rJSON: obj,
+            max: obj.max
           };
         },
         getUnreadCount: function() {
