@@ -57,6 +57,23 @@ if(typeof GRW === 'undefined') GRW = {};
   };
 })();
 
+(function() {
+  var timer = Components.classes["@mozilla.org/timer;1"]
+                .createInstance(Components.interfaces.nsITimer),
+      settimeout = function(fn, timeout) {
+        var callback = {notify: fn};
+        timer.initWithCallback(callback, timeout, Components.interfaces.nsITimer.TYPE_ONE_SHOT);
+        return timer;
+      }
+      cleartimeout = function(timer) {
+        if(timer && GRW.lang.isFunction(timer.cancel)) {
+          timer.cancel();
+        }
+      };
+  GRW.setTimeout = settimeout;
+  GRW.clearTimeout = cleartimeout;
+})()
+
 
 /**
  * A SandBox module, to handle the GRW Modules
