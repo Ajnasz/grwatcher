@@ -41,8 +41,12 @@
   };
   var notifier = function(unreadCount) {
     if(showNotification && unreadCount > 0) {
-      // notificationWin(GRW.strings.getFormattedString('notifierMSG', [unreadCount]));
-      notificationWin('You have ' + unreadCount + ' unread feeds');
+        if(GRW.strings) {
+          // it doesn't work in fennec yet
+          notificationWin(GRW.strings.getFormattedString('notifierMSG', [unreadCount]));
+        } else {
+          notificationWin('You have ' + unreadCount + ' unread feeds');
+        }
       showNotification = false;
     }
   };
