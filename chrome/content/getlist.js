@@ -9,6 +9,17 @@
       subscriptionGeneratedEvent = 'subscriptionGeneratedEvent',
       unreadAndSubscriptionReceivedEvent = 'unreadAndSubscriptionReceivedEvent',
       itemsMatchedEvent = 'itemsMatchedEvent',
+      requestStartEvent = 'requestStartEvent',
+      requestFinishEvent = 'requestFinishEvent',
+      requestErrorEvent = 'requestErrorEvent',
+
+      unreadCountRequestStartEvent = 'unreadCountRequestStartEvent',
+      unreadCountRequestFinishEvent = 'unreadCountRequestFinishEvent',
+      subscriptionListRequestStartEvent = 'subscriptionListRequestStartEvent',
+      subscriptionListRequestFinishEvent = 'subscriptionListRequestFinishEvent',
+      processStartEvent = 'processStartEvent',
+      processFinishEvent = 'processFinishEvent',
+
 
       getList = function() {
         this.init.apply(this);
@@ -19,6 +30,7 @@
           var _this = this;
 
           var firstRequest = function() {
+            _this.fireEvent(requestStartEvent);
             GRW.Token(_this._initRequests, _this, true);
           };
 
@@ -41,6 +53,7 @@
           this.getUnreadCount();
         },
         _processUnreadCount: function(response) {
+          this.fireEvent(processStartEvent);
           var text = response.responseText,
               obj = JSON.parse(text),
               z = 0,
@@ -69,18 +82,28 @@
           };
           this._unreadCount = unread;
           this.fireEvent(unreadGeneratedEvent, unread);
+          this.fireEvent(processFinishEvent);
           this._fireUnreadAndSubscription();
         },
         getUnreadCount: function() {
           var _this = this;
+          this.fireEvent(requestStartEvent);
+          this.fireEvent(unreadCountRequestStartEvent);
           var req = new GRW.Ajax({
                 url: unreadcountURL,
                 onSuccess:function(o) {
+                  _this.fireEvent(unreadCountRequestFinishEvent);
                   _this._processUnreadCount(o);
+                },
+                onError:function(o) {
+                  _this.fireEvent(requestErrorEvent);
                 }
               }).send();
         },
         _processSubscriptionList: function(response) {
+          this.fireEvent(processStartEvent);
+          this.fireEvent(requestFinishEvent);
+
           var obj = JSON.parse(response.responseText),
               subscription = {
                 rText: response.responseText,
@@ -89,18 +112,28 @@
               };
           this._subscriptionList = subscription;
           this.fireEvent(subscriptionGeneratedEvent, subscription);
+          this.fireEvent(processFinishEvent);
           this._fireUnreadAndSubscription();
         },
         getSubscriptionList: function() {
           var _this = this;
+          this.fireEvent(requestStartEvent);
+          this.fireEvent(subscriptionListRequestStartEvent);
           var req = new GRW.Ajax({
                 url: subscriptionListURL,
                 onSuccess:function(o) {
+                  _this.fireEvent(subscriptionListRequestFinishEvent);
                   _this._processSubscriptionList(o);
+                },
+                onError:function(o) {
+                  _this.fireEvent(requestErrorEvent);
                 }
               }).send();
         },
         matchUnreadItems: function() {
+          this.fireEvent(requestFinishEvent);
+          this.fireEvent(processStartEvent);
+
           var unreads = this._unreadCount.httpFeeds,
               subscriptions = this._subscriptionList.subscriptions,
 
@@ -125,6 +158,7 @@
             i--;
           }
           this.fireEvent(itemsMatchedEvent, unread);
+          this.fireEvent(processFinishEvent);
         },
       };
   GRW.augmentProto(getList, GRW.EventProvider);
