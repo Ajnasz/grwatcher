@@ -62,6 +62,9 @@ function setVersion {
 
   sed "s/###VERSION###/$VER/g" chrome/content/ajax.js > chrome/content/ajax.js.tmp;
   mv chrome/content/ajax.js.tmp chrome/content/ajax.js;
+
+  sed "s/###VERSION###/$VER/g" chrome/content/grwatcher.js > chrome/content/grwatcher.js.tmp;
+  mv chrome/content/grwatcher.js.tmp chrome/content/grwatcher.js;
 }
 
 if [ -d $TMP_DIR ];then
