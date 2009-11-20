@@ -15,6 +15,10 @@
   <script type="application/x-javascript" src="chrome://grwatcher/content/loginmanager.js" />
   <script type="application/x-javascript" src="chrome://grwatcher/content/getlist.js" />
   <script type="application/x-javascript" src="chrome://grwatcher/content/notifier.js" />
+
+  <script type="application/x-javascript" src="chrome://grwatcher/content/ui.js" />
+  <script type="application/x-javascript" src="chrome://grwatcher/content/ui/mapwindows.js" />
+  <script type="application/x-javascript" src="chrome://grwatcher/content/ui/statusbar-icon-states.js" />
   <script type="application/x-javascript" src="chrome://grwatcher/content/requester.js" />
   <script type="application/x-javascript" src="chrome://grwatcher/content/grwatcher.js" />
 
