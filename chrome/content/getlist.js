@@ -25,7 +25,7 @@
           if(loginManager.isLoggedIn()) {
             firstRequest();
           } else {
-              loginManager.logIn(firstRequest);
+            loginManager.logIn(firstRequest);
           }
           this._initialized = true;
         },
