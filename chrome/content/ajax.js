@@ -44,16 +44,20 @@
       var agent = 'Google Reader Watcher ###VERSION###';
 
       this.req = Components.classes["@mozilla.org/xmlextras/xmlhttprequest;1"].createInstance(Components.interfaces.nsIXMLHttpRequest);
-      // Fix Firefox 3 third party cookie related bug
-      // https://bugzilla.mozilla.org/show_bug.cgi?id=437174#c32
-      var ds = Cc["@mozilla.org/webshell;1"].createInstance(Ci.nsIDocShellTreeItem).QueryInterface(Ci.nsIInterfaceRequestor);
-      ds.itemType = Ci.nsIDocShellTreeItem.typeContent;
 
       //this.req = Cc["@mozilla.org/xmlextras/xmlhttprequest;1"].createInstance(Ci.nsIXMLHttpRequest);
 
       this.req.open(this.method, this.url, true);
-      this.req.channel.loadGroup = ds.getInterface(Ci.nsILoadGroup); // fix ff3
-      this.req.channel.loadFlags |= Ci.nsIChannel.LOAD_DOCUMENT_URI; // fix ff3
+      if(Cc["@mozilla.org/webshell;1"]) {
+        // Fix Firefox 3 third party cookie related bug
+        // https://bugzilla.mozilla.org/show_bug.cgi?id=437174#c32
+        // Should put into the if statment because there is no webshell interface in fennec 
+        var ds = Cc["@mozilla.org/webshell;1"].createInstance(Ci.nsIDocShellTreeItem).QueryInterface(Ci.nsIInterfaceRequestor);
+        ds.itemType = Ci.nsIDocShellTreeItem.typeContent;
+        this.req.channel.loadGroup = ds.getInterface(Ci.nsILoadGroup); // fix ff3
+        this.req.channel.loadFlags |= Ci.nsIChannel.LOAD_DOCUMENT_URI; // fix ff3
+      }
+
       this.req.setRequestHeader('User-Agent', agent);
       this.req.setRequestHeader('Accept-Charset','utf-8');
       this.req.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
