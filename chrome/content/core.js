@@ -201,7 +201,7 @@ GRW.augmentProto = function(r, s) {
       var subscribers = this._subscribers[eventName];
       for (var i = 0, sl = subscribers.length; i < sl; i++) {
         subscription = subscribers[i];
-        subscription.fn.call(subscription.context, args);
+        subscription.fn.call(subscription.context || this, args);
       }
     }
   };
