@@ -1,24 +1,40 @@
 (function() {
-  var getlist = new GRW.GetList();
+  var getlist = new GRW.GetList(),
+      unreadGeneratedEvent = 'unreadGeneratedEvent',
+      subscriptionGeneratedEvent = 'subscriptionGeneratedEvent',
+      itemsMatchedEvent = 'itemsMatchedEvent',
+      statusbarIcon =  GRW.UI.StatusBarIcon;
 
-  getlist.on('unreadGeneratedEvent', function(elems) {
-    GRW.log('unread generated event');
-  });
-
-  getlist.on('subscriptionGeneratedEvent', function(elems) {
-    GRW.log('subscription list generated event');
-  });
-
-  getlist.on('itemsMatchedEvent', function() {
-    GRW.log('items matched event');
-    GRW.Notifier(this._unreadCount.unreadSum);
-  });
-
-  getlist.on('unreadAndSubscriptionReceivedEvent', function() {
-    this.matchUnreadItems();
-  });
 
   var requester = function() {
+
+    getlist.on('unreadGeneratedEvent', function(elems) {
+      GRW.log('unread generated event');
+      (elems.unreadSum > 0)
+        ? statusbarIcon.setReaderStatus('on')
+        : statusbarIcon.setReaderStatus('off');
+      GRW.log('aaa');
+    });
+
+    getlist.on('subscriptionGeneratedEvent', function(elems) {
+      GRW.log('subscription list generated event');
+    });
+
+    getlist.on('itemsMatchedEvent', function() {
+      GRW.log('items matched event');
+      GRW.Notifier(this._unreadCount.unreadSum);
+    });
+
+    getlist.on('unreadAndSubscriptionReceivedEvent', function() {
+      this.matchUnreadItems();
+    });
+    getlist.on('requestStartEvent', function() {
+      statusbarIcon.setReaderStatus('load');
+    });
+    getlist.on('requestErrorEvent', function() {
+      statusbarIcon.setReaderStatus('error');
+    });
+
     getlist.start();
     this.setNext();
   };
@@ -41,5 +57,6 @@
       GRW.log('setNext');
     }
   };
+  GRW.augmentProto(requester, GRW.EventProvider);
   GRW.Requester = requester;
 })();

@@ -72,7 +72,7 @@ if(typeof GRW === 'undefined') GRW = {};
       };
   GRW.setTimeout = settimeout;
   GRW.clearTimeout = cleartimeout;
-})()
+})();
 
 
 /**
