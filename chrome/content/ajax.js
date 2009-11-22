@@ -178,7 +178,7 @@
   GRW.Ajax = grwajax;
 })();
 (function() {
-    var token = function(fn, scope, force) {
+    var token = function(args, force) {
       var update = function(fn, arg) {
         new GRW.Ajax({
           url: GRW.States.conntype + '://www.google.com/reader/api/0/token',
@@ -188,7 +188,12 @@
               token: r.responseText,
               date: new Date()
             }
-            runFn.call();
+            var success = args.success;
+            success.fn.call(success.scope);
+          },
+          onError: function() {
+            var failure = args.failure;
+            failure.fn.call(failure.scope);
           }
         }).send();
       },
