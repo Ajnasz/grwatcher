@@ -3,7 +3,6 @@
       unreadcountURL = GRW.States.conntype + '://www.google.com/reader/api/0/unread-count?all=true&output=json',
       subscriptionListURL = GRW.States.conntype + '://www.google.com/reader/api/0/subscription/list?output=json',
 
-      json = Components.classes["@mozilla.org/dom/json;1"].createInstance(Components.interfaces.nsIJSON),
 
       unreadGeneratedEvent = 'unreadGeneratedEvent',
       subscriptionGeneratedEvent = 'subscriptionGeneratedEvent',
@@ -31,7 +30,19 @@
 
           var firstRequest = function() {
             _this.fireEvent(requestStartEvent);
-            GRW.Token(_this._initRequests, _this, true);
+            GRW.Token({
+              success: {
+                fn: _this._initRequests,
+                scope: _this
+              },
+              failure: {
+                fn: function() {
+                  this.fireEvent(requestErrorEvent);
+                },
+                scope: _this
+                
+              }
+            }, _this, true);
           };
 
           if(loginManager.isLoggedIn()) {
@@ -55,7 +66,7 @@
         _processUnreadCount: function(response) {
           this.fireEvent(processStartEvent);
           var text = response.responseText,
-              obj = JSON.parse(text),
+              obj = GRW.JSON.parse(text),
               z = 0,
               unreadcounts = obj.unreadcounts,
               i = unreadcounts.length - 1,
@@ -104,7 +115,7 @@
           this.fireEvent(processStartEvent);
           this.fireEvent(requestFinishEvent);
 
-          var obj = JSON.parse(response.responseText),
+          var obj = GRW.JSON.parse(response.responseText),
               subscription = {
                 rText: response.responseText,
                 rJSON: obj,
