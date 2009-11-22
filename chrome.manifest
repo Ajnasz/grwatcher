@@ -1,4 +1,5 @@
 content grwatcher jar:chrome/grwatcher.jar!/content/
+resource grwmodules modules/
 overlay chrome://browser/content/browser.xul chrome://grwatcher/content/grwatcher.xul
 
 skin grwatcher classic/1.0	jar:chrome/grwatcher.jar!/skin/classic/grwatcher/
