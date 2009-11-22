@@ -1,4 +1,7 @@
-if(typeof GRW === 'undefined') GRW = {};
+let GRW = {
+  JSON: null
+};
+Components.utils.import("resource://grwmodules/JSON.jsm", GRW);
 (function(){
 
   var lang = {
@@ -198,7 +201,7 @@ GRW.augmentProto = function(r, s) {
    * @class EventProvider
    * @namespace GRW
    */
-  eventProvider = function() {
+  var eventProvider = function() {
   };
   eventProvider.prototype = {
     subscribe: function(eventName, fn, obj, overrideContext) {
@@ -224,3 +227,4 @@ GRW.augmentProto = function(r, s) {
   };
   GRW.EventProvider = eventProvider;
 })();
+
