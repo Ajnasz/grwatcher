@@ -3,7 +3,7 @@
       unreadGeneratedEvent = 'unreadGeneratedEvent',
       subscriptionGeneratedEvent = 'subscriptionGeneratedEvent',
       itemsMatchedEvent = 'itemsMatchedEvent',
-      statusbarIcon =  GRW.UI.StatusBarIcon,
+      statusbarIcon =  GRW.UI.StatusbarIcon,
       statusbarCounter = GRW.UI.StatusbarCounter;
 
 

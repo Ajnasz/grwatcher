@@ -39,5 +39,5 @@
       });
     },
   };
-  GRW.UI.StatusBarIcon = statusbaricon;
+  GRW.UI.StatusbarIcon = statusbaricon;
 })();
