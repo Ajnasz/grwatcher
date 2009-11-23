@@ -50,5 +50,5 @@
       showNotification = false;
     }
   };
-  GRW.Notifier = notifier;
+  GRW.module('Notifier', notifier);
 })();

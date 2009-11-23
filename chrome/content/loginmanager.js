@@ -114,5 +114,5 @@
         },
       };
 
-GRW.LoginManager = loginManager;
+  GRW.module('LoginManager', loginManager);
 })();

@@ -3,7 +3,8 @@
       unreadGeneratedEvent = 'unreadGeneratedEvent',
       subscriptionGeneratedEvent = 'subscriptionGeneratedEvent',
       itemsMatchedEvent = 'itemsMatchedEvent',
-      statusbarIcon =  GRW.UI.StatusBarIcon;
+      statusbarIcon =  GRW.UI.StatusBarIcon,
+      statusbarCounter = GRW.UI.StatusbarCounter;
 
 
   var requester = function() {
@@ -13,6 +14,8 @@
       (elems.unreadSum > 0)
         ? statusbarIcon.setReaderStatus('on')
         : statusbarIcon.setReaderStatus('off');
+
+      statusbarCounter.update(elems.unreadSum, elems.unreadSum);
       GRW.log('aaa');
     });
 
@@ -58,5 +61,5 @@
     }
   };
   GRW.augmentProto(requester, GRW.EventProvider);
-  GRW.Requester = requester;
+  GRW.module('Requester', requester);
 })();

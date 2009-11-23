@@ -173,5 +173,5 @@
         },
       };
   GRW.augmentProto(getList, GRW.EventProvider);
-  GRW.GetList = getList;
+  GRW.module('GetList', getList);
 })();
