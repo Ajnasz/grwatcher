@@ -175,41 +175,42 @@
     }
   };
   GRW.augmentProto(grwajax, GRW.EventProvider);
-  GRW.Ajax = grwajax;
+  GRW.module('Ajax', grwajax);
 })();
 (function() {
-    var token = function(args, force) {
-      var update = function(fn, arg) {
-        new GRW.Ajax({
-          url: GRW.States.conntype + '://www.google.com/reader/api/0/token',
-          onSuccess: function(r) {
-            // GRW.setCookie('T', r.responseText);
-            GRW.token = {
-              token: r.responseText,
-              date: new Date()
-            }
-            var success = args.success;
-            success.fn.call(success.scope);
-          },
-          onError: function() {
-            var failure = args.failure;
-            failure.fn.call(failure.scope);
-          }
-        }).send();
-      },
-      runFn = function() {
-        if(GRW.lang.isFunction(fn)) {
-          fn.call(scope);
-        }
-      },
-      isValid = function() {
-        return !(!GRW.token || !GRW.token.date || Math.round(((new Date()).getTime() - GRW.token.date.getTime())/1000/60) > 5 );
-      };
-      if(!isValid() || force) {
-        update();
-      } else {
-        runFn();
+  var token = function(args, force) {
+    var runFn = function() {
+      var success = args.success;
+      if(GRW.lang.isFunction(success.fn)) {
+        success.fn.call(success.scope);
       }
+    },
+    update = function(fn, arg) {
+      new GRW.Ajax({
+        url: GRW.States.conntype + '://www.google.com/reader/api/0/token',
+        onSuccess: function(r) {
+          // GRW.setCookie('T', r.responseText);
+          GRW.token = {
+            token: r.responseText,
+            date: new Date()
+          }
+          runFn();
+        },
+        onError: function() {
+          var failure = args.failure;
+          failure.fn.call(failure.scope);
+        }
+      }).send();
+    },
+    isValid = function() {
+      return !(!GRW.token || !GRW.token.date || Math.round(((new Date()).getTime() - GRW.token.date.getTime())/1000/60) > 5 );
     };
-    GRW.Token = token;
-  })();
+
+    if(!isValid() || force) {
+      update();
+    } else {
+      runFn();
+    }
+  };
+  GRW.module('Token', token);
+})();
