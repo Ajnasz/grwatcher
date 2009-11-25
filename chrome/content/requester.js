@@ -4,7 +4,8 @@
       subscriptionGeneratedEvent = 'subscriptionGeneratedEvent',
       itemsMatchedEvent = 'itemsMatchedEvent',
       statusbarIcon =  GRW.UI.StatusbarIcon,
-      statusbarCounter = GRW.UI.StatusbarCounter;
+      statusbarCounter = GRW.UI.StatusbarCounter,
+      notifier = new GRW.Notifier();
 
 
   var requester = function() {
@@ -22,10 +23,9 @@
     getlist.on('subscriptionGeneratedEvent', function(elems) {
       GRW.log('subscription list generated event');
     });
-
     getlist.on('itemsMatchedEvent', function() {
       GRW.log('items matched event');
-      GRW.Notifier(this._unreadCount.unreadSum);
+      notifier.show(this._unreadCount.unreadSum);
     });
 
     getlist.on('unreadAndSubscriptionReceivedEvent', function() {
@@ -36,6 +36,11 @@
     });
     getlist.on('requestErrorEvent', function() {
       statusbarIcon.setReaderStatus('error');
+    });
+
+    notifier.on('notifierClicked', function() {
+      GRW.log('notifier clicked');
+      GRW.OpenReader.open();
     });
 
     getlist.start();
