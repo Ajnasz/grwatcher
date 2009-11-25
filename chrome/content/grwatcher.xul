@@ -20,7 +20,8 @@
   <script type="application/x-javascript" src="chrome://grwatcher/content/ui/mapwindows.js" />
   <script type="application/x-javascript" src="chrome://grwatcher/content/ui/statusbar-icon-states.js" />
   <script type="application/x-javascript" src="chrome://grwatcher/content/ui/statusbar-counter.js" />
-  <script type="application/x-javascript" src="chrome://grwatcher/content/gropen.js" />
+  <script type="application/x-javascript" src="chrome://grwatcher/content/ui/statusbar-click.js" />
+  <script type="application/x-javascript" src="chrome://grwatcher/content/openreader.js" />
   <script type="application/x-javascript" src="chrome://grwatcher/content/requester.js" />
   <script type="application/x-javascript" src="chrome://grwatcher/content/grwatcher.js" />
 
@@ -33,7 +34,7 @@
       <menupopup id="GRW-statusbar-menu" position="before_end">
         <menuseparator class="grw-hidden" />
         <menuitem label="&GRWstatusbar.popup.markAllAsRead;" oncommand="new GRW.markAllAsRead();" id="GRW-statusbar-menuitem-markallasread" />
-        <menuitem label="&GRWstatusbar.popup.openReader;" oncommand="GRW.GRCheck.openReader();" id="GRW-statusbar-menuitem-openreader" />
+        <menuitem label="&GRWstatusbar.popup.openReader;" oncommand="GRW.OpenReader.open();" id="GRW-statusbar-menuitem-openreader" />
         <menuitem label="&GRWstatusbar.popup.getReadCounter;" oncommand="GRW.GoogleIt();" id="GRW-statusbar-menuitem-getcounter" />
         <menuitem label="&GRWstatusbar.popup.openPrefs;" oncommand="GRW.openPrefs();" id="GRW-statusbar-menuitem-openprefs" />
         <menuitem label="&GRWstatusbar.popup.enableCookies;" oncommand="GRW.enableCookies(true);" class="grw-hidden" id="GRW-statusbar-menuitem-enablecookies" />
