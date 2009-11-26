@@ -2,14 +2,18 @@
   var statusbarCounter = {
     update: function(val, maxcount) {
       
+      var showZeroCounter = GRW.Prefs.get.showZeroCounter(),
+          showval;
       if(GRW.Prefs.get.maximizeCounter() && maxval && val > maxcount) {
-        val = maxcount + '+';
+        showval = maxcount + '+';
+      } else {
+        showval = val;
       }
-      var showZeroCounter = GRW.Prefs.get.showZeroCounter();
       GRW.UI.MapWindows(function(win) {
         var label = win.document.getElementById('GRW-statusbar-label');
-        showZeroCounter
-          ? statusbarCounter.show(label, val)
+        GRW.log('show zero: ',showZeroCounter, val);
+        (val > 0 || showZeroCounter)
+          ? statusbarCounter.show(label, showval)
           : statusbarCounter.hide(label);
       });
     },
