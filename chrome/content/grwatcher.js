@@ -12,6 +12,7 @@ GRW.init = function() {
 
   var statusbarClick = new GRW.StatusbarClick();
   var notifier = new GRW.Notifier();
+  var menuClick = new GRW.MenuClick();
   GRW.setTimeout(function() {
     requester = new GRW.Requester();
     requester.on('listItemsMatched', function(getlist) {
@@ -28,6 +29,12 @@ GRW.init = function() {
     });
   }, GRW.Prefs.get.delayStart());
   statusbarClick.on('statusbarClick', function() {GRW.OpenReader.open()});
+  menuClick.on('openReader', function() {
+    GRW.OpenReader.open();
+  });
+  menuClick.init();
+
+
   GRW.log('Google Reader Watcher ###VERSION### initializitaion finished');
 };
 window.addEventListener('load', GRW.init, false);
