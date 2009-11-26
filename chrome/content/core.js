@@ -61,8 +61,21 @@ GRW.module = function(moduleName, module) {
   var consoleService = Components.classes["@mozilla.org/consoleservice;1"].getService(Components.interfaces.nsIConsoleService);
   var log = function() {
     var msg = [];
-    for(var i = 0, al = arguments.length; i< al; i++) {
-      msg.push(arguments[i]);
+    for(var i = 0, al = arguments.length, arg, message; i< al; i++) {
+      arg = arguments[i];
+      if(arg instanceof Error) {
+        message = [];
+        message.push('aaa');
+        for(var j in arg) {
+          //if(arg.hasOwnProperty(j)) {
+            message.push(j + ' = ' + arg[j]);
+          //}
+        }
+        message = message.join('\n');
+      } else {
+        message = arg;
+      }
+      msg.push(arg);
     }
     consoleService.logStringMessage('GRW: ' + msg.join(',\n'));
   };
