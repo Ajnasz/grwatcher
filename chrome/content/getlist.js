@@ -77,8 +77,12 @@
 
           while(i >= 0) {
             unreadItem = unreadcounts[i];
-            z += unreadItem.count;
-            (unreadItem.id.indexOf('user') == 0) ? userFeeds.push(unreadItem) : httpFeeds.push(unreadItem);
+            if(unreadItem.id.indexOf('user') == 0) {
+              userFeeds.push(unreadItem)
+            } else {
+              httpFeeds.push(unreadItem);
+              z += unreadItem.count;
+            }
             i--;
           }
 
