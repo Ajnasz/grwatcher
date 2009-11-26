@@ -32,6 +32,9 @@ GRW.init = function() {
   menuClick.on('openReader', function() {
     GRW.OpenReader.open();
   });
+  menuClick.on('openPreferences', function() {
+    window.openDialog("chrome://grwatcher/content/grprefs.xul", 'GRWatcher', 'chrome,titlebar,toolbar,centerscreen,modal');
+  });
   menuClick.init();
 
 
