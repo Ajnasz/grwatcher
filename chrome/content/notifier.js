@@ -1,10 +1,10 @@
 (function() {
-  var showNotification = true,
-      getPrefs = GRW.Prefs.get;
+  var getPrefs = GRW.Prefs.get;
 
   var notifier = function() {
   };
   notifier.prototype = {
+    showNotification: true,
     notificationWin: function(value) {
       if(getPrefs.showNotificationWindow() !== false) {
         var label = 'Google Reader Watcher',
@@ -17,7 +17,6 @@
           observe: function(subject, topic, data) {
             if(topic == 'alertclickcallback') {
               _this.fireEvent('notifierClicked');
-              showNotification = true;
             }
           }
         };
@@ -48,14 +47,14 @@
       }
     },
     show: function(unreadCount) {
-      if(showNotification && unreadCount > 0) {
+      if(this.showNotification && unreadCount > 0) {
         if(GRW.strings) {
           // it doesn't work in fennec yet
           this.notificationWin(GRW.strings.getFormattedString('notifierMSG', [unreadCount]));
         } else {
           this.notificationWin('You have ' + unreadCount + ' unread feeds');
         }
-        showNotification = false;
+        this.showNotification = false;
       }
     }
   };
