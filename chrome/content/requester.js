@@ -1,5 +1,5 @@
 (function() {
-  var getlist = new GRW.GetList(),
+  var getlist = GRW.GetList,
       unreadGeneratedEvent = 'unreadGeneratedEvent',
       subscriptionGeneratedEvent = 'subscriptionGeneratedEvent',
       itemsMatchedEvent = 'itemsMatchedEvent',
@@ -7,37 +7,7 @@
       statusbarCounter = GRW.UI.StatusbarCounter;
 
 
-  var requester = function() {
-    var _this = this;
-
-    getlist.on('unreadGeneratedEvent', function(elems) {
-      GRW.log('unread generated event');
-      (elems.unreadSum > 0)
-        ? statusbarIcon.setReaderStatus('on')
-        : statusbarIcon.setReaderStatus('off');
-
-      statusbarCounter.update(elems.unreadSum, elems.unreadSum);
-      GRW.log('aaa');
-    });
-
-    getlist.on('subscriptionGeneratedEvent', function(elems) {
-      GRW.log('subscription list generated event');
-    });
-    getlist.on('itemsMatchedEvent', function() {
-      _this.fireEvent('listItemsMatched', getlist);
-    });
-
-    getlist.on('unreadAndSubscriptionReceivedEvent', function() {
-      this.matchUnreadItems();
-    });
-    getlist.on('requestStartEvent', function() {
-      statusbarIcon.setReaderStatus('load');
-    });
-    getlist.on('requestErrorEvent', function() {
-      statusbarIcon.setReaderStatus('error');
-    });
-
-  };
+  var requester = function() {};
   requester.prototype = {
     start: function() {
       getlist.start();
@@ -62,5 +32,5 @@
     }
   };
   GRW.augmentProto(requester, GRW.EventProvider);
-  GRW.module('Requester', requester);
+  GRW.module('Requester', new requester());
 })();
