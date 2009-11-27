@@ -20,9 +20,7 @@
       processFinishEvent = 'processFinishEvent',
 
 
-      getList = function() {
-        this.init.apply(this);
-      };
+      getList = function() {};
       getList.prototype = {
         start: function() {
           if(this._initialized) return;
@@ -51,8 +49,6 @@
             loginManager.logIn(firstRequest);
           }
           this._initialized = true;
-        },
-        init: function() {
         },
         _fireUnreadAndSubscription: function() {
           if(this._subscriptionList && this._unreadCount) {
@@ -177,5 +173,5 @@
         },
       };
   GRW.augmentProto(getList, GRW.EventProvider);
-  GRW.module('GetList', getList);
+  GRW.module('GetList', new getList);
 })();
