@@ -8,7 +8,8 @@
        * @requires GRW._PasswordManager to get the users password
        * @requires #getFeedList function, to gets the feeds
        */
-      var loginManager = {
+      var loginManager = function() {};
+      loginManager.prototype = {
         /**
          * Check, that the account is configured
          * @type {Boolean}
@@ -64,17 +65,17 @@
               method: 'post',
               onSuccess: function(e) {
                 GRW.log('login request success');
-                loginManager.ajaxSuccess(e);
+                _this.ajaxSuccess(e);
                 if(GRW.lang.isFunction(onLogin)) {
                   onLogin.call();
                 }
                 if(!_this.getCurrentSID()) {
                   var cookieBehavior = GRW.Prefs.get.cookieBehaviour();
                   if(cookieBehavior != 0) {
-                    loginManager.loginFailed(e.responseText);
+                    _this.loginFailed(e.responseText);
                     GRW.log('bad cookie behavior', cookieBehavior);
                   } else {
-                    loginManager.loginFailed(e.responseText);
+                    _this.loginFailed(e.responseText);
                   }
                 }
               }
@@ -91,13 +92,14 @@
          * @type Boolean
          */
         ajaxSuccess: function(e) {
-          loginManager.setCurrentSID(e);
-          var curSid = loginManager.getCurrentSID();
+          this.setCurrentSID(e);
+          var curSid = this.getCurrentSID();
           if(curSid === false) {
             this.loginFailed(e.responseText);
             return false;
           }
           // GRW.Prefs.set.sid(curSid);
+          this.fireEvent('loginSuccess');
           return true;
         },
         /**
@@ -106,13 +108,12 @@
          * @type Boolean
          */
         loginFailed: function(msg) {
+          this.fireEvent('loginFailed');
           GRW.log('login failed');
-          if(msg) {
-            GRW.log(msg);
-          }
           return false;
         },
       };
 
-  GRW.module('LoginManager', loginManager);
+  GRW.augmentProto(loginManager, GRW.EventProvider);
+  GRW.module('LoginManager', new loginManager());
 })();
