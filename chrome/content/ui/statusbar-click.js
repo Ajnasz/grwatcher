@@ -30,6 +30,7 @@
       switch(button) {
         case 0:
           if(customDefs[conf] == type) {
+            GRW.log('statusbar click');
             this.fireEvent('statusbarClick', [type, event]);
           }
           break;
