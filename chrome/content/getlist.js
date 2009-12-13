@@ -97,6 +97,11 @@
           this._fireUnreadAndSubscription();
         },
         getUnreadCount: function() {
+          if(!loginManager.isLoggedIn()) {
+            GRW.log('not logged in');
+            this.start();
+            return;
+          }
           var _this = this;
           this.fireEvent(requestStartEvent);
           this.fireEvent(unreadCountRequestStartEvent);
