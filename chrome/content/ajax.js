@@ -91,6 +91,7 @@
           }
         }
       } catch(Exception) {
+        this.fireEvent(requestFailed);
         return this.errorHandler('no readyState', Exception);
       }
     },
