@@ -4,6 +4,8 @@
 GRW.init = function() {
   GRW.log('Google Reader Watcher ###VERSION### initializitaion started');
 
+  var statusbarIcon =  GRW.UI.StatusbarIcon;
+  var statusbarCounter = GRW.UI.StatusbarCounter;
   var statusbarClick = new GRW.StatusbarClick();
   var notifier = new GRW.Notifier();
   var menuClick = new GRW.MenuClick();
@@ -50,7 +52,7 @@ GRW.init = function() {
 
     statusbarCounter.update(elems.unreadSum, elems.unreadSum);
   });
-  // 
+  //
   // getlist.on('subscriptionGeneratedEvent', function(elems) {
   //   GRW.log('subscription list generated event');
   // });
@@ -60,10 +62,12 @@ GRW.init = function() {
   getlist.on('unreadAndSubscriptionReceivedEvent', function() {
     this.matchUnreadItems();
   });
+
   // show loading when start a request
   getlist.on('requestStartEvent', function() {
     statusbarIcon.setReaderStatus('load');
   });
+
   // set error icon if request failed
   getlist.on('requestErrorEvent', function() {
     GRW.log('request error');

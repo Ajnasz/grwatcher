@@ -8,12 +8,10 @@
   id="grprefs"
   title="&GRWpreferences.title;"
   buttons="accept,cancel"
-  ondialogaccept="GRW.savePreferences();"
+  ondialogaccept="GRW.SavePreferences();"
   flex="1"
   xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
-  <script type="application/x-javascript" src="chrome://grwatcher/content/namespace.js" />
-  <script type="application/x-javascript" src="chrome://grwatcher/content/general.js" />
-  <script type="application/x-javascript" src="chrome://grwatcher/content/log.js" />
+  <script type="application/x-javascript" src="chrome://grwatcher/content/core.js" />
   <script type="application/x-javascript" src="chrome://grwatcher/content/preferences.js" />
   <script type="application/x-javascript" src="chrome://grwatcher/content/passmanager.js" />
   <script type="application/x-javascript" src="chrome://grwatcher/content/grprefs.js" />
@@ -21,10 +19,10 @@
   <![CDATA[
     window.addEventListener('load',
       function() {
-        GRW.PasswordManager = new GRW._PasswordManager();
-        GRW.setPrefPaneVals();
-        GRW.openNewTabCheckToogle();
-        document.getElementById('GRW-openinnewtab-field').addEventListener('command', GRW.openNewTabCheckToogle, false);
+      // GRW.PasswordManager = new GRW._PasswordManager();
+        GRW.SetPrefPaneVals();
+        GRW.OpenNewTabCheckToogle();
+        document.getElementById('GRW-openinnewtab-field').addEventListener('command', GRW.OpenNewTabCheckToogle, false);
       },
     false);
   ]]>
