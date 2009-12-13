@@ -1,7 +1,7 @@
 (function() {
   var url = 'chrome://grwatcher',
       username = 'GoogleReaderWatcher',
-    formSubmitURL = 'https://www.google.com',  // not http://www.example.com/foo/auth.cgi
+      formSubmitURL = 'https://www.google.com',  // not http://www.example.com/foo/auth.cgi
       loginManager = Components.classes["@mozilla.org/login-manager;1"]
                       .getService(Components.interfaces.nsILoginManager),
     nsLoginInfo = new Components.Constructor("@mozilla.org/login-manager/loginInfo;1", Components.interfaces.nsILoginInfo, "init");
