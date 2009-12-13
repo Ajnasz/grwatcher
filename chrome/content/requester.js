@@ -2,9 +2,7 @@
   var getlist = GRW.GetList,
       unreadGeneratedEvent = 'unreadGeneratedEvent',
       subscriptionGeneratedEvent = 'subscriptionGeneratedEvent',
-      itemsMatchedEvent = 'itemsMatchedEvent',
-      statusbarIcon =  GRW.UI.StatusbarIcon,
-      statusbarCounter = GRW.UI.StatusbarCounter;
+      itemsMatchedEvent = 'itemsMatchedEvent';
 
 
   var requester = function() {};
