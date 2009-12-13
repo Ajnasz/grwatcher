@@ -78,6 +78,9 @@
                     _this.loginFailed(e.responseText);
                   }
                 }
+              },
+              onError: function(e) {
+                _this.loginFailed();
               }
             }, param).send();
           } else {
@@ -108,8 +111,8 @@
          * @type Boolean
          */
         loginFailed: function(msg) {
-          this.fireEvent('loginFailed');
           GRW.log('login failed');
+          this.fireEvent('loginFailed');
           return false;
         },
       };
