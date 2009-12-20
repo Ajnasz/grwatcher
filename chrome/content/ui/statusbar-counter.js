@@ -18,7 +18,7 @@
       
       var showZeroCounter = GRW.Prefs.get.showZeroCounter(),
           showval;
-      if(GRW.Prefs.get.maximizeCounter() && maxval && val > maxcount) {
+      if(GRW.Prefs.get.maximizeCounter() && maxcount && val > maxcount) {
         showval = maxcount + '+';
       } else {
         showval = val;
