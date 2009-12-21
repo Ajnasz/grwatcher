@@ -7,12 +7,9 @@
     setReaderStatus: function(status) {
       GRW.log('setReaderStatus', status);
       GRW.UI.MapWindows(function(win) {
-        var icon = win.document.getElementById('GRW-statusbar'),
-            statusImage;
-      GRW.log('mapwindows', icon);
-        if(!icon) { return; }
 
-        statusImage = win.document.getElementById('GRW-statusbar-image');
+        var statusImage = win.document.getElementById('GRW-statusbar-image');
+        if(!statusImage) {return;}
         GRW.log('statusimage', statusImage.src, status);
         switch(status) {
           case 'on':
