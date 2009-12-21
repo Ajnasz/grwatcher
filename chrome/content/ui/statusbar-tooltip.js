@@ -85,7 +85,6 @@
       if(tooltipContainer) {
         win.document.getElementById('GRW-statusbar').tooltip = 'GRW-statusbar-tooltip-new';
         var grid = genGrid(win.document, feeds);
-        GRW.log(GRW.xul2string(grid));
         while(tooltipContainer.firstChild) {
           tooltipContainer.removeChild(tooltipContainer.firstChild);
         }
