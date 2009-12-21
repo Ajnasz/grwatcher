@@ -63,9 +63,9 @@
           this.fireEvent(processStartEvent);
           var text = response.responseText,
               obj = GRW.JSON.parse(text),
-              z = 0,
               unreadcounts = obj.unreadcounts,
               i = unreadcounts.length - 1,
+              unreadSum,
               unread,
               userFeeds = [],
               httpFeeds  = [],
@@ -75,21 +75,22 @@
             unreadItem = unreadcounts[i];
             if(unreadItem.id.indexOf('user') == 0) {
               userFeeds.push(unreadItem)
+              if(unreadItem.id.indexOf('/state/com.google/reading-list') != -1) {
+                unreadSum = unreadItem.count;
+              }
             } else {
               httpFeeds.push(unreadItem);
-              z += unreadItem.count;
             }
             i--;
           }
 
           unread = {
-            rText: text,
-            rJSON: obj,
-            max: obj.max,
-            unreadSum: z,
-            unreadItems: unreadcounts,
-            userFeeds: userFeeds,
-            httpFeeds: httpFeeds
+            rText: text, // response text
+            rJSON: obj,  // response text as json object
+            max: obj.max, // max number to display
+            unreadSum: unreadSum, // unread items number unreadItems: unreadcounts, // all of the unread items
+            userFeeds: userFeeds, // unread items, but only the ones which are belongs to a url (id starts with doesn't start with 'user')
+            httpFeeds: httpFeeds // unread items, but only the ones which are belongs to the user (id starts with 'user')
           };
           this._unreadCount = unread;
           this.fireEvent(unreadGeneratedEvent, unread);
@@ -146,12 +147,9 @@
                 }
               }).send();
         },
-        matchUnreadItems: function() {
-          this.fireEvent(requestFinishEvent);
-          this.fireEvent(processStartEvent);
-
-          var unreads = this._unreadCount.httpFeeds,
-              subscriptions = this._subscriptionList.subscriptions,
+        _matchUnreadItems: function(unreads) {
+          GRW.log('unreads: ', unreads.toSource());
+          var subscriptions = this._subscriptionList.subscriptions,
 
               i = unreads.length - 1,
               j = subscriptions.length - 1,
@@ -173,7 +171,37 @@
             }
             i--;
           }
-          this.fireEvent(itemsMatchedEvent, unread);
+          return unreads;
+        },
+        getLabels: function() {
+          var labels = {},
+              subscriptionsList = this._subscriptionList.subscriptions;
+
+          subscriptionsList.forEach(function(item) {
+            if(item.categories.length) {
+              item.categories.forEach(function(category) {
+                labels[category.id] = category.label;
+              });
+            }
+          });
+          return labels;
+        },
+        /**
+         * @param {String} which Which items should be matched. Possible values are:
+         *  <ul>
+         *  <li>http</li>
+         *  <li>user</li>
+         *  <li>all</li>
+         *  </ul>
+         *
+         */
+        matchUnreadItems: function(which) {
+          var unreads = this._matchUnreadItems(this._unreadCount.httpFeeds);
+          var user_unreads = this._matchUnreadItems(this._unreadCount.userFeeds);
+          this.fireEvent(requestFinishEvent);
+          this.fireEvent(processStartEvent);
+
+          this.fireEvent(itemsMatchedEvent, unreads);
           this.fireEvent(processFinishEvent);
         },
       };
