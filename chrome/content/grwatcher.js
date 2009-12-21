@@ -38,9 +38,10 @@ GRW.init = function() {
   // show notification window every time the unread count
   // and the subscription list matched
   // the notifier will deside if really need to show
-  getlist.on('listItemsMatched', function(getlist) {
-    GRW.log('listItemsMatched FIRE');
+  getlist.on('itemsMatchedEvent', function(unreads) {
+    GRW.log('itemsMatchedEvent FIRE');
     notifier.show(getlist._unreadCount.unreadSum);
+    GRW.UI.StatusbarTooltip(unreads);
   });
 
   // set statusbar after the unread items processed
