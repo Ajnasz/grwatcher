@@ -41,7 +41,7 @@ GRW.init = function() {
   getlist.on('itemsMatchedEvent', function(unreads) {
     GRW.log('itemsMatchedEvent FIRE');
     notifier.show(getlist._unreadCount.unreadSum);
-    GRW.UI.StatusbarTooltip(unreads);
+    GRW.UI.StatusbarTooltip(unreads, getlist);
   });
 
   // set statusbar after the unread items processed
