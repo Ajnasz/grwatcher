@@ -1,90 +1,89 @@
 (function() {
-  var maxTitlelenth = 5;
-  var _genRows = function(doc, feeds) {
-    var row = doc.createElement('row'),
-        label = doc.createElement('label'),
-        titlelength = GRW.Prefs.get.tooltipTitleLength(),
-        maximizeCounter = GRW.Prefs.get.maximizeCounter(),
-        _rows = doc.createElement('rows'),
-        _title,
-        _count,
-        _rowc,
-        _labelc1,
-        _labelc2;
+  var maxTitlelenth = 5,
+      titlelength   = GRW.Prefs.get.tooltipTitleLength();
 
-    titlelength = (titlelength > maxTitlelenth) ? titlelength : maxTitlelenth
+  var Grid = function(doc, feeds) {
+    this.document = doc;
+    this.feeds = feeds;
+    this.toLeft = GRW.Prefs.get.tooltipCounterPos() == 'left';
+    this.init();
 
-
-    if(GRW.Prefs.get.tooltipCounterPos() == 'left') {
-      feeds.forEach(function(item) {
-        var itemTitle = item.data.title;
-        _count = maximizeCounter;
-
-        _labelc1 = label.cloneNode(true);
-        _labelc1.value = item.count;
-        _labelc1.setAttribute('class', 'counterCol');
-
-        _labelc2 = label.cloneNode(true);
-        _labelc2.value = itemTitle.length > titlelength
-                          ? itemTitle.slice(0, titlelength-3)+'...'
-                          : itemTitle;
-
-        _rowc = row.cloneNode(true);
-        _rowc.appendChild(_labelc1);
-        _rowc.appendChild(_labelc2);
-
-        _rows.appendChild(_rowc);
-      });
-    } else {
-      feeds.forEach(function(item) {
-        
-        _count = maximizeCounter;
-
-        _labelc1 = label.cloneNode(true);
-        _labelc1.value = item.data.title;
-
-        _labelc2 = label.cloneNode(true);
-        _labelc2.value = item.count;
-        _labelc2.setAttribute('class', 'counterCol');
-
-        _rowc = row.cloneNode(true);
-        _rowc.appendChild(_labelc1);
-        _rowc.appendChild(_labelc2);
-
-        _rows.appendChild(_rowc);
-      });
-    }
-    return _rows;
   };
-  var genGrid = function(doc, feeds) {
-    var grid = doc.createElement('grid'),
-        columns = doc.createElement('columns'),
-        column = doc.createElement('column'),
-        columnc1, columnc2, rowc, labelc1, labelc2,
-        rows;
+  Grid.prototype = {
+    init: function() {
+      var doc = this.document,
+          grid = doc.createElement('grid'),
+          columns = doc.createElement('columns'),
+          column = doc.createElement('column'),
+          columnc1, columnc2, rowc, labelc1, labelc2,
+          rows;
 
 
-    grid.flex = 1;
-    // grid.setAttribute('class', 'GRW-statusbar-tooltip-grid ' + this.class)
-    grid.id = '';
+      grid.flex = 1;
+      // grid.setAttribute('class', 'GRW-statusbar-tooltip-grid ' + this.class)
+      grid.id = '';
 
-    columnc1 = column.cloneNode(true);
-    columnc1.flex = 1;
-    columnc2 = column.cloneNode(true);
+      columnc1 = column.cloneNode(true);
+      columnc1.flex = 1;
+      columnc2 = column.cloneNode(true);
 
-    rows = _genRows(doc, feeds);
+      rows = this.genRows();
 
-    grid.appendChild(columnc1);
-    grid.appendChild(columnc2);
-    grid.appendChild(rows);
-    return grid;
+      grid.appendChild(columnc1);
+      grid.appendChild(columnc2);
+      grid.appendChild(rows);
+      this.grid = grid;
+    },
+    genRow: function(item) {
+      var itemTitle  = item.data.title,
+          itemCount  = item.count,
+          doc        = this.document,
+          label      = doc.createElement('label'),
+          row        = doc.createElement('row'),
+          countLabel = label.cloneNode(true),
+          titleLabel = label.cloneNode(true);
+
+      itemTitle = itemTitle.length > titlelength
+                    ? itemTitle.slice(0, titlelength - 3) + '...'
+                    : itemTitle;
+          
+      countLabel.value = itemCount;
+      countLabel.setAttribute('class', 'counterCol');
+
+      titleLabel.value = itemTitle;
+
+      if(this.toLeft) {
+        row.appendChild(countLabel);
+        row.appendChild(titleLabel);
+      } else {
+        row.appendChild(titleLabel);
+        row.appendChild(countLabel);
+      }
+      return row;
+    },
+    genRows: function() {
+      var maximizeCounter = GRW.Prefs.get.maximizeCounter(),
+          feeds = this.feeds,
+          _rows = this.document.createElement('rows');
+
+      titlelength = (titlelength > maxTitlelenth) ? titlelength : maxTitlelenth;
+
+
+      feeds.forEach(function(item) {
+        _rows.appendChild(this.genRow(item));
+      }, this);
+      return _rows;
+    },
+    getGrid: function() {
+      return this.grid;
+    }
   };
   var statusbarTooltip = function(feeds) {
     GRW.UI.MapWindows(function(win) {
       var tooltipContainer = win.document.getElementById('GRW-statusbar-tooltip-new');
       if(tooltipContainer) {
         win.document.getElementById('GRW-statusbar').tooltip = 'GRW-statusbar-tooltip-new';
-        var grid = genGrid(win.document, feeds);
+        var grid = new Grid(win.document, feeds).getGrid();
         while(tooltipContainer.firstChild) {
           tooltipContainer.removeChild(tooltipContainer.firstChild);
         }
