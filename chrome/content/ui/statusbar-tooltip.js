@@ -8,6 +8,7 @@
     this.getlist = getlist;
     this.toLeft = GRW.Prefs.get.tooltipCounterPos() == 'left';
     this.orderByLabels = GRW.Prefs.get.sortByLabels();
+    this.filteredLabels = GRW.Prefs.get.filteredLabels().replace(/(^\s+|\s$|,\s+|\s+,)/, '').split(',');
     if(this.orderByLabels) {
       this.labels = getlist.getLabels();
     }
@@ -39,7 +40,26 @@
       grid.appendChild(rows);
       this.grid = grid;
     },
+    _isFilteredLabel: function(item) {
+      var categories = item.data.categories;
+      return this.filteredLabels.some(function(elem) {
+        return categories.some(function(category) {
+          return elem == category.label;
+        });
+      });
+    },
+    _isNotFilteredLabel: function(item) {
+      var categories = item.data.categories,
+          filteredLabels = this.filteredLabels;
+
+      return filteredLabels.every(function(label) {
+        return categories.every(function(category) {
+          return label != category.label;
+        });
+      });
+    },
     genRow: function(item, isLabel) {
+      GRW.log(item.toSource());
       var itemTitle  = item.data.title,
           itemCount  = item.count,
           doc        = this.document,
@@ -72,22 +92,28 @@
     },
     genRows: function() {
       var maximizeCounter = GRW.Prefs.get.maximizeCounter(),
-          feeds = this.feeds,
-          rows = this.document.createElement('rows');
+          feeds = this.feeds.filter(this._isNotFilteredLabel, this),
+          rows = this.document.createElement('rows'),
+          row;
 
       titlelength = (titlelength > maxTitlelenth) ? titlelength : maxTitlelenth;
 
       if(this.orderByLabels) {
         var labels = {},
             currentLabels = this.labels;
+
         feeds.forEach(function(item) {
-          var itemId = item.id;
-          if(!labels[currentLabels[itemId]]) {
-            labels[currentLabels[itemId]] = {count: 0, rows: []};
-          }
-          labels[currentLabels[itemId]].rows.push(this.genRow(item));
-          labels[currentLabels[itemId]].count += item.count;
+            var itemId = item.id;
+
+            if(!labels[currentLabels[itemId]]) {
+              labels[currentLabels[itemId]] = {count: 0, rows: []};
+            }
+
+            labels[currentLabels[itemId]].rows.push(this.genRow(item));
+            labels[currentLabels[itemId]].count += item.count;
+
         }, this);
+
         for(var label in labels) {
           rows.appendChild(this.genRow({data: {title: label == 'undefined' ? '-' : label}, count: labels[label].count}, true));
           labels[label].rows.forEach(function(row) {rows.appendChild(row)});
