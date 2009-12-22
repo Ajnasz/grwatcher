@@ -2,10 +2,15 @@
   var maxTitlelenth = 5,
       titlelength   = GRW.Prefs.get.tooltipTitleLength();
 
-  var Grid = function(doc, feeds) {
+  var Grid = function(doc, feeds, getlist) {
     this.document = doc;
     this.feeds = feeds;
+    this.getlist = getlist;
     this.toLeft = GRW.Prefs.get.tooltipCounterPos() == 'left';
+    this.orderByLabels = GRW.Prefs.get.sortByLabels();
+    if(this.orderByLabels) {
+      this.labels = getlist.getLabels();
+    }
     this.init();
 
   };
@@ -34,7 +39,7 @@
       grid.appendChild(rows);
       this.grid = grid;
     },
-    genRow: function(item) {
+    genRow: function(item, isLabel) {
       var itemTitle  = item.data.title,
           itemCount  = item.count,
           doc        = this.document,
@@ -49,6 +54,10 @@
           
       countLabel.value = itemCount;
       countLabel.setAttribute('class', 'counterCol');
+      GRW.log('islabel: ', isLabel ? 'true' : 'false');
+      if(isLabel) {
+        row.setAttribute('class', 'tag');
+      }
 
       titleLabel.value = itemTitle;
 
@@ -64,26 +73,43 @@
     genRows: function() {
       var maximizeCounter = GRW.Prefs.get.maximizeCounter(),
           feeds = this.feeds,
-          _rows = this.document.createElement('rows');
+          rows = this.document.createElement('rows');
 
       titlelength = (titlelength > maxTitlelenth) ? titlelength : maxTitlelenth;
 
+      if(this.orderByLabels) {
+        var labels = {},
+            currentLabels = this.labels;
+        feeds.forEach(function(item) {
+          var itemId = item.id;
+          if(!labels[currentLabels[itemId]]) {
+            labels[currentLabels[itemId]] = {count: 0, rows: []};
+          }
+          labels[currentLabels[itemId]].rows.push(this.genRow(item));
+          labels[currentLabels[itemId]].count += item.count;
+        }, this);
+        for(var label in labels) {
+          rows.appendChild(this.genRow({data: {title: label == 'undefined' ? '-' : label}, count: labels[label].count}, true));
+          labels[label].rows.forEach(function(row) {rows.appendChild(row)});
+        }
 
-      feeds.forEach(function(item) {
-        _rows.appendChild(this.genRow(item));
-      }, this);
-      return _rows;
+      } else {
+        feeds.forEach(function(item) {
+          rows.appendChild(this.genRow(item));
+        }, this);
+      }
+      return rows;
     },
     getGrid: function() {
       return this.grid;
     }
   };
-  var statusbarTooltip = function(feeds) {
+  var statusbarTooltip = function(feeds, getlist) {
     GRW.UI.MapWindows(function(win) {
       var tooltipContainer = win.document.getElementById('GRW-statusbar-tooltip-new');
       if(tooltipContainer) {
         win.document.getElementById('GRW-statusbar').tooltip = 'GRW-statusbar-tooltip-new';
-        var grid = new Grid(win.document, feeds).getGrid();
+        var grid = new Grid(win.document, feeds, getlist).getGrid();
         while(tooltipContainer.firstChild) {
           tooltipContainer.removeChild(tooltipContainer.firstChild);
         }
