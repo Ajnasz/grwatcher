@@ -180,7 +180,7 @@
           subscriptionsList.forEach(function(item) {
             if(item.categories.length) {
               item.categories.forEach(function(category) {
-                labels[category.id] = category.label;
+                labels[item.id] = category.label;
               });
             }
           });
