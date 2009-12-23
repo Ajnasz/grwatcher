@@ -30,6 +30,9 @@ GRW.module = function(moduleName, module) {
     isNull: function(arg) {
       return arg === null;
     },
+    isArray: function(arg) {
+      return arg instanceof Array;
+    },
     isObject: function(arg) {
       return typeof(arg) === 'object' && !lang.isNull(arg) && !lang.isString(arg) && lang.isNumber(arg) && !lang.isFunction(arg) && !lang.isBoolean(arg);
     },
@@ -157,7 +160,7 @@ GRW.module = function(moduleName, module) {
     for (i=2;i<arguments.length;i=i+1) {
         a.push(arguments[i]);
     }
-    GRW.augmentObject.apply(this, a);
+    augmentObject.apply(this, a);
   };
   /**
    * @class EventProvider
@@ -188,6 +191,23 @@ GRW.module = function(moduleName, module) {
     }
   };
 
+  var customEvent = function(eventName) {
+    this.eventName = eventName;
+  };
+  customEvent.prototype = {
+    fire: function(args) {
+      if(!GRW.lang.isArray(args)) {
+        args = [];
+      }
+      args.unshift(this.eventName)
+      this.fireEvent.apply(this, args);
+    },
+    subscribe: function(fn, obj, overrideContext) {
+      eventProvider.prototype.subscribe.apply(this, [this.eventName, fn, obj, overrideContext]);
+    },
+  };
+  augmentProto(customEvent, eventProvider);
+
   GRW.module('lang', lang);
   GRW.module('log', log);
   GRW.module('setTimeout', settimeout);
@@ -195,5 +215,6 @@ GRW.module = function(moduleName, module) {
   GRW.module('augmentObject', augmentObject);
   GRW.module('augmentProto', augmentProto);
   GRW.module('EventProvider', eventProvider);
+  GRW.module('CustomEvent', customEvent);
 
 })();
