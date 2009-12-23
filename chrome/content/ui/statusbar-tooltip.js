@@ -125,8 +125,8 @@
       return this.grid;
     }
   };
-  var statusbarTooltip = function(feeds, getlist) {
-    GRW.UI.MapWindows(function(win) {
+  var actions = {
+    genGrid: function(win, feeds, getlist) {
       var tooltipContainer = win.document.getElementById('GRW-statusbar-tooltip-new');
       if(tooltipContainer) {
         win.document.getElementById('GRW-statusbar').tooltip = 'GRW-statusbar-tooltip-new';
@@ -136,7 +136,38 @@
         }
         tooltipContainer.appendChild(grid);
       }
-    });
+    },
+    error: function(win) {
+      var tooltipContainer = win.document.getElementById('GRW-statusbar-tooltip-new');
+      var ttb = win.document.getElementById('GRW-toolbar-button');
+      if(tooltipContainer) {
+        win.document.getElementById('GRW-statusbar').tooltip = 'GRW-statusbar-tooltip-error';
+        ttb.setAttribute('tooltiptext', GRW.strings.getString('errorfeedfetch'));
+      }
+    },
+    nonew: function(win) {
+      var tooltipContainer = win.document.getElementById('GRW-statusbar-tooltip-new');
+      var ttb = win.document.getElementById('GRW-toolbar-button');
+      if(tooltipContainer) {
+        win.document.getElementById('GRW-statusbar').tooltip = 'GRW-statusbar-tooltip-nonew';
+        ttb.setAttribute('tooltiptext', GRW.strings.getString('nonewfeed'));
+      }
+    }
+  };
+  var statusbarTooltip = function(action, feeds, getlist) {
+    var actionMethod;
+    switch(action) {
+      case 'grid':
+        actionMethod = actions.genGrid;
+        break;
+
+      case 'error':
+        actionMethod = actions.error;
+        break;
+    }
+    if(actionMethod) {
+      GRW.UI.MapWindows(actionMethod, [feeds, getlist]);
+    }
   };
   GRW.UI.StatusbarTooltip = statusbarTooltip;
 })();
