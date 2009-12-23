@@ -14,6 +14,17 @@ GRW.init = function() {
   var getlist = GRW.GetList;
 
   GRW.strings = document.getElementById('grwatcher-strings');
+  GRW.Ajax.onRequestFailed.subscribe(function() {
+    GRW.log('request error');
+    statusbarIcon.setReaderStatus('error');
+    GRW.UI.StatusbarTooltip('error');
+  });
+  GRW.Ajax.onStartRequest.subscribe(function() {
+    statusbarIcon.setReaderStatus('load');
+  });
+  GRW.Ajax.onRequestSuccess.subscribe(function() {
+    statusbarIcon.setReaderStatus('off');
+  });
 
   // show error icon if login failed
   loginManager.on('loginFailed', function() {
@@ -41,15 +52,18 @@ GRW.init = function() {
   getlist.on('itemsMatchedEvent', function(unreads) {
     GRW.log('itemsMatchedEvent FIRE');
     notifier.show(getlist._unreadCount.unreadSum);
-    GRW.UI.StatusbarTooltip(unreads, getlist);
+    GRW.UI.StatusbarTooltip('grid', unreads, getlist);
   });
 
   // set statusbar after the unread items processed
   getlist.on('unreadGeneratedEvent', function(elems) {
     GRW.log('unread generated event');
-    (elems.unreadSum > 0)
-      ? statusbarIcon.setReaderStatus('on')
-      : statusbarIcon.setReaderStatus('off');
+    if (elems.unreadSum > 0) {
+      statusbarIcon.setReaderStatus('on')
+    } else {
+      statusbarIcon.setReaderStatus('off');
+      GRW.UI.StatusbarTooltip('nonew');
+    }
 
     statusbarCounter.update(elems.unreadSum, elems.unreadSum);
   });
@@ -65,19 +79,21 @@ GRW.init = function() {
   });
 
   // show loading when start a request
+  /*
   getlist.on('requestStartEvent', function() {
-    statusbarIcon.setReaderStatus('load');
+    GRW.UI.StatusbarTooltip('')
   });
+  */
 
   // set error icon if request failed
+  /*
   getlist.on('requestErrorEvent', function() {
-    GRW.log('request error');
-    statusbarIcon.setReaderStatus('error');
   });
+  */
 
   // open the reader when user clicks on the link in the notifier
   notifier.on('notifierClicked', function() {
-    GRW.log('notifier clicked');
+    // GRW.log('notifier clicked');
     GRW.OpenReader.open();
   });
 
