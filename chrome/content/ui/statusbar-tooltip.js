@@ -142,7 +142,7 @@
       var ttb = win.document.getElementById('GRW-toolbar-button');
       if(tooltipContainer) {
         win.document.getElementById('GRW-statusbar').tooltip = 'GRW-statusbar-tooltip-error';
-        ttb.setAttribute('tooltiptext', GRW.strings.getString('errorfeedfetch'));
+        if(ttb)ttb.setAttribute('tooltiptext', GRW.strings.getString('errorfeedfetch'));
       }
     },
     nonew: function(win) {
@@ -150,9 +150,25 @@
       var ttb = win.document.getElementById('GRW-toolbar-button');
       if(tooltipContainer) {
         win.document.getElementById('GRW-statusbar').tooltip = 'GRW-statusbar-tooltip-nonew';
-        ttb.setAttribute('tooltiptext', GRW.strings.getString('nonewfeed'));
+        if(ttb) ttb.setAttribute('tooltiptext', GRW.strings.getString('nonewfeed'));
       }
-    }
+    },
+    cookieError: function(win) {
+      var tooltipContainer = win.document.getElementById('GRW-statusbar-tooltip-new');
+      var ttb = win.document.getElementById('GRW-toolbar-button');
+      if(tooltipContainer) {
+        tooltipContainer.tooltip = 'GRW-statusbar-tooltip-cookieerror';
+        if(ttb) ttb.setAttribute('tooltiptext', GRW.strings.getString('cookieerror'));
+      }
+    },
+    networkError: function(win) {
+      var tooltipContainer = win.document.getElementById('GRW-statusbar-tooltip-new');
+      var ttb = win.document.getElementById('GRW-toolbar-button');
+      if(tooltipContainer) {
+        tooltipContainer.tooltip = 'GRW-statusbar-tooltip-networkerror';
+        if(ttb) ttb.setAttribute('tooltiptext', GRW.strings.getString('networkerror'));
+      }
+    },
   };
   var statusbarTooltip = function(action, feeds, getlist) {
     var actionMethod;
@@ -163,6 +179,14 @@
 
       case 'error':
         actionMethod = actions.error;
+        break;
+
+      case 'cookieerror':
+        actionMethod = actions.cookieError;
+        break;
+
+      case 'networkerror':
+        actionMethod = actions.networkError;
         break;
     }
     if(actionMethod) {

@@ -73,6 +73,7 @@
                   var cookieBehavior = GRW.Prefs.get.cookieBehaviour();
                   if(cookieBehavior != 0) {
                     _this.loginFailed(e.responseText);
+                    _this.fireEvent('cookieError');
                     GRW.log('bad cookie behavior', cookieBehavior);
                   } else {
                     _this.loginFailed(e.responseText);

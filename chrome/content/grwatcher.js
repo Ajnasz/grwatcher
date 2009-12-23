@@ -14,23 +14,33 @@ GRW.init = function() {
   var getlist = GRW.GetList;
 
   GRW.strings = document.getElementById('grwatcher-strings');
-  GRW.Ajax.onRequestFailed.subscribe(function() {
+  GRW.Ajax.onRequestFailed.subscribe(function(type) {
     GRW.log('request error');
     statusbarIcon.setReaderStatus('error');
-    GRW.UI.StatusbarTooltip('error');
+    if(type == 'networkerror') {
+      GRW.UI.StatusbarTooltip('networkerror');
+    } else {
+      GRW.UI.StatusbarTooltip('error');
+    }
   });
   GRW.Ajax.onStartRequest.subscribe(function() {
     statusbarIcon.setReaderStatus('load');
   });
+  /*
   GRW.Ajax.onRequestSuccess.subscribe(function() {
     statusbarIcon.setReaderStatus('off');
   });
+  */
 
   // show error icon if login failed
   loginManager.on('loginFailed', function() {
     GRW.log('login failed');
     GRW.UI.StatusbarIcon.setReaderStatus('error');
     GRW.UI.StatusbarCounter.update(0);
+  });
+  loginManager.on('cookieError', function() {
+    GRW.UI.StatusbarIcon.setReaderStatus('error');
+    GRW.UI.StatusbarTooltip('cookieerror');
   });
 
   // reset the counter, change the icon,

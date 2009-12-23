@@ -85,18 +85,18 @@
               this.fireEvent(requestSuccess, this.req);
             } else {
               grwajax.onRequestFailed.fire();
-              this.fireEvent(requestFailed);
+              this.fireEvent(requestFailed, this.req);
               return this.errorHandler('status code - ' + this.req.status);
             };
           } else {
-            grwajax.onRequestFailed.fire();
-            this.fireEvent(requestFailed);
+            grwajax.onRequestFailed.fire('networkerror');
+            this.fireEvent(requestFailed, 'networkerror');
             return this.errorHandler('no status code');
           }
         }
       } catch(Exception) {
-        grwajax.onRequestFailed.fire();
-        this.fireEvent(requestFailed);
+        grwajax.onRequestFailed.fire('networkerror');
+        this.fireEvent(requestFailed, 'networkerror');
         return this.errorHandler('no readyState', Exception);
       }
     },
