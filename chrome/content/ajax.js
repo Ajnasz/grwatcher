@@ -69,6 +69,7 @@
       this.req.onreadystatechange = function() {_this.handler.call(_this);};
     },
     send: function() {
+      grwajax.onStartRequest.fire();
       this.fireEvent(startRequest);
       this.req.send(this.createParameters());
     },
@@ -80,17 +81,21 @@
         if(this.req.readyState == 4) {
           if(typeof this.req.status != 'undefined') {
             if(this.req.status == 200) {
+              grwajax.onRequestSuccess.fire(this.req);
               this.fireEvent(requestSuccess, this.req);
             } else {
+              grwajax.onRequestFailed.fire();
               this.fireEvent(requestFailed);
               return this.errorHandler('status code - ' + this.req.status);
             };
           } else {
+            grwajax.onRequestFailed.fire();
             this.fireEvent(requestFailed);
             return this.errorHandler('no status code');
           }
         }
       } catch(Exception) {
+        grwajax.onRequestFailed.fire();
         this.fireEvent(requestFailed);
         return this.errorHandler('no readyState', Exception);
       }
@@ -175,6 +180,9 @@
       return outArray.join('&');
     }
   };
+  grwajax.onRequestFailed = new GRW.CustomEvent();
+  grwajax.onStartRequest = new GRW.CustomEvent();
+  grwajax.onRequestSuccess = new GRW.CustomEvent();
   GRW.augmentProto(grwajax, GRW.EventProvider);
   GRW.module('Ajax', grwajax);
 })();
