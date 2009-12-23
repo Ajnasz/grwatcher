@@ -103,6 +103,9 @@
             this.start();
             return;
           }
+          if(!this._subscriptionList) {
+            this.getSubscriptionList();
+          }
           var _this = this;
           this.fireEvent(requestStartEvent);
           this.fireEvent(unreadCountRequestStartEvent);
