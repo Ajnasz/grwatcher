@@ -93,7 +93,7 @@
             httpFeeds: httpFeeds // unread items, but only the ones which are belongs to the user (id starts with 'user')
           };
           this._unreadCount = unread;
-          this.fireEvent(unreadGeneratedEvent, unread);
+          this.fireEvent(unreadGeneratedEvent, this._unreadCount);
           this.fireEvent(processFinishEvent);
           this._fireUnreadAndSubscription();
         },
@@ -173,6 +173,38 @@
           }
           return unreads;
         },
+        _filterLabels: function(items) {
+
+          var filteredLabels = GRW.Prefs.get.filteredLabels().replace(/(^\s+|\s$|,\s+|\s+,)/g, '');
+
+          if (filteredLabels !== '') {
+            filteredLabels = filteredLabels.split(',');
+
+            var _isFilteredLabel = function(item) {
+              var categories = item.data.categories;
+
+              return filteredLabels.some(function(label) {
+                return categories.some(function(category) {
+                  return label == category.label;
+                });
+              });
+            };
+
+            var _isNotFilteredLabel = function(item) {
+              var categories = item.data.categories;
+
+              return filteredLabels.every(function(label) {
+                return categories.every(function(category) {
+                  return label != category.label;
+                });
+              });
+            };
+
+            return items.filter(_isNotFilteredLabel);
+
+          }
+          return items;
+        },
         getLabels: function() {
           var labels = {},
               subscriptionsList = this._subscriptionList.subscriptions;
@@ -197,6 +229,7 @@
          */
         matchUnreadItems: function(which) {
           var unreads = this._matchUnreadItems(this._unreadCount.httpFeeds);
+          unreads = this._filterLabels(unreads);
           var user_unreads = this._matchUnreadItems(this._unreadCount.userFeeds);
           this.fireEvent(requestFinishEvent);
           this.fireEvent(processStartEvent);
