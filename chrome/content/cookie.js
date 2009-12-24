@@ -36,13 +36,15 @@
       var rex = new RegExp(domain + '$'), cookie;
       while (enumerator.hasMoreElements()) {
         cookie = enumerator.getNext();
-        if (cookie instanceof Components.interfaces.nsICookie) {
-          if (rex.test(cookie.host)) {
-            if(cookie.name == name) {
+        if (
+            cookie instanceof Components.interfaces.nsICookie
+             &&
+            rex.test(cookie.host)
+             &&
+            cookie.name == name
+           ) {
               return cookie.value;
             }
-          }
-        }
       }
       return false;
     }
