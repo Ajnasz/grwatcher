@@ -50,6 +50,10 @@
           }
           this._initialized = true;
         },
+        restart: function() {
+          this._initialized = false;
+          this.start();
+        },
         _fireUnreadAndSubscription: function() {
           if(this._subscriptionList && this._unreadCount) {
             this.fireEvent(unreadAndSubscriptionReceivedEvent, [this._subscriptionList, this._unreadCount]);
@@ -99,8 +103,7 @@
         },
         getUnreadCount: function() {
           if(!loginManager.isLoggedIn()) {
-            GRW.log('not logged in');
-            this.start();
+            this.restart();
             return;
           }
           if(!this._subscriptionList) {
@@ -233,7 +236,7 @@
         matchUnreadItems: function(which) {
           var unreads = this._matchUnreadItems(this._unreadCount.httpFeeds);
           unreads = this._filterLabels(unreads);
-          var user_unreads = this._matchUnreadItems(this._unreadCount.userFeeds);
+          // var user_unreads = this._matchUnreadItems(this._unreadCount.userFeeds);
           this.fireEvent(requestFinishEvent);
           this.fireEvent(processStartEvent);
 
