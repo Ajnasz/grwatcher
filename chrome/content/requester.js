@@ -12,7 +12,6 @@
       this.setNext();
     },
     updater: function() {
-      GRW.log('updater');
       getlist.getUnreadCount();
       this.setNext();
     },
