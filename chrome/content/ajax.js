@@ -84,18 +84,18 @@
               grwajax.onRequestSuccess.fire(this.req);
               this.fireEvent(requestSuccess, this.req);
             } else {
-              grwajax.onRequestFailed.fire();
+              grwajax.onRequestFailed.fire(null, this.req);
               this.fireEvent(requestFailed, this.req);
               return this.errorHandler('status code - ' + this.req.status);
             };
           } else {
-            grwajax.onRequestFailed.fire('networkerror');
+            grwajax.onRequestFailed.fire('networkerror', this.req);
             this.fireEvent(requestFailed, 'networkerror');
             return this.errorHandler('no status code');
           }
         }
       } catch(Exception) {
-        grwajax.onRequestFailed.fire('networkerror');
+        grwajax.onRequestFailed.fire('networkerror', this.req);
         this.fireEvent(requestFailed, 'networkerror');
         return this.errorHandler('no readyState', Exception);
       }
