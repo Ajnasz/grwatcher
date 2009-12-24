@@ -14,8 +14,7 @@ GRW.init = function() {
   var getlist = GRW.GetList;
 
   GRW.strings = document.getElementById('grwatcher-strings');
-  GRW.Ajax.onRequestFailed.subscribe(function(type) {
-    GRW.log('request error');
+  GRW.Ajax.onRequestFailed.subscribe(function(type, request) {
     statusbarIcon.setReaderStatus('error');
     if(type == 'networkerror') {
       GRW.UI.StatusbarTooltip('networkerror');
@@ -37,6 +36,7 @@ GRW.init = function() {
     GRW.log('login failed');
     GRW.UI.StatusbarIcon.setReaderStatus('error');
     GRW.UI.StatusbarCounter.update(0);
+    GRW.UI.StatusbarTooltip('loginerror');
   });
   loginManager.on('cookieError', function() {
     GRW.UI.StatusbarIcon.setReaderStatus('error');
