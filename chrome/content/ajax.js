@@ -44,6 +44,10 @@
       var agent = 'Google Reader Watcher ###VERSION###';
 
       this.req = Components.classes["@mozilla.org/xmlextras/xmlhttprequest;1"].createInstance(Components.interfaces.nsIXMLHttpRequest);
+      // var sid = GRW.LoginManager.getCurrentSID();
+      // if(sid) {
+        // this.req.setRequestHeader('Cookie', 'SID=' + sid + ';')
+      // };
 
       //this.req = Cc["@mozilla.org/xmlextras/xmlhttprequest;1"].createInstance(Ci.nsIXMLHttpRequest);
 
@@ -84,7 +88,7 @@
               grwajax.onRequestSuccess.fire(this.req);
               this.fireEvent(requestSuccess, this.req);
             } else {
-              grwajax.onRequestFailed.fire(null, this.req);
+              grwajax.onRequestFailed.fire('statuscode', this.req);
               this.fireEvent(requestFailed, this.req);
               return this.errorHandler('status code - ' + this.req.status);
             };
@@ -180,18 +184,20 @@
       return outArray.join('&');
     }
   };
-  grwajax.onRequestFailed = new GRW.CustomEvent();
-  grwajax.onStartRequest = new GRW.CustomEvent();
-  grwajax.onRequestSuccess = new GRW.CustomEvent();
+  grwajax.onRequestFailed = new GRW.CustomEvent('onRequestFailed');
+  grwajax.onStartRequest = new GRW.CustomEvent('onStartRequest');
+  grwajax.onRequestSuccess = new GRW.CustomEvent('onRequestSuccess');
   GRW.augmentProto(grwajax, GRW.EventProvider);
   GRW.module('Ajax', grwajax);
 })();
 (function() {
   var token = function(args, force) {
     var runFn = function() {
-      var success = args.success;
-      if(GRW.lang.isFunction(success.fn)) {
-        success.fn.call(success.scope);
+      if(args) {
+        var success = args.success;
+        if(GRW.lang.isFunction(success.fn)) {
+          success.fn.call(success.scope);
+        }
       }
     },
     update = function(fn, arg) {
