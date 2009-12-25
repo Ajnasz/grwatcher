@@ -16,10 +16,15 @@ GRW.init = function() {
   GRW.strings = document.getElementById('grwatcher-strings');
   GRW.Ajax.onRequestFailed.subscribe(function(type, request) {
     statusbarIcon.setReaderStatus('error');
-    if(type == 'networkerror') {
-      GRW.UI.StatusbarTooltip('networkerror');
-    } else {
+    if(request) {
       GRW.UI.StatusbarTooltip('error');
+      GRW.log('request: ', request.toSource());
+    } else {
+      if(type == 'networkerror') {
+        GRW.UI.StatusbarTooltip('networkerror');
+      } else {
+        GRW.UI.StatusbarTooltip('error');
+      }
     }
   });
   GRW.Ajax.onStartRequest.subscribe(function() {
