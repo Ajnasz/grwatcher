@@ -60,7 +60,7 @@
             var url = 'https://www.google.com/accounts/ClientLogin?service=reader',
                 param = 'service=reader&Email='+encodeURIComponent(GRW.Prefs.get.userName())+'&Passwd='+encodeURIComponent(GRW.PasswordManager.getPassword())+'&continue=http://www.google.com/reader/';
                 _this = this;
-            new GRW.Ajax({
+            var req = new GRW.Ajax({
               url: url,
               method: 'post',
               onSuccess: function(e) {
