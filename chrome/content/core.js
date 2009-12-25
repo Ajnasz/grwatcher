@@ -43,6 +43,9 @@ GRW.module = function(moduleName, module) {
       var undefined;
       return arg === undefined;
     },
+    toArray: function(arg) {
+      return Array.prototype.slice.call(arg);
+    },
     isEmail: function(arg) {
 
     },
@@ -195,12 +198,9 @@ GRW.module = function(moduleName, module) {
     this.eventName = eventName;
   };
   customEvent.prototype = {
-    fire: function(args) {
-      if(!GRW.lang.isArray(args)) {
-        args = [];
-      }
-      args.unshift(this.eventName)
-      this.fireEvent.apply(this, args);
+    fire: function() {
+      var args = GRW.lang.toArray(arguments);
+      this.fireEvent(this.eventName, args);
     },
     subscribe: function(fn, obj, overrideContext) {
       eventProvider.prototype.subscribe.apply(this, [this.eventName, fn, obj, overrideContext]);
