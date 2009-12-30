@@ -177,6 +177,7 @@
       if(isLabel) {
         menuitem.setAttribute('class', 'tag');
       }
+      menuitem.addEventListener('command', function(){GRW.OpenReader.open(this.getAttribute('url'));}, false);
       return menuitem;
     },
     genRows: function() {
@@ -189,7 +190,7 @@
 
         if(this.orderByLabels) {
           if(feeds.length) {
-            var labels = {'-':{count: 0, rows: []}};
+            var labels = {'-':{count: 0, rows: [], id: ''}};
 
             feeds.forEach(function(item) {
               var categories  = item.data.categories;
@@ -197,7 +198,7 @@
               if(categories.length) {
                 categories.forEach(function(category) {
                   if(!labels[category.label]) {
-                    labels[category.label] = {count: 0, rows: []};
+                    labels[category.label] = {count: 0, rows: [], id: category.id};
                   }
                   labels[category.label].rows.push(this.genRow(item));
                   labels[category.label].count += item.count;
@@ -210,7 +211,7 @@
 
             for(var label in labels) {
               if(labels.hasOwnProperty(label)) {
-                menu.insertBefore(this.genRow({data: {title: label}, count: labels[label].count}, true), firstMenuItem);
+                menu.insertBefore(this.genRow({data: {title: label}, count: labels[label].count, id: labels[label].id}, true), firstMenuItem);
                 labels[label].rows.forEach(function(row) {
                   GRW.log('roowww', row.label);
                   menu.insertBefore(row, firstMenuItem)
