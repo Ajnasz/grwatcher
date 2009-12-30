@@ -17,6 +17,7 @@
   <script type="application/x-javascript" src="chrome://grwatcher/content/notifier.js" />
 
   <script type="application/x-javascript" src="chrome://grwatcher/content/ui.js" />
+  <script type="application/x-javascript" src="chrome://grwatcher/content/ui/grid.js" />
   <script type="application/x-javascript" src="chrome://grwatcher/content/ui/mapwindows.js" />
   <script type="application/x-javascript" src="chrome://grwatcher/content/ui/statusbar-icon-states.js" />
   <script type="application/x-javascript" src="chrome://grwatcher/content/ui/statusbar-counter.js" />
@@ -34,7 +35,7 @@
       <image id="GRW-statusbar-image" width="16" height="16" src="chrome://grwatcher/content/images/googlereader_grey.png" />
       <label id="GRW-statusbar-label" value="GRW" collapsed="true" crop="end" />
       <menupopup id="GRW-statusbar-menu" position="before_end">
-        <menuseparator class="grw-hidden" />
+        <menuseparator class="grw-hidden" id="GRW-menuseparator" />
         <menuitem label="&GRWstatusbar.popup.markAllAsRead;" id="GRW-statusbar-menuitem-markallasread" />
         <menuitem label="&GRWstatusbar.popup.openReader;" id="GRW-statusbar-menuitem-openreader" />
         <menuitem label="&GRWstatusbar.popup.getReadCounter;" id="GRW-statusbar-menuitem-getcounter" />
