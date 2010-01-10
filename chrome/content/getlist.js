@@ -38,7 +38,6 @@
                   this.fireEvent(requestErrorEvent);
                 },
                 scope: _this
-                
               }
             }, _this, true);
           };
