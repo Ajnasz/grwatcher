@@ -206,6 +206,10 @@
             feeds = this.feeds;
 
 
+        feeds.sort(function(a, b) {
+          return a.data.title.toLowerCase() > b.data.title.toLowerCase();
+        });
+
         if(this.orderByLabels) {
           if(feeds.length) {
             var labels = {'-':{count: 0, rows: [], id: ''}};
@@ -231,7 +235,6 @@
               if(labels.hasOwnProperty(label)) {
                 menu.insertBefore(this.genRow({data: {title: label}, count: labels[label].count, id: labels[label].id}, true), firstMenuItem);
                 labels[label].rows.forEach(function(row) {
-                  GRW.log('roowww', row.label);
                   menu.insertBefore(row, firstMenuItem)
                 });
               }
