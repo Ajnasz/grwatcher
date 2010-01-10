@@ -110,14 +110,16 @@
           var _labelRows = [],
               _labelRow;
           for(var label in labels) {
-            _labelRow = {label: label, rows: []};
-            _labelRow.rows.push(this.genRow({data: {title: label}, count: labels[label].count}, true));
-            // rows.appendChild();
-            labels[label].rows.forEach(function(row) {
+            if(labels.hasOwnProperty(label)) {
+              _labelRow = {label: label, rows: []};
+              _labelRow.rows.push(this.genRow({data: {title: label}, count: labels[label].count}, true));
+              // rows.appendChild();
+              labels[label].rows.forEach(function(row) {
 
-              _labelRow.rows.push(row);
-            });
-            _labelRows.push(_labelRow);
+                _labelRow.rows.push(row);
+              });
+              _labelRows.push(_labelRow);
+            }
           }
           _labelRows.sort(function(a, b) {
             return a.label.toLowerCase() > b.label.toLowerCase();
@@ -231,14 +233,28 @@
               }
             }, this);
 
+            var _labelRows = [],
+                _labelRow;
+
             for(var label in labels) {
               if(labels.hasOwnProperty(label)) {
-                menu.insertBefore(this.genRow({data: {title: label}, count: labels[label].count, id: labels[label].id}, true), firstMenuItem);
+                _labelRow = {label: label, rows: []};
+                _labelRow.rows.push(this.genRow({data: {title: label}, count: labels[label].count, id: labels[label].id}, true));
+
                 labels[label].rows.forEach(function(row) {
-                  menu.insertBefore(row, firstMenuItem)
+                  _labelRow.rows.push(row);
                 });
+                _labelRows.push(_labelRow);
               }
             }
+            _labelRows.sort(function(a, b) {
+              return a.label.toLowerCase() > b.label.toLowerCase();
+            });
+            _labelRows.forEach(function(_labelRow) {
+              _labelRow.rows.forEach(function(row) {
+                menu.insertBefore(row, firstMenuItem);
+              })
+            });
           }
 
         } else {
