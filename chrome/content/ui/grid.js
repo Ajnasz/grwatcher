@@ -73,6 +73,9 @@
           rows = this.document.createElement('rows'),
           row;
 
+      feeds.sort(function(a, b) {
+        return a.data.title.toLowerCase() > b.data.title.toLowerCase();
+      });
 
       if(this.orderByLabels) {
         if(feeds.length) {
@@ -104,11 +107,26 @@
 
 
           }, this);
-
+          var _labelRows = [],
+              _labelRow;
           for(var label in labels) {
-            rows.appendChild(this.genRow({data: {title: label}, count: labels[label].count}, true));
-            labels[label].rows.forEach(function(row) {rows.appendChild(row)});
+            _labelRow = {label: label, rows: []};
+            _labelRow.rows.push(this.genRow({data: {title: label}, count: labels[label].count}, true));
+            // rows.appendChild();
+            labels[label].rows.forEach(function(row) {
+
+              _labelRow.rows.push(row);
+            });
+            _labelRows.push(_labelRow);
           }
+          _labelRows.sort(function(a, b) {
+            return a.label.toLowerCase() > b.label.toLowerCase();
+          });
+          _labelRows.forEach(function(labelRow) {
+            labelRow.rows.forEach(function(row) {
+              rows.appendChild(row);
+            })
+          });
         }
 
       } else {
