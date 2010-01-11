@@ -20,6 +20,7 @@
   <script type="application/x-javascript" src="chrome://grwatcher/content/ui/grid.js" />
   <script type="application/x-javascript" src="chrome://grwatcher/content/ui/mapwindows.js" />
   <script type="application/x-javascript" src="chrome://grwatcher/content/ui/statusbar-icon-states.js" />
+  <script type="application/x-javascript" src="chrome://grwatcher/content/ui/toolbar-icon-states.js" />
   <script type="application/x-javascript" src="chrome://grwatcher/content/ui/statusbar-counter.js" />
   <script type="application/x-javascript" src="chrome://grwatcher/content/ui/icon-click.js" />
   <script type="application/x-javascript" src="chrome://grwatcher/content/ui/statusbar-tooltip.js" />

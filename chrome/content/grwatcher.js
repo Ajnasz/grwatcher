@@ -5,6 +5,7 @@ GRW.init = function() {
   GRW.log('Google Reader Watcher ###VERSION### initializitaion started');
 
   var statusbarIcon =  GRW.UI.StatusbarIcon;
+  var toolbarIcon =  GRW.UI.ToolbarIcon;
   var statusbarCounter = GRW.UI.StatusbarCounter;
   var iconClick = new GRW.IconrClick();
   var notifier = new GRW.Notifier();
@@ -16,6 +17,7 @@ GRW.init = function() {
   GRW.strings = document.getElementById('grwatcher-strings');
   GRW.Ajax.onRequestFailed.subscribe(function(type, request) {
     statusbarIcon.setReaderStatus('error');
+    toolbarIcon.setReaderStatus('error');
     if(request) {
       GRW.UI.StatusbarTooltip('error');
       GRW.log('request: ', request.toSource());
@@ -29,22 +31,26 @@ GRW.init = function() {
   });
   GRW.Ajax.onStartRequest.subscribe(function() {
     statusbarIcon.setReaderStatus('load');
+    toolbarIcon.setReaderStatus('load');
   });
   /*
   GRW.Ajax.onRequestSuccess.subscribe(function() {
     statusbarIcon.setReaderStatus('off');
+    toolbarIcon.setReaderStatus('off');
   });
   */
 
   // show error icon if login failed
   loginManager.on('loginFailed', function() {
     GRW.log('login failed');
-    GRW.UI.StatusbarIcon.setReaderStatus('error');
+    statusbarIcon.setReaderStatus('error');
+    toolbarIcon.setReaderStatus('error');
     GRW.UI.StatusbarCounter.update(0);
     GRW.UI.StatusbarTooltip('loginerror');
   });
   loginManager.on('cookieError', function() {
-    GRW.UI.StatusbarIcon.setReaderStatus('error');
+    statusbarIcon.setReaderStatus('error');
+    toolbarIcon.setReaderStatus('error');
     GRW.UI.StatusbarTooltip('cookieerror');
   });
 
@@ -54,7 +60,8 @@ GRW.init = function() {
   GRW.OpenReader.on('readerOpened', function() {
     GRW.log('reader open');
     if(GRW.Prefs.get.resetCounter()) {
-      GRW.UI.StatusbarIcon.setReaderStatus('off');
+      statusbarIcon.setReaderStatus('off');
+      toolbarIcon.setReaderStatus('off');
       GRW.UI.StatusbarCounter.update(0);
     };
     requester.setNext();
@@ -75,8 +82,10 @@ GRW.init = function() {
     GRW.log('unread generated event');
     if (elems.unreadSum > 0) {
       statusbarIcon.setReaderStatus('on')
+      toolbarIcon.setReaderStatus('on')
     } else {
       statusbarIcon.setReaderStatus('off');
+      toolbarIcon.setReaderStatus('off');
       GRW.UI.StatusbarTooltip('nonew');
     }
 
