@@ -6,7 +6,7 @@ GRW.init = function() {
 
   var statusbarIcon =  GRW.UI.StatusbarIcon;
   var statusbarCounter = GRW.UI.StatusbarCounter;
-  var statusbarClick = new GRW.StatusbarClick();
+  var iconClick = new GRW.IconrClick();
   var notifier = new GRW.Notifier();
   var menuClick = new GRW.MenuClick();
   var requester = GRW.Requester;
@@ -114,12 +114,12 @@ GRW.init = function() {
 
   // update counter when user clicks on the statusbar icon
   // with the middle mouse button
-  statusbarClick.on('statusbarMiddleClick', function() {
+  iconClick.on('statusbarMiddleClick', function() {
     requester.updater();
   });
 
   // Open the reader when user clicks on the statusbar icon
-  statusbarClick.on('statusbarClick', function() {
+  iconClick.on('iconClick', function() {
     GRW.OpenReader.open()
   });
 
