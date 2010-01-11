@@ -149,6 +149,12 @@ GRW.init = function() {
   menuClick.on('openPreferences', function() {
     window.openDialog("chrome://grwatcher/content/grprefs.xul", 'GRWatcher', 'chrome,titlebar,toolbar,centerscreen,modal');
   });
+  GRW.MarkAllAsRead.on('onMarkAllAsRead',function() {
+    requester.updater();
+  })
+  menuClick.on('markAllAsRead', function() {
+    GRW.MarkAllAsRead.mark();
+  });
   menuClick.init();
 
   GRW.setTimeout(function() {

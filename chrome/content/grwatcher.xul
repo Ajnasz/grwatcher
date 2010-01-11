@@ -16,6 +16,8 @@
   <script type="application/x-javascript" src="chrome://grwatcher/content/getlist.js" />
   <script type="application/x-javascript" src="chrome://grwatcher/content/notifier.js" />
 
+  <script type="application/x-javascript" src="chrome://grwatcher/content/markallasread.js" />
+
   <script type="application/x-javascript" src="chrome://grwatcher/content/ui.js" />
   <script type="application/x-javascript" src="chrome://grwatcher/content/ui/grid.js" />
   <script type="application/x-javascript" src="chrome://grwatcher/content/ui/mapwindows.js" />
