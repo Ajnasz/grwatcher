@@ -114,7 +114,7 @@ GRW.init = function() {
 
   // update counter when user clicks on the statusbar icon
   // with the middle mouse button
-  iconClick.on('statusbarMiddleClick', function() {
+  iconClick.on('iconMiddleClick', function() {
     requester.updater();
   });
 

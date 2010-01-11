@@ -24,7 +24,7 @@
       var type = event.type,
           button = event.button,
           conf = GRW.Prefs.get.leftClickOpen(),
-          elementClicked = false;;
+          elementClicked = false;
       
       this.elements.forEach(function(element) {
         if(element && event.originalTarget == element) {
