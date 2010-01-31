@@ -153,7 +153,7 @@
               }).send();
         },
         _matchUnreadItems: function(unreads) {
-          GRW.log('unreads: ', unreads.toSource());
+          // GRW.log('unreads: ', unreads.toSource());
           var subscriptions = this._subscriptionList.subscriptions,
 
               i = unreads.length - 1,
