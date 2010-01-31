@@ -6,10 +6,14 @@ Components.utils.import("resource://grwmodules/JSON.jsm", GRW);
 
 
 GRW.module = function(moduleName, module) {
-  var undef;
-  if(GRW[moduleName] == undef) {
-    GRW[moduleName] = module || {};
+  if(moduleName) {
+    var undef;
+    if(GRW[moduleName] == undef) {
+      GRW[moduleName] = module || {};
+    }
+    return GRW[moduleName];
   }
+  return false;
 };
 
 (function(){
