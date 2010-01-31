@@ -180,7 +180,7 @@
         },
         _filterLabels: function(items) {
 
-          var filteredLabels = GRW.Prefs.get.filteredLabels().replace(/(^\s+|\s$|,\s+|\s+,)/g, '');
+          var filteredLabels = GRW.Prefs.get.filteredLabels().replace(/\s+,/g, ',').replace(/,\s+/g, ',');
 
           if (filteredLabels !== '') {
             filteredLabels = filteredLabels.split(',');
