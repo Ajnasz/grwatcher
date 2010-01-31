@@ -187,22 +187,34 @@
 
             var _isFilteredLabel = function(item) {
               var categories = item.data.categories;
-
-              return filteredLabels.some(function(label) {
-                return categories.some(function(category) {
-                  return label == category.label;
+              GRW.log('categories length = ' + categories.length);
+              if(categories.length) {
+                return filteredLabels.some(function(label) {
+                  return categories.some(function(category) {
+                    return label == category.label;
+                  });
                 });
-              });
+              } else {
+                return filteredLabels.some(function(label) {
+                  return label == '-';
+                });
+              }
             };
 
             var _isNotFilteredLabel = function(item) {
               var categories = item.data.categories;
 
-              return filteredLabels.every(function(label) {
-                return categories.every(function(category) {
-                  return label != category.label;
+              if(categories.length) {
+                return filteredLabels.every(function(label) {
+                  return categories.every(function(category) {
+                    return label != category.label;
+                  });
                 });
-              });
+              } else {
+                return filteredLabels.every(function(label) {
+                  return label != '-';
+                });
+              }
             };
 
             return items.filter(_isNotFilteredLabel);
@@ -233,8 +245,15 @@
          *
          */
         matchUnreadItems: function(which) {
-          var unreads = this._matchUnreadItems(this._unreadCount.httpFeeds);
-          unreads = this._filterLabels(unreads);
+          this._unreadCount.httpFeeds = this._matchUnreadItems(this._unreadCount.httpFeeds);
+          var unreads = this._filterLabels(this._unreadCount.httpFeeds);
+          var unreadSum = 0;
+          unreads.forEach(function(elem) {
+            if(elem.count) {
+              unreadSum+=elem.count;
+            }
+          });
+          this._unreadCount.unreadSum = unreadSum;
           // var user_unreads = this._matchUnreadItems(this._unreadCount.userFeeds);
           this.fireEvent(requestFinishEvent);
           this.fireEvent(processStartEvent);
