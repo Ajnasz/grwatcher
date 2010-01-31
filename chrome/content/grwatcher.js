@@ -75,11 +75,7 @@ GRW.init = function() {
     GRW.log('itemsMatchedEvent FIRE');
     notifier.show(getlist._unreadCount.unreadSum);
     GRW.UI.StatusbarTooltip('grid', unreads, getlist);
-  });
-
-  // set statusbar after the unread items processed
-  getlist.on('unreadGeneratedEvent', function(elems) {
-    GRW.log('unread generated event');
+    var elems = getlist._unreadCount;
     if (elems.unreadSum > 0) {
       statusbarIcon.setReaderStatus('on')
       toolbarIcon.setReaderStatus('on')
@@ -91,6 +87,11 @@ GRW.init = function() {
 
     statusbarCounter.update(elems.unreadSum, elems.unreadSum);
   });
+
+  // set statusbar after the unread items processed
+  // getlist.on('unreadGeneratedEvent', function(elems) {
+  //   GRW.log('unread generated event');
+  // });
   //
   // getlist.on('subscriptionGeneratedEvent', function(elems) {
   //   GRW.log('subscription list generated event');
