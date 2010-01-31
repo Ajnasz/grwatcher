@@ -1,8 +1,5 @@
 (function() {
-  var getlist = GRW.GetList,
-      unreadGeneratedEvent = 'unreadGeneratedEvent',
-      subscriptionGeneratedEvent = 'subscriptionGeneratedEvent',
-      itemsMatchedEvent = 'itemsMatchedEvent';
+  var getlist = GRW.GetList;
 
 
   var requester = function() {};
