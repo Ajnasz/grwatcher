@@ -39,7 +39,7 @@
                         .openWindow(null, "chrome://global/content/alerts/alert.xul", "_blank", "chrome,titlebar=no,popup=yes", null);
 
               alertWin.arguments = [image, label, value, true, "", 0, clickCallback];
-              GRW.setTimeout(function(){alertWin.close()}, 10000);
+              GRW.later(function(){alertWin.close()}, 10000);
           } catch(e) {
             GRW.log(e.message);
           }

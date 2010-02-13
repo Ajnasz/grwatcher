@@ -14,14 +14,14 @@
     },
     setNext: function() {
       if(this.timer) {
-        GRW.clearTimeout(this.timer);
+        GRW.never(this.timer);
       }
       var _this = this,
           minCheck = 1,
           configuredCheck = GRW.Prefs.get.checkFreq(),
           freq = (configuredCheck >= minCheck) ? configuredCheck : minCheck;
-      // this.timer = GRW.setTimeout(function() {_this.updater()}, GRW.Prefs.get.delayStart());
-      this.timer = GRW.setTimeout(function() {_this.updater()}, freq*1000*60);
+      // this.timer = GRW.later(function() {_this.updater()}, GRW.Prefs.get.delayStart());
+      this.timer = GRW.later(function() {_this.updater()}, freq*1000*60);
       GRW.log('setNext');
     }
   };

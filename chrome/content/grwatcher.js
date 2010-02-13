@@ -158,7 +158,7 @@ GRW.init = function() {
   });
   menuClick.init();
 
-  GRW.setTimeout(function() {
+  GRW.later(function() {
     requester.start();
   }, GRW.Prefs.get.delayStart());
 
