@@ -92,12 +92,12 @@ GRW.module = function(moduleName, module) {
 
   var timer = Components.classes["@mozilla.org/timer;1"]
                 .createInstance(Components.interfaces.nsITimer),
-      settimeout = function(fn, timeout) {
+      later = function(fn, delay) {
         var callback = {notify: fn};
-        timer.initWithCallback(callback, timeout, Components.interfaces.nsITimer.TYPE_ONE_SHOT);
+        timer.initWithCallback(callback, delay, Components.interfaces.nsITimer.TYPE_ONE_SHOT);
         return timer;
-      }
-      cleartimeout = function(timer) {
+      },
+      never = function(timer) {
         if(timer && GRW.lang.isFunction(timer.cancel)) {
           timer.cancel();
         }
@@ -214,8 +214,8 @@ GRW.module = function(moduleName, module) {
 
   GRW.module('lang', lang);
   GRW.module('log', log);
-  GRW.module('setTimeout', settimeout);
-  GRW.module('clearTimeout', cleartimeout);
+  GRW.module('later', later);
+  GRW.module('never', never);
   GRW.module('augmentObject', augmentObject);
   GRW.module('augmentProto', augmentProto);
   GRW.module('EventProvider', eventProvider);
