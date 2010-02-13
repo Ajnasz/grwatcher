@@ -1,6 +1,6 @@
 #GRW-toolbar-button
 {
-  list-style-image: url("chrome://grwatcher/skin/grw-toolbar-button.png");
+  background: url("chrome://grwatcher/skin/grw-toolbar-button.png") left center no-repeat;
   -moz-image-region: rect(0px 22px 20px 0px);
 }
 [iconsize="small"] #GRW-toolbar-button

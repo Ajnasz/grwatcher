@@ -1,4 +1,7 @@
 (function() {
+  if(GRW.UI.ToolbarIcon) {
+    return;
+  }
   var toolbaricon = {
     /**
      * change the toolbar elem status

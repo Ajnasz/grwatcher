@@ -55,7 +55,7 @@
       if(Cc["@mozilla.org/webshell;1"]) {
         // Fix Firefox 3 third party cookie related bug
         // https://bugzilla.mozilla.org/show_bug.cgi?id=437174#c32
-        // Should put into the if statment because there is no webshell interface in fennec 
+        // Should put into the if statment because there is no webshell interface in fennec
         var ds = Cc["@mozilla.org/webshell;1"].createInstance(Ci.nsIDocShellTreeItem).QueryInterface(Ci.nsIInterfaceRequestor);
         ds.itemType = Ci.nsIDocShellTreeItem.typeContent;
         this.req.channel.loadGroup = ds.getInterface(Ci.nsILoadGroup); // fix ff3
