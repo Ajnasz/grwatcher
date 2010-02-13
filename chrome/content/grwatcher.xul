@@ -57,6 +57,8 @@
 
 	<!-- Toolbar Icon -->
   <toolbarpalette id="BrowserToolbarPalette">
-    <toolbarbutton id="GRW-toolbar-button" class="toolbarbutton-1 chromeclass-toolbar-additional" label="Google Reader Watcher" tooltiptext="" />
+    <toolbaritem id="GRW-toolbaritem">
+      <button id="GRW-toolbar-button" image="chrome://grwatcher/skin/toolbar-button.png" label=""/> 
+    </toolbaritem>
   </toolbarpalette>
 </overlay>
