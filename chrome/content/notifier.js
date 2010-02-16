@@ -46,13 +46,19 @@
         }
       }
     },
-    show: function(unreadCount) {
+    show: function(unreadCount, maxcount) {
       if(this.showNotification && unreadCount > 0) {
+        var showval;
+        if(GRW.Prefs.get.maximizeCounter() && maxcount && unreadCount > maxcount) {
+          showval = maxcount + '+';
+        } else {
+          showval = unreadCount;
+        }
         if(GRW.strings) {
           // it doesn't work in fennec yet
-          this.notificationWin(GRW.strings.getFormattedString('notifierMSG', [unreadCount]));
+          this.notificationWin(GRW.strings.getFormattedString('notifierMSG', [showval]));
         } else {
-          this.notificationWin('You have ' + unreadCount + ' unread feeds');
+          this.notificationWin('You have ' + showval + ' unread feeds');
         }
         this.showNotification = false;
       }

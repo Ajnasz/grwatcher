@@ -71,11 +71,14 @@ GRW.init = function() {
   // show notification window every time the unread count
   // and the subscription list matched
   // the notifier will deside if really need to show
-  getlist.on('itemsMatchedEvent', function(unreads) {
-    GRW.log('itemsMatchedEvent FIRE');
-    notifier.show(getlist._unreadCount.unreadSum);
+  getlist.on('itemsMatchedEvent', function(args) {
+    var unreads = args[0],
+        max = args[1],
+      elems = getlist._unreadCount;
+
+    // GRW.log('itemsMatchedEvent FIRE');
+    notifier.show(elems.unreadSum, max);
     GRW.UI.StatusbarTooltip('grid', unreads, getlist);
-    var elems = getlist._unreadCount;
     if (elems.unreadSum > 0) {
       statusbarIcon.setReaderStatus('on')
       toolbarIcon.setReaderStatus('on')
@@ -85,7 +88,7 @@ GRW.init = function() {
       GRW.UI.StatusbarTooltip('nonew');
     }
 
-    statusbarCounter.update(elems.unreadSum, elems.unreadSum);
+    statusbarCounter.update(elems.unreadSum, max);
   });
 
   // set statusbar after the unread items processed

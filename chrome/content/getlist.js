@@ -258,7 +258,7 @@
           this.fireEvent(requestFinishEvent);
           this.fireEvent(processStartEvent);
 
-          this.fireEvent(itemsMatchedEvent, unreads);
+          this.fireEvent(itemsMatchedEvent, [unreads, this._unreadCount.max]);
           this.fireEvent(processFinishEvent);
         },
       };
