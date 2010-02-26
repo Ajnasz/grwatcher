@@ -33,7 +33,7 @@
           ? showCounter(label, showval)
           : hideCounter(label);
       if(toolbarButton) {
-        toolbarButton.label = val;
+        toolbarButton.label = showval;
       }
       });
     },
