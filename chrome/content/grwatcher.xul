@@ -58,7 +58,7 @@
 	<!-- Toolbar Icon -->
   <toolbarpalette id="BrowserToolbarPalette">
     <toolbaritem id="GRW-toolbaritem">
-      <button id="GRW-toolbar-button" image="chrome://grwatcher/skin/toolbar-button.png" label=""/> 
+      <button id="GRW-toolbar-button" label="" class="toolbarbutton-1 chromeclass-toolbar-additional"/> 
     </toolbaritem>
   </toolbarpalette>
 </overlay>
