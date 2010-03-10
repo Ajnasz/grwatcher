@@ -228,4 +228,13 @@
     }
   };
   GRW.module('Token', token);
+
+
+  var getter = function() {
+    if(!GRW.LoginManager.getCurrentAuth()) {
+      GRW.LoginManager.logIn();
+    } else {
+      new grwajax();
+    }
+  };
 })();
