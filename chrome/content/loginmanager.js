@@ -49,6 +49,29 @@
             }
           }
         },
+        getCurrentAuth: function() {
+          return this.Auth;
+        },
+        setCurrentAuth: function(response) {
+          if(response && response.responseText) {
+            var auths = response.responseText.split('\n');
+            if(auths.length) {
+              var auth = '';
+              for (var i = 0; i < auths.length; i++) {
+                if(/^Auth/.test(auths[i])) {
+                  auth = new String(auths[i]);
+                  break;
+                }
+              }
+              if(auth.length) {
+                var authVal = auth.split('=')[1];
+                this.Auth = authVal;
+                GRW.Token();
+                return authVal;
+              }
+            }
+          }
+        },
         /**
          * do the login into the google service
          * @param {Function} onLoad run after successful login
@@ -97,6 +120,7 @@
          */
         ajaxSuccess: function(e) {
           this.setCurrentSID(e);
+          this.setCurrentAuth(e);
           var curSid = this.getCurrentSID();
           if(curSid === false) {
             this.loginFailed(e.responseText);
