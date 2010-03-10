@@ -2,6 +2,7 @@
 [iconsize="large"] #GRW-toolbar-button {
   list-style-image: url("chrome://grwatcher/skin/grw-toolbar-button.png");
   border: 0;
+  min-width: 14px;
 }
 [iconsize="small"] #GRW-toolbar-button {
   min-width: 14px;
