@@ -30,7 +30,7 @@
       try {
         var url = subUrl ? readerURL + '/' + subUrl : readerURL;
             openedGR = getOpenedGR(),
-            currentContent = gBrowser.getBrowserAtIndex(gBrowser.mTabContainer.selectedIndex).contentWindo;
+            currentContent = gBrowser.getBrowserAtIndex(gBrowser.mTabContainer.selectedIndex).contentWindow;
         /**
         * google reader doesn't opened yet
         */
