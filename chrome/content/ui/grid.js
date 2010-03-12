@@ -2,15 +2,19 @@
   const maxTitlelenth = 5,
       titlelength   = GRW.Prefs.get.tooltipTitleLength();
 
-  Grid = function(doc, feeds, getlist) {
+  var Grid = function(doc, feeds, labels) {
     this.document = doc;
-    this.feeds = feeds;
-    this.getlist = getlist;
+    this.feeds = feeds || [];
+    // this.getlist = getlist;
     this.toLeft = GRW.Prefs.get.tooltipCounterPos() == 'left';
     this.orderByLabels = GRW.Prefs.get.sortByLabels();
+    /*
     if(this.orderByLabels) {
-      this.labels = getlist.getLabels();
+      // this.labels = getlist.getLabels();
+      this.labels = {};
     }
+    */
+    this.labels = labels;
     this.init();
   };
   Grid.prototype = {
@@ -142,15 +146,18 @@
       return this.grid;
     }
   };
-  Menu = function(doc, feeds, getlist) {
+  Menu = function(win, feeds, labels) {
+    var doc = win.document;
+    this.window = win;
     this.document = doc;
     this.feeds = feeds;
-    this.getlist = getlist;
+    // this.getlist = getlist;
     this.orderByLabels = GRW.Prefs.get.sortByLabels();
     this.menu = doc.getElementById('GRW-statusbar-menu');
     if(this.orderByLabels) {
-      this.labels = getlist.getLabels();
+      // this.labels = getlist.getLabels();
     }
+    this.labels = labels;
     this.init();
   };
   Menu.prototype = {
@@ -197,7 +204,8 @@
       if(isLabel) {
         menuitem.setAttribute('class', 'tag');
       }
-      menuitem.addEventListener('command', function(){GRW.OpenReader.open(this.getAttribute('url'));}, false);
+      var win = this.window;
+      menuitem.addEventListener('command', function(){win.GRW.OpenReader.open(this.getAttribute('url'));}, false);
       return menuitem;
     },
     genRows: function() {
@@ -281,6 +289,7 @@
       return true;
     }
   };
+  GRW.UI.Grid = Grid;
 
 /*
   var getUnreadList = function(type, doc, feeds, getlist) {

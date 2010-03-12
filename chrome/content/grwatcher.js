@@ -1,3 +1,40 @@
+GRW.isActiveGRW = function() {
+  if(typeof Components == 'undefined') {
+    return;
+  }
+  var isActive = false;
+  GRW.UI.MapWindows(function(win) {
+    if(win.GRWActive === true) {
+      isActive = true;
+    }
+  });
+  return isActive;
+};
+GRW.getActiveGRW = function() {
+  if(typeof Components == 'undefined') {
+    return;
+  }
+  var activeWin = false;
+  GRW.UI.MapWindows(function(win) {
+    if(win.GRWActive === true) {
+      activeWin = win;
+    }
+  });
+  return (activeWin === false) ? window : activeWin;
+};
+GRW.updateUI = function(oArgs) {
+  GRW.log(oArgs.toSource());
+  if(GRW.lang.isArray(oArgs.status)) {
+    GRW.UI.StatusbarIcon.setReaderStatus.apply(GRW.UI.StatusbarIcon, oArgs.status);
+    GRW.UI.ToolbarIcon.setReaderStatus.apply(GRW.UI.ToolbarIcon, oArgs.status);
+  }
+  if(GRW.lang.isArray(oArgs.tooltip)) {
+    GRW.UI.StatusbarTooltip.apply(GRW.UI.StatusbarTooltip, oArgs.tooltip);
+  }
+  if(GRW.lang.isArray(oArgs.counter)) {
+    GRW.UI.StatusbarCounter.update.apply(GRW.UI.StatusbarCounter, oArgs.counter);
+  }
+};
 /**
  * initialization function
  */
@@ -16,22 +53,22 @@ GRW.init = function() {
 
   GRW.strings = document.getElementById('grwatcher-strings');
   GRW.Ajax.onRequestFailed.subscribe(function(type, request) {
-    statusbarIcon.setReaderStatus('error');
-    toolbarIcon.setReaderStatus('error');
+    var oArgs = {status: ['error']};
     if(request) {
-      GRW.UI.StatusbarTooltip('error');
+      oArgs.tooltip = ['error'];
       GRW.log('request: ', request.toSource());
     } else {
       if(type == 'networkerror') {
+        oArgs.tooltip = ['networkerror'];
         GRW.UI.StatusbarTooltip('networkerror');
       } else {
-        GRW.UI.StatusbarTooltip('error');
+        oArgs.tooltip = ['error'];
       }
     }
+    GRW.updateUI(oArgs);
   });
   GRW.Ajax.onStartRequest.subscribe(function() {
-    statusbarIcon.setReaderStatus('load');
-    toolbarIcon.setReaderStatus('load');
+    GRW.updateUI({status: ['load']});
   });
   /*
   GRW.Ajax.onRequestSuccess.subscribe(function() {
@@ -43,15 +80,19 @@ GRW.init = function() {
   // show error icon if login failed
   loginManager.on('loginFailed', function() {
     GRW.log('login failed');
-    statusbarIcon.setReaderStatus('error');
-    toolbarIcon.setReaderStatus('error');
-    GRW.UI.StatusbarCounter.update(0);
-    GRW.UI.StatusbarTooltip('loginerror');
+    var oArgs = {
+      status: ['error'],
+      counter: [0],
+      tooltip: ['loginerror'],
+    };
+    GRW.updateUI(oArgs);
   });
   loginManager.on('cookieError', function() {
-    statusbarIcon.setReaderStatus('error');
-    toolbarIcon.setReaderStatus('error');
-    GRW.UI.StatusbarTooltip('cookieerror');
+    var oArgs = {
+      status: ['error'],
+      tooltip: ['cookieerror'],
+    };
+    GRW.updateUI(oArgs);
   });
 
   // reset the counter, change the icon,
@@ -60,9 +101,11 @@ GRW.init = function() {
   GRW.OpenReader.on('readerOpened', function() {
     GRW.log('reader open');
     if(GRW.Prefs.get.resetCounter()) {
-      statusbarIcon.setReaderStatus('off');
-      toolbarIcon.setReaderStatus('off');
-      GRW.UI.StatusbarCounter.update(0);
+      var oArgs = {
+        status: ['off'],
+        counter: [0],
+      };
+      GRW.updateUI(oArgs);
     };
     requester.setNext();
     notifier.showNotification = true;
@@ -75,20 +118,21 @@ GRW.init = function() {
     var unreads = args[0],
         max = args[1],
       elems = getlist._unreadCount;
-
+    GRW.feeds = unreads;
+    GRW.max = max;
     // GRW.log('itemsMatchedEvent FIRE');
     notifier.show(elems.unreadSum, max);
-    GRW.UI.StatusbarTooltip('grid', unreads, getlist);
+    var oArgs = {
+      tooltip: ['grid', unreads, getlist],
+    };
     if (elems.unreadSum > 0) {
-      statusbarIcon.setReaderStatus('on')
-      toolbarIcon.setReaderStatus('on')
+      oArgs.status = ['on'];
     } else {
-      statusbarIcon.setReaderStatus('off');
-      toolbarIcon.setReaderStatus('off');
-      GRW.UI.StatusbarTooltip('nonew');
+      oArgs.status = ['off'];
+      oArgs.tooltip = ['nonew'];
     }
-
-    statusbarCounter.update(elems.unreadSum, max);
+    oArgs.counter = [elems.unreadSum, max],
+    GRW.updateUI(oArgs);
   });
 
   // set statusbar after the unread items processed
@@ -119,16 +163,16 @@ GRW.init = function() {
   });
   */
 
-  // open the reader when user clicks on the link in the notifier
-  notifier.on('notifierClicked', function() {
-    // GRW.log('notifier clicked');
-    GRW.OpenReader.open();
-  });
 
   // update counter when user clicks on the statusbar icon
   // with the middle mouse button
   iconClick.on('iconMiddleClick', function() {
     requester.updater();
+  });
+  // open the reader when user clicks on the link in the notifier
+  notifier.on('notifierClicked', function() {
+    // GRW.log('notifier clicked');
+    GRW.OpenReader.open();
   });
 
   // Open the reader when user clicks on the statusbar icon
@@ -161,9 +205,15 @@ GRW.init = function() {
   });
   menuClick.init();
 
-  GRW.later(function() {
-    requester.start();
-  }, GRW.Prefs.get.delayStart());
+  if(GRW.isActiveGRW() === false) {
+    window.GRWActive = true;
+    GRW.later(function() {
+      requester.start();
+    }, GRW.Prefs.get.delayStart());
+  } else {
+    var activeWin = GRW.getActiveGRW();
+//    getlist = activeWin.GRW.GetList;
+  }
 
   GRW.log('Google Reader Watcher ###VERSION### initializitaion finished');
 };

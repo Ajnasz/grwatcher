@@ -6,15 +6,19 @@
   var actions = {
     genGrid: function(win, feeds, getlist) {
       var statusbar = win.document.getElementById(statusbarID);
+      var activeGRW = GRW.getActiveGRW().GRW; 
+      var getlist = activeGRW.GetList;
+      var feeds = activeGRW.feeds;
       if(statusbar) {
         statusbar.tooltip = 'GRW-statusbar-tooltip-new';
         var tooltipContainer = win.document.getElementById('GRW-statusbar-tooltip-new');
-        var grid = new Grid(win.document, feeds, getlist).getGrid();
+        var labels = getlist.getLabels();
+        var grid = new GRW.UI.Grid(win.document, feeds, labels).getGrid();
         while(tooltipContainer.firstChild) {
           tooltipContainer.removeChild(tooltipContainer.firstChild);
         }
         tooltipContainer.appendChild(grid);
-        new Menu(win.document, feeds, getlist);
+        new Menu(win, feeds, labels);
       }
     },
     error: function(win) {
