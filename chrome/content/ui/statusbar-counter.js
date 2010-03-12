@@ -1,5 +1,4 @@
 (function() {
-  if(GRW.UI && GRW.UI.StatusbarCounter) return;
   var showCounter = function(label, value) {
       label.value = value;
       label.style.width = '';
