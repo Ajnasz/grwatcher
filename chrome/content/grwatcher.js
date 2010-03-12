@@ -212,6 +212,7 @@ GRW.init = function() {
     }, GRW.Prefs.get.delayStart());
   } else {
     var activeWin = GRW.getActiveGRW();
+    activeWin.GRW.GetList.matchUnreadItems();
 //    getlist = activeWin.GRW.GetList;
   }
 
