@@ -202,7 +202,7 @@ GRW.module = function(moduleName, module) {
     this.eventName = eventName;
   };
   customEvent.prototype = {
-    fire: function() {
+    fire: function(args) {
       var args = GRW.lang.toArray(arguments);
       this.fireEvent(this.eventName, args);
     },
