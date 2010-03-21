@@ -23,7 +23,6 @@ GRW.getActiveGRW = function() {
   return (activeWin === false) ? window : activeWin;
 };
 GRW.updateUI = function(oArgs) {
-  GRW.log(oArgs.toSource());
   if(GRW.lang.isArray(oArgs.status)) {
     GRW.UI.StatusbarIcon.setReaderStatus.apply(GRW.UI.StatusbarIcon, oArgs.status);
     GRW.UI.ToolbarIcon.setReaderStatus.apply(GRW.UI.ToolbarIcon, oArgs.status);
@@ -52,6 +51,7 @@ GRW.init = function() {
   var getlist = GRW.GetList;
 
   GRW.strings = document.getElementById('grwatcher-strings');
+  /*
   GRW.Ajax.onRequestFailed.subscribe(function(type, request) {
     var oArgs = {status: ['error']};
     if(request) {
@@ -67,8 +67,32 @@ GRW.init = function() {
     }
     GRW.updateUI(oArgs);
   });
+  */
+  GRW.getter.onRequestFailed.subscribe(function(request) {
+    var oArgs = {status: ['error']};
+    if(request) {
+      oArgs.tooltip = ['error'];
+    } else {
+      if(type == 'networkerror') {
+        oArgs.tooltip = ['networkerror'];
+        GRW.UI.StatusbarTooltip('networkerror');
+      } else {
+        oArgs.tooltip = ['error'];
+      }
+    }
+    GRW.updateUI(oArgs);
+  });
+  GRW.getter.onStartRequest.subscribe(function() {
+    GRW.updateUI({status: ['load']});
+  });
+  /*
   GRW.Ajax.onStartRequest.subscribe(function() {
     GRW.updateUI({status: ['load']});
+  });
+  */
+  GRW.getter.onRequestSuccess.subscribe(function() {
+    statusbarIcon.setReaderStatus('off');
+    toolbarIcon.setReaderStatus('off');
   });
   /*
   GRW.Ajax.onRequestSuccess.subscribe(function() {
