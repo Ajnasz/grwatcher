@@ -236,15 +236,9 @@
           return labels;
         },
         /**
-         * @param {String} which Which items should be matched. Possible values are:
-         *  <ul>
-         *  <li>http</li>
-         *  <li>user</li>
-         *  <li>all</li>
-         *  </ul>
-         *
+         * @method matchUnreadItems
          */
-        matchUnreadItems: function(which) {
+        matchUnreadItems: function() {
           this._unreadCount.httpFeeds = this._matchUnreadItems(this._unreadCount.httpFeeds);
           var unreads = this._filterLabels(this._unreadCount.httpFeeds);
           var unreadSum = 0;
