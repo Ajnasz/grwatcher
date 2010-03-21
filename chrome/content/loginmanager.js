@@ -28,7 +28,7 @@
           return GRW.Cookie.get('SID');
         },
         isLoggedIn: function() {
-          return this.getCurrentSID() != false;
+          return this.getCurrentAuth() != false;
         },
         setCurrentSID: function(response) {
           if(response && response.responseText) {
@@ -43,8 +43,33 @@
               }
               if(sid.length) {
                 GRW.Cookie.set('.google.com', 'SID', sid.split('=')[1], GRW.Prefs.get.rememberLogin());
-                GRW.Token();
+                // GRW.Token();
                 return sid.split('=')[1];
+              }
+            }
+          }
+        },
+        getCurrentAuth: function() {
+          return this.Auth;
+        },
+        setCurrentAuth: function(response) {
+          if(response && response.responseText) {
+            var auths = response.responseText.split('\n');
+            if(auths.length) {
+              var auth = '';
+              for (var i = 0; i < auths.length; i++) {
+                if(/^Auth/.test(auths[i])) {
+                  auth = new String(auths[i]);
+                  break;
+                }
+              }
+              if(auth.length) {
+                var authVal = auth.split('=')[1];
+                this.Auth = authVal;
+                // GRW.Token();
+                return authVal;
+              } else {
+                this.Auth = false;
               }
             }
           }
@@ -60,6 +85,29 @@
             var url = 'https://www.google.com/accounts/ClientLogin?service=reader',
                 param = 'service=reader&Email='+encodeURIComponent(GRW.Prefs.get.userName())+'&Passwd='+encodeURIComponent(GRW.PasswordManager.getPassword())+'&continue=http://www.google.com/reader/';
                 _this = this;
+            GRW.request('post', url, {
+              onSuccess: function(e) {
+                GRW.log('login request success');
+                _this.ajaxSuccess(e);
+                if(GRW.lang.isFunction(onLogin)) {
+                  onLogin.call();
+                }
+                if(!_this.getCurrentAuth()) {
+                  var cookieBehavior = GRW.Prefs.get.cookieBehaviour();
+                  if(cookieBehavior != 0) {
+                    _this.loginFailed(e.responseText);
+                    _this.fireEvent('cookieError');
+                    GRW.log('bad cookie behavior', cookieBehavior);
+                  } else {
+                    _this.loginFailed(e.responseText);
+                  }
+                }
+              },
+              onError: function(e) {
+                _this.loginFailed();
+              }
+            }, param);
+            /*
             var req = new GRW.Ajax({
               url: url,
               method: 'post',
@@ -84,6 +132,7 @@
                 _this.loginFailed();
               }
             }, param).send();
+            */
           } else {
             this.loginFailed();
             return -1;
@@ -96,13 +145,25 @@
          * @type Boolean
          */
         ajaxSuccess: function(e) {
-          this.setCurrentSID(e);
-          var curSid = this.getCurrentSID();
-          if(curSid === false) {
+          // this.setCurrentSID(e);
+          this.setCurrentAuth(e);
+          // var curSid = this.getCurrentSID();
+          // if(curSid === false) {
+          //   this.loginFailed(e.responseText);
+          //   return false;
+          // }
+          // GRW.Prefs.set.sid(curSid);
+          var curAuth =this.getCurrentAuth(e);
+          
+          if(curAuth === false) {
             this.loginFailed(e.responseText);
             return false;
+          } else {
+            GRW.getter.setDefaultHeader({
+              name: 'Authorization',
+              value: 'GoogleLogin auth=' + curAuth
+            })
           }
-          // GRW.Prefs.set.sid(curSid);
           this.fireEvent('loginSuccess');
           return true;
         },

@@ -38,7 +38,6 @@
       switch(button) {
         case 0:
           if(customDefs[conf] == type) {
-            GRW.log('icon click');
             this.fireEvent('iconClick', [type, event]);
           }
           break;

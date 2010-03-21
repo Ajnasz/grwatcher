@@ -24,8 +24,8 @@
       getList.prototype = {
         start: function() {
           if(this._initialized) return;
-          var _this = this;
-
+          this._initRequests();
+/*
           var firstRequest = function() {
             _this.fireEvent(requestStartEvent);
             GRW.Token({
@@ -42,11 +42,13 @@
             }, _this, true);
           };
 
+/*
           if(loginManager.isLoggedIn()) {
             firstRequest();
           } else {
             loginManager.logIn(firstRequest);
           }
+          */
           this._initialized = true;
         },
         restart: function() {
@@ -111,6 +113,16 @@
           var _this = this;
           this.fireEvent(requestStartEvent);
           this.fireEvent(unreadCountRequestStartEvent);
+          GRW.request('get', unreadcountURL, {
+              onSuccess:function(o) {
+                  _this.fireEvent(unreadCountRequestFinishEvent);
+                  _this._processUnreadCount(o);
+                },
+                onError:function(o) {
+                  _this.fireEvent(requestErrorEvent);
+                }
+          });
+          /*
           var req = new GRW.Ajax({
                 url: unreadcountURL,
                 onSuccess:function(o) {
@@ -121,6 +133,7 @@
                   _this.fireEvent(requestErrorEvent);
                 }
               }).send();
+              */
         },
         _processSubscriptionList: function(response) {
           this.fireEvent(processStartEvent);
@@ -141,6 +154,16 @@
           var _this = this;
           this.fireEvent(requestStartEvent);
           this.fireEvent(subscriptionListRequestStartEvent);
+          GRW.request('get', subscriptionListURL, {
+            onSuccess:function(o) {
+              _this.fireEvent(subscriptionListRequestFinishEvent);
+              _this._processSubscriptionList(o);
+            },
+            onError:function(o) {
+              _this.fireEvent(requestErrorEvent);
+            }
+          });
+          /*
           var req = new GRW.Ajax({
                 url: subscriptionListURL,
                 onSuccess:function(o) {
@@ -151,9 +174,9 @@
                   _this.fireEvent(requestErrorEvent);
                 }
               }).send();
+              */
         },
         _matchUnreadItems: function(unreads) {
-          // GRW.log('unreads: ', unreads.toSource());
           var subscriptions = this._subscriptionList.subscriptions,
 
               i = unreads.length - 1,
@@ -187,7 +210,6 @@
 
             var _isFilteredLabel = function(item) {
               var categories = item.data.categories;
-              GRW.log('categories length = ' + categories.length);
               if(categories.length) {
                 return filteredLabels.some(function(label) {
                   return categories.some(function(category) {

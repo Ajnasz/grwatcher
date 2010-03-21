@@ -40,9 +40,7 @@
 
               alertWin.arguments = [image, label, value, true, "", 0, clickCallback];
               GRW.later(function(){alertWin.close()}, 10000);
-          } catch(e) {
-            GRW.log(e.message);
-          }
+          } catch(e) {}
         }
       }
     },

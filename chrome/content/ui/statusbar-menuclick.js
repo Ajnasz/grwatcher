@@ -14,19 +14,15 @@
       }, true);
       document.getElementById(markAllAsRead).addEventListener('command', function(event) {
         _this.fireEvent('markAllAsRead');
-        GRW.log('mark all as read');
       }, true);
       document.getElementById(checkUnreadFeeds).addEventListener('command', function(event) {
         _this.fireEvent('checkUnreadFeeds');
-        GRW.log('check unread feeds');
       }, true);
       document.getElementById(openPreferences).addEventListener('command', function(event) {
         _this.fireEvent('openPreferences');
-        GRW.log('open preferences');
       }, true);
       document.getElementById(enableCookies).addEventListener('command', function(event) {
         _this.fireEvent('enableCookies');
-        GRW.log('enable cookies');
       }, true);
     }
   };

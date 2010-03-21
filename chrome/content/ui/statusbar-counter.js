@@ -27,7 +27,6 @@
         var label = win.document.getElementById('GRW-statusbar-label'),
             toolbarButton = win.document.getElementById('GRW-toolbar-button');
 
-        GRW.log('show zero: ',showZeroCounter, val);
         (val > 0 || showZeroCounter)
           ? showCounter(label, showval)
           : hideCounter(label);
