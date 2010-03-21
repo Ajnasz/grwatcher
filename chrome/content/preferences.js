@@ -255,6 +255,7 @@
       * @param {Boolean} value
       */
       delayStart: function(value) {
+        value = (value > -1) ? value : 0;
         return setIntPref('extensions.grwatcher.delaystart', value);
       },
       /**
