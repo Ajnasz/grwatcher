@@ -1,10 +1,3 @@
-content grwatcher jar:chrome/grwatcher.jar!/content/
-resource grwmodules modules/
-overlay chrome://browser/content/browser.xul chrome://grwatcher/content/grwatcher.xul
-
-skin grwatcher classic/1.0	jar:chrome/grwatcher.jar!/skin/classic/grwatcher/
-style	chrome://global/content/customizeToolbar.xul	chrome://grwatcher/skin/toolbar.css
-
 locale grwatcher ca-AD jar:chrome/grwatcher.jar!/locale/ca-AD/
 locale grwatcher cs-CZ jar:chrome/grwatcher.jar!/locale/cs-CZ/
 locale grwatcher da-DK jar:chrome/grwatcher.jar!/locale/da-DK/
@@ -16,7 +9,7 @@ locale grwatcher es-ES jar:chrome/grwatcher.jar!/locale/es-ES/
 locale grwatcher et-EE jar:chrome/grwatcher.jar!/locale/et-EE/
 locale grwatcher fa-IR jar:chrome/grwatcher.jar!/locale/fa-IR/
 locale grwatcher fi-FI jar:chrome/grwatcher.jar!/locale/fi-FI/
-locale grwatcher fr-FR jar:chrome/grwatcher.jar!/locale/fr-FR/
+locale grwatcher fr-FR jar:chrome/grwatcher.jar!/locale/fr/
 locale grwatcher he-IL jar:chrome/grwatcher.jar!/locale/he-IL/
 locale grwatcher hu-HU jar:chrome/grwatcher.jar!/locale/hu-HU/
 locale grwatcher it-IT jar:chrome/grwatcher.jar!/locale/it-IT/
@@ -30,6 +23,6 @@ locale grwatcher pt-PT jar:chrome/grwatcher.jar!/locale/pt-PT/
 locale grwatcher ru-RU jar:chrome/grwatcher.jar!/locale/ru-RU/
 locale grwatcher sk-SK jar:chrome/grwatcher.jar!/locale/sk-SK/
 locale grwatcher tr-TR jar:chrome/grwatcher.jar!/locale/tr-TR/
-locale grwatcher vi-VN jar:chrome/grwatcher.jar!/locale/vi-VN/
+locale grwatcher vi-VN jar:chrome/grwatcher.jar!/locale/vi/
 locale grwatcher zh-CN jar:chrome/grwatcher.jar!/locale/zh-CN/
 locale grwatcher zh-TW jar:chrome/grwatcher.jar!/locale/zh-TW/
