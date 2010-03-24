@@ -2,7 +2,6 @@
 <!ENTITY GRWstatusbar.popup.getReadCounter "Zkontrolovat nepřečtené zdroje">
 <!ENTITY GRWstatusbar.popup.openPrefs "Volby">
 <!ENTITY GRWstatusbar.popup.markAllAsRead "Mark all as read">
-<!ENTITY GRWstatusbar.popup.enableCookies "Enable cookies">
 <!ENTITY GRWpreferences.title "Volby pro Google Reader Watcher">
 <!ENTITY GRWpreferences.checkfrequency "Kontrolovat nové zdroje každé/každou">
 <!ENTITY GRWpreferences.delaystart "Start the first check after the browser started (milliseconds)">
@@ -41,6 +40,3 @@
 <!ENTITY GRWtooltip.newfeed "Máte nepřečtené zdroje">
 <!ENTITY GRWtooltip.errorlogin "Přihlašování selhalo. Zkontrolujte, že jste zadali správné heslo a/nebo uživatelské jméno!">
 <!ENTITY GRWtooltip.networkerror "Síťová  chyba!">
-<!ENTITY GRWtooltip.cookieerror "The third-party cookies are not enabled! Press right mouse button on the icon to enable it.">
-<!ENTITY GRWpreferences.showitemsintooltip "Enable to display unread items in the tooltip statusbar icon">
-<!ENTITY GRWpreferences.showitemsincontextmenu "Enable to add the unread items in the context menu of the statusbar icon">
