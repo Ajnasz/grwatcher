@@ -1,37 +1,29 @@
-[iconsize="small"] #GRW-toolbar-button,
-[iconsize="large"] #GRW-toolbar-button {
-  list-style-image: url("chrome://grwatcher/skin/grw-toolbar-button.png");
+#GRW-toolbar-button {
   border: 0;
-  min-width: 14px;
 }
-[iconsize="small"] #GRW-toolbar-button {
-  min-width: 14px;
-}
-[iconsize="large"] #GRW-toolbar-button {
-  -moz-image-region: rect(0px 22px 20px 0px);
-  min-width: 22px;
-}
-[iconsize="small"] #GRW-toolbar-button {
-  list-style-image: url("chrome://grwatcher/skin/grw-toolbar-button.png");
-  -moz-image-region: rect(0px 40px 14px 25px);
+#GRW-toolbar-button {
+  list-style-image: url("chrome://grwatcher/skin/active-toolbar-20.png");
+  min-width: 20px;
 }
 #GRW-toolbar-button.off {
-  -moz-image-region: rect(20px 22px 40px 0px);
-}
-[iconsize="small"] #GRW-toolbar-button.off {
-  -moz-image-region: rect(20px 40px 34px 25px);
+  list-style-image: url("chrome://grwatcher/skin/inactive-toolbar-20.png");
 }
 #GRW-toolbar-button.error {
-  -moz-image-region: rect(40px 22px 60px 0px);
-}
-[iconsize="small"] #GRW-toolbar-button.error {
-  -moz-image-region: rect(40px 40px 54px 25px);
+  list-style-image: url("chrome://grwatcher/skin/error-toolbar-20.png");
 }
 #GRW-toolbar-button.load {
-  list-style-image: url("chrome://browser/skin/Throbber.gif");
-  -moz-image-region: rect(0 20px 20px 0px);
+  list-style-image: url("chrome://grwatcher/skin/loading-toolbar-20.gif");
+}
+[iconsize="small"] #GRW-toolbar-button {
+  list-style-image: url("chrome://grwatcher/skin/active-toolbar-14.png");
+  min-width: 14px;
+}
+[iconsize="small"] #GRW-toolbar-button.off {
+  list-style-image: url("chrome://grwatcher/skin/inactive-toolbar-14.png");
+}
+[iconsize="small"] #GRW-toolbar-button.error {
+  list-style-image: url("chrome://grwatcher/skin/error-toolbar-14.png");
 }
 [iconsize="small"] #GRW-toolbar-button.load {
-  list-style-image: url("chrome://global/skin/throbber/Throbber-small.gif");
-  -moz-image-region: rect(0 16px 16px 0px);
+  list-style-image: url("chrome://grwatcher/skin/loading-toolbar-14.gif");
 }
