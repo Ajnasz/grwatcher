@@ -19,7 +19,6 @@
       var req = new XMLHttpRequest();
       var agent = 'Google Reader Watcher ###VERSION###';
       if(!req) {
-        GRW.log('unable to create xhr object');
         getter.onRequestFailed.fire();
         return false;
       }
@@ -69,7 +68,7 @@
   };
 
   var _getToken = function(callback) {
-    getter.asyncRequest('get', GRW.States.conntype + '://www.google.com/reader/api/0/token', {
+    request('get', GRW.States.conntype + '://www.google.com/reader/api/0/token', {
       onSuccess: function(r){
         // GRW.setCookie('T', r.responseText);
         GRW.Cookie.set('.google.com', 'T', r.responseText);
@@ -77,12 +76,14 @@
           token: r.responseText,
           date: new Date()
         }
+        callback()
       },
       onError: function(args) {
         GRW.log('TOKEN ERROR', args.getAllResponseHeaders(), args.status, args.statusText);
       }
     });
   };
+  var lastRequest = '';
   var request = function(method, uri, callback, postData) {
     var _callback = {
       onSuccess: callback.onSuccess,
@@ -90,10 +91,14 @@
         var retry = function() {
           getter.asyncRequest(method, uri, callback, postData);
         };
-        if(r.status == 401) {
+        if(r.status == 401 && lastRequest != 'login') {
+          lastRequest = 'login';
           GRW.LoginManager.logIn(retry);
-        } else if (r.status == 403) {
+        } else if (r.status == 403 && lastRequest != 'token') {
+          lastRequest = 'token';
           _getToken(retry);
+        } else {
+          lastRequest = '';
         }
       },
     }
