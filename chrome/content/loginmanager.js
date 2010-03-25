@@ -154,7 +154,7 @@
           // }
           // GRW.Prefs.set.sid(curSid);
           var curAuth =this.getCurrentAuth(e);
-          
+
           if(curAuth === false) {
             this.loginFailed(e.responseText);
             return false;
