@@ -9,7 +9,7 @@
       unreadAndSubscriptionReceivedEvent = 'unreadAndSubscriptionReceivedEvent',
       itemsMatchedEvent = 'itemsMatchedEvent',
       requestStartEvent = 'requestStartEvent',
-      requestFinishEvent = 'requestFinishEvent',
+      // requestFinishEvent = 'requestFinishEvent',
       requestErrorEvent = 'requestErrorEvent',
 
       unreadCountRequestStartEvent = 'unreadCountRequestStartEvent',
@@ -58,11 +58,14 @@
         _fireUnreadAndSubscription: function() {
           if(this._subscriptionList && this._unreadCount) {
             this.fireEvent(unreadAndSubscriptionReceivedEvent, [this._subscriptionList, this._unreadCount]);
+          } else if(this._subscriptionList) {
+            this.getUnreadCount();
+          } else if(this._unreadCount) {
+            this.getSubscriptionList();
           }
         },
         _initRequests: function() {
           this.getSubscriptionList();
-          this.getUnreadCount();
         },
         _processUnreadCount: function(response) {
           this.fireEvent(processStartEvent);
@@ -103,13 +106,12 @@
           this._fireUnreadAndSubscription();
         },
         getUnreadCount: function() {
+          /*
           if(!loginManager.isLoggedIn()) {
             this.restart();
             return;
           }
-          if(!this._subscriptionList) {
-            this.getSubscriptionList();
-          }
+          */
           var _this = this;
           this.fireEvent(requestStartEvent);
           this.fireEvent(unreadCountRequestStartEvent);
@@ -137,7 +139,7 @@
         },
         _processSubscriptionList: function(response) {
           this.fireEvent(processStartEvent);
-          this.fireEvent(requestFinishEvent);
+          // this.fireEvent(requestFinishEvent);
 
           var obj = GRW.JSON.parse(response.responseText),
               subscription = {
@@ -271,7 +273,7 @@
           });
           this._unreadCount.unreadSum = unreadSum;
           // var user_unreads = this._matchUnreadItems(this._unreadCount.userFeeds);
-          this.fireEvent(requestFinishEvent);
+          // this.fireEvent(requestFinishEvent);
           this.fireEvent(processStartEvent);
 
           this.fireEvent(itemsMatchedEvent, [unreads, this._unreadCount.max]);
