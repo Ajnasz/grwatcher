@@ -41,3 +41,6 @@
 <!ENTITY GRWtooltip.newfeed "Sie haben ungelesene Feeds">
 <!ENTITY GRWtooltip.errorlogin "Anmeldung fehlgeschlagen. Bitte überprüfen Sie Passwort und/oder Benutzernamen!">
 <!ENTITY GRWtooltip.networkerror "Netzwerkfehler. Kontrollieren Sie Ihre Verbindung!">
+<!ENTITY GRWtooltip.cookieerror "Cookies von Drittanbietern akzeptieren ist nicht aktiviert! Mit Rechtsklick auf Symbol aktivieren.">
+<!ENTITY GRWpreferences.showitemsintooltip "Aktivieren um ungelesene Elemente im Tooltip des Statusleisten Symbols anzuzeigen.">
+<!ENTITY GRWpreferences.showitemsincontextmenu "Aktivieren um ungelesene Elemente, im  Kontextmenü des Statusleisten Symbols, anzuzeigen.">
