@@ -1,17 +1,19 @@
 (function() {
-  var showCounter = function(label, value) {
+  var showCounter = function(label, toolbar, value) {
       label.value = value;
       label.style.width = '';
       label.style.margin = '';
       label.crop = '';
       label.collapsed = false;
+      toolbar.label = value;
   },
-  hideCounter = function(label) {
+  hideCounter = function(label, toolbar) {
     label.value = '';
     label.crop = 'end';
     label.style.margin = 0;
     label.style.width = 0;
     label.collapsed = true;
+    toolbar.label = '';
   };
   var statusbarCounter = {
     update: function(val, maxcount) {
@@ -28,11 +30,8 @@
             toolbarButton = win.document.getElementById('GRW-toolbar-button');
 
         (val > 0 || showZeroCounter)
-          ? showCounter(label, showval)
-          : hideCounter(label);
-      if(toolbarButton) {
-        toolbarButton.label = showval;
-      }
+          ? showCounter(label, toolbarButton, showval)
+          : hideCounter(label, toolbarButton);
       });
     },
   };
