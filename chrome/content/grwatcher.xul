@@ -60,5 +60,11 @@
     <toolbaritem id="GRW-toolbaritem">
       <button id="GRW-toolbar-button" label="" class="toolbarbutton-1"/> 
     </toolbaritem>
+    <tooltip id="GRW-toolbar-tooltip-error" position="before_end"><description id="GRW-toolbar-tooltip-error-description" value="&GRWtooltip.errorfeedfetch;" /></tooltip>
+    <tooltip id="GRW-toolbar-tooltip-loginerror" position="before_end"><description id="GRW-toolbar-tooltip-loginerror-description" value="&GRWtooltip.errorlogin;" /></tooltip>
+    <tooltip id="GRW-toolbar-tooltip-networkerror" position="before_end"><description id="GRW-toolbar-tooltip-networkerror-description" value="&GRWtooltip.networkerror;" /></tooltip>
+    <tooltip id="GRW-toolbar-tooltip-cookieerror" position="before_end"><description id="GRW-toolbar-tooltip-cookieerror-description" value="&GRWtooltip.cookieerror;" /></tooltip>
+    <tooltip id="GRW-toolbar-tooltip-nonew" position="before_end"><description id="GRW-toolbar-tooltip-nonew-description" value="&GRWtooltip.nonewfeed;" /></tooltip>
+    <tooltip id="GRW-toolbar-tooltip-new" position="before_end"></tooltip>
   </toolbarpalette>
 </overlay>
