@@ -1,5 +1,5 @@
 #GRW-toolbar-button {
-  border: 0;
+  -moz-appearance: toolbarbutton;
 }
 #GRW-toolbar-button {
   list-style-image: url("chrome://grwatcher/skin/active-toolbar-20.png");
