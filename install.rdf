@@ -32,16 +32,6 @@
     </em:file>
     <em:localized>
       <Description>
-        <em:locale>en-US</em:locale>
-        <em:name>Google Reader Watcher</em:name>
-        <em:creator>Lajos Koszti</em:creator>
-        <em:description>Checks your Google Reader for unread feeds</em:description>
-        <em:homepageURL>http://ajnasz.hu/google-reader-watcher</em:homepageURL>
-        <em:contributor>David Peitler</em:contributor>
-      </Description>
-    </em:localized>
-    <em:localized>
-      <Description>
         <em:locale>hu-HU</em:locale>
         <em:name>Google Reader Watcher</em:name>
         <em:creator>Koszti Lajos</em:creator>
@@ -70,7 +60,9 @@
     <em:contributor>David Peitler</em:contributor>
     <em:translator>AlleyKat - da-DK (babelzilla)</em:translator>
     <em:translator>7bse - de-DE (babelzilla)</em:translator>
+    <em:translator>Endor de-DE</em:translator>
     <em:translator>panda2005 el-GR (babelzilla)</em:translator>
+    <em:translator>Sonickydon (el-GR)</em:translator>
     <em:translator>PAGF_LINUX es-AR (babelzilla)</em:translator>
     <em:translator>PAGF_LINUX es-ES (babelzilla)</em:translator>
     <em:translator>Sander Lepik - et-EE</em:translator>
@@ -87,6 +79,5 @@
     <em:translator>Ahmed Yilmaz - tr-TR</em:translator>
     <em:translator>fiag zh-CN (babelzilla)</em:translator>
     <em:translator>toomore zh-TW (babelzilla)</em:translator>
-
   </Description>
 </RDF>
