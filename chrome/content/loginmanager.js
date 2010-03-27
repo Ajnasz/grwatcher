@@ -145,7 +145,6 @@
          * @type Boolean
          */
         ajaxSuccess: function(e) {
-          // this.setCurrentSID(e);
           this.setCurrentAuth(e);
           // var curSid = this.getCurrentSID();
           // if(curSid === false) {
@@ -159,6 +158,7 @@
             this.loginFailed(e.responseText);
             return false;
           } else {
+            this.setCurrentSID(e);
             GRW.getter.setDefaultHeader({
               name: 'Authorization',
               value: 'GoogleLogin auth=' + curAuth
