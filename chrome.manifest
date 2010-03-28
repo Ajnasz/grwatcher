@@ -8,7 +8,7 @@ style	chrome://global/content/customizeToolbar.xul	chrome://grwatcher/skin/toolb
 locale grwatcher ca-AD jar:chrome/grwatcher.jar!/locale/ca-AD/
 locale grwatcher cs-CZ jar:chrome/grwatcher.jar!/locale/cs-CZ/
 locale grwatcher da-DK jar:chrome/grwatcher.jar!/locale/da-DK/
-locale grwatcher de-DE jar:chrome/grwatcher.jar!/locale/de-DE/
+locale grwatcher de-DE jar:chrome/grwatcher.jar!/locale/de/
 locale grwatcher el-GR jar:chrome/grwatcher.jar!/locale/el-GR/
 locale grwatcher en-US jar:chrome/grwatcher.jar!/locale/en-US/
 locale grwatcher es-AR jar:chrome/grwatcher.jar!/locale/es-AR/
@@ -22,7 +22,7 @@ locale grwatcher hu-HU jar:chrome/grwatcher.jar!/locale/hu-HU/
 locale grwatcher it-IT jar:chrome/grwatcher.jar!/locale/it-IT/
 locale grwatcher ja-JP jar:chrome/grwatcher.jar!/locale/ja/
 locale grwatcher ko-KR jar:chrome/grwatcher.jar!/locale/ko-KR/
-locale grwatcher nl-NL jar:chrome/grwatcher.jar!/locale/ms-MY/
+locale grwatcher ms-MY jar:chrome/grwatcher.jar!/locale/ms-MY/
 locale grwatcher nl-NL jar:chrome/grwatcher.jar!/locale/nl-NL/
 locale grwatcher pl-PL jar:chrome/grwatcher.jar!/locale/pl-PL/
 locale grwatcher pt-BR jar:chrome/grwatcher.jar!/locale/pt-BR/
