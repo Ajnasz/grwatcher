@@ -1,19 +1,27 @@
 (function() {
   var showCounter = function(label, toolbar, value) {
+    if(label) {
       label.value = value;
       label.style.width = '';
       label.style.margin = '';
       label.crop = '';
       label.collapsed = false;
+    }
+    if(toolbar) {
       toolbar.label = value;
+    }
   },
   hideCounter = function(label, toolbar) {
-    label.value = '';
-    label.crop = 'end';
-    label.style.margin = 0;
-    label.style.width = 0;
-    label.collapsed = true;
-    toolbar.label = '';
+    if(label) {
+      label.value = '';
+      label.crop = 'end';
+      label.style.margin = 0;
+      label.style.width = 0;
+      label.collapsed = true;
+    }
+    if(toolbar) {
+      toolbar.label = '';
+    }
   };
   var statusbarCounter = {
     update: function(val, maxcount) {
