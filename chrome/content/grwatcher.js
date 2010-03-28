@@ -51,23 +51,9 @@ GRW.init = function() {
   var getlist = GRW.GetList;
 
   GRW.strings = document.getElementById('grwatcher-strings');
-  /*
-  GRW.Ajax.onRequestFailed.subscribe(function(type, request) {
-    var oArgs = {status: ['error']};
-    if(request) {
-      oArgs.tooltip = ['error'];
-      GRW.log('request: ', request.toSource());
-    } else {
-      if(type == 'networkerror') {
-        oArgs.tooltip = ['networkerror'];
-        GRW.UI.StatusbarTooltip('networkerror');
-      } else {
-        oArgs.tooltip = ['error'];
-      }
-    }
-    GRW.updateUI(oArgs);
+  GRW.getter.onStartRequest.subscribe(function() {
+    GRW.updateUI({status: ['load']});
   });
-  */
   GRW.getter.onRequestFailed.subscribe(function(request) {
     var oArgs = {status: ['error']};
     if(request) {
@@ -75,31 +61,16 @@ GRW.init = function() {
     } else {
       if(type == 'networkerror') {
         oArgs.tooltip = ['networkerror'];
-        GRW.UI.StatusbarTooltip('networkerror');
       } else {
         oArgs.tooltip = ['error'];
       }
     }
     GRW.updateUI(oArgs);
   });
-  GRW.getter.onStartRequest.subscribe(function() {
-    GRW.updateUI({status: ['load']});
-  });
-  /*
-  GRW.Ajax.onStartRequest.subscribe(function() {
-    GRW.updateUI({status: ['load']});
-  });
-  */
   GRW.getter.onRequestSuccess.subscribe(function() {
     statusbarIcon.setReaderStatus('off');
     toolbarIcon.setReaderStatus('off');
   });
-  /*
-  GRW.Ajax.onRequestSuccess.subscribe(function() {
-    statusbarIcon.setReaderStatus('off');
-    toolbarIcon.setReaderStatus('off');
-  });
-  */
 
   // show error icon if login failed
   loginManager.on('loginFailed', function() {
