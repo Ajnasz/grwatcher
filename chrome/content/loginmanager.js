@@ -15,7 +15,7 @@
          * @type {Boolean}
          */
         accountExists: function() {
-          if(GRW.Prefs.get.userName() && GRW.PasswordManager.getPassword()) {
+          if(GRW.PasswordManager.getUsername() && GRW.PasswordManager.getPassword()) {
             return true;
           }
           return false;
@@ -83,12 +83,11 @@
             // var url = GRStates.conntype + '://www.google.com/accounts/ServiceLoginAuth';
             // var url = 'https://www.google.com/accounts/ServiceLoginAuth?service=reader';
             var url = 'https://www.google.com/accounts/ClientLogin?service=reader',
-                param = 'service=reader&Email='+encodeURIComponent(GRW.Prefs.get.userName())+'&Passwd='+encodeURIComponent(GRW.PasswordManager.getPassword())+'&continue=http://www.google.com/reader/';
+                param = 'service=reader&Email='+encodeURIComponent(GRW.PasswordManager.getUsername())+'&Passwd='+encodeURIComponent(GRW.PasswordManager.getPassword())+'&continue=http://www.google.com/reader/';
                 _this = this;
             GRW.request('post', url, {
               onSuccess: function(e) {
-                GRW.log('login request success');
-                _this.ajaxSuccess(e);
+                _this.loginSuccess(e);
                 if(GRW.lang.isFunction(onLogin)) {
                   onLogin.call();
                 }
@@ -104,35 +103,9 @@
                 }
               },
               onError: function(e) {
-                _this.loginFailed();
+                _this.loginFailed(e.responseText);
               }
             }, param);
-            /*
-            var req = new GRW.Ajax({
-              url: url,
-              method: 'post',
-              onSuccess: function(e) {
-                GRW.log('login request success');
-                _this.ajaxSuccess(e);
-                if(GRW.lang.isFunction(onLogin)) {
-                  onLogin.call();
-                }
-                if(!_this.getCurrentSID()) {
-                  var cookieBehavior = GRW.Prefs.get.cookieBehaviour();
-                  if(cookieBehavior != 0) {
-                    _this.loginFailed(e.responseText);
-                    _this.fireEvent('cookieError');
-                    GRW.log('bad cookie behavior', cookieBehavior);
-                  } else {
-                    _this.loginFailed(e.responseText);
-                  }
-                }
-              },
-              onError: function(e) {
-                _this.loginFailed();
-              }
-            }, param).send();
-            */
           } else {
             this.loginFailed();
             return -1;
@@ -144,7 +117,7 @@
          * @returns true if the login was succes and false if wasn't
          * @type Boolean
          */
-        ajaxSuccess: function(e) {
+        loginSuccess: function(e) {
           this.setCurrentAuth(e);
           // var curSid = this.getCurrentSID();
           // if(curSid === false) {
