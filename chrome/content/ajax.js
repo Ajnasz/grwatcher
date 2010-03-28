@@ -94,11 +94,14 @@
         if(r.status == 401 && lastRequest != 'login') {
           lastRequest = 'login';
           GRW.LoginManager.logIn(retry);
-        } else if (r.status == 403 && lastRequest != 'token') {
+        } else if (r.status == 403 && lastRequest != 'token' && lastRequest != 'login') {
           lastRequest = 'token';
           _getToken(retry);
         } else {
           lastRequest = '';
+        }
+        if(GRW.lang.isFunction(callback.onError)) {
+          callback.onError.call(callback.onError, r);
         }
       },
     }
