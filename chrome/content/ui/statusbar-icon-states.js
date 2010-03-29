@@ -7,26 +7,25 @@
     setReaderStatus: function(status) {
       GRW.UI.MapWindows(function(win) {
 
-        var statusImage = win.document.getElementById('GRW-statusbar-image');
+        var statusImage = win.document.getElementById('GRW-statusbar');
         if(!statusImage) {return;}
         switch(status) {
           case 'on':
-            statusImage.src = 'chrome://grwatcher/skin/feed-icon-statusbar.png';
+            statusImage.setAttribute('class', 'on');
             break;
-
 
           case 'error':
           case 'cookieerror':
-            statusImage.src = 'chrome://grwatcher/skin/feed-icon-error-statusbar.png';
+            statusImage.setAttribute('class', 'error');
             break;
 
           case 'load':
-            statusImage.src = 'chrome://grwatcher/skin/loading-small.gif';
+            statusImage.setAttribute('class', 'load');
             break;
 
           case 'off':
           default:
-            statusImage.src = 'chrome://grwatcher/skin/feed-icon-inactive-statusbar.png';
+            statusImage.setAttribute('class', 'off');
             break;
         }
       });

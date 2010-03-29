@@ -4,3 +4,22 @@ label#GRW-statusbar-label {
 .grw-hidden {
   display: none;
 }
+#GRW-statusbar image {
+  list-style-image: url("chrome://grwatcher/skin/icons-sprite.png");
+}
+#GRW-statusbar image {
+  -moz-image-region: rect(34px 16px 50px 0px);
+}
+#GRW-statusbar.off image {
+  -moz-image-region: rect(34px 36px 50px 20px);
+}
+#GRW-statusbar.error image {
+  -moz-image-region: rect(34px 56px 50px 40px);
+}
+#GRW-statusbar.load image {
+  list-style-image: url("chrome://grwatcher/skin/loading-small.gif");
+  -moz-image-region: rect(0px 16px 16px 0);
+}
+#GRW-statusbar menupopup image {
+  list-style-image: none;
+}

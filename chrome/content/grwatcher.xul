@@ -35,7 +35,7 @@
   <statusbar id="status-bar">
     <stringbundle id="grwatcher-strings" src="chrome://grwatcher/locale/grwatcher.properties" />
     <statusbarpanel class="statusbarpanel-iconic" id="GRW-statusbar" status="none" tooltip="GRW-statusbar-tooltip" context="GRW-statusbar-menu">
-      <image id="GRW-statusbar-image" width="16" height="16" src="chrome://grwatcher/content/images/googlereader_grey.png" />
+      <image id="GRW-statusbar-image" width="16" height="16" />
       <label id="GRW-statusbar-label" value="GRW" collapsed="true" crop="end" />
       <menupopup id="GRW-statusbar-menu" position="before_end">
         <menuseparator class="grw-hidden" id="GRW-menuseparator" />

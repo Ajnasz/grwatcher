@@ -1,28 +1,29 @@
 #GRW-toolbar-button {
   -moz-appearance: toolbarbutton;
+  list-style-image: url("chrome://grwatcher/skin/icons-sprite.png");
 }
-#GRW-toolbar-button {
-  list-style-image: url("chrome://grwatcher/skin/active-toolbar-20.png");
+[iconsize="large"] #GRW-toolbar-button {
+  -moz-image-region: rect(0px 20px 20px 0px);
   min-width: 20px;
 }
-#GRW-toolbar-button.off {
-  list-style-image: url("chrome://grwatcher/skin/inactive-toolbar-20.png");
+[iconsize="large"] #GRW-toolbar-button.off {
+  -moz-image-region: rect(0px 40px 20px 20px);
 }
-#GRW-toolbar-button.error {
-  list-style-image: url("chrome://grwatcher/skin/error-toolbar-20.png");
+[iconsize="large"] #GRW-toolbar-button.error {
+  -moz-image-region: rect(0px 60px 20px 40px);
 }
-#GRW-toolbar-button.load {
+[iconsize="large"] #GRW-toolbar-button.load {
   list-style-image: url("chrome://grwatcher/skin/loading-toolbar-20.gif");
 }
 [iconsize="small"] #GRW-toolbar-button {
-  list-style-image: url("chrome://grwatcher/skin/active-toolbar-14.png");
   min-width: 14px;
+  -moz-image-region: rect(20px 14px 34px 0px);
 }
 [iconsize="small"] #GRW-toolbar-button.off {
-  list-style-image: url("chrome://grwatcher/skin/inactive-toolbar-14.png");
+  -moz-image-region: rect(20px 34px 34px 20px);
 }
 [iconsize="small"] #GRW-toolbar-button.error {
-  list-style-image: url("chrome://grwatcher/skin/error-toolbar-14.png");
+  -moz-image-region: rect(20px 54px 34px 40px);
 }
 [iconsize="small"] #GRW-toolbar-button.load {
   list-style-image: url("chrome://grwatcher/skin/loading-toolbar-14.gif");
