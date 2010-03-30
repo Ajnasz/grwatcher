@@ -14,8 +14,12 @@
       elements = [document.getElementById('GRW-statusbar'), document.getElementById('GRW-toolbar-button')];
       elements.forEach(function(element) {
         if(element) {
-          element.addEventListener('click', function(event){_this.click(event)}, true);
-          element.addEventListener('dblclick', function(event){_this.click(event)}, true);
+          element.addEventListener('click', function(event){
+            _this.click(event);
+            }, true);
+          element.addEventListener('dblclick', function(event){
+            _this.click(event)
+          }, true);
         }
       })
       this.elements = elements;
@@ -25,9 +29,10 @@
           button = event.button,
           conf = GRW.Prefs.get.leftClickOpen(),
           elementClicked = false;
-      
+
       this.elements.forEach(function(element) {
-        if(element && event.originalTarget == element) {
+        var target = event.originalTarget;
+        if(element && target == element || target.nodeName.toLowerCase() == 'image' || target.nodeName.toLowerCase() == 'label') {
           elementClicked = true;
         }
       });
