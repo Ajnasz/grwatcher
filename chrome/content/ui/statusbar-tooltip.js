@@ -85,6 +85,10 @@
       case 'loginerror':
         actionMethod = actions.loginError;
         break;
+
+      case 'nonew':
+        actionMethod = actions.nonew;
+        break;
     }
     if(actionMethod) {
       GRW.UI.MapWindows(actionMethod, [feeds, getlist]);
