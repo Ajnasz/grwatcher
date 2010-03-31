@@ -115,7 +115,6 @@ GRW.init = function() {
       elems = getlist._unreadCount;
     GRW.feeds = unreads;
     GRW.max = max;
-    // GRW.log('itemsMatchedEvent FIRE');
     notifier.show(elems.unreadSum, max);
     var oArgs = {
       tooltip: ['grid', unreads, getlist],
