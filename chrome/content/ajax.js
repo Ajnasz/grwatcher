@@ -109,4 +109,5 @@
   };
   GRW.module('request', request);
   GRW.module('getter', getter);
+  GRW.module('getToken', _getToken);
 })();
