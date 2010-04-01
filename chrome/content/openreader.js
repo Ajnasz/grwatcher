@@ -26,7 +26,7 @@
   var openReader = function() {
   };
   openReader.prototype = {
-    open: function(subUrl) {
+    _open: function(subUrl) {
       try {
         var url = subUrl ? readerURL + '/' + subUrl : readerURL;
             openedGR = getOpenedGR(),
@@ -74,6 +74,16 @@
         GRW.log('line', e.lineNumber);
       }
       this.fireEvent('readerOpened');
+    },
+    open: function(subUrl) {
+      if(GRW.Prefs.get.forceLogin()) {
+        var _this = this;
+        GRW.LoginManager.logIn(function() {
+          _this._open();
+        });
+      } else {
+        this.open();
+      }
     }
   };
   GRW.augmentProto(openReader, GRW.EventProvider);
