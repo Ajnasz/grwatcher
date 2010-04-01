@@ -23,15 +23,6 @@
      */
     var _getGooglePW = function() {
       if(_googlePW === null) {
-        /**
-         * list all of the login infos
-         */
-        /*
-        var logins = loginManager.getAllLogins({});
-        logins.forEach(function(l) {
-          GRW.log(l.hostname, l.formSubmitURL, l.httpRealm, l.username, l.password, l.usernameField, l.passwordField);
-        });
-        */
         var logins = loginManager.findLogins({}, 'https://www.google.com', 'https://www.google.com', null);
         if(logins.length) {
           _googlePW = logins[0];
@@ -41,6 +32,26 @@
       }
       return _googlePW;
     };
+    var _getGRWPW = function() {
+      var logins = loginManager.findLogins({}, url, formSubmitURL, null);
+      var output = false;
+      // Find user from returned array of nsILoginInfo objects
+      for (var i = 0, ll = logins.length; i < ll; i++) {
+        if (logins[i].username == username) {
+          output = logins[i];
+          output.username = GRW.Prefs.get.userName();
+          break;
+        }
+      }
+      return output;
+    };
+    var _getAccount = function() {
+      var pw = _getGRWPW();
+      if(!pw) {
+        pw = _getGooglePW();
+      }
+      return pw;
+    };
     /**
      * method to get the user's password to login to google service
      * @method getPassword
@@ -49,20 +60,12 @@
      */
     this.getPassword = function() {
       try {
-        var googlePW = _getGooglePW();
-        if(googlePW) {
-          return googlePW.password;
+        var account = _getAccount();
+        if(account) {
+          return account.password;
         }
         // Find users for the given parameters
-        var logins = loginManager.findLogins({}, url, formSubmitURL, null);
-        // Find user from returned array of nsILoginInfo objects
-        for (var i = 0, ll = logins.length; i < ll; i++) {
-          if (logins[i].username == username) {
-            return logins[i].password;
-          }
-        }
-        return false;
-      }catch(ex){
+      } catch(ex) {
         GRW.log('get pass failed:', ex);
       }
     };
@@ -73,11 +76,10 @@
      * @type String
      */
     this.getUsername = function() {
-        var googlePW = _getGooglePW();
-        if(googlePW) {
-          return googlePW.username;
-        }
-        return GRW.Prefs.get.userName();
+      var account = _getAccount();
+      if(account) {
+        return account.username;
+      }
     };
 
     this.addPassword = function(password) {
