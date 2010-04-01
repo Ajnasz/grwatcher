@@ -85,12 +85,17 @@
   };
   var lastRequest = '';
   var request = function(method, uri, callback, postData) {
+    var retry = function() {
+      getter.asyncRequest(method, uri, callback, postData);
+    };
     var _callback = {
-      onSuccess: callback.onSuccess,
+      onSuccess: function(r) {
+        lastRequest = '';
+        if(GRW.lang.isFunction(callback.onSuccess)) {
+          callback.onSuccess.call(this, r);
+        }
+      },
       onError: function(r) {
-        var retry = function() {
-          getter.asyncRequest(method, uri, callback, postData);
-        };
         if(r.status == 401 && lastRequest != 'login') {
           lastRequest = 'login';
           GRW.LoginManager.logIn(retry);
@@ -105,7 +110,12 @@
         }
       },
     }
-    getter.asyncRequest(method, uri, _callback, postData);
+    if(GRW.Prefs.get.forceLogin() && lastRequest != 'login') {
+      lastRequest = 'login';
+      GRW.LoginManager.logIn(retry);
+    } else {
+      getter.asyncRequest(method, uri, _callback, postData);
+    }
   };
   GRW.module('request', request);
   GRW.module('getter', getter);
