@@ -79,10 +79,10 @@
       if(GRW.Prefs.get.forceLogin()) {
         var _this = this;
         GRW.LoginManager.logIn(function() {
-          _this._open();
+          _this._open(subUrl);
         });
       } else {
-        this.open();
+        this._open(subUrl);
       }
     }
   };
