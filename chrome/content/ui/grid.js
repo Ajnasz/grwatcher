@@ -146,7 +146,7 @@
       return this.grid;
     }
   };
-  Menu = function(win, feeds, labels) {
+  var Menu = function(win, feeds, labels) {
     var doc = win.document;
     this.window = win;
     this.document = doc;
@@ -290,16 +290,5 @@
     }
   };
   GRW.UI.Grid = Grid;
-
-/*
-  var getUnreadList = function(type, doc, feeds, getlist) {
-    if(type == 'menu') {
-      return new Menu(doc, feeds, getlist).getGrid();
-    } else {
-      return new Grid(win.document, feeds, getlist).getGrid();
-    }
-  };
-  GRW.UI.getUnreadList = getUnreadList;
-  */
-
+  GRW.UI.Menu = Menu;
 })();

@@ -6,9 +6,8 @@ Components.utils.import("resource://grwmodules/JSON.jsm", GRW);
 
 
 GRW.module = function(moduleName, module) {
-  if(moduleName) {
-    var undef;
-    if(GRW[moduleName] == undef) {
+  if(typeof moduleName == 'string') {
+    if(typeof GRW[moduleName] == 'undefined') {
       GRW[moduleName] = module || {};
     }
     return GRW[moduleName];
@@ -91,17 +90,17 @@ GRW.module = function(moduleName, module) {
   };
 
   var timer = Components.classes["@mozilla.org/timer;1"]
-                .createInstance(Components.interfaces.nsITimer),
-      later = function(fn, delay) {
-        var callback = {notify: fn};
-        timer.initWithCallback(callback, delay, Components.interfaces.nsITimer.TYPE_ONE_SHOT);
-        return timer;
-      },
-      never = function(timer) {
-        if(timer && GRW.lang.isFunction(timer.cancel)) {
-          timer.cancel();
-        }
-      };
+                .createInstance(Components.interfaces.nsITimer);
+  var later = function(fn, delay) {
+    var callback = {notify: fn};
+    timer.initWithCallback(callback, delay, Components.interfaces.nsITimer.TYPE_ONE_SHOT);
+    return timer;
+  };
+  var never = function(timer) {
+    if(timer && GRW.lang.isFunction(timer.cancel)) {
+      timer.cancel();
+    }
+  };
   /**
    * Applies all properties in the supplier to the receiver if the
    * receiver does not have these properties yet.  Optionally, one or 
@@ -126,7 +125,7 @@ GRW.module = function(moduleName, module) {
    *        be applied and will overwrite an existing property in
    *        the receiver
    */
-  augmentObject = function(r, s) {
+  var augmentObject = function(r, s) {
     if (!s||!r) {
         throw new Error("Absorb failed, verify dependencies.");
     }
@@ -159,7 +158,7 @@ GRW.module = function(moduleName, module) {
    *        parameter, all properties will be applied and will overwrite an
    *        existing property in the receiver
    */
-  augmentProto = function(r, s) {
+  var augmentProto = function(r, s) {
     if (!s||!r) {
         throw new Error("Augment failed, verify dependencies.");
     }

@@ -30,7 +30,7 @@
           tooltipContainer.removeChild(tooltipContainer.firstChild);
         }
         tooltipContainer.appendChild(grid);
-        new Menu(win, feeds, labels);
+        new GRW.UI.Menu(win, feeds, labels);
       }
       // toolbar
       var toolbar = win.document.getElementById(toolbarButtonID);
@@ -44,7 +44,6 @@
           }
           tooltipContainer.appendChild(grid);
         }
-        // new Menu(win, feeds, labels);
       }
     },
     error: function(win) {
