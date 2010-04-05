@@ -28,6 +28,7 @@
   openReader.prototype = {
     _open: function(subUrl) {
       try {
+        this.fireEvent('beforeReaderOpened');
         var url = subUrl ? readerURL + '/' + subUrl : readerURL;
             openedGR = getOpenedGR(),
             currentContent = gBrowser.getBrowserAtIndex(gBrowser.mTabContainer.selectedIndex).contentWindow;
