@@ -90,11 +90,14 @@ GRW.init = function() {
     GRW.updateUI(oArgs);
   });
 
+GRW.OpenReader.on('beforeReaderOpened', function() {
+  GRW.log('set current sid');
+  loginManager.setCurrentSID();
+});
   // reset the counter, change the icon,
   // change the next request's time
   // enable to show notification window
   GRW.OpenReader.on('readerOpened', function() {
-    GRW.log('reader open');
     if(GRW.Prefs.get.resetCounter()) {
       var oArgs = {
         status: ['off'],
