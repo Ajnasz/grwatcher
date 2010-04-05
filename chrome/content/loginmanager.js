@@ -1,4 +1,5 @@
 (function() {
+      var lastResponse;
   // mozilla nsi cookie manager component
       /**
        * Google account manager namespace,
@@ -30,9 +31,9 @@
         isLoggedIn: function() {
           return this.getCurrentAuth() != false;
         },
-        setCurrentSID: function(response) {
-          if(response && response.responseText) {
-            var auths = response.responseText.split('\n');
+        setCurrentSID: function() {
+          if(lastResponse && lastResponse.responseText) {
+            var auths = lastResponse.responseText.split('\n');
             if(auths.length) {
               var sid = '';
               for (var i = 0; i < auths.length; i++) {
@@ -42,7 +43,7 @@
                 }
               }
               if(sid.length) {
-                GRW.Cookie.set('.google.com', 'SID', sid.split('=')[1], GRW.Prefs.get.rememberLogin());
+                GRW.Cookie.set('google.com', 'SID', sid.split('=')[1], GRW.Prefs.get.rememberLogin());
                 // GRW.Token();
                 return sid.split('=')[1];
               }
@@ -52,9 +53,9 @@
         getCurrentAuth: function() {
           return this.Auth;
         },
-        setCurrentAuth: function(response) {
-          if(response && response.responseText) {
-            var auths = response.responseText.split('\n');
+        setCurrentAuth: function() {
+          if(lastResponse && lastResponse.responseText) {
+            var auths = lastResponse.responseText.split('\n');
             if(auths.length) {
               var auth = '';
               for (var i = 0; i < auths.length; i++) {
@@ -118,6 +119,7 @@
          * @type Boolean
          */
         loginSuccess: function(e) {
+          lastResponse = e;
           this.setCurrentAuth(e);
           // var curSid = this.getCurrentSID();
           // if(curSid === false) {
