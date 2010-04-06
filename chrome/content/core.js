@@ -47,7 +47,8 @@ GRW.module = function(moduleName, module) {
       return arg === undefined;
     },
     toArray: function(arg) {
-      return Array.prototype.slice.call(arg);
+      var _a = [];
+      return _a.slice.call(arg);
     },
     isEmail: function(arg) {
 
