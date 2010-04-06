@@ -27,14 +27,14 @@ function buildXPI {
     echo "Delete $PROJECT_NAME.jar";
     rm $PROJECT_NAME.jar;
   fi;
-  zip -r $PROJECT_NAME.jar content/* -x \*.svn/\*;
-  zip -r $PROJECT_NAME.jar locale/* -x \*.svn/*;
-  zip -r $PROJECT_NAME.jar skin/* -x \*.svn/\*;
+  zip -r $PROJECT_NAME.jar content/*;
+  zip -r $PROJECT_NAME.jar locale/*;
+  zip -r $PROJECT_NAME.jar skin/* -x -x \*.svg -x \*.xcf;
 
   cd ..;
   echo "Build package $PROJECT_NAME.xpi";
   rm $PROJECT_NAME*.xpi;
-  zip $PROJECT_NAME.xpi chrome.manifest install.rdf modules/JSON.jsm chrome/$PROJECT_NAME.jar defaults/preferences/$PROJECT_NAME.js license.txt -x \*.svn/\*
+  zip $PROJECT_NAME.xpi chrome.manifest install.rdf modules/JSON.jsm chrome/$PROJECT_NAME.jar defaults/preferences/$PROJECT_NAME.js license.txt;
 
   echo "Replace old XPIs with the new one";
   if [ -d $DOWNLOAD_DIR ]; then
