@@ -15,15 +15,6 @@
       </Description>
     </em:targetApplication>
 
-    <!-- Fennec -->
-    <em:targetApplication>
-      <Description>
-        <em:id>{a23983c0-fd0e-11dc-95ff-0800200c9a66}</em:id>
-        <em:minVersion>0.8</em:minVersion>
-        <em:maxVersion>1.0.*</em:maxVersion>
-      </Description>
-    </em:targetApplication>
-
     <em:file>
       <Description about="urn:mozilla:extension:file:grwatcher.jar">
         <em:package>content/grwatcher/</em:package>
@@ -52,6 +43,18 @@
         <em:translator>Sonickydon (el-GR)</em:translator>
       </Description>
     </em:localized>
+    <em:localized>
+      <Description>
+        <em:locale>es-ES</em:locale>
+        <em:name>Google Reader Watcher</em:name>
+        <em:creator>Lajos Koszti</em:creator>
+        <em:description>Revisa sus suscripciones de Google Reader</em:description>
+        <em:homepageURL>http://ajnasz.hu/google-reader-watcher</em:homepageURL>
+        <em:contributor>David Peitler</em:contributor>
+        <em:translator>Francisco Javier Cuadrado es-ES</em:translator>
+      </Description>
+    </em:localized>
+
     <em:creator>Lajos Koszti</em:creator>
     <em:description>Checks your Google Reader for unread feeds</em:description>
     <em:iconURL>chrome://grwatcher/skin/grwatcher.png</em:iconURL>
