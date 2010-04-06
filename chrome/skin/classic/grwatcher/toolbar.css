@@ -26,5 +26,6 @@
   -moz-image-region: rect(20px 54px 34px 40px);
 }
 [iconsize="small"] #GRW-toolbar-button.load {
+  -moz-image-region: rect(0px 14px 14px 0px);
   list-style-image: url("chrome://grwatcher/skin/loading-toolbar-14.gif");
 }
