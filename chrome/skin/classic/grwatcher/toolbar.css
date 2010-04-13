@@ -1,5 +1,6 @@
 #GRW-toolbar-button {
   -moz-appearance: toolbarbutton;
+  -moz-image-region: rect(0px 20px 20px 0px);
   list-style-image: url("chrome://grwatcher/skin/icons-sprite.png");
 }
 [iconsize="large"] #GRW-toolbar-button {
