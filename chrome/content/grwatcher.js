@@ -28,7 +28,7 @@ GRW.updateUI = function(oArgs) {
     GRW.UI.ToolbarIcon.setReaderStatus.apply(GRW.UI.ToolbarIcon, oArgs.status);
   }
   if(GRW.lang.isArray(oArgs.tooltip)) {
-    GRW.UI.StatusbarTooltip.apply(GRW.UI.StatusbarTooltip, oArgs.tooltip);
+    GRW.UI.Tooltip.apply(GRW.UI.Tooltip, oArgs.tooltip);
   }
   if(GRW.lang.isArray(oArgs.counter)) {
     GRW.UI.StatusbarCounter.update.apply(GRW.UI.StatusbarCounter, oArgs.counter);
