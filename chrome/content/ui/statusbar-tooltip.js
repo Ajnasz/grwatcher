@@ -17,33 +17,44 @@
   var actions = {
     genGrid: function(win, feeds, getlist) {
       var activeGRW = GRW.getActiveGRW().GRW;
-      var getlist = activeGRW.GetList;
-      var feeds = activeGRW.feeds;
-      var labels = getlist.getLabels();
-      // statusbar
-      var statusbar = win.document.getElementById(statusbarID);
-      if(statusbar) {
-        statusbar.tooltip = 'GRW-statusbar-tooltip-new';
-        var tooltipContainer = win.document.getElementById('GRW-statusbar-tooltip-new');
-        var grid = new GRW.UI.Grid(win.document, feeds, labels).getGrid();
-        while(tooltipContainer.firstChild) {
-          tooltipContainer.removeChild(tooltipContainer.firstChild);
-        }
-        tooltipContainer.appendChild(grid);
-        new GRW.UI.Menu(win, feeds, labels);
-      }
-      // toolbar
       var toolbar = win.document.getElementById(toolbarButtonID);
-      if(toolbar) {
-        toolbar.tooltip = 'GRW-statusbar-tooltip-new';
-        var tooltipContainer = win.document.getElementById('GRW-toolbar-tooltip-new');
-        var grid = new GRW.UI.Grid(win.document, feeds, labels).getGrid();
-        if(tooltipContainer) {
-          while(tooltipContainer.firstChild) {
-            tooltipContainer.removeChild(tooltipContainer.firstChild);
+      var statusbar = win.document.getElementById(statusbarID);
+      var showItemsInToolTip = GRW.Prefs.get.showitemsintooltip();
+      var showItemsInContext = GRW.Prefs.get.showitemsincontextmenu();
+      if(showItemsInToolTip || showItemsInContext) {
+        var getlist = activeGRW.GetList;
+        var feeds = activeGRW.feeds;
+        var labels = getlist.getLabels();
+        // statusbar
+
+        if(showItemsInToolTip) {
+          if(toolbar) {
+            toolbar.tooltip = 'GRW-statusbar-tooltip-new';
+            var tooltipContainer = win.document.getElementById('GRW-toolbar-tooltip-new');
+            var grid = new GRW.UI.Grid(win.document, feeds, labels).getGrid();
+            if(tooltipContainer) {
+              while(tooltipContainer.firstChild) {
+                tooltipContainer.removeChild(tooltipContainer.firstChild);
+              }
+              tooltipContainer.appendChild(grid);
+            }
           }
-          tooltipContainer.appendChild(grid);
+          if(statusbar) {
+            statusbar.tooltip = 'GRW-statusbar-tooltip-new';
+            var tooltipContainer = win.document.getElementById('GRW-statusbar-tooltip-new');
+            var grid = new GRW.UI.Grid(win.document, feeds, labels).getGrid();
+            while(tooltipContainer.firstChild) {
+              tooltipContainer.removeChild(tooltipContainer.firstChild);
+            }
+            tooltipContainer.appendChild(grid);
+          }
         }
+        if(showItemsInContext && statusbar) {
+          new GRW.UI.Menu(win, feeds, labels);
+        }
+        // toolbar
+      } else {
+        setTooltip(win, 'GRW-statusbar-tooltip-new', 'GRW-toolbar-tooltip-new');
       }
     },
     error: function(win) {
