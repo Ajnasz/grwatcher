@@ -25,30 +25,6 @@
         start: function() {
           if(this._initialized) return;
           this._initRequests();
-/*
-          var firstRequest = function() {
-            _this.fireEvent(requestStartEvent);
-            GRW.Token({
-              success: {
-                fn: _this._initRequests,
-                scope: _this
-              },
-              failure: {
-                fn: function() {
-                  this.fireEvent(requestErrorEvent);
-                },
-                scope: _this
-              }
-            }, _this, true);
-          };
-
-/*
-          if(loginManager.isLoggedIn()) {
-            firstRequest();
-          } else {
-            loginManager.logIn(firstRequest);
-          }
-          */
           this._initialized = true;
         },
         restart: function() {
@@ -106,12 +82,6 @@
           this._fireUnreadAndSubscription();
         },
         getUnreadCount: function() {
-          /*
-          if(!loginManager.isLoggedIn()) {
-            this.restart();
-            return;
-          }
-          */
           var _this = this;
           this.fireEvent(requestStartEvent);
           this.fireEvent(unreadCountRequestStartEvent);
@@ -264,12 +234,13 @@
          */
         matchUnreadItems: function() {
           this._unreadCount.httpFeeds = this._matchUnreadItems(this._unreadCount.httpFeeds);
-          var unreads = this._filterLabels(this._unreadCount.httpFeeds);
+          var unreads = this._unreadCount.httpFeeds.filter(function(elem) {
+            return elem.count && parseInt(elem.count, 10) > 0;
+          });
+          unreads = this._filterLabels(unreads);
           var unreadSum = 0;
           unreads.forEach(function(elem) {
-            if(elem.count) {
-              unreadSum+=elem.count;
-            }
+            unreadSum+=elem.count;
           });
           this._unreadCount.unreadSum = unreadSum;
           // var user_unreads = this._matchUnreadItems(this._unreadCount.userFeeds);
