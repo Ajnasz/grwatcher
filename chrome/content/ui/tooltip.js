@@ -10,7 +10,6 @@
     if(GRW.UI.StatusbarTooltip) {
       GRW.UI.StatusbarTooltip(action, feeds, getlist, cache);
     }
-    GRW.log('TOOLBARTOOLTIP:' + typeof GRW.UI.ToolbarTooltip);
     if(GRW.UI.ToolbarTooltip) {
       GRW.UI.ToolbarTooltip(action, feeds, getlist, cache);
     }

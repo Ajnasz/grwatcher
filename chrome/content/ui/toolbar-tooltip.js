@@ -51,7 +51,6 @@
     },
   };
   var toolbarTooltip = function(action, feeds, getlist) {
-    GRW.log('ttolbar tooltip called');
     var actionMethod;
     switch(action) {
       case 'grid':
