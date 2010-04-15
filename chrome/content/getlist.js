@@ -3,6 +3,9 @@
       unreadcountURL = GRW.States.conntype + '://www.google.com/reader/api/0/unread-count?all=true&output=json',
       subscriptionListURL = GRW.States.conntype + '://www.google.com/reader/api/0/subscription/list?output=json',
 
+      // used for testing
+      // unreadcountURL = 'http://localhost/grwatcher/hg/testfiles/unread-count.json?'+ (new Date().getTime()),
+      // subscriptionListURL = 'http://localhost/grwatcher/hg/testfiles/feedlist.json?' + (new Date().getTime()),
 
       unreadGeneratedEvent = 'unreadGeneratedEvent',
       subscriptionGeneratedEvent = 'subscriptionGeneratedEvent',
