@@ -8,12 +8,6 @@
     // this.getlist = getlist;
     this.toLeft = GRW.Prefs.get.tooltipCounterPos() == 'left';
     this.orderByLabels = GRW.Prefs.get.sortByLabels();
-    /*
-    if(this.orderByLabels) {
-      // this.labels = getlist.getLabels();
-      this.labels = {};
-    }
-    */
     this.labels = labels;
     this.init();
   };
@@ -28,7 +22,6 @@
 
 
       grid.flex = 1;
-      // grid.setAttribute('class', 'GRW-statusbar-tooltip-grid ' + this.class)
       grid.id = '';
 
       columnc1 = column.cloneNode(true);
@@ -151,42 +144,14 @@
     this.window = win;
     this.document = doc;
     this.feeds = feeds;
-    // this.getlist = getlist;
     this.orderByLabels = GRW.Prefs.get.sortByLabels();
     this.menu = doc.getElementById('GRW-statusbar-menu');
-    if(this.orderByLabels) {
-      // this.labels = getlist.getLabels();
-    }
     this.labels = labels;
     this.init();
   };
   Menu.prototype = {
     init: function() {
       this.genRows();
-      /*
-      var doc = this.document,
-          menuitem = doc.createElement('menuitem'), menuitemc,
-          grid = doc.createElement('grid'),
-          columns = doc.createElement('columns'),
-          column = doc.createElement('column'),
-          columnc1, columnc2, rowc, labelc1, labelc2,
-          rows;
-
-
-      grid.flex = 1;
-      // grid.setAttribute('class', 'GRW-statusbar-tooltip-grid ' + this.class)
-      grid.id = '';
-
-      columnc1 = column.cloneNode(true);
-      columnc1.flex = 1;
-      columnc2 = column.cloneNode(true);
-
-
-      grid.appendChild(columnc1);
-      grid.appendChild(columnc2);
-      grid.appendChild(rows);
-      this.grid = grid;
-      */
     },
     genRow: function(item, isLabel) {
       var itemTitle  = item.data.title,
