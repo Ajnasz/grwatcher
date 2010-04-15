@@ -20,8 +20,7 @@
       var toolbar = win.document.getElementById(toolbarButtonID);
       var statusbar = win.document.getElementById(statusbarID);
       var showItemsInToolTip = GRW.Prefs.get.showitemsintooltip();
-      var showItemsInContext = GRW.Prefs.get.showitemsincontextmenu();
-      if(showItemsInToolTip || showItemsInContext) {
+      if(showItemsInToolTip) {
         var getlist = activeGRW.GetList;
         var feeds = activeGRW.feeds;
         var labels = getlist.getLabels();
@@ -49,12 +48,12 @@
             tooltipContainer.appendChild(grid);
           }
         }
-        if(showItemsInContext && statusbar) {
-          new GRW.UI.Menu(win, feeds, labels);
-        }
         // toolbar
       } else {
         setTooltip(win, 'GRW-statusbar-tooltip-new', 'GRW-toolbar-tooltip-new');
+      }
+      if(statusbar) {
+        new GRW.UI.Menu(win, feeds, labels);
       }
     },
     error: function(win) {
