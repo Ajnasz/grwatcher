@@ -144,8 +144,11 @@
       showitemsincontextmenu: function() {
         return getBoolPref('extensions.grwatcher.showitemsincontextmenu');
       },
-      cookieBehaviour: function(value) {
+      cookieBehaviour: function() {
         return getIntPref('network.cookie.cookieBehavior');
+      },
+      debug: function() {
+        return getBoolPref('extensions.grwatcher.debug');
       }
     },
     set: {
@@ -272,6 +275,12 @@
       },
       cookieBehaviour: function(value) {
         return setIntPref('network.cookie.cookieBehavior', value);
+      },
+      /**
+       * @type {Boolean} value
+       */
+      debug: function(value) {
+        return setBoolPref('network.cookie.debug', value);
       }
     }
   };

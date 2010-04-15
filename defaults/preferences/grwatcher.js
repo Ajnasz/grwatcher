@@ -27,3 +27,4 @@ pref("extensions.grwatcher.maximizecounter", true);
 pref("extensions.grwatcher.delaystart", 0);
 pref("extensions.grwatcher.forcelogin", false);
 
+pref("extensions.grwatcher.debug", false);
