@@ -5,6 +5,7 @@
 }
 [iconsize="large"] #GRW-toolbar-button {
   -moz-image-region: rect(0px 20px 20px 0px);
+  height: 20px;
   min-width: 20px;
 }
 [iconsize="large"] #GRW-toolbar-button.off {
@@ -18,6 +19,7 @@
 }
 [iconsize="small"] #GRW-toolbar-button {
   min-width: 14px;
+  height: 14px;
   -moz-image-region: rect(20px 14px 34px 0px);
 }
 [iconsize="small"] #GRW-toolbar-button.off {
