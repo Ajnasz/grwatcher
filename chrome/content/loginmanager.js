@@ -32,7 +32,8 @@
           return this.getCurrentAuth() != false;
         },
         setCurrentSID: function() {
-          if(lastResponse && lastResponse.responseText) {
+          if(lastResponse && lastResponse.responseText && !this.getCurrentSID()) {
+            GRW.log('set SID cookie');
             var auths = lastResponse.responseText.split('\n');
             if(auths.length) {
               var sid = '';
