@@ -71,7 +71,9 @@
           row;
 
       feeds.sort(function(a, b) {
-        return a.data.title.toLowerCase() > b.data.title.toLowerCase();
+        if(a.data && b.data) {
+          return a.data.title.toLowerCase() > b.data.title.toLowerCase();
+        }
       });
 
       if(this.orderByLabels) {
