@@ -1,10 +1,10 @@
 (function() {
-  var readerURL = GRW.States.conntype + '://www.google.com/reader/view',
+  var readerURL = 'www.google.com/reader/view',
       getPref = GRW.Prefs.get;
 
   var getOpenedGR = function() {
     var outObj = {grTab: false, blankPage: false},
-        r = new RegExp('^'+readerURL),
+        r = new RegExp('^'+GRW.uri(readerURL)),
         i = gBrowser.browsers.length - 1,
         curSpec;
     while(i >= 0) {
@@ -29,7 +29,7 @@
     _open: function(subUrl) {
       try {
         this.fireEvent('beforeReaderOpened');
-        var url = subUrl ? readerURL + '/' + subUrl : readerURL,
+        var url = subUrl ? GRW.uri(readerURL) + '/' + subUrl : GRW.uri(readerURL),
             openedGR = getOpenedGR(),
             currentContent = gBrowser.getBrowserAtIndex(gBrowser.mTabContainer.selectedIndex).contentWindow;
         /**

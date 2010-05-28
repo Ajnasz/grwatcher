@@ -7,31 +7,31 @@
 <!DOCTYPE window SYSTEM "chrome://grwatcher/locale/grwatcher.dtd">
 
 <overlay id="GRWatcherOverlay" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
-  <script type="application/x-javascript" src="chrome://grwatcher/content/core.js" />
-  <script type="application/x-javascript" src="chrome://grwatcher/content/preferences.js" />
-  <script type="application/x-javascript" src="chrome://grwatcher/content/ajax.js" />
-  <script type="application/x-javascript" src="chrome://grwatcher/content/cookie.js" />
-  <script type="application/x-javascript" src="chrome://grwatcher/content/passmanager.js" />
-  <script type="application/x-javascript" src="chrome://grwatcher/content/loginmanager.js" />
-  <script type="application/x-javascript" src="chrome://grwatcher/content/getlist.js" />
-  <script type="application/x-javascript" src="chrome://grwatcher/content/notifier.js" />
+  <script type="application/x-javascript;version=1.7" src="chrome://grwatcher/content/core.js" />
+  <script type="application/x-javascript;version=1.7" src="chrome://grwatcher/content/preferences.js" />
+  <script type="application/x-javascript;version=1.7" src="chrome://grwatcher/content/ajax.js" />
+  <script type="application/x-javascript;version=1.7" src="chrome://grwatcher/content/cookie.js" />
+  <script type="application/x-javascript;version=1.7" src="chrome://grwatcher/content/passmanager.js" />
+  <script type="application/x-javascript;version=1.7" src="chrome://grwatcher/content/loginmanager.js" />
+  <script type="application/x-javascript;version=1.7" src="chrome://grwatcher/content/getlist.js" />
+  <script type="application/x-javascript;version=1.7" src="chrome://grwatcher/content/notifier.js" />
 
-  <script type="application/x-javascript" src="chrome://grwatcher/content/markallasread.js" />
+  <script type="application/x-javascript;version=1.7" src="chrome://grwatcher/content/markallasread.js" />
 
-  <script type="application/x-javascript" src="chrome://grwatcher/content/ui.js" />
-  <script type="application/x-javascript" src="chrome://grwatcher/content/ui/grid.js" />
-  <script type="application/x-javascript" src="chrome://grwatcher/content/ui/mapwindows.js" />
-  <script type="application/x-javascript" src="chrome://grwatcher/content/ui/statusbar-icon-states.js" />
-  <script type="application/x-javascript" src="chrome://grwatcher/content/ui/toolbar-icon-states.js" />
-  <script type="application/x-javascript" src="chrome://grwatcher/content/ui/statusbar-counter.js" />
-  <script type="application/x-javascript" src="chrome://grwatcher/content/ui/icon-click.js" />
-  <script type="application/x-javascript" src="chrome://grwatcher/content/ui/statusbar-tooltip.js" />
-  <script type="application/x-javascript" src="chrome://grwatcher/content/ui/toolbar-tooltip.js" />
-  <script type="application/x-javascript" src="chrome://grwatcher/content/ui/tooltip.js" />
-  <script type="application/x-javascript" src="chrome://grwatcher/content/ui/statusbar-menuclick.js" />
-  <script type="application/x-javascript" src="chrome://grwatcher/content/openreader.js" />
-  <script type="application/x-javascript" src="chrome://grwatcher/content/requester.js" />
-  <script type="application/x-javascript" src="chrome://grwatcher/content/grwatcher.js" />
+  <script type="application/x-javascript;version=1.7" src="chrome://grwatcher/content/ui.js" />
+  <script type="application/x-javascript;version=1.7" src="chrome://grwatcher/content/ui/grid.js" />
+  <script type="application/x-javascript;version=1.7" src="chrome://grwatcher/content/ui/mapwindows.js" />
+  <script type="application/x-javascript;version=1.7" src="chrome://grwatcher/content/ui/statusbar-icon-states.js" />
+  <script type="application/x-javascript;version=1.7" src="chrome://grwatcher/content/ui/toolbar-icon-states.js" />
+  <script type="application/x-javascript;version=1.7" src="chrome://grwatcher/content/ui/statusbar-counter.js" />
+  <script type="application/x-javascript;version=1.7" src="chrome://grwatcher/content/ui/icon-click.js" />
+  <script type="application/x-javascript;version=1.7" src="chrome://grwatcher/content/ui/statusbar-tooltip.js" />
+  <script type="application/x-javascript;version=1.7" src="chrome://grwatcher/content/ui/toolbar-tooltip.js" />
+  <script type="application/x-javascript;version=1.7" src="chrome://grwatcher/content/ui/tooltip.js" />
+  <script type="application/x-javascript;version=1.7" src="chrome://grwatcher/content/ui/statusbar-menuclick.js" />
+  <script type="application/x-javascript;version=1.7" src="chrome://grwatcher/content/openreader.js" />
+  <script type="application/x-javascript;version=1.7" src="chrome://grwatcher/content/requester.js" />
+  <script type="application/x-javascript;version=1.7" src="chrome://grwatcher/content/grwatcher.js" />
 
 
   <statusbar id="status-bar">

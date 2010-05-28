@@ -1,7 +1,10 @@
 (function() {
   var loginManager = GRW.LoginManager,
-      unreadcountURL = GRW.States.conntype + '://www.google.com/reader/api/0/unread-count?all=true&output=json',
-      subscriptionListURL = GRW.States.conntype + '://www.google.com/reader/api/0/subscription/list?output=json',
+      unreadcountURL = ['www.google.com', 'reader', 'api', '0', 'unread-count', {
+        all:'true',
+        output:'json'
+      }],
+      subscriptionListURL = ['www.google.com', 'reader', 'api', '0', 'subscription', 'list', {output:'json'}],
 
       // used for testing
       // unreadcountURL = 'http://localhost/grwatcher/hg/testfiles/unread-count.json?'+ (new Date().getTime()),
@@ -88,7 +91,7 @@
           var _this = this;
           this.fireEvent(requestStartEvent);
           this.fireEvent(unreadCountRequestStartEvent);
-          GRW.request('get', unreadcountURL, {
+          GRW.request('get', GRW.uri.apply(GRW.uri, unreadcountURL), {
               onSuccess:function(o) {
                   _this.fireEvent(unreadCountRequestFinishEvent);
                   _this._processUnreadCount(o);
@@ -129,7 +132,7 @@
           var _this = this;
           this.fireEvent(requestStartEvent);
           this.fireEvent(subscriptionListRequestStartEvent);
-          GRW.request('get', subscriptionListURL, {
+          GRW.request('get', GRW.uri.apply(GRW.uri, subscriptionListURL), {
             onSuccess:function(o) {
               _this.fireEvent(subscriptionListRequestFinishEvent);
               _this._processSubscriptionList(o);

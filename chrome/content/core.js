@@ -72,12 +72,12 @@ GRW.module = function(moduleName, module) {
   var log = function() {
     if(GRW.Prefs.get.debug()) {
       var msg = [];
-      for(var i = 0, al = arguments.length, arg, message; i< al; i++) {
+      for(let i = 0, al = arguments.length, arg, message; i< al; i++) {
         arg = arguments[i];
         if(arg instanceof Error) {
           message = [];
           message.push('aaa');
-          for(var j in arg) {
+          for(let j in arg) {
             //if(arg.hasOwnProperty(j)) {
               message.push(j + ' = ' + arg[j]);
             //}
@@ -103,6 +103,52 @@ GRW.module = function(moduleName, module) {
     if(timer && GRW.lang.isFunction(timer.cancel)) {
       timer.cancel();
     }
+  };
+
+  var uriRex_ = new RegExp('^https?://');
+  /**
+   * @namespace GRW
+   * @method uri
+   * @description Creates urls
+   * @param {String} domain the domain name of the url
+   *  Other arguments are optional, but if it's a string then it will be added to the
+   *  domain with a / or if it's an object, it's key value pairs will be used as a
+   *  query parameter
+   */
+  var uri = function(domain) {
+      let args =lang.toArray(arguments),
+          uriRoot = args.shift(),
+          uriParts = [],
+          queryParams = [],
+          connectionType = GRW.States.conntype,
+          output = '';
+
+      while(args.length) {
+        let part = args.shift();
+        if(typeof part == 'string') {
+            uriParts.push(part);
+        } else {
+            for(let i in part) {
+                if(part.hasOwnProperty(i)) {
+                    queryParams.push(encodeURIComponent(i) + '=' + encodeURIComponent(part[i]));
+                }
+            }
+            break;
+        }
+      }
+      let output = uriRoot;
+      if(uriParts.length > 0) {
+          output += '/' + uriParts.join('/');
+      }
+      if(queryParams.length > 0) {
+          output += '?' + queryParams.join('&');
+      }
+      if(uriRex_.test(output)) {
+          output = output.replace(uriRex, '');
+      }
+      output = connectionType + '://' +  output;
+      GRW.log(output);
+      return output;
   };
   /**
    * Applies all properties in the supplier to the receiver if the
@@ -132,13 +178,13 @@ GRW.module = function(moduleName, module) {
     if (!s||!r) {
         throw new Error("Absorb failed, verify dependencies.");
     }
-    var a=arguments, i, p, overrideList=a[2];
+    var a=arguments, overrideList=a[2];
     if (overrideList && overrideList!==true) { // only absorb the specified properties
-      for (i=2; i<a.length; i=i+1) {
+      for (let i=2, al = a.length; i<al; i=i+1) {
           r[a[i]] = s[a[i]];
       }
     } else { // take everything, overwriting only if the third parameter is true
-      for (p in s) {
+      for (let p in s) {
         if (overrideList || !(p in r)) {
           r[p] = s[p];
         }
@@ -165,8 +211,8 @@ GRW.module = function(moduleName, module) {
     if (!s||!r) {
         throw new Error("Augment failed, verify dependencies.");
     }
-    var a=[r.prototype,s.prototype], i;
-    for (i=2;i<arguments.length;i=i+1) {
+    var a=[r.prototype,s.prototype];
+    for (let i=2, al = arguments.length;i<al;i=i+1) {
         a.push(arguments[i]);
     }
     augmentObject.apply(this, a);
@@ -193,7 +239,7 @@ GRW.module = function(moduleName, module) {
     fireEvent: function(eventName, args) {
       if(!this._subscribers || !this._subscribers[eventName]) return;
       var subscribers = this._subscribers[eventName];
-      for (var i = 0, sl = subscribers.length; i < sl; i++) {
+      for (let i = 0, sl = subscribers.length; i < sl; i++) {
         subscription = subscribers[i];
         subscription.fn.call(subscription.context || this, args);
       }
@@ -205,7 +251,7 @@ GRW.module = function(moduleName, module) {
   };
   customEvent.prototype = {
     fire: function(args) {
-      var args = GRW.lang.toArray(arguments);
+      var args = lang.toArray(arguments);
       this.fireEvent(this.eventName, args);
     },
     subscribe: function(fn, obj, overrideContext) {
@@ -218,6 +264,7 @@ GRW.module = function(moduleName, module) {
   GRW.module('log', log);
   GRW.module('later', later);
   GRW.module('never', never);
+  GRW.module('uri', uri);
   GRW.module('augmentObject', augmentObject);
   GRW.module('augmentProto', augmentProto);
   GRW.module('EventProvider', eventProvider);

@@ -12,7 +12,7 @@
       var _this = this;
       GRW.getToken(function() {
         GRW.request('post',
-          GRW.States.conntype + '://www.google.com/reader/api/0/mark-all-as-read?client=scroll',
+          GRW.uri('www.google.com/reader/api/0/mark-all-as-read?client=scroll'),
           {
             onSuccess: function(request) {
               if(request.responseText == 'OK') {

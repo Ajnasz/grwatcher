@@ -41,7 +41,7 @@
       req.setRequestHeader('User-Agent', agent);
 
       var defaultHeaders = getter.getDefaultHeaders();
-      for (var h in defaultHeaders) {
+      for (let h in defaultHeaders) {
         if(defaultHeaders.hasOwnProperty(h)) {
           req.setRequestHeader(h, defaultHeaders[h]);
         }
@@ -68,7 +68,7 @@
   };
 
   var _getToken = function(callback) {
-    request('get', GRW.States.conntype + '://www.google.com/reader/api/0/token', {
+    request('get', GRW.uri('www.google.com/reader/api/0/token'), {
       onSuccess: function(r){
         // GRW.setCookie('T', r.responseText);
         GRW.Cookie.set('.google.com', 'T', r.responseText);
