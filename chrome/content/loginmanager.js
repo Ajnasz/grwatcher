@@ -37,7 +37,7 @@
             var auths = lastResponse.responseText.split('\n');
             if(auths.length) {
               var sid = '';
-              for (var i = 0; i < auths.length; i++) {
+              for (let i = 0, al = auths.length; i < al; i++) {
                 if(/^SID/.test(auths[i])) {
                   sid = new String(auths[i]);
                   break;
@@ -59,7 +59,7 @@
             var auths = lastResponse.responseText.split('\n');
             if(auths.length) {
               var auth = '';
-              for (var i = 0; i < auths.length; i++) {
+              for (let i = 0, al = auths.length; i < al; i++) {
                 if(/^Auth/.test(auths[i])) {
                   auth = new String(auths[i]);
                   break;

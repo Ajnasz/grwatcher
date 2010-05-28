@@ -36,7 +36,7 @@
       var logins = loginManager.findLogins({}, url, formSubmitURL, null);
       var output = false;
       // Find user from returned array of nsILoginInfo objects
-      for (var i = 0, ll = logins.length; i < ll; i++) {
+      for (let i = 0, ll = logins.length; i < ll; i++) {
         if (logins[i].username == username) {
           output = logins[i];
           output.username = GRW.Prefs.get.userName();
@@ -86,7 +86,7 @@
       try {
         var logins = loginManager.findLogins({}, url, formSubmitURL, null);
         // Find user from returned array of nsILoginInfo objects
-        for (var i = 0; i < logins.length; i++) {
+        for (let i = 0; i < logins.length; i++) {
           if (logins[i].username == username) {
             loginManager.removeLogin(logins[i]);
           }

@@ -211,7 +211,7 @@
             var _labelRows = [],
                 _labelRow;
 
-            for(var label in labels) {
+            for(let label in labels) {
               if(labels.hasOwnProperty(label)) {
                 _labelRow = {label: label, rows: []};
                 _labelRow.rows.push(this.genRow({data: {title: label}, count: labels[label].count, id: labels[label].id}, true));
@@ -243,7 +243,8 @@
       }
     },
     clearItems: function() {
-      for(var menu = this.menu, i = menu.childNodes.length-1, rex = new RegExp('feed|tag'), node; i >= 0; i--) {
+      var menu = this.menu;
+      for(let i = menu.childNodes.length-1, rex = new RegExp('feed|tag'), node; i >= 0; i--) {
 
           node = menu.childNodes[i];
 
