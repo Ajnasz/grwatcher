@@ -136,7 +136,7 @@ GRW.module = function(moduleName, module) {
             break;
         }
       }
-      let output = uriRoot;
+      output = uriRoot;
       if(uriParts.length > 0) {
           output += '/' + uriParts.join('/');
       }
