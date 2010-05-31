@@ -140,6 +140,7 @@ GRW.module = function(moduleName, module) {
       if(uriParts.length > 0) {
           output += '/' + uriParts.join('/');
       }
+      queryParams.push('client=grwatcher&ck=' + new Date().getTime());
       if(queryParams.length > 0) {
           output += '?' + queryParams.join('&');
       }
