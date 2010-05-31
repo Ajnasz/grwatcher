@@ -1,10 +1,10 @@
 (function() {
   var loginManager = GRW.LoginManager,
-      unreadcountURL = ['www.google.com', 'reader', 'api', '0', 'unread-count', {
+      unreadcountURL = ['www.google.com/reader/api/0/unread-count', {
         all:'true',
         output:'json'
       }],
-      subscriptionListURL = ['www.google.com', 'reader', 'api', '0', 'subscription', 'list', {output:'json'}],
+      subscriptionListURL = ['www.google.com/reader/api/0/subscription/list', {output:'json'}],
 
       // used for testing
       // unreadcountURL = 'http://localhost/grwatcher/hg/testfiles/unread-count.json?'+ (new Date().getTime()),
@@ -100,18 +100,6 @@
                   _this.fireEvent(requestErrorEvent);
                 }
           });
-          /*
-          var req = new GRW.Ajax({
-                url: unreadcountURL,
-                onSuccess:function(o) {
-                  _this.fireEvent(unreadCountRequestFinishEvent);
-                  _this._processUnreadCount(o);
-                },
-                onError:function(o) {
-                  _this.fireEvent(requestErrorEvent);
-                }
-              }).send();
-              */
         },
         _processSubscriptionList: function(response) {
           this.fireEvent(processStartEvent);
@@ -141,18 +129,6 @@
               _this.fireEvent(requestErrorEvent);
             }
           });
-          /*
-          var req = new GRW.Ajax({
-                url: subscriptionListURL,
-                onSuccess:function(o) {
-                  _this.fireEvent(subscriptionListRequestFinishEvent);
-                  _this._processSubscriptionList(o);
-                },
-                onError:function(o) {
-                  _this.fireEvent(requestErrorEvent);
-                }
-              }).send();
-              */
         },
         _matchUnreadItems: function(unreads) {
           var subscriptions = this._subscriptionList.subscriptions,
@@ -249,8 +225,6 @@
             unreadSum+=elem.count;
           });
           this._unreadCount.unreadSum = unreadSum;
-          // var user_unreads = this._matchUnreadItems(this._unreadCount.userFeeds);
-          // this.fireEvent(requestFinishEvent);
           this.fireEvent(processStartEvent);
 
           this.fireEvent(itemsMatchedEvent, [unreads, this._unreadCount.max]);
