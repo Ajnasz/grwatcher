@@ -46,6 +46,7 @@ GRW.init = function() {
   var iconClick = new GRW.IconrClick();
   var notifier = new GRW.Notifier();
   var menuClick = new GRW.MenuClick();
+  var toolbarClick = new GRW.ToolbarMenuClick();
   var requester = GRW.Requester;
   var loginManager = GRW.LoginManager;
   var getlist = GRW.GetList;
@@ -200,6 +201,31 @@ GRW.OpenReader.on('beforeReaderOpened', function() {
   menuClick.on('markAllAsRead', function() {
     GRW.MarkAllAsRead.mark();
   });
+
+  // open the reader when user clicks on the "Open Reader"
+  // menuitem
+  toolbarClick.on('openReader', function() {
+    GRW.OpenReader.open();
+  });
+
+  // update counter when user clicks on the "Check Unread Feeds"
+  // menuitem
+  toolbarClick.on('checkUnreadFeeds', function() {
+    requester.updater();
+  });
+
+  // open the preferences window when the user clicks on the
+  // "Preferences" menuitem
+  toolbarClick.on('openPreferences', function() {
+    window.openDialog("chrome://grwatcher/content/grprefs.xul", 'GRWatcher', 'chrome,titlebar,toolbar,centerscreen,modal');
+  });
+  GRW.MarkAllAsRead.on('onMarkAllAsRead',function() {
+    requester.updater();
+  })
+  toolbarClick.on('markAllAsRead', function() {
+    GRW.MarkAllAsRead.mark();
+  });
+  toolbarClick.init();
   menuClick.init();
 
   if(GRW.isActiveGRW() === false) {
