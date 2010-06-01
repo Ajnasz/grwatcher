@@ -29,10 +29,7 @@
           var grid = new GRW.UI.Grid(win.document, feeds, labels).getGrid();
           tooltipContainer.appendChild(grid);
         }
-      }
-        // toolbar
-      if(statusbar) {
-        new GRW.UI.Menu(win, feeds, labels);
+        new GRW.UI.Menu(win, feeds, labels, 'GRW-statusbar-menu', 'GRW-menuseparator'));
       }
     },
     error: function(win) {
