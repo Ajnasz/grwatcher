@@ -29,6 +29,7 @@
   <script type="application/x-javascript;version=1.7" src="chrome://grwatcher/content/ui/toolbar-tooltip.js" />
   <script type="application/x-javascript;version=1.7" src="chrome://grwatcher/content/ui/tooltip.js" />
   <script type="application/x-javascript;version=1.7" src="chrome://grwatcher/content/ui/statusbar-menuclick.js" />
+  <script type="application/x-javascript;version=1.7" src="chrome://grwatcher/content/ui/toolbar-menuclick.js" />
   <script type="application/x-javascript;version=1.7" src="chrome://grwatcher/content/openreader.js" />
   <script type="application/x-javascript;version=1.7" src="chrome://grwatcher/content/requester.js" />
   <script type="application/x-javascript;version=1.7" src="chrome://grwatcher/content/grwatcher.js" />
@@ -56,11 +57,18 @@
 
     </statusbarpanel>
   </statusbar>
-
 	<!-- Toolbar Icon -->
   <toolbarpalette id="BrowserToolbarPalette">
     <toolbaritem id="GRW-toolbaritem">
-      <button id="GRW-toolbar-button" label="" class="toolbarbutton-1"/> 
+      <menupopup id="GRW-toolbar-button-context" position="after_start">
+        <menuseparator class="grw-hidden" id="GRW-toolbar-menuseparator" />
+        <menuitem label="&GRWstatusbar.popup.markAllAsRead;" id="GRW-toolbar-menuitem-markallasread" />
+        <menuitem label="&GRWstatusbar.popup.openReader;" id="GRW-toolbar-menuitem-openreader" />
+        <menuitem label="&GRWstatusbar.popup.getReadCounter;" id="GRW-toolbar-menuitem-getcounter" />
+        <menuitem label="&GRWstatusbar.popup.openPrefs;" id="GRW-toolbar-menuitem-openprefs" />
+        <menuitem label="&GRWstatusbar.popup.enableCookies;" class="grw-hidden" id="GRW-toolbar-menuitem-enablecookies" />
+      </menupopup>
+      <button id="GRW-toolbar-button" label="" class="toolbarbutton-1" context="GRW-toolbar-button-context" />
       <tooltip id="GRW-toolbar-tooltip-error" position="before_end"><description id="GRW-toolbar-tooltip-error-description" value="&GRWtooltip.errorfeedfetch;" /></tooltip>
       <tooltip id="GRW-toolbar-tooltip-loginerror" position="before_end"><description id="GRW-toolbar-tooltip-loginerror-description" value="&GRWtooltip.errorlogin;" /></tooltip>
       <tooltip id="GRW-toolbar-tooltip-networkerror" position="before_end"><description id="GRW-toolbar-tooltip-networkerror-description" value="&GRWtooltip.networkerror;" /></tooltip>
