@@ -28,6 +28,7 @@
             }
             tooltipContainer.appendChild(grid);
           }
+          new GRW.UI.Menu(win, feeds, labels, 'GRW-toolbar-button-context', 'GRW-toolbar-menuseparator');
         }
       } else {
         setTooltip(win, 'GRW-toolbar-tooltip-new');
