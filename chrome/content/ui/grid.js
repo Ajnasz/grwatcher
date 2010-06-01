@@ -141,13 +141,14 @@
       return this.grid;
     }
   };
-  var Menu = function(win, feeds, labels) {
+  var Menu = function(win, feeds, labels, menu, menuseparator) {
     var doc = win.document;
     this.window = win;
     this.document = doc;
     this.feeds = feeds;
     this.orderByLabels = GRW.Prefs.get.sortByLabels();
-    this.menu = doc.getElementById('GRW-statusbar-menu');
+    this.menu = doc.getElementById(menu);
+    this.menuseparator = menuseparator;
     this.labels = labels;
     this.init();
   };
@@ -238,7 +239,10 @@
           }, this);
         }
         if(feeds.length) {
-          this.document.getElementById('GRW-menuseparator').setAttribute('class', '');
+          var menuSeparator = this.document.getElementById(this.menuseparator);
+          if(menuSeparator) {
+            menuSeparator.setAttribute('class', '');
+          }
         }
       }
     },
@@ -252,7 +256,10 @@
           menu.removeChild(node);
         }
       }
-      this.document.getElementById('GRW-menuseparator').setAttribute('class', 'grw-hidden');
+      var menuSeparator = this.document.getElementById(this.menuseparator);
+      if(menuSeparator) {
+        menuSeparator.setAttribute('class', 'grw-hidden');
+      }
       return true;
     }
   };
