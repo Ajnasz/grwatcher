@@ -18,9 +18,11 @@
     return isActive;
   };
   setIcons = function (status) {
-    Components.utils.import("resource://grwmodules/StatusIcon.jsm", scope);
-    scope.StatusIcon('GRW-statusbar', status);
-    scope.StatusIcon('GRW-toolbar-button', status);
+    if (typeof Components !== 'undefined') {
+      Components.utils.import("resource://grwmodules/StatusIcon.jsm", scope);
+      scope.StatusIcon('GRW-statusbar', status);
+      scope.StatusIcon('GRW-toolbar-button', status);
+    }
   };
   updateUI = function (oArgs, openReader) {
     if (GRW.lang.isArray(oArgs.status)) {
