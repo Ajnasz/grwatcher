@@ -263,7 +263,7 @@ GRW.module = function(moduleName, module) {
   var getBrowserVersion = function() {
     var version = null,
         ua = navigator.userAgent.toString();
-    if(ua.test(/Firefox/)) {
+    if(/Firefox/.test(ua)) {
       var versionMatch = ua.match(/Firefox\/([\d.]+)/);
       output = versionMatch[1];
     }
