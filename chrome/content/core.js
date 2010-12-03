@@ -260,6 +260,15 @@ GRW.module = function(moduleName, module) {
     },
   };
   augmentProto(customEvent, eventProvider);
+  var getBrowserVersion = function() {
+    var version = null,
+        ua = navigator.userAgent.toString();
+    if(ua.test(/Firefox/)) {
+      var versionMatch = ua.match(/Firefox\/([\d.]+)/);
+      output = versionMatch[1];
+    }
+    return output;
+  };
 
   GRW.module('lang', lang);
   GRW.module('log', log);
@@ -268,6 +277,7 @@ GRW.module = function(moduleName, module) {
   GRW.module('uri', uri);
   GRW.module('augmentObject', augmentObject);
   GRW.module('augmentProto', augmentProto);
+  GRW.module('getBrowserVersion', getBrowserVersion);
   GRW.module('EventProvider', eventProvider);
   GRW.module('CustomEvent', customEvent);
 

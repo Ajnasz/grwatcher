@@ -55,6 +55,9 @@ GRW.init = function() {
   GRW.getter.onStartRequest.subscribe(function() {
     GRW.updateUI({status: ['load']});
   });
+  if(GRW.getBrowserVersion() >= 4) {
+    GRW.UI.SetToolbarButtonFirstTime();
+  }
   GRW.getter.onRequestFailed.subscribe(function(request) {
     var oArgs = {status: ['error']};
     if(request) {
