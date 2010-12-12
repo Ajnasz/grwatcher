@@ -10,14 +10,9 @@
   };
 
   var actions = {
-    genGrid: function(win, feeds, getlist, cache) {
-      var cache = cache || {};
-      var activeGRW = GRW.getActiveGRW().GRW;
+    genGrid: function(win, feeds, labels) {
       var statusbar = win.document.getElementById(statusbarID);
       var showItemsInToolTip = GRW.Prefs.get.showitemsintooltip();
-      var getlist = cache.getlist || activeGRW.GetList;
-      var feeds = cache.feeds || activeGRW.feeds;
-      var labels = cache.labels || getlist.getLabels();
       var tooltipContainer = win.document.getElementById('GRW-statusbar-tooltip-new');
 
       if(statusbar) {
@@ -29,7 +24,6 @@
           var grid = new GRW.UI.Grid(win.document, feeds, labels).getGrid();
           tooltipContainer.appendChild(grid);
         }
-        new GRW.UI.Menu(win, feeds, labels, 'GRW-statusbar-menu', 'GRW-menuseparator');
       }
     },
     error: function(win) {
@@ -48,7 +42,7 @@
       setTooltip(win, 'GRW-statusbar-tooltip-loginerror', 'GRW-statusbar-tooltip-loginerror');
     },
   };
-  var statusbarTooltip = function(action, feeds, getlist) {
+  var statusbarTooltip = function(action, feeds) {
     var actionMethod;
     switch(action) {
       case 'grid':
@@ -76,7 +70,14 @@
         break;
     }
     if(actionMethod) {
-      GRW.UI.MapWindows(actionMethod, [feeds, getlist]);
+      GRW.UI.MapWindows(function(win) {
+        var activeGRW = GRW.getActiveGRW().GRW;
+        var feeds = activeGRW.feeds;
+        var getlist = activeGRW.GetList;
+        var labels = getlist.getLabels();
+        actionMethod.call(this, win, feeds, labels);
+        new GRW.UI.Menu(win, feeds, labels, 'GRW-statusbar-menu', 'GRW-menuseparator');
+      });
     }
   };
   GRW.UI.StatusbarTooltip = statusbarTooltip;

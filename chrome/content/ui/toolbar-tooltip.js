@@ -8,15 +8,10 @@
   };
 
   var actions = {
-    genGrid: function(win, feeds, getlist, cache) {
-      var cache = cache || {};
-      var activeGRW = cache.activeGRW || GRW.getActiveGRW().GRW;
+    genGrid: function(win, feeds, labels) {
       var toolbar = win.document.getElementById(toolbarButtonID);
       var showItemsInToolTip = GRW.Prefs.get.showitemsintooltip();
       if(showItemsInToolTip) {
-        var getlist = cache.getlist || activeGRW.GetList;
-        var feeds = cache.feeds || activeGRW.feeds;
-        var labels = cache.labels || getlist.getLabels();
 
         if(toolbar) {
           toolbar.tooltip = 'GRW-statusbar-tooltip-new';
@@ -28,7 +23,6 @@
             }
             tooltipContainer.appendChild(grid);
           }
-          new GRW.UI.Menu(win, feeds, labels, 'GRW-toolbar-button-context', 'GRW-toolbar-menuseparator');
         }
       } else {
         setTooltip(win, 'GRW-toolbar-tooltip-new');
@@ -79,7 +73,14 @@
         break;
     }
     if(actionMethod) {
-      GRW.UI.MapWindows(actionMethod, [feeds, getlist]);
+      GRW.UI.MapWindows(function(win) {
+        var activeGRW = GRW.getActiveGRW().GRW;
+        var feeds = activeGRW.feeds;
+        var getlist = activeGRW.GetList;
+        var labels = getlist.getLabels();
+        actionMethod.call(this, win, feeds, labels);
+        new GRW.UI.Menu(win, feeds, labels, 'GRW-toolbar-button-context', 'GRW-toolbar-menuseparator');
+      });
     }
   };
   GRW.UI.ToolbarTooltip = toolbarTooltip;
