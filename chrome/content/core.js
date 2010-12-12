@@ -133,6 +133,7 @@ GRW.module = function(moduleName, module) {
             uriParts.push(part);
         } else if(type == 'boolean') {
           shouldExtend = part;
+          break;
         } else {
             for(let i in part) {
                 if(part.hasOwnProperty(i)) {
@@ -146,7 +147,9 @@ GRW.module = function(moduleName, module) {
       if(uriParts.length > 0) {
           output += '/' + uriParts.join('/');
       }
-      queryParams.push('client=grwatcher&ck=' + new Date().getTime());
+      if(shouldExtend) {
+        queryParams.push('client=grwatcher&ck=' + new Date().getTime());
+      }
       if(queryParams.length > 0) {
           output += '?' + queryParams.join('&');
       }
