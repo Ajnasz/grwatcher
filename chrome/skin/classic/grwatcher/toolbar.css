@@ -11,7 +11,8 @@
 #GRW-toolbar-button.load {
   list-style-image: url(chrome://grwatcher/skin/images/loading-toolbar-15.png);
 }
-#GRW-toolbar-button .toolbarbutton-text,
-#GRW-toolbar-button .toolbarbutton-icon {
-  display: -moz-inline-block !important;
+#GRW-toolbar-label-container {
+  display: -moz-box;
+  -moz-box-align: center;
+  -moz-box-orient: horizontal;
 }
