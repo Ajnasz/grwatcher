@@ -8,7 +8,12 @@
       label.collapsed = false;
     }
     if(toolbar) {
-      toolbar.label = value;
+      toolbar.value = value;
+      toolbar.style.width = '';
+      toolbar.style.margin = '';
+      toolbar.crop = '';
+      toolbar.collapsed = false;
+      // toolbar.label = value;
     }
   },
   hideCounter = function(label, toolbar) {
@@ -20,7 +25,12 @@
       label.collapsed = true;
     }
     if(toolbar) {
-      toolbar.label = '';
+      toolbar.value = '';
+      toolbar.crop = 'end';
+      toolbar.style.margin = 0;
+      toolbar.style.width = 0;
+      toolbar.collapsed = true;
+      // toolbar.label = '';
     }
   };
   var statusbarCounter = {
@@ -35,7 +45,7 @@
       }
       GRW.UI.MapWindows(function(win) {
         var label = win.document.getElementById('GRW-statusbar-label'),
-            toolbarButton = win.document.getElementById('GRW-toolbar-button');
+            toolbarButton = win.document.getElementById('GRW-toolbar-label');
 
         (val > 0 || showZeroCounter)
           ? showCounter(label, toolbarButton, showval)

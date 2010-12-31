@@ -111,9 +111,11 @@ GRW.module = function(moduleName, module) {
    * @method uri
    * @description Creates urls
    * @param {String} domain the domain name of the url
-   *  Other arguments are optional, but if it's a string then it will be added to the
-   *  domain with a / or if it's an object, it's key value pairs will be used as a
-   *  query parameter
+   *  Other arguments are optional, but if it's a string then it will be added
+   *  to the domain with a / or if it's an object, it's key value pairs will be
+   *  used as a query parameter
+   *  if its a boolean it will mean that the uri should be extended with client
+   *  and ck params or not
    */
   var uri = function(domain) {
       let args =lang.toArray(arguments),
@@ -121,12 +123,17 @@ GRW.module = function(moduleName, module) {
           uriParts = [],
           queryParams = [],
           connectionType = GRW.States.conntype,
-          output = '';
+          output = '',
+          shouldExtend = true;
 
       while(args.length) {
         let part = args.shift();
-        if(typeof part == 'string') {
+        let type = typeof part;
+        if(type == 'string') {
             uriParts.push(part);
+        } else if(type == 'boolean') {
+          shouldExtend = part;
+          break;
         } else {
             for(let i in part) {
                 if(part.hasOwnProperty(i)) {
@@ -140,7 +147,9 @@ GRW.module = function(moduleName, module) {
       if(uriParts.length > 0) {
           output += '/' + uriParts.join('/');
       }
-      queryParams.push('client=grwatcher&ck=' + new Date().getTime());
+      if(shouldExtend) {
+        queryParams.push('client=grwatcher&ck=' + new Date().getTime());
+      }
       if(queryParams.length > 0) {
           output += '?' + queryParams.join('&');
       }
@@ -260,6 +269,17 @@ GRW.module = function(moduleName, module) {
     },
   };
   augmentProto(customEvent, eventProvider);
+  var getBrowserVersion = function() {
+    var version = null,
+        ua = navigator.userAgent.toString();
+    if(/Firefox/.test(ua)) {
+      var versionMatch = ua.match(/Firefox\/([\d.]+)/);
+      if(versionMatch) {
+        output = versionMatch[1];
+      }
+    }
+    return output;
+  };
 
   GRW.module('lang', lang);
   GRW.module('log', log);
@@ -268,6 +288,7 @@ GRW.module = function(moduleName, module) {
   GRW.module('uri', uri);
   GRW.module('augmentObject', augmentObject);
   GRW.module('augmentProto', augmentProto);
+  GRW.module('getBrowserVersion', getBrowserVersion);
   GRW.module('EventProvider', eventProvider);
   GRW.module('CustomEvent', customEvent);
 

@@ -11,7 +11,7 @@
   iconClick.prototype = {
     init: function() {
       var _this = this,
-      elements = [document.getElementById('GRW-statusbar'), document.getElementById('GRW-toolbar-button')];
+      elements = [document.getElementById('GRW-statusbar'), document.getElementById('GRW-toolbar-button'), document.getElementById('GRW-toolbar-label')];
       elements.forEach(function(element) {
         if(element) {
           element.addEventListener('click', function(event){
