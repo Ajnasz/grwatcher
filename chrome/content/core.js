@@ -269,16 +269,18 @@ GRW.module = function(moduleName, module) {
     },
   };
   augmentProto(customEvent, eventProvider);
-  var getBrowserVersion = function() {
+  var getBrowserVersion = function () {
     var version = null,
-        ua = navigator.userAgent.toString();
-    if(/Firefox/.test(ua)) {
-      var versionMatch = ua.match(/Firefox\/([\d.]+)/);
-      if(versionMatch) {
-        output = versionMatch[1];
+        ua = navigator.userAgent.toString(),
+        versionMatch;
+
+    if (/Firefox|SeaMonkey/.test(ua)) {
+      versionMatch = ua.match(/(?:Firefox|SeaMonkey)\/([\d.]+)/);
+      if (versionMatch) {
+        version = versionMatch[1];
       }
     }
-    return output;
+    return version;
   };
 
   GRW.module('lang', lang);
