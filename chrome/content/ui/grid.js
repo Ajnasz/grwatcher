@@ -180,8 +180,12 @@
       this.clearItems();
       if(GRW.Prefs.get.showitemsincontextmenu()) {
         var menu = this.menu,
-            firstMenuItem = menu.firstChild,
-            feeds = this.feeds;
+            firstMenuItem,
+            feeds;
+        if (menu) {
+          firstMenuItem = menu.firstChild;
+        }
+        feeds = this.feeds;
 
 
         feeds.sort(function(a, b) {
@@ -226,17 +230,21 @@
             _labelRows.sort(function(a, b) {
               return a.label.toLowerCase() > b.label.toLowerCase();
             });
-            _labelRows.forEach(function(_labelRow) {
-              _labelRow.rows.forEach(function(row) {
-                menu.insertBefore(row, firstMenuItem);
-              })
-            });
+            if (firstMenuItem) {
+              _labelRows.forEach(function(_labelRow) {
+                _labelRow.rows.forEach(function(row) {
+                  menu.insertBefore(row, firstMenuItem);
+                })
+              });
+            }
           }
 
         } else {
-          feeds.forEach(function(item) {
-            menu.insertBefore(this.genRow(item), firstMenuItem);
-          }, this);
+          if (firstMenuItem) {
+            feeds.forEach(function(item) {
+              menu.insertBefore(this.genRow(item), firstMenuItem);
+            }, this);
+          }
         }
         if(feeds.length) {
           var menuSeparator = this.document.getElementById(this.menuseparator);
@@ -248,12 +256,14 @@
     },
     clearItems: function() {
       var menu = this.menu;
-      for(let i = menu.childNodes.length-1, rex = new RegExp('feed|tag'), node; i >= 0; i--) {
+      if (menu) {
+        for(let i = menu.childNodes.length-1, rex = new RegExp('feed|tag'), node; i >= 0; i--) {
 
-          node = menu.childNodes[i];
+            node = menu.childNodes[i];
 
-        if(rex.test(node.getAttribute('class'))) {
-          menu.removeChild(node);
+          if(rex.test(node.getAttribute('class'))) {
+            menu.removeChild(node);
+          }
         }
       }
       var menuSeparator = this.document.getElementById(this.menuseparator);
