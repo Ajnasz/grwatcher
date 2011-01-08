@@ -1,0 +1,548 @@
+<?xml version="1.0"?>
+<feed xmlns:idx="urn:atom-extension:indexing" xmlns:media="http://search.yahoo.com/mrss/" xmlns:gr="http://www.google.com/schemas/reader/atom/" xmlns="http://www.w3.org/2005/Atom" idx:index="no" gr:dir="ltr">
+<!--
+Content-type: Preventing XSRF in IE.
+
+-->
+<generator uri="http://www.google.com/reader">Google Reader</generator>
+<id>tag:google.com,2005:reader/user/12181831902988724490/state/com.google/reading-list</id>
+<title>Ajnasz's reading list in Google Reader</title>
+<gr:continuation>CLfa4big16IC</gr:continuation>
+<link rel="self" href="http://www.google.com/reader/atom/user/-/state/com.google/reading-list"/>
+<author>
+  <name>Ajnasz</name>
+</author>
+<updated>2010-07-06T17:19:15Z</updated>
+<entry gr:crawl-timestamp-msec="1278436755362">
+  <id gr:original-id="http://www.readwriteweb.com/biz/2010/07/doc-sign-brings-pdf-management.php">tag:google.com,2005:reader/item/89fc632c9d29188c</id>
+  <category term="user/12181831902988724490/state/com.google/reading-list" scheme="http://www.google.com/reader/" label="reading-list"/>
+  <category term="user/12181831902988724490/state/com.google/fresh" scheme="http://www.google.com/reader/" label="fresh"/>
+  <category term="Reviews"/>
+  <title type="html">Doc Sign Brings PDF Signing to iPhone</title>
+  <published>2010-07-06T18:01:00Z</published>
+  <updated>2010-07-06T18:01:00Z</updated>
+  <link rel="alternate" href="http://feedproxy.google.com/~r/readwriteweb/~3/fdb5-Fy_hsw/doc-sign-brings-pdf-management.php" type="text/html"/>
+  <summary xml:base="http://www.readwriteweb.com/" type="html">&lt;p&gt;&lt;img alt="Doc Sign lets you sign PDF files from your iPhone" src="http://www.readwriteweb.com/biz/biz_docsign.jpg" width="150"&gt; A new iPhone application called &lt;a href="http://itunes.apple.com/us/app/doc-sign/id378295244?mt=8"&gt;Doc Sign&lt;/a&gt; enables users to manage and sign PDF documents from their phones.&lt;/p&gt;
+
+    &lt;p&gt;Doc Sign can open PDF files attached to incoming emails, from a public URL or the via Drop.io file sharing service. The user can then touch any part of the document and add text or write their signature, then save and email it back or transfer it to their desktop via iTunes.&lt;/p&gt;
+    &lt;p align="right"&gt;&lt;em&gt;Sponsor&lt;/em&gt;&lt;br&gt;&lt;a href="http://d.ads.readwriteweb.com/ck.php?n=20386&amp;amp;cb=20386"&gt;&lt;img src="http://d.ads.readwriteweb.com/avw.php?zoneid=14&amp;amp;cb=20386&amp;amp;n=20386" border="0" alt=""&gt;&lt;/a&gt;&lt;/p&gt;
+
+    &lt;p&gt;The app does not currently support PDFs from Google Docs, but this feature is being planned for in a future version. In the meantime, users can work around this limitation by emailing files to themselves. &lt;/p&gt;
+
+    &lt;p&gt;Doc Sign, which was released by &lt;a href="http://crowdedroad.com"&gt;Crowded Road&lt;/a&gt; last month, is not the first application to bring PDF signing to the iPhone, but it does have some features that attempt to set it apart from the competition. &lt;/p&gt;
+
+    &lt;p&gt;"Unlike some similar products, Doc Sign is a pure app, not relying on any website or web-service," says Adam Korbl, founder and CEO of Crowded Road.  "We do not store or pass user documents through our servers whatsoever. This not only avoids any reliability issues that can arise as a result of server failures, but it also ensures superior privacy and document security, something essential for any enterprise-level application."&lt;/p&gt;
+
+    &lt;p&gt;While the application will work on older versions of the iPhone, says Korbl, Apple's new iOS4 is recommended for the best user experience. &lt;/p&gt;
+
+    &lt;p&gt;Doc Sign is not yet available for other devices, but Crowded Road is working on versions for the iPad and Android. &lt;/p&gt;
+
+    &lt;p&gt;&lt;em&gt;Disclosure: We received a free version of this app in order to test it. &lt;/em&gt;&lt;/p&gt;
+    &lt;strong&gt;&lt;a href="http://www.readwriteweb.com/biz/2010/07/doc-sign-brings-pdf-management.php#comments-open"&gt;Discuss&lt;/a&gt;&lt;/strong&gt;
+    &lt;p&gt;&lt;a href="http://feedads.g.doubleclick.net/~at/LDV4d62ajO3twRkmo_mTaO88sbI/0/da"&gt;&lt;img src="http://feedads.g.doubleclick.net/~at/LDV4d62ajO3twRkmo_mTaO88sbI/0/di" border="0" ismap&gt;&lt;/a&gt;&lt;br&gt;
+    &lt;a href="http://feedads.g.doubleclick.net/~at/LDV4d62ajO3twRkmo_mTaO88sbI/1/da"&gt;&lt;img src="http://feedads.g.doubleclick.net/~at/LDV4d62ajO3twRkmo_mTaO88sbI/1/di" border="0" ismap&gt;&lt;/a&gt;&lt;/p&gt;&lt;div&gt;
+    &lt;a href="http://feeds.feedburner.com/~ff/readwriteweb?a=fdb5-Fy_hsw:wWpYXG4YKRM:FFnlKYwJmN0"&gt;&lt;img src="http://feeds.feedburner.com/~ff/readwriteweb?d=FFnlKYwJmN0" border="0"&gt;&lt;/a&gt; &lt;a href="http://feeds.feedburner.com/~ff/readwriteweb?a=fdb5-Fy_hsw:wWpYXG4YKRM:Ij26kaj3iuU"&gt;&lt;img src="http://feeds.feedburner.com/~ff/readwriteweb?d=Ij26kaj3iuU" border="0"&gt;&lt;/a&gt; &lt;a href="http://feeds.feedburner.com/~ff/readwriteweb?a=fdb5-Fy_hsw:wWpYXG4YKRM:C2pbw5bZMiI"&gt;&lt;img src="http://feeds.feedburner.com/~ff/readwriteweb?d=C2pbw5bZMiI" border="0"&gt;&lt;/a&gt; &lt;a href="http://feeds.feedburner.com/~ff/readwriteweb?a=fdb5-Fy_hsw:wWpYXG4YKRM:yIl2AUoC8zA"&gt;&lt;img src="http://feeds.feedburner.com/~ff/readwriteweb?d=yIl2AUoC8zA" border="0"&gt;&lt;/a&gt; &lt;a href="http://feeds.feedburner.com/~ff/readwriteweb?a=fdb5-Fy_hsw:wWpYXG4YKRM:V_sGLiPBpWU"&gt;&lt;img src="http://feeds.feedburner.com/~ff/readwriteweb?i=fdb5-Fy_hsw:wWpYXG4YKRM:V_sGLiPBpWU" border="0"&gt;&lt;/a&gt; &lt;a href="http://feeds.feedburner.com/~ff/readwriteweb?a=fdb5-Fy_hsw:wWpYXG4YKRM:gIN9vFwOqvQ"&gt;&lt;img src="http://feeds.feedburner.com/~ff/readwriteweb?i=fdb5-Fy_hsw:wWpYXG4YKRM:gIN9vFwOqvQ" border="0"&gt;&lt;/a&gt; &lt;a href="http://feeds.feedburner.com/~ff/readwriteweb?a=fdb5-Fy_hsw:wWpYXG4YKRM:F7zBnMyn0Lo"&gt;&lt;img src="http://feeds.feedburner.com/~ff/readwriteweb?i=fdb5-Fy_hsw:wWpYXG4YKRM:F7zBnMyn0Lo" border="0"&gt;&lt;/a&gt; &lt;a href="http://feeds.feedburner.com/~ff/readwriteweb?a=fdb5-Fy_hsw:wWpYXG4YKRM:OqabYuBsmOY"&gt;&lt;img src="http://feeds.feedburner.com/~ff/readwriteweb?d=OqabYuBsmOY" border="0"&gt;&lt;/a&gt;
+    &lt;/div&gt;&lt;img src="http://feeds.feedburner.com/~r/readwriteweb/~4/fdb5-Fy_hsw" height="1" width="1"&gt;</summary>
+  <author>
+    <name>John Paul Titlow</name>
+  </author>
+  <source gr:stream-id="feed/http://feeds.feedburner.com/readwriteweb">
+    <id>tag:google.com,2005:reader/feed/http://feeds.feedburner.com/readwriteweb</id>
+    <title type="html">ReadWriteWeb</title>
+    <link rel="alternate" href="http://www.readwriteweb.com/" type="text/html"/>
+  </source>
+</entry>
+<entry gr:crawl-timestamp-msec="1278435975799">
+  <id gr:original-id="">tag:google.com,2005:reader/item/da701e1862ac9f23</id>
+  <category term="user/12181831902988724490/state/com.google/read" scheme="http://www.google.com/reader/" label="read"/>
+  <category term="user/12181831902988724490/state/com.google/tracking-igoogle-module-read" scheme="http://www.google.com/reader/" label="tracking-igoogle-module-read"/>
+  <category term="user/12181831902988724490/state/com.google/reading-list" scheme="http://www.google.com/reader/" label="reading-list"/>
+  <category term="user/12181831902988724490/state/com.google/fresh" scheme="http://www.google.com/reader/" label="fresh"/>
+  <title type="html">A tinifiúkból is lassan Alkonyat-rajongó lesz</title>
+  <published>2010-07-06T17:06:15Z</published>
+  <updated>2010-07-06T17:06:15Z</updated>
+  <link rel="alternate" href="http://www.sg.hu/cikkek/75517" type="text/html"/>
+  <summary xml:base="http://www.sg.hu/" type="html">Amerikában tavaly minden 5 Alkonyat-nézőből 4 lány volt, idén, a harmadik rész esetében viszont az adatok arra engednek következtetni, hogy a fiúk is kezdik felismeri a sorozatban rejtező értékeket.</summary>
+  <author gr:unknown-author="true">
+    <name>(author unknown)</name>
+  </author>
+  <source gr:stream-id="feed/http://www.sg.hu/plain/sg_rrs.xml">
+    <id>tag:google.com,2005:reader/feed/http://www.sg.hu/plain/sg_rrs.xml</id>
+    <title type="html">SG.hu</title>
+    <link rel="alternate" href="http://www.sg.hu/" type="text/html"/>
+  </source>
+</entry>
+<entry gr:crawl-timestamp-msec="1278435924311">
+  <id gr:original-id="Lifehacker-5580487">tag:google.com,2005:reader/item/04408315b0c292d0</id>
+  <category term="user/12181831902988724490/state/com.google/reading-list" scheme="http://www.google.com/reader/" label="reading-list"/>
+  <category term="user/12181831902988724490/label/test1" scheme="http://www.google.com/reader/" label="test1"/>
+  <category term="user/12181831902988724490/state/com.google/fresh" scheme="http://www.google.com/reader/" label="fresh"/>
+  <category term="Dealhacker"/>
+  <category term="Deals"/>
+  <category term="Electronics"/>
+  <category term="Gadgets"/>
+  <category term="Money"/>
+  <category term="Saving Money"/>
+  <title type="html">Gadget and Gear Deals of the Day [Dealhacker]</title>
+  <published>2010-07-06T17:00:00Z</published>
+  <updated>2010-07-06T17:00:00Z</updated>
+  <link rel="alternate" href="http://feeds.gawker.com/~r/lifehacker/full/~3/jGTwCUMf98s/gadget-and-gear-deals-of-the-day" type="text/html"/>
+  <summary xml:base="http://lifehacker.com/" type="html">&lt;div style="float:left;padding-right:10px"&gt;
+
+    &lt;div&gt;&lt;a title="Click here to read Gadget and Gear Deals of the Day" href="http://lifehacker.com/5580487/gadget-and-gear-deals-of-the-day"&gt;
+    &lt;img style="border-color:#B3B3B3;border-width:0 1px 1px;border-style:none solid solid" height="120" width="160" title="Click here to read Gadget and Gear Deals of the Day" alt="Click here to read Gadget and Gear Deals of the Day" src="http://cache-02.gawkerassets.com/assets/images/17/2010/07/160x120_500x160-dealhacker-template_01.jpg"&gt;
+    &lt;/a&gt;&lt;/div&gt;
+    &lt;/div&gt;
+    Discounted computers, great hard drive deals, and a pile of free loot await you in today's Dealhacker roundup. Come for the HDTV deals, stay for the free flame-grilled chicken legs.				&lt;a href="http://lifehacker.com/5580487/gadget-and-gear-deals-of-the-day" title="Click here to read more about Gadget and Gear Deals of the Day [Dealhacker]"&gt;More »&lt;/a&gt;
+    &lt;br style="clear:both"&gt;
+    &lt;br style="clear:both"&gt;
+    &lt;br style="clear:both"&gt;
+    &lt;a href="http://ads.pheedo.com/click.phdo?s=cc5e6bbca94a2428eb779bea17c9aff3&amp;amp;p=1"&gt;&lt;img alt="" style="border:0" border="0" src="http://ads.pheedo.com/img.phdo?s=cc5e6bbca94a2428eb779bea17c9aff3&amp;amp;p=1"&gt;&lt;/a&gt;
+    &lt;img alt="" height="0" width="0" border="0" src="http://a.triggit.com/px?u=pheedo&amp;amp;rtv=TechBiz&amp;amp;rtv=p28252&amp;amp;rtv=f5734"&gt;&lt;img alt="" height="0" width="0" border="0" src="http://pixel.quantserve.com/pixel/p-8bUhLiluj0fAw.gif?labels=pub.28252.rss.TechBiz.5734,cat.TechBiz.rss"&gt;&lt;br&gt;
+    &lt;img src="http://ads.pheedo.com/img.phdo?kw="&gt; 
+    &lt;a href="http://ads.pheedo.com/click.phdo?s=cc5e6bbca94a2428eb779bea17c9aff3&amp;amp;p=64&amp;amp;kw=Home"&gt;Home&lt;/a&gt; - &lt;a href="http://ads.pheedo.com/click.phdo?s=cc5e6bbca94a2428eb779bea17c9aff3&amp;amp;p=64&amp;amp;kw=Electronics"&gt;Electronics&lt;/a&gt; - &lt;a href="http://ads.pheedo.com/click.phdo?s=cc5e6bbca94a2428eb779bea17c9aff3&amp;amp;p=64&amp;amp;kw=Dealhacker"&gt;Dealhacker&lt;/a&gt; - &lt;a href="http://ads.pheedo.com/click.phdo?s=cc5e6bbca94a2428eb779bea17c9aff3&amp;amp;p=64&amp;amp;kw=Saving+Money"&gt;Saving Money&lt;/a&gt; - &lt;a href="http://ads.pheedo.com/click.phdo?s=cc5e6bbca94a2428eb779bea17c9aff3&amp;amp;p=64&amp;amp;kw=Deals"&gt;Deals&lt;/a&gt;&lt;div&gt;
+    &lt;a href="http://feeds.gawker.com/~ff/lifehacker/full?a=jGTwCUMf98s:zplRDSdCII0:H0mrP-F8Qgo"&gt;&lt;img src="http://feeds.feedburner.com/~ff/lifehacker/full?d=H0mrP-F8Qgo" border="0"&gt;&lt;/a&gt; &lt;a href="http://feeds.gawker.com/~ff/lifehacker/full?a=jGTwCUMf98s:zplRDSdCII0:yIl2AUoC8zA"&gt;&lt;img src="http://feeds.feedburner.com/~ff/lifehacker/full?d=yIl2AUoC8zA" border="0"&gt;&lt;/a&gt; &lt;a href="http://feeds.gawker.com/~ff/lifehacker/full?a=jGTwCUMf98s:zplRDSdCII0:D7DqB2pKExk"&gt;&lt;img src="http://feeds.feedburner.com/~ff/lifehacker/full?i=jGTwCUMf98s:zplRDSdCII0:D7DqB2pKExk" border="0"&gt;&lt;/a&gt; &lt;a href="http://feeds.gawker.com/~ff/lifehacker/full?a=jGTwCUMf98s:zplRDSdCII0:V_sGLiPBpWU"&gt;&lt;img src="http://feeds.feedburner.com/~ff/lifehacker/full?i=jGTwCUMf98s:zplRDSdCII0:V_sGLiPBpWU" border="0"&gt;&lt;/a&gt;
+    &lt;/div&gt;&lt;img src="http://feeds.feedburner.com/~r/lifehacker/full/~4/jGTwCUMf98s" height="1" width="1"&gt;</summary>
+  <author>
+    <name>Jason Fitzpatrick</name>
+  </author>
+  <source gr:stream-id="feed/http://feeds.gawker.com/lifehacker/full">
+    <id>tag:google.com,2005:reader/feed/http://feeds.gawker.com/lifehacker/full</id>
+    <title type="html">Lifehacker</title>
+    <link rel="alternate" href="http://lifehacker.com" type="text/html"/>
+  </source>
+</entry>
+<entry gr:crawl-timestamp-msec="1278435403891">
+  <id gr:original-id="http://dailyjs.com/2010/07/06/jquery-roundup">tag:google.com,2005:reader/item/b2de101d946209ec</id>
+  <category term="user/12181831902988724490/label/dev" scheme="http://www.google.com/reader/" label="dev"/>
+  <category term="user/12181831902988724490/state/com.google/reading-list" scheme="http://www.google.com/reader/" label="reading-list"/>
+  <category term="user/12181831902988724490/state/com.google/fresh" scheme="http://www.google.com/reader/" label="fresh"/>
+  <title type="html">jQuery Plugin Roundup 14</title>
+  <published>2010-07-05T23:00:00Z</published>
+  <updated>2010-07-05T23:00:00Z</updated>
+  <link rel="alternate" href="http://feedproxy.google.com/~r/dailyjs/~3/Nm8pL6h6UOI/jquery-roundup" type="text/html"/>
+  <content xml:base="http://dailyjs.com/" type="html">&lt;p&gt;Welcome to the jQuery Plugin Roundup, episode 14.  Remember you can send your plugins in for review through our &lt;a href="http://dailyjs.com/contact.html"&gt;contact form&lt;/a&gt; or &lt;a href="http://twitter.com/dailyjs"&gt;@dailyjs&lt;/a&gt;.&lt;/p&gt;
+    &lt;p&gt;The average day can take me from Objective-C to Ruby, then to server-side JavaScript and perhaps even into Photoshop for some design work.  Being a freelancer keeps my work incredibly varied. But…  I’ve actually been working with jQuery a lot lately!&lt;/p&gt;
+    &lt;h3&gt;Supersized 2.0&lt;/h3&gt;
+    &lt;p&gt;&lt;img src="http://dailyjs.com/images/posts/supersized.jpeg" alt=""&gt;&lt;/p&gt;
+    &lt;p&gt;&lt;a href="http://www.buildinternet.com/project/supersized/"&gt;Supersized 2.0&lt;/a&gt; by Sam Dunn resizes images to fit the browser window, and can show modern transition and loading effects.  It’s packaged with some example files that despite having .php extensions seem more like plain &lt;span&gt;HTML&lt;/span&gt;.  The images Supersized ships with look cool, so it might be a nice quick start if you need this kind of functionality on a project.&lt;/p&gt;
+    &lt;div&gt;&lt;pre&gt;&lt;span&gt;$&lt;/span&gt;&lt;span&gt;.&lt;/span&gt;&lt;span&gt;fn&lt;/span&gt;&lt;span&gt;.&lt;/span&gt;&lt;span&gt;supersized&lt;/span&gt;&lt;span&gt;.&lt;/span&gt;&lt;span&gt;options&lt;/span&gt; &lt;span&gt;=&lt;/span&gt; &lt;span&gt;{&lt;/span&gt;  
+    &lt;span&gt;startwidth&lt;/span&gt;&lt;span&gt;:&lt;/span&gt; &lt;span&gt;640&lt;/span&gt;&lt;span&gt;,&lt;/span&gt;  
+    &lt;span&gt;startheight&lt;/span&gt;&lt;span&gt;:&lt;/span&gt; &lt;span&gt;480&lt;/span&gt;&lt;span&gt;,&lt;/span&gt;
+    &lt;span&gt;vertical_center&lt;/span&gt;&lt;span&gt;:&lt;/span&gt; &lt;span&gt;1&lt;/span&gt;&lt;span&gt;,&lt;/span&gt;
+    &lt;span&gt;slideshow&lt;/span&gt;&lt;span&gt;:&lt;/span&gt; &lt;span&gt;1&lt;/span&gt;&lt;span&gt;,&lt;/span&gt;
+    &lt;span&gt;navigation&lt;/span&gt;&lt;span&gt;:&lt;/span&gt; &lt;span&gt;1&lt;/span&gt;&lt;span&gt;,&lt;/span&gt;
+    &lt;span&gt;transition&lt;/span&gt;&lt;span&gt;:&lt;/span&gt; &lt;span&gt;1&lt;/span&gt;&lt;span&gt;,&lt;/span&gt;
+    &lt;span&gt;pause_hover&lt;/span&gt;&lt;span&gt;:&lt;/span&gt; &lt;span&gt;0&lt;/span&gt;&lt;span&gt;,&lt;/span&gt;
+    &lt;span&gt;slide_counter&lt;/span&gt;&lt;span&gt;:&lt;/span&gt; &lt;span&gt;1&lt;/span&gt;&lt;span&gt;,&lt;/span&gt;
+    &lt;span&gt;slide_captions&lt;/span&gt;&lt;span&gt;:&lt;/span&gt; &lt;span&gt;1&lt;/span&gt;&lt;span&gt;,&lt;/span&gt;
+    &lt;span&gt;slide_interval&lt;/span&gt;&lt;span&gt;:&lt;/span&gt; &lt;span&gt;3000&lt;/span&gt;  
+    &lt;span&gt;};&lt;/span&gt;
+    &lt;/pre&gt;
+    &lt;/div&gt;&lt;h3&gt;Ajax Retry&lt;/h3&gt;
+    &lt;p&gt;I haven’t tested &lt;a href="http://github.com/execjosh/jquery-ajax-retry"&gt;jquery-ajax-retry&lt;/a&gt; (&lt;span&gt;MIT&lt;/span&gt; License) by execjosh, but I like the idea.  It attempts to retransmit a request when it fails.  The requests are spaced out until a certain number have been sent.  It might work well for certain classes of mobile web apps.&lt;/p&gt;
+    &lt;h3&gt;Internationalised Calendars&lt;/h3&gt;
+    &lt;p&gt;&lt;img src="http://dailyjs.com/images/posts/chinese_calendar.png" alt=""&gt;&lt;/p&gt;
+    &lt;p&gt;I thought &lt;a href="http://code.google.com/p/e-calendar/"&gt;e-calendar&lt;/a&gt; (&lt;span&gt;MIT&lt;/span&gt; License) was interesting, it displays a &lt;a href="http://en.wikipedia.org/wiki/Chinese_calendar"&gt;Chinese calendar&lt;/a&gt;.  It reminded me of my recent work adding I18n support to an app, which was nearly three weeks of solid work.&lt;/p&gt;
+    &lt;p&gt;&lt;a href="http://keith-wood.name/calendarsPicker.html"&gt;jQuery Calendars Datepicker&lt;/a&gt; (&lt;span&gt;GPL&lt;/span&gt; or &lt;span&gt;MIT&lt;/span&gt;) by Keith Wood supports a whole load of calendars.  You can even select a Mayan calendar, but it doesn’t have an Easter Egg for selecting 2012.&lt;/p&gt;
+    &lt;p&gt;Other calendar plugins sometimes support internationalization, and hopefully browser manufacturers won’t botch the &lt;span&gt;HTML&lt;/span&gt; 5 date picker.&lt;/p&gt;
+    &lt;p&gt;I’ll have to write a calendar picker roundup at some point — jQuery alone has a huge selection available.&lt;/p&gt;&lt;img src="http://feeds.feedburner.com/~r/dailyjs/~4/Nm8pL6h6UOI" height="1" width="1"&gt;</content>
+  <author gr:unknown-author="true">
+    <name>(author unknown)</name>
+  </author>
+  <source gr:stream-id="feed/http://feeds.feedburner.com/dailyjs">
+    <id>tag:google.com,2005:reader/feed/http://feeds.feedburner.com/dailyjs</id>
+    <title type="html">DailyJS</title>
+    <link rel="alternate" href="http://dailyjs.com" type="text/html"/>
+  </source>
+</entry>
+<entry gr:crawl-timestamp-msec="1278434890682">
+  <id gr:original-id="">tag:google.com,2005:reader/item/0fd0a86f9309391e</id>
+  <category term="user/12181831902988724490/state/com.google/reading-list" scheme="http://www.google.com/reader/" label="reading-list"/>
+  <category term="user/12181831902988724490/state/com.google/fresh" scheme="http://www.google.com/reader/" label="fresh"/>
+  <title type="html">Egy focimeccs miatt nem látjuk csütörtöktől a Predators-t</title>
+  <published>2010-07-06T16:48:10Z</published>
+  <updated>2010-07-06T16:48:10Z</updated>
+  <link rel="alternate" href="http://www.sg.hu/cikkek/75525" type="text/html"/>
+  <summary xml:base="http://www.sg.hu/" type="html">Az Intercom tájékoztatása szerint a focivébé, illetve annak döntője miatt láthatjuk több mint egy hónappal később a Ragadozókat. Kárpótlásul az elkövetkező hetekben több világpremier közeli bemutatót is kínál a cég.</summary>
+  <author gr:unknown-author="true">
+    <name>(author unknown)</name>
+  </author>
+  <source gr:stream-id="feed/http://www.sg.hu/plain/sg_rrs.xml">
+    <id>tag:google.com,2005:reader/feed/http://www.sg.hu/plain/sg_rrs.xml</id>
+    <title type="html">SG.hu</title>
+    <link rel="alternate" href="http://www.sg.hu/" type="text/html"/>
+  </source>
+</entry>
+<entry gr:crawl-timestamp-msec="1278434237413">
+  <id gr:original-id="3_256530">tag:google.com,2005:reader/item/d21c5d43881a3154</id>
+  <category term="user/12181831902988724490/state/com.google/reading-list" scheme="http://www.google.com/reader/" label="reading-list"/>
+  <category term="user/12181831902988724490/state/com.google/fresh" scheme="http://www.google.com/reader/" label="fresh"/>
+  <title type="html">FN-Híradó: ez történt kedden</title>
+  <published>2010-07-06T16:30:59Z</published>
+  <updated>2010-07-06T16:30:59Z</updated>
+  <link rel="alternate" href="http://www.fn.hu//belfold/20100706/fn_hirado_tortent_kedden/" type="text/html"/>
+  <summary xml:base="http://www.fn.hu/" type="html">A nap legfontosabb hírei, ahogy az fn.hu látja.</summary>
+  <author gr:unknown-author="true">
+    <name>(author unknown)</name>
+  </author>
+  <source gr:stream-id="feed/http://www.fn.hu/rss/feed_cimoldal_mind.xml">
+    <id>tag:google.com,2005:reader/feed/http://www.fn.hu/rss/feed_cimoldal_mind.xml</id>
+    <title type="html">FN-Hírfolyam - mindenevőknek</title>
+    <link rel="alternate" href="http://www.fn.hu" type="text/html"/>
+  </source>
+</entry>
+<entry gr:crawl-timestamp-msec="1278434237413">
+  <id gr:original-id="4_256565">tag:google.com,2005:reader/item/d4f0410defbc8c6a</id>
+  <category term="user/12181831902988724490/state/com.google/reading-list" scheme="http://www.google.com/reader/" label="reading-list"/>
+  <category term="user/12181831902988724490/state/com.google/fresh" scheme="http://www.google.com/reader/" label="fresh"/>
+  <title type="html">Megkötötték a szlovák koalíciót</title>
+  <published>2010-07-06T15:54:35Z</published>
+  <updated>2010-07-06T15:54:35Z</updated>
+  <link rel="alternate" href="http://www.fn.hu//kulfold/20100706/megkotottek_szlovak_koaliciot/" type="text/html"/>
+  <summary xml:base="http://www.fn.hu/" type="html">Koalíciós szerződést írt alá kedden Pozsonyban négy jobbközép szlovákiai párt, amelyek közösen kívánnak kormány alakítani.</summary>
+  <author gr:unknown-author="true">
+    <name>(author unknown)</name>
+  </author>
+  <source gr:stream-id="feed/http://www.fn.hu/rss/feed_cimoldal_mind.xml">
+    <id>tag:google.com,2005:reader/feed/http://www.fn.hu/rss/feed_cimoldal_mind.xml</id>
+    <title type="html">FN-Hírfolyam - mindenevőknek</title>
+    <link rel="alternate" href="http://www.fn.hu" type="text/html"/>
+  </source>
+</entry>
+<entry gr:crawl-timestamp-msec="1278434237412">
+  <id gr:original-id="6_256563">tag:google.com,2005:reader/item/8e28bfee3fd5763e</id>
+  <category term="user/12181831902988724490/state/com.google/reading-list" scheme="http://www.google.com/reader/" label="reading-list"/>
+  <category term="user/12181831902988724490/state/com.google/fresh" scheme="http://www.google.com/reader/" label="fresh"/>
+  <title type="html">Emelkedtek a részvényárfolyamok</title>
+  <published>2010-07-06T15:50:39Z</published>
+  <updated>2010-07-06T15:50:39Z</updated>
+  <link rel="alternate" href="http://www.fn.hu//penzugy/20100706/emelkedtek_reszvenyarfolyamok/" type="text/html"/>
+  <summary xml:base="http://www.fn.hu/" type="html">A Budapesti Értéktőzsde részvényindexe 426,70 pontos, 2,02 százalékos emelkedéssel, 21 511,69 ponton zárt kedden.</summary>
+  <author gr:unknown-author="true">
+    <name>(author unknown)</name>
+  </author>
+  <source gr:stream-id="feed/http://www.fn.hu/rss/feed_cimoldal_mind.xml">
+    <id>tag:google.com,2005:reader/feed/http://www.fn.hu/rss/feed_cimoldal_mind.xml</id>
+    <title type="html">FN-Hírfolyam - mindenevőknek</title>
+    <link rel="alternate" href="http://www.fn.hu" type="text/html"/>
+  </source>
+</entry>
+<entry gr:crawl-timestamp-msec="1278434237412">
+  <id gr:original-id="394_256562">tag:google.com,2005:reader/item/5fc8b9109ea13000</id>
+  <category term="user/12181831902988724490/state/com.google/reading-list" scheme="http://www.google.com/reader/" label="reading-list"/>
+  <category term="user/12181831902988724490/state/com.google/fresh" scheme="http://www.google.com/reader/" label="fresh"/>
+  <title type="html">Ölt a Balaton</title>
+  <published>2010-07-06T15:45:21Z</published>
+  <updated>2010-07-06T15:45:21Z</updated>
+  <link rel="alternate" href="http://www.fn.hu//baleset_bunugy/20100706/olt_balaton/" type="text/html"/>
+  <summary xml:base="http://www.fn.hu/" type="html">Gumicsónakról esett a vízbe egy férfi Balatonlellén kedden délután. A holttestét órákkal később találták meg.</summary>
+  <author gr:unknown-author="true">
+    <name>(author unknown)</name>
+  </author>
+  <source gr:stream-id="feed/http://www.fn.hu/rss/feed_cimoldal_mind.xml">
+    <id>tag:google.com,2005:reader/feed/http://www.fn.hu/rss/feed_cimoldal_mind.xml</id>
+    <title type="html">FN-Hírfolyam - mindenevőknek</title>
+    <link rel="alternate" href="http://www.fn.hu" type="text/html"/>
+  </source>
+</entry>
+<entry gr:crawl-timestamp-msec="1278433258292">
+  <id gr:original-id="http://www.rtlhirek.hu/cikk/326641">tag:google.com,2005:reader/item/000b2c10ed8a736b</id>
+  <category term="user/12181831902988724490/state/com.google/reading-list" scheme="http://www.google.com/reader/" label="reading-list"/>
+  <category term="user/12181831902988724490/label/test1" scheme="http://www.google.com/reader/" label="test1"/>
+  <category term="user/12181831902988724490/state/com.google/fresh" scheme="http://www.google.com/reader/" label="fresh"/>
+  <category term="Hazai" scheme="main"/>
+  <title type="html">Légibaleset: Túl alacsonyan szállt a gép?</title>
+  <published>2010-07-06T14:57:00Z</published>
+  <updated>2010-07-06T14:57:00Z</updated>
+  <link rel="alternate" href="http://www.rtlhirek.hu/cikk/326641" type="text/html"/>
+  <link rel="enclosure" href="http://www.rtlhirek.hu/graphic/resize/bGVhZGltYWdlcy8xMDA3LzMyNjY0MS9sZWFka2VwMS5qcGc=/320/240/000000/0/leadkep1.jpg" type="image/jpeg" length="150000"/>
+  <summary xml:base="http://www.rtlhirek.hu/" type="html">A fiatal pilóta és két utasa kerékpárversenyzőket filmezett a magasból, mind a hárman szörnyethaltak.</summary>
+  <author gr:unknown-author="true">
+    <name>(author unknown)</name>
+  </author>
+  <source gr:stream-id="feed/http://rtlhirek.hu/system/rss/">
+    <id>tag:google.com,2005:reader/feed/http://rtlhirek.hu/system/rss/</id>
+    <title type="html">RTL hírek -</title>
+    <link rel="alternate" href="http://www.rtlhirek.hu/" type="text/html"/>
+  </source>
+</entry>
+<entry gr:crawl-timestamp-msec="1278433258291">
+  <id gr:original-id="http://www.rtlhirek.hu/cikk/326785">tag:google.com,2005:reader/item/2b2bbd1e3bd84171</id>
+  <category term="user/12181831902988724490/state/com.google/reading-list" scheme="http://www.google.com/reader/" label="reading-list"/>
+  <category term="user/12181831902988724490/label/test1" scheme="http://www.google.com/reader/" label="test1"/>
+  <category term="user/12181831902988724490/state/com.google/fresh" scheme="http://www.google.com/reader/" label="fresh"/>
+  <category term="Hazai" scheme="main"/>
+  <title type="html">Magyar kutakhoz csábító kedvezmény</title>
+  <published>2010-07-06T15:24:00Z</published>
+  <updated>2010-07-06T15:24:00Z</updated>
+  <link rel="alternate" href="http://www.rtlhirek.hu/cikk/326785" type="text/html"/>
+  <link rel="enclosure" href="http://www.rtlhirek.hu/graphic/resize/bGVhZGltYWdlcy8xMDA3LzMyNjc4NS9sZWFka2VwMS5qcGc=/320/240/000000/0/leadkep1.jpg" type="image/jpeg" length="150000"/>
+  <summary xml:base="http://www.rtlhirek.hu/" type="html">A kedvezményes gázolajért cserébe, 10 nagy fuvarozó cég vállalta, hogy már idén Magyarország területén tankol.</summary>
+  <author gr:unknown-author="true">
+    <name>(author unknown)</name>
+  </author>
+  <source gr:stream-id="feed/http://rtlhirek.hu/system/rss/">
+    <id>tag:google.com,2005:reader/feed/http://rtlhirek.hu/system/rss/</id>
+    <title type="html">RTL hírek -</title>
+    <link rel="alternate" href="http://www.rtlhirek.hu/" type="text/html"/>
+  </source>
+</entry>
+<entry gr:crawl-timestamp-msec="1278433258291">
+  <id gr:original-id="http://www.rtlhirek.hu/cikk/326783">tag:google.com,2005:reader/item/4c1f22f762720301</id>
+  <category term="user/12181831902988724490/state/com.google/reading-list" scheme="http://www.google.com/reader/" label="reading-list"/>
+  <category term="user/12181831902988724490/label/test1" scheme="http://www.google.com/reader/" label="test1"/>
+  <category term="user/12181831902988724490/state/com.google/fresh" scheme="http://www.google.com/reader/" label="fresh"/>
+  <category term="Külföld" scheme="main"/>
+  <title type="html">Horror egy finn gyorsétteremben</title>
+  <published>2010-07-06T15:21:00Z</published>
+  <updated>2010-07-06T15:21:00Z</updated>
+  <link rel="alternate" href="http://www.rtlhirek.hu/cikk/326783" type="text/html"/>
+  <link rel="enclosure" href="http://www.rtlhirek.hu/graphic/resize/bGVhZGltYWdlcy8xMDA3LzMyNjc4My9sZWFka2VwMS5qcGc=/320/240/000000/0/leadkep1.jpg" type="image/jpeg" length="150000"/>
+  <summary xml:base="http://www.rtlhirek.hu/" type="html">Két embert lőtt agyon egy éjszaka is nyitva tartó finnországi étteremben egy férfi kedden.</summary>
+  <author gr:unknown-author="true">
+    <name>(author unknown)</name>
+  </author>
+  <source gr:stream-id="feed/http://rtlhirek.hu/system/rss/">
+    <id>tag:google.com,2005:reader/feed/http://rtlhirek.hu/system/rss/</id>
+    <title type="html">RTL hírek -</title>
+    <link rel="alternate" href="http://www.rtlhirek.hu/" type="text/html"/>
+  </source>
+</entry>
+<entry gr:crawl-timestamp-msec="1278433238508">
+  <id gr:original-id="http://prohardver.hu/guid/cnt/62205">tag:google.com,2005:reader/item/e00f3d1a35fdab14</id>
+  <category term="user/12181831902988724490/state/com.google/reading-list" scheme="http://www.google.com/reader/" label="reading-list"/>
+  <category term="user/12181831902988724490/state/com.google/fresh" scheme="http://www.google.com/reader/" label="fresh"/>
+  <category term="Adattároló"/>
+  <title type="html">Küszöbön a 3 TB-os belső merevlemezek</title>
+  <published>2010-07-06T16:01:00Z</published>
+  <updated>2010-07-06T16:01:00Z</updated>
+  <link rel="alternate" href="http://prohardver.hu/hir/kuszobon_a_3_tb-os_belso_merevlemezek.html" type="text/html"/>
+  <summary xml:base="http://prohardver.hu/" type="html">Kérdés, hogy a PC-k felkészültek-e ekkora kapacitás kezelésére.</summary>
+  <author gr:unknown-author="true">
+    <name>(author unknown)</name>
+  </author>
+  <source gr:stream-id="feed/http://prohardver.hu/_xcache/rss_ph.xml">
+    <id>tag:google.com,2005:reader/feed/http://prohardver.hu/_xcache/rss_ph.xml</id>
+    <title type="html">PROHARDVER! - Hírek és tesztek vegyesen</title>
+    <link rel="alternate" href="http://prohardver.hu" type="text/html"/>
+  </source>
+</entry>
+<entry gr:crawl-timestamp-msec="1278433132873">
+  <id gr:original-id="http://it.slashdot.org/story/10/07/06/1554229/The-Unstoppable-Tech-Support-Scam?from=rss">tag:google.com,2005:reader/item/5239181320040709</id>
+  <category term="user/12181831902988724490/state/com.google/read" scheme="http://www.google.com/reader/" label="read"/>
+  <category term="user/12181831902988724490/state/com.google/reading-list" scheme="http://www.google.com/reader/" label="reading-list"/>
+  <category term="user/12181831902988724490/label/linux" scheme="http://www.google.com/reader/" label="linux"/>
+  <category term="user/12181831902988724490/state/com.google/fresh" scheme="http://www.google.com/reader/" label="fresh"/>
+  <category term="security"/>
+  <title type="html">The Unstoppable &amp;quot;Tech Support&amp;quot; Scam</title>
+  <published>2010-07-06T16:04:00Z</published>
+  <updated>2010-07-06T16:04:00Z</updated>
+  <link rel="alternate" href="http://rss.slashdot.org/~r/Slashdot/slashdotIt/~3/5XjghdK7JTg/The-Unstoppable-Tech-Support-Scam" type="text/html"/>
+  <summary xml:base="http://it.slashdot.org/" type="html">Barence writes &amp;quot;A pernicious new type of scam is targeting British computer owners, reports PC Pro. The con is both fiendishly clever and ridiculously simple. The fraudster cold-calls the customer and tells them that Microsoft has detected a virus on their PC, then invites them to download a piece of remote-assistance software. No doubt reassured by the lines of indecipherable code flitting across their screen, the caller assures the customer they can make the virus vanish – but first, of course, they want payment. £185 to be precise. The spoof site behind the scam is approved by McAfee&amp;#39;s Site Advisor and bears Microsoft logos, something which both companies have failed to act upon. Meanwhile, an assortment of British regulators have said there is nothing they can do to stop it.&amp;quot;&lt;p&gt;&lt;a href="http://www.facebook.com/sharer.php?u=http%3A%2F%2Fit.slashdot.org%2Fstory%2F10%2F07%2F06%2F1554229%2FThe-Unstoppable-Tech-Support-Scam" title="Share on Facebook"&gt;&lt;img src="http://a.fsdn.com/sd/facebook_icon_large.png"&gt;&lt;/a&gt;
+
+    &lt;a href="http://twitter.com/home?status=The+Unstoppable+%22Tech+Support%22+Scam%3A+http%3A%2F%2Fbit.ly%2FaRyPXb" title="Share on Twitter"&gt;&lt;img src="http://a.fsdn.com/sd/twitter_icon_large.png"&gt;&lt;/a&gt;&lt;/p&gt;&lt;p&gt;&lt;a href="http://it.slashdot.org/story/10/07/06/1554229/The-Unstoppable-Tech-Support-Scam?from=rss"&gt;Read more of this story&lt;/a&gt; at Slashdot.&lt;/p&gt;
+    &lt;p&gt;&lt;a href="http://feedads.g.doubleclick.net/~at/AJyjvJr6S8zloLjhhA-DqKm6NUk/0/da"&gt;&lt;img src="http://feedads.g.doubleclick.net/~at/AJyjvJr6S8zloLjhhA-DqKm6NUk/0/di" border="0" ismap&gt;&lt;/a&gt;&lt;br&gt;
+    &lt;a href="http://feedads.g.doubleclick.net/~at/AJyjvJr6S8zloLjhhA-DqKm6NUk/1/da"&gt;&lt;img src="http://feedads.g.doubleclick.net/~at/AJyjvJr6S8zloLjhhA-DqKm6NUk/1/di" border="0" ismap&gt;&lt;/a&gt;&lt;/p&gt;&lt;img src="http://feeds.feedburner.com/~r/Slashdot/slashdotIt/~4/5XjghdK7JTg" height="1" width="1"&gt;</summary>
+  <author>
+    <name>timothy</name>
+  </author>
+  <source gr:stream-id="feed/http://rss.slashdot.org/Slashdot/slashdotIt">
+    <id>tag:google.com,2005:reader/feed/http://rss.slashdot.org/Slashdot/slashdotIt</id>
+    <title type="html">Slashdot: IT</title>
+    <link rel="alternate" href="http://it.slashdot.org/" type="text/html"/>
+  </source>
+</entry>
+<entry gr:crawl-timestamp-msec="1278433054757">
+  <id gr:original-id="http://www.howtoforge.com/installing-maia-mailguard-on-debian-lenny">tag:google.com,2005:reader/item/3fff8e3e2a39e446</id>
+  <category term="user/12181831902988724490/state/com.google/read" scheme="http://www.google.com/reader/" label="read"/>
+  <category term="user/12181831902988724490/state/com.google/reading-list" scheme="http://www.google.com/reader/" label="reading-list"/>
+  <category term="user/12181831902988724490/label/google" scheme="http://www.google.com/reader/" label="google"/>
+  <category term="user/12181831902988724490/state/com.google/fresh" scheme="http://www.google.com/reader/" label="fresh"/>
+  <category term="Anti-Spam/Virus" scheme="http://www.howtoforge.com/sitemap/email/antispam-antivirus"/>
+  <category term="Debian" scheme="http://www.howtoforge.com/sitemap/linux/debian"/>
+  <category term="Email" scheme="http://www.howtoforge.com/sitemap/email"/>
+  <category term="Postfix" scheme="http://www.howtoforge.com/sitemap/email/postfix"/>
+  <title type="html">Installing Maia Mailguard On Debian Lenny (Virtual Users/Domains With Postfix/MySQL)</title>
+  <published>2010-07-06T15:19:29Z</published>
+  <updated>2010-07-06T15:19:29Z</updated>
+  <link rel="alternate" href="http://www.howtoforge.com/installing-maia-mailguard-on-debian-lenny" type="text/html"/>
+  <summary xml:base="http://www.howtoforge.com/" type="html">&lt;table align="left" cellpadding="0" cellspacing="0" width="36" height="40" style="margin-top:0px;margin-bottom:0px"&gt;&lt;tr&gt;&lt;td&gt;&lt;img src="http://static.howtoforge.com/images/teaser/debian.gif" width="33" height="40" alt=""&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;p&gt;&lt;b&gt;Installing Maia Mailguard On Debian Lenny (Virtual Users/Domains 
+    With Postfix/MySQL)&lt;/b&gt;&lt;/p&gt;
+
+    &lt;p&gt;This guide explains how to install &lt;a href="http://www.maiamailguard.com/"&gt;Maia Mailguard&lt;/a&gt;,
+    a spam and virus management system, on a Debian Lenny mailserver. 
+
+    Maia Mailguard is a web-based interface and management system based on 
+    the popular amavisd-new email scanner and SpamAssassin. Written in Perl 
+    and PHP, Maia Mailguard gives end-users control over how their mail is 
+    processed by virus scanners and spam filters, while giving mail 
+    administrators the power to configure site-wide defaults and limits.&lt;/p&gt;</summary>
+  <author gr:unknown-author="true">
+    <name>(author unknown)</name>
+  </author>
+  <source gr:stream-id="feed/http://www.howtoforge.com/node/feed">
+    <id>tag:google.com,2005:reader/feed/http://www.howtoforge.com/node/feed</id>
+    <title type="html">HowtoForge - Linux Howtos and Tutorials -</title>
+    <link rel="alternate" href="http://www.howtoforge.com" type="text/html"/>
+  </source>
+</entry>
+<entry gr:crawl-timestamp-msec="1278432324966">
+  <id gr:original-id="Lifehacker-5580178">tag:google.com,2005:reader/item/1c2dc5d310813f6c</id>
+  <category term="user/12181831902988724490/state/com.google/read" scheme="http://www.google.com/reader/" label="read"/>
+  <category term="user/12181831902988724490/state/com.google/reading-list" scheme="http://www.google.com/reader/" label="reading-list"/>
+  <category term="user/12181831902988724490/label/test1" scheme="http://www.google.com/reader/" label="test1"/>
+  <category term="user/12181831902988724490/state/com.google/fresh" scheme="http://www.google.com/reader/" label="fresh"/>
+  <category term="What You Said"/>
+  <category term="Annoyances"/>
+  <category term="Email"/>
+  <category term="email signature"/>
+  <category term="Etiquette"/>
+  <category term="Feature"/>
+  <category term="Office"/>
+  <category term="Office culture"/>
+  <category term="signature"/>
+  <category term="Top"/>
+  <title type="html">The Worst Email Habits and Annoyances You Should Avoid (or At Least Be Aware Of) [What You Said]</title>
+  <published>2010-07-06T16:00:00Z</published>
+  <updated>2010-07-06T16:00:00Z</updated>
+  <link rel="alternate" href="http://feeds.gawker.com/~r/lifehacker/full/~3/5h-pg32knZI/the-worst-email-habits-and-annoyances-you-should-avoid-or-at-least-be-aware-of" type="text/html"/>
+  <summary xml:base="http://lifehacker.com/" type="html">&lt;div style="float:left;padding-right:10px"&gt;
+
+    &lt;div&gt;&lt;a title="Click here to read The Worst Email Habits and Annoyances You Should Avoid (or At Least Be Aware Of)" href="http://lifehacker.com/5580178/the-worst-email-habits-and-annoyances-you-should-avoid-or-at-least-be-aware-of"&gt;
+    &lt;img style="border-color:#B3B3B3;border-width:0 1px 1px;border-style:none solid solid" height="120" width="160" title="Click here to read The Worst Email Habits and Annoyances You Should Avoid (or At Least Be Aware Of)" alt="Click here to read The Worst Email Habits and Annoyances You Should Avoid (or At Least Be Aware Of)" src="http://cache-03.gawkerassets.com/assets/images/17/2010/07/160x120_email_blunder.jpg"&gt;
+    &lt;/a&gt;&lt;/div&gt;
+    &lt;/div&gt;
+    Email signatures &lt;a href="http://lifehacker.com/5576376/mobile-email-signatures-might-not-send-the-message-you-think"&gt;might be more annoying than you think&lt;/a&gt;, but we all experience plenty more gaffes, annoyances, and misfires in our inbox. We &lt;a href="http://www.facebook.com/photo.php?pid=5041325&amp;amp;id=7568536355&amp;amp;comments"&gt;asked&lt;/a&gt; our savvy &lt;a href="http://twitter.com/Lifehacker/status/17589675615"&gt;readers&lt;/a&gt; to share their biggest email annoyances, and here's what they said.				&lt;a href="http://lifehacker.com/5580178/the-worst-email-habits-and-annoyances-you-should-avoid-or-at-least-be-aware-of" title="Click here to read more about The Worst Email Habits and Annoyances You Should Avoid (or At Least Be Aware Of) [What You Said]"&gt;More »&lt;/a&gt;
+    &lt;br style="clear:both"&gt;
+    &lt;br style="clear:both"&gt;
+    &lt;br style="clear:both"&gt;
+    &lt;a href="http://ads.pheedo.com/click.phdo?s=3f1ded11b1a2737613413407ef9d39d6&amp;amp;p=1"&gt;&lt;img alt="" style="border:0" border="0" src="http://ads.pheedo.com/img.phdo?s=3f1ded11b1a2737613413407ef9d39d6&amp;amp;p=1"&gt;&lt;/a&gt;
+    &lt;img alt="" height="0" width="0" border="0" src="http://a.triggit.com/px?u=pheedo&amp;amp;rtv=TechBiz&amp;amp;rtv=p28252&amp;amp;rtv=f5734"&gt;&lt;img alt="" height="0" width="0" border="0" src="http://pixel.quantserve.com/pixel/p-8bUhLiluj0fAw.gif?labels=pub.28252.rss.TechBiz.5734,cat.TechBiz.rss"&gt;&lt;br&gt;
+    &lt;img src="http://ads.pheedo.com/img.phdo?kw="&gt; 
+    &lt;a href="http://ads.pheedo.com/click.phdo?s=3f1ded11b1a2737613413407ef9d39d6&amp;amp;p=64&amp;amp;kw=Email"&gt;Email&lt;/a&gt; - &lt;a href="http://ads.pheedo.com/click.phdo?s=3f1ded11b1a2737613413407ef9d39d6&amp;amp;p=64&amp;amp;kw=Marketing"&gt;Marketing&lt;/a&gt; - &lt;a href="http://ads.pheedo.com/click.phdo?s=3f1ded11b1a2737613413407ef9d39d6&amp;amp;p=64&amp;amp;kw=Windows"&gt;Windows&lt;/a&gt; - &lt;a href="http://ads.pheedo.com/click.phdo?s=3f1ded11b1a2737613413407ef9d39d6&amp;amp;p=64&amp;amp;kw=History"&gt;History&lt;/a&gt; - &lt;a href="http://ads.pheedo.com/click.phdo?s=3f1ded11b1a2737613413407ef9d39d6&amp;amp;p=64&amp;amp;kw=Historians"&gt;Historians&lt;/a&gt;&lt;div&gt;
+    &lt;a href="http://feeds.gawker.com/~ff/lifehacker/full?a=5h-pg32knZI:oHdJP6sc1I8:H0mrP-F8Qgo"&gt;&lt;img src="http://feeds.feedburner.com/~ff/lifehacker/full?d=H0mrP-F8Qgo" border="0"&gt;&lt;/a&gt; &lt;a href="http://feeds.gawker.com/~ff/lifehacker/full?a=5h-pg32knZI:oHdJP6sc1I8:yIl2AUoC8zA"&gt;&lt;img src="http://feeds.feedburner.com/~ff/lifehacker/full?d=yIl2AUoC8zA" border="0"&gt;&lt;/a&gt; &lt;a href="http://feeds.gawker.com/~ff/lifehacker/full?a=5h-pg32knZI:oHdJP6sc1I8:D7DqB2pKExk"&gt;&lt;img src="http://feeds.feedburner.com/~ff/lifehacker/full?i=5h-pg32knZI:oHdJP6sc1I8:D7DqB2pKExk" border="0"&gt;&lt;/a&gt; &lt;a href="http://feeds.gawker.com/~ff/lifehacker/full?a=5h-pg32knZI:oHdJP6sc1I8:V_sGLiPBpWU"&gt;&lt;img src="http://feeds.feedburner.com/~ff/lifehacker/full?i=5h-pg32knZI:oHdJP6sc1I8:V_sGLiPBpWU" border="0"&gt;&lt;/a&gt;
+    &lt;/div&gt;&lt;img src="http://feeds.feedburner.com/~r/lifehacker/full/~4/5h-pg32knZI" height="1" width="1"&gt;</summary>
+  author>
+  name>Kevin Purdy</name>
+/author>
+gr:likingUser>04932391054142606690</gr:likingUser>
+gr:likingUser>07990141544140937931</gr:likingUser>
+gr:likingUser>16667744812319894588</gr:likingUser>
+gr:likingUser>05149671740972206500</gr:likingUser>
+gr:likingUser>05040797288003679544</gr:likingUser>
+gr:likingUser>05782337523901469726</gr:likingUser>
+gr:likingUser>10341899005847812627</gr:likingUser>
+source gr:stream-id="feed/http://feeds.gawker.com/lifehacker/full">
+id>tag:google.com,2005:reader/feed/http://feeds.gawker.com/lifehacker/full</id>
+title type="html">Lifehacker</title>
+link rel="alternate" href="http://lifehacker.com" type="text/html"/>
+/source>
+/entry>
+entry gr:crawl-timestamp-msec="1278432296343">
+id gr:original-id="">tag:google.com,2005:reader/item/346cc936205a13c0</id>
+category term="user/12181831902988724490/state/com.google/reading-list" scheme="http://www.google.com/reader/" label="reading-list"/>
+category term="user/12181831902988724490/state/com.google/fresh" scheme="http://www.google.com/reader/" label="fresh"/>
+title type="html">Az okostelefonokhoz elengedhetetlen az LTE-technológia</title>
+published>2010-07-06T16:04:56Z</published>
+updated>2010-07-06T16:04:56Z</updated>
+link rel="alternate" href="http://www.sg.hu/cikkek/75481" type="text/html"/>
+summary xml:base="http://www.sg.hu/" type="html">A mobil szolgáltatók és a felhasználók egyaránt nagyon várják a jelenlegi szabványoknál nagyobb adatátviteli sebességet biztosító LTE technológiát.</summary>
+author gr:unknown-author="true">
+name>(author unknown)</name>
+/author>
+source gr:stream-id="feed/http://www.sg.hu/plain/sg_rrs.xml">
+id>tag:google.com,2005:reader/feed/http://www.sg.hu/plain/sg_rrs.xml</id>
+title type="html">SG.hu</title>
+link rel="alternate" href="http://www.sg.hu/" type="text/html"/>
+/source>
+/entry>
+entry gr:crawl-timestamp-msec="1278432296323">
+id gr:original-id="">tag:google.com,2005:reader/item/9e90bf482466fb92</id>
+category term="user/12181831902988724490/state/com.google/reading-list" scheme="http://www.google.com/reader/" label="reading-list"/>
+category term="user/12181831902988724490/state/com.google/fresh" scheme="http://www.google.com/reader/" label="fresh"/>
+title type="html">Nem GTA lesz a Mafia II, hanem Alan Wake</title>
+published>2010-07-06T16:04:56Z</published>
+updated>2010-07-06T16:04:56Z</updated>
+link rel="alternate" href="http://www.sg.hu/cikkek/75531" type="text/html"/>
+summary xml:base="http://www.sg.hu/" type="html">A legújabb hírek szerint a Mafia II nem a GTA sorozathoz hasonlít majd leginkább, hanem az Alan Wakehez.</summary>
+author gr:unknown-author="true">
+name>(author unknown)</name>
+/author>
+source gr:stream-id="feed/http://www.sg.hu/plain/sg_rrs.xml">
+id>tag:google.com,2005:reader/feed/http://www.sg.hu/plain/sg_rrs.xml</id>
+title type="html">SG.hu</title>
+link rel="alternate" href="http://www.sg.hu/" type="text/html"/>
+/source>
+/entry>
+entry gr:crawl-timestamp-msec="1278432054835">
+id gr:original-id="http://www.readwriteweb.com/archives/coming_this_election_crowdsourcing_for_scandal.php">tag:google.com,2005:reader/item/28e7bc3ad300d04b</id>
+category term="user/12181831902988724490/state/com.google/reading-list" scheme="http://www.google.com/reader/" label="reading-list"/>
+category term="user/12181831902988724490/state/com.google/fresh" scheme="http://www.google.com/reader/" label="fresh"/>
+category term="Lexus"/>
+title type="html">Coming This Election: Crowdsourcing For Scandal</title>
+published>2010-07-06T17:00:00Z</published>
+updated>2010-07-06T17:00:00Z</updated>
+link rel="alternate" href="http://feedproxy.google.com/~r/readwriteweb/~3/c8i1ZxH-tik/coming_this_election_crowdsourcing_for_scandal.php" type="text/html"/>
+summary xml:base="http://www.readwriteweb.com/" type="html">&lt;p&gt;&lt;img alt="crowdsource_hideface.jpg" src="http://www.readwriteweb.com/crowdsource_hideface.jpg" width="150" height="100"&gt;In a world where crowdsourcing has become a mainstay of politics, a new site from the Democratic National Committee is taking the idea one step further and asking voters to find damaging videos of opposing lawmakers and candidates.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="http://accountabilityproject.com"&gt;The Accountability Project &lt;/a&gt; is pretty simple: you can upload and view videos, or track down Republican candidate events. There's no voting or comments; it's essentially a platform for videos to go viral. So far, uploads mostly consist of tepid footage of conservatives criticizing Democrats. But when compared to other political crowdsourcing projects, the site stands out as one of the more potentially disruptive ideas in this midterm election.&lt;/p&gt;
+&lt;p align="right"&gt;&lt;em&gt;Sponsor&lt;/em&gt;&lt;br&gt;&lt;a href="http://d.ads.readwriteweb.com/ck.php?n=20520&amp;amp;cb=20520"&gt;&lt;img src="http://d.ads.readwriteweb.com/avw.php?zoneid=14&amp;amp;cb=20520&amp;amp;n=20520" border="0" alt=""&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;div style="float:left;width:150px"&gt;&lt;/div&gt;
+&lt;div style="float:left"&gt;&lt;p&gt;&lt;em&gt;This Innovation Series is brought to you by &lt;a href="http://ad.doubleclick.net/clk;225767022;49467293;q" rel="nofollow"&gt;Lexus&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;br style="clear:both"&gt;
+
+&lt;p&gt;Crowdsourcing in politics has become ubiquitous over the last several years, particularly as candidates and agencies have figured out how to use social media well. But this year is the first major election since President Obama so famously harnessed those social tools in his 2008 election bid. Online videos have &lt;a href="http://www.washingtonexaminer.com/opinion/blogs/beltway-confidential/Viral-videos-are-still-changing-the-face-of-elections-97618144.html"&gt;already played a significant role&lt;/a&gt; (one of the most famous &lt;a href="http://voices.washingtonpost.com/thefix/house/the-lesson-on-bob-etheridge.html"&gt;involving a Democratic Representative&lt;/a&gt;). &lt;/p&gt;
+
+&lt;p&gt;&lt;a href="http://twitter.com/roytemple"&gt;Roy Temple&lt;/a&gt;, a Washington, D.C.-based Democratic political consultant, says that usually, "When parties or candidates seek activist opinions (like the current GOP effort to crowdsource policy priorities), there is a certain level of cynicism that their opinion will count." &lt;/p&gt;
+
+&lt;center&gt;&lt;img alt="accountablity_screenshot.png" src="http://www.readwriteweb.com/accountablity_screenshot.png" width="550" height="400"&gt;&lt;/center&gt;
+
+&lt;p&gt;&lt;br&gt;
+&lt;blockquote&gt;The Accountability Project, he continues, "taps into the belief by party activists that politicians of the opposite party say one thing in front of the press, and quite another when they think no one is really listening.  However, all activists can imagine a scenario where what they capture on video could really make a difference in a campaign.&lt;/blockquote&gt;&lt;/p&gt;
+
+&lt;p&gt;"The projects asks activists to undertake an activity that almost all of them can appreciate the value of, which increases the likelihood that they will take such action.  And it offers them a way to be involved that they might not have otherwise thought was possible or meaningful."&lt;/p&gt;
+
+&lt;p&gt;That last point may be the most critical part of the DNC's project. In a paper published last month on crowdsourcing [&lt;a href="https://docs.google.com/viewer?url=http://irevolution.files.wordpress.com/2010/05/working-paper1.pdf"&gt;PDF&lt;/a&gt;], a researcher at the London School of Economics wrote that, "The needs, aspirations, motivations and incentives of the crowd to participate in the initiative must remain the most important consideration [...] &lt;b&gt;The practitioners must understand the crowd motivation and align their goals according to it.&lt;/b&gt;" (Emphasis ours.)&lt;/p&gt;
+
+&lt;p&gt;That might sound like common sense, but considering the number of projects asking the crowd to do&lt;a href="http://www.americaspeakingout.com"&gt; the equivalent&lt;/a&gt; of &lt;a href="http://change.gov/"&gt;ranking policy initiatives&lt;/a&gt;, too many political strategists seem to be confusing the crowd's interests with what will genuinely motivate it.&lt;br&gt;
+&lt;br&gt;
+In other words, if you want to create an effective crowdsourcing project and the crowd is hungry for political blood, then give them the equivalent of an elephant gun. &lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;&lt;small&gt;Photo by &lt;a href="http://www.sxc.hu/profile/hotblack"&gt;Scott Liddell&lt;/a&gt;&lt;/small&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;strong&gt;&lt;a href="http://www.readwriteweb.com/archives/coming_this_election_crowdsourcing_for_scandal.php#comments-open"&gt;Discuss&lt;/a&gt;&lt;/strong&gt;
+&lt;p&gt;&lt;a href="http://feedads.g.doubleclick.net/~at/f-Z2dyfWry5mX5JHg35pSqhO2XQ/0/da"&gt;&lt;img src="http://feedads.g.doubleclick.net/~at/f-Z2dyfWry5mX5JHg35pSqhO2XQ/0/di" border="0" ismap&gt;&lt;/a&gt;&lt;br&gt;
+&lt;a href="http://feedads.g.doubleclick.net/~at/f-Z2dyfWry5mX5JHg35pSqhO2XQ/1/da"&gt;&lt;img src="http://feedads.g.doubleclick.net/~at/f-Z2dyfWry5mX5JHg35pSqhO2XQ/1/di" border="0" ismap&gt;&lt;/a&gt;&lt;/p&gt;&lt;div&gt;
+&lt;a href="http://feeds.feedburner.com/~ff/readwriteweb?a=c8i1ZxH-tik:JoNAqNbomCE:FFnlKYwJmN0"&gt;&lt;img src="http://feeds.feedburner.com/~ff/readwriteweb?d=FFnlKYwJmN0" border="0"&gt;&lt;/a&gt; &lt;a href="http://feeds.feedburner.com/~ff/readwriteweb?a=c8i1ZxH-tik:JoNAqNbomCE:Ij26kaj3iuU"&gt;&lt;img src="http://feeds.feedburner.com/~ff/readwriteweb?d=Ij26kaj3iuU" border="0"&gt;&lt;/a&gt; &lt;a href="http://feeds.feedburner.com/~ff/readwriteweb?a=c8i1ZxH-tik:JoNAqNbomCE:C2pbw5bZMiI"&gt;&lt;img src="http://feeds.feedburner.com/~ff/readwriteweb?d=C2pbw5bZMiI" border="0"&gt;&lt;/a&gt; &lt;a href="http://feeds.feedburner.com/~ff/readwriteweb?a=c8i1ZxH-tik:JoNAqNbomCE:yIl2AUoC8zA"&gt;&lt;img src="http://feeds.feedburner.com/~ff/readwriteweb?d=yIl2AUoC8zA" border="0"&gt;&lt;/a&gt; &lt;a href="http://feeds.feedburner.com/~ff/readwriteweb?a=c8i1ZxH-tik:JoNAqNbomCE:V_sGLiPBpWU"&gt;&lt;img src="http://feeds.feedburner.com/~ff/readwriteweb?i=c8i1ZxH-tik:JoNAqNbomCE:V_sGLiPBpWU" border="0"&gt;&lt;/a&gt; &lt;a href="http://feeds.feedburner.com/~ff/readwriteweb?a=c8i1ZxH-tik:JoNAqNbomCE:gIN9vFwOqvQ"&gt;&lt;img src="http://feeds.feedburner.com/~ff/readwriteweb?i=c8i1ZxH-tik:JoNAqNbomCE:gIN9vFwOqvQ" border="0"&gt;&lt;/a&gt; &lt;a href="http://feeds.feedburner.com/~ff/readwriteweb?a=c8i1ZxH-tik:JoNAqNbomCE:F7zBnMyn0Lo"&gt;&lt;img src="http://feeds.feedburner.com/~ff/readwriteweb?i=c8i1ZxH-tik:JoNAqNbomCE:F7zBnMyn0Lo" border="0"&gt;&lt;/a&gt; &lt;a href="http://feeds.feedburner.com/~ff/readwriteweb?a=c8i1ZxH-tik:JoNAqNbomCE:OqabYuBsmOY"&gt;&lt;img src="http://feeds.feedburner.com/~ff/readwriteweb?d=OqabYuBsmOY" border="0"&gt;&lt;/a&gt;
+&lt;/div&gt;&lt;img src="http://feeds.feedburner.com/~r/readwriteweb/~4/c8i1ZxH-tik" height="1" width="1"&gt;</summary>
+<author>
+  <name>Abraham Hyatt</name>
+</author>
+<gr:likingUser>06217252781037915568</gr:likingUser>
+<source gr:stream-id="feed/http://feeds.feedburner.com/readwriteweb">
+  <id>tag:google.com,2005:reader/feed/http://feeds.feedburner.com/readwriteweb</id>
+  <title type="html">ReadWriteWeb</title>
+  <link rel="alternate" href="http://www.readwriteweb.com/" type="text/html"/>
+</source>
+</entry>
+<entry gr:crawl-timestamp-msec="1278432006807">
+  <id gr:original-id="http://prohardver.hu/guid/cnt/62203">tag:google.com,2005:reader/item/b548a822fdc3837a</id>
+  <category term="user/12181831902988724490/state/com.google/reading-list" scheme="http://www.google.com/reader/" label="reading-list"/>
+  <category term="user/12181831902988724490/state/com.google/fresh" scheme="http://www.google.com/reader/" label="fresh"/>
+  <category term="Multimédia"/>
+  <title type="html">Letisztult formák a tiszta hangzáshoz</title>
+  <published>2010-07-06T14:50:00Z</published>
+  <updated>2010-07-06T14:50:00Z</updated>
+  <link rel="alternate" href="http://prohardver.hu/hir/letisztult_formak_a_tiszta_hangzashoz.html" type="text/html"/>
+  <summary xml:base="http://prohardver.hu/" type="html">Már kapható az Altec Lensing 2.1-es hangfalrendszere, az Octane Plus 7.</summary>
+  <author gr:unknown-author="true">
+    <name>(author unknown)</name>
+  </author>
+  <source gr:stream-id="feed/http://prohardver.hu/_xcache/rss_ph.xml">
+    <id>tag:google.com,2005:reader/feed/http://prohardver.hu/_xcache/rss_ph.xml</id>
+    <title type="html">PROHARDVER! - Hírek és tesztek vegyesen</title>
+    <link rel="alternate" href="http://prohardver.hu" type="text/html"/>
+  </source>
+</entry>
+</feed>
