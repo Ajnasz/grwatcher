@@ -1,8 +1,7 @@
 <?xml version="1.0"?>
 <?xml-stylesheet href="chrome://grwatcher/skin/tooltip.css" type="text/css"?>
-<!-- 
 <?xml-stylesheet href="chrome://grwatcher/skin/toolbar.css" type="text/css"?>
-<?xml-stylesheet href="chrome://grwatcher/skin/statusbar.css" type="text/css"?> -->
+<?xml-stylesheet href="chrome://grwatcher/skin/statusbar.css" type="text/css"?>
 <?xml-stylesheet href="chrome://grwatcher/skin/menu.css" type="text/css"?>
 
 <!DOCTYPE window SYSTEM "chrome://grwatcher/locale/grwatcher.dtd">

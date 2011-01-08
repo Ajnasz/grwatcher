@@ -6,8 +6,6 @@ label#GRW-statusbar-label {
 }
 #GRW-statusbar image {
   list-style-image: url("chrome://grwatcher/skin/icons-sprite.png");
-}
-#GRW-statusbar image {
   -moz-image-region: rect(34px 16px 50px 0px);
 }
 #GRW-statusbar.off image {
