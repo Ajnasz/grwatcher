@@ -199,16 +199,19 @@
           return items;
         },
         getLabels: function() {
-          var labels = {},
-              subscriptionsList = this._subscriptionList.subscriptions;
+            var labels = {},
+                subscriptionsList;
+          if (this._subscriptionLis && this._subscriptionList.subscriptions) {
+            subscriptions = this._subscriptionList.subscriptions;
 
-          subscriptionsList.forEach(function(item) {
-            if(item.categories.length) {
-              item.categories.forEach(function(category) {
-                labels[item.id] = category.label;
-              });
-            }
-          });
+            subscriptionsList.forEach(function(item) {
+              if(item.categories.length) {
+                item.categories.forEach(function(category) {
+                  labels[item.id] = category.label;
+                });
+              }
+            });
+          }
           return labels;
         },
         /**

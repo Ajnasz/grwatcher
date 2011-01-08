@@ -1,87 +1,14 @@
 (function() {
-  const toolbarButtonID = 'GRW-toolbar-button';
-  var setTooltip = function(win, toolbarTooltip) {
-      var toolbarButton = win.document.getElementById(toolbarButtonID);
-      if(toolbarButton) {
-        toolbarButton.tooltip = toolbarTooltip;
-      }
+  var conf = {
+    elementID: 'GRW-toolbar-button',
+    tooltipNewElement: 'GRW-toolbar-tooltip-new',
+    tooltipErrorElement: 'GRW-toolbar-tooltip-error',
+    tooltipNoNewElement: 'GRW-toolbar-tooltip-nonew',
+    tooltipCookieErrorElement: 'GRW-toolbar-tooltip-cookieerror',
+    tooltipNetworkErrorElement: 'GRW-toolbar-tooltip-networkerror',
+    tooltipLoginErrorElement: 'GRW-toolbar-tooltip-loginerror',
+    tooltipTtbNetworkErrorElement: 'GRW-ttb-tooltip-networkerror',
   };
-
-  var actions = {
-    genGrid: function(win, feeds, labels) {
-      var toolbar = win.document.getElementById(toolbarButtonID);
-      var showItemsInToolTip = GRW.Prefs.get.showitemsintooltip();
-      if(showItemsInToolTip) {
-
-        if(toolbar) {
-          toolbar.tooltip = 'GRW-statusbar-tooltip-new';
-          var tooltipContainer = win.document.getElementById('GRW-toolbar-tooltip-new');
-          var grid = new GRW.UI.Grid(win.document, feeds, labels).getGrid();
-          if(tooltipContainer) {
-            while(tooltipContainer.firstChild) {
-              tooltipContainer.removeChild(tooltipContainer.firstChild);
-            }
-            tooltipContainer.appendChild(grid);
-          }
-        }
-      } else {
-        setTooltip(win, 'GRW-toolbar-tooltip-new');
-      }
-
-    },
-    error: function(win) {
-      setTooltip(win, 'GRW-toolbar-tooltip-error');
-    },
-    nonew: function(win) {
-      setTooltip(win, 'GRW-toolbar-tooltip-nonew');
-    },
-    cookieError: function(win) {
-      setTooltip(win, 'GRW-toolbar-tooltip-cookieerror');
-    },
-    networkError: function(win) {
-      setTooltip(win, 'GRW-ttb-tooltip-networkerror');
-    },
-    loginError: function(win) {
-      setTooltip(win, 'GRW-statusbar-tooltip-loginerror');
-    },
-  };
-  var toolbarTooltip = function(action, feeds, getlist) {
-    var actionMethod;
-    switch(action) {
-      case 'grid':
-        actionMethod = actions.genGrid;
-        break;
-
-      case 'error':
-        actionMethod = actions.error;
-        break;
-
-      case 'cookieerror':
-        actionMethod = actions.cookieError;
-        break;
-
-      case 'networkerror':
-        actionMethod = actions.networkError;
-        break;
-
-      case 'loginerror':
-        actionMethod = actions.loginError;
-        break;
-
-      case 'nonew':
-        actionMethod = actions.nonew;
-        break;
-    }
-    if(actionMethod) {
-      GRW.UI.MapWindows(function(win) {
-        var activeGRW = GRW.getActiveGRW().GRW;
-        var feeds = activeGRW.feeds;
-        var getlist = activeGRW.GetList;
-        var labels = getlist.getLabels();
-        actionMethod.call(this, win, feeds, labels);
-        new GRW.UI.Menu(win, feeds, labels, 'GRW-toolbar-button-context', 'GRW-toolbar-menuseparator');
-      });
-    }
-  };
-  GRW.UI.ToolbarTooltip = toolbarTooltip;
-})();
+  Components.utils.import("resource://grwmodules/tooltip.jsm");
+  GRW.UI.ToolbarTooltip = Tooltip(conf,GRW);
+}());

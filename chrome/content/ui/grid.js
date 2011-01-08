@@ -186,70 +186,70 @@
           firstMenuItem = menu.firstChild;
         }
         feeds = this.feeds;
+        if (feeds) {
+          feeds.sort(function(a, b) {
+            return a.data.title.toLowerCase() > b.data.title.toLowerCase();
+          });
 
+          if(this.orderByLabels) {
+            if(feeds.length) {
+              var labels = {'-':{count: 0, rows: [], id: ''}};
 
-        feeds.sort(function(a, b) {
-          return a.data.title.toLowerCase() > b.data.title.toLowerCase();
-        });
+              feeds.forEach(function(item) {
+                var categories  = item.data.categories;
 
-        if(this.orderByLabels) {
-          if(feeds.length) {
-            var labels = {'-':{count: 0, rows: [], id: ''}};
+                if(categories.length) {
+                  categories.forEach(function(category) {
+                    if(!labels[category.label]) {
+                      labels[category.label] = {count: 0, rows: [], id: category.id};
+                    }
+                    labels[category.label].rows.push(this.genRow(item));
+                    labels[category.label].count += item.count;
+                  }, this);
+                } else {
+                  labels['-'].rows.push(this.genRow(item));
+                  labels['-'].count += item.count;
+                }
+              }, this);
 
-            feeds.forEach(function(item) {
-              var categories  = item.data.categories;
+              var _labelRows = [],
+                  _labelRow;
 
-              if(categories.length) {
-                categories.forEach(function(category) {
-                  if(!labels[category.label]) {
-                    labels[category.label] = {count: 0, rows: [], id: category.id};
-                  }
-                  labels[category.label].rows.push(this.genRow(item));
-                  labels[category.label].count += item.count;
-                }, this);
-              } else {
-                labels['-'].rows.push(this.genRow(item));
-                labels['-'].count += item.count;
+              for(let label in labels) {
+                if(labels.hasOwnProperty(label)) {
+                  _labelRow = {label: label, rows: []};
+                  _labelRow.rows.push(this.genRow({data: {title: label}, count: labels[label].count, id: labels[label].id}, true));
+
+                  labels[label].rows.forEach(function(row) {
+                    _labelRow.rows.push(row);
+                  });
+                  _labelRows.push(_labelRow);
+                }
               }
-            }, this);
-
-            var _labelRows = [],
-                _labelRow;
-
-            for(let label in labels) {
-              if(labels.hasOwnProperty(label)) {
-                _labelRow = {label: label, rows: []};
-                _labelRow.rows.push(this.genRow({data: {title: label}, count: labels[label].count, id: labels[label].id}, true));
-
-                labels[label].rows.forEach(function(row) {
-                  _labelRow.rows.push(row);
-                });
-                _labelRows.push(_labelRow);
-              }
-            }
-            _labelRows.sort(function(a, b) {
-              return a.label.toLowerCase() > b.label.toLowerCase();
-            });
-            if (firstMenuItem) {
-              _labelRows.forEach(function(_labelRow) {
-                _labelRow.rows.forEach(function(row) {
-                  menu.insertBefore(row, firstMenuItem);
-                })
+              _labelRows.sort(function(a, b) {
+                return a.label.toLowerCase() > b.label.toLowerCase();
               });
+              if (firstMenuItem) {
+                _labelRows.forEach(function(_labelRow) {
+                  _labelRow.rows.forEach(function(row) {
+                    menu.insertBefore(row, firstMenuItem);
+                  })
+                });
+              }
+            }
+
+          } else {
+            if (firstMenuItem) {
+              feeds.forEach(function(item) {
+                menu.insertBefore(this.genRow(item), firstMenuItem);
+              }, this);
             }
           }
-
-        } else {
-          if (firstMenuItem) {
-            feeds.forEach(function(item) {
-              menu.insertBefore(this.genRow(item), firstMenuItem);
-            }, this);
-          }
-        }
-        if(feeds.length) {
-          var menuSeparator = this.document.getElementById(this.menuseparator);
-          if(menuSeparator) {
-            menuSeparator.setAttribute('class', '');
+          if(feeds.length) {
+            var menuSeparator = this.document.getElementById(this.menuseparator);
+            if(menuSeparator) {
+              menuSeparator.setAttribute('class', '');
+            }
           }
         }
       }
