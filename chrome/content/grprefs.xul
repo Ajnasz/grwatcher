@@ -56,9 +56,6 @@
               <checkbox id="GRW-showzerocounter-field" label="&GRWpreferences.showzerocounter;" />
               <checkbox id="GRW-maximizecounter-field" label="&GRWpreferences.maximizecounter;" />
               <checkbox id="GRW-usesecureconnection-field" label="&GRWpreferences.usesecureconnection;" />
-              <checkbox id="GRW-sortbylabels-field" label="&GRWpreferences.sortbylabels;" />
-              <label value="&GRWpreferences.filteredlabels;" control="GRW-filteredlabels-field" id="GRW-filteredlabels-label" />
-              <textbox id="GRW-filteredlabels-field" flex="1" />
             </vbox>
 
           </groupbox>
@@ -108,6 +105,9 @@
             </radiogroup>
             <checkbox id="GRW-showitemsintooltip-field" label="&GRWpreferences.showitemsintooltip;" />
             <checkbox id="GRW-showitemsincontextmenu-field" label="&GRWpreferences.showitemsincontextmenu;" />
+            <checkbox id="GRW-sortbylabels-field" label="&GRWpreferences.sortbylabels;" />
+            <label value="&GRWpreferences.filteredlabels;" control="GRW-filteredlabels-field" id="GRW-filteredlabels-label" />
+            <textbox id="GRW-filteredlabels-field" flex="1" />
           </vbox>
         </groupbox>
       <tabpanel>

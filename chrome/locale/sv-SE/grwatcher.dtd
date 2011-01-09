@@ -1,0 +1,46 @@
+<!ENTITY GRWstatusbar.popup.openReader "Öppna Google Reader">
+<!ENTITY GRWstatusbar.popup.getReadCounter "Sök efter olästa flöden">
+<!ENTITY GRWstatusbar.popup.openPrefs "Inställningar">
+<!ENTITY GRWstatusbar.popup.markAllAsRead "Märk alla som lästa">
+<!ENTITY GRWstatusbar.popup.enableCookies "Aktivera kakor">
+<!ENTITY GRWpreferences.title "Inställningar för Google Reader Watcher">
+<!ENTITY GRWpreferences.checkfrequency "Kontrollintervall (min.)">
+<!ENTITY GRWpreferences.delaystart "Fördröj första sökningen när webbläsaren startas (ms)">
+<!ENTITY GRWpreferences.activateOpenedTab "Fokusera Google Reader-fliken när den öppnas">
+<!ENTITY GRWpreferences.generalpreferencescaption "Allmänna inställningar">
+<!ENTITY GRWpreferences.generalpreferencesopencaption "Hur Google Reader skall öppnas">
+<!ENTITY GRWpreferences.tooltippreferencescaption "Verktygstipsinställningar">
+<!ENTITY GRWpreferences.tabgeneral "Allmänt">
+<!ENTITY GRWpreferences.tabaccountinfo "Kontoinformation">
+<!ENTITY GRWpreferences.tabopening "Fönsteröppning">
+<!ENTITY GRWpreferences.tabtooltip "Verktygstips">
+<!ENTITY GRWpreferences.openinnewtabdesc "Öppna Google Reader i en ny flik">
+<!ENTITY GRWpreferences.resetcounterdesc "Återställ räknaren i statusfältet när Google Reader-fönstret öppnas">
+<!ENTITY GRWpreferences.shownotificationwindow "Visa meddelandefönstret">
+<!ENTITY GRWpreferences.showzerocounter "Visa alltid räknaren">
+<!ENTITY GRWpreferences.maximizecounter "Visa &quot;1000+&quot; i statusfältet om du har fler än 1000 olästa objekt">
+<!ENTITY GRWpreferences.tooltipcounterposright "Höger">
+<!ENTITY GRWpreferences.tooltipcounterposleft "Vänster">
+<!ENTITY GRWpreferences.tooltipcounterposdesc "Räknarens position i verktygstips:">
+<!ENTITY GRWpreferences.tooltipdesc "Ändringar av dessa alternativ verkställs efter en flödeskontroll.">
+<!ENTITY GRWpreferences.tooltiptitlelengthdesc "Högsta tillåtna antal tecken för flödesrubriker i verktygstips">
+<!ENTITY GRWpreferences.accountinfocaption "Kontoinformation för Google">
+<!ENTITY GRWpreferences.accountinfoemail "E-postadress:">
+<!ENTITY GRWpreferences.accountinfopassword "Lösenord:">
+<!ENTITY GRWpreferences.accountinfo.rememberLogin "Fortsätt sessionen vid programstart">
+<!ENTITY GRWpreferences.accountinfo.forceLogin "Tvinga inloggning innan varje kontroll och fönsteröppning">
+<!ENTITY GRWpreferences.leftclickopen.description "Öppna Google Reader vid">
+<!ENTITY GRWpreferences.leftclickopen.singleclick "Enkelklick">
+<!ENTITY GRWpreferences.leftclickopen.dblclick "Dubbelklick">
+<!ENTITY GRWpreferences.leftclickopen.disabled "Inaktiverat">
+<!ENTITY GRWpreferences.usesecureconnection "Säker anslutning (HTTPS)">
+<!ENTITY GRWpreferences.sortbylabels "Sortera flöden efter etikett i verktygstips">
+<!ENTITY GRWpreferences.filteredlabels "Filtrera flöden som är märkta med följande etiketter (kommateckenseparerad lista)">
+<!ENTITY GRWtooltip.nonewfeed "Du har inga olästa flöden">
+<!ENTITY GRWtooltip.errorfeedfetch "Fel vid hämtning av flöden!">
+<!ENTITY GRWtooltip.newfeed "Du har olästa flöden">
+<!ENTITY GRWtooltip.errorlogin "Inloggning misslyckades. Säkerställ att du har angivit korrekta kontouppgifter!">
+<!ENTITY GRWtooltip.networkerror "Anslutning misslyckades. Säkerställ att du har en fungerande uppkoppling!">
+<!ENTITY GRWtooltip.cookieerror "Du tillåter för närvarande inte tredjepartskakor! Högerklicka på ikonen för att ändra på det.">
+<!ENTITY GRWpreferences.showitemsintooltip "Visa olästa objekt (per flöde) i statusfältikonens verktygstips">
+<!ENTITY GRWpreferences.showitemsincontextmenu "Visa olästa objekt (per flöde) i statusfältikonens snabbmeny">

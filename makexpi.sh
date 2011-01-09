@@ -1,7 +1,7 @@
 #!/bin/bash
 ########################## Configuration ################################
 if [ -z $1 ];then
-  VER='1.2a'`date '+%Y%m%d%H%M%S'`'-'`./getver.pl`;
+  VER='1.3.6b'`date '+%Y%m%d%H%M%S'`'-'`./getver.pl`;
 else
   VER=$1;
 fi
@@ -33,7 +33,7 @@ function buildXPI {
   cd ..;
   echo "Build package $PROJECT_NAME.xpi";
   rm $PROJECT_NAME*.xpi;
-  zip $PROJECT_NAME.xpi chrome.manifest install.rdf modules/JSON.jsm chrome/$PROJECT_NAME.jar defaults/preferences/$PROJECT_NAME.js license.txt;
+  zip $PROJECT_NAME.xpi chrome.manifest install.rdf modules/tooltip.jsm modules/JSON.jsm chrome/$PROJECT_NAME.jar defaults/preferences/$PROJECT_NAME.js license.txt;
 
   echo "Replace old XPIs with the new one";
   if [ -d $DOWNLOAD_DIR ]; then

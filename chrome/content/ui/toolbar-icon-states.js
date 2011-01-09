@@ -12,25 +12,31 @@
 
         var statusImage = win.document.getElementById('GRW-toolbar-button');
         if(!statusImage) {return;}
+        var classes = statusImage.getAttribute('class');
+        GRW.log(classes)
+        classes = classes.replace(/ on| off| error| load/g, '');
+        GRW.log(classes);
         switch(status) {
           case 'on':
-            statusImage.setAttribute('class', 'on');
+            classes += ' on';
             break;
 
           case 'off':
           default:
-            statusImage.setAttribute('class', 'off');
+            classes += ' off';
             break;
 
           case 'error':
           case 'cookieerror':
-            statusImage.setAttribute('class', 'error');
+            classes += ' error';
             break;
 
           case 'load':
-            statusImage.setAttribute('class', 'load');
+            classes += ' load';
             break;
         }
+
+        statusImage.setAttribute('class', classes);
       });
     },
   };

@@ -4,7 +4,7 @@
 
   var getOpenedGR = function() {
     var outObj = {grTab: false, blankPage: false},
-        r = new RegExp('^'+GRW.uri(readerURL)),
+        r = new RegExp('^'+GRW.uri(readerURL, false)),
         i = gBrowser.browsers.length - 1,
         curSpec;
     while(i >= 0) {
@@ -29,7 +29,7 @@
     _open: function(subUrl) {
       try {
         this.fireEvent('beforeReaderOpened');
-        var url = subUrl ? GRW.uri(readerURL) + '/' + subUrl : GRW.uri(readerURL),
+        var url = subUrl ? GRW.uri(readerURL, false) + '/' + subUrl : GRW.uri(readerURL, false),
             openedGR = getOpenedGR(),
             currentContent = gBrowser.getBrowserAtIndex(gBrowser.mTabContainer.selectedIndex).contentWindow;
         /**
