@@ -75,7 +75,17 @@
         <em:translator>Mikael Hiort af Ornäs (sv-SE)</em:translator>
       </Description>
     </em:localized>
-
+    <em:localized>
+      <Description>
+        <em:locale>cs</em:locale>
+        <em:name>Google Reader Watcher</em:name>
+        <em:creator>Koszti Lajos</em:creator>
+        <em:description>Kontroluje nepřečtené položky na Google Reader.</em:description>
+        <em:homepageURL>http://ajnasz.hu/google-reader-watcher</em:homepageURL>
+        <em:contributor>David Peitler</em:contributor>
+        <em:translator>Michal Stanke cs</em:translator>
+      </Description>
+    </em:localized>
     <em:creator>Lajos Koszti</em:creator>
     <em:description>Checks your Google Reader for unread feeds</em:description>
     <em:iconURL>chrome://grwatcher/skin/grwatcher.png</em:iconURL>
@@ -106,5 +116,8 @@
     <em:translator>toomore zh-TW (babelzilla)</em:translator>
     <em:translator>Young-Cheon Kim ko-KR (babelzilla)</em:translator>
     <em:translator>DakSrbija sr (babelzilla)</em:translator>
+    <em:translator>Mikael Hiort af Ornäs (sv-SE)</em:translator>
+    <em:translator>DakSrbija (sr) (babelzilla)</em:translator>
+    <em:translator>mikk_s cs (babelzilla)</em:translator>
   </Description>
 </RDF>
