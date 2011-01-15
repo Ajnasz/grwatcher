@@ -1,0 +1,46 @@
+<!ENTITY GRWstatusbar.popup.openReader "Otevřít Google Reader">
+<!ENTITY GRWstatusbar.popup.getReadCounter "Zkontrolovat nepřečtené zdroje">
+<!ENTITY GRWstatusbar.popup.openPrefs "Možnosti">
+<!ENTITY GRWstatusbar.popup.markAllAsRead "Označit vše jako přečtené">
+<!ENTITY GRWstatusbar.popup.enableCookies "Povolit cookies">
+<!ENTITY GRWpreferences.title "Možnosti Google Reader Watcher">
+<!ENTITY GRWpreferences.checkfrequency "Kontrolovat nepřečtené zdroje každé (minuty)">
+<!ENTITY GRWpreferences.delaystart "Spustit první kontrolu po spuštění prohlížeče (ms)">
+<!ENTITY GRWpreferences.activateOpenedTab "Zobrazit panel Google Reader při otevření">
+<!ENTITY GRWpreferences.generalpreferencescaption "Obecné volby">
+<!ENTITY GRWpreferences.generalpreferencesopencaption "Možnosti Google Reader">
+<!ENTITY GRWpreferences.tooltippreferencescaption "Možnosti upozornění">
+<!ENTITY GRWpreferences.tabgeneral "Obecné">
+<!ENTITY GRWpreferences.tabaccountinfo "Uživatelské údaje">
+<!ENTITY GRWpreferences.tabopening "Možnosti otevření okna">
+<!ENTITY GRWpreferences.tabtooltip "Nastavení upozornění">
+<!ENTITY GRWpreferences.openinnewtabdesc "Otevřít Google Reader v novém panelu">
+<!ENTITY GRWpreferences.resetcounterdesc "Vynulovat počítadlo na liště při otevření okna s Google Readerem">
+<!ENTITY GRWpreferences.shownotificationwindow "Zobrazit okno s upozorněním">
+<!ENTITY GRWpreferences.showzerocounter "Vždy zobrazovat počítadlo">
+<!ENTITY GRWpreferences.maximizecounter "Zobrazit '1000+' ve stavovém řádku když máte více než 1000 nepřečtených položek">
+<!ENTITY GRWpreferences.tooltipcounterposright "Vpravo">
+<!ENTITY GRWpreferences.tooltipcounterposleft "Vlevo">
+<!ENTITY GRWpreferences.tooltipcounterposdesc "Umístění počítadla:">
+<!ENTITY GRWpreferences.tooltipdesc "Tyto volby se projeví až po zkontrolování zdrojů.">
+<!ENTITY GRWpreferences.tooltiptitlelengthdesc "Nastavit počet znaků pro název zdroje v upozornění na">
+<!ENTITY GRWpreferences.accountinfocaption "Údaje o Google účtu">
+<!ENTITY GRWpreferences.accountinfoemail "E-mailová adresa:">
+<!ENTITY GRWpreferences.accountinfopassword "Heslo:">
+<!ENTITY GRWpreferences.accountinfo.rememberLogin "Pamatovat si přihlašovací údaje">
+<!ENTITY GRWpreferences.accountinfo.forceLogin "Vynutit přihlášení před každou kontrolou a otevřením okna">
+<!ENTITY GRWpreferences.leftclickopen.description "Otevřít Google Reader">
+<!ENTITY GRWpreferences.leftclickopen.singleclick "jedním klikem">
+<!ENTITY GRWpreferences.leftclickopen.dblclick "dvojklikem">
+<!ENTITY GRWpreferences.leftclickopen.disabled "Vypnuto">
+<!ENTITY GRWpreferences.usesecureconnection "Použít zabezpečené připojení">
+<!ENTITY GRWpreferences.sortbylabels "Řadit zdroje v nabídce podle štítku">
+<!ENTITY GRWpreferences.filteredlabels "Filtrovat zdroje označené tímto štítkem (seznam oddělený čárkami)">
+<!ENTITY GRWtooltip.nonewfeed "Nemáte žádné nepřečtené zdroje">
+<!ENTITY GRWtooltip.errorfeedfetch "Chyba získávání zdrojů!">
+<!ENTITY GRWtooltip.newfeed "Máte nepřečtené zdroje">
+<!ENTITY GRWtooltip.errorlogin "Přihlášení selhalo. Zkontrolujte, že jste zadali správnou e-mailovou adresu a heslo!">
+<!ENTITY GRWtooltip.networkerror "Připojení selhalo. Zkontrolujte, zda jste připojeni k internetu!">
+<!ENTITY GRWtooltip.cookieerror "Cookies třetích stran nejsou povoleny! Klikněte pravým tlačítkem myši na ikonu pro jejich povolení.">
+<!ENTITY GRWpreferences.showitemsintooltip "Zobrazit nepřečtené položky v nabídce stavové ikony">
+<!ENTITY GRWpreferences.showitemsincontextmenu "Povolit přidání nepřečtených položek do upozornění">
