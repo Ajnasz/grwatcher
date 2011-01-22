@@ -124,13 +124,15 @@
           for(var label in labels) {
             if(labels.hasOwnProperty(label)) {
               _labelRow = {label: label, rows: []};
-              _labelRow.rows.push(this.genRow({data: {title: label}, count: labels[label].count}, true));
-              // rows.appendChild();
-              labels[label].rows.forEach(function(row) {
+              if (labels[label].count > 0) {
+                _labelRow.rows.push(this.genRow({data: {title: label}, count: labels[label].count}, true));
+                // rows.appendChild();
+                labels[label].rows.forEach(function(row) {
 
-                _labelRow.rows.push(row);
-              });
-              _labelRows.push(_labelRow);
+                  _labelRow.rows.push(row);
+                });
+                _labelRows.push(_labelRow);
+              }
             }
           }
           _labelRows.sort(function(a, b) {
@@ -252,12 +254,14 @@
               for(let label in labels) {
                 if(labels.hasOwnProperty(label)) {
                   _labelRow = {label: label, rows: []};
-                  _labelRow.rows.push(this.genRow({data: {title: label}, count: labels[label].count, id: labels[label].id}, true));
+                  if (labels[label].count > 0) {
+                    _labelRow.rows.push(this.genRow({data: {title: label}, count: labels[label].count, id: labels[label].id}, true));
 
-                  labels[label].rows.forEach(function(row) {
-                    _labelRow.rows.push(row);
-                  });
-                  _labelRows.push(_labelRow);
+                    labels[label].rows.forEach(function(row) {
+                      _labelRow.rows.push(row);
+                    });
+                    _labelRows.push(_labelRow);
+                  }
                 }
               }
               _labelRows.sort(function(a, b) {
