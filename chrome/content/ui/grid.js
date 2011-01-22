@@ -36,7 +36,7 @@
       this.grid = grid;
     },
     genRow: function(item, isLabel) {
-      var itemTitle  = item.data.title,
+      var itemTitle  = item.data.title || item.data.displayName || '',
           itemCount  = item.count,
           doc        = this.document,
           label      = doc.createElement('label'),
@@ -70,21 +70,30 @@
           rows = this.document.createElement('rows'),
           row;
 
+      // GRW.log('feeds: ', feeds.toSource());
+
       feeds.sort(function(a, b) {
         if(a.data && b.data) {
-          return a.data.title.toLowerCase() > b.data.title.toLowerCase();
+          if (a.data.title && b.data.title) {
+            return a.data.title.toLowerCase() > b.data.title.toLowerCase();
+          } else if (a.data.displayName) {
+            return -1;
+          } else if (b.data.displayName) {
+            return 1;
+          }
         }
       });
 
       if(this.orderByLabels) {
         if(feeds.length) {
-          var labels = {'-':{count: 0, rows: []}};
+          var labels = {'-':{count: 0, rows: []}, 'People you follow':{count: 0, rows: []}};
 
           feeds.forEach(function(item) {
+            if (item.data) {
 
               var categories  = item.data.categories;
 
-              if(categories.length) {
+              if(categories && categories.length) {
 
                 categories.forEach(function(category) {
 
@@ -97,12 +106,16 @@
 
                 }, this);
 
+              } else if (item.data.displayName) {
+                labels['People you follow'].rows.push(this.genRow(item));
+                labels['People you follow'].count += item.count;
               } else {
 
                 labels['-'].rows.push(this.genRow(item));
                 labels['-'].count += item.count;
 
               }
+            }
 
 
           }, this);
@@ -121,7 +134,13 @@
             }
           }
           _labelRows.sort(function(a, b) {
-            return a.label.toLowerCase() > b.label.toLowerCase();
+            if (a.label === 'People you follow') {
+              return -1;
+            } else if (b.label === 'People you follow') {
+              return 1;
+            } else {
+              return a.label.toLowerCase() > b.label.toLowerCase();
+            }
           });
           _labelRows.forEach(function(labelRow) {
             labelRow.rows.forEach(function(row) {
@@ -157,7 +176,7 @@
       this.genRows();
     },
     genRow: function(item, isLabel) {
-      var itemTitle  = item.data.title,
+      var itemTitle  = item.data.title || item.data.displayName || '',
           itemCount  = item.count,
           doc        = this.document,
           menuitem = doc.createElement('menuitem');
@@ -182,33 +201,48 @@
         var menu = this.menu,
             firstMenuItem,
             feeds;
+
         if (menu) {
           firstMenuItem = menu.firstChild;
         }
+
         feeds = this.feeds;
         if (feeds) {
           feeds.sort(function(a, b) {
-            return a.data.title.toLowerCase() > b.data.title.toLowerCase();
+            if(a.data && b.data) {
+              if (a.data.title && b.data.title) {
+                return a.data.title.toLowerCase() > b.data.title.toLowerCase();
+              } else if (a.data.displayName) {
+                return -1;
+              } else if (b.data.displayName) {
+                return 1;
+              }
+            }
           });
 
           if(this.orderByLabels) {
             if(feeds.length) {
-              var labels = {'-':{count: 0, rows: [], id: ''}};
+              var labels = {'-':{count: 0, rows: []}, 'People you follow':{count: 0, rows: []}};
 
               feeds.forEach(function(item) {
-                var categories  = item.data.categories;
+                if (item.data) {
+                  var categories  = item.data.categories;
 
-                if(categories.length) {
-                  categories.forEach(function(category) {
-                    if(!labels[category.label]) {
-                      labels[category.label] = {count: 0, rows: [], id: category.id};
-                    }
-                    labels[category.label].rows.push(this.genRow(item));
-                    labels[category.label].count += item.count;
-                  }, this);
-                } else {
-                  labels['-'].rows.push(this.genRow(item));
-                  labels['-'].count += item.count;
+                  if(categories && categories.length) {
+                    categories.forEach(function(category) {
+                      if(!labels[category.label]) {
+                        labels[category.label] = {count: 0, rows: [], id: category.id};
+                      }
+                      labels[category.label].rows.push(this.genRow(item));
+                      labels[category.label].count += item.count;
+                    }, this);
+                  } else if (item.data.displayName) {
+                    labels['People you follow'].rows.push(this.genRow(item));
+                    labels['People you follow'].count += item.count;
+                  } else {
+                    labels['-'].rows.push(this.genRow(item));
+                    labels['-'].count += item.count;
+                  }
                 }
               }, this);
 
@@ -227,7 +261,13 @@
                 }
               }
               _labelRows.sort(function(a, b) {
-                return a.label.toLowerCase() > b.label.toLowerCase();
+                if (a.label === 'People you follow') {
+                  return -1;
+                } else if (b.label === 'People you follow') {
+                  return 1;
+                } else {
+                  return a.label.toLowerCase() > b.label.toLowerCase();
+                }
               });
               if (firstMenuItem) {
                 _labelRows.forEach(function(_labelRow) {

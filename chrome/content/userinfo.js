@@ -1,18 +1,22 @@
 (function() {
-  var userinfoURI = ['www.google.com/reader/api/0/user-info'];
-  var userData = {};
+  const userinfoURI = ['www.google.com/reader/api/0/user-info'];
+  var userData = null;
   var userInfo = {
-    request: function() {
+    request: function(cb) {
       GRW.request('get', GRW.uri(userinfoURI, {ck: new Date().getTime()}), {
         onSuccess: function(o) {
-          GRW.log(o.responseText);
-          var userData = GRW.JSON.parse(o.responseText);
+          userData = GRW.JSON.parse(o.responseText);
+          cb(userData);
         },
         onError: function(o) {},
       });
     },
-    get: function() {
-      return userData;
+    get: function(callback) {
+      if (userData === null) {
+        userInfo.request(callback);
+      } else {
+        callback(userData);
+      }
     },
     set: function(ob) {
       if(GRW.isObject(ob)) {

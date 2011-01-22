@@ -1,10 +1,11 @@
 (function() {
-  var loginManager = GRW.LoginManager,
+  const loginManager = GRW.LoginManager,
       unreadcountURL = ['www.google.com/reader/api/0/unread-count', {
         all:'true',
         output:'json'
       }],
       subscriptionListURL = ['www.google.com/reader/api/0/subscription/list', {output:'json'}],
+      friendListURL = ['www.google.com/reader/api/0/friend/list', {output: 'json'}],
 
       // used for testing
       // unreadcountURL = 'http://localhost/grwatcher/hg/testfiles/unread-count.json?'+ (new Date().getTime()),
@@ -12,6 +13,7 @@
 
       unreadGeneratedEvent = 'unreadGeneratedEvent',
       subscriptionGeneratedEvent = 'subscriptionGeneratedEvent',
+      friendGeneratedEvent = 'friendGeneratedEvent',
       unreadAndSubscriptionReceivedEvent = 'unreadAndSubscriptionReceivedEvent',
       itemsMatchedEvent = 'itemsMatchedEvent',
       requestStartEvent = 'requestStartEvent',
@@ -22,34 +24,68 @@
       unreadCountRequestFinishEvent = 'unreadCountRequestFinishEvent',
       subscriptionListRequestStartEvent = 'subscriptionListRequestStartEvent',
       subscriptionListRequestFinishEvent = 'subscriptionListRequestFinishEvent',
+      friendListRequestStartEvent = 'friendListRequestStartEvent',
+      friendListRequestFinishEvent = 'friendListRequestFinishEvent',
       processStartEvent = 'processStartEvent',
-      processFinishEvent = 'processFinishEvent',
+      processFinishEvent = 'processFinishEvent';
 
 
-      getList = function() {};
+      var getList = function() {
+        var _this = this;
+        this.subscribe(subscriptionGeneratedEvent, function () {
+          _this._fireUnreadAndSubscription();
+        });
+        this.subscribe(friendGeneratedEvent, function () {
+          _this._fireUnreadAndSubscription();
+        });
+        this.subscribe(unreadGeneratedEvent, function () {
+          _this._fireUnreadAndSubscription();
+        });
+      };
       getList.prototype = {
         start: function() {
           if(this._initialized) return;
-          this._initRequests();
-          this._initialized = true;
+          var _this = this;
+          GRW.userInfo.get(function (info) {
+            _this.userInfo = info;
+            _this._initRequests();
+            _this._initialized = true;
+          });
         },
         restart: function() {
           this._initialized = false;
           this.start();
         },
         _fireUnreadAndSubscription: function() {
-          if(this._subscriptionList && this._unreadCount) {
-            this.fireEvent(unreadAndSubscriptionReceivedEvent, [this._subscriptionList, this._unreadCount]);
-          } else if(this._subscriptionList) {
+          if(this._subscriptionList && this._unreadCount && this._friendList) {
+            this.fireEvent(unreadAndSubscriptionReceivedEvent, [this._subscriptionList, this._unreadCount, this._friendList]);
+          } else if(!this._unreadCount) {
             this.getUnreadCount();
-          } else if(this._unreadCount) {
+          } else if(!this._subscriptionList) {
             this.getSubscriptionList();
+          } else if(!this._friendList) {
+            this.getFriendList();
           }
         },
         _initRequests: function() {
           this.getSubscriptionList();
         },
-        _processUnreadCount: function(response) {
+        isLabelItem: function (item) {
+          return item.id.indexOf('user/' + this.userInfo.userId + '/label') === 0;
+        },
+        isFollwedUser: function (item) {
+          return /user\/\d+\/state\/com.google\/google/.test(item.id);
+        },
+        isReadingListCounter: function (item) {
+          return item.id.indexOf('/state/com.google/reading-list') !== -1;
+        },
+        isBroadcastFriendCount: function (item) {
+          return item.id.indexOf('/state/com.google/broadcast-friend') !== -1;
+        },
+        isBroadcastCount: function (item) {
+          return item.id.indexOf('/state/com.google/broadcast') !== -1;
+        },
+        _processUnreadCount: function(response, userInfo) {
           this.fireEvent(processStartEvent);
           var text = response.responseText,
               obj = GRW.JSON.parse(text),
@@ -57,19 +93,18 @@
               i = unreadcounts.length - 1,
               unreadSum,
               unread,
-              userFeeds = [],
-              httpFeeds  = [],
+              labels = [],
+              feeds  = [],
               unreadItem;
 
           while(i >= 0) {
             unreadItem = unreadcounts[i];
-            if(unreadItem.id.indexOf('user') == 0) {
-              userFeeds.push(unreadItem)
-              if(unreadItem.id.indexOf('/state/com.google/reading-list') != -1) {
-                unreadSum = unreadItem.count;
-              }
-            } else {
-              httpFeeds.push(unreadItem);
+            if(this.isLabelItem(unreadItem)) {
+              labels.push(unreadItem)
+            } else if(this.isReadingListCounter(unreadItem)) {
+              unreadSum = unreadItem.count;
+            } else if(!this.isBroadcastFriendCount(unreadItem)) {
+              feeds.push(unreadItem);
             }
             i--;
           }
@@ -79,13 +114,12 @@
             rJSON: obj,  // response text as json object
             max: obj.max, // max number to display
             unreadSum: unreadSum, // unread items number unreadItems: unreadcounts, // all of the unread items
-            userFeeds: userFeeds, // unread items, but only the ones which are belongs to a url (id starts with doesn't start with 'user')
-            httpFeeds: httpFeeds // unread items, but only the ones which are belongs to the user (id starts with 'user')
+            labels: labels, // unread items, but only the ones which are belongs to a url (id starts with doesn't start with 'user')
+            feeds: feeds // unread items, but only the ones which are belongs to the user (id starts with 'user')
           };
           this._unreadCount = unread;
           this.fireEvent(unreadGeneratedEvent, this._unreadCount);
           this.fireEvent(processFinishEvent);
-          this._fireUnreadAndSubscription();
         },
         getUnreadCount: function() {
           var _this = this;
@@ -114,7 +148,6 @@
           this._subscriptionList = subscription;
           this.fireEvent(subscriptionGeneratedEvent, subscription);
           this.fireEvent(processFinishEvent);
-          this._fireUnreadAndSubscription();
         },
         getSubscriptionList: function() {
           var _this = this;
@@ -130,19 +163,56 @@
             }
           });
         },
+        _processFriendList: function(response) {
+          this.fireEvent(processStartEvent);
+          // this.fireEvent(requestFinishEvent);
+
+          var obj = GRW.JSON.parse(response.responseText),
+              friend = {
+                rText: response.responseText,
+                rJSON: obj,
+                friends: obj.friends
+              };
+          this._friendList = friend;
+          this.fireEvent(friendGeneratedEvent, friend);
+          this.fireEvent(processFinishEvent);
+        },
+        getFriendList: function () {
+          var _this = this;
+          this.fireEvent(requestStartEvent);
+          this.fireEvent(friendListRequestStartEvent);
+          GRW.request('get', GRW.uri.apply(GRW.uri, friendListURL), {
+            onSuccess:function(o) {
+              _this.fireEvent(friendListRequestFinishEvent);
+              _this._processFriendList(o);
+            },
+            onError:function(o) {
+              _this.fireEvent(requestErrorEvent);
+            }
+          });
+        },
         _matchUnreadItems: function(unreads) {
           var subscriptions = this._subscriptionList.subscriptions,
+              friends = this._friendList.friends,
 
               i = unreads.length - 1,
               j = subscriptions.length - 1,
+              k = friends.length - 1,
               subscriptionHash = {},
+              friendHash = {},
               unread,
-              subscription;
+              subscription,
+              friend;
 
           while(j >= 0) {
             subscription = subscriptions[j];
             subscriptionHash[subscription.id] = subscription;
             j--;
+          }
+          while(k >= 0) {
+            friend = friends[k];
+            friendHash[friend.stream] = friend;
+            k--;
           }
 
           while(i >= 0) {
@@ -150,6 +220,13 @@
             subscription = subscriptionHash[unread.id];
             if(subscription) {
               unread.data = subscription;
+            } else {
+              // GRW.log(unread.id, friendHash[unread.id]);
+              // GRW.log(friendHash.toSource());
+              friend = friendHash[unread.id];
+              if (friend) {
+                unread.data = friend;
+              }
             }
             i--;
           }
@@ -218,14 +295,16 @@
          * @method matchUnreadItems
          */
         matchUnreadItems: function() {
-          this._unreadCount.httpFeeds = this._matchUnreadItems(this._unreadCount.httpFeeds);
-          var unreads = this._unreadCount.httpFeeds.filter(function(elem) {
+          this._unreadCount.feeds = this._matchUnreadItems(this._unreadCount.feeds);
+          var unreads = this._unreadCount.feeds.filter(function(elem) {
+            // GRW.log('feeds filter: ', parseInt( elem.count, 10))
             return elem.count && parseInt(elem.count, 10) > 0;
           });
           unreads = this._filterLabels(unreads);
           var unreadSum = 0;
           unreads.forEach(function(elem) {
-            unreadSum+=elem.count;
+            // GRW.log(elem.count, elem.id);
+            unreadSum += elem.count;
           });
           this._unreadCount.unreadSum = unreadSum;
           this.fireEvent(processStartEvent);
