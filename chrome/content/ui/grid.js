@@ -29,6 +29,93 @@
       return labelRows;
   };
 
+
+  const _gridStartGenRows = '_gridStartGenRows';
+  const _gridFinishGenRows = '_gridFinishGenRows';
+  var _grid = function () {
+  };
+  _grid.prototype = {
+    /**
+     * That method should be overwritten
+     * **/
+    genRow: function () {},
+    _normalizeLabelRows: function (feeds, peopleYouFollow) {
+        var labels = {'-':{count: 0, rows: []}};
+        labels[peopleYouFollow] = {count: 0, rows: []};
+        feeds.forEach(function(item) {
+          if (item.data) {
+            var categories  = item.data.categories;
+
+            if(categories && categories.length) {
+              categories.forEach(function(category) {
+                if(!labels[category.label]) {
+                  labels[category.label] = {count: 0, rows: [], id: category.id};
+                }
+                labels[category.label].rows.push(this.genRow(item));
+                labels[category.label].count += item.count;
+              }, this);
+            } else if (item.data.displayName) {
+              labels[peopleYouFollow].rows.push(this.genRow(item));
+              labels[peopleYouFollow].count += item.count;
+            } else {
+              labels['-'].rows.push(this.genRow(item));
+              labels['-'].count += item.count;
+            }
+          }
+        }, this);
+    },
+    _genLabelRows: function (labels) {
+        var _labelRows = [],
+            _labelRow;
+
+        for(let label in labels) {
+          if(labels.hasOwnProperty(label)) {
+            _labelRow = {label: label, rows: []};
+            if (labels[label].count > 0) {
+              _labelRow.rows.push(this.genRow({data: {title: label}, count: labels[label].count, id: labels[label].id}, true));
+
+              labels[label].rows.forEach(function(row) {
+                _labelRow.rows.push(row);
+              });
+              _labelRows.push(_labelRow);
+            }
+          }
+        }
+        return _labelRows;
+    },
+    genRows: function () {
+      var feeds = this.feeds,
+          orderByLabels, labels, rows = [],
+          peopleYouFollow;
+
+      this.fireEvent(_gridStartGenRows);
+
+      if (feeds && feeds.length) {
+        orderByLabels = GRW.Prefs.get.sortByLabels();
+        if (orderByLabels) {
+          peopleYouFollow = GRW.strings.getString('peopleyoufollowtitle');
+          feeds = sortFeeds(feeds);
+          labels = this._normalizeLabelRows(feeds, peopleYouFollow);
+          rows = this._genLabelRows(labels);
+          rows = sortLabelRows(rows, peopleYouFollow);
+
+        } else {
+          rows = feeds.map(function(item) {
+            return this.genRow(item);
+          }, this);
+
+        }
+      }
+      this.fireEvent(_gridFinishGenRows, rows);
+      return rows;
+    },
+    normalizeItemTitle: function (itemTitle) {
+      return itemTitle.length > titlelength
+                    ? itemTitle.slice(0, titlelength - 3) + '...'
+                    : itemTitle
+    }
+  };
+  GRW.augmentProto(_grid, GRW.EventProvider);
   var Grid = function(doc, feeds, labels) {
     this.document = doc;
     this.feeds = feeds || [];
@@ -37,6 +124,8 @@
     this.orderByLabels = GRW.Prefs.get.sortByLabels();
     this.labels = labels;
     this.peopleYouFollow = GRW.strings.getString('peopleyoufollowtitle');
+    // this.on(_gridStartGenRows)
+    // this.on(_gridFinishGenRows)
     this.init();
   };
   Grid.prototype = {
@@ -56,7 +145,7 @@
       columnc1.flex = 1;
       columnc2 = column.cloneNode(true);
 
-      rows = this.genRows();
+      rows = this.ggenRows();
 
       grid.appendChild(columnc1);
       grid.appendChild(columnc2);
@@ -72,9 +161,7 @@
           countLabel = label.cloneNode(true),
           titleLabel = label.cloneNode(true);
 
-      itemTitle = itemTitle.length > titlelength
-                    ? itemTitle.slice(0, titlelength - 3) + '...'
-                    : itemTitle;
+      itemTitle = this.normalizeItemTitle(itemTitle);
 
       countLabel.value = itemCount;
       countLabel.setAttribute('class', 'counterCol');
@@ -93,87 +180,19 @@
       }
       return row;
     },
-    genRows: function() {
-      var feeds = this.feeds,
-          rows = this.document.createElement('rows'),
-          row,
-          peopleYouFollow = this.peopleYouFollow;
-
-      // GRW.log('feeds: ', feeds.toSource());
-
-      feeds = sortFeeds(feeds);
-
-      if(this.orderByLabels) {
-        if(feeds.length) {
-          var labels = {'-':{count: 0, rows: []}};
-          labels[peopleYouFollow] = {count: 0, rows: []};
-
-          feeds.forEach(function(item) {
-            if (item.data) {
-
-              var categories  = item.data.categories;
-
-              if(categories && categories.length) {
-
-                categories.forEach(function(category) {
-
-                  if(!labels[category.label]) {
-                    labels[category.label] = {count: 0, rows: []};
-                  }
-
-                  labels[category.label].rows.push(this.genRow(item));
-                  labels[category.label].count += item.count;
-
-                }, this);
-
-              } else if (item.data.displayName) {
-                labels[peopleYouFollow].rows.push(this.genRow(item));
-                labels[peopleYouFollow].count += item.count;
-              } else {
-
-                labels['-'].rows.push(this.genRow(item));
-                labels['-'].count += item.count;
-
-              }
-            }
-
-
-          }, this);
-          var _labelRows = [],
-              _labelRow;
-          for(var label in labels) {
-            if(labels.hasOwnProperty(label)) {
-              _labelRow = {label: label, rows: []};
-              if (labels[label].count > 0) {
-                _labelRow.rows.push(this.genRow({data: {title: label}, count: labels[label].count}, true));
-                // rows.appendChild();
-                labels[label].rows.forEach(function(row) {
-
-                  _labelRow.rows.push(row);
-                });
-                _labelRows.push(_labelRow);
-              }
-            }
-          }
-          _labelRows = sortLabelRows(_labelRows, peopleYouFollow);
-          _labelRows.forEach(function(labelRow) {
-            labelRow.rows.forEach(function(row) {
-              rows.appendChild(row);
-            })
-          });
-        }
-
-      } else {
-        feeds.forEach(function(item) {
-          rows.appendChild(this.genRow(item));
-        }, this);
-      }
+    ggenRows: function() {
+      var rows = this.document.createElement('rows');
+      var generatedRows = this.genRows(this.feeds);
+      generatedRows.forEach(function(item) {
+        rows.appendChild(this.genRow(item));
+      }, this);
       return rows;
     },
     getGrid: function() {
       return this.grid;
     }
   };
+  GRW.augmentProto(Grid, _grid);
   var Menu = function(win, feeds, labels, menu, menuseparator) {
     var doc = win.document;
     this.window = win;
