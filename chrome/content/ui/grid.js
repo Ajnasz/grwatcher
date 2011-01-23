@@ -63,6 +63,7 @@
             }
           }
         }, this);
+        return labels;
     },
     _genLabelRows: function (labels) {
         var _labelRows = [],
@@ -73,7 +74,6 @@
             _labelRow = {label: label, rows: []};
             if (labels[label].count > 0) {
               _labelRow.rows.push(this.genRow({data: {title: label}, count: labels[label].count, id: labels[label].id}, true));
-
               labels[label].rows.forEach(function(row) {
                 _labelRow.rows.push(row);
               });
@@ -83,9 +83,8 @@
         }
         return _labelRows;
     },
-    genRows: function () {
-      var feeds = this.feeds,
-          orderByLabels, labels, rows = [],
+    genRows: function (feeds, peopleYouFollow) {
+      var orderByLabels, labels, rows = [],
           peopleYouFollow;
 
       this.fireEvent(_gridStartGenRows);
@@ -93,7 +92,6 @@
       if (feeds && feeds.length) {
         orderByLabels = GRW.Prefs.get.sortByLabels();
         if (orderByLabels) {
-          peopleYouFollow = GRW.strings.getString('peopleyoufollowtitle');
           feeds = sortFeeds(feeds);
           labels = this._normalizeLabelRows(feeds, peopleYouFollow);
           rows = this._genLabelRows(labels);
@@ -121,7 +119,6 @@
     this.feeds = feeds || [];
     // this.getlist = getlist;
     this.toLeft = GRW.Prefs.get.tooltipCounterPos() == 'left';
-    this.orderByLabels = GRW.Prefs.get.sortByLabels();
     this.labels = labels;
     this.peopleYouFollow = GRW.strings.getString('peopleyoufollowtitle');
     // this.on(_gridStartGenRows)
@@ -182,9 +179,15 @@
     },
     ggenRows: function() {
       var rows = this.document.createElement('rows');
-      var generatedRows = this.genRows(this.feeds);
+      var generatedRows = this.genRows(this.feeds, this.peopleYouFollow);
       generatedRows.forEach(function(item) {
-        rows.appendChild(this.genRow(item));
+        if (item.rows) {
+          item.rows.forEach(function (row) {
+            rows.appendChild(row);
+          });
+        } else {
+          rows.appendChild(item);
+        }
       }, this);
       return rows;
     },
@@ -198,16 +201,54 @@
     this.window = win;
     this.document = doc;
     this.feeds = feeds;
-    this.orderByLabels = GRW.Prefs.get.sortByLabels();
     this.menu = doc.getElementById(menu);
     this.menuseparator = menuseparator;
     this.labels = labels;
     this.peopleYouFollow = GRW.strings.getString('peopleyoufollowtitle');
+    this.initEvents();
     this.init();
   };
   Menu.prototype = {
     init: function() {
-      this.genRows();
+      this.clearItems();
+      if(GRW.Prefs.get.showitemsincontextmenu()) {
+        var menu = this.menu,
+            firstMenuItem,
+            peopleYouFollow = this.peopleYouFollow;
+
+        if (menu) {
+          firstMenuItem = menu.firstChild;
+        }
+        var generatedRows = this.genRows(this.feeds, peopleYouFollow);
+        generatedRows.forEach(function(item) {
+          if (item.rows) {
+            item.rows.forEach(function (row) {
+              menu.insertBefore(row, firstMenuItem);
+            });
+          } else {
+              menu.insertBefore(item, firstMenuItem);
+          }
+        }, this);
+        (this.feeds.length) ?  this.showMenuSeparator() : this.hideMenuSeparator();
+      }
+    },
+    showMenuSeparator: function () {
+      var menuSeparator = this.document.getElementById(this.menuseparator);
+      if(menuSeparator) {
+        menuSeparator.setAttribute('class', '');
+      }
+    },
+    hideMenuSeparator: function () {
+      var menuSeparator = this.document.getElementById(this.menuseparator);
+      if(menuSeparator) {
+        menuSeparator.setAttribute('class', 'grw-hidden');
+      }
+    },
+    initEvents: function () {
+      var _this = this;
+      this.subscribe(_gridStartGenRows, function () {
+        _this.clearItems();
+      });
     },
     genRow: function(item, isLabel) {
       var itemTitle  = item.data.title || item.data.displayName || '',
@@ -229,90 +270,6 @@
       menuitem.addEventListener('command', function(){win.GRW.OpenReader.open(this.getAttribute('url'));}, false);
       return menuitem;
     },
-    genRows: function() {
-      this.clearItems();
-      if(GRW.Prefs.get.showitemsincontextmenu()) {
-        var menu = this.menu,
-            firstMenuItem,
-            feeds,
-            peopleYouFollow = this.peopleYouFollow;
-
-        if (menu) {
-          firstMenuItem = menu.firstChild;
-        }
-
-        feeds = this.feeds;
-        if (feeds) {
-          feeds = sortFeeds(feeds);
-
-          if(this.orderByLabels) {
-            if(feeds.length) {
-              var labels = {'-':{count: 0, rows: []}};
-              labels[peopleYouFollow] = {count: 0, rows: []};
-              feeds.forEach(function(item) {
-                if (item.data) {
-                  var categories  = item.data.categories;
-
-                  if(categories && categories.length) {
-                    categories.forEach(function(category) {
-                      if(!labels[category.label]) {
-                        labels[category.label] = {count: 0, rows: [], id: category.id};
-                      }
-                      labels[category.label].rows.push(this.genRow(item));
-                      labels[category.label].count += item.count;
-                    }, this);
-                  } else if (item.data.displayName) {
-                    labels[peopleYouFollow].rows.push(this.genRow(item));
-                    labels[peopleYouFollow].count += item.count;
-                  } else {
-                    labels['-'].rows.push(this.genRow(item));
-                    labels['-'].count += item.count;
-                  }
-                }
-              }, this);
-
-              var _labelRows = [],
-                  _labelRow;
-
-              for(let label in labels) {
-                if(labels.hasOwnProperty(label)) {
-                  _labelRow = {label: label, rows: []};
-                  if (labels[label].count > 0) {
-                    _labelRow.rows.push(this.genRow({data: {title: label}, count: labels[label].count, id: labels[label].id}, true));
-
-                    labels[label].rows.forEach(function(row) {
-                      _labelRow.rows.push(row);
-                    });
-                    _labelRows.push(_labelRow);
-                  }
-                }
-              }
-              _labelRows = sortLabelRows(_labelRows, peopleYouFollow);
-              if (firstMenuItem) {
-                _labelRows.forEach(function(_labelRow) {
-                  _labelRow.rows.forEach(function(row) {
-                    menu.insertBefore(row, firstMenuItem);
-                  })
-                });
-              }
-            }
-
-          } else {
-            if (firstMenuItem) {
-              feeds.forEach(function(item) {
-                menu.insertBefore(this.genRow(item), firstMenuItem);
-              }, this);
-            }
-          }
-          if(feeds.length) {
-            var menuSeparator = this.document.getElementById(this.menuseparator);
-            if(menuSeparator) {
-              menuSeparator.setAttribute('class', '');
-            }
-          }
-        }
-      }
-    },
     clearItems: function() {
       var menu = this.menu;
       if (menu) {
@@ -325,13 +282,11 @@
           }
         }
       }
-      var menuSeparator = this.document.getElementById(this.menuseparator);
-      if(menuSeparator) {
-        menuSeparator.setAttribute('class', 'grw-hidden');
-      }
+      this.hideMenuSeparator();
       return true;
     }
   };
+  GRW.augmentProto(Menu, _grid);
   GRW.UI.Grid = Grid;
   GRW.UI.Menu = Menu;
 })();
