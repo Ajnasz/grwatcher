@@ -39,6 +39,7 @@ function buildXPI {
     modules/Augment.jsm \
     modules/EventProvider.jsm \
     modules/CustomEvent.jsm \
+    modules/GridProvider.jsm \
     chrome/$PROJECT_NAME.jar \
     defaults/preferences/$PROJECT_NAME.js \
     license.txt;

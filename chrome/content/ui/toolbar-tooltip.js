@@ -8,6 +8,8 @@
     tooltipNetworkErrorElement: 'GRW-toolbar-tooltip-networkerror',
     tooltipLoginErrorElement: 'GRW-toolbar-tooltip-loginerror',
     tooltipTtbNetworkErrorElement: 'GRW-ttb-tooltip-networkerror',
+    menuItem: 'GRW-toolbar-menu',
+    menuItemSeparator: 'GRW-toolbar-menuseparator',
   };
   Components.utils.import("resource://grwmodules/tooltip.jsm");
   GRW.UI.ToolbarTooltip = Tooltip(conf,GRW);

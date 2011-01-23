@@ -77,7 +77,7 @@ var Tooltip = function (conf,GRW) {
         var getlist = activeGRW.GetList;
         var labels = getlist.getLabels();
         actionMethod.call(this, win, feeds, labels);
-        new GRW.UI.Menu(win, feeds, labels, 'GRW-statusbar-menu', 'GRW-menuseparator');
+        new GRW.UI.Menu(win, feeds, labels, conf.menuItem, conf.menuItemSeparator);
       });
     }
   };

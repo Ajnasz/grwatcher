@@ -1,8 +1,40 @@
-const _gridStartGenRows = '_gridStartGenRows';
-const _gridFinishGenRows = '_gridFinishGenRows';
-var _grid = function () {
+Components.utils.import("resource://grwmodules/EventProvider.jsm");
+Components.utils.import("resource://grwmodules/Augment.jsm");
+
+var sortFeeds = function (feeds) {
+    feeds.sort(function(a, b) {
+      if(a.data && b.data) {
+        if (a.data.title && b.data.title) {
+          return a.data.title.toLowerCase() > b.data.title.toLowerCase();
+        } else if (a.data.displayName) {
+          return -1;
+        } else if (b.data.displayName) {
+          return 1;
+        }
+      }
+    });
+    return feeds;
 };
-_grid.prototype = {
+
+var sortLabelRows = function (labelRows, mustBeFirst) {
+    labelRows.sort(function(a, b) {
+      if (a.label === mustBeFirst) {
+        return -1;
+      } else if (b.label === mustBeFirst) {
+        return 1;
+      } else {
+        return a.label.toLowerCase() > b.label.toLowerCase();
+      }
+    });
+    return labelRows;
+};
+
+
+const GridStartGenRows = 'GridStartGenRows';
+const GridFinishGenRows = 'GridFinishGenRows';
+var GridProvider = function () {
+};
+GridProvider.prototype = {
   /**
     * That method should be overwritten
     * **/
@@ -51,14 +83,13 @@ _grid.prototype = {
       }
       return _labelRows;
   },
-  genRows: function (feeds, peopleYouFollow) {
+  genRows: function (feeds, orderByLabels, peopleYouFollow) {
     var orderByLabels, labels, rows = [],
         peopleYouFollow;
 
-    this.fireEvent(_gridStartGenRows);
+    this.fireEvent(GridStartGenRows);
 
     if (feeds && feeds.length) {
-      orderByLabels = GRW.Prefs.get.sortByLabels();
       if (orderByLabels) {
         feeds = sortFeeds(feeds);
         labels = this._normalizeLabelRows(feeds, peopleYouFollow);
@@ -72,12 +103,14 @@ _grid.prototype = {
 
       }
     }
-    this.fireEvent(_gridFinishGenRows, rows);
+    this.fireEvent(GridFinishGenRows, rows);
     return rows;
   },
-  normalizeItemTitle: function (itemTitle) {
+  normalizeItemTitle: function (itemTitle, titlelength) {
     return itemTitle.length > titlelength
                   ? itemTitle.slice(0, titlelength - 3) + '...'
                   : itemTitle
   }
 };
+augmentProto(GridProvider, EventProvider);
+let EXPORTED_SYMBOLS = ['GridProvider', 'GridStartGenRows', 'GridFinishGenRows'];
