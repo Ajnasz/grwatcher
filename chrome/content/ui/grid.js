@@ -1,6 +1,33 @@
 (function() {
   const maxTitlelenth = 5,
       titlelength   = GRW.Prefs.get.tooltipTitleLength();
+  var sortFeeds = function (feeds) {
+      feeds.sort(function(a, b) {
+        if(a.data && b.data) {
+          if (a.data.title && b.data.title) {
+            return a.data.title.toLowerCase() > b.data.title.toLowerCase();
+          } else if (a.data.displayName) {
+            return -1;
+          } else if (b.data.displayName) {
+            return 1;
+          }
+        }
+      });
+      return feeds;
+  };
+
+  var sortLabelRows = function (labelRows, mustBeFirst) {
+      labelRows.sort(function(a, b) {
+        if (a.label === mustBeFirst) {
+          return -1;
+        } else if (b.label === mustBeFirst) {
+          return 1;
+        } else {
+          return a.label.toLowerCase() > b.label.toLowerCase();
+        }
+      });
+      return labelRows;
+  };
 
   var Grid = function(doc, feeds, labels) {
     this.document = doc;
@@ -9,6 +36,7 @@
     this.toLeft = GRW.Prefs.get.tooltipCounterPos() == 'left';
     this.orderByLabels = GRW.Prefs.get.sortByLabels();
     this.labels = labels;
+    this.peopleYouFollow = GRW.strings.getString('peopleyoufollowtitle');
     this.init();
   };
   Grid.prototype = {
@@ -68,25 +96,17 @@
     genRows: function() {
       var feeds = this.feeds,
           rows = this.document.createElement('rows'),
-          row;
+          row,
+          peopleYouFollow = this.peopleYouFollow;
 
       // GRW.log('feeds: ', feeds.toSource());
 
-      feeds.sort(function(a, b) {
-        if(a.data && b.data) {
-          if (a.data.title && b.data.title) {
-            return a.data.title.toLowerCase() > b.data.title.toLowerCase();
-          } else if (a.data.displayName) {
-            return -1;
-          } else if (b.data.displayName) {
-            return 1;
-          }
-        }
-      });
+      feeds = sortFeeds(feeds);
 
       if(this.orderByLabels) {
         if(feeds.length) {
-          var labels = {'-':{count: 0, rows: []}, 'People you follow':{count: 0, rows: []}};
+          var labels = {'-':{count: 0, rows: []}};
+          labels[peopleYouFollow] = {count: 0, rows: []};
 
           feeds.forEach(function(item) {
             if (item.data) {
@@ -107,8 +127,8 @@
                 }, this);
 
               } else if (item.data.displayName) {
-                labels['People you follow'].rows.push(this.genRow(item));
-                labels['People you follow'].count += item.count;
+                labels[peopleYouFollow].rows.push(this.genRow(item));
+                labels[peopleYouFollow].count += item.count;
               } else {
 
                 labels['-'].rows.push(this.genRow(item));
@@ -135,15 +155,7 @@
               }
             }
           }
-          _labelRows.sort(function(a, b) {
-            if (a.label === 'People you follow') {
-              return -1;
-            } else if (b.label === 'People you follow') {
-              return 1;
-            } else {
-              return a.label.toLowerCase() > b.label.toLowerCase();
-            }
-          });
+          _labelRows = sortLabelRows(_labelRows, peopleYouFollow);
           _labelRows.forEach(function(labelRow) {
             labelRow.rows.forEach(function(row) {
               rows.appendChild(row);
@@ -171,6 +183,7 @@
     this.menu = doc.getElementById(menu);
     this.menuseparator = menuseparator;
     this.labels = labels;
+    this.peopleYouFollow = GRW.strings.getString('peopleyoufollowtitle');
     this.init();
   };
   Menu.prototype = {
@@ -202,7 +215,8 @@
       if(GRW.Prefs.get.showitemsincontextmenu()) {
         var menu = this.menu,
             firstMenuItem,
-            feeds;
+            feeds,
+            peopleYouFollow = this.peopleYouFollow;
 
         if (menu) {
           firstMenuItem = menu.firstChild;
@@ -210,22 +224,12 @@
 
         feeds = this.feeds;
         if (feeds) {
-          feeds.sort(function(a, b) {
-            if(a.data && b.data) {
-              if (a.data.title && b.data.title) {
-                return a.data.title.toLowerCase() > b.data.title.toLowerCase();
-              } else if (a.data.displayName) {
-                return -1;
-              } else if (b.data.displayName) {
-                return 1;
-              }
-            }
-          });
+          feeds = sortFeeds(feeds);
 
           if(this.orderByLabels) {
             if(feeds.length) {
-              var labels = {'-':{count: 0, rows: []}, 'People you follow':{count: 0, rows: []}};
-
+              var labels = {'-':{count: 0, rows: []}};
+              labels[peopleYouFollow] = {count: 0, rows: []};
               feeds.forEach(function(item) {
                 if (item.data) {
                   var categories  = item.data.categories;
@@ -239,8 +243,8 @@
                       labels[category.label].count += item.count;
                     }, this);
                   } else if (item.data.displayName) {
-                    labels['People you follow'].rows.push(this.genRow(item));
-                    labels['People you follow'].count += item.count;
+                    labels[peopleYouFollow].rows.push(this.genRow(item));
+                    labels[peopleYouFollow].count += item.count;
                   } else {
                     labels['-'].rows.push(this.genRow(item));
                     labels['-'].count += item.count;
@@ -264,15 +268,7 @@
                   }
                 }
               }
-              _labelRows.sort(function(a, b) {
-                if (a.label === 'People you follow') {
-                  return -1;
-                } else if (b.label === 'People you follow') {
-                  return 1;
-                } else {
-                  return a.label.toLowerCase() > b.label.toLowerCase();
-                }
-              });
+              _labelRows = sortLabelRows(_labelRows, peopleYouFollow);
               if (firstMenuItem) {
                 _labelRows.forEach(function(_labelRow) {
                   _labelRow.rows.forEach(function(row) {
