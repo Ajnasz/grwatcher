@@ -13,6 +13,7 @@
       this.setNext();
     },
     setNext: function() {
+      Components.utils.import("resource://grwmodules/Timer.jsm");
       if(this.timer) {
         GRW.never(this.timer);
       }
@@ -20,8 +21,8 @@
           minCheck = 1,
           configuredCheck = GRW.Prefs.get.checkFreq(),
           freq = (configuredCheck >= minCheck) ? configuredCheck : minCheck;
-      // this.timer = GRW.later(function() {_this.updater()}, GRW.Prefs.get.delayStart());
-      this.timer = GRW.later(function() {_this.updater()}, freq*1000*60);
+
+      this.timer = later(function() {_this.updater()}, freq*1000*60);
       GRW.log('setNext');
     }
   };

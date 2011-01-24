@@ -38,6 +38,7 @@ function buildXPI {
     modules/JSON.jsm \
     modules/Augment.jsm \
     modules/GRWUri.jsm \
+    modules/Timer.jsm \
     modules/Getter.jsm \
     modules/EventProvider.jsm \
     modules/CustomEvent.jsm \

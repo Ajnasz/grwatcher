@@ -34,6 +34,20 @@ GRW.updateUI = function(oArgs) {
     GRW.UI.StatusbarCounter.update.apply(GRW.UI.StatusbarCounter, oArgs.counter);
   }
 };
+GRW.getBrowserVersion = function () {
+  var version = null,
+      ua = navigator.userAgent.toString(),
+      versionMatch;
+
+  if (/Firefox|SeaMonkey/.test(ua)) {
+    versionMatch = ua.match(/(?:Firefox|SeaMonkey)\/([\d.]+)/);
+    if (versionMatch) {
+      version = versionMatch[1];
+    }
+  }
+  return version;
+};
+
 /**
  * initialization function
  */
@@ -234,7 +248,8 @@ GRW.OpenReader.on('beforeReaderOpened', function() {
 
   if(GRW.isActiveGRW() === false) {
     window.GRWActive = true;
-    GRW.later(function() {
+    Components.utils.import("resource://grwmodules/Timer.jsm");
+    later(function() {
       requester.start();
     }, GRW.Prefs.get.delayStart());
   } else {

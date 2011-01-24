@@ -1,7 +1,4 @@
-let GRW = {
-  JSON: null
-};
-Components.utils.import("resource://grwmodules/JSON.jsm", GRW);
+let GRW = {};
 GRW.module = function(moduleName, module) {
   if(typeof moduleName == 'string') {
     if(typeof GRW[moduleName] == 'undefined') {
@@ -91,37 +88,7 @@ GRW.module = function(moduleName, module) {
     }
   };
 
-  var timer = Components.classes["@mozilla.org/timer;1"]
-                .createInstance(Components.interfaces.nsITimer);
-  var later = function(fn, delay) {
-    var callback = {notify: fn};
-    timer.initWithCallback(callback, delay, Components.interfaces.nsITimer.TYPE_ONE_SHOT);
-    return timer;
-  };
-  var never = function(timer) {
-    if(timer && GRW.lang.isFunction(timer.cancel)) {
-      timer.cancel();
-    }
-  };
-
-
-  var getBrowserVersion = function () {
-    var version = null,
-        ua = navigator.userAgent.toString(),
-        versionMatch;
-
-    if (/Firefox|SeaMonkey/.test(ua)) {
-      versionMatch = ua.match(/(?:Firefox|SeaMonkey)\/([\d.]+)/);
-      if (versionMatch) {
-        version = versionMatch[1];
-      }
-    }
-    return version;
-  };
 
   GRW.module('lang', lang);
   GRW.module('log', log);
-  GRW.module('later', later);
-  GRW.module('never', never);
-  GRW.module('getBrowserVersion', getBrowserVersion);
 })();

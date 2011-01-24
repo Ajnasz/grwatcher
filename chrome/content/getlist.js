@@ -87,8 +87,9 @@
         },
         _processUnreadCount: function(response, userInfo) {
           this.fireEvent(processStartEvent);
+          Components.utils.import("resource://grwmodules/JSON.jsm");
           var text = response.responseText,
-              obj = GRW.JSON.parse(text),
+              obj = JSON.parse(text),
               unreadcounts = obj.unreadcounts,
               i = unreadcounts.length - 1,
               unreadSum,
@@ -140,7 +141,8 @@
           this.fireEvent(processStartEvent);
           // this.fireEvent(requestFinishEvent);
 
-          var obj = GRW.JSON.parse(response.responseText),
+          Components.utils.import("resource://grwmodules/JSON.jsm");
+          var obj = JSON.parse(response.responseText),
               subscription = {
                 rText: response.responseText,
                 rJSON: obj,
@@ -169,7 +171,8 @@
           this.fireEvent(processStartEvent);
           // this.fireEvent(requestFinishEvent);
 
-          var obj = GRW.JSON.parse(response.responseText),
+          Components.utils.import("resource://grwmodules/JSON.jsm");
+          var obj = JSON.parse(response.responseText),
               friend = {
                 rText: response.responseText,
                 rJSON: obj,

@@ -6,7 +6,8 @@
       Components.utils.import("resource://grwmodules/GRWUri.jsm");
       GRW.request('get', GRWUri(userinfoURI, {ck: new Date().getTime()}), {
         onSuccess: function(o) {
-          userData = GRW.JSON.parse(o.responseText);
+          Components.utils.import("resource://grwmodules/JSON.jsm");
+          userData = JSON.parse(o.responseText);
           cb(userData);
         },
         onError: function(o) {},
