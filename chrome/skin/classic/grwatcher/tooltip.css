@@ -1,13 +1,15 @@
-tooltip#GRW-statusbar-tooltip-new {
+tooltip#GRW-statusbar-tooltip-new,
+tooltip#GRW-toolbar-tooltip-new {
   padding: 0;
 }
 tooltip#GRW-statusbar-tooltip-new .counterCol,
-tooltip#GRW-statusbar-tooltip-new .tag {
+tooltip#GRW-statusbar-tooltip-new .tag,
+tooltip#GRW-toolbar-tooltip-new .counterCol,
+tooltip#GRW-toolbar-tooltip-new .tag {
   font-weight: bold;
 }
-tooltip#GRW-statusbar-tooltip-new .notitle {
-}
-tooltip#GRW-statusbar-tooltip-new grid {
+tooltip#GRW-statusbar-tooltip-new grid,
+tooltip#GRW-toolbar-tooltip-new grid {
   margin: 0;
   padding: 0;
 }
