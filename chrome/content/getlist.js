@@ -316,6 +316,7 @@
           this.fireEvent(processFinishEvent);
         },
       };
-  GRW.augmentProto(getList, GRW.EventProvider);
+  Components.utils.import("resource://grwmodules/Augment.jsm");
+  augmentProto(getList, GRW.EventProvider);
   GRW.module('GetList', new getList);
 })();

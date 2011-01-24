@@ -42,7 +42,8 @@
     }
   };
 
-  GRW.augmentProto(menuClick, GRW.EventProvider);
+  Components.utils.import("resource://grwmodules/Augment.jsm");
+  augmentProto(menuClick, GRW.EventProvider);
   GRW.module('MenuClick', menuClick);
 
 })();

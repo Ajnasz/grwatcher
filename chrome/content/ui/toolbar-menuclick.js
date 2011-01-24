@@ -42,7 +42,8 @@
     }
   };
 
-  GRW.augmentProto(toolbarClick, GRW.EventProvider);
+  Components.utils.import("resource://grwmodules/Augment.jsm");
+  augmentProto(toolbarClick, GRW.EventProvider);
   GRW.module('ToolbarMenuClick', toolbarClick);
 
 })();

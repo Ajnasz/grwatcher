@@ -95,6 +95,7 @@
       return true;
     }
   };
-  GRW.augmentProto(Menu, GridProvider);
+  Components.utils.import("resource://grwmodules/Augment.jsm");
+  augmentProto(Menu, GridProvider);
   GRW.UI.Menu = Menu;
 }());

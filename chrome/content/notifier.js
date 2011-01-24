@@ -62,6 +62,7 @@
       }
     }
   };
-  GRW.augmentProto(notifier, GRW.EventProvider);
+  Components.utils.import("resource://grwmodules/Augment.jsm");
+  augmentProto(notifier, GRW.EventProvider);
   GRW.module('Notifier', notifier);
 })();

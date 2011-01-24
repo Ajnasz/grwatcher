@@ -27,6 +27,7 @@
       });
     }
   };
-  GRW.augmentProto(markAllAsRead, GRW.EventProvider);
+  Components.utils.import("resource://grwmodules/Augment.jsm");
+  augmentProto(markAllAsRead, GRW.EventProvider);
   GRW.module('MarkAllAsRead', new markAllAsRead);
 })();

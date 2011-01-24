@@ -81,6 +81,7 @@
       return this.grid;
     }
   };
-  GRW.augmentProto(Grid, GridProvider);
+  Components.utils.import("resource://grwmodules/Augment.jsm");
+  augmentProto(Grid, GridProvider);
   GRW.UI.Grid = Grid;
 })();

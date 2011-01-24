@@ -25,6 +25,7 @@
       GRW.log('setNext');
     }
   };
-  GRW.augmentProto(requester, GRW.EventProvider);
+  Components.utils.import("resource://grwmodules/Augment.jsm");
+  augmentProto(requester, GRW.EventProvider);
   GRW.module('Requester', new requester());
 })();

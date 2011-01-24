@@ -89,6 +89,7 @@
       }
     }
   };
-  GRW.augmentProto(openReader, GRW.EventProvider);
+  Components.utils.import("resource://grwmodules/Augment.jsm");
+  augmentProto(openReader, GRW.EventProvider);
   GRW.module('OpenReader', new openReader);
 })();
