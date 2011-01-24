@@ -37,6 +37,8 @@ function buildXPI {
     modules/tooltip.jsm \
     modules/JSON.jsm \
     modules/Augment.jsm \
+    modules/GRWUri.jsm \
+    modules/Getter.jsm \
     modules/EventProvider.jsm \
     modules/CustomEvent.jsm \
     modules/GridProvider.jsm \

@@ -3,69 +3,7 @@
       requestSuccess = 'requestSuccess',
       requestFailed = 'requestFailed';
 
-  var getter = {
-    _defaultHeaders: {},
-    setDefaultHeader: function(h) {
-      getter._defaultHeaders[h.name] = h.value;
-    },
-    getDefaultHeaders: function() {
-      return getter._defaultHeaders;
-    },
-    onRequestSuccess: new GRW.CustomEvent('onRequestSuccess'),
-    onRequestFailed: new GRW.CustomEvent('onRequestFailed'),
-    onStartRequest: new GRW.CustomEvent('onStartRequest'),
-    asyncRequest: function(method, uri, callback, postData) {
-      getter.onStartRequest.fire();
-      var req = new XMLHttpRequest();
-      var agent = 'Google Reader Watcher ###VERSION###';
-      if(!req) {
-        getter.onRequestFailed.fire();
-        return false;
-      }
-
-      if(method.toUpperCase() == 'GET') {
-        if(postData) {
-          uri += (uri.indexOf('?') == -1 ? '?' : '&') + postData
-          postData = null;
-        }
-      }
-
-      req.open(method, uri, true);
-
-      req.setRequestHeader('Accept-Charset','utf-8');
-      req.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
-
-      if(method.toUpperCase() == 'POST') {
-        req.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
-      }
-      req.setRequestHeader('User-Agent', agent);
-
-      var defaultHeaders = getter.getDefaultHeaders();
-      for (let h in defaultHeaders) {
-        if(defaultHeaders.hasOwnProperty(h)) {
-          req.setRequestHeader(h, defaultHeaders[h]);
-        }
-      }
-
-      req.onreadystatechange = function(e) {
-        if(req.readyState == 4) {
-          if(req.status == 200) {
-            getter.onRequestSuccess.fire(req);
-            if(GRW.lang.isFunction(callback.onSuccess)) {
-              callback.onSuccess.call(callback.onSuccess, req);
-            }
-          } else {
-            getter.onRequestFailed.fire(req);
-            if(GRW.lang.isFunction(callback.onError)) {
-              callback.onError.call(callback.onError, req);
-            }
-          }
-        }
-      };
-      req.send(postData || '');
-      return req;
-    }
-  };
+  Components.utils.import("resource://grwmodules/Getter.jsm");
 
   var _getToken = function(callback) {
     request('get', GRW.uri('www.google.com/reader/api/0/token'), {
@@ -86,7 +24,7 @@
   var lastRequest = '';
   var request = function(method, uri, callback, postData) {
     var retry = function() {
-      getter.asyncRequest(method, uri, callback, postData);
+      Getter.asyncRequest(method, uri, callback, postData);
     };
     var _callback = {
       onSuccess: function(r) {
@@ -114,10 +52,10 @@
       lastRequest = 'login';
       GRW.LoginManager.logIn(retry);
     } else {
-      getter.asyncRequest(method, uri, _callback, postData);
+      Getter.asyncRequest(method, uri, _callback, postData);
     }
   };
   GRW.module('request', request);
-  GRW.module('getter', getter);
+  GRW.module('getter', Getter);
   GRW.module('getToken', _getToken);
 })();
