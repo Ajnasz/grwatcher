@@ -15,7 +15,7 @@
     setNext: function() {
       Components.utils.import("resource://grwmodules/Timer.jsm");
       if(this.timer) {
-        GRW.never(this.timer);
+        never(this.timer);
       }
       var _this = this,
           minCheck = 1,

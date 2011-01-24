@@ -6,7 +6,7 @@ var later = function(fn, delay) {
   return timer;
 };
 var never = function(timer) {
-  if(timer && GRW.lang.isFunction(timer.cancel)) {
+  if(timer && typeof timer.cancel === 'function') {
     timer.cancel();
   }
 };
