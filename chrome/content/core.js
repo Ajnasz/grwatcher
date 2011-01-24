@@ -124,6 +124,4 @@ GRW.module = function(moduleName, module) {
   GRW.module('later', later);
   GRW.module('never', never);
   GRW.module('getBrowserVersion', getBrowserVersion);
-  GRW.module('CustomEvent', CustomEvent);
-
 })();
