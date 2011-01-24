@@ -13,7 +13,6 @@ GRW.module = function(moduleName, module) {
 };
 
 (function(){
-  Components.utils.import("resource://grwmodules/EventProvider.jsm");
   Components.utils.import("resource://grwmodules/CustomEvent.jsm");
   Components.utils.import("resource://grwmodules/GRWUri.jsm");
 
@@ -125,7 +124,6 @@ GRW.module = function(moduleName, module) {
   GRW.module('later', later);
   GRW.module('never', never);
   GRW.module('getBrowserVersion', getBrowserVersion);
-  GRW.module('EventProvider', EventProvider);
   GRW.module('CustomEvent', CustomEvent);
 
 })();

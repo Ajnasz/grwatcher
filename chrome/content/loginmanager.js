@@ -156,6 +156,7 @@
       };
 
   Components.utils.import("resource://grwmodules/Augment.jsm");
-  augmentProto(loginManager, GRW.EventProvider);
+  Components.utils.import("resource://grwmodules/EventProvider.jsm");
+  augmentProto(loginManager, EventProvider);
   GRW.module('LoginManager', new loginManager());
 })();

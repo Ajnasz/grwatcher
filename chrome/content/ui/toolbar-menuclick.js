@@ -43,7 +43,8 @@
   };
 
   Components.utils.import("resource://grwmodules/Augment.jsm");
-  augmentProto(toolbarClick, GRW.EventProvider);
+  Components.utils.import("resource://grwmodules/EventProvider.jsm");
+  augmentProto(toolbarClick, EventProvider);
   GRW.module('ToolbarMenuClick', toolbarClick);
 
 })();

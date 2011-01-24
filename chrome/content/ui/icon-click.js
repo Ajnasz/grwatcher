@@ -55,6 +55,7 @@
     },
   };
   Components.utils.import("resource://grwmodules/Augment.jsm");
-  augmentProto(iconClick, GRW.EventProvider);
+  Components.utils.import("resource://grwmodules/EventProvider.jsm");
+  augmentProto(iconClick, EventProvider);
   GRW.module('IconrClick', iconClick);
 })();
