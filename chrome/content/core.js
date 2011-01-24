@@ -125,7 +125,6 @@ GRW.module = function(moduleName, module) {
   GRW.module('log', log);
   GRW.module('later', later);
   GRW.module('never', never);
-  GRW.module('uri', GRWUri);
   GRW.module('augmentObject', augmentObject);
   GRW.module('augmentProto', augmentProto);
   GRW.module('getBrowserVersion', getBrowserVersion);

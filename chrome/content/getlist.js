@@ -125,7 +125,8 @@
           var _this = this;
           this.fireEvent(requestStartEvent);
           this.fireEvent(unreadCountRequestStartEvent);
-          GRW.request('get', GRW.uri.apply(GRW.uri, unreadcountURL), {
+          Components.utils.import("resource://grwmodules/GRWUri.jsm");
+          GRW.request('get', GRWUri.apply(GRWUri, unreadcountURL), {
               onSuccess:function(o) {
                   _this.fireEvent(unreadCountRequestFinishEvent);
                   _this._processUnreadCount(o);
@@ -153,7 +154,8 @@
           var _this = this;
           this.fireEvent(requestStartEvent);
           this.fireEvent(subscriptionListRequestStartEvent);
-          GRW.request('get', GRW.uri.apply(GRW.uri, subscriptionListURL), {
+          Components.utils.import("resource://grwmodules/GRWUri.jsm");
+          GRW.request('get', GRWUri.apply(GRWUri, subscriptionListURL), {
             onSuccess:function(o) {
               _this.fireEvent(subscriptionListRequestFinishEvent);
               _this._processSubscriptionList(o);
@@ -181,7 +183,8 @@
           var _this = this;
           this.fireEvent(requestStartEvent);
           this.fireEvent(friendListRequestStartEvent);
-          GRW.request('get', GRW.uri.apply(GRW.uri, friendListURL), {
+          Components.utils.import("resource://grwmodules/GRWUri.jsm");
+          GRW.request('get', GRWUri.apply(GRWUri, friendListURL), {
             onSuccess:function(o) {
               _this.fireEvent(friendListRequestFinishEvent);
               _this._processFriendList(o);

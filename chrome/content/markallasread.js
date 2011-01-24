@@ -11,8 +11,9 @@
     _markAsRead: function() {
       var _this = this;
       GRW.getToken(function() {
+        Components.utils.import("resource://grwmodules/GRWUri.jsm");
         GRW.request('post',
-          GRW.uri('www.google.com/reader/api/0/mark-all-as-read?client=scroll'),
+          GRWUri('www.google.com/reader/api/0/mark-all-as-read?client=scroll'),
           {
             onSuccess: function(request) {
               if(request.responseText == 'OK') {
