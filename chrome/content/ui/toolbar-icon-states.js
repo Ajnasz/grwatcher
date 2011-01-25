@@ -13,9 +13,7 @@
         var statusImage = win.document.getElementById('GRW-toolbar-button');
         if(!statusImage) {return;}
         var classes = statusImage.getAttribute('class');
-        GRW.log(classes)
         classes = classes.replace(/ on| off| error| load/g, '');
-        GRW.log(classes);
         switch(status) {
           case 'on':
             classes += ' on';
