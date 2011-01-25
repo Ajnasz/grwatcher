@@ -24,17 +24,17 @@
 
         if (menu) {
           firstMenuItem = menu.firstChild;
+          var generatedRows = this.genRows(this.feeds, GRW.Prefs.get.sortByLabels(), peopleYouFollow);
+          generatedRows.forEach(function(item) {
+            if (item.rows) {
+              item.rows.forEach(function (row) {
+                menu.insertBefore(row, firstMenuItem);
+              });
+            } else {
+                menu.insertBefore(item, firstMenuItem);
+            }
+          }, this);
         }
-        var generatedRows = this.genRows(this.feeds, GRW.Prefs.get.sortByLabels(), peopleYouFollow);
-        generatedRows.forEach(function(item) {
-          if (item.rows) {
-            item.rows.forEach(function (row) {
-              menu.insertBefore(row, firstMenuItem);
-            });
-          } else {
-              menu.insertBefore(item, firstMenuItem);
-          }
-        }, this);
         (this.feeds.length) ?  this.showMenuSeparator() : this.hideMenuSeparator();
       }
     },
