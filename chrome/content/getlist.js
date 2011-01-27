@@ -45,11 +45,16 @@
       getList.prototype = {
         start: function() {
           if(this._initialized) return;
+          this._initRequests();
+          this._initialized = true;
+        },
+        getUserInfo: function (cb) {
           var _this = this;
           GRW.userInfo.get(function (info) {
             _this.userInfo = info;
-            _this._initRequests();
-            _this._initialized = true;
+            if (typeof cb === 'function') {
+              cb(info);
+            }
           });
         },
         restart: function() {
@@ -85,7 +90,7 @@
         isBroadcastCount: function (item) {
           return item.id.indexOf('/state/com.google/broadcast') !== -1;
         },
-        _processUnreadCount: function(response, userInfo) {
+        _processUnreadCount: function(response) {
           this.fireEvent(processStartEvent);
           Components.utils.import("resource://grwmodules/JSON.jsm");
           var text = response.responseText,
@@ -130,7 +135,13 @@
           GRW.request('get', GRWUri.apply(GRWUri, unreadcountURL), {
               onSuccess:function(o) {
                   _this.fireEvent(unreadCountRequestFinishEvent);
-                  _this._processUnreadCount(o);
+                  if (!_this.userInfo) {
+                    _this.getUserInfo(function (info) {
+                      _this._processUnreadCount(o);
+                    });
+                  } else {
+                    _this._processUnreadCount(o);
+                  }
                 },
                 onError:function(o) {
                   _this.fireEvent(requestErrorEvent);
