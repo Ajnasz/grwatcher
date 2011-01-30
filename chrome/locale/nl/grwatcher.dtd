@@ -1,0 +1,46 @@
+<!ENTITY GRWstatusbar.popup.openReader "Google Reader openen">
+<!ENTITY GRWstatusbar.popup.getReadCounter "Controleren op ongelezen feeds">
+<!ENTITY GRWstatusbar.popup.openPrefs "Voorkeuren">
+<!ENTITY GRWstatusbar.popup.markAllAsRead "Alles als gelezen markeren">
+<!ENTITY GRWstatusbar.popup.enableCookies "Cookies inschakelen">
+<!ENTITY GRWpreferences.title "Google Reader Watcher voorkeuren">
+<!ENTITY GRWpreferences.checkfrequency "Controlefrequentie (minuten)">
+<!ENTITY GRWpreferences.delaystart "Eerste controle starten na start van browser (milliseconden)">
+<!ENTITY GRWpreferences.activateOpenedTab "Op het Google Reader-tabblad focussen na openen">
+<!ENTITY GRWpreferences.generalpreferencescaption "Algemene voorkeuren">
+<!ENTITY GRWpreferences.generalpreferencesopencaption "Instellingen voor het openen van Google Reader">
+<!ENTITY GRWpreferences.tooltippreferencescaption "Tooltipvoorkeuren">
+<!ENTITY GRWpreferences.tabgeneral "Algemeen">
+<!ENTITY GRWpreferences.tabaccountinfo "Accountinformatie">
+<!ENTITY GRWpreferences.tabopening "Instellingen voor openen venster">
+<!ENTITY GRWpreferences.tabtooltip "Tooltipinstellingen">
+<!ENTITY GRWpreferences.openinnewtabdesc "Google Reader openen in een nieuw tabblad">
+<!ENTITY GRWpreferences.resetcounterdesc "Statusbalkteller resetten bij het openen van het Google Reader-venster">
+<!ENTITY GRWpreferences.shownotificationwindow "Notificatievenster weergeven">
+<!ENTITY GRWpreferences.showzerocounter "Teller altijd weergeven">
+<!ENTITY GRWpreferences.maximizecounter "1000+ in de statusbalk zetten als er meer dan 1000 ongelezen berichten zijn">
+<!ENTITY GRWpreferences.tooltipcounterposright "Rechts">
+<!ENTITY GRWpreferences.tooltipcounterposleft "Links">
+<!ENTITY GRWpreferences.tooltipcounterposdesc "De positie van de tellertooltip:">
+<!ENTITY GRWpreferences.tooltipdesc "Deze opties zijn pas van kracht na het controleren van uw feed(s).">
+<!ENTITY GRWpreferences.tooltiptitlelengthdesc "Stelt de feedtitel en het aantal karakters in de tooltip in">
+<!ENTITY GRWpreferences.accountinfocaption "Google accountinformatie">
+<!ENTITY GRWpreferences.accountinfoemail "E-mailadres:">
+<!ENTITY GRWpreferences.accountinfopassword "Wachtwoord:">
+<!ENTITY GRWpreferences.accountinfo.rememberLogin "Sessie hervatten bij opstarten">
+<!ENTITY GRWpreferences.accountinfo.forceLogin "Inloggen afdwingen voor elke controle en openen van venster">
+<!ENTITY GRWpreferences.leftclickopen.description "Google Reader openen met">
+<!ENTITY GRWpreferences.leftclickopen.singleclick "Enkele klik">
+<!ENTITY GRWpreferences.leftclickopen.dblclick "Dubbelklik">
+<!ENTITY GRWpreferences.leftclickopen.disabled "Uitgeschakeld">
+<!ENTITY GRWpreferences.usesecureconnection "Beveiligde verbinding">
+<!ENTITY GRWpreferences.sortbylabels "De feeds in de tooltip sorteren op label">
+<!ENTITY GRWpreferences.filteredlabels "Feeds met de volgende labels filteren (kommagescheiden lijst)">
+<!ENTITY GRWtooltip.nonewfeed "U hebt geen ongelezen feeds">
+<!ENTITY GRWtooltip.errorfeedfetch "Fout bij het ophalen van feeds!">
+<!ENTITY GRWtooltip.newfeed "U hebt ongelezen feeds">
+<!ENTITY GRWtooltip.errorlogin "Inloggen mislukt. Controleer uw gebruikersnaam en/of wachtwoord!">
+<!ENTITY GRWtooltip.networkerror "Verbinding leggen mislukt. Controleer a.u.b. of u een werkende netwerkverbinding heeft!">
+<!ENTITY GRWtooltip.cookieerror "Cookies van derden zijn niet ingeschakeld! Klik met uw rechtermuisknop op het pictogram om dit in te schakelen.">
+<!ENTITY GRWpreferences.showitemsintooltip "Inschakelen om ongelezen berichten in de tooltip van het statusbalkpictogram weer te geven">
+<!ENTITY GRWpreferences.showitemsincontextmenu "Inschakelen om de ongeleazen berichten toe te voegen aan het contextmenu van het statusbalkpictogram">

@@ -1,0 +1,46 @@
+<!ENTITY GRWstatusbar.popup.openReader "Åbn Google Reader">
+<!ENTITY GRWstatusbar.popup.getReadCounter "Tjek for ulæste feeds">
+<!ENTITY GRWstatusbar.popup.openPrefs "Indstillinger">
+<!ENTITY GRWstatusbar.popup.markAllAsRead "Markér alle som læste">
+<!ENTITY GRWstatusbar.popup.enableCookies "Aktiver cookies">
+<!ENTITY GRWpreferences.title "Google Reader Watcher indstillinger">
+<!ENTITY GRWpreferences.checkfrequency "Tjek-frekvens (minutter)">
+<!ENTITY GRWpreferences.delaystart "Start det første tjek efter browseren er startet (millisekunder)">
+<!ENTITY GRWpreferences.activateOpenedTab "Fokus på Reader-fanebladet efter åbning">
+<!ENTITY GRWpreferences.generalpreferencescaption "Generelle indstillinger">
+<!ENTITY GRWpreferences.generalpreferencesopencaption "Hvordan Google Reader åbnes">
+<!ENTITY GRWpreferences.tooltippreferencescaption "Værktøjstip indstillinger">
+<!ENTITY GRWpreferences.tabgeneral "Generelt">
+<!ENTITY GRWpreferences.tabaccountinfo "Kontoinformation">
+<!ENTITY GRWpreferences.tabopening "Indstillinger for åbning af vindue">
+<!ENTITY GRWpreferences.tabtooltip "Indstillinger for værktøjstip">
+<!ENTITY GRWpreferences.openinnewtabdesc "Åbn Google Reader i et nyt faneblad">
+<!ENTITY GRWpreferences.resetcounterdesc "Nulstiller statuslinje-tælleren når Google Reader-vinduet åbnes">
+<!ENTITY GRWpreferences.shownotificationwindow "Vis notifikationsvindue">
+<!ENTITY GRWpreferences.showzerocounter "Vis altid tælleren">
+<!ENTITY GRWpreferences.maximizecounter "Vis 1000+ i statuslinjen hvis du har mere end 1000 ulæste elementer">
+<!ENTITY GRWpreferences.tooltipcounterposright "Højre">
+<!ENTITY GRWpreferences.tooltipcounterposleft "Venstre">
+<!ENTITY GRWpreferences.tooltipcounterposdesc "Tæller værktøjstip position:">
+<!ENTITY GRWpreferences.tooltipdesc "Disse indstillinger vil træde i kraft efter et feed tjek.">
+<!ENTITY GRWpreferences.tooltiptitlelengthdesc "Sætter feed-titlens tegnantal i værktøjstippet">
+<!ENTITY GRWpreferences.accountinfocaption "Google kontoinformation">
+<!ENTITY GRWpreferences.accountinfoemail "Email-adresse:">
+<!ENTITY GRWpreferences.accountinfopassword "Kodeord:">
+<!ENTITY GRWpreferences.accountinfo.rememberLogin "Fortsæt session ved opstart">
+<!ENTITY GRWpreferences.accountinfo.forceLogin "Gennemtving login før hvert tjek og åbning af vindue">
+<!ENTITY GRWpreferences.leftclickopen.description "Åbn Google Reader med">
+<!ENTITY GRWpreferences.leftclickopen.singleclick "Enkeltklik">
+<!ENTITY GRWpreferences.leftclickopen.dblclick "Dobbeltklik">
+<!ENTITY GRWpreferences.leftclickopen.disabled "Deaktiveret">
+<!ENTITY GRWpreferences.usesecureconnection "Sikker forbindelse">
+<!ENTITY GRWpreferences.sortbylabels "I værktøjstippet, sortér feeds efter mærkat">
+<!ENTITY GRWpreferences.filteredlabels "Filtrér feeds som er mærket med disse mærkater (komma-separeret liste)">
+<!ENTITY GRWtooltip.nonewfeed "Du har ingen ulæste feeds">
+<!ENTITY GRWtooltip.errorfeedfetch "Fejl ved hentning af feeds!">
+<!ENTITY GRWtooltip.newfeed "Du har ulæste feeds">
+<!ENTITY GRWtooltip.errorlogin "Login slog fejl. Tjek at du har indtastet korrekte kontoinformationer!">
+<!ENTITY GRWtooltip.networkerror "Forbindelse slog fejl. Tjek at du har en fungerende forbindelse!">
+<!ENTITY GRWtooltip.cookieerror "Tredjeparts-cookies ikke aktiveret! Højreklik på ikonet for at aktivere dette.">
+<!ENTITY GRWpreferences.showitemsintooltip "Aktiver visning af ulæste emner i værktøjstippet i statuslinje-ikonet">
+<!ENTITY GRWpreferences.showitemsincontextmenu "Aktiver for at vise ulæste emner i kontekstmenuen på statuslinje-ikonet">
