@@ -10,7 +10,7 @@
   <script type="application/x-javascript;version=1.7" src="chrome://grwatcher/content/core.js" />
   <script type="application/x-javascript;version=1.7" src="chrome://grwatcher/content/preferences.js" />
   <script type="application/x-javascript;version=1.7" src="chrome://grwatcher/content/ajax.js" />
-  <script type="application/x-javascript;version=1.7" src="chrome://grwatcher/content/cookie.js" />
+  <!-- <script type="application/x-javascript;version=1.7" src="chrome://grwatcher/content/cookie.js" /> -->
   <script type="application/x-javascript;version=1.7" src="chrome://grwatcher/content/passmanager.js" />
   <script type="application/x-javascript;version=1.7" src="chrome://grwatcher/content/loginmanager.js" />
   <script type="application/x-javascript;version=1.7" src="chrome://grwatcher/content/userinfo.js" />
@@ -22,7 +22,7 @@
   <script type="application/x-javascript;version=1.7" src="chrome://grwatcher/content/ui.js" />
   <script type="application/x-javascript;version=1.7" src="chrome://grwatcher/content/ui/grid.js" />
   <script type="application/x-javascript;version=1.7" src="chrome://grwatcher/content/ui/menu.js" />
-  <script type="application/x-javascript;version=1.7" src="chrome://grwatcher/content/ui/mapwindows.js" />
+  <!-- <script type="application/x-javascript;version=1.7" src="chrome://grwatcher/content/ui/mapwindows.js" /> -->
   <script type="application/x-javascript;version=1.7" src="chrome://grwatcher/content/ui/statusbar-icon-states.js" />
   <script type="application/x-javascript;version=1.7" src="chrome://grwatcher/content/ui/toolbar-icon-states.js" />
   <script type="application/x-javascript;version=1.7" src="chrome://grwatcher/content/ui/statusbar-counter.js" />

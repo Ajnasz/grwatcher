@@ -26,7 +26,8 @@
          * @type {String,Boolean}
          */
         getCurrentSID: function() {
-          return GRW.Cookie.get('SID');
+          Components.utils.import("resource://grwmodules/GRWCookie.jsm");
+          return GRWCookie.get('SID');
         },
         isLoggedIn: function() {
           return this.getCurrentAuth() != false;
@@ -44,7 +45,8 @@
                 }
               }
               if(sid.length) {
-                GRW.Cookie.set('google.com', 'SID', sid.split('=')[1], GRW.Prefs.get.rememberLogin());
+                Components.utils.import("resource://grwmodules/GRWCookie.jsm");
+                GRWCookie.set('google.com', 'SID', sid.split('=')[1], GRW.Prefs.get.rememberLogin());
                 // GRW.Token();
                 return sid.split('=')[1];
               }

@@ -9,8 +9,8 @@
   var _getToken = function(callback) {
     request('get', GRWUri('www.google.com/reader/api/0/token'), {
       onSuccess: function(r){
-        // GRW.setCookie('T', r.responseText);
-        GRW.Cookie.set('.google.com', 'T', r.responseText);
+        Components.utils.import("resource://grwmodules/GRWCookie.jsm");
+        GRWCookie.set('.google.com', 'T', r.responseText);
         GRW.token = {
           token: r.responseText,
           date: new Date()
