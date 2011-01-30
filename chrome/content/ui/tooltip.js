@@ -1,6 +1,7 @@
 (function() {
   var tooltip = function(action, feeds, getlist) {
-    var activeGRW = GRW.getActiveGRW().GRW;
+    Components.utils.import("resource://grwmodules/getactivegrw.jsm");
+    var activeGRW = getActiveGRW().GRW;
     // var cache = {
     //   activeGRW: activeGRW,
     //   getlist: activeGRW.GetList,

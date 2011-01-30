@@ -71,8 +71,10 @@ var Tooltip = function (conf,GRW) {
         break;
     }
     if(actionMethod) {
-      GRW.UI.MapWindows(function(win) {
-        var activeGRW = GRW.getActiveGRW().GRW;
+      Components.utils.import("resource://grwmodules/mapwindows.jsm");
+      Components.utils.import("resource://grwmodules/getactivegrw.jsm");
+      mapwindows(function(win) {
+        var activeGRW = getActiveGRW().GRW;
         var feeds = activeGRW.feeds;
         var getlist = activeGRW.GetList;
         var labels = getlist.getLabels();
@@ -83,5 +85,5 @@ var Tooltip = function (conf,GRW) {
   };
   return _Tooltip;
 };
-  
+
 let EXPORTED_SYMBOLS = ['Tooltip'];

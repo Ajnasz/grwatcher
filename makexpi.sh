@@ -40,6 +40,8 @@ function buildXPI {
     modules/GRWUri.jsm \
     modules/Timer.jsm \
     modules/Getter.jsm \
+    modules/mapwindows.jsm \
+    modules/getactivegrw.jsm \
     modules/EventProvider.jsm \
     modules/CustomEvent.jsm \
     modules/GridProvider.jsm \

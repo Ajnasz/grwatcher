@@ -8,7 +8,9 @@
      * @param {Object} status
      */
     setReaderStatus: function(status) {
-      GRW.UI.MapWindows(function(win) {
+
+      Components.utils.import("resource://grwmodules/mapwindows.jsm");
+      mapwindows(function(win) {
 
         var statusImage = win.document.getElementById('GRW-toolbar-button');
         if(!statusImage) {return;}

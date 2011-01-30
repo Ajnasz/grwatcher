@@ -43,7 +43,8 @@
       } else {
         showval = val;
       }
-      GRW.UI.MapWindows(function(win) {
+      Components.utils.import("resource://grwmodules/mapwindows.jsm");
+      mapwindows(function(win) {
         var label = win.document.getElementById('GRW-statusbar-label'),
             toolbarButton = win.document.getElementById('GRW-toolbar-label');
 
