@@ -12,10 +12,15 @@
     });
     return isActive;
   };
+  var setIcons = function (status) {
+    Components.utils.import("resource://grwmodules/StatusIcon.jsm");
+    StatusIcon('GRW-statusbar', status);
+    StatusIcon('GRW-toolbar-button', status);
+  };
   var updateUI = function (oArgs) {
     if(GRW.lang.isArray(oArgs.status)) {
-      GRW.UI.StatusbarIcon.setReaderStatus.apply(GRW.UI.StatusbarIcon, oArgs.status);
-      GRW.UI.ToolbarIcon.setReaderStatus.apply(GRW.UI.ToolbarIcon, oArgs.status);
+      GRW.log(oArgs.status)
+      setIcons(oArgs.status)
     }
     if(GRW.lang.isArray(oArgs.tooltip)) {
       GRW.UI.Tooltip.apply(GRW.UI.Tooltip, oArgs.tooltip);
@@ -44,8 +49,6 @@
   var init = function() {
     GRW.log('Google Reader Watcher ###VERSION### initializitaion started');
 
-    var statusbarIcon =  GRW.UI.StatusbarIcon;
-    var toolbarIcon =  GRW.UI.ToolbarIcon;
     var statusbarCounter = GRW.UI.StatusbarCounter;
     var iconClick = new GRW.IconrClick();
     var notifier = new GRW.Notifier();
@@ -77,8 +80,7 @@
       updateUI(oArgs);
     });
     GRW.getter.onRequestSuccess.subscribe(function() {
-      statusbarIcon.setReaderStatus('off');
-      toolbarIcon.setReaderStatus('off');
+      setIcons('off');
     });
 
     // show error icon if login failed
