@@ -55,7 +55,15 @@
       'GRW-statusbar', 'GRW-toolbar-button', 'GRW-toolbar-label'
     ], document);
     var notifier = new GRW.Notifier();
-    var menuClick = new GRW.MenuClick();
+    var menuClick = new GRW.MenuClick(
+      {
+        openReader: 'GRW-statusbar-menuitem-openreader',
+        markAllAsRead: 'GRW-statusbar-menuitem-markallasread',
+        checkUnreadFeeds: 'GRW-statusbar-menuitem-getcounter',
+        openPreferences: 'GRW-statusbar-menuitem-openprefs',
+        enableCookies: 'GRW-statusbar-menuitem-enablecookies',
+      }, document
+    );
     var toolbarClick = new GRW.ToolbarMenuClick();
     var requester = GRW.Requester;
     var loginManager = GRW.LoginManager;

@@ -1,19 +1,16 @@
 (function() {
-   const  openReader       = 'GRW-statusbar-menuitem-openreader',
-          markAllAsRead    = 'GRW-statusbar-menuitem-markallasread',
-          checkUnreadFeeds = 'GRW-statusbar-menuitem-getcounter',
-          openPreferences  = 'GRW-statusbar-menuitem-openprefs',
-          enableCookies    = 'GRW-statusbar-menuitem-enablecookies';
-
-  var menuClick = function() {};
+  var menuClick = function(conf, doc) {
+    this.conf = conf;
+    this.doc = doc;
+  };
   menuClick.prototype = {
     init: function() {
       var _this = this,
-          _openReader       = document.getElementById(openReader),
-          _markAllAsRed     = document.getElementById(markAllAsRead),
-          _checkUnreadFeeds = document.getElementById(checkUnreadFeeds),
-          _openPreferences  = document.getElementById(openPreferences),
-          _enableCookies    = document.getElementById(enableCookies);
+          _openReader       = this.doc.getElementById(this.conf.openReader),
+          _markAllAsRed     = this.doc.getElementById(this.conf.markAllAsRead),
+          _checkUnreadFeeds = this.doc.getElementById(this.conf.checkUnreadFeeds),
+          _openPreferences  = this.doc.getElementById(this.conf.openPreferences),
+          _enableCookies    = this.doc.getElementById(this.conf.enableCookies);
       if(_openReader) {
         _openReader.addEventListener('command', function(event) {
           _this.fireEvent('openReader')
