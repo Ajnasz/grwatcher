@@ -48,11 +48,12 @@
   */
   var init = function() {
     GRW.log('Google Reader Watcher ###VERSION### initializitaion started');
+    Components.utils.import("resource://grwmodules/IconClick.jsm");
 
     var statusbarCounter = GRW.UI.StatusbarCounter;
-    var iconClick = new GRW.IconrClick([
+    var iconClick = new IconClick([
       'GRW-statusbar', 'GRW-toolbar-button', 'GRW-toolbar-label'
-    ]);
+    ], document);
     var notifier = new GRW.Notifier();
     var menuClick = new GRW.MenuClick();
     var toolbarClick = new GRW.ToolbarMenuClick();

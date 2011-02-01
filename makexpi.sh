@@ -44,6 +44,7 @@ function buildXPI {
     modules/getactivegrw.jsm \
     modules/StatusIcon.jsm \
     modules/GRWCookie.jsm \
+    modules/IconClick.jsm \
     modules/EventProvider.jsm \
     modules/CustomEvent.jsm \
     modules/GridProvider.jsm \
