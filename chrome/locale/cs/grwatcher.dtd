@@ -30,7 +30,7 @@
 <!ENTITY GRWpreferences.accountinfo.rememberLogin "Pamatovat si přihlašovací údaje">
 <!ENTITY GRWpreferences.accountinfo.forceLogin "Vynutit přihlášení před každou kontrolou a otevřením okna">
 <!ENTITY GRWpreferences.leftclickopen.description "Otevřít Google Reader">
-<!ENTITY GRWpreferences.leftclickopen.singleclick "jedním klikem">
+<!ENTITY GRWpreferences.leftclickopen.singleclick "jedním kliknutím">
 <!ENTITY GRWpreferences.leftclickopen.dblclick "dvojklikem">
 <!ENTITY GRWpreferences.leftclickopen.disabled "Vypnuto">
 <!ENTITY GRWpreferences.usesecureconnection "Použít zabezpečené připojení">

@@ -19,6 +19,7 @@ locale grwatcher et-EE jar:chrome/grwatcher.jar!/locale/et-EE/
 locale grwatcher fa-IR jar:chrome/grwatcher.jar!/locale/fa-IR/
 locale grwatcher fi-FI jar:chrome/grwatcher.jar!/locale/fi-FI/
 locale grwatcher fr jar:chrome/grwatcher.jar!/locale/fr/
+locale grwatcher gl-ES jar:chrome/grwatcher.jar!/locale/gl-ES/
 locale grwatcher he-IL jar:chrome/grwatcher.jar!/locale/he-IL/
 locale grwatcher hu-HU jar:chrome/grwatcher.jar!/locale/hu-HU/
 locale grwatcher it jar:chrome/grwatcher.jar!/locale/it/

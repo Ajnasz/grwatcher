@@ -43,4 +43,4 @@
 <!ENTITY GRWtooltip.networkerror "Verbinding leggen mislukt. Controleer a.u.b. of u een werkende netwerkverbinding heeft!">
 <!ENTITY GRWtooltip.cookieerror "Cookies van derden zijn niet ingeschakeld! Klik met uw rechtermuisknop op het pictogram om dit in te schakelen.">
 <!ENTITY GRWpreferences.showitemsintooltip "Inschakelen om ongelezen berichten in de tooltip van het statusbalkpictogram weer te geven">
-<!ENTITY GRWpreferences.showitemsincontextmenu "Inschakelen om de ongeleazen berichten toe te voegen aan het contextmenu van het statusbalkpictogram">
+<!ENTITY GRWpreferences.showitemsincontextmenu "Inschakelen om de ongelezen berichten toe te voegen aan het contextmenu van het statusbalkpictogram">

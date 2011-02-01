@@ -1,0 +1,46 @@
+<!ENTITY GRWstatusbar.popup.openReader "Abrir o Google Reader">
+<!ENTITY GRWstatusbar.popup.getReadCounter "Comproba se hai fontes sen ler">
+<!ENTITY GRWstatusbar.popup.openPrefs "Preferencias">
+<!ENTITY GRWstatusbar.popup.markAllAsRead "Marca todo como lido">
+<!ENTITY GRWstatusbar.popup.enableCookies "Activar as cookies">
+<!ENTITY GRWpreferences.title "Preferencias do Google Reader Watcher">
+<!ENTITY GRWpreferences.checkfrequency "Frecuencia de comprobación (minutos)">
+<!ENTITY GRWpreferences.delaystart "A primeira actualización comeza despois de iniciares o navegador (milisegundos)">
+<!ENTITY GRWpreferences.activateOpenedTab "Focalizar no separador do Reader despois de abrir">
+<!ENTITY GRWpreferences.generalpreferencescaption "Preferencias xerais">
+<!ENTITY GRWpreferences.generalpreferencesopencaption "Como se abre o Google Reader">
+<!ENTITY GRWpreferences.tooltippreferencescaption "Preferencias dos consellos de ferramentas">
+<!ENTITY GRWpreferences.tabgeneral "Xeral">
+<!ENTITY GRWpreferences.tabaccountinfo "Información da conta">
+<!ENTITY GRWpreferences.tabopening "Configuración da xanela a abrirse">
+<!ENTITY GRWpreferences.tabtooltip "Configuración dos consellos">
+<!ENTITY GRWpreferences.openinnewtabdesc "Abrir o Google reader nun separador novo">
+<!ENTITY GRWpreferences.resetcounterdesc "Restablecer o contador da barra de estado cando se abre o">
+<!ENTITY GRWpreferences.shownotificationwindow "Amosar a ventá de notificación">
+<!ENTITY GRWpreferences.showzerocounter "Amosar sempre o contador">
+<!ENTITY GRWpreferences.maximizecounter "Amosar + de 1000 na barra de estado se tes máis de 1000 elementos por ler">
+<!ENTITY GRWpreferences.tooltipcounterposright "Dereita">
+<!ENTITY GRWpreferences.tooltipcounterposleft "Esquerda">
+<!ENTITY GRWpreferences.tooltipcounterposdesc "Posición do contador:">
+<!ENTITY GRWpreferences.tooltipdesc "Estas opcións terán os seus efectos despois de se comprobaren as sementes.">
+<!ENTITY GRWpreferences.tooltiptitlelengthdesc "Establece a subscrición title@apos;s número de caracteres no tooltip">
+<!ENTITY GRWpreferences.accountinfocaption "Información da conta de Google">
+<!ENTITY GRWpreferences.accountinfoemail "Enderezo de correo:">
+<!ENTITY GRWpreferences.accountinfopassword "Contrasinal:">
+<!ENTITY GRWpreferences.accountinfo.rememberLogin "Continuar a sesión ao iniciar">
+<!ENTITY GRWpreferences.accountinfo.forceLogin "Forzar o rexistro antes de cada comprobación e operación de xanela">
+<!ENTITY GRWpreferences.leftclickopen.description "Abrir o Google Reader con">
+<!ENTITY GRWpreferences.leftclickopen.singleclick "Ao premer unha vez">
+<!ENTITY GRWpreferences.leftclickopen.dblclick "Ao premeres dúas veces">
+<!ENTITY GRWpreferences.leftclickopen.disabled "Desactivado">
+<!ENTITY GRWpreferences.usesecureconnection "Conexión segura">
+<!ENTITY GRWpreferences.sortbylabels "No tootip, ordenar as sementes por etiquetas">
+<!ENTITY GRWpreferences.filteredlabels "Filtrar as subscricións que teñen estas etiquetas (elementos separados por coma)">
+<!ENTITY GRWtooltip.nonewfeed "Tes&apos;t elementos por ler">
+<!ENTITY GRWtooltip.errorfeedfetch "Erro ao buscar subscricións!">
+<!ENTITY GRWtooltip.newfeed "Tes elementos por ler">
+<!ENTITY GRWtooltip.errorlogin "Fallou o rexistro. Cómpre aseguráreste que escribiches os detalles da conta correctamente!">
+<!ENTITY GRWtooltip.networkerror "Fallou a conexión. Compre aseguráreste que a conexión está operativa!">
+<!ENTITY GRWtooltip.cookieerror "As cookies de terceiras partes non están activadas! Preme o botón dereito do rato para as activares.">
+<!ENTITY GRWpreferences.showitemsintooltip "Activar para amosar os elementos sen ler na icona da barra de estado">
+<!ENTITY GRWpreferences.showitemsincontextmenu "Activar para engadir elementos sen ler no menú contextual na icona de barra de estado">
