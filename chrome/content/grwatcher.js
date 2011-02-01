@@ -55,7 +55,8 @@
       'GRW-statusbar', 'GRW-toolbar-button', 'GRW-toolbar-label'
     ], document);
     var notifier = new GRW.Notifier();
-    var menuClick = new GRW.MenuClick(
+    Components.utils.import("resource://grwmodules/MenuClick.jsm");
+    var menuClick = new MenuClick(
       {
         openReader: 'GRW-statusbar-menuitem-openreader',
         markAllAsRead: 'GRW-statusbar-menuitem-markallasread',
@@ -64,7 +65,14 @@
         enableCookies: 'GRW-statusbar-menuitem-enablecookies',
       }, document
     );
-    var toolbarClick = new GRW.ToolbarMenuClick();
+    var toolbarClick = new MenuClick({
+          openReader: 'GRW-toolbar-menuitem-openreader',
+          markAllAsRead: 'GRW-toolbar-menuitem-markallasread',
+          checkUnreadFeeds: 'GRW-toolbar-menuitem-getcounter',
+          openPreferences: 'GRW-toolbar-menuitem-openprefs',
+          enableCookies: 'GRW-toolbar-menuitem-enablecookies',
+    }, document);
+    // var toolbarClick = new GRW.ToolbarMenuClick();
     var requester = GRW.Requester;
     var loginManager = GRW.LoginManager;
     var getlist = GRW.GetList;
