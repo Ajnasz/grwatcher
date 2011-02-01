@@ -16,7 +16,8 @@
          * @type {Boolean}
          */
         accountExists: function() {
-          if(GRW.PasswordManager.getUsername() && GRW.PasswordManager.getPassword()) {
+          Components.utils.import("resource://grwmodules/PassManager.jsm");
+          if(PassManager.getUsername() && PassManager.getPassword()) {
             return true;
           }
           return false;
@@ -86,8 +87,9 @@
           if(this.accountExists()) {
             // var url = GRStates.conntype + '://www.google.com/accounts/ServiceLoginAuth';
             // var url = 'https://www.google.com/accounts/ServiceLoginAuth?service=reader';
+          Components.utils.import("resource://grwmodules/PassManager.jsm");
             var url = 'https://www.google.com/accounts/ClientLogin?service=reader',
-                param = 'service=reader&Email='+encodeURIComponent(GRW.PasswordManager.getUsername())+'&Passwd='+encodeURIComponent(GRW.PasswordManager.getPassword())+'&continue=http://www.google.com/reader/';
+                param = 'service=reader&Email='+encodeURIComponent(PassManager.getUsername())+'&Passwd='+encodeURIComponent(PassManager.getPassword())+'&continue=http://www.google.com/reader/';
                 _this = this;
             GRW.request('post', url, {
               onSuccess: function(e) {

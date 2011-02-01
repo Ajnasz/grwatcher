@@ -45,6 +45,7 @@ function buildXPI {
     modules/StatusIcon.jsm \
     modules/GrwCookie.jsm \
     modules/IconClick.jsm \
+    modules/PassManager.jsm \
     modules/MenuClick.jsm \
     modules/EventProvider.jsm \
     modules/CustomEvent.jsm \
