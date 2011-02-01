@@ -35,7 +35,7 @@
             }
           }, this);
         }
-        (this.feeds.length) ?  this.showMenuSeparator() : this.hideMenuSeparator();
+        (this.feeds && this.feeds.length) ?  this.showMenuSeparator() : this.hideMenuSeparator();
       }
     },
     showMenuSeparator: function () {

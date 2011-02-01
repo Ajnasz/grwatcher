@@ -4,13 +4,13 @@
       formSubmitURL = 'https://www.google.com',  // not http://www.example.com/foo/auth.cgi
       loginManager = Components.classes["@mozilla.org/login-manager;1"]
                       .getService(Components.interfaces.nsILoginManager),
-    nsLoginInfo = new Components.Constructor("@mozilla.org/login-manager/loginInfo;1", Components.interfaces.nsILoginInfo, "init");
+      nsLoginInfo = new Components.Constructor("@mozilla.org/login-manager/loginInfo;1", Components.interfaces.nsILoginInfo, "init"),
+      prefManager = Components.classes["@mozilla.org/preferences-service;1"].getService(Components.interfaces.nsIPrefBranch);
 
   /**
    * Interface to handle easily the user accounts on ff2 and ff3
    * @constructor
    * @class _PasswordManager
-   * @namespace GRW
    */
   var _PasswordManager = function() {
     var _googlePW = null;
@@ -39,7 +39,7 @@
       for (let i = 0, ll = logins.length; i < ll; i++) {
         if (logins[i].username == username) {
           output = logins[i];
-          output.username = GRW.Prefs.get.userName();
+          output.username = prefManager.getCharPref('extensions.grwatcher.username');
           break;
         }
       }
@@ -66,7 +66,7 @@
         }
         // Find users for the given parameters
       } catch(ex) {
-        GRW.log('get pass failed:', ex);
+        // GRW.log('get pass failed:', ex);
       }
     };
     /**
@@ -94,7 +94,7 @@
         var extLoginInfo = new nsLoginInfo(url, formSubmitURL, null, username, password, "", "");
         loginManager.addLogin(extLoginInfo);
       } catch(ex) {
-        GRW.log(ex);
+        // GRW.log(ex);
       }
 
     }
