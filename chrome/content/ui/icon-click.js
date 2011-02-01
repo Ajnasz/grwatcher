@@ -5,14 +5,16 @@
       },
       doc = document;
 
-  var iconClick = function() {
+  var iconClick = function(elements) {
+    this.elements = elements.map(function (elem) {
+      return document.getElementById(elem);
+    });
     this.init.apply(this, arguments);
   };
   iconClick.prototype = {
     init: function() {
-      var _this = this,
-      elements = [document.getElementById('GRW-statusbar'), document.getElementById('GRW-toolbar-button'), document.getElementById('GRW-toolbar-label')];
-      elements.forEach(function(element) {
+      var _this = this;
+      this.elements.forEach(function (element) {
         if(element) {
           element.addEventListener('click', function(event){
             _this.click(event);
@@ -22,7 +24,6 @@
           }, true);
         }
       })
-      this.elements = elements;
     },
     click: function(event) {
       var type = event.type,

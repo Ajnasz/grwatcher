@@ -50,7 +50,9 @@
     GRW.log('Google Reader Watcher ###VERSION### initializitaion started');
 
     var statusbarCounter = GRW.UI.StatusbarCounter;
-    var iconClick = new GRW.IconrClick();
+    var iconClick = new GRW.IconrClick([
+      'GRW-statusbar', 'GRW-toolbar-button', 'GRW-toolbar-label'
+    ]);
     var notifier = new GRW.Notifier();
     var menuClick = new GRW.MenuClick();
     var toolbarClick = new GRW.ToolbarMenuClick();
