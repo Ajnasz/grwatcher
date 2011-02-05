@@ -5,7 +5,6 @@
        * Google account manager namespace,
        * check that the user is logged in,
        * logging in the user
-       * @requires GRW.Prefs to get the preferences
        * @requires GRW._PasswordManager to get the users password
        * @requires #getFeedList function, to gets the feeds
        */
@@ -35,7 +34,6 @@
         },
         setCurrentSID: function() {
           if(lastResponse && lastResponse.responseText && !this.getCurrentSID()) {
-            GRW.log('set SID cookie');
             var auths = lastResponse.responseText.split('\n');
             if(auths.length) {
               var sid = '';
@@ -47,7 +45,8 @@
               }
               if(sid.length) {
                 Components.utils.import("resource://grwmodules/GrwCookie.jsm");
-                GrwCookie.set('google.com', 'SID', sid.split('=')[1], GRW.Prefs.get.rememberLogin());
+                Components.utils.import("resource://grwmodules/Prefs.jsm");
+                GrwCookie.set('google.com', 'SID', sid.split('=')[1], Prefs.get.rememberLogin());
                 // GRW.Token();
                 return sid.split('=')[1];
               }
@@ -98,11 +97,13 @@
                   onLogin.call();
                 }
                 if(!_this.getCurrentAuth()) {
-                  var cookieBehavior = GRW.Prefs.get.cookieBehaviour();
+                  Components.utils.import("resource://grwmodules/Prefs.jsm");
+                  var cookieBehavior = Prefs.get.cookieBehaviour();
                   if(cookieBehavior != 0) {
                     _this.loginFailed(e.responseText);
                     _this.fireEvent('cookieError');
-                    GRW.log('bad cookie behavior', cookieBehavior);
+                    Components.utils.import("resource://grwmodules/GRWLog.jsm");
+                    GRWLog('bad cookie behavior', cookieBehavior);
                   } else {
                     _this.loginFailed(e.responseText);
                   }
@@ -153,7 +154,6 @@
          * @type Boolean
          */
         loginFailed: function(msg) {
-          GRW.log('login failed');
           this.fireEvent('loginFailed');
           return false;
         },

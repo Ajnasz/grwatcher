@@ -19,7 +19,6 @@
   };
   var updateUI = function (oArgs) {
     if(GRW.lang.isArray(oArgs.status)) {
-      GRW.log(oArgs.status)
       setIcons(oArgs.status)
     }
     if(GRW.lang.isArray(oArgs.tooltip)) {
@@ -47,7 +46,6 @@
   * initialization function
   */
   var init = function() {
-    GRW.log('Google Reader Watcher ###VERSION### initializitaion started');
     Components.utils.import("resource://grwmodules/IconClick.jsm");
 
     var statusbarCounter = GRW.UI.StatusbarCounter;
@@ -104,7 +102,6 @@
 
     // show error icon if login failed
     loginManager.on('loginFailed', function() {
-      GRW.log('login failed');
       var oArgs = {
         status: ['error'],
         counter: [0],
@@ -121,14 +118,14 @@
     });
 
   GRW.OpenReader.on('beforeReaderOpened', function() {
-    GRW.log('set current sid');
     loginManager.setCurrentSID();
   });
     // reset the counter, change the icon,
     // change the next request's time
     // enable to show notification window
     GRW.OpenReader.on('readerOpened', function() {
-      if(GRW.Prefs.get.resetCounter()) {
+      Components.utils.import("resource://grwmodules/Prefs.jsm");
+      if(Prefs.get.resetCounter()) {
         var oArgs = {
           status: ['off'],
           counter: [0],
@@ -162,15 +159,6 @@
       updateUI(oArgs);
     });
 
-    // set statusbar after the unread items processed
-    // getlist.on('unreadGeneratedEvent', function(elems) {
-    //   GRW.log('unread generated event');
-    // });
-    //
-    // getlist.on('subscriptionGeneratedEvent', function(elems) {
-    //   GRW.log('subscription list generated event');
-    // });
-
     // when the unread and the subscription list data is arrived
     // match them
     getlist.on('unreadAndSubscriptionReceivedEvent', function() {
@@ -198,7 +186,6 @@
     });
     // open the reader when user clicks on the link in the notifier
     notifier.on('notifierClicked', function() {
-      // GRW.log('notifier clicked');
       GRW.OpenReader.open();
     });
 
@@ -260,9 +247,10 @@
     if(isActiveGRW() === false) {
       window.GRWActive = true;
       Components.utils.import("resource://grwmodules/Timer.jsm");
+      Components.utils.import("resource://grwmodules/Prefs.jsm");
       later(function() {
         requester.start();
-      }, GRW.Prefs.get.delayStart());
+      }, Prefs.get.delayStart());
     } else {
       Components.utils.import("resource://grwmodules/getactivegrw.jsm");
       var activeWin = getActiveGRW();
@@ -270,7 +258,6 @@
   //    getlist = activeWin.GRW.GetList;
     }
 
-    GRW.log('Google Reader Watcher ###VERSION### initializitaion finished');
   };
   window.addEventListener('load', init, false);
   window.addEventListener('unload', function(event) {

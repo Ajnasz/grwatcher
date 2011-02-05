@@ -17,13 +17,13 @@
       if(this.timer) {
         never(this.timer);
       }
+      Components.utils.import("resource://grwmodules/Prefs.jsm");
       var _this = this,
           minCheck = 1,
-          configuredCheck = GRW.Prefs.get.checkFreq(),
+          configuredCheck = Prefs.get.checkFreq(),
           freq = (configuredCheck >= minCheck) ? configuredCheck : minCheck;
 
       this.timer = later(function() {_this.updater()}, freq*1000*60);
-      GRW.log('setNext');
     }
   };
   Components.utils.import("resource://grwmodules/Augment.jsm");

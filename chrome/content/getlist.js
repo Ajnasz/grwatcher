@@ -238,8 +238,6 @@
             if(subscription) {
               unread.data = subscription;
             } else {
-              // GRW.log(unread.id, friendHash[unread.id]);
-              // GRW.log(friendHash.toSource());
               friend = friendHash[unread.id];
               if (friend) {
                 unread.data = friend;
@@ -251,7 +249,8 @@
         },
         _filterLabels: function(items) {
 
-          var filteredLabels = GRW.Prefs.get.filteredLabels().replace(/\s+,/g, ',').replace(/,\s+/g, ',');
+          Components.utils.import("resource://grwmodules/Prefs.jsm");
+          var filteredLabels = Prefs.get.filteredLabels().replace(/\s+,/g, ',').replace(/,\s+/g, ',');
 
           if (filteredLabels !== '') {
             filteredLabels = filteredLabels.split(',');
@@ -314,13 +313,11 @@
         matchUnreadItems: function() {
           this._unreadCount.feeds = this._matchUnreadItems(this._unreadCount.feeds);
           var unreads = this._unreadCount.feeds.filter(function(elem) {
-            // GRW.log('feeds filter: ', parseInt( elem.count, 10))
             return elem.count && parseInt(elem.count, 10) > 0;
           });
           unreads = this._filterLabels(unreads);
           var unreadSum = 0;
           unreads.forEach(function(elem) {
-            // GRW.log(elem.count, elem.id);
             unreadSum += elem.count;
           });
           this._unreadCount.unreadSum = unreadSum;

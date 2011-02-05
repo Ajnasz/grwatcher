@@ -4,9 +4,10 @@
    * @method savePreferences
    * @namespace GRW
    */
+  Components.utils.import("resource://grwmodules/Prefs.jsm");
   var doc = document,
-      setPref = GRW.Prefs.set,
-      getPref = GRW.Prefs.get;
+      setPref = Prefs.set,
+      getPref = Prefs.get;
 
   var savePreferences = function() {
     setPref.checkFreq(doc.getElementById('GRW-checkfreq-field').value);

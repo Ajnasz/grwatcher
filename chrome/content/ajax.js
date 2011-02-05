@@ -18,7 +18,8 @@
         callback()
       },
       onError: function(args) {
-        GRW.log('TOKEN ERROR', args.getAllResponseHeaders(), args.status, args.statusText);
+        Components.utils.import("resource://grwmodules/GRWLog.jsm");
+        GRWlog('TOKEN ERROR', args.getAllResponseHeaders(), args.status, args.statusText);
       }
     });
   };
@@ -49,7 +50,8 @@
         }
       },
     }
-    if(GRW.Prefs.get.forceLogin() && lastRequest != 'login') {
+    Components.utils.import("resource://grwmodules/Prefs.jsm");
+    if(Prefs.get.forceLogin() && lastRequest != 'login') {
       lastRequest = 'login';
       GRW.LoginManager.logIn(retry);
     } else {

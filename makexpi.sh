@@ -38,6 +38,8 @@ function buildXPI {
     modules/JSON.jsm \
     modules/Augment.jsm \
     modules/GRWUri.jsm \
+    modules/Prefs.jsm \
+    modules/GRWLog.jsm \
     modules/Timer.jsm \
     modules/Getter.jsm \
     modules/mapwindows.jsm \

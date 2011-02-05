@@ -64,9 +64,7 @@ var _PasswordManager = function() {
         return account.password;
       }
       // Find users for the given parameters
-    } catch(ex) {
-      // GRW.log('get pass failed:', ex);
-    }
+    } catch(ex) {}
   };
   /**
     * Retreives the username
@@ -92,12 +90,9 @@ var _PasswordManager = function() {
       }
       var extLoginInfo = new nsLoginInfo(url, formSubmitURL, null, username, password, "", "");
       loginManager.addLogin(extLoginInfo);
-    } catch(ex) {
-      // GRW.log(ex);
-    }
+    } catch(ex) {}
 
   }
 };
 var PassManager = new _PasswordManager();
 let EXPORTED_SYMBOLS = ['PassManager'];
-// GRW.log('passwordmanagaer');

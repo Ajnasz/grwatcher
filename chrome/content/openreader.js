@@ -1,6 +1,7 @@
 (function() {
+  Components.utils.import("resource://grwmodules/Prefs.jsm");
   var readerURL = 'www.google.com/reader/view',
-      getPref = GRW.Prefs.get;
+      getPref = Prefs.get;
 
   var getOpenedGR = function() {
     Components.utils.import("resource://grwmodules/GRWUri.jsm");
@@ -72,14 +73,16 @@
           gBrowser.loadURI(url);
         }
       } catch(e) {
-        GRW.log('reader open', e);
-        GRW.log('fileName', e.fileName);
-        GRW.log('line', e.lineNumber);
+        Components.utils.import("resource://grwmodules/GRWLog.jsm");
+        GRWLog('reader open', e);
+        GRWLog('fileName', e.fileName);
+        GRWLog('line', e.lineNumber);
       }
       this.fireEvent('readerOpened');
     },
     open: function(subUrl) {
-      if(GRW.Prefs.get.forceLogin()) {
+      Components.utils.import("resource://grwmodules/Prefs.jsm");
+      if(Prefs.get.forceLogin()) {
         var _this = this;
         GRW.LoginManager.logIn(function() {
           _this._open(subUrl);
