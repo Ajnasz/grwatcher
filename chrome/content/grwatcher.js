@@ -1,4 +1,5 @@
 (function (GRW) {
+  const minDelay = 300;
   var isActiveGRW = function () {
     if (typeof Components === 'undefined') {
       return;
@@ -13,9 +14,12 @@
     return isActive;
   };
   var setIcons = function (status) {
-    Components.utils.import("resource://grwmodules/StatusIcon.jsm");
-    StatusIcon('GRW-statusbar', status);
-    StatusIcon('GRW-toolbar-button', status);
+    if(typeof Components !== 'undefined') {
+      Components.utils.import("resource://grwmodules/StatusIcon.jsm");
+      StatusIcon('GRW-statusbar', status);
+      StatusIcon('GRW-toolbar-button', status);
+    } else {
+    }
   };
   var updateUI = function (oArgs) {
     if(GRW.lang.isArray(oArgs.status)) {
@@ -246,11 +250,7 @@
 
     if(isActiveGRW() === false) {
       window.GRWActive = true;
-      Components.utils.import("resource://grwmodules/Timer.jsm");
-      Components.utils.import("resource://grwmodules/Prefs.jsm");
-      later(function() {
-        requester.start();
-      }, Prefs.get.delayStart());
+      requester.start();
     } else {
       Components.utils.import("resource://grwmodules/getactivegrw.jsm");
       var activeWin = getActiveGRW();
@@ -259,8 +259,17 @@
     }
 
   };
-  window.addEventListener('load', init, false);
+  var start = function () {
+      Components.utils.import("resource://grwmodules/Timer.jsm");
+      Components.utils.import("resource://grwmodules/Prefs.jsm");
+      var delay = Prefs.get.delayStart();
+      delay = delay > minDelay ? delay : minDelay;
+      later(function() {
+        init();
+      }, delay);
+  };
+  window.addEventListener('load', start, false);
   window.addEventListener('unload', function(event) {
-    this.removeEventListener('load', init, false);
+    this.removeEventListener('load', start, false);
   }, false);
 }(GRW));
