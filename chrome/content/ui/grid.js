@@ -1,12 +1,13 @@
 (function() {
   Components.utils.import("resource://grwmodules/GridProvider.jsm");
   Components.utils.import("resource://grwmodules/Augment.jsm");
-  
+
   var Grid = function(doc, feeds, labels) {
     this.document = doc;
     this.feeds = feeds || [];
     // this.getlist = getlist;
-    this.toLeft = GRW.Prefs.get.tooltipCounterPos() == 'left';
+    Components.utils.import("resource://grwmodules/Prefs.jsm");
+    this.toLeft = Prefs.get.tooltipCounterPos() == 'left';
     this.labels = labels;
     this.peopleYouFollow = GRW.strings.getString('peopleyoufollowtitle');
     this.init();
@@ -44,7 +45,8 @@
           countLabel = label.cloneNode(true),
           titleLabel = label.cloneNode(true);
 
-      itemTitle = this.normalizeItemTitle(itemTitle, GRW.Prefs.get.tooltipTitleLength());
+      Components.utils.import("resource://grwmodules/Prefs.jsm");
+      itemTitle = this.normalizeItemTitle(itemTitle, Prefs.get.tooltipTitleLength());
 
       countLabel.value = itemCount;
       countLabel.setAttribute('class', 'counterCol');
@@ -65,7 +67,8 @@
     },
     ggenRows: function() {
       var rows = this.document.createElement('rows');
-      var generatedRows = this.genRows(this.feeds, GRW.Prefs.get.sortByLabels(), this.peopleYouFollow);
+      Components.utils.import("resource://grwmodules/Prefs.jsm");
+      var generatedRows = this.genRows(this.feeds, Prefs.get.sortByLabels(), this.peopleYouFollow);
       generatedRows.forEach(function(item) {
         if (item.rows) {
           item.rows.forEach(function (row) {

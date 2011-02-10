@@ -4,9 +4,10 @@
    * @method savePreferences
    * @namespace GRW
    */
+  Components.utils.import("resource://grwmodules/Prefs.jsm");
   var doc = document,
-      setPref = GRW.Prefs.set,
-      getPref = GRW.Prefs.get;
+      setPref = Prefs.set,
+      getPref = Prefs.get;
 
   var savePreferences = function() {
     setPref.checkFreq(doc.getElementById('GRW-checkfreq-field').value);
@@ -29,7 +30,8 @@
   
     setPref.userName(doc.getElementById('GRW-accountmanage-email').value);
     setPref.forceLogin(doc.getElementById('GRW-forceLogin-field').checked);
-    GRW.PasswordManager.addPassword(doc.getElementById('GRW-accountmanage-pass').value);
+    Components.utils.import("resource://grwmodules/PassManager.jsm");
+    PassManager.addPassword(doc.getElementById('GRW-accountmanage-pass').value);
   
   };
   /**
@@ -57,7 +59,8 @@
     doc.getElementById('GRW-forceLogin-field').checked = getPref.forceLogin();
     doc.getElementById('GRW-showitemsintooltip-field').checked = getPref.showitemsintooltip();
     doc.getElementById('GRW-showitemsincontextmenu-field').checked = getPref.showitemsincontextmenu();
-    doc.getElementById('GRW-accountmanage-pass').value = GRW.PasswordManager.getPassword() || '';
+    Components.utils.import("resource://grwmodules/PassManager.jsm");
+    doc.getElementById('GRW-accountmanage-pass').value = PassManager.getPassword() || '';
   };
   /**
    * show/hide the newtab options

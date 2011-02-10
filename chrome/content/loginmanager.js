@@ -5,7 +5,6 @@
        * Google account manager namespace,
        * check that the user is logged in,
        * logging in the user
-       * @requires GRW.Prefs to get the preferences
        * @requires GRW._PasswordManager to get the users password
        * @requires #getFeedList function, to gets the feeds
        */
@@ -16,7 +15,8 @@
          * @type {Boolean}
          */
         accountExists: function() {
-          if(GRW.PasswordManager.getUsername() && GRW.PasswordManager.getPassword()) {
+          Components.utils.import("resource://grwmodules/PassManager.jsm");
+          if(PassManager.getUsername() && PassManager.getPassword()) {
             return true;
           }
           return false;
@@ -26,15 +26,14 @@
          * @type {String,Boolean}
          */
         getCurrentSID: function() {
-          Components.utils.import("resource://grwmodules/GRWCookie.jsm");
-          return GRWCookie.get('SID');
+          Components.utils.import("resource://grwmodules/GrwCookie.jsm");
+          return GrwCookie.get('SID');
         },
         isLoggedIn: function() {
           return this.getCurrentAuth() != false;
         },
         setCurrentSID: function() {
           if(lastResponse && lastResponse.responseText && !this.getCurrentSID()) {
-            GRW.log('set SID cookie');
             var auths = lastResponse.responseText.split('\n');
             if(auths.length) {
               var sid = '';
@@ -45,8 +44,9 @@
                 }
               }
               if(sid.length) {
-                Components.utils.import("resource://grwmodules/GRWCookie.jsm");
-                GRWCookie.set('google.com', 'SID', sid.split('=')[1], GRW.Prefs.get.rememberLogin());
+                Components.utils.import("resource://grwmodules/GrwCookie.jsm");
+                Components.utils.import("resource://grwmodules/Prefs.jsm");
+                GrwCookie.set('google.com', 'SID', sid.split('=')[1], Prefs.get.rememberLogin());
                 // GRW.Token();
                 return sid.split('=')[1];
               }
@@ -86,8 +86,9 @@
           if(this.accountExists()) {
             // var url = GRStates.conntype + '://www.google.com/accounts/ServiceLoginAuth';
             // var url = 'https://www.google.com/accounts/ServiceLoginAuth?service=reader';
+          Components.utils.import("resource://grwmodules/PassManager.jsm");
             var url = 'https://www.google.com/accounts/ClientLogin?service=reader',
-                param = 'service=reader&Email='+encodeURIComponent(GRW.PasswordManager.getUsername())+'&Passwd='+encodeURIComponent(GRW.PasswordManager.getPassword())+'&continue=http://www.google.com/reader/';
+                param = 'service=reader&Email='+encodeURIComponent(PassManager.getUsername())+'&Passwd='+encodeURIComponent(PassManager.getPassword())+'&continue=http://www.google.com/reader/';
                 _this = this;
             GRW.request('post', url, {
               onSuccess: function(e) {
@@ -96,11 +97,13 @@
                   onLogin.call();
                 }
                 if(!_this.getCurrentAuth()) {
-                  var cookieBehavior = GRW.Prefs.get.cookieBehaviour();
+                  Components.utils.import("resource://grwmodules/Prefs.jsm");
+                  var cookieBehavior = Prefs.get.cookieBehaviour();
                   if(cookieBehavior != 0) {
                     _this.loginFailed(e.responseText);
                     _this.fireEvent('cookieError');
-                    GRW.log('bad cookie behavior', cookieBehavior);
+                    Components.utils.import("resource://grwmodules/GRWLog.jsm");
+                    GRWLog('bad cookie behavior', cookieBehavior);
                   } else {
                     _this.loginFailed(e.responseText);
                   }
@@ -151,7 +154,6 @@
          * @type Boolean
          */
         loginFailed: function(msg) {
-          GRW.log('login failed');
           this.fireEvent('loginFailed');
           return false;
         },

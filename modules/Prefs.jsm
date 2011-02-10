@@ -283,5 +283,4 @@ var Prefs = {
     }
   }
 };
-
 let EXPORTED_SYMBOLS = ['Prefs'];

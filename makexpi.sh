@@ -38,12 +38,17 @@ function buildXPI {
     modules/JSON.jsm \
     modules/Augment.jsm \
     modules/GRWUri.jsm \
+    modules/Prefs.jsm \
+    modules/GRWLog.jsm \
     modules/Timer.jsm \
     modules/Getter.jsm \
     modules/mapwindows.jsm \
     modules/getactivegrw.jsm \
     modules/StatusIcon.jsm \
-    modules/GRWCookie.jsm \
+    modules/GrwCookie.jsm \
+    modules/IconClick.jsm \
+    modules/PassManager.jsm \
+    modules/MenuClick.jsm \
     modules/EventProvider.jsm \
     modules/CustomEvent.jsm \
     modules/GridProvider.jsm \

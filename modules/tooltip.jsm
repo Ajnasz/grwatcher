@@ -8,8 +8,9 @@ var Tooltip = function (conf,GRW) {
   };
   var actions = {
     genGrid: function(win, feeds, labels) {
+      Components.utils.import("resource://grwmodules/Prefs.jsm");
       var element = win.document.getElementById(conf.elementID);
-      var showItemsInToolTip = GRW.Prefs.get.showitemsintooltip();
+      var showItemsInToolTip = Prefs.get.showitemsintooltip();
       var elementContainer = win.document.getElementById(conf.tooltipNewElement);
 
       if(element) {

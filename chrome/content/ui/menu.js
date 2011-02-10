@@ -17,14 +17,16 @@
   Menu.prototype = {
     init: function() {
       this.clearItems();
-      if(GRW.Prefs.get.showitemsincontextmenu()) {
+      Components.utils.import("resource://grwmodules/Prefs.jsm");
+      if(Prefs.get.showitemsincontextmenu()) {
         var menu = this.menu,
             firstMenuItem,
             peopleYouFollow = this.peopleYouFollow;
 
         if (menu) {
           firstMenuItem = menu.firstChild;
-          var generatedRows = this.genRows(this.feeds, GRW.Prefs.get.sortByLabels(), peopleYouFollow);
+          Components.utils.import("resource://grwmodules/Prefs.jsm");
+          var generatedRows = this.genRows(this.feeds, Prefs.get.sortByLabels(), peopleYouFollow);
           generatedRows.forEach(function(item) {
             if (item.rows) {
               item.rows.forEach(function (row) {
@@ -35,7 +37,7 @@
             }
           }, this);
         }
-        (this.feeds.length) ?  this.showMenuSeparator() : this.hideMenuSeparator();
+        (this.feeds && this.feeds.length) ?  this.showMenuSeparator() : this.hideMenuSeparator();
       }
     },
     showMenuSeparator: function () {
@@ -62,7 +64,8 @@
           doc        = this.document,
           menuitem = doc.createElement('menuitem');
 
-      itemTitle = this.normalizeItemTitle(itemTitle,  GRW.Prefs.get.tooltipTitleLength());
+      Components.utils.import("resource://grwmodules/Prefs.jsm");
+      itemTitle = this.normalizeItemTitle(itemTitle,  Prefs.get.tooltipTitleLength());
 
       menuitem.setAttribute('label', itemCount + ' ' + itemTitle);
       menuitem.setAttribute('class', 'feed');

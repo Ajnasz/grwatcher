@@ -19,7 +19,6 @@
   <![CDATA[
     window.addEventListener('load',
       function() {
-      // GRW.PasswordManager = new GRW._PasswordManager();
         GRW.SetPrefPaneVals();
         GRW.OpenNewTabCheckToogle();
         document.getElementById('GRW-openinnewtab-field').addEventListener('command', GRW.OpenNewTabCheckToogle, false);

@@ -36,9 +36,10 @@
   var statusbarCounter = {
     update: function(val, maxcount) {
 
-      var showZeroCounter = GRW.Prefs.get.showZeroCounter(),
+      Components.utils.import("resource://grwmodules/Prefs.jsm");
+      var showZeroCounter = Prefs.get.showZeroCounter(),
           showval;
-      if(GRW.Prefs.get.maximizeCounter() && maxcount && val > maxcount) {
+      if(Prefs.get.maximizeCounter() && maxcount && val > maxcount) {
         showval = maxcount + '+';
       } else {
         showval = val;

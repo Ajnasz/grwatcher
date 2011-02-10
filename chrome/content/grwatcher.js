@@ -1,4 +1,5 @@
 (function (GRW) {
+  const minDelay = 300;
   var isActiveGRW = function () {
     if (typeof Components === 'undefined') {
       return;
@@ -13,13 +14,15 @@
     return isActive;
   };
   var setIcons = function (status) {
-    Components.utils.import("resource://grwmodules/StatusIcon.jsm");
-    StatusIcon('GRW-statusbar', status);
-    StatusIcon('GRW-toolbar-button', status);
+    if(typeof Components !== 'undefined') {
+      Components.utils.import("resource://grwmodules/StatusIcon.jsm");
+      StatusIcon('GRW-statusbar', status);
+      StatusIcon('GRW-toolbar-button', status);
+    } else {
+    }
   };
   var updateUI = function (oArgs) {
     if(GRW.lang.isArray(oArgs.status)) {
-      GRW.log(oArgs.status)
       setIcons(oArgs.status)
     }
     if(GRW.lang.isArray(oArgs.tooltip)) {
@@ -47,13 +50,31 @@
   * initialization function
   */
   var init = function() {
-    GRW.log('Google Reader Watcher ###VERSION### initializitaion started');
+    Components.utils.import("resource://grwmodules/IconClick.jsm");
 
     var statusbarCounter = GRW.UI.StatusbarCounter;
-    var iconClick = new GRW.IconrClick();
+    var iconClick = new IconClick([
+      'GRW-statusbar', 'GRW-toolbar-button', 'GRW-toolbar-label'
+    ], document);
     var notifier = new GRW.Notifier();
-    var menuClick = new GRW.MenuClick();
-    var toolbarClick = new GRW.ToolbarMenuClick();
+    Components.utils.import("resource://grwmodules/MenuClick.jsm");
+    var menuClick = new MenuClick(
+      {
+        openReader: 'GRW-statusbar-menuitem-openreader',
+        markAllAsRead: 'GRW-statusbar-menuitem-markallasread',
+        checkUnreadFeeds: 'GRW-statusbar-menuitem-getcounter',
+        openPreferences: 'GRW-statusbar-menuitem-openprefs',
+        enableCookies: 'GRW-statusbar-menuitem-enablecookies',
+      }, document
+    );
+    var toolbarClick = new MenuClick({
+          openReader: 'GRW-toolbar-menuitem-openreader',
+          markAllAsRead: 'GRW-toolbar-menuitem-markallasread',
+          checkUnreadFeeds: 'GRW-toolbar-menuitem-getcounter',
+          openPreferences: 'GRW-toolbar-menuitem-openprefs',
+          enableCookies: 'GRW-toolbar-menuitem-enablecookies',
+    }, document);
+    // var toolbarClick = new GRW.ToolbarMenuClick();
     var requester = GRW.Requester;
     var loginManager = GRW.LoginManager;
     var getlist = GRW.GetList;
@@ -85,7 +106,6 @@
 
     // show error icon if login failed
     loginManager.on('loginFailed', function() {
-      GRW.log('login failed');
       var oArgs = {
         status: ['error'],
         counter: [0],
@@ -102,14 +122,14 @@
     });
 
   GRW.OpenReader.on('beforeReaderOpened', function() {
-    GRW.log('set current sid');
     loginManager.setCurrentSID();
   });
     // reset the counter, change the icon,
     // change the next request's time
     // enable to show notification window
     GRW.OpenReader.on('readerOpened', function() {
-      if(GRW.Prefs.get.resetCounter()) {
+      Components.utils.import("resource://grwmodules/Prefs.jsm");
+      if(Prefs.get.resetCounter()) {
         var oArgs = {
           status: ['off'],
           counter: [0],
@@ -143,15 +163,6 @@
       updateUI(oArgs);
     });
 
-    // set statusbar after the unread items processed
-    // getlist.on('unreadGeneratedEvent', function(elems) {
-    //   GRW.log('unread generated event');
-    // });
-    //
-    // getlist.on('subscriptionGeneratedEvent', function(elems) {
-    //   GRW.log('subscription list generated event');
-    // });
-
     // when the unread and the subscription list data is arrived
     // match them
     getlist.on('unreadAndSubscriptionReceivedEvent', function() {
@@ -179,7 +190,6 @@
     });
     // open the reader when user clicks on the link in the notifier
     notifier.on('notifierClicked', function() {
-      // GRW.log('notifier clicked');
       GRW.OpenReader.open();
     });
 
@@ -240,10 +250,7 @@
 
     if(isActiveGRW() === false) {
       window.GRWActive = true;
-      Components.utils.import("resource://grwmodules/Timer.jsm");
-      later(function() {
-        requester.start();
-      }, GRW.Prefs.get.delayStart());
+      requester.start();
     } else {
       Components.utils.import("resource://grwmodules/getactivegrw.jsm");
       var activeWin = getActiveGRW();
@@ -251,10 +258,18 @@
   //    getlist = activeWin.GRW.GetList;
     }
 
-    GRW.log('Google Reader Watcher ###VERSION### initializitaion finished');
   };
-  window.addEventListener('load', init, false);
+  var start = function () {
+      Components.utils.import("resource://grwmodules/Timer.jsm");
+      Components.utils.import("resource://grwmodules/Prefs.jsm");
+      var delay = Prefs.get.delayStart();
+      delay = delay > minDelay ? delay : minDelay;
+      later(function() {
+        init();
+      }, delay);
+  };
+  window.addEventListener('load', start, false);
   window.addEventListener('unload', function(event) {
-    this.removeEventListener('load', init, false);
+    this.removeEventListener('load', start, false);
   }, false);
 }(GRW));

@@ -1,12 +1,11 @@
 (function() {
-  var getPrefs = GRW.Prefs.get;
 
-  var notifier = function() {
-  };
+  var notifier = function() {};
   notifier.prototype = {
     showNotification: true,
     notificationWin: function(value) {
-      if(getPrefs.showNotificationWindow() !== false) {
+      Components.utils.import("resource://grwmodules/Prefs.jsm");
+      if(Prefs.get.showNotificationWindow() !== false) {
         var label = 'Google Reader Watcher',
             image = "chrome://grwatcher/skin/grwatcher.png",
             alertsService,
@@ -48,7 +47,8 @@
     show: function(unreadCount, maxcount) {
       if(this.showNotification && unreadCount > 0) {
         var showval;
-        if(GRW.Prefs.get.maximizeCounter() && maxcount && unreadCount > maxcount) {
+          Components.utils.import("resource://grwmodules/Prefs.jsm");
+        if(Prefs.get.maximizeCounter() && maxcount && unreadCount > maxcount) {
           showval = maxcount + '+';
         } else {
           showval = unreadCount;

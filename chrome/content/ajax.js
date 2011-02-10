@@ -9,8 +9,8 @@
   var _getToken = function(callback) {
     request('get', GRWUri('www.google.com/reader/api/0/token'), {
       onSuccess: function(r){
-        Components.utils.import("resource://grwmodules/GRWCookie.jsm");
-        GRWCookie.set('.google.com', 'T', r.responseText);
+        Components.utils.import("resource://grwmodules/GrwCookie.jsm");
+        GrwCookie.set('.google.com', 'T', r.responseText);
         GRW.token = {
           token: r.responseText,
           date: new Date()
@@ -18,7 +18,8 @@
         callback()
       },
       onError: function(args) {
-        GRW.log('TOKEN ERROR', args.getAllResponseHeaders(), args.status, args.statusText);
+        Components.utils.import("resource://grwmodules/GRWLog.jsm");
+        GRWlog('TOKEN ERROR', args.getAllResponseHeaders(), args.status, args.statusText);
       }
     });
   };
@@ -49,7 +50,8 @@
         }
       },
     }
-    if(GRW.Prefs.get.forceLogin() && lastRequest != 'login') {
+    Components.utils.import("resource://grwmodules/Prefs.jsm");
+    if(Prefs.get.forceLogin() && lastRequest != 'login') {
       lastRequest = 'login';
       GRW.LoginManager.logIn(retry);
     } else {
