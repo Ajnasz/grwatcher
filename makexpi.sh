@@ -26,14 +26,14 @@ function buildXPI {
     echo "Delete $PROJECT_NAME.jar";
     rm $PROJECT_NAME.jar;
   fi;
-  zip -r $PROJECT_NAME.jar content/*;
-  zip -r $PROJECT_NAME.jar locale/*;
-  zip -r $PROJECT_NAME.jar skin/* -x -x \*.svg -x \*.xcf;
+  # zip -r $PROJECT_NAME.jar content/*;
+  # zip -r $PROJECT_NAME.jar locale/*;
+  # zip -r $PROJECT_NAME.jar skin/* -x -x \*.svg -x \*.xcf;
 
   cd ..;
   echo "Build package $PROJECT_NAME.xpi";
   rm $PROJECT_NAME*.xpi;
-  zip $PROJECT_NAME.xpi chrome.manifest install.rdf \
+  zip -r $PROJECT_NAME.xpi chrome.manifest install.rdf \
     modules/tooltip.jsm \
     modules/JSON.jsm \
     modules/Augment.jsm \
@@ -45,8 +45,8 @@ function buildXPI {
     modules/EventProvider.jsm \
     modules/CustomEvent.jsm \
     modules/GridProvider.jsm \
-    chrome/$PROJECT_NAME.jar \
     defaults/preferences/$PROJECT_NAME.js \
+    chrome/
     license.txt;
 
   echo "Replace old XPIs with the new one";
