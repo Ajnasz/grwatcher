@@ -1,44 +1,38 @@
-content grwatcher jar:chrome/grwatcher.jar!/content/
+content grwatcher chrome/content/
 resource grwmodules modules/
 overlay chrome://browser/content/browser.xul chrome://grwatcher/content/grwatcher.xul
 
-skin grwatcher classic/1.0	jar:chrome/grwatcher.jar!/skin/classic/grwatcher/
+skin grwatcher classic/1.0	chrome/skin/classic/grwatcher/
 style	chrome://global/content/customizeToolbar.xul	chrome://grwatcher/skin/toolbar.css
 
-locale grwatcher ca-AD jar:chrome/grwatcher.jar!/locale/ca-AD/
-locale grwatcher cs jar:chrome/grwatcher.jar!/locale/cs/
-locale grwatcher da jar:chrome/grwatcher.jar!/locale/da/
-locale grwatcher de jar:chrome/grwatcher.jar!/locale/de/
-locale grwatcher el jar:chrome/grwatcher.jar!/locale/el/
-locale grwatcher el-GR jar:chrome/grwatcher.jar!/locale/el-GR/
-locale grwatcher en-US jar:chrome/grwatcher.jar!/locale/en-US/
-locale grwatcher es-AR jar:chrome/grwatcher.jar!/locale/es-AR/
-locale grwatcher es-ES jar:chrome/grwatcher.jar!/locale/es-ES/
-locale grwatcher et-EE jar:chrome/grwatcher.jar!/locale/et-EE/
-locale grwatcher fa-IR jar:chrome/grwatcher.jar!/locale/fa-IR/
-locale grwatcher fi-FI jar:chrome/grwatcher.jar!/locale/fi-FI/
-locale grwatcher fr jar:chrome/grwatcher.jar!/locale/fr/
-locale grwatcher gl-ES jar:chrome/grwatcher.jar!/locale/gl-ES/
-locale grwatcher he-IL jar:chrome/grwatcher.jar!/locale/he-IL/
-locale grwatcher hu-HU jar:chrome/grwatcher.jar!/locale/hu-HU/
-locale grwatcher it jar:chrome/grwatcher.jar!/locale/it/
-locale grwatcher it-IT jar:chrome/grwatcher.jar!/locale/it-IT/
-locale grwatcher ja jar:chrome/grwatcher.jar!/locale/ja/
-locale grwatcher ja-JP jar:chrome/grwatcher.jar!/locale/ja-JP/
-locale grwatcher ko-KR jar:chrome/grwatcher.jar!/locale/ko-KR/
-locale grwatcher ms-MY jar:chrome/grwatcher.jar!/locale/ms-MY/
-locale grwatcher nl jar:chrome/grwatcher.jar!/locale/nl/
-locale grwatcher nl-NL jar:chrome/grwatcher.jar!/locale/nl-NL/
-locale grwatcher pl jar:chrome/grwatcher.jar!/locale/pl/
-locale grwatcher pl-PL jar:chrome/grwatcher.jar!/locale/pl-PL/
-locale grwatcher pt-BR jar:chrome/grwatcher.jar!/locale/pt-BR/
-locale grwatcher pt-PT jar:chrome/grwatcher.jar!/locale/pt-PT/
-locale grwatcher ru-RU jar:chrome/grwatcher.jar!/locale/ru-RU/
-locale grwatcher sk-SK jar:chrome/grwatcher.jar!/locale/sk-SK/
-locale grwatcher sr jar:chrome/grwatcher.jar!/locale/sr/
-locale grwatcher sv-SE jar:chrome/grwatcher.jar!/locale/sv-SE/
-locale grwatcher tr-TR jar:chrome/grwatcher.jar!/locale/tr-TR/
-locale grwatcher uk-UA jar:chrome/grwatcher.jar!/locale/uk-UA/
-locale grwatcher vi jar:chrome/grwatcher.jar!/locale/vi/
-locale grwatcher zh-CN jar:chrome/grwatcher.jar!/locale/zh-CN/
-locale grwatcher zh-TW jar:chrome/grwatcher.jar!/locale/zh-TW/
+locale grwatcher ca-AD chrome/locale/ca-AD/
+locale grwatcher cs chrome/locale/cs/
+locale grwatcher da-DK chrome/locale/da-DK/
+locale grwatcher de-DE chrome/locale/de/
+locale grwatcher el-GR chrome/locale/el-GR/
+locale grwatcher en-US chrome/locale/en-US/
+locale grwatcher es-AR chrome/locale/es-AR/
+locale grwatcher es-ES chrome/locale/es-ES/
+locale grwatcher et-EE chrome/locale/et-EE/
+locale grwatcher fa-IR chrome/locale/fa-IR/
+locale grwatcher fi-FI chrome/locale/fi-FI/
+locale grwatcher fr-FR chrome/locale/fr/
+locale grwatcher he-IL chrome/locale/he-IL/
+locale grwatcher hu-HU chrome/locale/hu-HU/
+locale grwatcher it-IT chrome/locale/it-IT/
+locale grwatcher ja-JP chrome/locale/ja/
+locale grwatcher ko-KR chrome/locale/ko-KR/
+locale grwatcher ms-MY chrome/locale/ms-MY/
+locale grwatcher nl-NL chrome/locale/nl-NL/
+locale grwatcher pl-PL chrome/locale/pl-PL/
+locale grwatcher pt-BR chrome/locale/pt-BR/
+locale grwatcher pt-PT chrome/locale/pt-PT/
+locale grwatcher ru-RU chrome/locale/ru-RU/
+locale grwatcher sr chrome/locale/sr/
+locale grwatcher sk-SK chrome/locale/sk-SK/
+locale grwatcher sv-SE chrome/locale/sv-SE/
+locale grwatcher tr-TR chrome/locale/tr-TR/
+locale grwatcher vi-VN chrome/locale/vi/
+locale grwatcher zh-CN chrome/locale/zh-CN/
+locale grwatcher zh-TW chrome/locale/zh-TW/
+locale grwatcher sr chrome/locale/sr/
