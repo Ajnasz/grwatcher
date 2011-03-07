@@ -1,31 +1,31 @@
 <!ENTITY GRWstatusbar.popup.openReader "باز کردن کتابخوان گوگل">
-<!ENTITY GRWstatusbar.popup.getReadCounter "بررسی برای خوراک های(feeds) خوانده نشده">
-<!ENTITY GRWstatusbar.popup.openPrefs "تنظیمات">
+<!ENTITY GRWstatusbar.popup.getReadCounter "بررسی برای خوراک های خوانده نشده">
+<!ENTITY GRWstatusbar.popup.openPrefs "ترجیحات">
 <!ENTITY GRWstatusbar.popup.markAllAsRead "علامت زدن همه به عنوان خوانده شده">
 <!ENTITY GRWstatusbar.popup.enableCookies "فعال کردن کوکی ها">
-<!ENTITY GRWpreferences.title "تنظیمات مراقب کتابخوان گوگل(Google Reader)">
+<!ENTITY GRWpreferences.title "ترجیحات مراقب کتابخوان گوگل">
 <!ENTITY GRWpreferences.checkfrequency "بسامد بررسی (دقیقه)">
 <!ENTITY GRWpreferences.delaystart "شروع اولین بررسی بعد از راه اندازی مرورگر (هزارم ثانیه)">
 <!ENTITY GRWpreferences.activateOpenedTab "انتقال تمرکز به زبانه کتاب خوان بعد از باز کردن">
-<!ENTITY GRWpreferences.generalpreferencescaption "تنظیمات عمومی">
+<!ENTITY GRWpreferences.generalpreferencescaption "ترجیحاتعمومی">
 <!ENTITY GRWpreferences.generalpreferencesopencaption "چگونه کتابخوان گوگل باز شود">
-<!ENTITY GRWpreferences.tooltippreferencescaption "تنظییمات توضیحات یک خطی(Tooltip)">
+<!ENTITY GRWpreferences.tooltippreferencescaption "ترجیحات توضیحات یک خطی(Tooltip)">
 <!ENTITY GRWpreferences.tabgeneral "عمومی">
 <!ENTITY GRWpreferences.tabaccountinfo "اطلاعات حساب">
-<!ENTITY GRWpreferences.tabopening "تنظیمات بازکردن پنجره">
+<!ENTITY GRWpreferences.tabopening "تنظیمات باز کردن پنجره">
 <!ENTITY GRWpreferences.tabtooltip "تنظیمات توضیحات یک خطی">
 <!ENTITY GRWpreferences.openinnewtabdesc "باز کردن کتابخوان گوگل در زبانه جدید">
 <!ENTITY GRWpreferences.resetcounterdesc "راه اندازی مجدد شمارنده نوار وضعیت هنگامی که پنجره کتابخوان گوگل باز شد">
 <!ENTITY GRWpreferences.shownotificationwindow "نمایش پنجره آگاه سازی">
-<!ENTITY GRWpreferences.showzerocounter "همواره شمارنده نشانداده شود">
+<!ENTITY GRWpreferences.showzerocounter "همواره شمارنده نشان داده شود">
 <!ENTITY GRWpreferences.maximizecounter "نشان دادن 1000+ در نوار وضعیت اگر بیش از 1000 قلم خوانده نشده دارید">
 <!ENTITY GRWpreferences.tooltipcounterposright "راست">
 <!ENTITY GRWpreferences.tooltipcounterposleft "چپ">
 <!ENTITY GRWpreferences.tooltipcounterposdesc "موقعیت شمارنده توضیح کوتاه:">
 <!ENTITY GRWpreferences.tooltipdesc "این تنظیمات بعد بررسی کردن یک خوراک تاثیر خواهند گذاشت.">
-<!ENTITY GRWpreferences.tooltiptitlelengthdesc "تنظیم کردن تعداد نویسه های عنوان خوراک(feed) در توضیح کوتاه(tooltip)">
+<!ENTITY GRWpreferences.tooltiptitlelengthdesc "تنظیم کردن تعداد نویسه های عنوان خوراک در توضیح کوتاه">
 <!ENTITY GRWpreferences.accountinfocaption "اطلاعات حساب گوگل">
-<!ENTITY GRWpreferences.accountinfoemail "نشانی پست الکترونیک:">
+<!ENTITY GRWpreferences.accountinfoemail "نشانی رایانامه:">
 <!ENTITY GRWpreferences.accountinfopassword "کلمه عبور:">
 <!ENTITY GRWpreferences.accountinfo.rememberLogin "دنبال کردن نشست در شروع بکار برنامه">
 <!ENTITY GRWpreferences.accountinfo.forceLogin "ورود اجباری قبل از هر بررسی و باز کردن پنجره ای">
@@ -33,10 +33,10 @@
 <!ENTITY GRWpreferences.leftclickopen.singleclick "تک کلیک">
 <!ENTITY GRWpreferences.leftclickopen.dblclick "دوبار کلیک">
 <!ENTITY GRWpreferences.leftclickopen.disabled "غیر فعال">
-<!ENTITY GRWpreferences.usesecureconnection "ارتباط استوار">
-<!ENTITY GRWpreferences.sortbylabels "مرتب سازی خوراک ها(feeds) در توضیح کوتاه توسط برچسب">
+<!ENTITY GRWpreferences.usesecureconnection "ارتباط امن">
+<!ENTITY GRWpreferences.sortbylabels "مرتب سازی خوراک ها در توضیح کوتاه توسط برچسب">
 <!ENTITY GRWpreferences.filteredlabels "پالایش خوراک هایی که با این برچسب ها برچسب زده شده (ویرگول برای جداسازی فهرست)">
-<!ENTITY GRWtooltip.nonewfeed "شما هیچ خوراک(feeds) خوانده نشده دریافت نکردید">
+<!ENTITY GRWtooltip.nonewfeed "شما هیچ خوراک خوانده نشده دریافت نکردید">
 <!ENTITY GRWtooltip.errorfeedfetch "خطا در دریافت خوراک ها!">
 <!ENTITY GRWtooltip.newfeed "شما خوراک خوانده نشده دارید">
 <!ENTITY GRWtooltip.errorlogin "ورود ناموفق. مطمئن شوید اعتبارنامه حساب را درست وارد کردید!">
