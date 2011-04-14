@@ -1,4 +1,4 @@
-var Tooltip = function (conf,GRW) {
+var Tooltip = function (conf, GRW) {
   this.conf = conf;
   var setTooltip = function(win, tooltip) {
     var element = win.document.getElementById(conf.elementID);
@@ -74,10 +74,10 @@ var Tooltip = function (conf,GRW) {
     if(actionMethod) {
       Components.utils.import("resource://grwmodules/mapwindows.jsm");
       Components.utils.import("resource://grwmodules/getactivegrw.jsm");
+      var activeGRW = getActiveGRW().GRW;
+      var feeds = activeGRW.feeds;
+      var getlist = activeGRW.GetList;
       mapwindows(function(win) {
-        var activeGRW = getActiveGRW().GRW;
-        var feeds = activeGRW.feeds;
-        var getlist = activeGRW.GetList;
         var labels = getlist.getLabels();
         actionMethod.call(this, win, feeds, labels);
         new GRW.UI.Menu(win, feeds, labels, conf.menuItem, conf.menuItemSeparator);
