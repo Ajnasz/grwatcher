@@ -19,7 +19,7 @@
     tooltipCookieErrorElement: 'GRW-toolbar-tooltip-cookieerror',
     tooltipNetworkErrorElement: 'GRW-toolbar-tooltip-networkerror',
     tooltipLoginErrorElement: 'GRW-toolbar-tooltip-loginerror',
-    tooltipTtbNetworkErrorElement: 'GRW-ttb-tooltip-networkerror',
+    tooltipTtbNetworkErrorElement: 'GRW-toolbar-tooltip-networkerror',
     menuItem: 'GRW-toolbar-menu',
     menuItemSeparator: 'GRW-toolbar-menuseparator',
   };
