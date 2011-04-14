@@ -6,10 +6,11 @@ const customDefs = {
     iconMiddleClickEvent = 'iconMiddleClick';
 
 var IconClick = function(elements, doc) {
+  this.doc = doc;
   this.elements = elements.map(function (elem) {
     return doc.getElementById(elem);
   });
-  this.init.apply(this, arguments);
+  this.init.apply(this, Array.prototype.slice(arguments));
 };
 IconClick.prototype = {
   init: function() {
@@ -61,4 +62,4 @@ IconClick.prototype = {
 Components.utils.import("resource://grwmodules/Augment.jsm");
 Components.utils.import("resource://grwmodules/EventProvider.jsm");
 augmentProto(IconClick, EventProvider);
-let EXPORTED_SYMBOLS = ['IconClick', iconClickEvent, iconMiddleClickEvent];
+let EXPORTED_SYMBOLS = ['IconClick', 'iconClickEvent', 'iconMiddleClickEvent'];

@@ -47,13 +47,14 @@ function buildXPI {
     modules/StatusIcon.jsm \
     modules/GrwCookie.jsm \
     modules/IconClick.jsm \
+    modules/TooltipHandler.jsm \
     modules/PassManager.jsm \
     modules/MenuClick.jsm \
     modules/EventProvider.jsm \
     modules/CustomEvent.jsm \
     modules/GridProvider.jsm \
     defaults/preferences/$PROJECT_NAME.js \
-    chrome/
+    chrome/ \
     license.txt;
 
   echo "Replace old XPIs with the new one";

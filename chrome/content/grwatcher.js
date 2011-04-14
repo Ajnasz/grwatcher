@@ -51,9 +51,13 @@
   */
   var init = function() {
     Components.utils.import("resource://grwmodules/IconClick.jsm");
+    Components.utils.import("resource://grwmodules/TooltipHandler.jsm");
 
     var statusbarCounter = GRW.UI.StatusbarCounter;
     var iconClick = new IconClick([
+      'GRW-statusbar', 'GRW-toolbar-button', 'GRW-toolbar-label'
+    ], document);
+    var iconTooltipHandler = new TooltipHandler([
       'GRW-statusbar', 'GRW-toolbar-button', 'GRW-toolbar-label'
     ], document);
     var notifier = new GRW.Notifier();
