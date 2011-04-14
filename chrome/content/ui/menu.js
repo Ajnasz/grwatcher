@@ -59,13 +59,10 @@
       });
     },
     genRow: function(item, isLabel) {
-      var itemTitle  = item.data.title || item.data.displayName || '',
+      var itemTitle  = this.getTitle(item),
           itemCount  = item.count,
           doc        = this.document,
           menuitem = doc.createElement('menuitem');
-
-      Components.utils.import("resource://grwmodules/Prefs.jsm");
-      itemTitle = this.normalizeItemTitle(itemTitle,  Prefs.get.tooltipTitleLength());
 
       menuitem.setAttribute('label', itemCount + ' ' + itemTitle);
       menuitem.setAttribute('class', 'feed');

@@ -110,6 +110,19 @@ GridProvider.prototype = {
     return itemTitle.length > titlelength
                   ? itemTitle.slice(0, titlelength - 3) + '...'
                   : itemTitle
+  },
+  getTitle: function (item) {
+    var itemTitle = 'no title';
+    // Components.utils.import("resource://grwmodules/GRWLog.jsm");
+    // GRWlog('item type: ', typeof item);
+    // GRWlog('item: ', item.toSource());
+    if (item && item.data) {
+      itemTitle = item.data.title || item.data.displayName || 'no title2';
+    }
+
+    Components.utils.import("resource://grwmodules/Prefs.jsm");
+    itemTitle = this.normalizeItemTitle(itemTitle, Prefs.get.tooltipTitleLength());
+    return itemTitle;
   }
 };
 augmentProto(GridProvider, EventProvider);

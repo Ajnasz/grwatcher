@@ -1,4 +1,4 @@
-(function() {
+(function () {
   Components.utils.import("resource://grwmodules/GridProvider.jsm");
   Components.utils.import("resource://grwmodules/Augment.jsm");
 
@@ -37,16 +37,13 @@
       this.grid = grid;
     },
     genRow: function(item, isLabel) {
-      var itemTitle  = item.data.title || item.data.displayName || '',
+      var itemTitle  = this.getTitle(item),
           itemCount  = item.count,
           doc        = this.document,
           label      = doc.createElement('label'),
           row        = doc.createElement('row'),
           countLabel = label.cloneNode(true),
           titleLabel = label.cloneNode(true);
-
-      Components.utils.import("resource://grwmodules/Prefs.jsm");
-      itemTitle = this.normalizeItemTitle(itemTitle, Prefs.get.tooltipTitleLength());
 
       countLabel.value = itemCount;
       countLabel.setAttribute('class', 'counterCol');
