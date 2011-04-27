@@ -291,6 +291,11 @@
       }
       return items;
     },
+    _filterZeroCounts: function (items) {
+      return items.filter(function (item) {
+        return item.count && parseInt(item.count, 10) > 0 && item.data;
+      });
+    },
     getLabels: function() {
         var labels = {},
             subscriptionsList;
@@ -312,9 +317,7 @@
       */
     matchUnreadItems: function() {
       this._unreadCount.feeds = this._matchUnreadItems(this._unreadCount.feeds);
-      var unreads = this._unreadCount.feeds.filter(function(elem) {
-        return elem.count && parseInt(elem.count, 10) > 0;
-      });
+      var unreads = this._filterZeroCounts(this._unreadCount.feeds);
       unreads = this._filterLabels(unreads);
       var unreadSum = 0;
       unreads.forEach(function(elem) {
