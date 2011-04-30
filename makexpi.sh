@@ -1,7 +1,7 @@
 #!/bin/bash
 ########################## Configuration ################################
 if [ -z $1 ];then
-  VER='1.4'`date '+%Y%m%d%H%M%S'`'-'`./getver.sh`;
+  VER='1.4-'`./getver.sh`;
 else
   VER=$1;
 fi
