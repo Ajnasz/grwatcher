@@ -1,7 +1,7 @@
 let GRW = {};
 GRW.module = function(moduleName, module) {
-  if(typeof moduleName == 'string') {
-    if(typeof GRW[moduleName] == 'undefined') {
+  if(typeof moduleName === 'string') {
+    if(typeof GRW[moduleName] === 'undefined') {
       GRW[moduleName] = module || {};
     }
     return GRW[moduleName];
@@ -15,22 +15,22 @@ GRW.module = function(moduleName, module) {
 
   var lang = {
     isString: function(arg) {
-      return typeof(arg) === 'string' || arg instanceof String;
-    },
+      return typeof(arg) === 'string';
+    },arg instanceof Array
     isNumber: function(arg) {
-      return typeof(arg) === 'number' || arg instanceof Number;
+      return typeof(arg) === 'number';
     },
     isBoolean: function(arg) {
-      return typeof(arg) === 'boolean' || arg instanceof Boolean;
+      return typeof(arg) === 'boolean';
     },
     isFunction: function(arg) {
-      return typeof(arg) === 'function' || arg instanceof Function;
+      return typeof(arg) === 'function';
     },
     isNull: function(arg) {
       return arg === null;
     },
     isArray: function(arg) {
-      return arg instanceof Array;
+      return typeof arg === 'object' && lang.isNumber(arg.length) && lang.isFunction(arg.slice);
     },
     isObject: function(arg) {
       return typeof(arg) === 'object' && !lang.isNull(arg) && !lang.isString(arg) && lang.isNumber(arg) && !lang.isFunction(arg) && !lang.isBoolean(arg);
@@ -47,7 +47,6 @@ GRW.module = function(moduleName, module) {
       return _a.slice.call(arg);
     },
     isEmail: function(arg) {
-
     },
   };
   /**
