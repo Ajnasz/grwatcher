@@ -23,10 +23,10 @@
     menuItem: 'GRW-toolbar-menu',
     menuItemSeparator: 'GRW-toolbar-menuseparator',
   };
-  var tooltip = function(action, feeds, getlist) {
+  var tooltip = function(action, feeds, getlist, openReader) {
     Components.utils.import("resource://grwmodules/tooltip.jsm");
-    Tooltip(statusbarConf, GRW)(action, feeds, getlist);
-    Tooltip(toolbarConf, GRW)(action, feeds, getlist);
+    Tooltip(statusbarConf, GRW, openReader)(action, feeds, getlist);
+    Tooltip(toolbarConf, GRW, openReader)(action, feeds, getlist);
   };
   GRW.UI.Tooltip = tooltip;
 })();
