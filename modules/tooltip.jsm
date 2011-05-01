@@ -1,4 +1,5 @@
-var Tooltip = function (conf, GRW) {
+/*jslint indent:2*/
+var Tooltip = function (conf, GRW, openReader) {
   this.conf = conf;
   var setTooltip = function(win, tooltip) {
     var element = win.document.getElementById(conf.elementID);
@@ -80,7 +81,8 @@ var Tooltip = function (conf, GRW) {
       mapwindows(function(win) {
         var labels = getlist.getLabels();
         actionMethod.call(this, win, feeds, labels);
-        new GRW.UI.Menu(win, feeds, labels, conf.menuItem, conf.menuItemSeparator);
+        menu = new GRW.UI.Menu(win, feeds, labels,
+          conf.menuItem, conf.menuItemSeparator, openReader);
       });
     }
   };

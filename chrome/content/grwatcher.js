@@ -21,11 +21,12 @@
     } else {
     }
   };
-  var updateUI = function (oArgs) {
+  var updateUI = function (oArgs, openReader) {
     if(GRW.lang.isArray(oArgs.status)) {
       setIcons(oArgs.status)
     }
     if(GRW.lang.isArray(oArgs.tooltip)) {
+      oArgs.tooltip.push(openReader);
       GRW.UI.Tooltip.apply(GRW.UI.Tooltip, oArgs.tooltip);
     }
     if(GRW.lang.isArray(oArgs.counter)) {
@@ -52,6 +53,28 @@
   var init = function() {
     Components.utils.import("resource://grwmodules/IconClick.jsm");
     Components.utils.import("resource://grwmodules/TooltipHandler.jsm");
+    Components.utils.import("resource://grwmodules/OpenReader.jsm");
+
+    var openReader = new OpenReader();
+    openReader.on('beforeReaderOpened', function() {
+      loginManager.setCurrentSID();
+    });
+    // reset the counter, change the icon,
+    // change the next request's time
+    // enable to show notification window
+    openReader.on('readerOpened', function() {
+      Components.utils.import("resource://grwmodules/Prefs.jsm");
+      if(Prefs.get.resetCounter()) {
+        var oArgs = {
+          status: ['off'],
+          counter: [0],
+        };
+        updateUI(oArgs, openReader);
+      };
+      requester.setNext();
+      notifier.showNotification = true;
+    });
+
 
     var statusbarCounter = GRW.UI.StatusbarCounter;
     var iconClick = new IconClick([
@@ -85,7 +108,7 @@
 
     GRW.strings = document.getElementById('grwatcher-strings');
     GRW.getter.onStartRequest.subscribe(function() {
-      updateUI({status: ['load']});
+      updateUI({status: ['load']}, openReader);
     });
     var browserVersion = parseInt(getBrowserVersion(), 10);
     if(browserVersion && browserVersion >= 4) {
@@ -102,7 +125,7 @@
           oArgs.tooltip = ['error'];
         }
       }
-      updateUI(oArgs);
+      updateUI(oArgs, openReader);
     });
     GRW.getter.onRequestSuccess.subscribe(function() {
       setIcons('off');
@@ -115,35 +138,15 @@
         counter: [0],
         tooltip: ['loginerror'],
       };
-      updateUI(oArgs);
+      updateUI(oArgs, openReader);
     });
     loginManager.on('cookieError', function() {
       var oArgs = {
         status: ['error'],
         tooltip: ['cookieerror'],
       };
-      updateUI(oArgs);
+      updateUI(oArgs, openReader);
     });
-
-  GRW.OpenReader.on('beforeReaderOpened', function() {
-    loginManager.setCurrentSID();
-  });
-    // reset the counter, change the icon,
-    // change the next request's time
-    // enable to show notification window
-    GRW.OpenReader.on('readerOpened', function() {
-      Components.utils.import("resource://grwmodules/Prefs.jsm");
-      if(Prefs.get.resetCounter()) {
-        var oArgs = {
-          status: ['off'],
-          counter: [0],
-        };
-        updateUI(oArgs);
-      };
-      requester.setNext();
-      notifier.showNotification = true;
-    });
-
     // show notification window every time the unread count
     // and the subscription list matched
     // the notifier will deside if really need to show
@@ -164,7 +167,7 @@
         oArgs.tooltip = ['nonew'];
       }
       oArgs.counter = [elems.unreadSum, max],
-      updateUI(oArgs);
+      updateUI(oArgs, openReader);
     });
 
     // when the unread and the subscription list data is arrived
@@ -194,18 +197,18 @@
     });
     // open the reader when user clicks on the link in the notifier
     notifier.on('notifierClicked', function() {
-      GRW.OpenReader.open();
+      openReader.open();
     });
 
     // Open the reader when user clicks on the statusbar icon
     iconClick.on('iconClick', function() {
-      GRW.OpenReader.open()
+      openReader.open()
     });
 
     // open the reader when user clicks on the "Open Reader"
     // menuitem
     menuClick.on('openReader', function() {
-      GRW.OpenReader.open();
+      openReader.open();
     });
 
     // update counter when user clicks on the "Check Unread Feeds"
@@ -229,7 +232,7 @@
     // open the reader when user clicks on the "Open Reader"
     // menuitem
     toolbarClick.on('openReader', function() {
-      GRW.OpenReader.open();
+      openReader.open();
     });
 
     // update counter when user clicks on the "Check Unread Feeds"

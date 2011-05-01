@@ -53,6 +53,7 @@ function buildXPI {
     modules/EventProvider.jsm \
     modules/CustomEvent.jsm \
     modules/GridProvider.jsm \
+    modules/OpenReader.jsm \
     defaults/preferences/$PROJECT_NAME.js \
     chrome/ \
     license.txt;

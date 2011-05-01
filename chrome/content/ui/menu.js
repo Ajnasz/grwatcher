@@ -2,7 +2,7 @@
   Components.utils.import("resource://grwmodules/GridProvider.jsm");
   Components.utils.import("resource://grwmodules/Augment.jsm");
 
-  var Menu = function(win, feeds, labels, menu, menuseparator) {
+  var Menu = function (win, feeds, labels, menu, menuseparator, openReader) {
     var doc = win.document;
     this.window = win;
     this.document = doc;
@@ -11,6 +11,7 @@
     this.menuseparator = menuseparator;
     this.labels = labels;
     this.peopleYouFollow = GRW.strings.getString('peopleyoufollowtitle');
+    this.openReader = openReader;
     this.initEvents();
     this.init();
   };
@@ -58,11 +59,12 @@
         _this.clearItems();
       });
     },
-    genRow: function(item, isLabel) {
-      var itemTitle  = this.getTitle(item),
-          itemCount  = item.count,
-          doc        = this.document,
-          menuitem = doc.createElement('menuitem');
+    genRow: function (item, isLabel) {
+      var itemTitle = this.getTitle(item),
+          itemCount = item.count,
+          doc = this.document,
+          menuitem = doc.createElement('menuitem'),
+          openReader = this.openReader;
 
       menuitem.setAttribute('label', itemCount + ' ' + itemTitle);
       menuitem.setAttribute('class', 'feed');
@@ -74,7 +76,7 @@
       menuitem.addEventListener('command', function(){
         var href = this.getAttribute('url');
         if (typeof href !== 'undefined' && href !== 'undefined') {
-          win.GRW.OpenReader.open(href);
+          openReader.open(href);
         }
       }, false);
       return menuitem;
