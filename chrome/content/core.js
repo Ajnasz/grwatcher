@@ -16,7 +16,7 @@ GRW.module = function(moduleName, module) {
   var lang = {
     isString: function(arg) {
       return typeof(arg) === 'string';
-    },arg instanceof Array
+    },
     isNumber: function(arg) {
       return typeof(arg) === 'number';
     },
