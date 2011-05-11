@@ -1,5 +1,3 @@
-syntax: glob
-
 *.xpi
 *tags
 grwatcher.jar
