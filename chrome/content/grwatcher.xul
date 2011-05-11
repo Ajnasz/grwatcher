@@ -34,8 +34,8 @@
         <menuseparator class="grw-hidden" id="GRW-menuseparator" />
         <menuitem label="&GRWstatusbar.popup.markAllAsRead;" id="GRW-statusbar-menuitem-markallasread" />
         <menuitem label="&GRWstatusbar.popup.openReader;" id="GRW-statusbar-menuitem-openreader" />
-        <menuitem label="&GRWstatusbar.popup.getReadCounter;" id="GRW-statusbar-menuitem-getcounter" />
         <menuitem label="&GRWstatusbar.popup.openPrefs;" id="GRW-statusbar-menuitem-openprefs" />
+        <menuitem label="&GRWstatusbar.popup.getReadCounter;" id="GRW-statusbar-menuitem-getcounter" />
         <menuitem label="&GRWstatusbar.popup.enableCookies;" class="grw-hidden" id="GRW-statusbar-menuitem-enablecookies" />
       </menupopup>
       <tooltip id="GRW-statusbar-tooltip-error" position="before_end"><description id="GRW-statusbar-tooltip-error-description" value="&GRWtooltip.errorfeedfetch;" /></tooltip>
@@ -54,8 +54,8 @@
         <menuseparator class="grw-hidden" id="GRW-toolbar-menuseparator" />
         <menuitem label="&GRWstatusbar.popup.markAllAsRead;" id="GRW-toolbar-menuitem-markallasread" />
         <menuitem label="&GRWstatusbar.popup.openReader;" id="GRW-toolbar-menuitem-openreader" />
-        <menuitem label="&GRWstatusbar.popup.getReadCounter;" id="GRW-toolbar-menuitem-getcounter" />
         <menuitem label="&GRWstatusbar.popup.openPrefs;" id="GRW-toolbar-menuitem-openprefs" />
+        <menuitem label="&GRWstatusbar.popup.getReadCounter;" id="GRW-toolbar-menuitem-getcounter" />
         <menuitem label="&GRWstatusbar.popup.enableCookies;" class="grw-hidden" id="GRW-toolbar-menuitem-enablecookies" />
       </menupopup>
 
