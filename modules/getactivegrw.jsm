@@ -1,4 +1,4 @@
-var getActiveGRW = function () {
+var getActiveGRW = function (w) {
   if(typeof Components == 'undefined') {
     return;
   }
@@ -9,6 +9,6 @@ var getActiveGRW = function () {
       activeWin = win;
     }
   });
-  return (activeWin === false) ? window : activeWin;
+  return (activeWin === false) ? w : activeWin;
 };
 let EXPORTED_SYMBOLS = ['getActiveGRW'];

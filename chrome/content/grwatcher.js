@@ -260,7 +260,7 @@
       requester.start();
     } else {
       Components.utils.import("resource://grwmodules/getactivegrw.jsm");
-      var activeWin = getActiveGRW();
+      var activeWin = getActiveGRW(window);
       activeWin.GRW.GetList.matchUnreadItems();
   //    getlist = activeWin.GRW.GetList;
     }
