@@ -1,7 +1,7 @@
 #!/bin/bash
 ########################## Configuration ################################
 if [ -z $1 ];then
-  VER='1.4-'`./getver.sh`;
+  VER='1.5-'`./getver.sh`;
 else
   VER=$1;
 fi
