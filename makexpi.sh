@@ -54,6 +54,7 @@ function buildXPI {
     modules/CustomEvent.jsm \
     modules/GridProvider.jsm \
     modules/OpenReader.jsm \
+    modules/addToolbarButton.jsm \
     defaults/preferences/$PROJECT_NAME.js \
     chrome/ \
     license.txt;

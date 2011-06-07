@@ -54,6 +54,9 @@
     Components.utils.import("resource://grwmodules/IconClick.jsm");
     Components.utils.import("resource://grwmodules/TooltipHandler.jsm");
     Components.utils.import("resource://grwmodules/OpenReader.jsm");
+    Components.utils.import("resource://grwmodules/addToolbarButton.jsm");
+
+    addToolbarButton(document, navigator, BrowserToolboxCustomizeDone);
 
     var openReader = new OpenReader();
     openReader.on('beforeReaderOpened', function() {
@@ -77,30 +80,28 @@
 
 
     var statusbarCounter = GRW.UI.StatusbarCounter;
-    var iconClick = new IconClick([
-      'GRW-statusbar', 'GRW-toolbar-button', 'GRW-toolbar-label'
-    ], document);
-    var iconTooltipHandler = new TooltipHandler([
-      'GRW-statusbar', 'GRW-toolbar-button', 'GRW-toolbar-label'
-    ], document);
+    var iconElements = ['GRW-statusbar'];
+    var iconClick = new IconClick(iconElements, document);
+    var iconTooltipHandler = new TooltipHandler(iconElements, document);
     var notifier = new GRW.Notifier();
     Components.utils.import("resource://grwmodules/MenuClick.jsm");
-    var menuClick = new MenuClick(
-      {
-        openReader: 'GRW-statusbar-menuitem-openreader',
-        markAllAsRead: 'GRW-statusbar-menuitem-markallasread',
-        checkUnreadFeeds: 'GRW-statusbar-menuitem-getcounter',
-        openPreferences: 'GRW-statusbar-menuitem-openprefs',
-        enableCookies: 'GRW-statusbar-menuitem-enablecookies',
-      }, document
+    var statusbarClick = new MenuClick(
+      [
+        {event: 'openReader', id:'GRW-statusbar-menuitem-openreader' },
+        {event: 'markAllAsRead', id: 'GRW-statusbar-menuitem-markallasread'},
+        {event: 'checkUnreadFeeds', id: 'GRW-statusbar-menuitem-getcounter'},
+        {event: 'openPreferences', id: 'GRW-statusbar-menuitem-openprefs'},
+        {event: 'enableCookies', id: 'GRW-statusbar-menuitem-enablecookies'}
+      ], document
     );
-    var toolbarClick = new MenuClick({
-          openReader: 'GRW-toolbar-menuitem-openreader',
-          markAllAsRead: 'GRW-toolbar-menuitem-markallasread',
-          checkUnreadFeeds: 'GRW-toolbar-menuitem-getcounter',
-          openPreferences: 'GRW-toolbar-menuitem-openprefs',
-          enableCookies: 'GRW-toolbar-menuitem-enablecookies',
-    }, document);
+    var toolbarClick = new MenuClick(
+      [
+        {event: 'openReader', id: 'GRW-toolbar-menuitem-openreader'},
+        {event: 'markAllAsRead', id: 'GRW-toolbar-menuitem-markallasread'},
+        {event: 'checkUnreadFeeds', id: 'GRW-toolbar-menuitem-getcounter'},
+        {event: 'openPreferences', id: 'GRW-toolbar-menuitem-openprefs'},
+        {event: 'enableCookies', id: 'GRW-toolbar-menuitem-enablecookies'}
+      ], document);
     // var toolbarClick = new GRW.ToolbarMenuClick();
     var requester = GRW.Requester;
     var loginManager = GRW.LoginManager;
@@ -111,9 +112,6 @@
       updateUI({status: ['load']}, openReader);
     });
     var browserVersion = parseInt(getBrowserVersion(), 10);
-    if(browserVersion && browserVersion >= 4) {
-      GRW.UI.SetToolbarButtonFirstTime();
-    }
     GRW.getter.onRequestFailed.subscribe(function(request) {
       var oArgs = {status: ['error']};
       if(request) {
@@ -207,25 +205,25 @@
 
     // open the reader when user clicks on the "Open Reader"
     // menuitem
-    menuClick.on('openReader', function() {
+    statusbarClick.on('openReader', function() {
       openReader.open();
     });
 
     // update counter when user clicks on the "Check Unread Feeds"
     // menuitem
-    menuClick.on('checkUnreadFeeds', function() {
+    statusbarClick.on('checkUnreadFeeds', function() {
       requester.updater();
     });
 
     // open the preferences window when the user clicks on the
     // "Preferences" menuitem
-    menuClick.on('openPreferences', function() {
+    statusbarClick.on('openPreferences', function() {
       window.openDialog("chrome://grwatcher/content/grprefs.xul", 'GRWatcher', 'chrome,titlebar,toolbar,centerscreen,modal');
     });
     GRW.MarkAllAsRead.on('onMarkAllAsRead',function() {
       requester.updater();
     })
-    menuClick.on('markAllAsRead', function() {
+    statusbarClick.on('markAllAsRead', function() {
       GRW.MarkAllAsRead.mark();
     });
 
@@ -252,8 +250,8 @@
     toolbarClick.on('markAllAsRead', function() {
       GRW.MarkAllAsRead.mark();
     });
-    toolbarClick.init();
-    menuClick.init();
+    // toolbarClick.init();
+    statusbarClick.init();
 
     if(isActiveGRW() === false) {
       window.GRWActive = true;
@@ -265,6 +263,27 @@
   //    getlist = activeWin.GRW.GetList;
     }
 
+    GRW.onToolbarButtonAdd = function (element, noUpdate) {
+      element.oncommand = function () {};
+      element.onmouseover = function () {};
+      toolbarClick.init();
+      iconClick.addElements(['GRW-toolbar-button', 'GRW-toolbar-label']);
+      if (!noUpdate) {
+        requester.updater();
+      }
+    };
+    /*
+    GRW.onStatusbarButtonAdd = function (element) {
+      element.oncommand = function () {};
+      statusbarClick.init();
+      iconClick.addElements(iconElements);
+      requester.updater();
+    };
+    */
+    var toolbarButton = document.getElementById('GRW-toolbaritem');
+    if (toolbarButton) {
+      GRW.onToolbarButtonAdd(toolbarButton, true);
+    }
   };
   var start = function () {
       Components.utils.import("resource://grwmodules/Timer.jsm");

@@ -1,4 +1,6 @@
-const tooltipPopupShowing = 'tooltipPopupShowing',
+/*jslint indent:2*/
+/*global Components: true*/
+var tooltipPopupShowing = 'tooltipPopupShowing',
     tooltipPopupHiding = 'tooltipPopupHiding',
     tooltipMouseOver = 'tooltipMouseOver',
     tooltipMouseOut = 'tooltipMouseOut';
@@ -6,46 +8,58 @@ const tooltipPopupShowing = 'tooltipPopupShowing',
 
 var TooltipHandler = function (elements, doc) {
   this.doc = doc;
-  this.elements = elements.map(function (elem) {
-    return doc.getElementById(elem);
-  });
-  this.init();
+  this.getElements(elements, doc);
 };
 TooltipHandler.prototype = {
-  init: function () {
-    var _this = this;
-    this.elements.forEach(function (element) {
+  getElements: function (elements) {
+    if (!this.elements) {
+      this.elements = [];
+    }
+    var doc = this.doc,
+        _this = this;
+    elements.forEach(function (elem) {
+      var element = doc.getElementById(elem);
       if (element) {
-        var hideAllowed;
-        element.addEventListener('popupshowing', function (event) {
-          hideAllowed = false;
-          _this.popupShowing(event, element);
-        }, true);
-        element.addEventListener('popuphiding', function (event) {
-          _this.popupHiding(event, element);
-          if (!hideAllowed) {
-            event.preventDefault();
-          }
-        }, true);
-        element.addEventListener('mouseover', function (event) {
-          hideAllowed = false;
-          _this.mouseOver(event, element);
-        }, true);
-        element.addEventListener('mouseout', function (event) {
-          hideAllowed = true;
-          _this.mouseOut(event, element);
-        }, true);
-        element.addEventListener('mousemove', function (event) {
-          hideAllowed = true;
-          if (element.tooltip) {
-            var tooltipElem = _this.doc.getElementById(element.tooltip);
-            if (tooltipElem) {
-              tooltipElem.hidePopup();
-            }
-          }
-        }, true);
+        if (!_this.elements.some(function (elem) {
+          return elem === element;
+        })) {
+          _this.elements.push(element);
+          _this.addListeners(element);
+        }
       }
     });
+  },
+  addListeners: function (element) {
+    if (element) {
+      var hideAllowed, _this = this;
+      element.addEventListener('popupshowing', function (event) {
+        hideAllowed = false;
+        _this.popupShowing(event, element);
+      }, true);
+      element.addEventListener('popuphiding', function (event) {
+        _this.popupHiding(event, element);
+        if (!hideAllowed) {
+          event.preventDefault();
+        }
+      }, true);
+      element.addEventListener('mouseover', function (event) {
+        hideAllowed = false;
+        _this.mouseOver(event, element);
+      }, true);
+      element.addEventListener('mouseout', function (event) {
+        hideAllowed = true;
+        _this.mouseOut(event, element);
+      }, true);
+      element.addEventListener('mousemove', function (event) {
+        hideAllowed = true;
+        if (element.tooltip) {
+          var tooltipElem = _this.doc.getElementById(element.tooltip);
+          if (tooltipElem) {
+            tooltipElem.hidePopup();
+          }
+        }
+      }, true);
+    }
   },
   mouseOver: function (event, element) {
     this.fireEvent(tooltipMouseOver, [event, element]);

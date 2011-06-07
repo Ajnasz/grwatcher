@@ -27,7 +27,6 @@
     <stringbundle id="grwatcher-strings" src="chrome://grwatcher/locale/grwatcher.properties" />
   </stringbundleset>
 
-  <!--
   <statusbar id="status-bar">
     <statusbarpanel class="statusbarpanel-iconic off" id="GRW-statusbar" status="none" tooltip="GRW-statusbar-tooltip-nonew" context="GRW-statusbar-menu">
       <image id="GRW-statusbar-image" width="16" height="16" />
@@ -48,7 +47,6 @@
       <tooltip id="GRW-statusbar-tooltip-new" position="before_end"></tooltip>
     </statusbarpanel>
   </statusbar>
-  -->
 
 	<!-- Toolbar Icon -->
   <toolbarpalette id="BrowserToolbarPalette">

@@ -1,41 +1,22 @@
 /*jslint indent:2*/
-var MenuClick = function (conf, doc) {
-  this.conf = conf;
+var MenuClick = function (elements, doc) {
+  this.elements = elements;
   this.doc = doc;
 };
 MenuClick.prototype = {
   init: function () {
-    var _this = this,
-        _openReader = this.doc.getElementById(this.conf.openReader),
-        _markAllAsRed = this.doc.getElementById(this.conf.markAllAsRead),
-        _checkUnreadFeeds = this.doc.getElementById(this.conf.checkUnreadFeeds),
-        _openPreferences = this.doc.getElementById(this.conf.openPreferences),
-        _enableCookies = this.doc.getElementById(this.conf.enableCookies);
-    if (_openReader) {
-      _openReader.addEventListener('command', function (event) {
-        _this.fireEvent('openReader');
-      }, true);
-    }
-    if (_markAllAsRed) {
-      _markAllAsRed.addEventListener('command', function (event) {
-        _this.fireEvent('markAllAsRead');
-      }, true);
-    }
-    if (_checkUnreadFeeds) {
-      _checkUnreadFeeds.addEventListener('command', function (event) {
-        _this.fireEvent('checkUnreadFeeds');
-      }, true);
-    }
-    if (_openPreferences) {
-      _openPreferences.addEventListener('command', function (event) {
-        _this.fireEvent('openPreferences');
-      }, true);
-    }
-    if (_enableCookies) {
-      _enableCookies.addEventListener('command', function (event) {
-        _this.fireEvent('enableCookies');
-      }, true);
-    }
+    var _this = this;
+    this.elements.forEach(function (elemCfg) {
+      if (!elemCfg.element) {
+        var element = _this.doc.getElementById(elemCfg.id);
+        if (element) {
+          elemCfg.element = element;
+          element.addEventListener('command', function (event) {
+            _this.fireEvent(elemCfg.event);
+          }, true);
+      }
+      }
+    });
   }
 };
 
