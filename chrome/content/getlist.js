@@ -131,8 +131,8 @@
       var _this = this;
       this.fireEvent(requestStartEvent);
       this.fireEvent(unreadCountRequestStartEvent);
-      Components.utils.import("resource://grwmodules/GRWUri.jsm");
-      GRW.request('get', GRWUri.apply(GRWUri, unreadcountURL), {
+      Components.utils.import("resource://grwmodules/generateUri.jsm");
+      GRW.request('get', generateUri.apply(generateUri, unreadcountURL), {
           onSuccess:function(o) {
               _this.fireEvent(unreadCountRequestFinishEvent);
               if (!_this.userInfo) {
@@ -167,8 +167,8 @@
       var _this = this;
       this.fireEvent(requestStartEvent);
       this.fireEvent(subscriptionListRequestStartEvent);
-      Components.utils.import("resource://grwmodules/GRWUri.jsm");
-      GRW.request('get', GRWUri.apply(GRWUri, subscriptionListURL), {
+      Components.utils.import("resource://grwmodules/generateUri.jsm");
+      GRW.request('get', generateUri.apply(generateUri, subscriptionListURL), {
         onSuccess:function(o) {
           _this.fireEvent(subscriptionListRequestFinishEvent);
           _this._processSubscriptionList(o);
@@ -197,8 +197,8 @@
       var _this = this;
       this.fireEvent(requestStartEvent);
       this.fireEvent(friendListRequestStartEvent);
-      Components.utils.import("resource://grwmodules/GRWUri.jsm");
-      GRW.request('get', GRWUri.apply(GRWUri, friendListURL), {
+      Components.utils.import("resource://grwmodules/generateUri.jsm");
+      GRW.request('get', generateUri.apply(generateUri, friendListURL), {
         onSuccess:function(o) {
           _this.fireEvent(friendListRequestFinishEvent);
           _this._processFriendList(o);

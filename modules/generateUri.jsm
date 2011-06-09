@@ -9,7 +9,7 @@ var uriRex_ = new RegExp('^https?://');
   *  if its a boolean it will mean that the uri should be extended with client
   *  and ck params or not
   */
-var GRWUri = function(domain) {
+var generateUri = function(domain) {
     let args =[].slice.call(arguments),
         uriRoot = args.shift(),
         uriParts = [],
@@ -55,4 +55,4 @@ var GRWUri = function(domain) {
     return output;
 };
 
-let EXPORTED_SYMBOLS = ['GRWUri'];
+let EXPORTED_SYMBOLS = ['generateUri'];

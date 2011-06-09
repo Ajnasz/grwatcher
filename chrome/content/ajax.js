@@ -4,10 +4,10 @@
       requestFailed = 'requestFailed';
 
   Components.utils.import("resource://grwmodules/Getter.jsm");
-  Components.utils.import("resource://grwmodules/GRWUri.jsm");
+  Components.utils.import("resource://grwmodules/generateUri.jsm");
 
   var _getToken = function(callback) {
-    request('get', GRWUri('www.google.com/reader/api/0/token'), {
+    request('get', generateUri('www.google.com/reader/api/0/token'), {
       onSuccess: function(r){
         Components.utils.import("resource://grwmodules/GrwCookie.jsm");
         GrwCookie.set('.google.com', 'T', r.responseText);

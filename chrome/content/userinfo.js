@@ -3,8 +3,8 @@
   var userData = null;
   var userInfo = {
     request: function(cb) {
-      Components.utils.import("resource://grwmodules/GRWUri.jsm");
-      GRW.request('get', GRWUri(userinfoURI, {ck: new Date().getTime()}), {
+      Components.utils.import("resource://grwmodules/generateUri.jsm");
+      GRW.request('get', generateUri(userinfoURI, {ck: new Date().getTime()}), {
         onSuccess: function(o) {
           Components.utils.import("resource://grwmodules/JSON.jsm");
           userData = JSON.parse(o.responseText);
