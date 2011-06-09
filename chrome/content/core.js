@@ -11,7 +11,6 @@ GRW.module = function(moduleName, module) {
 
 (function(){
   Components.utils.import("resource://grwmodules/CustomEvent.jsm");
-  Components.utils.import("resource://grwmodules/GRWUri.jsm");
 
   var lang = {
     isString: function(arg) {
