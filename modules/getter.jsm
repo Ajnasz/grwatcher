@@ -1,23 +1,23 @@
 Components.utils.import("resource://grwmodules/CustomEvent.jsm");
-var Getter = {
+var getter = {
   _defaultHeaders: {},
   setDefaultHeader: function(h) {
-    Getter._defaultHeaders[h.name] = h.value;
+    getter._defaultHeaders[h.name] = h.value;
   },
   getDefaultHeaders: function() {
-    return Getter._defaultHeaders;
+    return getter._defaultHeaders;
   },
   onRequestSuccess: new CustomEvent('onRequestSuccess'),
   onRequestFailed: new CustomEvent('onRequestFailed'),
   onStartRequest: new CustomEvent('onStartRequest'),
   asyncRequest: function(method, uri, callback, postData) {
-    Getter.onStartRequest.fire();
+    getter.onStartRequest.fire();
     // var req = new XMLHttpRequest();
     var req = Components.classes["@mozilla.org/xmlextras/xmlhttprequest;1"]
                .createInstance(Components.interfaces.nsIXMLHttpRequest);
     var agent = 'Google Reader Watcher ###VERSION###';
     if(!req) {
-      Getter.onRequestFailed.fire();
+      getter.onRequestFailed.fire();
       return false;
     }
 
@@ -38,7 +38,7 @@ var Getter = {
     }
     req.setRequestHeader('User-Agent', agent);
 
-    var defaultHeaders = Getter.getDefaultHeaders();
+    var defaultHeaders = getter.getDefaultHeaders();
     for (let h in defaultHeaders) {
       if(defaultHeaders.hasOwnProperty(h)) {
         req.setRequestHeader(h, defaultHeaders[h]);
@@ -48,12 +48,12 @@ var Getter = {
     req.onreadystatechange = function(e) {
       if(req.readyState == 4) {
         if(req.status == 200) {
-          Getter.onRequestSuccess.fire(req);
+          getter.onRequestSuccess.fire(req);
           if(typeof callback.onSuccess === 'function') {
             callback.onSuccess.call(callback.onSuccess, req);
           }
         } else {
-          Getter.onRequestFailed.fire(req);
+          getter.onRequestFailed.fire(req);
           if(typeof callback.onError === 'function') {
             callback.onError.call(callback.onError, req);
           }
@@ -64,4 +64,4 @@ var Getter = {
     return req;
   }
 };
-let EXPORTED_SYMBOLS = ['Getter'];
+let EXPORTED_SYMBOLS = ['getter'];

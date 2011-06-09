@@ -37,11 +37,11 @@ function buildXPI {
     modules/tooltip.jsm \
     modules/JSON.jsm \
     modules/Augment.jsm \
-    modules/GRWUri.jsm \
+    modules/generateUri.jsm \
     modules/Prefs.jsm \
     modules/GRWLog.jsm \
     modules/Timer.jsm \
-    modules/Getter.jsm \
+    modules/getter.jsm \
     modules/mapwindows.jsm \
     modules/getactivegrw.jsm \
     modules/StatusIcon.jsm \

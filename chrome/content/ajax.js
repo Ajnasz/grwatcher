@@ -3,7 +3,7 @@
       requestSuccess = 'requestSuccess',
       requestFailed = 'requestFailed';
 
-  Components.utils.import("resource://grwmodules/Getter.jsm");
+  Components.utils.import("resource://grwmodules/getter.jsm");
   Components.utils.import("resource://grwmodules/generateUri.jsm");
 
   var _getToken = function(callback) {
@@ -26,7 +26,7 @@
   var lastRequest = '';
   var request = function(method, uri, callback, postData) {
     var retry = function() {
-      Getter.asyncRequest(method, uri, callback, postData);
+      getter.asyncRequest(method, uri, callback, postData);
     };
     var _callback = {
       onSuccess: function(r) {
@@ -55,10 +55,10 @@
       lastRequest = 'login';
       GRW.LoginManager.logIn(retry);
     } else {
-      Getter.asyncRequest(method, uri, _callback, postData);
+      getter.asyncRequest(method, uri, _callback, postData);
     }
   };
   GRW.module('request', request);
-  GRW.module('getter', Getter);
+  GRW.module('getter', getter);
   GRW.module('getToken', _getToken);
 })();
