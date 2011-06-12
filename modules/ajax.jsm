@@ -38,7 +38,7 @@ var request = function (method, uri, callback, postData) {
     lastRequest = 'login';
     GRW.LoginManager.logIn(retry);
   } else {
-    Getter.asyncRequest(method, uri, _callback, postData);
+    getter.asyncRequest(method, uri, _callback, postData);
   }
 };
 var token = null;
@@ -55,14 +55,10 @@ var getToken = function (callback) {
       callback(token);
     },
     onError: function (args) {
-      Components.utils.import("resource://grwmodules/GRWLog.jsm");
+      // Components.utils.import("resource://grwmodules/GRWLog.jsm");
       // GRWlog('TOKEN ERROR', args.getAllResponseHeaders(), args.status, args.statusText);
     }
   });
 };
 
-let EXPORTED_SYMBOLS = ['request', 'getter', 'getToken'];
-
-GRW.module('request', request);
-GRW.module('getter', getter);
 let EXPORTED_SYMBOLS = ['request', 'getter', 'getToken'];
