@@ -55,6 +55,15 @@ function buildXPI {
     modules/GridProvider.jsm \
     modules/OpenReader.jsm \
     modules/addToolbarButton.jsm \
+    modules/getter.jsm \
+    modules/getToken.jsm \
+    modules/request.jsm \
+    modules/requester.jsm \
+    modules/getlist.jsm \
+    modules/notifier.jsm \
+    modules/userinfo.jsm \
+    modules/markallasread.jsm \
+    modules/loginmanager.jsm \
     defaults/preferences/$PROJECT_NAME.js \
     chrome/ \
     license.txt;

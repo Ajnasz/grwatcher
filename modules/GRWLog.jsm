@@ -1,13 +1,14 @@
+var scope = {};
 /**
   * Logger method which writes messages to the error console
   * @method log
   *
   * @param {String} message log on the javascript console
   */
-var GRWlog = function () {
-  Components.utils.import("resource://grwmodules/Prefs.jsm");
+var GRWlog =  function () {
+  Components.utils.import("resource://grwmodules/Prefs.jsm", scope);
   var consoleService = Components.classes["@mozilla.org/consoleservice;1"].getService(Components.interfaces.nsIConsoleService);
-  if(Prefs.get.debug()) {
+  if (scope.Prefs.get.debug()) {
     var msg = [];
     for(let i = 0, al = arguments.length, arg, message; i< al; i++) {
       arg = arguments[i];
@@ -28,5 +29,6 @@ var GRWlog = function () {
     consoleService.logStringMessage('GRW: ' + msg.join(',\n'));
   }
 };
+var grwlog = GRWlog;
 
-let EXPORTED_SYMBOLS = ['GRWlog'];
+let EXPORTED_SYMBOLS = ['GRWlog', 'grwlog'];

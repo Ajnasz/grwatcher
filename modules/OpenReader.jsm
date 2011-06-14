@@ -5,9 +5,9 @@ var readerURL = 'www.google.com/reader/view',
     getPref = Prefs.get;
 
 var getOpenedGR = function (gBrowser) {
-  Components.utils.import("resource://grwmodules/GRWUri.jsm");
+  Components.utils.import("resource://grwmodules/generateUri.jsm");
   var outObj = {grTab: false, blankPage: false},
-      r = new RegExp('^'+GRWUri(readerURL, false)),
+      r = new RegExp('^' + generateUri(readerURL, false)),
       i = gBrowser.browsers.length - 1,
       curSpec;
   while (i >= 0) {
@@ -23,7 +23,9 @@ var getOpenedGR = function (gBrowser) {
   return outObj;
 };
 
-var OpenReader = function () {};
+var OpenReader = function (loginManager) {
+  this.loginManager = loginManager;
+};
 OpenReader.prototype = {
   gBrowser: function () {
     var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"]
@@ -33,9 +35,9 @@ OpenReader.prototype = {
   _open: function (subUrl) {
     try {
       this.fireEvent('beforeReaderOpened');
-      Components.utils.import("resource://grwmodules/GRWUri.jsm");
-      /*global GRWUri: true*/
-      var url = subUrl ? GRWUri(readerURL, false) + '/' + subUrl : GRWUri(readerURL, false),
+      Components.utils.import("resource://grwmodules/generateUri.jsm");
+      /*global generateUri: true*/
+      var url = subUrl ? generateUri(readerURL, false) + '/' + subUrl : generateUri(readerURL, false),
           gBrowser = this.gBrowser(),
           openedGR = getOpenedGR(gBrowser),
           currentContent = gBrowser
@@ -89,11 +91,15 @@ OpenReader.prototype = {
   open: function (subUrl) {
     Components.utils.import("resource://grwmodules/Prefs.jsm");
     /*global Prefs: true,GRW: true */
-    if (Prefs.get.forceLogin()) {
+    if (false && Prefs.get.forceLogin()) {
       var _this = this;
-      GRW.LoginManager.logIn(function () {
-        _this._open(subUrl);
-      });
+      if (false && this.loginManager) {
+        this.loginManager.logIn(function () {
+          _this._open(subUrl);
+        });
+      } else {
+        this._open(subUrl);
+      }
     } else {
       this._open(subUrl);
     }

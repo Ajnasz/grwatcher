@@ -1,7 +1,8 @@
 /*jslint indent:2*/
+var scope = {};
 var Tooltip = function (conf, GRW, openReader) {
   this.conf = conf;
-  var setTooltip, actions, activeGRW, feeds, getlist;
+  var setTooltip, actions, activeGRW, feeds;
   setTooltip = function (win, tooltip) {
     var element = win.document.getElementById(conf.elementID);
     if (element) {
@@ -10,10 +11,9 @@ var Tooltip = function (conf, GRW, openReader) {
   };
   actions = {
     genGrid: function (win, feeds, labels) {
-      Components.utils.import("resource://grwmodules/Prefs.jsm");
-      /*global Prefs: true*/
+      Components.utils.import("resource://grwmodules/Prefs.jsm", scope);
       var element = win.document.getElementById(conf.elementID),
-        showItemsInToolTip = Prefs.get.showitemsintooltip(),
+        showItemsInToolTip = scope.Prefs.get.showitemsintooltip(),
         elementContainer = win.document.getElementById(conf.tooltipNewElement),
         grid;
 
@@ -76,14 +76,13 @@ var Tooltip = function (conf, GRW, openReader) {
       break;
     }
     if (actionMethod) {
-      Components.utils.import("resource://grwmodules/mapwindows.jsm");
-      Components.utils.import("resource://grwmodules/getactivegrw.jsm");
-      /*global getActiveGRW, mapwindows*/
-      activeGRW = getActiveGRW().GRW;
+      Components.utils.import("resource://grwmodules/mapwindows.jsm", scope);
+      Components.utils.import("resource://grwmodules/getactivegrw.jsm", scope);
+      Components.utils.import("resource://grwmodules/getlist.jsm", scope);
+      activeGRW = scope.getActiveGRW().GRW;
       feeds = activeGRW.feeds;
-      getlist = activeGRW.GetList;
-      mapwindows(function (win) {
-        var labels = getlist.getLabels(), menu;
+      scope.mapwindows(function (win) {
+        var labels = scope.getList.getLabels(), menu;
         actionMethod.call(this, win, feeds, labels);
         menu = new GRW.UI.Menu(win, feeds, labels,
           conf.menuItem, conf.menuItemSeparator, openReader);
