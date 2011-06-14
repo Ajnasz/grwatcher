@@ -1,13 +1,11 @@
 /*jslint indent:2*/
 /*global Components: true*/
-var defaultHeaders = {};
 var scope = {};
 Components.utils.import("resource://grwmodules/CustomEvent.jsm", scope);
+var defaultHeaders = {};
 var getter = {
   setDefaultHeader: function (h) {
     defaultHeaders[h.name] = h.value;
-    Components.utils.import("resource://grwmodules/GRWLog.jsm", scope);
-    scope.grwlog('set default header', h.name, h.value);
   },
   getDefaultHeaders: function () {
     return defaultHeaders;
