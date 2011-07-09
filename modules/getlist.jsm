@@ -34,7 +34,8 @@ const unreadcountURL = ['www.google.com/reader/api/0/unread-count', {
   processFinishEvent = 'processFinishEvent';
 
 var scope = {},
-    GetList, getList;
+    GetList, getList,
+    lastFeeds;
 
 GetList = function () {
   var _this = this;
@@ -350,6 +351,12 @@ GetList.prototype = {
 
     this.fireEvent(itemsMatchedEvent, [unreads, this._unreadCount.max]);
     this.fireEvent(processFinishEvent);
+  },
+  setLastFeeds: function (feeds) {
+    lastFeeds = feeds;
+  },
+  getLastFeeds: function (feeds) {
+    return lastFeeds;
   }
 };
 Components.utils.import("resource://grwmodules/Augment.jsm", scope);

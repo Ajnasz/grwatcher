@@ -1,37 +1,39 @@
-
-var srv =Components.classes["@mozilla.org/consoleservice;1"].getService(Components.interfaces.nsIConsoleService);
+/*jslint indent: 2*/
+var scope = {};
+/*global Components:true */
+var srv = Components.classes["@mozilla.org/consoleservice;1"]
+          .getService(Components.interfaces.nsIConsoleService);
 var getClass = function (status) {
   var output;
-  switch(status.toString()) {
+  switch (status.toString()) {
 
-    case 'on':
-      output = 'on';
-      break;
+  case 'on':
+    output = 'on';
+    break;
 
-    case 'error':
-    case 'cookieerror':
-      output = 'error';
-      break;
+  case 'error':
+  case 'cookieerror':
+    output = 'error';
+    break;
 
-    case 'load':
-      output = 'load';
-      break;
+  case 'load':
+    output = 'load';
+    break;
 
-    case 'off':
-    default:
-      output = 'off';
-      break;
+  // case 'off':
+  default:
+    output = 'off';
+    break;
   }
   return output;
 };
-var StatusIcon = function(iconId, status) {
-
-  Components.utils.import("resource://grwmodules/mapwindows.jsm");
-  mapwindows(function(win) {
+var StatusIcon = function (iconId, status) {
+  Components.utils.import("resource://grwmodules/mapwindows.jsm", scope);
+  scope.mapwindows(function (win) {
 
     var statusImage = win.document.getElementById(iconId),
         classes;
-    if(!statusImage) {
+    if (!statusImage) {
       return;
     }
     classes = statusImage.getAttribute('class');

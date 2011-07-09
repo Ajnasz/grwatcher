@@ -1,6 +1,7 @@
 /*jslint indent:2*/
-/*global Components: true, getter: true, Prefs: true, getToken: true, loginManager: true */
-Components.utils.import("resource://grwmodules/getter.jsm");
+var scope = {};
+/*global Components: true, */
+Components.utils.import("resource://grwmodules/getter.jsm", scope);
 
 var requestTypes = {
   login: 'login',
@@ -12,7 +13,7 @@ var lastRequest = requestTypes.general;
 var request = function (method, uri, callback, postData) {
   callback = callback || {};
   var retry = function () {
-    getter.asyncRequest(method, uri, callback, postData);
+    scope.getter.asyncRequest(method, uri, callback, postData);
   }, _callback;
   _callback = {
     onSuccess: function (r) {
@@ -24,15 +25,15 @@ var request = function (method, uri, callback, postData) {
     onError: function (r) {
       if (r.status === 401 && lastRequest !== requestTypes.login) {
         lastRequest = requestTypes.login;
-        Components.utils.import("resource://grwmodules/loginmanager.jsm");
-        loginManager.logIn(retry);
+        Components.utils.import("resource://grwmodules/loginmanager.jsm", scope);
+        scope.loginManager.logIn(retry);
       } else if (r.status === 403 &&
           lastRequest !== requestTypes.token &&
           lastRequest !== requestTypes.login) {
 
         lastRequest = requestTypes.token;
-        Components.utils.import("resource://grwmodules/getToken.jsm");
-        getToken(retry);
+        Components.utils.import("resource://grwmodules/getToken.jsm", scope);
+        scope.getToken(retry);
       } else {
         lastRequest = requestTypes.general;
       }
@@ -41,13 +42,13 @@ var request = function (method, uri, callback, postData) {
       }
     }
   };
-  Components.utils.import("resource://grwmodules/Prefs.jsm");
-  if (Prefs.get.forceLogin() && lastRequest !== requestTypes.login) {
+  Components.utils.import("resource://grwmodules/Prefs.jsm", scope);
+  if (scope.Prefs.get.forceLogin() && lastRequest !== requestTypes.login) {
     lastRequest = requestTypes.login;
-    Components.utils.import("resource://grwmodules/loginmanager.jsm");
-    loginManager.logIn(retry);
+    Components.utils.import("resource://grwmodules/loginmanager.jsm", scope);
+    scope.loginManager.logIn(retry);
   } else {
-    getter.asyncRequest(method, uri, _callback, postData);
+    scope.getter.asyncRequest(method, uri, _callback, postData);
   }
 };
 

@@ -1,4 +1,5 @@
 /*jslint indent:2*/
+var scope = {};
 /*global Components: true*/
 var customDefs = {
     2: 'dblclick',
@@ -78,7 +79,7 @@ IconClick.prototype = {
     }
   }
 };
-Components.utils.import("resource://grwmodules/Augment.jsm");
-Components.utils.import("resource://grwmodules/EventProvider.jsm");
-augmentProto(IconClick, EventProvider);
+Components.utils.import("resource://grwmodules/Augment.jsm", scope);
+Components.utils.import("resource://grwmodules/EventProvider.jsm", scope);
+scope.augmentProto(IconClick, scope.EventProvider);
 let EXPORTED_SYMBOLS = ['IconClick', 'iconClickEvent', 'iconMiddleClickEvent'];

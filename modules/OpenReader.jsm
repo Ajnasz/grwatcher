@@ -1,13 +1,14 @@
 /*jslint indent: 2*/
-Components.utils.import("resource://grwmodules/Prefs.jsm");
-/*global Prefs:true, gBrowser*/
+var scope = {};
+Components.utils.import("resource://grwmodules/Prefs.jsm", scope);
+/*global Components:true */
 var readerURL = 'www.google.com/reader/view',
-    getPref = Prefs.get;
+    getPref = scope.Prefs.get;
 
 var getOpenedGR = function (gBrowser) {
-  Components.utils.import("resource://grwmodules/generateUri.jsm");
+  Components.utils.import("resource://grwmodules/generateUri.jsm", scope);
   var outObj = {grTab: false, blankPage: false},
-      r = new RegExp('^' + generateUri(readerURL, false)),
+      r = new RegExp('^' + scope.generateUri(readerURL, false)),
       i = gBrowser.browsers.length - 1,
       curSpec;
   while (i >= 0) {
@@ -35,9 +36,10 @@ OpenReader.prototype = {
   _open: function (subUrl) {
     try {
       this.fireEvent('beforeReaderOpened');
-      Components.utils.import("resource://grwmodules/generateUri.jsm");
-      /*global generateUri: true*/
-      var url = subUrl ? generateUri(readerURL, false) + '/' + subUrl : generateUri(readerURL, false),
+      Components.utils.import("resource://grwmodules/generateUri.jsm", scope);
+      var url = subUrl ?
+        scope.generateUri(readerURL, false) + '/' + subUrl :
+        scope.generateUri(readerURL, false),
           gBrowser = this.gBrowser(),
           openedGR = getOpenedGR(gBrowser),
           currentContent = gBrowser
@@ -80,18 +82,16 @@ OpenReader.prototype = {
         gBrowser.loadURI(url);
       }
     } catch (e) {
-      Components.utils.import("resource://grwmodules/GRWLog.jsm");
-      /*global GRWLog: true*/
-      GRWlog('reader open', e);
-      GRWlog('fileName', e.fileName);
-      GRWlog('line', e.lineNumber);
+      Components.utils.import("resource://grwmodules/GRWLog.jsm", scope);
+      scope.grwlog('reader open', e);
+      scope.grwlog('fileName', e.fileName);
+      scope.grwlog('line', e.lineNumber);
     }
     this.fireEvent('readerOpened');
   },
   open: function (subUrl) {
-    Components.utils.import("resource://grwmodules/Prefs.jsm");
-    /*global Prefs: true,GRW: true */
-    if (false && Prefs.get.forceLogin()) {
+    Components.utils.import("resource://grwmodules/Prefs.jsm", scope);
+    if (false && scope.Prefs.get.forceLogin()) {
       var _this = this;
       if (false && this.loginManager) {
         this.loginManager.logIn(function () {
@@ -105,10 +105,9 @@ OpenReader.prototype = {
     }
   }
 };
-Components.utils.import("resource://grwmodules/Augment.jsm");
-Components.utils.import("resource://grwmodules/EventProvider.jsm");
-/*global EventProvider: true, augmentProto: true*/
-augmentProto(OpenReader, EventProvider);
+Components.utils.import("resource://grwmodules/Augment.jsm", scope);
+Components.utils.import("resource://grwmodules/EventProvider.jsm", scope);
+scope.augmentProto(OpenReader, scope.EventProvider);
 
 let EXPORTED_SYMBOLS = ['OpenReader'];
 // var openReader = new OpenReader();

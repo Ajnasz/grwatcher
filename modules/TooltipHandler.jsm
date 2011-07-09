@@ -1,4 +1,5 @@
 /*jslint indent:2*/
+var scope = {};
 /*global Components: true*/
 var tooltipPopupShowing = 'tooltipPopupShowing',
     tooltipPopupHiding = 'tooltipPopupHiding',
@@ -74,9 +75,9 @@ TooltipHandler.prototype = {
     this.fireEvent(tooltipPopupShowing, [event, element]);
   },
 };
-Components.utils.import("resource://grwmodules/Augment.jsm");
-Components.utils.import("resource://grwmodules/EventProvider.jsm");
-augmentProto(TooltipHandler, EventProvider);
+Components.utils.import("resource://grwmodules/Augment.jsm", scope);
+Components.utils.import("resource://grwmodules/EventProvider.jsm", scope);
+scope.augmentProto(TooltipHandler, scope.EventProvider);
 let EXPORTED_SYMBOLS = [
   'TooltipHandler',
   'tooltipPopupShowing',

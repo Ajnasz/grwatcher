@@ -77,10 +77,10 @@ var Tooltip = function (conf, GRW, openReader) {
     }
     if (actionMethod) {
       Components.utils.import("resource://grwmodules/mapwindows.jsm", scope);
-      Components.utils.import("resource://grwmodules/getactivegrw.jsm", scope);
+      // Components.utils.import("resource://grwmodules/getactivegrw.jsm", scope);
       Components.utils.import("resource://grwmodules/getlist.jsm", scope);
-      activeGRW = scope.getActiveGRW().GRW;
-      feeds = activeGRW.feeds;
+      // activeGRW = scope.getActiveGRW().GRW;
+      feeds = scope.getList.getLastFeeds();
       scope.mapwindows(function (win) {
         var labels = scope.getList.getLabels(), menu;
         actionMethod.call(this, win, feeds, labels);

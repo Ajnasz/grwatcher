@@ -1,4 +1,5 @@
 /*jslint indent:2*/
+var scope = {};
 var MenuClick = function (elements, doc) {
   this.elements = elements;
   this.doc = doc;
@@ -20,8 +21,8 @@ MenuClick.prototype = {
   }
 };
 
-Components.utils.import("resource://grwmodules/Augment.jsm");
-Components.utils.import("resource://grwmodules/EventProvider.jsm");
+Components.utils.import("resource://grwmodules/Augment.jsm", scope);
+Components.utils.import("resource://grwmodules/EventProvider.jsm", scope);
 /*global augmentProto: true, EventProvider: true*/
-augmentProto(MenuClick, EventProvider);
+scope.augmentProto(MenuClick, scope.EventProvider);
 let EXPORTED_SYMBOLS = ['MenuClick'];
