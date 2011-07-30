@@ -1,15 +1,14 @@
 (function () {
-  Components.utils.import("resource://grwmodules/GridProvider.jsm");
-  Components.utils.import("resource://grwmodules/Augment.jsm");
-
-  var Grid = function(doc, feeds, labels) {
+  var scope = {};
+  var Grid = function (doc, feeds, labels) {
     this.document = doc;
     this.feeds = feeds || [];
     // this.getlist = getlist;
-    Components.utils.import("resource://grwmodules/Prefs.jsm");
-    this.toLeft = Prefs.get.tooltipCounterPos() == 'left';
+    Components.utils.import("resource://grwmodules/Prefs.jsm", scope);
+    this.toLeft = scope.Prefs.get.tooltipCounterPos() === 'left';
     this.labels = labels;
-    this.peopleYouFollow = GRW.strings.getString('peopleyoufollowtitle');
+    var strings = document.getElementById('grwatcher-strings');
+    this.peopleYouFollow = strings.getString('peopleyoufollowtitle');
     this.init();
   };
   Grid.prototype = {
@@ -62,11 +61,12 @@
       }
       return row;
     },
-    ggenRows: function() {
-      var rows = this.document.createElement('rows');
-      Components.utils.import("resource://grwmodules/Prefs.jsm");
-      var generatedRows = this.genRows(this.feeds, Prefs.get.sortByLabels(), this.peopleYouFollow);
-      generatedRows.forEach(function(item) {
+    ggenRows: function () {
+      var rows = this.document.createElement('rows'), generatedRows;
+      Components.utils.import("resource://grwmodules/Prefs.jsm", scope);
+      generatedRows = this.genRows(this.feeds,
+        scope.Prefs.get.sortByLabels(), this.peopleYouFollow);
+      generatedRows.forEach(function (item) {
         if (item.rows) {
           item.rows.forEach(function (row) {
             rows.appendChild(row);
@@ -81,7 +81,9 @@
       return this.grid;
     }
   };
-  Components.utils.import("resource://grwmodules/Augment.jsm");
-  augmentProto(Grid, GridProvider);
+  Components.utils.import("resource://grwmodules/Augment.jsm", scope);
+  Components.utils.import("resource://grwmodules/GridProvider.jsm", scope);
+
+  scope.augmentProto(Grid, scope.GridProvider);
   GRW.UI.Grid = Grid;
-})();
+}());
