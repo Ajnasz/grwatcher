@@ -9,7 +9,7 @@
     tooltipLoginErrorElement: 'GRW-statusbar-tooltip-loginerror',
     tooltipTtbNetworkErrorElement: 'GRW-statusbar-tooltip-networkerror',
     menuItem: 'GRW-statusbar-menu',
-    menuItemSeparator: 'GRW-menuseparator',
+    menuItemSeparator: ['GRW-menuseparator', 'GRW-menuseparator-bottom'],
   },
   toolbarConf = {
     elementID: 'GRW-toolbar-button',
@@ -21,7 +21,7 @@
     tooltipLoginErrorElement: 'GRW-toolbar-tooltip-loginerror',
     tooltipTtbNetworkErrorElement: 'GRW-toolbar-tooltip-networkerror',
     menuItem: 'GRW-toolbar-menu',
-    menuItemSeparator: 'GRW-toolbar-menuseparator',
+    menuItemSeparator: ['GRW-toolbar-menuseparator', 'GRW-toolbar-menuseparator-bottom'],
   };
   var tooltip = function(action, feeds, getlist, openReader) {
     var scope = {};

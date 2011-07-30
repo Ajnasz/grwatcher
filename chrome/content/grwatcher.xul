@@ -61,6 +61,7 @@
         <menuitem label="&GRWstatusbar.popup.openPrefs;" id="GRW-toolbar-menuitem-openprefs" />
         <menuitem label="&GRWstatusbar.popup.getReadCounter;" id="GRW-toolbar-menuitem-getcounter" />
         <menuitem label="&GRWstatusbar.popup.enableCookies;" class="grw-hidden" id="GRW-toolbar-menuitem-enablecookies" />
+        <menuseparator class="grw-hidden" id="GRW-toolbar-menuseparator-bottom" />
       </menupopup>
 
       <toolbarbutton id="GRW-toolbar-button" label="GRW" context="GRW-toolbar-menu" class="toolbarbutton-1 chromeclass-toolbar-additional off" tooltip="GRW-toolbar-tooltip-nonew" />

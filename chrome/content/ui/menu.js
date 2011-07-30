@@ -1,9 +1,13 @@
 /*jslint indent:2*/
 /*global Components:true*/
 (function () {
-  var scope = {};
+  var positions = {
+    top: 1,
+    bottom: 2
+  }
+  var scope = {}, Menu;
   Components.utils.import("resource://grwmodules/GridProvider.jsm", scope);
-  var Menu = function (win, feeds, labels, menu, menuseparator, openReader) {
+  Menu = function (win, feeds, labels, menu, menuseparator, openReader) {
     var doc = win.document, strings;
     this.window = win;
     this.document = doc;
@@ -26,21 +30,19 @@
             firstMenuItem,
             peopleYouFollow = this.peopleYouFollow,
             generatedRows,
-            sortedLabels;
+            sortedLabels, insert;
+        Components.utils.import("resource://grwmodules/GRWLog.jsm", scope);
 
         if (menu) {
           firstMenuItem = menu.firstChild;
           sortedLabels = scope.Prefs.get.sortByLabels();
           generatedRows = this.genRows(this.feeds, sortedLabels, peopleYouFollow);
-          generatedRows.forEach(function (item) {
-            if (item.rows) {
-              item.rows.forEach(function (row) {
-                menu.insertBefore(row, firstMenuItem);
-              });
-            } else {
-              menu.insertBefore(item, firstMenuItem);
-            }
-          }, this);
+          if (this.getPosition() === positions.bottom) {
+            insert = this.insertBefore;
+          } else {
+            insert = this.insertAfter;
+          }
+          generatedRows.forEach(insert, this);
         }
         if (this.feeds && this.feeds.length) {
           this.showMenuSeparator();
@@ -49,17 +51,63 @@
         }
       }
     },
-    showMenuSeparator: function () {
-      var menuSeparator = this.document.getElementById(this.menuseparator);
+    insertAfter: function (item) {
+      var menu = this.menu,
+          lastMenuItem = menu.lastChild;
+
+      if (item.rows) {
+        item.rows.forEach(function (row) {
+          menu.appendChild(row);
+        });
+      } else {
+        menu.appendChild(item);
+      }
+    },
+    insertBefore: function (item) {
+      var menu = this.menu,
+          firstMenuItem = menu.firstChild;
+
+      if (item.rows) {
+        item.rows.forEach(function (row) {
+          menu.insertBefore(row, firstMenuItem);
+        });
+      } else {
+        menu.insertBefore(item, firstMenuItem);
+      }
+    },
+    getPosition: function () {
+      var output = positions.top;
+      if (this.menu.parentNode.parentNode.id === 'addon-bar') {
+        output = positions.bottom;
+      }
+      return output;
+    },
+    _showMenuSeparator: function (menuSeparator) {
       if (menuSeparator) {
         menuSeparator.setAttribute('class', '');
       }
     },
-    hideMenuSeparator: function () {
-      var menuSeparator = this.document.getElementById(this.menuseparator);
+    _hideMenuSeparator: function (menuSeparator) {
       if (menuSeparator) {
         menuSeparator.setAttribute('class', 'grw-hidden');
       }
+    },
+    processMenuSeparator: function (show) {
+      var menuseparator = this.menuseparator,
+        method = show ? this._showMenuSeparator.bind(this) : this._hideMenuSeparator.bind(this);
+      if (typeof menuseparator !== 'object') {
+        menuseparator = [menuseparator];
+      }
+      menuseparator.forEach(function (item) {
+        var menuSeparator = this.document.getElementById(item);
+        method(menuSeparator);
+      }.bind(this));
+    },
+    showMenuSeparator: function () {
+      this.processMenuSeparator(true);
+    },
+    hideMenuSeparator: function () {
+      this.processMenuSeparator(true);
     },
     initEvents: function () {
       var _this = this;
@@ -92,10 +140,8 @@
       var menu = this.menu;
       if (menu) {
         for (let i = menu.childNodes.length - 1, rex = /feed|tag/, node; i >= 0; i -= 1) {
-
             node = menu.childNodes[i];
-
-          if(rex.test(node.getAttribute('class'))) {
+          if (rex.test(node.getAttribute('class'))) {
             menu.removeChild(node);
           }
         }
