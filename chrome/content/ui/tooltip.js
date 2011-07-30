@@ -24,9 +24,10 @@
     menuItemSeparator: 'GRW-toolbar-menuseparator',
   };
   var tooltip = function(action, feeds, getlist, openReader) {
-    Components.utils.import("resource://grwmodules/tooltip.jsm");
-    Tooltip(statusbarConf, GRW, openReader)(action, feeds, getlist);
-    Tooltip(toolbarConf, GRW, openReader)(action, feeds, getlist);
+    var scope = {};
+    Components.utils.import("resource://grwmodules/tooltip.jsm", scope);
+    scope.Tooltip(statusbarConf, GRW, openReader)(action, feeds, getlist);
+    scope.Tooltip(toolbarConf, GRW, openReader)(action, feeds, getlist);
   };
   GRW.UI.Tooltip = tooltip;
 })();
