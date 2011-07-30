@@ -15,12 +15,6 @@
       </Description>
     </em:targetApplication>
 
-    <em:file>
-      <Description about="urn:mozilla:extension:file:grwatcher.jar">
-        <em:package>content/grwatcher/</em:package>
-        <em:skin>skin/classic/grwatcher/</em:skin>
-      </Description>
-    </em:file>
     <em:localized>
       <Description>
         <em:locale>hu-HU</em:locale>
