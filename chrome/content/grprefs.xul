@@ -19,9 +19,7 @@
   <![CDATA[
     window.addEventListener('load',
       function() {
-        GRW.SetPrefPaneVals();
-        GRW.OpenNewTabCheckToogle();
-        document.getElementById('GRW-openinnewtab-field').addEventListener('command', GRW.OpenNewTabCheckToogle, false);
+        GRW.initPrefs(document);
       },
     false);
   ]]>
@@ -52,9 +50,14 @@
             <vbox>
               <checkbox id="GRW-resetcounter-field" label="&GRWpreferences.resetcounterdesc;" />
               <checkbox id="GRW-shownotificationwindow-field" label="&GRWpreferences.shownotificationwindow;" />
+              <checkbox id="GRW-usesecureconnection-field" label="&GRWpreferences.usesecureconnection;" />
+            </vbox>
+          </groupbox>
+          <groupbox flex="1">
+            <vbox>
+              <checkbox id="GRW-showcounter-field" label="&GRWpreferences.showcounter;" />
               <checkbox id="GRW-showzerocounter-field" label="&GRWpreferences.showzerocounter;" />
               <checkbox id="GRW-maximizecounter-field" label="&GRWpreferences.maximizecounter;" />
-              <checkbox id="GRW-usesecureconnection-field" label="&GRWpreferences.usesecureconnection;" />
             </vbox>
 
           </groupbox>
@@ -119,7 +122,7 @@
               </box>
               <hbox align="center">
                 <label value="&GRWpreferences.leftclickopen.description;" control="GRW-leftclickopen-field" id="GRW-leftclickopen-label" />
-                <menulist id="GRW-leftclickopen-field">  
+                <menulist id="GRW-leftclickopen-field">
                   <menupopup>
                     <menuitem value="1" label="&GRWpreferences.leftclickopen.singleclick;" />
                     <menuitem value="2" label="&GRWpreferences.leftclickopen.dblclick;" />

@@ -15,6 +15,7 @@ pref("extensions.grwatcher.activateopenedtab", true);
 
 pref("extensions.grwatcher.shownotificationwindow", true);
 pref("extensions.grwatcher.showzerocounter", false);
+pref("extensions.grwatcher.showcounter", true);
 
 pref("extensions.grwatcher.usesecureconnection", true);
 pref("extensions.grwatcher.username", "");

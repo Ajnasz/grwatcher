@@ -86,6 +86,12 @@ var Prefs = {
     /**
     * @type Boolean
     */
+    showCounter: function() {
+      return getBoolPref('extensions.grwatcher.showcounter');
+    },
+    /**
+    * @type Boolean
+    */
     useSecureConnection: function() {
       return getBoolPref('extensions.grwatcher.usesecureconnection');
     },
@@ -210,6 +216,12 @@ var Prefs = {
       */
     showZeroCounter : function(value) {
       setBoolPref('extensions.grwatcher.showzerocounter', value);
+    },
+    /**
+      * @param {Boolean} value
+      */
+    showCounter : function(value) {
+      setBoolPref('extensions.grwatcher.showcounter', value);
     },
     /**
       * @param {Boolean} value

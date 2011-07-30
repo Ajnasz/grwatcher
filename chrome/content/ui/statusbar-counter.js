@@ -40,7 +40,8 @@
     update: function (val, maxcount) {
 
       Components.utils.import("resource://grwmodules/Prefs.jsm", scope);
-      var showZeroCounter = scope.Prefs.get.showZeroCounter(),
+      var counterEnabled = scope.Prefs.get.showCounter(),
+          showZeroCounter = scope.Prefs.get.showZeroCounter(),
           showval;
       if (scope.Prefs.get.maximizeCounter() && maxcount && val > maxcount) {
         showval = maxcount + '+';
@@ -52,7 +53,7 @@
         var label = win.document.getElementById('GRW-statusbar-label'),
             toolbarButton = win.document.getElementById('GRW-toolbar-label');
 
-        if (val > 0 || showZeroCounter) {
+        if (counterEnabled && (val > 0 || showZeroCounter)) {
           showCounter(label, toolbarButton, showval);
         } else {
           hideCounter(label, toolbarButton);
