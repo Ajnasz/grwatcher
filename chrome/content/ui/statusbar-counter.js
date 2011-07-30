@@ -1,13 +1,16 @@
-(function() {
-  var showCounter = function(label, toolbar, value) {
-    if(label) {
+/*jslint indent:2*/
+/*global Components: true*/
+(function () {
+  var scope = {};
+  var showCounter = function (label, toolbar, value) {
+    if (label) {
       label.value = value;
       label.style.width = '';
       label.style.margin = '';
       label.crop = '';
       label.collapsed = false;
     }
-    if(toolbar) {
+    if (toolbar) {
       toolbar.value = value;
       toolbar.style.width = '';
       toolbar.style.margin = '';
@@ -36,24 +39,26 @@
   var statusbarCounter = {
     update: function(val, maxcount) {
 
-      Components.utils.import("resource://grwmodules/Prefs.jsm");
-      var showZeroCounter = Prefs.get.showZeroCounter(),
+      Components.utils.import("resource://grwmodules/Prefs.jsm", scope);
+      var showZeroCounter = scope.Prefs.get.showZeroCounter(),
           showval;
-      if(Prefs.get.maximizeCounter() && maxcount && val > maxcount) {
+      if (scope.Prefs.get.maximizeCounter() && maxcount && val > maxcount) {
         showval = maxcount + '+';
       } else {
         showval = val;
       }
-      Components.utils.import("resource://grwmodules/mapwindows.jsm");
-      mapwindows(function(win) {
+      Components.utils.import("resource://grwmodules/mapwindows.jsm", scope);
+      scope.mapwindows(function (win) {
         var label = win.document.getElementById('GRW-statusbar-label'),
             toolbarButton = win.document.getElementById('GRW-toolbar-label');
 
-        (val > 0 || showZeroCounter)
-          ? showCounter(label, toolbarButton, showval)
-          : hideCounter(label, toolbarButton);
+        if (val > 0 || showZeroCounter) {
+          showCounter(label, toolbarButton, showval);
+        } else {
+          hideCounter(label, toolbarButton);
+        }
       });
-    },
+    }
   };
   GRW.UI.StatusbarCounter = statusbarCounter;
-})();
+}());
