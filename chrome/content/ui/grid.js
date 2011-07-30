@@ -1,3 +1,5 @@
+/*jslint indent:2*/
+/*global Components: true*/
 (function () {
   var scope = {};
   var Grid = function (doc, feeds, labels) {
@@ -12,7 +14,7 @@
     this.init();
   };
   Grid.prototype = {
-    init: function() {
+    init: function () {
       var doc = this.document,
           grid = doc.createElement('grid'),
           columns = doc.createElement('columns'),
@@ -35,24 +37,24 @@
       grid.appendChild(rows);
       this.grid = grid;
     },
-    genRow: function(item, isLabel) {
-      var itemTitle  = this.getTitle(item),
-          itemCount  = item.count,
-          doc        = this.document,
-          label      = doc.createElement('label'),
-          row        = doc.createElement('row'),
+    genRow: function (item, isLabel) {
+      var itemTitle = this.getTitle(item),
+          itemCount = item.count,
+          doc = this.document,
+          label = doc.createElement('label'),
+          row = doc.createElement('row'),
           countLabel = label.cloneNode(true),
           titleLabel = label.cloneNode(true);
 
       countLabel.value = itemCount;
       countLabel.setAttribute('class', 'counterCol');
-      if(isLabel) {
+      if (isLabel) {
         row.setAttribute('class', 'tag');
       }
 
       titleLabel.value = itemTitle;
 
-      if(this.toLeft) {
+      if (this.toLeft) {
         row.appendChild(countLabel);
         row.appendChild(titleLabel);
       } else {
@@ -77,7 +79,7 @@
       }, this);
       return rows;
     },
-    getGrid: function() {
+    getGrid: function () {
       return this.grid;
     }
   };

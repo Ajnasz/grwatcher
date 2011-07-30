@@ -19,15 +19,15 @@
       // toolbar.label = value;
     }
   },
-  hideCounter = function(label, toolbar) {
-    if(label) {
+  hideCounter = function (label, toolbar) {
+    if (label) {
       label.value = '';
       label.crop = 'end';
       label.style.margin = 0;
       label.style.width = 0;
       label.collapsed = true;
     }
-    if(toolbar) {
+    if (toolbar) {
       toolbar.value = '';
       toolbar.crop = 'end';
       toolbar.style.margin = 0;
@@ -37,7 +37,7 @@
     }
   };
   var statusbarCounter = {
-    update: function(val, maxcount) {
+    update: function (val, maxcount) {
 
       Components.utils.import("resource://grwmodules/Prefs.jsm", scope);
       var showZeroCounter = scope.Prefs.get.showZeroCounter(),

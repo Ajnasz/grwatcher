@@ -347,6 +347,10 @@ GetList.prototype = {
     });
 
     this._unreadCount.unreadSum = unreadSum;
+    this.matchedData = {
+      unreads: unreads,
+      max: this._unreadCount.max
+    };
     this.fireEvent(processStartEvent);
 
     this.fireEvent(itemsMatchedEvent, [unreads, this._unreadCount.max]);

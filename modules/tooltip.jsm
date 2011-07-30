@@ -2,7 +2,7 @@
 var scope = {};
 var Tooltip = function (conf, GRW, openReader) {
   this.conf = conf;
-  var setTooltip, actions, activeGRW, feeds;
+  var setTooltip, actions, _Tooltip;
   setTooltip = function (win, tooltip) {
     var element = win.document.getElementById(conf.elementID);
     if (element) {
@@ -48,9 +48,9 @@ var Tooltip = function (conf, GRW, openReader) {
       setTooltip(win, conf.tooltipLoginErrorElement);
     }
   };
-  var _Tooltip = function (action, feeds) {
-    var actionMethod;
-    switch(action) {
+  _Tooltip = function (action) {
+    var actionMethod, menu, feeds;
+    switch (action) {
     case 'grid':
       actionMethod = actions.genGrid;
       break;
@@ -77,9 +77,7 @@ var Tooltip = function (conf, GRW, openReader) {
     }
     if (actionMethod) {
       Components.utils.import("resource://grwmodules/mapwindows.jsm", scope);
-      // Components.utils.import("resource://grwmodules/getactivegrw.jsm", scope);
       Components.utils.import("resource://grwmodules/getlist.jsm", scope);
-      // activeGRW = scope.getActiveGRW().GRW;
       feeds = scope.getList.getLastFeeds();
       scope.mapwindows(function (win) {
         var labels = scope.getList.getLabels(), menu;

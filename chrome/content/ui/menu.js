@@ -1,4 +1,5 @@
 /*jslint indent:2*/
+/*global Components:true*/
 (function () {
   var scope = {};
   Components.utils.import("resource://grwmodules/GridProvider.jsm", scope);

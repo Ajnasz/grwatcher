@@ -5,9 +5,9 @@
     scope, isActiveGRW, setIcons, updateUI, getBrowserVersion, init, start;
   scope = {};
   isActiveGRW = function () {
-    if (typeof Components === 'undefined') {
-      return;
-    }
+    // if (typeof Components === 'undefined') {
+    //   return;
+    // }
     var isActive = false;
     Components.utils.import("resource://grwmodules/mapwindows.jsm", scope);
     scope.mapwindows(function (win) {
@@ -18,11 +18,11 @@
     return isActive;
   };
   setIcons = function (status) {
-    if (typeof Components !== 'undefined') {
+    // if (typeof Components !== 'undefined') {
       Components.utils.import("resource://grwmodules/StatusIcon.jsm", scope);
       scope.StatusIcon('GRW-statusbar', status);
       scope.StatusIcon('GRW-toolbar-button', status);
-    }
+    // }
   };
   updateUI = function (oArgs, openReader) {
     if (GRW.lang.isArray(oArgs.status)) {
@@ -66,7 +66,7 @@
 
     var openReader, statusbarCounter, iconElements, iconClick, iconTooltipHandler, notifier,
         statusbarClick, toolbarClick, getlist, browserVersion, activeWin, toolbarButton, requester,
-        markAllAsRead;
+        markAllAsRead, showUnreadNotifications;
 
     openReader = new scope.OpenReader(scope.loginManager);
 
@@ -166,13 +166,13 @@
     // show notification window every time the unread count
     // and the subscription list matched
     // the notifier will deside if really need to show
-    getlist.on('itemsMatchedEvent', function (args) {
-      var unreads = args[0],
-          max = args[1],
-        elems = getlist._unreadCount, oArgs;
-      GRW.feeds = unreads;
-      GRW.max = max;
-      notifier.show(elems.unreadSum, max);
+    showUnreadNotifications = function () {
+      var unreads = getlist.matchedData.unreads,
+          max = getlist.matchedData.max,
+          elems = getlist._unreadCount,
+          oArgs;
+
+      getlist.setLastFeeds(unreads);
       oArgs = {
         tooltip: ['grid', unreads, getlist]
       };
@@ -184,7 +184,11 @@
       }
       oArgs.counter = [elems.unreadSum, max];
       updateUI(oArgs, openReader);
+    };
+    getlist.on('itemsMatchedEvent', function () {
+      notifier.show(getlist._unreadCount.unreadSum, getlist.matchedData.max);
     });
+    getlist.on('itemsMatchedEvent', showUnreadNotifications);
 
     // when the unread and the subscription list data is arrived
     // match them
@@ -279,11 +283,7 @@
       window.GRWActive = true;
       requester.start();
     } else {
-      Components.utils.import("resource://grwmodules/getactivegrw.jsm", scope);
-      Components.utils.import("resource://grwmodules/getlist.jsm", scope);
-      // activeWin = scope.getActiveGRW(window);
-      scope.getList.matchUnreadItems();
-  //    getlist = activeWin.GRW.GetList;
+      showUnreadNotifications();
     }
 
     GRW.onToolbarButtonAdd = function (element, noUpdate) {
