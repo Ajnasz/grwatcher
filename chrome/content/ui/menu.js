@@ -1,18 +1,17 @@
 /*jslint indent:2*/
 (function () {
-  Components.utils.import("resource://grwmodules/GridProvider.jsm");
-  Components.utils.import("resource://grwmodules/Augment.jsm");
-  /*global GRW: true, Augment: true, GridStartGenRows*/
-
+  var scope = {};
+  Components.utils.import("resource://grwmodules/GridProvider.jsm", scope);
   var Menu = function (win, feeds, labels, menu, menuseparator, openReader) {
-    var doc = win.document;
+    var doc = win.document, strings;
     this.window = win;
     this.document = doc;
     this.feeds = feeds;
     this.menu = doc.getElementById(menu);
     this.menuseparator = menuseparator;
     this.labels = labels;
-    this.peopleYouFollow = GRW.strings.getString('peopleyoufollowtitle');
+    strings = document.getElementById('grwatcher-strings');
+    this.peopleYouFollow = strings.getString('peopleyoufollowtitle');
     this.openReader = openReader;
     this.initEvents();
     this.init();
@@ -20,9 +19,8 @@
   Menu.prototype = {
     init: function () {
       this.clearItems();
-      Components.utils.import("resource://grwmodules/Prefs.jsm");
-      /*global Prefs: true*/
-      if (Prefs.get.showitemsincontextmenu()) {
+      Components.utils.import("resource://grwmodules/Prefs.jsm", scope);
+      if (scope.Prefs.get.showitemsincontextmenu()) {
         var menu = this.menu,
             firstMenuItem,
             peopleYouFollow = this.peopleYouFollow,
@@ -31,7 +29,7 @@
 
         if (menu) {
           firstMenuItem = menu.firstChild;
-          sortedLabels = Prefs.get.sortByLabels();
+          sortedLabels = scope.Prefs.get.sortByLabels();
           generatedRows = this.genRows(this.feeds, sortedLabels, peopleYouFollow);
           generatedRows.forEach(function (item) {
             if (item.rows) {
@@ -64,7 +62,7 @@
     },
     initEvents: function () {
       var _this = this;
-      this.subscribe(GridStartGenRows, function () {
+      this.subscribe(scope.GridStartGenRows, function () {
         _this.clearItems();
       });
     },
@@ -92,7 +90,7 @@
     clearItems: function () {
       var menu = this.menu;
       if (menu) {
-        for (let i = menu.childNodes.length-1, rex = new RegExp('feed|tag'), node; i >= 0; i -= 1) {
+        for (let i = menu.childNodes.length - 1, rex = /feed|tag/, node; i >= 0; i -= 1) {
 
             node = menu.childNodes[i];
 
@@ -105,7 +103,7 @@
       return true;
     }
   };
-  Components.utils.import("resource://grwmodules/Augment.jsm");
-  augmentProto(Menu, GridProvider);
+  Components.utils.import("resource://grwmodules/Augment.jsm", scope);
+  scope.augmentProto(Menu, scope.GridProvider);
   GRW.UI.Menu = Menu;
 }());
