@@ -53,9 +53,9 @@ Notifier.prototype = {
   },
   show: function (unreadCount, maxcount) {
     if (this.showNotification && unreadCount > 0) {
-      var showval;
-        Components.utils.import("resource://grwmodules/Prefs.jsm", scope),
+      var showval,
         strings = this.doc.getElementById('grwatcher-strings');
+      Components.utils.import("resource://grwmodules/Prefs.jsm", scope);
       if (scope.Prefs.get.maximizeCounter() && maxcount && unreadCount > maxcount) {
         showval = maxcount + '+';
       } else {
