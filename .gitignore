@@ -1,3 +1,4 @@
 *.xpi
 *tags
 grwatcher.jar
+updatedate.sh
