@@ -57,24 +57,26 @@
       }
     },
     genControlRows: function (isBottom) {
-      var conf = [
-        {
-          label: 'mark all as read',
-          id: 'GRW-toolbar-menuitem-markallasread'
-        },
-        {
-          label: 'open reader',
-          id: "GRW-toolbar-menuitem-openreader"
-        },
-        {
-          label: 'open preferences',
-          id: 'GRW-toolbar-menuitem-openprefs'
-        },
-        {
-          label: 'update counter',
-          id: 'GRW-toolbar-menuitem-getcounter'
-        }
-      ], rows = [];
+      var strings = this.document.getElementById('grwatcher-strings'),
+          conf = [
+          {
+            label: strings.getString('toolbarpopupmarkallasread'),
+            id: 'GRW-toolbar-menuitem-markallasread'
+          },
+          {
+            label: strings.getString('toolbarpopupopenreader'),
+            id: "GRW-toolbar-menuitem-openreader"
+          },
+          {
+            label: strings.getString('toolbarpopupopenprefs'),
+            id: 'GRW-toolbar-menuitem-openprefs'
+          },
+          {
+            label: strings.getString('toolbarpopupgetreadcounter'),
+            id: 'GRW-toolbar-menuitem-getcounter'
+          }
+        ],
+        rows = [];
       if (isBottom) {
         conf.reverse();
       }
