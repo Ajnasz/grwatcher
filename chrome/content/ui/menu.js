@@ -29,20 +29,25 @@
         var menu = this.menu,
             firstMenuItem,
             peopleYouFollow = this.peopleYouFollow,
-            generatedRows,
+            isBottom = this.getPosition() === positions.bottom,
+            labelRows, controlRows,
             sortedLabels, insert;
         // Components.utils.import("resource://grwmodules/GRWLog.jsm", scope);
 
         if (menu) {
           firstMenuItem = menu.firstChild;
           sortedLabels = scope.Prefs.get.sortByLabels();
-          generatedRows = this.genRowItems(this.feeds, sortedLabels, peopleYouFollow);
-          if (this.getPosition() === positions.bottom) {
-            insert = this.insertBefore;
+          labelRows = this.genRowItems(this.feeds, sortedLabels, peopleYouFollow);
+          controlRows = this.genControlRows(isBottom);
+          if (isBottom) {
+            insert = this.insertBefore.bind(this);
           } else {
-            insert = this.insertAfter;
+            insert = this.insertAfter.bind(this);
           }
-          generatedRows.forEach(insert, this);
+          controlRows.forEach(this.insertBefore.bind(this));
+          if (labelRows) {
+            labelRows.forEach(insert, this);
+          }
         }
         if (this.feeds && this.feeds.length) {
           this.showMenuSeparator();
@@ -50,6 +55,33 @@
           this.hideMenuSeparator();
         }
       }
+    },
+    genControlRows: function (isBottom) {
+      var conf = [
+        {
+          label: 'mark all as read',
+          id: 'GRW-toolbar-menuitem-markallasread'
+        },
+        {
+          label: 'open reader',
+          id: "GRW-toolbar-menuitem-openreader"
+        },
+        {
+          label: 'open preferences',
+          id: 'GRW-toolbar-menuitem-openprefs'
+        },
+        {
+          label: 'update counter',
+          id: 'GRW-toolbar-menuitem-getcounter'
+        }
+      ], rows = [];
+      if (isBottom) {
+        conf.reverse();
+      }
+      conf.forEach(function (item) {
+        rows.push(this.genMenuItem(item.label, item.id));
+      }.bind(this));
+      return rows;
     },
     insertAfter: function (item) {
       var menu = this.menu,
@@ -115,17 +147,31 @@
         _this.clearItems();
       });
     },
+    genMenuItem: function (label, id, cl, url) {
+      var menuitem = this.document.createElement('menuitem'),
+          classes = this.getClass(cl);
+      if (classes) {
+        menuitem.setAttribute('class', classes);
+      }
+      if (url) {
+        menuitem.setAttribute('url', url);
+      }
+      menuitem.setAttribute('id', id);
+      menuitem.setAttribute('label', label);
+      return menuitem;
+    },
     genLabelRow: function (item, isLabel) {
       var itemTitle = this.getTitle(item),
           itemCount = item.count,
           doc = this.document,
-          menuitem = doc.createElement('menuitem'),
+          menuitem,
+          classes = ['feed'],
           openReader = this.openReader;
 
-      menuitem.setAttribute('label', itemCount + ' ' + itemTitle);
-      menuitem.setAttribute('class', 'feed');
-      menuitem.setAttribute('url', item.id);
+      menuitem = this.genMenuItem(itemCount + ' ' + itemTitle,
+        'menuitem-' + item.id, classes, item.id);
       if (isLabel) {
+        classes.push('tag');
         menuitem.setAttribute('class', 'tag');
       }
       menuitem.addEventListener('command', function () {
@@ -138,10 +184,13 @@
     },
     clearItems: function () {
       var menu = this.menu;
+      var scope = {};
+      Components.utils.import("resource://grwmodules/GRWLog.jsm", scope);
       if (menu) {
         for (let i = menu.childNodes.length - 1, rex = /feed|tag/, node; i >= 0; i -= 1) {
             node = menu.childNodes[i];
-          if (rex.test(node.getAttribute('class'))) {
+          // if (rex.test(node.getAttribute('class'))) {
+          if (node.nodeName !== 'menuseparator') {
             menu.removeChild(node);
           }
         }
