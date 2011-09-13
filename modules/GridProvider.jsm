@@ -112,6 +112,18 @@ GridProvider.prototype = {
   normalizeItemTitle: function (itemTitle, titlelength) {
     return itemTitle.length > titlelength ? itemTitle.slice(0, titlelength - 3) + '...' : itemTitle;
   },
+  getClass: function (cl) {
+    var clType = typeof cl,
+        classes = '';
+    if (cl) {
+      if (clType === 'string') {
+        classes = cl;
+      } else if (clType === 'object' && cl.length > 0) {
+        classes = cl.join(' ');
+      }
+    }
+    return classes;
+  },
   getTitle: function (item) {
     var itemTitle = 'no title';
     // Components.utils.import("resource://grwmodules/GRWLog.jsm", scope);

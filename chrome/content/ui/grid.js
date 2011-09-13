@@ -37,18 +37,6 @@
 
       this.grid = grid;
     },
-    getClass: function (cl) {
-      var clType = typeof cl,
-          classes = '';
-      if (cl) {
-        if (clType === 'string') {
-          classes = cl;
-        } else if (clType === 'object' && cl.length > 0) {
-          classes = cl.join(' ');
-        }
-      }
-      return classes;
-    },
     genLabel: function (value, cl) {
       var lbl = this.document.createElement('label');
       lbl.value = value;
