@@ -1,12 +1,27 @@
 /*jslint indent:2*/
 var scope = {};
-var MenuClick = function (elements, doc) {
+var MenuClick = function (rootElem, elements, doc) {
+  this.rootElem = rootElem;
   this.elements = elements;
   this.doc = doc;
 };
 MenuClick.prototype = {
   init: function () {
-    var _this = this;
+    var _this = this,
+        scope = {},
+        rootElem;
+    Components.utils.import("resource://grwmodules/GRWLog.jsm", scope);
+    scope.grwlog(this.rootElem);
+    rootElem = this.doc.getElementById(this.rootElem);
+    if (rootElem) {
+      rootElem.addEventListener('command', function (ev) {
+        var cfg = _this.getElemCfg(ev.target.id);
+        if (cfg) {
+          _this.fireEvent(cfg.event);
+        }
+      }, false);
+    }
+    /*
     this.elements.forEach(function (elemCfg) {
       if (!elemCfg.element) {
         var element = _this.doc.getElementById(elemCfg.id);
@@ -18,6 +33,12 @@ MenuClick.prototype = {
       }
       }
     });
+    */
+  },
+  getElemCfg: function (id) {
+    return this.elements.filter(function (elem) {
+      return elem.id === id;
+    }).shift();
   }
 };
 
