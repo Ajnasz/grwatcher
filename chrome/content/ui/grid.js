@@ -38,7 +38,7 @@
       this.grid = grid;
     },
     genLabel: function (value, cl) {
-      var lbl = this.document.createElement('label');
+      var lbl = this.document.createElement('label').cloneNode(true);
       lbl.value = value;
       lbl.setAttribute('class', this.getClass(cl));
       return lbl;
