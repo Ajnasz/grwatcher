@@ -19,9 +19,9 @@
   };
   setIcons = function (status) {
     // if (typeof Components !== 'undefined') {
-      Components.utils.import("resource://grwmodules/StatusIcon.jsm", scope);
-      scope.StatusIcon('GRW-statusbar', status);
-      scope.StatusIcon('GRW-toolbar-button', status);
+    Components.utils.import("resource://grwmodules/StatusIcon.jsm", scope);
+    // scope.StatusIcon('GRW-statusbar', status);
+    scope.StatusIcon('GRW-toolbar-button', status);
     // }
   };
   updateUI = function (oArgs, openReader) {
@@ -71,10 +71,12 @@
     openReader = new scope.OpenReader(scope.loginManager);
 
 
+    /*
     statusbarCounter = GRW.UI.StatusbarCounter;
     iconElements = ['GRW-statusbar'];
-    iconClick = new scope.IconClick(iconElements, document);
     iconTooltipHandler = new scope.TooltipHandler(iconElements, document);
+    */
+    iconClick = new scope.IconClick([], document);
     notifier = new scope.Notifier(document);
 
     /*
@@ -101,7 +103,8 @@
 
     Components.utils.import("resource://grwmodules/MenuClick.jsm", scope);
     Components.utils.import("resource://grwmodules/getter.jsm", scope);
-    statusbarClick = new scope.MenuClick(
+    /*
+    statusbarClick = new scope.MenuClick('GRW-statusbar-menu',
       [
         {event: 'openReader', id: 'GRW-statusbar-menuitem-openreader' },
         {event: 'markAllAsRead', id: 'GRW-statusbar-menuitem-markallasread'},
@@ -110,7 +113,8 @@
         {event: 'enableCookies', id: 'GRW-statusbar-menuitem-enablecookies'}
       ], document
     );
-    toolbarClick = new scope.MenuClick(
+    */
+    toolbarClick = new scope.MenuClick('GRW-toolbar-menu',
       [
         {event: 'openReader', id: 'GRW-toolbar-menuitem-openreader'},
         {event: 'markAllAsRead', id: 'GRW-toolbar-menuitem-markallasread'},
@@ -225,6 +229,12 @@
       openReader.open();
     });
 
+    Components.utils.import("resource://grwmodules/markallasread.jsm", scope);
+    markAllAsRead = new scope.MarkAllAsRead(document);
+    markAllAsRead.on('onMarkAllAsRead', function () {
+      requester.updater();
+    });
+    /*
     // open the reader when user clicks on the "Open Reader"
     // menuitem
     statusbarClick.on('openReader', function () {
@@ -243,14 +253,11 @@
       window.openDialog("chrome://grwatcher/content/grprefs.xul",
         'GRWatcher', 'chrome,titlebar,toolbar,centerscreen,modal');
     });
-    Components.utils.import("resource://grwmodules/markallasread.jsm", scope);
-    markAllAsRead = new scope.MarkAllAsRead(document);
-    markAllAsRead.on('onMarkAllAsRead', function () {
-      requester.updater();
-    });
     statusbarClick.on('markAllAsRead', function () {
       scope.MarkAllAsRead.mark();
     });
+    statusbarClick.init();
+    */
 
     // open the reader when user clicks on the "Open Reader"
     // menuitem
@@ -277,7 +284,6 @@
       markAllAsRead.mark();
     });
     // toolbarClick.init();
-    statusbarClick.init();
 
     if (isActiveGRW() === false) {
       window.GRWActive = true;
