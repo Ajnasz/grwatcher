@@ -46,15 +46,23 @@
           }
           controlRows.forEach(this.insertBefore.bind(this));
           if (labelRows) {
+            insert(this.genMenuSeparator());
             labelRows.forEach(insert, this);
           }
         }
+        /*
         if (this.feeds && this.feeds.length) {
           this.showMenuSeparator();
         } else {
           this.hideMenuSeparator();
         }
+        */
       }
+    },
+    genMenuSeparator: function () {
+      var element = this.document.createElement('menuseparator');
+      element.setAttribute('id', 'GRW-toolbar-menuseparator');
+      return element;
     },
     genControlRows: function (isBottom) {
       var strings = this.document.getElementById('grwatcher-strings'),
@@ -185,16 +193,10 @@
       return menuitem;
     },
     clearItems: function () {
-      var menu = this.menu;
-      var scope = {};
-      Components.utils.import("resource://grwmodules/GRWLog.jsm", scope);
+      var menu = this.menu, i;
       if (menu) {
-        for (let i = menu.childNodes.length - 1, rex = /feed|tag/, node; i >= 0; i -= 1) {
-            node = menu.childNodes[i];
-          // if (rex.test(node.getAttribute('class'))) {
-          if (node.nodeName !== 'menuseparator') {
-            menu.removeChild(node);
-          }
+        for (i = menu.childNodes.length - 1; i >= 0; i -= 1) {
+          menu.removeChild(menu.childNodes[i]);
         }
       }
       this.hideMenuSeparator();
