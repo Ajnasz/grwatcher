@@ -31,12 +31,12 @@
             peopleYouFollow = this.peopleYouFollow,
             generatedRows,
             sortedLabels, insert;
-        Components.utils.import("resource://grwmodules/GRWLog.jsm", scope);
+        // Components.utils.import("resource://grwmodules/GRWLog.jsm", scope);
 
         if (menu) {
           firstMenuItem = menu.firstChild;
           sortedLabels = scope.Prefs.get.sortByLabels();
-          generatedRows = this.genRows(this.feeds, sortedLabels, peopleYouFollow);
+          generatedRows = this.genRowItems(this.feeds, sortedLabels, peopleYouFollow);
           if (this.getPosition() === positions.bottom) {
             insert = this.insertBefore;
           } else {
@@ -115,7 +115,7 @@
         _this.clearItems();
       });
     },
-    genRow: function (item, isLabel) {
+    genLabelRow: function (item, isLabel) {
       var itemTitle = this.getTitle(item),
           itemCount = item.count,
           doc = this.document,

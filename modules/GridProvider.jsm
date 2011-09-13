@@ -37,30 +37,27 @@ var GridFinishGenRows = 'GridFinishGenRows';
 var GridProvider = function () {
 };
 GridProvider.prototype = {
-  /**
-    * That method should be overwritten
-    * **/
-  genRow: function () {},
   _normalizeLabelRows: function (feeds, peopleYouFollow) {
     var labels = {'-': {count: 0, rows: []}};
     labels[peopleYouFollow] = {count: 0, rows: []};
     feeds.forEach(function (item) {
       if (item.data) {
-        var categories = item.data.categories;
+        var categories = item.data.categories, row;
+        row = this.genLabelRow(item);
 
         if (categories && categories.length) {
           categories.forEach(function (category) {
             if (!labels[category.label]) {
               labels[category.label] = {count: 0, rows: [], id: category.id};
             }
-            labels[category.label].rows.push(this.genRow(item));
+            labels[category.label].rows.push(row);
             labels[category.label].count += item.count;
           }, this);
         } else if (item.data.displayName) {
-          labels[peopleYouFollow].rows.push(this.genRow(item));
+          labels[peopleYouFollow].rows.push(row);
           labels[peopleYouFollow].count += item.count;
         } else {
-          labels['-'].rows.push(this.genRow(item));
+          labels['-'].rows.push(row);
           labels['-'].count += item.count;
         }
       }
@@ -69,7 +66,7 @@ GridProvider.prototype = {
   },
   _genLabelRows: function (labels) {
     var _labelRows = [],
-        _labelRow, label, putToRows;
+        _labelRow, label, putToRows, arow;
 
     putToRows = function (row) {
       this.push(row);
@@ -78,7 +75,7 @@ GridProvider.prototype = {
       if (labels.hasOwnProperty(label)) {
         _labelRow = {label: label, rows: []};
         if (labels[label].count > 0) {
-          _labelRow.rows.push(this.genRow({
+          _labelRow.rows.push(this.genLabelRow({
             data: {
               title: label
             },
@@ -92,23 +89,21 @@ GridProvider.prototype = {
     }
     return _labelRows;
   },
-  genRows: function (feeds, orderByLabels, peopleYouFollow) {
-    var labels, rows = [];
+  genRowItems: function (feeds, orderByLabels, peopleYouFollow) {
+    var labels, rows, sortedFeeds;
 
     this.fireEvent(GridStartGenRows);
 
     if (feeds && feeds.length) {
       if (orderByLabels) {
-        feeds = sortFeeds(feeds);
-        labels = this._normalizeLabelRows(feeds, peopleYouFollow);
+        sortedFeeds = sortFeeds(feeds);
+        labels = this._normalizeLabelRows(sortedFeeds, peopleYouFollow);
         rows = this._genLabelRows(labels);
         rows = sortLabelRows(rows, peopleYouFollow);
-
       } else {
         rows = feeds.map(function (item) {
-          return this.genRow(item);
+          return this.genLabelRow(item);
         }, this);
-
       }
     }
     this.fireEvent(GridFinishGenRows, rows);

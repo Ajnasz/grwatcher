@@ -12,6 +12,7 @@ var Tooltip = function (conf, GRW, openReader) {
   actions = {
     genGrid: function (win, feeds, labels) {
       Components.utils.import("resource://grwmodules/Prefs.jsm", scope);
+      Components.utils.import("resource://grwmodules/GRWLog.jsm", scope);
       var element = win.document.getElementById(conf.elementID),
         showItemsInToolTip = scope.Prefs.get.showitemsintooltip(),
         elementContainer = win.document.getElementById(conf.tooltipNewElement),
@@ -26,6 +27,7 @@ var Tooltip = function (conf, GRW, openReader) {
         }
         if (showItemsInToolTip) {
           grid = new GRW.UI.Grid(win.document, feeds, labels).getGrid();
+          scope.grwlog(elementContainer);
           elementContainer.appendChild(grid);
         } else {
           setTooltip(win, conf.tooltipNewElement);
