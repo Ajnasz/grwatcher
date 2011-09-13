@@ -26,7 +26,7 @@
   var tooltip = function(action, feeds, getlist, openReader) {
     var scope = {};
     Components.utils.import("resource://grwmodules/tooltip.jsm", scope);
-    scope.Tooltip(statusbarConf, GRW, openReader)(action, feeds, getlist);
+    // scope.Tooltip(statusbarConf, GRW, openReader)(action, feeds, getlist);
     scope.Tooltip(toolbarConf, GRW, openReader)(action, feeds, getlist);
   };
   GRW.UI.Tooltip = tooltip;
