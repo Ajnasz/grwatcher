@@ -14,9 +14,9 @@
   <!-- <script type="application/x-javascript;version=1.7" src="chrome://grwatcher/content/getlist.js" /> -->
   <!--<script type="application/x-javascript;version=1.7" src="chrome://grwatcher/content/notifier.js" /> -->
   <!-- <script type="application/x-javascript;version=1.7" src="chrome://grwatcher/content/markallasread.js" /> -->
-  <script type="application/x-javascript;version=1.7" src="chrome://grwatcher/content/ui.js" />
-  <script type="application/x-javascript;version=1.7" src="chrome://grwatcher/content/ui/statusbar-counter.js" />
-  <script type="application/x-javascript;version=1.7" src="chrome://grwatcher/content/ui/tooltip.js" />
+  <!-- <script type="application/x-javascript;version=1.7" src="chrome://grwatcher/content/ui.js" /> -->
+  <!-- <script type="application/x-javascript;version=1.7" src="chrome://grwatcher/content/ui/statusbar-counter.js" />-->
+  <!-- <script type="application/x-javascript;version=1.7" src="chrome://grwatcher/content/ui/tooltip.js" /> -->
   <!-- <script type="application/x-javascript;version=1.7" src="chrome://grwatcher/content/openreader.js" /> -->
   <!-- <script type="application/x-javascript;version=1.7" src="chrome://grwatcher/content/requester.js" /> -->
   <!-- <script type="application/x-javascript;version=1.7" src="chrome://grwatcher/content/ui/settoolbarbutton.js" /> -->

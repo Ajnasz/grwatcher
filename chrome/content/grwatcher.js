@@ -2,7 +2,7 @@
 /*global BrowserToolboxCustomizeDone: true, GRW: true*/
 (function (GRW) {
   var minDelay = 300,
-    scope, isActiveGRW, setIcons, updateUI, getBrowserVersion, init, start;
+    scope, isActiveGRW, setIcons, updateUI, getBrowserVersion, tooltipSetter, init, start;
   scope = {};
   isActiveGRW = function () {
     // if (typeof Components === 'undefined') {
@@ -24,13 +24,45 @@
     scope.StatusIcon('GRW-toolbar-button', status);
     // }
   };
+  tooltipSetter = (function () {
+    var statusbarConf = {
+      elementID: 'GRW-statusbar',
+      tooltipNewElement: 'GRW-statusbar-tooltip-new',
+      tooltipErrorElement: 'GRW-statusbar-tooltip-error',
+      tooltipNoNewElement: 'GRW-statusbar-tooltip-nonew',
+      tooltipCookieErrorElement: 'GRW-statusbar-tooltip-cookieerror',
+      tooltipNetworkErrorElement: 'GRW-statusbar-tooltip-networkerror',
+      tooltipLoginErrorElement: 'GRW-statusbar-tooltip-loginerror',
+      tooltipTtbNetworkErrorElement: 'GRW-statusbar-tooltip-networkerror',
+      menuItem: 'GRW-statusbar-menu',
+      menuItemSeparator: ['GRW-menuseparator', 'GRW-menuseparator-bottom']
+    },
+    toolbarConf = {
+      elementID: 'GRW-toolbar-button',
+      tooltipNewElement: 'GRW-toolbar-tooltip-new',
+      tooltipErrorElement: 'GRW-toolbar-tooltip-error',
+      tooltipNoNewElement: 'GRW-toolbar-tooltip-nonew',
+      tooltipCookieErrorElement: 'GRW-toolbar-tooltip-cookieerror',
+      tooltipNetworkErrorElement: 'GRW-toolbar-tooltip-networkerror',
+      tooltipLoginErrorElement: 'GRW-toolbar-tooltip-loginerror',
+      tooltipTtbNetworkErrorElement: 'GRW-toolbar-tooltip-networkerror',
+      menuItem: 'GRW-toolbar-menu',
+      menuItemSeparator: ['GRW-toolbar-menuseparator', 'GRW-toolbar-menuseparator-bottom']
+    };
+    return function (action, feeds, getlist, openReader) {
+      var scope = {};
+      Components.utils.import("resource://grwmodules/tooltip.jsm", scope);
+      // scope.Tooltip(statusbarConf, GRW, openReader)(action, feeds, getlist);
+      scope.Tooltip(toolbarConf, GRW, openReader)(action, feeds, getlist);
+    };
+  }());
   updateUI = function (oArgs, openReader) {
     if (GRW.lang.isArray(oArgs.status)) {
       setIcons(oArgs.status);
     }
     if (GRW.lang.isArray(oArgs.tooltip)) {
       oArgs.tooltip.push(openReader);
-      GRW.UI.Tooltip.apply(GRW.UI.Tooltip, oArgs.tooltip);
+      tooltipSetter.apply(tooltipSetter, oArgs.tooltip);
     }
     if (GRW.lang.isArray(oArgs.counter)) {
       Components.utils.import("resource://grwmodules/iconCounter.jsm", scope);
@@ -50,6 +82,7 @@
     }
     return version;
   };
+
 
   /**
   * initialization function
@@ -196,12 +229,6 @@
       this.matchUnreadItems();
     });
 
-    // show loading when start a request
-    /*
-    getlist.on('requestStartEvent', function () {
-      GRW.UI.StatusbarTooltip('')
-    });
-    */
 
     // set error icon if request failed
     /*
