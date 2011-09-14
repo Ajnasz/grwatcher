@@ -1,9 +1,50 @@
 /*jslint indent: 2*/
 /*global BrowserToolboxCustomizeDone: true, GRW: true*/
+var GRW = {};
 (function (GRW) {
   var minDelay = 300,
-    scope, isActiveGRW, setIcons, updateUI, getBrowserVersion, tooltipSetter, init, start;
+      helpers, scope, isActiveGRW, setIcons, updateUI, getBrowserVersion,
+      tooltipSetter, init, start;
   scope = {};
+  helpers = {
+    isString: function (arg) {
+      return typeof(arg) === 'string';
+    },
+    isNumber: function (arg) {
+      return typeof(arg) === 'number';
+    },
+    isBoolean: function (arg) {
+      return typeof(arg) === 'boolean';
+    },
+    isFunction: function (arg) {
+      return typeof(arg) === 'function';
+    },
+    isNull: function (arg) {
+      return arg === null;
+    },
+    isArray: function (arg) {
+      return typeof arg === 'object' && helpers.isNumber(arg.length) &&
+        helpers.isFunction(arg.slice);
+    },
+    isObject: function (arg) {
+      return typeof(arg) === 'object' && !helpers.isNull(arg) &&
+      !helpers.isString(arg) && helpers.isNumber(arg) && !helpers.isFunction(arg) &&
+      !helpers.isBoolean(arg);
+    },
+    isUrl: function (arg) {
+      return helpers.isString(arg) &&
+      /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/.test(arg);
+    },
+    isUndef: function (arg) {
+      return typeof arg === 'undefined';
+    },
+    toArray: function (arg) {
+      var _a = [];
+      return _a.slice.call(arg);
+    },
+    isEmail: function (arg) {
+    }
+  };
   isActiveGRW = function () {
     // if (typeof Components === 'undefined') {
     //   return;
@@ -57,14 +98,14 @@
     };
   }());
   updateUI = function (oArgs, openReader) {
-    if (GRW.lang.isArray(oArgs.status)) {
+    if (helpers.isArray(oArgs.status)) {
       setIcons(oArgs.status);
     }
-    if (GRW.lang.isArray(oArgs.tooltip)) {
+    if (helpers.isArray(oArgs.tooltip)) {
       oArgs.tooltip.push(openReader);
       tooltipSetter.apply(tooltipSetter, oArgs.tooltip);
     }
-    if (GRW.lang.isArray(oArgs.counter)) {
+    if (helpers.isArray(oArgs.counter)) {
       Components.utils.import("resource://grwmodules/iconCounter.jsm", scope);
       scope.iconCounter.update.apply(scope.iconCounter, oArgs.counter);
     }
@@ -158,7 +199,7 @@
     getlist = scope.getList;
     requester = new scope.Requester(getlist);
 
-    GRW.strings = document.getElementById('grwatcher-strings');
+    // GRW.strings = document.getElementById('grwatcher-strings');
     scope.getter.onStartRequest.subscribe(function () {
       updateUI({status: ['load']}, openReader);
     });
@@ -257,30 +298,6 @@
     markAllAsRead.on('onMarkAllAsRead', function () {
       requester.updater();
     });
-    /*
-    // open the reader when user clicks on the "Open Reader"
-    // menuitem
-    statusbarClick.on('openReader', function () {
-      openReader.open();
-    });
-
-    // update counter when user clicks on the "Check Unread Feeds"
-    // menuitem
-    statusbarClick.on('checkUnreadFeeds', function () {
-      requester.updater();
-    });
-
-    // open the preferences window when the user clicks on the
-    // "Preferences" menuitem
-    statusbarClick.on('openPreferences', function () {
-      window.openDialog("chrome://grwatcher/content/grprefs.xul",
-        'GRWatcher', 'chrome,titlebar,toolbar,centerscreen,modal');
-    });
-    statusbarClick.on('markAllAsRead', function () {
-      scope.MarkAllAsRead.mark();
-    });
-    statusbarClick.init();
-    */
 
     // open the reader when user clicks on the "Open Reader"
     // menuitem

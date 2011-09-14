@@ -1,18 +1,22 @@
+/*jslint indent: 2*/
+var GRW = {};
 (function () {
+  var scope = {}, doc, setPref, getPref, getById,
+      savePreferences, setPrefPaneVals, openNewTabCheckToogle, counterHandler;
   /**
    * save the preferences into the chrome when the pref dialog is accepted
    * @method savePreferences
    * @namespace GRW
    */
-  Components.utils.import("resource://grwmodules/Prefs.jsm");
-  var doc = document,
-      setPref = Prefs.set,
-      getPref = Prefs.get,
-      getById = function (id) {
-        return doc.getElementById(id);
-      };
+  Components.utils.import("resource://grwmodules/Prefs.jsm", scope);
+  doc = document;
+  setPref = scope.Prefs.set;
+  getPref = scope.Prefs.get;
+  getById = function (id) {
+    return doc.getElementById(id);
+  };
 
-  var savePreferences = function() {
+  savePreferences = function () {
     setPref.checkFreq(getById('GRW-checkfreq-field').value);
     setPref.delayStart(getById('GRW-delayStart-field').value);
     setPref.openInNewTab(getById('GRW-openinnewtab-field').checked);
@@ -34,8 +38,8 @@
   
     setPref.userName(getById('GRW-accountmanage-email').value);
     setPref.forceLogin(getById('GRW-forceLogin-field').checked);
-    Components.utils.import("resource://grwmodules/PassManager.jsm");
-    PassManager.addPassword(getById('GRW-accountmanage-pass').value);
+    Components.utils.import("resource://grwmodules/PassManager.jsm", scope);
+    scope.PassManager.addPassword(getById('GRW-accountmanage-pass').value);
   
   };
   /**
@@ -43,7 +47,7 @@
    * @method setPrefPaneVals
    * @namespace GRW
    */
-  var setPrefPaneVals = function() {
+  setPrefPaneVals = function() {
     getById('GRW-checkfreq-field').value = getPref.checkFreq();
     getById('GRW-delayStart-field').value = getPref.delayStart();
     getById('GRW-openinnewtab-field').checked = getPref.openInNewTab();
@@ -63,17 +67,17 @@
     getById('GRW-forceLogin-field').checked = getPref.forceLogin();
     getById('GRW-showitemsintooltip-field').checked = getPref.showitemsintooltip();
     getById('GRW-showitemsincontextmenu-field').checked = getPref.showitemsincontextmenu();
-    Components.utils.import("resource://grwmodules/PassManager.jsm");
-    getById('GRW-accountmanage-pass').value = PassManager.getPassword() || '';
+    Components.utils.import("resource://grwmodules/PassManager.jsm", scope);
+    getById('GRW-accountmanage-pass').value = scope.PassManager.getPassword() || '';
   };
   /**
    * show/hide the newtab options
    * @method openNewTabCheckToogle
    * @namespace GRW
    */
-  var openNewTabCheckToogle = function() {
+  openNewTabCheckToogle = function () {
     var cbfield = getById('GRW-openinnewtab-field');
-    if(cbfield.checked) {
+    if (cbfield.checked) {
       getById('GRW-activateopenedtab-field').disabled = '';
       getById('GRW-leftclickopen-field').disabled = '';
       getById('GRW-leftclickopen-label').disabled = '';
@@ -87,7 +91,7 @@
     }
   };
   
-  var counterHandler = function () {
+  counterHandler = function () {
     var counterField = getById('GRW-showcounter-field'),
         zeroCounterField = getById('GRW-showzerocounter-field'),
         maxCounterField = getById('GRW-maximizecounter-field'),
@@ -101,11 +105,12 @@
     updateZeroCounter();
   };
   GRW.initPrefs = function () {
-        setPrefPaneVals();
-        openNewTabCheckToogle();
-        document.getElementById('GRW-openinnewtab-field').addEventListener('command', openNewTabCheckToogle, false);
-        counterHandler();
+    setPrefPaneVals();
+    openNewTabCheckToogle();
+    document.getElementById('GRW-openinnewtab-field')
+      .addEventListener('command', openNewTabCheckToogle, false);
+    counterHandler();
   };
 
-  GRW.module('SavePreferences', savePreferences);
-})();
+  GRW.savePreferences = savePreferences;
+}());

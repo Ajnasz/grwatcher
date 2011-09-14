@@ -8,12 +8,11 @@
   id="grprefs"
   title="&GRWpreferences.title;"
   buttons="accept,cancel"
-  ondialogaccept="GRW.SavePreferences();"
+  ondialogaccept="GRW.savePreferences();"
   flex="1"
   xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
-  <script type="application/x-javascript;version=1.7" src="chrome://grwatcher/content/core.js" />
-  <script type="application/x-javascript;version=1.7" src="chrome://grwatcher/content/preferences.js" />
-  <script type="application/x-javascript;version=1.7" src="chrome://grwatcher/content/passmanager.js" />
+  <!--<script type="application/x-javascript;version=1.7" src="chrome://grwatcher/content/core.js" />-->
+  <!--<script type="application/x-javascript;version=1.7" src="chrome://grwatcher/content/preferences.js" />-->
   <script type="application/x-javascript;version=1.7" src="chrome://grwatcher/content/grprefs.js" />
   <script type="application/x-javascript">
   <![CDATA[
