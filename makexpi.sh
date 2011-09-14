@@ -59,7 +59,7 @@ function buildXPI {
     modules/getToken.jsm \
     modules/request.jsm \
     modules/requester.jsm \
-    modules/getlist.jsm \
+    modules/getList.jsm \
     modules/notifier.jsm \
     modules/userinfo.jsm \
     modules/markallasread.jsm \

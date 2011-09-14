@@ -195,7 +195,7 @@ var GRW = {};
     // var toolbarClick = new GRW.ToolbarMenuClick();
     // var requester = GRW.Requester;
     // var loginManager = GRW.LoginManager;
-    Components.utils.import("resource://grwmodules/getlist.jsm", scope);
+    Components.utils.import("resource://grwmodules/getList.jsm", scope);
     getlist = scope.getList;
     requester = new scope.Requester(getlist);
 
