@@ -66,6 +66,7 @@ function buildXPI {
     modules/loginmanager.jsm \
     modules/GRWMenu.jsm \
     modules/GrwTooltipGrid.jsm \
+    modules/iconCounter.jsm \
     defaults/preferences/$PROJECT_NAME.js \
     chrome/ \
     license.txt;

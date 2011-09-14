@@ -33,7 +33,8 @@
       GRW.UI.Tooltip.apply(GRW.UI.Tooltip, oArgs.tooltip);
     }
     if (GRW.lang.isArray(oArgs.counter)) {
-      GRW.UI.StatusbarCounter.update.apply(GRW.UI.StatusbarCounter, oArgs.counter);
+      Components.utils.import("resource://grwmodules/iconCounter.jsm", scope);
+      scope.iconCounter.update.apply(scope.iconCounter, oArgs.counter);
     }
   };
   getBrowserVersion = function () {
@@ -64,18 +65,13 @@
 
     scope.addToolbarButton(document, navigator, BrowserToolboxCustomizeDone);
 
-    var openReader, statusbarCounter, iconElements, iconClick, iconTooltipHandler, notifier,
+    var openReader, iconElements, iconClick, iconTooltipHandler, notifier,
         statusbarClick, toolbarClick, getlist, browserVersion, activeWin, toolbarButton, requester,
         markAllAsRead, showUnreadNotifications;
 
     openReader = new scope.OpenReader(scope.loginManager);
 
 
-    /*
-    statusbarCounter = GRW.UI.StatusbarCounter;
-    iconElements = ['GRW-statusbar'];
-    iconTooltipHandler = new scope.TooltipHandler(iconElements, document);
-    */
     iconClick = new scope.IconClick([], document);
     notifier = new scope.Notifier(document);
 

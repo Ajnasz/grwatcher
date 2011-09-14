@@ -15,8 +15,6 @@
   <!--<script type="application/x-javascript;version=1.7" src="chrome://grwatcher/content/notifier.js" /> -->
   <!-- <script type="application/x-javascript;version=1.7" src="chrome://grwatcher/content/markallasread.js" /> -->
   <script type="application/x-javascript;version=1.7" src="chrome://grwatcher/content/ui.js" />
-  <script type="application/x-javascript;version=1.7" src="chrome://grwatcher/content/ui/grid.js" />
-  <script type="application/x-javascript;version=1.7" src="chrome://grwatcher/content/ui/menu.js" />
   <script type="application/x-javascript;version=1.7" src="chrome://grwatcher/content/ui/statusbar-counter.js" />
   <script type="application/x-javascript;version=1.7" src="chrome://grwatcher/content/ui/tooltip.js" />
   <!-- <script type="application/x-javascript;version=1.7" src="chrome://grwatcher/content/openreader.js" /> -->
