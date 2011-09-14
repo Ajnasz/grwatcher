@@ -9,7 +9,7 @@
     Components.utils.import("resource://grwmodules/Prefs.jsm", scope);
     this.toLeft = scope.Prefs.get.tooltipCounterPos() === 'left';
     this.labels = labels;
-    var strings = document.getElementById('grwatcher-strings');
+    var strings = this.document.getElementById('grwatcher-strings');
     this.peopleYouFollow = strings.getString('peopleyoufollowtitle');
     this.init();
   };
