@@ -4,9 +4,9 @@ var positions = {
   top: 1,
   bottom: 2
 }
-var scope = {}, GRWMenu;
+var scope = {}, GrwMenu;
 Components.utils.import("resource://grwmodules/GridProvider.jsm", scope);
-GRWMenu = function (win, feeds, labels, menu, menuseparator, openReader) {
+GrwMenu = function (win, feeds, labels, menu, menuseparator, openReader) {
   var doc = win.document, strings;
   this.window = win;
   this.document = doc;
@@ -20,7 +20,7 @@ GRWMenu = function (win, feeds, labels, menu, menuseparator, openReader) {
   this.initEvents();
   this.init();
 };
-GRWMenu.prototype = {
+GrwMenu.prototype = {
   init: function () {
     this.clearItems();
     Components.utils.import("resource://grwmodules/Prefs.jsm", scope);
@@ -203,5 +203,5 @@ GRWMenu.prototype = {
   }
 };
 Components.utils.import("resource://grwmodules/Augment.jsm", scope);
-scope.augmentProto(GRWMenu, scope.GridProvider);
-let EXPORTED_SYMBOLS = ['GRWMenu'];
+scope.augmentProto(GrwMenu, scope.GridProvider);
+let EXPORTED_SYMBOLS = ['GrwMenu'];

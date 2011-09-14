@@ -81,12 +81,12 @@ var Tooltip = function (conf, GRW, openReader) {
     if (actionMethod) {
       Components.utils.import("resource://grwmodules/mapwindows.jsm", scope);
       Components.utils.import("resource://grwmodules/getlist.jsm", scope);
-      Components.utils.import("resource://grwmodules/GRWMenu.jsm", scope);
+      Components.utils.import("resource://grwmodules/GrwMenu.jsm", scope);
       feeds = scope.getList.getLastFeeds();
       scope.mapwindows(function (win) {
         var labels = scope.getList.getLabels(), menu;
         actionMethod.call(this, win, feeds, labels);
-        menu = new scope.GRWMenu(win, feeds, labels,
+        menu = new scope.GrwMenu(win, feeds, labels,
           conf.menuItem, conf.menuItemSeparator, openReader);
       });
     }
