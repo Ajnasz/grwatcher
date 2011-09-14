@@ -2,7 +2,7 @@
 /*global Components: true*/
 var scope = {};
 Components.utils.import("resource://grwmodules/EventProvider.jsm", scope);
-Components.utils.import("resource://grwmodules/Augment.jsm", scope);
+Components.utils.import("resource://grwmodules/augment.jsm", scope);
 var CustomEvent = function (eventName) {
   this.eventName = eventName;
 };

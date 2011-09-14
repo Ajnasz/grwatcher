@@ -75,7 +75,7 @@ TooltipHandler.prototype = {
     this.fireEvent(tooltipPopupShowing, [event, element]);
   },
 };
-Components.utils.import("resource://grwmodules/Augment.jsm", scope);
+Components.utils.import("resource://grwmodules/augment.jsm", scope);
 Components.utils.import("resource://grwmodules/EventProvider.jsm", scope);
 scope.augmentProto(TooltipHandler, scope.EventProvider);
 let EXPORTED_SYMBOLS = [

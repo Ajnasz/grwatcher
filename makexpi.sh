@@ -36,7 +36,7 @@ function buildXPI {
   zip -r $PROJECT_NAME.xpi chrome.manifest install.rdf \
     modules/tooltip.jsm \
     modules/JSON.jsm \
-    modules/Augment.jsm \
+    modules/augment.jsm \
     modules/generateUri.jsm \
     modules/Prefs.jsm \
     modules/grwlog.jsm \

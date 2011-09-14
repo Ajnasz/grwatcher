@@ -152,7 +152,7 @@ LoginManager.prototype = {
   }
 };
 
-Components.utils.import("resource://grwmodules/Augment.jsm", scope);
+Components.utils.import("resource://grwmodules/augment.jsm", scope);
 Components.utils.import("resource://grwmodules/EventProvider.jsm", scope);
 scope.augmentProto(LoginManager, scope.EventProvider);
 

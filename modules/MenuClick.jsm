@@ -42,7 +42,7 @@ MenuClick.prototype = {
   }
 };
 
-Components.utils.import("resource://grwmodules/Augment.jsm", scope);
+Components.utils.import("resource://grwmodules/augment.jsm", scope);
 Components.utils.import("resource://grwmodules/EventProvider.jsm", scope);
 /*global augmentProto: true, EventProvider: true*/
 scope.augmentProto(MenuClick, scope.EventProvider);

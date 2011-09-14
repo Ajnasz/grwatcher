@@ -202,6 +202,6 @@ GrwMenu.prototype = {
     return true;
   }
 };
-Components.utils.import("resource://grwmodules/Augment.jsm", scope);
+Components.utils.import("resource://grwmodules/augment.jsm", scope);
 scope.augmentProto(GrwMenu, scope.GridProvider);
 let EXPORTED_SYMBOLS = ['GrwMenu'];
