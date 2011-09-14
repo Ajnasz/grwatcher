@@ -39,7 +39,7 @@ function buildXPI {
     modules/Augment.jsm \
     modules/generateUri.jsm \
     modules/Prefs.jsm \
-    modules/GRWLog.jsm \
+    modules/grwlog.jsm \
     modules/Timer.jsm \
     modules/getter.jsm \
     modules/mapwindows.jsm \

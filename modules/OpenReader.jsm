@@ -82,7 +82,7 @@ OpenReader.prototype = {
         gBrowser.loadURI(url);
       }
     } catch (e) {
-      Components.utils.import("resource://grwmodules/GRWLog.jsm", scope);
+      Components.utils.import("resource://grwmodules/grwlog.jsm", scope);
       scope.grwlog('reader open', e);
       scope.grwlog('fileName', e.fileName);
       scope.grwlog('line', e.lineNumber);

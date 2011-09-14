@@ -126,7 +126,7 @@ GridProvider.prototype = {
   },
   getTitle: function (item) {
     var itemTitle = 'no title';
-    // Components.utils.import("resource://grwmodules/GRWLog.jsm", scope);
+    // Components.utils.import("resource://grwmodules/grwlog.jsm", scope);
     // scope.grwlog('item type: ', typeof item);
     // scope.grwlog('item: ', item.toSource());
     if (item && item.data) {

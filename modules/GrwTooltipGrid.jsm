@@ -75,7 +75,7 @@ GrwTooltipGrid.prototype = {
     var rows = this.document.createElement('rows'),
         generatedRows;
     Components.utils.import("resource://grwmodules/Prefs.jsm", scope);
-    Components.utils.import("resource://grwmodules/GRWLog.jsm", scope);
+    Components.utils.import("resource://grwmodules/grwlog.jsm", scope);
     generatedRows = this.genRowItems(this.feeds,
       scope.Prefs.get.sortByLabels(), this.peopleYouFollow);
     generatedRows.forEach(function (item) {

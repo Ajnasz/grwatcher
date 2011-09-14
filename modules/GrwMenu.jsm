@@ -31,7 +31,7 @@ GrwMenu.prototype = {
           isBottom = this.getPosition() === positions.bottom,
           labelRows, controlRows,
           sortedLabels, insert;
-      // Components.utils.import("resource://grwmodules/GRWLog.jsm", scope);
+      // Components.utils.import("resource://grwmodules/grwlog.jsm", scope);
 
       if (menu) {
         firstMenuItem = menu.firstChild;

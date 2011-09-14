@@ -66,7 +66,7 @@ LoginManager.prototype = {
       _this.loginFailed(response.responseText);
       _this.fireEvent('cookieError');
 
-      Components.utils.import("resource://grwmodules/GRWLog.jsm", scope);
+      Components.utils.import("resource://grwmodules/grwlog.jsm", scope);
       scope.grwlog('bad cookie behavior', cookieBehavior);
 
     } else {
