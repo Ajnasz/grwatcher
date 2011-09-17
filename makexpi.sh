@@ -62,7 +62,7 @@ function buildXPI {
     modules/getList.jsm \
     modules/notifier.jsm \
     modules/userinfo.jsm \
-    modules/markallasread.jsm \
+    modules/MarkAllAsRead.jsm \
     modules/loginmanager.jsm \
     modules/GrwMenu.jsm \
     modules/GrwTooltipGrid.jsm \

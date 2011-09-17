@@ -293,7 +293,7 @@ var GRW = {};
       openReader.open();
     });
 
-    Components.utils.import("resource://grwmodules/markallasread.jsm", scope);
+    Components.utils.import("resource://grwmodules/MarkAllAsRead.jsm", scope);
     markAllAsRead = new scope.MarkAllAsRead(document);
     markAllAsRead.on('onMarkAllAsRead', function () {
       requester.updater();
