@@ -1,5 +1,5 @@
 /*jslint indent:2*/
-/*global Components: true, getter: true, GrwCookie: true, generateUri: true, Prefs: true */
+/*global Components: true*/
 var token = null;
 var scope = {};
 var getToken = function (callback) {

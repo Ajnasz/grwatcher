@@ -45,7 +45,7 @@ function buildXPI {
     modules/mapwindows.jsm \
     modules/getactivegrw.jsm \
     modules/StatusIcon.jsm \
-    modules/GrwCookie.jsm \
+    modules/grwCookie.jsm \
     modules/IconClick.jsm \
     modules/TooltipHandler.jsm \
     modules/PassManager.jsm \

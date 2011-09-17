@@ -26,8 +26,8 @@ LoginManager.prototype = {
     return this.getCurrentAuth() !== false;
   },
   hasSidInCookie: function () {
-    Components.utils.import("resource://grwmodules/GrwCookie.jsm", scope);
-    return scope.GrwCookie.get('SID');
+    Components.utils.import("resource://grwmodules/grwCookie.jsm", scope);
+    return scope.grwCookie.get('SID');
   },
   getCurrentSID: function () {
     return this.authData !== null && typeof this.authData === 'object' ?

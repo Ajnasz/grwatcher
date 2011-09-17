@@ -10,7 +10,7 @@ const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', '
   * @param {Date} [date] (optional) The expires date of the cookie
   * @param {String} [path] (optional) The path of the cookie
   */
-GrwCookie = {
+grwCookie = {
   /**
     * @method set
     */
@@ -57,4 +57,4 @@ GrwCookie = {
     return false;
   }
 };
-let EXPORTED_SYMBOLS = ['GrwCookie'];
+let EXPORTED_SYMBOLS = ['grwCookie'];
