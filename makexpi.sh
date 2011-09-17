@@ -60,7 +60,7 @@ function buildXPI {
     modules/request.jsm \
     modules/requester.jsm \
     modules/getList.jsm \
-    modules/notifier.jsm \
+    modules/Notifier.jsm \
     modules/userinfo.jsm \
     modules/MarkAllAsRead.jsm \
     modules/loginmanager.jsm \

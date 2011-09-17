@@ -135,7 +135,7 @@ var GRW = {};
     Components.utils.import("resource://grwmodules/addToolbarButton.jsm", scope);
     Components.utils.import("resource://grwmodules/loginmanager.jsm", scope);
     Components.utils.import("resource://grwmodules/requester.jsm", scope);
-    Components.utils.import("resource://grwmodules/notifier.jsm", scope);
+    Components.utils.import("resource://grwmodules/Notifier.jsm", scope);
 
     scope.addToolbarButton(document, navigator, BrowserToolboxCustomizeDone);
 
