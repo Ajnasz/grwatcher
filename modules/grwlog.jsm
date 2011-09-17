@@ -5,7 +5,7 @@ var scope = {};
   *
   * @param {String} message log on the javascript console
   */
-var GRWlog =  function () {
+var grwlog =  function () {
   Components.utils.import("resource://grwmodules/Prefs.jsm", scope);
   var consoleService = Components.classes["@mozilla.org/consoleservice;1"].getService(Components.interfaces.nsIConsoleService);
   if (scope.Prefs.get.debug()) {
@@ -29,6 +29,4 @@ var GRWlog =  function () {
     consoleService.logStringMessage('GRW: ' + msg.join(',\n'));
   }
 };
-var grwlog = GRWlog;
-
-let EXPORTED_SYMBOLS = ['GRWlog', 'grwlog'];
+let EXPORTED_SYMBOLS = ['grwlog'];
