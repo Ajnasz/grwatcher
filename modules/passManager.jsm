@@ -94,5 +94,5 @@ var _PasswordManager = function() {
 
   }
 };
-var PassManager = new _PasswordManager();
-let EXPORTED_SYMBOLS = ['PassManager'];
+var passManager = new _PasswordManager();
+let EXPORTED_SYMBOLS = ['passManager'];

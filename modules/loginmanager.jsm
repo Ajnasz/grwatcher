@@ -16,8 +16,8 @@ LoginManager.prototype = {
     * @type {Boolean}
     */
   accountExists: function () {
-    Components.utils.import("resource://grwmodules/PassManager.jsm", scope);
-    if (scope.PassManager.getUsername() && scope.PassManager.getPassword()) {
+    Components.utils.import("resource://grwmodules/passManager.jsm", scope);
+    if (scope.passManager.getUsername() && scope.passManager.getPassword()) {
       return true;
     }
     return false;
@@ -82,10 +82,10 @@ LoginManager.prototype = {
     if (this.accountExists()) {
       // var url = GRStates.conntype + '://www.google.com/accounts/ServiceLoginAuth';
       // var url = 'https://www.google.com/accounts/ServiceLoginAuth?service=reader';
-      Components.utils.import("resource://grwmodules/PassManager.jsm", scope);
+      Components.utils.import("resource://grwmodules/passManager.jsm", scope);
 
-      var param = 'service=reader&Email=' + encodeURIComponent(scope.PassManager.getUsername()) +
-          '&Passwd=' + encodeURIComponent(scope.PassManager.getPassword()) +
+      var param = 'service=reader&Email=' + encodeURIComponent(scope.passManager.getUsername()) +
+          '&Passwd=' + encodeURIComponent(scope.passManager.getPassword()) +
           '&continue=http://www.google.com/reader/',
           _this = this, url, cb;
 

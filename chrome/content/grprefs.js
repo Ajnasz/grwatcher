@@ -38,8 +38,8 @@ var GRW = {};
   
     setPref.userName(getById('GRW-accountmanage-email').value);
     setPref.forceLogin(getById('GRW-forceLogin-field').checked);
-    Components.utils.import("resource://grwmodules/PassManager.jsm", scope);
-    scope.PassManager.addPassword(getById('GRW-accountmanage-pass').value);
+    Components.utils.import("resource://grwmodules/passManager.jsm", scope);
+    scope.passManager.addPassword(getById('GRW-accountmanage-pass').value);
   
   };
   /**
@@ -67,8 +67,8 @@ var GRW = {};
     getById('GRW-forceLogin-field').checked = getPref.forceLogin();
     getById('GRW-showitemsintooltip-field').checked = getPref.showitemsintooltip();
     getById('GRW-showitemsincontextmenu-field').checked = getPref.showitemsincontextmenu();
-    Components.utils.import("resource://grwmodules/PassManager.jsm", scope);
-    getById('GRW-accountmanage-pass').value = scope.PassManager.getPassword() || '';
+    Components.utils.import("resource://grwmodules/passManager.jsm", scope);
+    getById('GRW-accountmanage-pass').value = scope.passManager.getPassword() || '';
   };
   /**
    * show/hide the newtab options

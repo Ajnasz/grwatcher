@@ -48,7 +48,7 @@ function buildXPI {
     modules/grwCookie.jsm \
     modules/IconClick.jsm \
     modules/TooltipHandler.jsm \
-    modules/PassManager.jsm \
+    modules/passManager.jsm \
     modules/MenuClick.jsm \
     modules/EventProvider.jsm \
     modules/CustomEvent.jsm \
