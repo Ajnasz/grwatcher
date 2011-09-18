@@ -58,7 +58,7 @@ function buildXPI {
     modules/getter.jsm \
     modules/getToken.jsm \
     modules/request.jsm \
-    modules/requester.jsm \
+    modules/Requester.jsm \
     modules/getList.jsm \
     modules/Notifier.jsm \
     modules/userinfo.jsm \
