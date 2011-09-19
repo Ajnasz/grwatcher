@@ -1,11 +1,10 @@
 /*jslint indent:2*/
 /*global Components:true*/
-var positions = {
+var iconPositions = {
   top: 1,
   bottom: 2
-}
+};
 var scope = {}, GrwMenu;
-Components.utils.import("resource://grwmodules/GridProvider.jsm", scope);
 GrwMenu = function (win, feeds, labels, menu, menuseparator, openReader) {
   var doc = win.document, strings;
   this.window = win;
@@ -28,7 +27,7 @@ GrwMenu.prototype = {
       var menu = this.menu,
           firstMenuItem,
           peopleYouFollow = this.peopleYouFollow,
-          isBottom = this.getPosition() === positions.bottom,
+          isBottom = this.getPosition() === iconPositions.bottom,
           labelRows, controlRows,
           sortedLabels, insert;
       // Components.utils.import("resource://grwmodules/grwlog.jsm", scope);
@@ -117,9 +116,9 @@ GrwMenu.prototype = {
     }
   },
   getPosition: function () {
-    var output = positions.top;
+    var output = iconPositions.top;
     if (this.menu.parentNode.parentNode.id === 'addon-bar') {
-      output = positions.bottom;
+      output = iconPositions.bottom;
     }
     return output;
   },
@@ -203,5 +202,6 @@ GrwMenu.prototype = {
   }
 };
 Components.utils.import("resource://grwmodules/augment.jsm", scope);
+Components.utils.import("resource://grwmodules/GridProvider.jsm", scope);
 scope.augmentProto(GrwMenu, scope.GridProvider);
 let EXPORTED_SYMBOLS = ['GrwMenu'];

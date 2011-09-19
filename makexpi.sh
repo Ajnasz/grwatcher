@@ -64,7 +64,7 @@ function buildXPI {
     modules/userinfo.jsm \
     modules/MarkAllAsRead.jsm \
     modules/loginmanager.jsm \
-    modules/GrwMenu.jsm \
+    modules/grwMenu.jsm \
     modules/GrwTooltipGrid.jsm \
     modules/iconCounter.jsm \
     defaults/preferences/$PROJECT_NAME.js \
