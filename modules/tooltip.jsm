@@ -81,7 +81,7 @@ var Tooltip = function (conf, GRW, openReader) {
     if (actionMethod) {
       Components.utils.import("resource://grwmodules/mapwindows.jsm", scope);
       Components.utils.import("resource://grwmodules/getList.jsm", scope);
-      Components.utils.import("resource://grwmodules/GrwMenu.jsm", scope);
+      Components.utils.import("resource://grwmodules/grwMenu.jsm", scope);
       feeds = scope.getList.getLastFeeds();
       scope.mapwindows(function (win) {
         var labels = scope.getList.getLabels(), menu;

@@ -21,7 +21,11 @@ EventProvider.prototype = {
     var subscribers = this._subscribers[eventName];
     for (let i = 0, sl = subscribers.length; i < sl; i++) {
       subscription = subscribers[i];
-      subscription.fn.call(subscription.context || this, args);
+      try {
+        subscription.fn.call(subscription.context || this, args);
+      } catch(err) {
+        Components.utils.reportError(err);
+      }
     }
   }
 };
