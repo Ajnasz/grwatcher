@@ -355,7 +355,7 @@ var GRW = {};
     }
   };
   start = function () {
-    Components.utils.import("resource://grwmodules/Timer.jsm", scope);
+    Components.utils.import("resource://grwmodules/timer.jsm", scope);
     Components.utils.import("resource://grwmodules/prefs.jsm", scope);
     var delay = scope.prefs.get.delayStart();
     delay = delay > minDelay ? delay : minDelay;

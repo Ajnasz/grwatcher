@@ -43,7 +43,7 @@ Notifier.prototype = {
                       "chrome,titlebar=no,popup=yes", null);
 
           alertWin.arguments = [image, label, value, true, "", 0, clickCallback];
-          Components.utils.import("resource://grwmodules/Timer.jsm", scope);
+          Components.utils.import("resource://grwmodules/timer.jsm", scope);
           scope.later(function () {
             alertWin.close();
           }, 10000);

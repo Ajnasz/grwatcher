@@ -40,7 +40,7 @@ function buildXPI {
     modules/generateUri.jsm \
     modules/prefs.jsm \
     modules/grwlog.jsm \
-    modules/Timer.jsm \
+    modules/timer.jsm \
     modules/getter.jsm \
     modules/mapwindows.jsm \
     modules/getactivegrw.jsm \

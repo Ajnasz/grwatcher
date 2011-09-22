@@ -14,7 +14,7 @@ Requester.prototype = {
     this.setNext();
   },
   setNext: function () {
-    Components.utils.import("resource://grwmodules/Timer.jsm", scope);
+    Components.utils.import("resource://grwmodules/timer.jsm", scope);
     if (this.timer) {
       scope.never(this.timer);
     }
