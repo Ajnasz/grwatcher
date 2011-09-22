@@ -1,9 +1,9 @@
 /*jslint indent: 2*/
 var scope = {};
-Components.utils.import("resource://grwmodules/Prefs.jsm", scope);
+Components.utils.import("resource://grwmodules/prefs.jsm", scope);
 /*global Components:true */
 var readerURL = 'www.google.com/reader/view',
-    getPref = scope.Prefs.get;
+    getPref = scope.prefs.get;
 
 var getOpenedGR = function (gBrowser) {
   Components.utils.import("resource://grwmodules/generateUri.jsm", scope);
@@ -90,8 +90,8 @@ OpenReader.prototype = {
     this.fireEvent('readerOpened');
   },
   open: function (subUrl) {
-    Components.utils.import("resource://grwmodules/Prefs.jsm", scope);
-    if (false && scope.Prefs.get.forceLogin()) {
+    Components.utils.import("resource://grwmodules/prefs.jsm", scope);
+    if (false && scope.prefs.get.forceLogin()) {
       var _this = this;
       if (false && this.loginManager) {
         this.loginManager.logIn(function () {

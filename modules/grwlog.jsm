@@ -6,9 +6,9 @@ var scope = {};
   * @param {String} message log on the javascript console
   */
 var grwlog =  function () {
-  Components.utils.import("resource://grwmodules/Prefs.jsm", scope);
+  Components.utils.import("resource://grwmodules/prefs.jsm", scope);
   var consoleService = Components.classes["@mozilla.org/consoleservice;1"].getService(Components.interfaces.nsIConsoleService);
-  if (scope.Prefs.get.debug()) {
+  if (scope.prefs.get.debug()) {
     var msg = [];
     for(let i = 0, al = arguments.length, arg, message; i< al; i++) {
       arg = arguments[i];

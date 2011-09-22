@@ -57,8 +57,8 @@ LoginManager.prototype = {
   },
 
   handleWrongResponse: function (response) {
-    Components.utils.import("resource://grwmodules/Prefs.jsm", scope);
-    var cookieBehavior = scope.Prefs.get.cookieBehaviour(),
+    Components.utils.import("resource://grwmodules/prefs.jsm", scope);
+    var cookieBehavior = scope.prefs.get.cookieBehaviour(),
         _this = this;
 
     if (cookieBehavior !== 0) {

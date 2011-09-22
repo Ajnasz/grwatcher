@@ -38,7 +38,7 @@ function buildXPI {
     modules/JSON.jsm \
     modules/augment.jsm \
     modules/generateUri.jsm \
-    modules/Prefs.jsm \
+    modules/prefs.jsm \
     modules/grwlog.jsm \
     modules/Timer.jsm \
     modules/getter.jsm \

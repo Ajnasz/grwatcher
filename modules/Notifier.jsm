@@ -7,8 +7,8 @@ var Notifier = function (doc) {
 Notifier.prototype = {
   showNotification: true,
   notificationWin: function (value) {
-    Components.utils.import("resource://grwmodules/Prefs.jsm", scope);
-    if (scope.Prefs.get.showNotificationWindow() !== false) {
+    Components.utils.import("resource://grwmodules/prefs.jsm", scope);
+    if (scope.prefs.get.showNotificationWindow() !== false) {
       var label = 'Google Reader Watcher',
           image = "chrome://grwatcher/skin/grwatcher.png",
           alertsService,
@@ -55,8 +55,8 @@ Notifier.prototype = {
     if (this.showNotification && unreadCount > 0) {
       var showval,
         strings = this.doc.getElementById('grwatcher-strings');
-      Components.utils.import("resource://grwmodules/Prefs.jsm", scope);
-      if (scope.Prefs.get.maximizeCounter() && maxcount && unreadCount > maxcount) {
+      Components.utils.import("resource://grwmodules/prefs.jsm", scope);
+      if (scope.prefs.get.maximizeCounter() && maxcount && unreadCount > maxcount) {
         showval = maxcount + '+';
       } else {
         showval = unreadCount;

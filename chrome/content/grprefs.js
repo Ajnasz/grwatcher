@@ -8,10 +8,10 @@ var GRW = {};
    * @method savePreferences
    * @namespace GRW
    */
-  Components.utils.import("resource://grwmodules/Prefs.jsm", scope);
+  Components.utils.import("resource://grwmodules/prefs.jsm", scope);
   doc = document;
-  setPref = scope.Prefs.set;
-  getPref = scope.Prefs.get;
+  setPref = scope.prefs.set;
+  getPref = scope.prefs.get;
   getById = function (id) {
     return doc.getElementById(id);
   };

@@ -12,7 +12,7 @@ var prefManager = Components.classes["@mozilla.org/preferences-service;1"].getSe
 /**
   * namespace to handle the stored configurations
   */
-var Prefs = {
+var prefs = {
   getChar: function(pref) {
       return getCharPref(pref);
   },
@@ -284,4 +284,4 @@ var Prefs = {
   }
 };
 
-let EXPORTED_SYMBOLS = ['Prefs'];
+let EXPORTED_SYMBOLS = ['prefs'];

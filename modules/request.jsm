@@ -42,8 +42,8 @@ var request = function (method, uri, callback, postData) {
       }
     }
   };
-  Components.utils.import("resource://grwmodules/Prefs.jsm", scope);
-  if (scope.Prefs.get.forceLogin() && lastRequest !== requestTypes.login) {
+  Components.utils.import("resource://grwmodules/prefs.jsm", scope);
+  if (scope.prefs.get.forceLogin() && lastRequest !== requestTypes.login) {
     lastRequest = requestTypes.login;
     Components.utils.import("resource://grwmodules/loginmanager.jsm", scope);
     scope.loginManager.logIn(retry);

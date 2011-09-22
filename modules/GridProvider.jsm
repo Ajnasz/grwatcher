@@ -133,8 +133,8 @@ GridProvider.prototype = {
       itemTitle = item.data.title || item.data.displayName || 'no title2';
     }
 
-    Components.utils.import("resource://grwmodules/Prefs.jsm", scope);
-    itemTitle = this.normalizeItemTitle(itemTitle, scope.Prefs.get.tooltipTitleLength());
+    Components.utils.import("resource://grwmodules/prefs.jsm", scope);
+    itemTitle = this.normalizeItemTitle(itemTitle, scope.prefs.get.tooltipTitleLength());
     return itemTitle;
   }
 };

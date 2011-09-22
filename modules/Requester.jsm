@@ -18,10 +18,10 @@ Requester.prototype = {
     if (this.timer) {
       scope.never(this.timer);
     }
-    Components.utils.import("resource://grwmodules/Prefs.jsm", scope);
+    Components.utils.import("resource://grwmodules/prefs.jsm", scope);
     var _this = this,
         minCheck = 1,
-        configuredCheck = scope.Prefs.get.checkFreq(),
+        configuredCheck = scope.prefs.get.checkFreq(),
         freq = (configuredCheck >= minCheck) ? configuredCheck : minCheck;
 
     this.timer = scope.later(function () {

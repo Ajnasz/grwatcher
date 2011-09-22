@@ -268,8 +268,8 @@ GetList.prototype = {
   },
   _filterLabels: function (items) {
 
-    Components.utils.import("resource://grwmodules/Prefs.jsm", scope);
-    var filteredLabels = scope.Prefs.get.filteredLabels()
+    Components.utils.import("resource://grwmodules/prefs.jsm", scope);
+    var filteredLabels = scope.prefs.get.filteredLabels()
           .replace(/\s+,/g, ',').replace(/,\s+/g, ','),
           _isFilteredLabel, _isNotFilteredLabel;
 

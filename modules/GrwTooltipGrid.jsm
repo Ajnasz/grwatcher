@@ -5,8 +5,8 @@ var GrwTooltipGrid = function (doc, feeds, labels) {
   this.document = doc;
   this.feeds = feeds || [];
   // this.getlist = getlist;
-  Components.utils.import("resource://grwmodules/Prefs.jsm", scope);
-  this.toLeft = scope.Prefs.get.tooltipCounterPos() === 'left';
+  Components.utils.import("resource://grwmodules/prefs.jsm", scope);
+  this.toLeft = scope.prefs.get.tooltipCounterPos() === 'left';
   this.labels = labels;
   var strings = this.document.getElementById('grwatcher-strings');
   this.peopleYouFollow = strings.getString('peopleyoufollowtitle');
@@ -74,10 +74,10 @@ GrwTooltipGrid.prototype = {
   genRows: function () {
     var rows = this.document.createElement('rows'),
         generatedRows;
-    Components.utils.import("resource://grwmodules/Prefs.jsm", scope);
+    Components.utils.import("resource://grwmodules/prefs.jsm", scope);
     Components.utils.import("resource://grwmodules/grwlog.jsm", scope);
     generatedRows = this.genRowItems(this.feeds,
-      scope.Prefs.get.sortByLabels(), this.peopleYouFollow);
+      scope.prefs.get.sortByLabels(), this.peopleYouFollow);
     generatedRows.forEach(function (item) {
       if (item.rows) {
         item.rows.forEach(function (row) {

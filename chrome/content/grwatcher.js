@@ -158,8 +158,8 @@ var GRW = {};
     // change the next request's time
     // enable to show notification window
     openReader.on('readerOpened', function () {
-      Components.utils.import("resource://grwmodules/Prefs.jsm", scope);
-      if (scope.Prefs.get.resetCounter()) {
+      Components.utils.import("resource://grwmodules/prefs.jsm", scope);
+      if (scope.prefs.get.resetCounter()) {
         var oArgs = {
           status: ['off'],
           counter: [0]
@@ -356,8 +356,8 @@ var GRW = {};
   };
   start = function () {
     Components.utils.import("resource://grwmodules/Timer.jsm", scope);
-    Components.utils.import("resource://grwmodules/Prefs.jsm", scope);
-    var delay = scope.Prefs.get.delayStart();
+    Components.utils.import("resource://grwmodules/prefs.jsm", scope);
+    var delay = scope.prefs.get.delayStart();
     delay = delay > minDelay ? delay : minDelay;
     scope.later(function () {
       init();

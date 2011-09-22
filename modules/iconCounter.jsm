@@ -38,11 +38,11 @@ hideCounter = function (label, toolbar) {
 var iconCounter = {
   update: function (val, maxcount) {
 
-    Components.utils.import("resource://grwmodules/Prefs.jsm", scope);
-    var counterEnabled = scope.Prefs.get.showCounter(),
-        showZeroCounter = scope.Prefs.get.showZeroCounter(),
+    Components.utils.import("resource://grwmodules/prefs.jsm", scope);
+    var counterEnabled = scope.prefs.get.showCounter(),
+        showZeroCounter = scope.prefs.get.showZeroCounter(),
         showval;
-    if (scope.Prefs.get.maximizeCounter() && maxcount && val > maxcount) {
+    if (scope.prefs.get.maximizeCounter() && maxcount && val > maxcount) {
       showval = maxcount + '+';
     } else {
       showval = val;

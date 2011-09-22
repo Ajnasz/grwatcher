@@ -22,8 +22,8 @@ GrwMenu = function (win, feeds, labels, menu, menuseparator, openReader) {
 GrwMenu.prototype = {
   init: function () {
     this.clearItems();
-    Components.utils.import("resource://grwmodules/Prefs.jsm", scope);
-    if (scope.Prefs.get.showitemsincontextmenu()) {
+    Components.utils.import("resource://grwmodules/prefs.jsm", scope);
+    if (scope.prefs.get.showitemsincontextmenu()) {
       var menu = this.menu,
           firstMenuItem,
           peopleYouFollow = this.peopleYouFollow,
@@ -34,7 +34,7 @@ GrwMenu.prototype = {
 
       if (menu) {
         firstMenuItem = menu.firstChild;
-        sortedLabels = scope.Prefs.get.sortByLabels();
+        sortedLabels = scope.prefs.get.sortByLabels();
         labelRows = this.genRowItems(this.feeds, sortedLabels, peopleYouFollow);
         controlRows = this.genControlRows(isBottom);
         if (isBottom) {
