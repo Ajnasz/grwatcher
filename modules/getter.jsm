@@ -18,7 +18,7 @@ var getter = {
     // var req = new XMLHttpRequest();
     var req = Components.classes["@mozilla.org/xmlextras/xmlhttprequest;1"]
                .createInstance(Components.interfaces.nsIXMLHttpRequest),
-               agent = 'Google Reader Watcher ###VERSION###',
+               agent = 'Google Reader Watcher ___VERSION___',
                headers, h;
     if (!req) {
       getter.onRequestFailed.fire();

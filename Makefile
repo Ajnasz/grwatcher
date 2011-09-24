@@ -6,7 +6,7 @@ GIT_BRANCH = $(shell git branch | awk '/\*/ {print $$2}')
 GIT_SHA = $(shell git log --pretty=%h -n 1)
 VERSION = 1.6-$(DATESTR)-$(GIT_BRANCH).$(GIT_SHA)
 
-REPLACE_VERSION_STRING = '###VERSION###'
+REPLACE_VERSION_STRING = ___VERSION___
 REPLACE_VERSION_FILES = install.rdf
 REPLACE_VERSION_FILES += modules/getter.jsm
 
