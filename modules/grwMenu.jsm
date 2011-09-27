@@ -5,13 +5,13 @@ var iconPositions = {
   bottom: 2
 };
 var scope = {}, GrwMenu;
-GrwMenu = function (win, feeds, labels, menu, menuseparator, openReader) {
+GrwMenu = function (win, feeds, labels, menu, openReader, barname) {
   var doc = win.document, strings;
+  this.barname = barname;
   this.window = win;
   this.document = doc;
   this.feeds = feeds;
   this.menu = doc.getElementById(menu);
-  this.menuseparator = menuseparator;
   this.labels = labels;
   strings = this.document.getElementById('grwatcher-strings');
   this.peopleYouFollow = strings.getString('peopleyoufollowtitle');
@@ -28,21 +28,27 @@ GrwMenu.prototype = {
           firstMenuItem,
           peopleYouFollow = this.peopleYouFollow,
           isBottom = this.getPosition() === iconPositions.bottom,
-          labelRows, controlRows,
-          sortedLabels, insert;
-      // Components.utils.import("resource://grwmodules/grwlog.jsm", scope);
+          isStatusbar = this.isStatusbar(),
+          _this = this,
+          labelRows, controlRows, sortedLabels, insert, insertBefore, insertAfter;
 
       if (menu) {
         firstMenuItem = menu.firstChild;
         sortedLabels = scope.prefs.get.sortByLabels();
         labelRows = this.genRowItems(this.feeds, sortedLabels, peopleYouFollow);
-        controlRows = this.genControlRows(isBottom);
-        if (isBottom) {
-          insert = this.insertBefore.bind(this);
+        controlRows = this.genControlRows(isBottom, isStatusbar);
+        insertBefore = function (item) {
+          _this.insertBefore(item);
+        };
+        insertAfter = function (item) {
+          _this.insertAfter(item);
+        };
+        if (isBottom || isStatusbar) {
+          insert = insertBefore;
         } else {
-          insert = this.insertAfter.bind(this);
+          insert = insertAfter;
         }
-        controlRows.forEach(this.insertBefore.bind(this));
+        controlRows.forEach(insertBefore);
         if (labelRows) {
           insert(this.genMenuSeparator());
           labelRows.forEach(insert, this);
@@ -59,36 +65,37 @@ GrwMenu.prototype = {
   },
   genMenuSeparator: function () {
     var element = this.document.createElement('menuseparator');
-    element.setAttribute('id', 'GRW-toolbar-menuseparator');
+    element.setAttribute('id', 'GRW-' + this.barname + '-menuseparator');
     return element;
   },
-  genControlRows: function (isBottom) {
+  genControlRows: function (isBottom, isStatusbar) {
     var strings = this.document.getElementById('grwatcher-strings'),
         conf = [
         {
           label: strings.getString('toolbarpopupmarkallasread'),
-          id: 'GRW-toolbar-menuitem-markallasread'
+          id: 'GRW-' + this.barname + '-menuitem-markallasread'
         },
         {
           label: strings.getString('toolbarpopupopenreader'),
-          id: "GRW-toolbar-menuitem-openreader"
+          id: 'GRW-' + this.barname + '-menuitem-openreader'
         },
         {
           label: strings.getString('toolbarpopupopenprefs'),
-          id: 'GRW-toolbar-menuitem-openprefs'
+          id: 'GRW-' + this.barname + '-menuitem-openprefs'
         },
         {
           label: strings.getString('toolbarpopupgetreadcounter'),
-          id: 'GRW-toolbar-menuitem-getcounter'
+          id: 'GRW-' + this.barname + '-menuitem-getcounter'
         }
       ],
+      _this = this,
       rows = [];
-    if (isBottom) {
+    if (isBottom || isStatusbar) {
       conf.reverse();
     }
     conf.forEach(function (item) {
-      rows.push(this.genMenuItem(item.label, item.id));
-    }.bind(this));
+      rows.push(_this.genMenuItem(item.label, item.id));
+    });
     return rows;
   },
   insertAfter: function (item) {
@@ -115,6 +122,9 @@ GrwMenu.prototype = {
       menu.insertBefore(item, firstMenuItem);
     }
   },
+  isStatusbar: function () {
+    return this.menu.id === 'GRW-statusbar-menu';
+  },
   getPosition: function () {
     var output = iconPositions.top;
     if (this.menu.parentNode.parentNode.id === 'addon-bar') {
@@ -134,14 +144,19 @@ GrwMenu.prototype = {
   },
   processMenuSeparator: function (show) {
     var menuseparator = this.menuseparator,
-      method = show ? this._showMenuSeparator.bind(this) : this._hideMenuSeparator.bind(this);
+      _this = this,
+      method = show ? function (item) {
+        _this._showMenuSeparator(item);
+      } : function (item) {
+        _this._hideMenuSeparator(item);
+      };
     if (typeof menuseparator !== 'object') {
       menuseparator = [menuseparator];
     }
     menuseparator.forEach(function (item) {
-      var menuSeparator = this.document.getElementById(item);
+      var menuSeparator = _this.document.getElementById(item);
       method(menuSeparator);
-    }.bind(this));
+    });
   },
   showMenuSeparator: function () {
     this.processMenuSeparator(true);

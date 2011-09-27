@@ -87,7 +87,7 @@ var Tooltip = function (conf, GRW, openReader) {
         var labels = scope.getList.getLabels(), menu;
         actionMethod.call(this, win, feeds, labels);
         menu = new scope.GrwMenu(win, feeds, labels,
-          conf.menuItem, conf.menuItemSeparator, openReader);
+          conf.menuItem, openReader, conf.barname);
       });
     }
   };
