@@ -2,13 +2,15 @@
 var GRW = {};
 (function () {
   var scope = {}, doc, setPref, getPref, getById,
-      savePreferences, setPrefPaneVals, openNewTabCheckToogle, counterHandler;
+      savePreferences, setPrefPaneVals, openNewTabCheckToogle, counterHandler,
+      prefFields, workOnPrefs;
   /**
    * save the preferences into the chrome when the pref dialog is accepted
    * @method savePreferences
    * @namespace GRW
    */
   Components.utils.import("resource://grwmodules/prefs.jsm", scope);
+  Components.utils.import("resource://grwmodules/passManager.jsm", scope);
   doc = document;
   setPref = scope.prefs.set;
   getPref = scope.prefs.get;
@@ -16,60 +18,83 @@ var GRW = {};
     return doc.getElementById(id);
   };
 
+  prefFields = {
+    'GRW-checkfreq-field': {cmd: 'checkFreq'},
+    'GRW-delayStart-field': {cmd: 'delayStart'},
+    'GRW-openinnewtab-field': {cmd: 'openInNewTab'},
+    'GRW-resetcounter-field': {cmd: 'resetCounter'},
+    'GRW-tooltipcounterpos-field': {cmd: 'tooltipCounterPos'},
+    'GRW-tooltiptitlelength-field': {cmd: 'tooltipTitleLength'},
+    'GRW-rememberLogin-field': {cmd: 'rememberLogin'},
+    'GRW-leftclickopen-field': {cmd: 'leftClickOpen'},
+    'GRW-activateopenedtab-field': {cmd: 'activateOpenedTab'},
+    'GRW-shownotificationwindow-field': {cmd: 'showNotificationWindow'},
+    'GRW-showzerocounter-field': {cmd: 'showZeroCounter'},
+    'GRW-showcounter-field': {cmd: 'showCounter'},
+    'GRW-usesecureconnection-field': {cmd: 'useSecureConnection'},
+    'GRW-sortbylabels-field': {cmd: 'sortByLabels'},
+    'GRW-filteredlabels-field': {cmd: 'filteredLabels'},
+    'GRW-maximizecounter-field': {cmd: 'maximizeCounter'},
+    'GRW-showitemsintooltip-field': {cmd: 'showitemsintooltip'},
+    'GRW-showitemsincontextmenu-field': {cmd: 'showitemsincontextmenu'},
+    'GRW-accountmanage-email': {cmd: 'userName'},
+    'GRW-forceLogin-field': {cmd: 'forceLogin'},
+    'GRW-accountmanage-pass': {
+      cmd: {
+        setter: function (value, elem) {
+          scope.passManager.addPassword(value);
+        },
+        getter: function (elem) {
+          elem.value = scope.passManager.getPassword() || '';
+        }
+      }
+    }
+  };
+
+  workOnPrefs = function (save) {
+    Object.keys(prefFields).forEach(function (id) {
+      var elem = getById(id),
+          cmd = prefFields[id].cmd,
+          nodeName = elem.nodeName,
+          elemValueSetterProp,
+          value;
+      switch (nodeName) {
+      case 'textbox':
+      case 'radiogroup':
+      case 'menulist':
+        value = elem.value;
+        elemValueSetterProp = 'value';
+        break;
+      case 'checkbox':
+        value = elem.checked;
+        elemValueSetterProp = 'checked';
+        break;
+      }
+      if (typeof cmd !== 'string') {
+        if (save) {
+          cmd.setter(value, elem);
+        } else {
+          cmd.getter(elem);
+        }
+      } else {
+        if (save) {
+          setPref[cmd](value, elem);
+        } else {
+          elem[elemValueSetterProp] = getPref[cmd](elem);
+        }
+      }
+
+    });
+  };
+
   savePreferences = function () {
-    setPref.checkFreq(getById('GRW-checkfreq-field').value);
-    setPref.delayStart(getById('GRW-delayStart-field').value);
-    setPref.openInNewTab(getById('GRW-openinnewtab-field').checked);
-    setPref.resetCounter(getById('GRW-resetcounter-field').checked);
-    setPref.tooltipCounterPos(getById('GRW-tooltipcounterpos-field').value);
-    setPref.tooltipTitleLength(getById('GRW-tooltiptitlelength-field').value);
-    setPref.rememberLogin(getById('GRW-rememberLogin-field').checked);
-    setPref.leftClickOpen(getById('GRW-leftclickopen-field').value);
-    setPref.activateOpenedTab(getById('GRW-activateopenedtab-field').checked);
-    setPref.showNotificationWindow(getById('GRW-shownotificationwindow-field').checked);
-    setPref.showZeroCounter(getById('GRW-showzerocounter-field').checked);
-    setPref.showCounter(getById('GRW-showcounter-field').checked);
-    setPref.useSecureConnection(getById('GRW-usesecureconnection-field').checked);
-    setPref.sortByLabels(getById('GRW-sortbylabels-field').checked);
-    setPref.filteredLabels(getById('GRW-filteredlabels-field').value);
-    setPref.maximizeCounter(getById('GRW-maximizecounter-field').checked);
-    setPref.showitemsintooltip(getById('GRW-showitemsintooltip-field').checked);
-    setPref.showitemsincontextmenu(getById('GRW-showitemsincontextmenu-field').checked);
-  
-    setPref.userName(getById('GRW-accountmanage-email').value);
-    setPref.forceLogin(getById('GRW-forceLogin-field').checked);
-    Components.utils.import("resource://grwmodules/passManager.jsm", scope);
-    scope.passManager.addPassword(getById('GRW-accountmanage-pass').value);
-  
+    workOnPrefs(true);
   };
-  /**
-   * sets the values on the pref dialog when it opens
-   * @method setPrefPaneVals
-   * @namespace GRW
-   */
-  setPrefPaneVals = function() {
-    getById('GRW-checkfreq-field').value = getPref.checkFreq();
-    getById('GRW-delayStart-field').value = getPref.delayStart();
-    getById('GRW-openinnewtab-field').checked = getPref.openInNewTab();
-    getById('GRW-resetcounter-field').checked = getPref.resetCounter();
-    getById('GRW-tooltipcounterpos-field').value = getPref.tooltipCounterPos();
-    getById('GRW-tooltiptitlelength-field').value = getPref.tooltipTitleLength();
-    getById('GRW-rememberLogin-field').checked = getPref.rememberLogin();
-    getById('GRW-leftclickopen-field').value = getPref.leftClickOpen();
-    getById('GRW-activateopenedtab-field').checked = getPref.activateOpenedTab();
-    getById('GRW-accountmanage-email').value = getPref.userName();
-    getById('GRW-shownotificationwindow-field').checked = getPref.showNotificationWindow();
-    getById('GRW-showcounter-field').checked = getPref.showCounter();
-    getById('GRW-usesecureconnection-field').checked = getPref.useSecureConnection();
-    getById('GRW-sortbylabels-field').checked = getPref.sortByLabels();
-    getById('GRW-filteredlabels-field').value = getPref.filteredLabels();
-    getById('GRW-maximizecounter-field').checked = getPref.maximizeCounter();
-    getById('GRW-forceLogin-field').checked = getPref.forceLogin();
-    getById('GRW-showitemsintooltip-field').checked = getPref.showitemsintooltip();
-    getById('GRW-showitemsincontextmenu-field').checked = getPref.showitemsincontextmenu();
-    Components.utils.import("resource://grwmodules/passManager.jsm", scope);
-    getById('GRW-accountmanage-pass').value = scope.passManager.getPassword() || '';
+
+  setPrefPaneVals = function () {
+    workOnPrefs(false);
   };
+
   /**
    * show/hide the newtab options
    * @method openNewTabCheckToogle
