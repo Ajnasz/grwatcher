@@ -3,7 +3,7 @@ var GRW = {};
 (function () {
   var scope = {}, doc, setPref, getPref, getById,
       savePreferences, setPrefPaneVals, openNewTabCheckToogle, counterHandler,
-      prefFields, workOnPrefs;
+      prefFields, workOnPrefs, handlePref;
   /**
    * save the preferences into the chrome when the pref dialog is accepted
    * @method savePreferences
@@ -18,28 +18,29 @@ var GRW = {};
     return doc.getElementById(id);
   };
 
-  prefFields = {
-    'GRW-checkfreq-field': {cmd: 'checkFreq'},
-    'GRW-delayStart-field': {cmd: 'delayStart'},
-    'GRW-openinnewtab-field': {cmd: 'openInNewTab'},
-    'GRW-resetcounter-field': {cmd: 'resetCounter'},
-    'GRW-tooltipcounterpos-field': {cmd: 'tooltipCounterPos'},
-    'GRW-tooltiptitlelength-field': {cmd: 'tooltipTitleLength'},
-    'GRW-rememberLogin-field': {cmd: 'rememberLogin'},
-    'GRW-leftclickopen-field': {cmd: 'leftClickOpen'},
-    'GRW-activateopenedtab-field': {cmd: 'activateOpenedTab'},
-    'GRW-shownotificationwindow-field': {cmd: 'showNotificationWindow'},
-    'GRW-showzerocounter-field': {cmd: 'showZeroCounter'},
-    'GRW-showcounter-field': {cmd: 'showCounter'},
-    'GRW-usesecureconnection-field': {cmd: 'useSecureConnection'},
-    'GRW-sortbylabels-field': {cmd: 'sortByLabels'},
-    'GRW-filteredlabels-field': {cmd: 'filteredLabels'},
-    'GRW-maximizecounter-field': {cmd: 'maximizeCounter'},
-    'GRW-showitemsintooltip-field': {cmd: 'showitemsintooltip'},
-    'GRW-showitemsincontextmenu-field': {cmd: 'showitemsincontextmenu'},
-    'GRW-accountmanage-email': {cmd: 'userName'},
-    'GRW-forceLogin-field': {cmd: 'forceLogin'},
-    'GRW-accountmanage-pass': {
+  prefFields = [
+    {id: 'GRW-checkfreq-field', cmd: 'checkFreq'},
+    {id: 'GRW-delayStart-field', cmd: 'delayStart'},
+    {id: 'GRW-openinnewtab-field', cmd: 'openInNewTab'},
+    {id: 'GRW-resetcounter-field', cmd: 'resetCounter'},
+    {id: 'GRW-tooltipcounterpos-field', cmd: 'tooltipCounterPos'},
+    {id: 'GRW-tooltiptitlelength-field', cmd: 'tooltipTitleLength'},
+    {id: 'GRW-rememberLogin-field', cmd: 'rememberLogin'},
+    {id: 'GRW-leftclickopen-field', cmd: 'leftClickOpen'},
+    {id: 'GRW-activateopenedtab-field', cmd: 'activateOpenedTab'},
+    {id: 'GRW-shownotificationwindow-field', cmd: 'showNotificationWindow'},
+    {id: 'GRW-showzerocounter-field', cmd: 'showZeroCounter'},
+    {id: 'GRW-showcounter-field', cmd: 'showCounter'},
+    {id: 'GRW-usesecureconnection-field', cmd: 'useSecureConnection'},
+    {id: 'GRW-sortbylabels-field', cmd: 'sortByLabels'},
+    {id: 'GRW-filteredlabels-field', cmd: 'filteredLabels'},
+    {id: 'GRW-maximizecounter-field', cmd: 'maximizeCounter'},
+    {id: 'GRW-showitemsintooltip-field', cmd: 'showitemsintooltip'},
+    {id: 'GRW-showitemsincontextmenu-field', cmd: 'showitemsincontextmenu'},
+    {id: 'GRW-accountmanage-email', cmd: 'userName'},
+    {id: 'GRW-forceLogin-field', cmd: 'forceLogin'},
+    {
+      id: 'GRW-accountmanage-pass',
       cmd: {
         setter: function (value, elem) {
           scope.passManager.addPassword(value);
@@ -49,42 +50,47 @@ var GRW = {};
         }
       }
     }
-  };
+  ];
+
+  handlePref = function (save) {
+      return function (item) {
+          var id = item.id,
+              elem = getById(id),
+              cmd = item.cmd,
+              nodeName = elem.nodeName,
+              elemValueSetterProp,
+              value;
+          switch (nodeName) {
+          case 'textbox':
+          case 'radiogroup':
+          case 'menulist':
+            value = elem.value;
+            elemValueSetterProp = 'value';
+            break;
+          case 'checkbox':
+            value = elem.checked;
+            elemValueSetterProp = 'checked';
+            break;
+          }
+          if (typeof cmd !== 'string') {
+            if (save) {
+              cmd.setter(value, elem);
+            } else {
+              cmd.getter(elem);
+            }
+          } else {
+            if (save) {
+              setPref[cmd](value, elem);
+            } else {
+              elem[elemValueSetterProp] = getPref[cmd](elem);
+            }
+          }
+        };
+    };
 
   workOnPrefs = function (save) {
-    Object.keys(prefFields).forEach(function (id) {
-      var elem = getById(id),
-          cmd = prefFields[id].cmd,
-          nodeName = elem.nodeName,
-          elemValueSetterProp,
-          value;
-      switch (nodeName) {
-      case 'textbox':
-      case 'radiogroup':
-      case 'menulist':
-        value = elem.value;
-        elemValueSetterProp = 'value';
-        break;
-      case 'checkbox':
-        value = elem.checked;
-        elemValueSetterProp = 'checked';
-        break;
-      }
-      if (typeof cmd !== 'string') {
-        if (save) {
-          cmd.setter(value, elem);
-        } else {
-          cmd.getter(elem);
-        }
-      } else {
-        if (save) {
-          setPref[cmd](value, elem);
-        } else {
-          elem[elemValueSetterProp] = getPref[cmd](elem);
-        }
-      }
-
-    });
+    var handler = handlePref(save);
+    prefFields.forEach(handlePref(save));
   };
 
   savePreferences = function () {
