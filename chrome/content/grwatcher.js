@@ -97,7 +97,9 @@ var GRW = {};
       if (document.getElementById(statusbarConf.elementID)) {
         scope.Tooltip(statusbarConf, GRW, openReader)(action, feeds, getlist);
       }
-      scope.Tooltip(toolbarConf, GRW, openReader)(action, feeds, getlist);
+      if (document.getElementById(toolbarConf.elementID)) {
+        scope.Tooltip(toolbarConf, GRW, openReader)(action, feeds, getlist);
+      }
     };
   }());
   updateUI = function (oArgs, openReader) {
@@ -144,9 +146,10 @@ var GRW = {};
 
     var openReader, iconElements, iconClick, iconTooltipHandler, notifier,
         statusbarClick, toolbarClick, getlist, browserVersion, activeWin, toolbarButton, requester,
-        markAllAsRead, showUnreadNotifications, hasStatusbar;
+        markAllAsRead, showUnreadNotifications, hasStatusbar, hasToolbar;
 
     hasStatusbar = !!document.getElementById('GRW-statusbar');
+    hasToolbar = !!document.getElementById('GRW-toolbaritem');
 
     openReader = new scope.OpenReader(scope.loginManager);
 
@@ -189,14 +192,16 @@ var GRW = {};
         ], document
       );
     }
-    toolbarClick = new scope.MenuClick('GRW-toolbar-menu',
-      [
-        {event: 'openReader', id: 'GRW-toolbar-menuitem-openreader'},
-        {event: 'markAllAsRead', id: 'GRW-toolbar-menuitem-markallasread'},
-        {event: 'checkUnreadFeeds', id: 'GRW-toolbar-menuitem-getcounter'},
-        {event: 'openPreferences', id: 'GRW-toolbar-menuitem-openprefs'},
-        {event: 'enableCookies', id: 'GRW-toolbar-menuitem-enablecookies'}
-      ], document);
+    if (hasToolbar) {
+      toolbarClick = new scope.MenuClick('GRW-toolbar-menu',
+        [
+          {event: 'openReader', id: 'GRW-toolbar-menuitem-openreader'},
+          {event: 'markAllAsRead', id: 'GRW-toolbar-menuitem-markallasread'},
+          {event: 'checkUnreadFeeds', id: 'GRW-toolbar-menuitem-getcounter'},
+          {event: 'openPreferences', id: 'GRW-toolbar-menuitem-openprefs'},
+          {event: 'enableCookies', id: 'GRW-toolbar-menuitem-enablecookies'}
+        ], document);
+    }
     // var toolbarClick = new GRW.ToolbarMenuClick();
     // var requester = GRW.Requester;
     // var loginManager = GRW.LoginManager;
@@ -304,32 +309,31 @@ var GRW = {};
       requester.updater();
     });
 
-    // open the reader when user clicks on the "Open Reader"
-    // menuitem
-    toolbarClick.on('openReader', function () {
-      openReader.open();
-    });
-    // update counter when user clicks on the "Check Unread Feeds"
-    // menuitem
-    toolbarClick.on('checkUnreadFeeds', function () {
-      requester.updater();
-    });
-
-    // open the preferences window when the user clicks on the
-    // "Preferences" menuitem
-    toolbarClick.on('openPreferences', function () {
-      window.openDialog("chrome://grwatcher/content/grprefs.xul", 'GRWatcher',
-        'chrome,titlebar,toolbar,centerscreen,modal');
-    });
-
-
-    toolbarClick.on('markAllAsRead', function () {
-      markAllAsRead.mark();
-    });
-
     markAllAsRead.on('onMarkAllAsRead', function () {
       requester.updater();
     });
+
+    if (toolbarClick) {
+      // open the reader when user clicks on the "Open Reader"
+      // menuitem
+      toolbarClick.on('openReader', function () {
+        openReader.open();
+      });
+      // update counter when user clicks on the "Check Unread Feeds"
+      // menuitem
+      toolbarClick.on('checkUnreadFeeds', function () {
+        requester.updater();
+      });
+      // open the preferences window when the user clicks on the
+      // "Preferences" menuitem
+      toolbarClick.on('openPreferences', function () {
+        window.openDialog("chrome://grwatcher/content/grprefs.xul", 'GRWatcher',
+          'chrome,titlebar,toolbar,centerscreen,modal');
+      });
+      toolbarClick.on('markAllAsRead', function () {
+        markAllAsRead.mark();
+      });
+    }
 
     if (statusbarClick) {
       statusbarClick.on('openPreferences', function () {
@@ -358,9 +362,8 @@ var GRW = {};
       element.oncommand = function () {};
       element.onmouseover = function () {};
       toolbarClick.init();
-      iconClick.addElements(['GRW-toolbar-button', 'GRW-toolbar-label']);
-      if (hasStatusbar) {
-        iconClick.addElements(['GRW-statusbar']);
+      if (hasToolbar) {
+        iconClick.addElements(['GRW-toolbar-button', 'GRW-toolbar-label']);
       }
       if (!noUpdate) {
         requester.updater();
@@ -369,6 +372,9 @@ var GRW = {};
     GRW.onStatusbarButtonAdd = function (element) {
       element.oncommand = function () {};
       statusbarClick.init();
+      if (hasStatusbar) {
+        iconClick.addElements(['GRW-statusbar']);
+      }
       iconClick.addElements(iconElements);
       requester.updater();
     };
