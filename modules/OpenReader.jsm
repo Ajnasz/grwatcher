@@ -76,12 +76,12 @@ OpenReader.prototype = {
   hasOpenedGR: function () {
     return getOpenedGR(this.gBrowser()).grTab;
   },
-  _loginAndOpen: function () {
-      Components.utils.import("resource://grwmodules/siteLogin.jsm", scope);
-      var me = this;
-      scope.siteLogin(function () {
-          me._open();
-      });
+  _loginAndOpen: function (subUrl) {
+    Components.utils.import("resource://grwmodules/siteLogin.jsm", scope);
+    var me = this;
+    scope.siteLogin(function () {
+      me._open(subUrl);
+    });
   },
   _open: function (subUrl) {
     try {
@@ -116,7 +116,11 @@ OpenReader.prototype = {
   open: function (subUrl) {
     Components.utils.import("resource://grwmodules/prefs.jsm", scope);
     this.fireEvent('startOpen');
-    this._loginAndOpen(subUrl);
+    if (scope.prefs.get.haveMultipleAccounts()) {
+      this._loginAndOpen(subUrl);
+    } else {
+      this._open(subUrl);
+    }
     /*
     if (false && scope.prefs.get.forceLogin()) {
       var _this = this;

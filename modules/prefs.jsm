@@ -152,6 +152,9 @@ var prefs = {
     cookieBehaviour: function() {
       return getIntPref('network.cookie.cookieBehavior');
     },
+    haveMultipleAccounts: function() {
+      return getBoolPref('extensions.grwatcher.havemultipleaccounts');
+    },
     debug: function() {
       return getBoolPref('extensions.grwatcher.debug');
     }
@@ -286,6 +289,9 @@ var prefs = {
     },
     cookieBehaviour: function(value) {
       return setIntPref('network.cookie.cookieBehavior', value);
+    },
+    haveMultipleAccounts: function(value) {
+      return setBoolPref('extensions.grwatcher.havemultipleaccounts', value);
     },
     /**
       * @type {Boolean} value

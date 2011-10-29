@@ -24,6 +24,8 @@
   ]]>
   </script>
 
+  <button label="FOO" id="GRW-testbtn" />
+
   <tabbox id="GRW-preferences-tabbox">
     <tabs>
       <tab label="&GRWpreferences.tabgeneral;" />
@@ -82,8 +84,11 @@
                 <textbox id="GRW-accountmanage-pass" type="password" maxlength="50" flex="1" />
               </row>
               <vbox>
+                <!--
                 <checkbox id="GRW-rememberLogin-field" label="&GRWpreferences.accountinfo.rememberLogin;" />
                 <checkbox id="GRW-forceLogin-field" label="&GRWpreferences.accountinfo.forceLogin;" />
+                -->
+                <checkbox id="GRW-have-multiple-accounts" label="&GRWpreferences.accountinfohavemultipleaccounts;" />
               </vbox>
             </rows>
           </grid>
