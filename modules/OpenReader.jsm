@@ -33,53 +33,77 @@ OpenReader.prototype = {
       .getService(Components.interfaces.nsIWindowMediator);
     return wm.getMostRecentWindow("navigator:browser").gBrowser;
   },
+  loadToCurrentTab: function (url) {
+    this.gBrowser().loadURI(url);
+  },
+  loadIntoToNewTab: function (url) {
+    var gBrowser = this.gBrowser(),
+        openedGR = getOpenedGR(gBrowser),
+        currentContent = gBrowser
+          .getBrowserAtIndex(gBrowser.mTabContainer.selectedIndex).contentWindow;
+    /**
+    * isn't there any blank page
+    */
+    if (openedGR.blankPage === false) {
+      if (getPref.activateOpenedTab()) {
+        gBrowser.selectedTab = gBrowser.addTab(url);
+        currentContent.focus();
+      } else {
+        gBrowser.addTab(url);
+      }
+    } else {
+      /**
+      * load the GR into the blank page
+      */
+      if (getPref.activateOpenedTab()) {
+        gBrowser.mTabContainer.selectedIndex = openedGR.blankPage;
+        gBrowser.loadURI(url);
+        currentContent.focus();
+      } else {
+        gBrowser.getBrowserAtIndex(openedGR.blankPage).loadURI(url);
+      }
+    }
+  },
+  focusCurrentGR: function (url) {
+    var gBrowser = this.gBrowser(),
+        openedGR = getOpenedGR(gBrowser);
+    gBrowser.mTabContainer.selectedIndex = openedGR.grTab;
+    gBrowser.loadURI(url);
+  },
+  getBlankPage: function () {
+    return getOpenedGR(this.gBrowser()).blankPage;
+  },
+  hasOpenedGR: function () {
+    return getOpenedGR(this.gBrowser()).grTab;
+  },
+  _loginAndOpen: function () {
+      Components.utils.import("resource://grwmodules/siteLogin.jsm", scope);
+      var me = this;
+      scope.siteLogin(function () {
+          me._open();
+      });
+  },
   _open: function (subUrl) {
     try {
       this.fireEvent('beforeReaderOpened');
       Components.utils.import("resource://grwmodules/generateUri.jsm", scope);
       var url = subUrl ?
         scope.generateUri(readerURL, false) + '/' + subUrl :
-        scope.generateUri(readerURL, false),
-          gBrowser = this.gBrowser(),
-          openedGR = getOpenedGR(gBrowser),
-          currentContent = gBrowser
-            .getBrowserAtIndex(gBrowser.mTabContainer.selectedIndex).contentWindow;
+        scope.generateUri(readerURL, false);
       /**
       * google reader doesn't opened yet
       */
-      if (openedGR.grTab === false) {
+      if (!this.hasOpenedGR()) {
         /**
         * open in new tab
         */
         if (getPref.openInNewTab()) {
-          /**
-          * isn't there any blank page
-          */
-          if (openedGR.blankPage === false) {
-            if (getPref.activateOpenedTab()) {
-              gBrowser.selectedTab = gBrowser.addTab(url);
-              currentContent.focus();
-            } else {
-              gBrowser.addTab(url);
-            }
-          } else {
-            /**
-            * load the GR into the blank page
-            */
-            if (getPref.activateOpenedTab()) {
-              gBrowser.mTabContainer.selectedIndex = openedGR.blankPage;
-              gBrowser.loadURI(url);
-              currentContent.focus();
-            } else {
-              gBrowser.getBrowserAtIndex(openedGR.blankPage).loadURI(url);
-            }
-          }
+          this.loadIntoToNewTab(url);
         } else {
-          gBrowser.loadURI(url);
+          this.loadToCurrentTab(url);
         }
       } else {
-        gBrowser.mTabContainer.selectedIndex = openedGR.grTab;
-        gBrowser.loadURI(url);
+        this.focusCurrentGR(url);
       }
     } catch (e) {
       Components.utils.import("resource://grwmodules/grwlog.jsm", scope);
@@ -91,6 +115,9 @@ OpenReader.prototype = {
   },
   open: function (subUrl) {
     Components.utils.import("resource://grwmodules/prefs.jsm", scope);
+    this.fireEvent('startOpen');
+    this._loginAndOpen(subUrl);
+    /*
     if (false && scope.prefs.get.forceLogin()) {
       var _this = this;
       if (false && this.loginManager) {
@@ -103,6 +130,7 @@ OpenReader.prototype = {
     } else {
       this._open(subUrl);
     }
+    */
   }
 };
 Components.utils.import("resource://grwmodules/augment.jsm", scope);
