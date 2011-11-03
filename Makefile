@@ -62,6 +62,8 @@ xpi:
 		modules/grwMenu.jsm \
 		modules/GrwTooltipGrid.jsm \
 		modules/iconCounter.jsm \
+		modules/httpConnect.jsm \
+		modules/siteLogin.jsm \
 		defaults/preferences/grwatcher.js \
 		chrome/ \
 		license.txt;

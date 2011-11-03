@@ -163,6 +163,9 @@ var GRW = {};
       scope.loginManager.setCurrentSID();
     });
     */
+    openReader.on('startOpen', function () {
+      updateUI({status: ['load']}, openReader);
+    });
     // reset the counter, change the icon,
     // change the next request's time
     // enable to show notification window

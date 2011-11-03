@@ -25,7 +25,7 @@ var GRW = {};
     {id: 'GRW-resetcounter-field', cmd: 'resetCounter'},
     {id: 'GRW-tooltipcounterpos-field', cmd: 'tooltipCounterPos'},
     {id: 'GRW-tooltiptitlelength-field', cmd: 'tooltipTitleLength'},
-    {id: 'GRW-rememberLogin-field', cmd: 'rememberLogin'},
+    // {id: 'GRW-rememberLogin-field', cmd: 'rememberLogin'},
     {id: 'GRW-leftclickopen-field', cmd: 'leftClickOpen'},
     {id: 'GRW-activateopenedtab-field', cmd: 'activateOpenedTab'},
     {id: 'GRW-shownotificationwindow-field', cmd: 'showNotificationWindow'},
@@ -38,7 +38,8 @@ var GRW = {};
     {id: 'GRW-showitemsintooltip-field', cmd: 'showitemsintooltip'},
     {id: 'GRW-showitemsincontextmenu-field', cmd: 'showitemsincontextmenu'},
     {id: 'GRW-accountmanage-email', cmd: 'userName'},
-    {id: 'GRW-forceLogin-field', cmd: 'forceLogin'},
+    // {id: 'GRW-forceLogin-field', cmd: 'forceLogin'},
+    {id: 'GRW-have-multiple-accounts', cmd: 'haveMultipleAccounts'},
     {
       id: 'GRW-accountmanage-pass',
       cmd: {
