@@ -3,6 +3,7 @@
 var GRW = {};
 (function (GRW) {
   var minDelay = 300,
+      doc = document,
       helpers, scope, isActiveGRW, setIcons, updateUI, getBrowserVersion,
       tooltipSetter, init, start;
   scope = {};
@@ -94,10 +95,10 @@ var GRW = {};
     return function (action, feeds, getlist, openReader) {
       var scope = {};
       Components.utils.import("resource://grwmodules/tooltip.jsm", scope);
-      if (document.getElementById(statusbarConf.elementID)) {
+      if (doc.getElementById(statusbarConf.elementID)) {
         scope.Tooltip(statusbarConf, GRW, openReader)(action, feeds, getlist);
       }
-      if (document.getElementById(toolbarConf.elementID)) {
+      if (doc.getElementById(toolbarConf.elementID)) {
         scope.Tooltip(toolbarConf, GRW, openReader)(action, feeds, getlist);
       }
     };
@@ -142,20 +143,20 @@ var GRW = {};
     Components.utils.import("resource://grwmodules/Requester.jsm", scope);
     Components.utils.import("resource://grwmodules/Notifier.jsm", scope);
 
-    scope.addToolbarButton(document, navigator, BrowserToolboxCustomizeDone);
+    scope.addToolbarButton(doc, navigator, BrowserToolboxCustomizeDone);
 
     var openReader, iconElements, iconClick, iconTooltipHandler, notifier,
         statusbarClick, toolbarClick, getlist, browserVersion, activeWin, toolbarButton, requester,
         markAllAsRead, showUnreadNotifications, hasStatusbar, hasToolbar;
 
-    hasStatusbar = !!document.getElementById('GRW-statusbar');
-    hasToolbar = !!document.getElementById('GRW-toolbaritem');
+    hasStatusbar = !!doc.getElementById('GRW-statusbar');
+    hasToolbar = !!doc.getElementById('GRW-toolbaritem');
 
     openReader = new scope.OpenReader(scope.loginManager);
 
 
-    iconClick = new scope.IconClick([], document);
-    notifier = new scope.Notifier(document);
+    iconClick = new scope.IconClick([], doc);
+    notifier = new scope.Notifier(doc);
 
     /*
     openReader.on('beforeReaderOpened', function () {
@@ -189,7 +190,7 @@ var GRW = {};
           {event: 'checkUnreadFeeds', id: 'GRW-statusbar-menuitem-getcounter'},
           {event: 'openPreferences', id: 'GRW-statusbar-menuitem-openprefs'},
           {event: 'enableCookies', id: 'GRW-statusbar-menuitem-enablecookies'}
-        ], document
+        ], doc
       );
     }
     if (hasToolbar) {
@@ -200,7 +201,7 @@ var GRW = {};
           {event: 'checkUnreadFeeds', id: 'GRW-toolbar-menuitem-getcounter'},
           {event: 'openPreferences', id: 'GRW-toolbar-menuitem-openprefs'},
           {event: 'enableCookies', id: 'GRW-toolbar-menuitem-enablecookies'}
-        ], document);
+        ], doc);
     }
     // var toolbarClick = new GRW.ToolbarMenuClick();
     // var requester = GRW.Requester;
@@ -209,7 +210,7 @@ var GRW = {};
     getlist = scope.getList;
     requester = new scope.Requester(getlist);
 
-    // GRW.strings = document.getElementById('grwatcher-strings');
+    // GRW.strings = doc.getElementById('grwatcher-strings');
     scope.getter.onStartRequest.subscribe(function () {
       updateUI({status: ['load']}, openReader);
     });
@@ -304,7 +305,7 @@ var GRW = {};
     });
 
     Components.utils.import("resource://grwmodules/MarkAllAsRead.jsm", scope);
-    markAllAsRead = new scope.MarkAllAsRead(document);
+    markAllAsRead = new scope.MarkAllAsRead(doc);
     markAllAsRead.on('onMarkAllAsRead', function () {
       requester.updater();
     });
@@ -378,7 +379,7 @@ var GRW = {};
       iconClick.addElements(iconElements);
       requester.updater();
     };
-    toolbarButton = document.getElementById('GRW-toolbaritem');
+    toolbarButton = doc.getElementById('GRW-toolbaritem');
     if (toolbarButton) {
       GRW.onToolbarButtonAdd(toolbarButton, true);
     }
