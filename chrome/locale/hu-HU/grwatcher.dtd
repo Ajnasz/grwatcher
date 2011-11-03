@@ -27,8 +27,11 @@
 <!ENTITY GRWpreferences.accountinfocaption "Google fiók információk">
 <!ENTITY GRWpreferences.accountinfoemail "Email cím:">
 <!ENTITY GRWpreferences.accountinfopassword "Jelszó:">
+<!ENTITY GRWpreferences.accountinfohavemultipleaccounts "Több Google fiókot használok">
+<!--
 <!ENTITY GRWpreferences.accountinfo.rememberLogin "Munkamenet folytatása induláskor">
 <!ENTITY GRWpreferences.accountinfo.forceLogin "Bejelentkezés minden ellenőrzés és ablaknyitás előtt">
+-->
 <!ENTITY GRWpreferences.leftclickopen.description "Google Reader megnyitása az ikonra kattintáskor">
 <!ENTITY GRWpreferences.leftclickopen.singleclick "Kattintás">
 <!ENTITY GRWpreferences.leftclickopen.dblclick "Dupla kattintás">
