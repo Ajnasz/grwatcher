@@ -123,14 +123,6 @@ var GRW = {};
     }
   };
   
-  var foobar = function () {
-    getById('GRW-testbtn').addEventListener('command', function () {
-      Components.utils.import('resource://grwmodules/siteLogin.jsm', scope);
-    Components.utils.import('resource://grwmodules/grwlog.jsm', scope);
-      scope.grwlog('click');
-      scope.siteLogin();
-    }, false);
-  };
   counterHandler = function () {
     var counterField = getById('GRW-showcounter-field'),
         zeroCounterField = getById('GRW-showzerocounter-field'),
@@ -145,7 +137,6 @@ var GRW = {};
     updateZeroCounter();
   };
   GRW.initPrefs = function () {
-    foobar();
     setPrefPaneVals();
     openNewTabCheckToogle();
     document.getElementById('GRW-openinnewtab-field')

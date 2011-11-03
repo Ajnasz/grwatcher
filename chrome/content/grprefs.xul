@@ -24,8 +24,6 @@
   ]]>
   </script>
 
-  <button label="FOO" id="GRW-testbtn" />
-
   <tabbox id="GRW-preferences-tabbox">
     <tabs>
       <tab label="&GRWpreferences.tabgeneral;" />
