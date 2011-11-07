@@ -74,7 +74,7 @@ OpenReader.prototype = {
     return getOpenedGR(this.gBrowser()).blankPage;
   },
   hasOpenedGR: function () {
-    return getOpenedGR(this.gBrowser()).grTab;
+    return getOpenedGR(this.gBrowser()).grTab !== false;
   },
   _loginAndOpen: function (subUrl) {
     Components.utils.import("resource://grwmodules/siteLogin.jsm", scope);
