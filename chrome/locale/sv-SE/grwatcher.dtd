@@ -17,7 +17,8 @@
 <!ENTITY GRWpreferences.openinnewtabdesc "Öppna Google Reader i en ny flik">
 <!ENTITY GRWpreferences.resetcounterdesc "Återställ räknaren i statusfältet när Google Reader-fönstret öppnas">
 <!ENTITY GRWpreferences.shownotificationwindow "Visa meddelandefönstret">
-<!ENTITY GRWpreferences.showzerocounter "Visa alltid räknaren">
+<!ENTITY GRWpreferences.showzerocounter "Visa räknaren även om den visar 0 (noll) objekt">
+<!ENTITY GRWpreferences.showcounter "Visa räknaren">
 <!ENTITY GRWpreferences.maximizecounter "Visa &quot;1000+&quot; i statusfältet om du har fler än 1000 olästa objekt">
 <!ENTITY GRWpreferences.tooltipcounterposright "Höger">
 <!ENTITY GRWpreferences.tooltipcounterposleft "Vänster">
@@ -27,8 +28,10 @@
 <!ENTITY GRWpreferences.accountinfocaption "Kontoinformation för Google">
 <!ENTITY GRWpreferences.accountinfoemail "E-postadress:">
 <!ENTITY GRWpreferences.accountinfopassword "Lösenord:">
+<!ENTITY GRWpreferences.accountinfohavemultipleaccounts "Jag har fler än ett Google-konto">
 <!ENTITY GRWpreferences.accountinfo.rememberLogin "Fortsätt sessionen vid programstart">
 <!ENTITY GRWpreferences.accountinfo.forceLogin "Tvinga inloggning innan varje kontroll och fönsteröppning">
+<!--nn-->
 <!ENTITY GRWpreferences.leftclickopen.description "Öppna Google Reader vid">
 <!ENTITY GRWpreferences.leftclickopen.singleclick "Enkelklick">
 <!ENTITY GRWpreferences.leftclickopen.dblclick "Dubbelklick">

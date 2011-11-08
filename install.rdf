@@ -52,11 +52,11 @@
       <Description>
         <em:locale>sv-SE</em:locale>
         <em:name>Google Reader Watcher</em:name>
-        <em:creator>Lajos Koszti</em:creator>
         <em:description>Söker igenom din Google Reader efter olästa flöden</em:description>
+        <em:creator>Lajos Koszti</em:creator>
         <em:homepageURL>http://ajnasz.hu/google-reader-watcher</em:homepageURL>
-        <em:contributor>David Peitler</em:contributor>
         <em:translator>Mikael Hiort af Ornäs (sv-SE)</em:translator>
+        <em:contributor>David Peitler</em:contributor>
       </Description>
     </em:localized>
     <em:localized>
