@@ -255,6 +255,11 @@ var GRW = {};
     // and the subscription list matched
     // the notifier will deside if really need to show
     showUnreadNotifications = function () {
+      if (!getlist || !getlist.matchedData) {
+        Components.utils.import("resource://grwmodules/grwlog.jsm", scope);
+        scope.grwlog('getlist not defined ' + typeof getlist);
+        return false;
+      }
       var unreads = getlist.matchedData.unreads,
           max = getlist.matchedData.max,
           elems = getlist._unreadCount,
@@ -355,22 +360,12 @@ var GRW = {};
       });
     }
 
-    if (isActiveGRW() === false) {
-      window.GRWActive = true;
-      requester.start();
-    } else {
-      showUnreadNotifications();
-    }
-
-    GRW.onToolbarButtonAdd = function (element, noUpdate) {
+    GRW.onToolbarButtonAdd = function (element) {
       element.oncommand = function () {};
       element.onmouseover = function () {};
       toolbarClick.init();
       if (hasToolbar) {
         iconClick.addElements(['GRW-toolbar-button', 'GRW-toolbar-label']);
-      }
-      if (!noUpdate) {
-        requester.updater();
       }
     };
     GRW.onStatusbarButtonAdd = function (element) {
@@ -380,21 +375,30 @@ var GRW = {};
         iconClick.addElements(['GRW-statusbar']);
       }
       iconClick.addElements(iconElements);
-      requester.updater();
     };
     toolbarButton = doc.getElementById('GRW-toolbaritem');
     if (toolbarButton) {
       GRW.onToolbarButtonAdd(toolbarButton, true);
     }
-  };
-  start = function () {
     Components.utils.import("resource://grwmodules/timer.jsm", scope);
     Components.utils.import("resource://grwmodules/prefs.jsm", scope);
+    Components.utils.import("resource://grwmodules/grwlog.jsm", scope);
     var delay = scope.prefs.get.delayStart();
     delay = delay > minDelay ? delay : minDelay;
-    scope.later(function () {
-      init();
-    }, delay);
+    if (isActiveGRW() === false) {
+      window.GRWActive = true;
+      scope.later(function () {
+        scope.grwlog('request');
+        scope.grwlog('request start');
+        requester.start();
+      }, delay);
+    } else {
+      scope.grwlog('show unread notificatiosn');
+      showUnreadNotifications();
+    }
+  };
+  start = function () {
+    init();
   };
   window.addEventListener('load', start, false);
   window.addEventListener('unload', function (event) {
