@@ -18,6 +18,7 @@
 <!ENTITY GRWpreferences.resetcounterdesc "איפוס המונה בשורת המצב כאשר החלון של Google Reader נפתח">
 <!ENTITY GRWpreferences.shownotificationwindow "הצגת חלון ההתרעות">
 <!ENTITY GRWpreferences.showzerocounter "יש להציג את המונה תמיד">
+<!ENTITY GRWpreferences.showcounter "Show the counter">
 <!ENTITY GRWpreferences.maximizecounter "הצגת 1000+ בשורת המצב ישנן למעלה מ־1000 פריטים שלא נקראו">
 <!ENTITY GRWpreferences.tooltipcounterposright "ימין">
 <!ENTITY GRWpreferences.tooltipcounterposleft "שמאל">
@@ -27,8 +28,10 @@
 <!ENTITY GRWpreferences.accountinfocaption "נתוני החשבון ב־Google">
 <!ENTITY GRWpreferences.accountinfoemail "כתובת הדוא&quot;ל:">
 <!ENTITY GRWpreferences.accountinfopassword "סיסמה:">
+<!ENTITY GRWpreferences.accountinfohavemultipleaccounts "I have more then one Google account">
 <!ENTITY GRWpreferences.accountinfo.rememberLogin "המשך הפעילות עם ההפעלה">
 <!ENTITY GRWpreferences.accountinfo.forceLogin "אילוץ החיבור בטרם כל בדיקה ופתיחת חלון">
+<!--nn-->
 <!ENTITY GRWpreferences.leftclickopen.description "פתיחת Google Reader באמצעות">
 <!ENTITY GRWpreferences.leftclickopen.singleclick "לחיצה בודדת">
 <!ENTITY GRWpreferences.leftclickopen.dblclick "לחיצה כפולה">

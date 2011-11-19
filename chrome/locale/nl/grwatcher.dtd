@@ -3,7 +3,7 @@
 <!ENTITY GRWstatusbar.popup.openPrefs "Voorkeuren">
 <!ENTITY GRWstatusbar.popup.markAllAsRead "Alles als gelezen markeren">
 <!ENTITY GRWstatusbar.popup.enableCookies "Cookies inschakelen">
-<!ENTITY GRWpreferences.title "Google Reader Watcher voorkeuren">
+<!ENTITY GRWpreferences.title "Google Reader Watcher-voorkeuren">
 <!ENTITY GRWpreferences.checkfrequency "Controlefrequentie (minuten)">
 <!ENTITY GRWpreferences.delaystart "Eerste controle starten na start van browser (milliseconden)">
 <!ENTITY GRWpreferences.activateOpenedTab "Op het Google Reader-tabblad focussen na openen">
@@ -18,6 +18,7 @@
 <!ENTITY GRWpreferences.resetcounterdesc "Statusbalkteller resetten bij het openen van het Google Reader-venster">
 <!ENTITY GRWpreferences.shownotificationwindow "Notificatievenster weergeven">
 <!ENTITY GRWpreferences.showzerocounter "Teller altijd weergeven">
+<!ENTITY GRWpreferences.showcounter "Teller weergeven">
 <!ENTITY GRWpreferences.maximizecounter "1000+ in de statusbalk zetten als er meer dan 1000 ongelezen berichten zijn">
 <!ENTITY GRWpreferences.tooltipcounterposright "Rechts">
 <!ENTITY GRWpreferences.tooltipcounterposleft "Links">
@@ -27,8 +28,10 @@
 <!ENTITY GRWpreferences.accountinfocaption "Google accountinformatie">
 <!ENTITY GRWpreferences.accountinfoemail "E-mailadres:">
 <!ENTITY GRWpreferences.accountinfopassword "Wachtwoord:">
+<!ENTITY GRWpreferences.accountinfohavemultipleaccounts "Ik heb meerdere Google-accounts">
 <!ENTITY GRWpreferences.accountinfo.rememberLogin "Sessie hervatten bij opstarten">
 <!ENTITY GRWpreferences.accountinfo.forceLogin "Inloggen afdwingen voor elke controle en openen van venster">
+<!--nn-->
 <!ENTITY GRWpreferences.leftclickopen.description "Google Reader openen met">
 <!ENTITY GRWpreferences.leftclickopen.singleclick "Enkele klik">
 <!ENTITY GRWpreferences.leftclickopen.dblclick "Dubbelklik">
@@ -40,7 +43,7 @@
 <!ENTITY GRWtooltip.errorfeedfetch "Fout bij het ophalen van feeds!">
 <!ENTITY GRWtooltip.newfeed "U hebt ongelezen feeds">
 <!ENTITY GRWtooltip.errorlogin "Inloggen mislukt. Controleer uw gebruikersnaam en/of wachtwoord!">
-<!ENTITY GRWtooltip.networkerror "Verbinding leggen mislukt. Controleer a.u.b. of u een werkende netwerkverbinding heeft!">
+<!ENTITY GRWtooltip.networkerror "Verbinding leggen mislukt. Controleer of u een werkende netwerkverbinding heeft!">
 <!ENTITY GRWtooltip.cookieerror "Cookies van derden zijn niet ingeschakeld! Klik met uw rechtermuisknop op het pictogram om dit in te schakelen.">
 <!ENTITY GRWpreferences.showitemsintooltip "Inschakelen om ongelezen berichten in de tooltip van het statusbalkpictogram weer te geven">
 <!ENTITY GRWpreferences.showitemsincontextmenu "Inschakelen om de ongelezen berichten toe te voegen aan het contextmenu van het statusbalkpictogram">

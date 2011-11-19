@@ -18,6 +18,7 @@
 <!ENTITY GRWpreferences.resetcounterdesc "Reinicia el contador de la barra d&apos;estat quan s&apos;obre una finestra del lector de google">
 <!ENTITY GRWpreferences.shownotificationwindow "Mostra la finestra de notificació">
 <!ENTITY GRWpreferences.showzerocounter "Mostra sempre el contador">
+<!ENTITY GRWpreferences.showcounter "Show the counter">
 <!ENTITY GRWpreferences.maximizecounter "Mostra més de 1000 en la barra d&apos;estat si teniu més de 1000 wlements sense llegir">
 <!ENTITY GRWpreferences.tooltipcounterposright "Dreta">
 <!ENTITY GRWpreferences.tooltipcounterposleft "Esqerra">
@@ -27,8 +28,10 @@
 <!ENTITY GRWpreferences.accountinfocaption "Informació del compte de Google">
 <!ENTITY GRWpreferences.accountinfoemail "Correu electrònic:">
 <!ENTITY GRWpreferences.accountinfopassword "Contrasenya:">
+<!ENTITY GRWpreferences.accountinfohavemultipleaccounts "I have more then one Google account">
 <!ENTITY GRWpreferences.accountinfo.rememberLogin "Continua la sessió a l&apos;engegada">
 <!ENTITY GRWpreferences.accountinfo.forceLogin "Forçar accés abans de cada comprobació i d&apos;obrir finestres">
+<!--nn-->
 <!ENTITY GRWpreferences.leftclickopen.description "Obre el lector de Google amb">
 <!ENTITY GRWpreferences.leftclickopen.singleclick "Clck normal">
 <!ENTITY GRWpreferences.leftclickopen.dblclick "Click doble">

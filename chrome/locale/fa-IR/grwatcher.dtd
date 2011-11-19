@@ -18,6 +18,7 @@
 <!ENTITY GRWpreferences.resetcounterdesc "راه اندازی مجدد شمارنده نوار وضعیت هنگامی که پنجره کتابخوان گوگل باز شد">
 <!ENTITY GRWpreferences.shownotificationwindow "نمایش پنجره آگاه سازی">
 <!ENTITY GRWpreferences.showzerocounter "همواره شمارنده نشان داده شود">
+<!ENTITY GRWpreferences.showcounter "Show the counter">
 <!ENTITY GRWpreferences.maximizecounter "نشان دادن 1000+ در نوار وضعیت اگر بیش از 1000 قلم خوانده نشده دارید">
 <!ENTITY GRWpreferences.tooltipcounterposright "راست">
 <!ENTITY GRWpreferences.tooltipcounterposleft "چپ">
@@ -27,8 +28,10 @@
 <!ENTITY GRWpreferences.accountinfocaption "اطلاعات حساب گوگل">
 <!ENTITY GRWpreferences.accountinfoemail "نشانی رایانامه:">
 <!ENTITY GRWpreferences.accountinfopassword "کلمه عبور:">
+<!ENTITY GRWpreferences.accountinfohavemultipleaccounts "I have more then one Google account">
 <!ENTITY GRWpreferences.accountinfo.rememberLogin "دنبال کردن نشست در شروع بکار برنامه">
 <!ENTITY GRWpreferences.accountinfo.forceLogin "ورود اجباری قبل از هر بررسی و باز کردن پنجره ای">
+<!--nn-->
 <!ENTITY GRWpreferences.leftclickopen.description "باز کردن کتابخوان گوگل با">
 <!ENTITY GRWpreferences.leftclickopen.singleclick "تک کلیک">
 <!ENTITY GRWpreferences.leftclickopen.dblclick "دوبار کلیک">

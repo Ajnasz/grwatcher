@@ -18,6 +18,7 @@
 <!ENTITY GRWpreferences.resetcounterdesc "Tetapkan semula bar status apabila layar Google Reader dibuka">
 <!ENTITY GRWpreferences.shownotificationwindow "Pamer layar notifikasi">
 <!ENTITY GRWpreferences.showzerocounter "Sentiasa pamerkan pengira">
+<!ENTITY GRWpreferences.showcounter "Show the counter">
 <!ENTITY GRWpreferences.maximizecounter "Pamerkan 1000+ pada bar status jika anda mempunyai lebih 1000 bahan belum baca">
 <!ENTITY GRWpreferences.tooltipcounterposright "Kanan">
 <!ENTITY GRWpreferences.tooltipcounterposleft "Kiri">
@@ -27,8 +28,10 @@
 <!ENTITY GRWpreferences.accountinfocaption "Maklumat akaun Google">
 <!ENTITY GRWpreferences.accountinfoemail "Alamat e-mel:">
 <!ENTITY GRWpreferences.accountinfopassword "Katalaluan:">
+<!ENTITY GRWpreferences.accountinfohavemultipleaccounts "I have more then one Google account">
 <!ENTITY GRWpreferences.accountinfo.rememberLogin "Sambungkan sesi pada permulaan">
 <!ENTITY GRWpreferences.accountinfo.forceLogin "Log masuk secara paksa sebelum pemeriksaan dan pembukaan layar">
+<!--nn-->
 <!ENTITY GRWpreferences.leftclickopen.description "Buka Google Reader dengan">
 <!ENTITY GRWpreferences.leftclickopen.singleclick "Klik sekali">
 <!ENTITY GRWpreferences.leftclickopen.dblclick "Dwiklik">

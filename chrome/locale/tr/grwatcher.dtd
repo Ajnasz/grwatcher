@@ -18,6 +18,7 @@
 <!ENTITY GRWpreferences.resetcounterdesc "Google Reader açıldığında durum çubuğundaki sayacı sıfırla">
 <!ENTITY GRWpreferences.shownotificationwindow "Duyuru penceresini göster">
 <!ENTITY GRWpreferences.showzerocounter "Okunmamış beslemeler yokken de sayacı göster">
+<!ENTITY GRWpreferences.showcounter "Show the counter">
 <!ENTITY GRWpreferences.maximizecounter "1000&apos;den fazla haber varsa durum çubuğunda 1000+ diye göster">
 <!ENTITY GRWpreferences.tooltipcounterposright "Sağ">
 <!ENTITY GRWpreferences.tooltipcounterposleft "Sol">
@@ -27,8 +28,10 @@
 <!ENTITY GRWpreferences.accountinfocaption "Google Hesap Bilgisi">
 <!ENTITY GRWpreferences.accountinfoemail "Email Adresi:">
 <!ENTITY GRWpreferences.accountinfopassword "şifre:">
+<!ENTITY GRWpreferences.accountinfohavemultipleaccounts "I have more then one Google account">
 <!ENTITY GRWpreferences.accountinfo.rememberLogin "Giriş bilgilerini hatırla">
 <!ENTITY GRWpreferences.accountinfo.forceLogin "Her kontrol ve pencere açma öncesi giriş yapmaya zorla">
+<!--nn-->
 <!ENTITY GRWpreferences.leftclickopen.description "Google Reader&apos;i">
 <!ENTITY GRWpreferences.leftclickopen.singleclick "sol tıklamayla aç">
 <!ENTITY GRWpreferences.leftclickopen.dblclick "çift tıklamayla aç">

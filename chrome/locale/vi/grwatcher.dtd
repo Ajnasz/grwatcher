@@ -18,6 +18,7 @@
 <!ENTITY GRWpreferences.resetcounterdesc "Thiết lập lại bộ đếm trên thanh trạng thái khi cửa sổ Google Reader mở">
 <!ENTITY GRWpreferences.shownotificationwindow "Hiện cửa sổ thông báo">
 <!ENTITY GRWpreferences.showzerocounter "Luôn hiện bộ đếm">
+<!ENTITY GRWpreferences.showcounter "Show the counter">
 <!ENTITY GRWpreferences.maximizecounter "Hiện 1000+ trong thanh trạng thái nếu bạn có hơn 1000 mục chưa đọc">
 <!ENTITY GRWpreferences.tooltipcounterposright "Phải">
 <!ENTITY GRWpreferences.tooltipcounterposleft "Trái">
@@ -27,8 +28,10 @@
 <!ENTITY GRWpreferences.accountinfocaption "Thông tin tài khoản Google">
 <!ENTITY GRWpreferences.accountinfoemail "Địa chỉ email:">
 <!ENTITY GRWpreferences.accountinfopassword "Mật khẩu:">
+<!ENTITY GRWpreferences.accountinfohavemultipleaccounts "I have more then one Google account">
 <!ENTITY GRWpreferences.accountinfo.rememberLogin "Tiếp tục phiên khi khởi chạy">
 <!ENTITY GRWpreferences.accountinfo.forceLogin "Bắt buộc đăng nhập trước mỗi lần kiểm tra và mở cửa sổ">
+<!--nn-->
 <!ENTITY GRWpreferences.leftclickopen.description "Mở Google Reader bằng">
 <!ENTITY GRWpreferences.leftclickopen.singleclick "Nhấp đơn">
 <!ENTITY GRWpreferences.leftclickopen.dblclick "Nhấp đôi">

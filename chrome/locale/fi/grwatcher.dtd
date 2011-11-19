@@ -18,6 +18,7 @@
 <!ENTITY GRWpreferences.resetcounterdesc "Nollaa tilarivin laskuri, kun Google Reader -ikkuna avataan">
 <!ENTITY GRWpreferences.shownotificationwindow "Näytä ilmoitusikkuna">
 <!ENTITY GRWpreferences.showzerocounter "Näytä laskuri, kun ei ole lukemattomia syötteitä">
+<!ENTITY GRWpreferences.showcounter "Show the counter">
 <!ENTITY GRWpreferences.maximizecounter "Näytä 1000+ tilapalkissa, jos lukemattomia kohteita on enemmän kuin 1000">
 <!ENTITY GRWpreferences.tooltipcounterposright "Oikea">
 <!ENTITY GRWpreferences.tooltipcounterposleft "Vasen">
@@ -27,8 +28,10 @@
 <!ENTITY GRWpreferences.accountinfocaption "Google-tilin tiedot">
 <!ENTITY GRWpreferences.accountinfoemail "Sähköpostiosoite:">
 <!ENTITY GRWpreferences.accountinfopassword "Salasana:">
+<!ENTITY GRWpreferences.accountinfohavemultipleaccounts "I have more then one Google account">
 <!ENTITY GRWpreferences.accountinfo.rememberLogin "Muista kirjautuminen">
 <!ENTITY GRWpreferences.accountinfo.forceLogin "Pakota kirjautuminen aina kun tarkistetaan tai ikkuna avataan">
+<!--nn-->
 <!ENTITY GRWpreferences.leftclickopen.description "Google Reader avataan">
 <!ENTITY GRWpreferences.leftclickopen.singleclick "Yhdellä napsautuksella">
 <!ENTITY GRWpreferences.leftclickopen.dblclick "Kaksoisnapsautuksella">

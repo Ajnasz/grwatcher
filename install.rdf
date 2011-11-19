@@ -41,11 +41,11 @@
       <Description>
         <em:locale>es-ES</em:locale>
         <em:name>Google Reader Watcher</em:name>
-        <em:creator>Lajos Koszti</em:creator>
         <em:description>Revisa sus suscripciones de Google Reader</em:description>
+        <em:creator>Lajos Koszti</em:creator>
         <em:homepageURL>http://ajnasz.hu/google-reader-watcher</em:homepageURL>
-        <em:contributor>David Peitler</em:contributor>
         <em:translator>Francisco Javier Cuadrado es-ES</em:translator>
+        <em:contributor>David Peitler</em:contributor>
       </Description>
     </em:localized>
     <em:localized>

@@ -18,6 +18,7 @@
 <!ENTITY GRWpreferences.resetcounterdesc "Resetar o contador da barra de status quando a janela do Google Reader abrir">
 <!ENTITY GRWpreferences.shownotificationwindow "Exibir Janela de Aviso">
 <!ENTITY GRWpreferences.showzerocounter "Mostrar contador quando não houverem feeds disponíveis">
+<!ENTITY GRWpreferences.showcounter "Show the counter">
 <!ENTITY GRWpreferences.maximizecounter "Show 1000+ in the statusbar if you have more than 1000 unread items">
 <!ENTITY GRWpreferences.tooltipcounterposright "Direita">
 <!ENTITY GRWpreferences.tooltipcounterposleft "Esquerda">
@@ -27,8 +28,10 @@
 <!ENTITY GRWpreferences.accountinfocaption "Informação da conta Google">
 <!ENTITY GRWpreferences.accountinfoemail "Endereço de e-mail:">
 <!ENTITY GRWpreferences.accountinfopassword "Senha:">
+<!ENTITY GRWpreferences.accountinfohavemultipleaccounts "I have more then one Google account">
 <!ENTITY GRWpreferences.accountinfo.rememberLogin "Lembrar Login">
 <!ENTITY GRWpreferences.accountinfo.forceLogin "Force login before every checking and window opening">
+<!--nn-->
 <!ENTITY GRWpreferences.leftclickopen.description "Abrir Google Reader com">
 <!ENTITY GRWpreferences.leftclickopen.singleclick "Clique único">
 <!ENTITY GRWpreferences.leftclickopen.dblclick "Clique duplo">

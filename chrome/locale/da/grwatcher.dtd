@@ -18,6 +18,7 @@
 <!ENTITY GRWpreferences.resetcounterdesc "Nulstiller statuslinje-tælleren når Google Reader-vinduet åbnes">
 <!ENTITY GRWpreferences.shownotificationwindow "Vis notifikationsvindue">
 <!ENTITY GRWpreferences.showzerocounter "Vis altid tælleren">
+<!ENTITY GRWpreferences.showcounter "Show the counter">
 <!ENTITY GRWpreferences.maximizecounter "Vis 1000+ i statuslinjen hvis du har mere end 1000 ulæste elementer">
 <!ENTITY GRWpreferences.tooltipcounterposright "Højre">
 <!ENTITY GRWpreferences.tooltipcounterposleft "Venstre">
@@ -27,8 +28,10 @@
 <!ENTITY GRWpreferences.accountinfocaption "Google kontoinformation">
 <!ENTITY GRWpreferences.accountinfoemail "Email-adresse:">
 <!ENTITY GRWpreferences.accountinfopassword "Kodeord:">
+<!ENTITY GRWpreferences.accountinfohavemultipleaccounts "I have more then one Google account">
 <!ENTITY GRWpreferences.accountinfo.rememberLogin "Fortsæt session ved opstart">
 <!ENTITY GRWpreferences.accountinfo.forceLogin "Gennemtving login før hvert tjek og åbning af vindue">
+<!--nn-->
 <!ENTITY GRWpreferences.leftclickopen.description "Åbn Google Reader med">
 <!ENTITY GRWpreferences.leftclickopen.singleclick "Enkeltklik">
 <!ENTITY GRWpreferences.leftclickopen.dblclick "Dobbeltklik">

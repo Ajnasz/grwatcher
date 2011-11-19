@@ -2,14 +2,14 @@
 <!ENTITY GRWstatusbar.popup.getReadCounter "Sök efter olästa flöden">
 <!ENTITY GRWstatusbar.popup.openPrefs "Inställningar">
 <!ENTITY GRWstatusbar.popup.markAllAsRead "Märk alla som lästa">
-<!ENTITY GRWstatusbar.popup.enableCookies "Aktivera kakor">
+<!ENTITY GRWstatusbar.popup.enableCookies "Tillåt kakor">
 <!ENTITY GRWpreferences.title "Inställningar för Google Reader Watcher">
 <!ENTITY GRWpreferences.checkfrequency "Kontrollintervall (min.)">
 <!ENTITY GRWpreferences.delaystart "Fördröj första sökningen när webbläsaren startas (ms)">
 <!ENTITY GRWpreferences.activateOpenedTab "Fokusera Google Reader-fliken när den öppnas">
-<!ENTITY GRWpreferences.generalpreferencescaption "Allmänna inställningar">
+<!ENTITY GRWpreferences.generalpreferencescaption "Allmänt">
 <!ENTITY GRWpreferences.generalpreferencesopencaption "Hur Google Reader skall öppnas">
-<!ENTITY GRWpreferences.tooltippreferencescaption "Verktygstipsinställningar">
+<!ENTITY GRWpreferences.tooltippreferencescaption "Verktygstips">
 <!ENTITY GRWpreferences.tabgeneral "Allmänt">
 <!ENTITY GRWpreferences.tabaccountinfo "Kontoinformation">
 <!ENTITY GRWpreferences.tabopening "Fönsteröppning">
@@ -42,8 +42,8 @@
 <!ENTITY GRWtooltip.nonewfeed "Du har inga olästa flöden">
 <!ENTITY GRWtooltip.errorfeedfetch "Fel vid hämtning av flöden!">
 <!ENTITY GRWtooltip.newfeed "Du har olästa flöden">
-<!ENTITY GRWtooltip.errorlogin "Inloggning misslyckades. Säkerställ att du har angivit korrekta kontouppgifter!">
-<!ENTITY GRWtooltip.networkerror "Anslutning misslyckades. Säkerställ att du har en fungerande uppkoppling!">
+<!ENTITY GRWtooltip.errorlogin "Inloggningen misslyckades. Säkerställ att du har angivit korrekta kontouppgifter!">
+<!ENTITY GRWtooltip.networkerror "Anslutningen misslyckades. Säkerställ att du har en fungerande uppkoppling!">
 <!ENTITY GRWtooltip.cookieerror "Du tillåter för närvarande inte tredjepartskakor! Högerklicka på ikonen för att ändra på det.">
 <!ENTITY GRWpreferences.showitemsintooltip "Visa olästa objekt (per flöde) i statusfältikonens verktygstips">
 <!ENTITY GRWpreferences.showitemsincontextmenu "Visa olästa objekt (per flöde) i statusfältikonens snabbmeny">

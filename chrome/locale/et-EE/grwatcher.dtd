@@ -18,6 +18,7 @@
 <!ENTITY GRWpreferences.resetcounterdesc "Google Readeri akna avamisel lähtestatakse olekuriba loendur">
 <!ENTITY GRWpreferences.shownotificationwindow "Näidatakse teavitusakent">
 <!ENTITY GRWpreferences.showzerocounter "Loendurit näidatakse ka siis, kui puuduvad lugemata tellimused">
+<!ENTITY GRWpreferences.showcounter "Show the counter">
 <!ENTITY GRWpreferences.maximizecounter "Olekuribal kuvatakse 1000+ kui 1000 tellimust on lugemata">
 <!ENTITY GRWpreferences.tooltipcounterposright "paremal">
 <!ENTITY GRWpreferences.tooltipcounterposleft "vasakul">
@@ -27,8 +28,10 @@
 <!ENTITY GRWpreferences.accountinfocaption "Google konto info">
 <!ENTITY GRWpreferences.accountinfoemail "E-posti aadress:">
 <!ENTITY GRWpreferences.accountinfopassword "Parool:">
+<!ENTITY GRWpreferences.accountinfohavemultipleaccounts "I have more then one Google account">
 <!ENTITY GRWpreferences.accountinfo.rememberLogin "Logimise info peetakse meeles">
 <!ENTITY GRWpreferences.accountinfo.forceLogin "Logimist sunnitakse enne iga kontrolli ja akna avamist">
+<!--nn-->
 <!ENTITY GRWpreferences.leftclickopen.description "Google Reader avaneb">
 <!ENTITY GRWpreferences.leftclickopen.singleclick "ühe klõpsuga">
 <!ENTITY GRWpreferences.leftclickopen.dblclick "topeltklõpsuga">

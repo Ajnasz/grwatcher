@@ -18,6 +18,7 @@
 <!ENTITY GRWpreferences.resetcounterdesc "Επαναφορά μετρητή της γραμμής κατάστασης μετά το άνοιγμα του Google Reader">
 <!ENTITY GRWpreferences.shownotificationwindow "Προβολή ειδοποίησης σε αναδυόμενο παράθυρο">
 <!ENTITY GRWpreferences.showzerocounter "Πάντα προβολή του μετρητή">
+<!ENTITY GRWpreferences.showcounter "Προβολή μετρητή">
 <!ENTITY GRWpreferences.maximizecounter "Προβολή του αριθμού «1000+» στη γραμμή κατάστασης αν οι μη αναγνωσμένες εγγραφές υπερβαίνουν τις 1000">
 <!ENTITY GRWpreferences.tooltipcounterposright "Δεξιά">
 <!ENTITY GRWpreferences.tooltipcounterposleft "Αριστερά">
@@ -27,8 +28,10 @@
 <!ENTITY GRWpreferences.accountinfocaption "Πληροφορίες λογαριασμού Google">
 <!ENTITY GRWpreferences.accountinfoemail "Ηλεκτρονική διεύθυνση :">
 <!ENTITY GRWpreferences.accountinfopassword "Κωδικός :">
+<!ENTITY GRWpreferences.accountinfohavemultipleaccounts "Έχω πάνω από ένα λογαριασμό Google">
 <!ENTITY GRWpreferences.accountinfo.rememberLogin "Συνέχιση συνεδρίας στην εκκίνηση">
 <!ENTITY GRWpreferences.accountinfo.forceLogin "Αναγκαστική σύνδεση πριν από κάθε έλεγχο και άνοιγμα παραθύρου">
+<!--nn-->
 <!ENTITY GRWpreferences.leftclickopen.description "Άνοιγμα Google Reader με">
 <!ENTITY GRWpreferences.leftclickopen.singleclick "Απλό κλικ">
 <!ENTITY GRWpreferences.leftclickopen.dblclick "Διπλό κλικ">

@@ -18,6 +18,7 @@
 <!ENTITY GRWpreferences.resetcounterdesc "Поништи бројач у статусној траци када се Google читач отвори">
 <!ENTITY GRWpreferences.shownotificationwindow "Прикажи прозор са обавештењем">
 <!ENTITY GRWpreferences.showzerocounter "Увек приказуј бројач">
+<!ENTITY GRWpreferences.showcounter "Прикажи бројач">
 <!ENTITY GRWpreferences.maximizecounter "Прикажи „1000+” у статусној траци ако имам више од 1000 непрочитаних ставки">
 <!ENTITY GRWpreferences.tooltipcounterposright "десно">
 <!ENTITY GRWpreferences.tooltipcounterposleft "лево">
@@ -27,8 +28,10 @@
 <!ENTITY GRWpreferences.accountinfocaption "Информације о Google налогу">
 <!ENTITY GRWpreferences.accountinfoemail "Е-адреса:">
 <!ENTITY GRWpreferences.accountinfopassword "Лозинка:">
+<!ENTITY GRWpreferences.accountinfohavemultipleaccounts "Имам више од једног Google налога">
 <!ENTITY GRWpreferences.accountinfo.rememberLogin "Настави сесију одмах након покретања">
 <!ENTITY GRWpreferences.accountinfo.forceLogin "Присили пријављивање пре сваког проверавања и отварања прозора">
+<!--nn-->
 <!ENTITY GRWpreferences.leftclickopen.description "Отвори Google читач помоћу">
 <!ENTITY GRWpreferences.leftclickopen.singleclick "једног клика">
 <!ENTITY GRWpreferences.leftclickopen.dblclick "дуплог клика">

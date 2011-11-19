@@ -18,6 +18,7 @@
 <!ENTITY GRWpreferences.resetcounterdesc "Vynulovat počítadlo na liště při otevření okna s Google Readerem">
 <!ENTITY GRWpreferences.shownotificationwindow "Zobrazit okno s upozorněním">
 <!ENTITY GRWpreferences.showzerocounter "Vždy zobrazovat počítadlo">
+<!ENTITY GRWpreferences.showcounter "Zobrazit počítadlo">
 <!ENTITY GRWpreferences.maximizecounter "Zobrazit '1000+' ve stavovém řádku když máte více než 1000 nepřečtených položek">
 <!ENTITY GRWpreferences.tooltipcounterposright "Vpravo">
 <!ENTITY GRWpreferences.tooltipcounterposleft "Vlevo">
@@ -27,8 +28,10 @@
 <!ENTITY GRWpreferences.accountinfocaption "Údaje o Google účtu">
 <!ENTITY GRWpreferences.accountinfoemail "E-mailová adresa:">
 <!ENTITY GRWpreferences.accountinfopassword "Heslo:">
+<!ENTITY GRWpreferences.accountinfohavemultipleaccounts "Mám více než jeden účet Google">
 <!ENTITY GRWpreferences.accountinfo.rememberLogin "Pamatovat si přihlašovací údaje">
 <!ENTITY GRWpreferences.accountinfo.forceLogin "Vynutit přihlášení před každou kontrolou a otevřením okna">
+<!--nn-->
 <!ENTITY GRWpreferences.leftclickopen.description "Otevřít Google Reader">
 <!ENTITY GRWpreferences.leftclickopen.singleclick "jedním kliknutím">
 <!ENTITY GRWpreferences.leftclickopen.dblclick "dvojklikem">

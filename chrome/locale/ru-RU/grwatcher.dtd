@@ -18,6 +18,7 @@
 <!ENTITY GRWpreferences.resetcounterdesc "Обнулять счетчик в строке состояния при открытии Google Reader">
 <!ENTITY GRWpreferences.shownotificationwindow "Показывать окно уведомления">
 <!ENTITY GRWpreferences.showzerocounter "Показывать счетчик при отсутствии непрочитанных лент">
+<!ENTITY GRWpreferences.showcounter "Show the counter">
 <!ENTITY GRWpreferences.maximizecounter "Показывать в панели статуса числа больше 1000, если у вас столько непрочитанных статей">
 <!ENTITY GRWpreferences.tooltipcounterposright "Справа">
 <!ENTITY GRWpreferences.tooltipcounterposleft "Слева">
@@ -27,8 +28,10 @@
 <!ENTITY GRWpreferences.accountinfocaption "Информация об учетной записи Google">
 <!ENTITY GRWpreferences.accountinfoemail "E-Mail:">
 <!ENTITY GRWpreferences.accountinfopassword "Пароль:">
+<!ENTITY GRWpreferences.accountinfohavemultipleaccounts "I have more then one Google account">
 <!ENTITY GRWpreferences.accountinfo.rememberLogin "Восстанавливать сессию при запуске">
 <!ENTITY GRWpreferences.accountinfo.forceLogin "Заходить до проверки и открытия окна">
+<!--nn-->
 <!ENTITY GRWpreferences.leftclickopen.description "Открывать Google Reader по:">
 <!ENTITY GRWpreferences.leftclickopen.singleclick "одиночному щелчку">
 <!ENTITY GRWpreferences.leftclickopen.dblclick "двойному щелчку">

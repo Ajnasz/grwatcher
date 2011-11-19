@@ -18,6 +18,7 @@
 <!ENTITY GRWpreferences.resetcounterdesc "구글 리더를 열때 상태표시줄의 카운트를 초기화 합니다.">
 <!ENTITY GRWpreferences.shownotificationwindow "새 글이 있으면 알림창을 보여줍니다.">
 <!ENTITY GRWpreferences.showzerocounter "항상 상태표시줄에 읽지 않은 글의 개수를 표시합니다.">
+<!ENTITY GRWpreferences.showcounter "Show the counter">
 <!ENTITY GRWpreferences.maximizecounter "읽지 않은 글의 수가 1000개를 넘어가면 1000+라고 표시합니다.">
 <!ENTITY GRWpreferences.tooltipcounterposright "오른쪽">
 <!ENTITY GRWpreferences.tooltipcounterposleft "왼쪽">
@@ -27,8 +28,10 @@
 <!ENTITY GRWpreferences.accountinfocaption "구글 계정 설정">
 <!ENTITY GRWpreferences.accountinfoemail "E-mail 주소:">
 <!ENTITY GRWpreferences.accountinfopassword "비밀번호:">
+<!ENTITY GRWpreferences.accountinfohavemultipleaccounts "I have more then one Google account">
 <!ENTITY GRWpreferences.accountinfo.rememberLogin "접속 유지">
 <!ENTITY GRWpreferences.accountinfo.forceLogin "매번 창을 열어 점검할때 강제 로그인 하기">
+<!--nn-->
 <!ENTITY GRWpreferences.leftclickopen.description "구글 리더를 다음 동작으로 엽니다.">
 <!ENTITY GRWpreferences.leftclickopen.singleclick "클릭">
 <!ENTITY GRWpreferences.leftclickopen.dblclick "더블 클릭">
