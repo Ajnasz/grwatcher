@@ -11,7 +11,6 @@ locale grwatcher cs chrome/locale/cs/
 locale grwatcher da chrome/locale/da/
 locale grwatcher de chrome/locale/de/
 locale grwatcher el chrome/locale/el/
-locale grwatcher el-GR chrome/locale/el-GR/
 locale grwatcher en-US chrome/locale/en-US/
 locale grwatcher es-AR chrome/locale/es-AR/
 locale grwatcher es-ES chrome/locale/es-ES/
