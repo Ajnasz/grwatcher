@@ -5,7 +5,7 @@ var GRW = {};
   var minDelay = 300,
       doc = document,
       helpers, scope, isActiveGRW, setIcons, updateUI, getBrowserVersion,
-      tooltipSetter, init, start;
+      tooltipSetter, init;
   scope = {};
   helpers = {
     isString: function (arg) {
@@ -397,11 +397,8 @@ var GRW = {};
       showUnreadNotifications();
     }
   };
-  start = function () {
-    init();
-  };
-  window.addEventListener('load', start, false);
+  window.addEventListener('load', init, false);
   window.addEventListener('unload', function (event) {
-    this.removeEventListener('load', start, false);
+    this.removeEventListener('load', init, false);
   }, false);
 }(GRW));
