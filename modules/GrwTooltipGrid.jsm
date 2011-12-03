@@ -75,13 +75,11 @@ GrwTooltipGrid.prototype = {
     var rows = this.document.createElement('rows'),
         generatedRows;
     Components.utils.import("resource://grwmodules/prefs.jsm", scope);
-    Components.utils.import("resource://grwmodules/grwlog.jsm", scope);
     generatedRows = this.genRowItems(this.feeds,
       scope.prefs.get.sortByLabels(), this.peopleYouFollow);
     generatedRows.forEach(function (item) {
       if (item.rows) {
         item.rows.forEach(function (row) {
-          scope.grwlog(row.nodeName);
           rows.appendChild(row);
         });
       } else {

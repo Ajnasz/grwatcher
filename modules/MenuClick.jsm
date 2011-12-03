@@ -10,8 +10,6 @@ MenuClick.prototype = {
     var _this = this,
         scope = {},
         rootElem;
-    Components.utils.import("resource://grwmodules/grwlog.jsm", scope);
-    scope.grwlog(this.rootElem);
     rootElem = this.doc.getElementById(this.rootElem);
     if (rootElem) {
       rootElem.addEventListener('command', function (ev) {

@@ -384,17 +384,15 @@ var GRW = {};
     }
     Components.utils.import("resource://grwmodules/timer.jsm", scope);
     Components.utils.import("resource://grwmodules/prefs.jsm", scope);
-    Components.utils.import("resource://grwmodules/grwlog.jsm", scope);
     var delay = scope.prefs.get.delayStart();
     delay = delay > minDelay ? delay : minDelay;
     if (isActiveGRW() === false) {
       window.GRWActive = true;
       scope.later(function () {
-        scope.grwlog('request');
-        scope.grwlog('request start');
         requester.start();
       }, delay);
     } else {
+      Components.utils.import("resource://grwmodules/grwlog.jsm", scope);
       scope.grwlog('show unread notificatiosn');
       showUnreadNotifications();
     }
