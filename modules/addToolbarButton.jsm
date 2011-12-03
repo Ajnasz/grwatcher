@@ -11,12 +11,12 @@ var addToolbarButton = function (doc, navi, customizeDone) {
   setToolbarButton = function () {
     try {
       // ID of element to insert after
-      var afterId = "urlbar-container", navBar, curSet, pos, set;
+      var navBar, curSet, pos, set;
       navBar  = doc.getElementById("nav-bar");
       curSet  = navBar.currentSet.split(",");
 
       if (curSet.indexOf(toolbarItemId) === -1) {
-        pos = curSet.indexOf(afterId) + 1 || curSet.length;
+        pos = curSet.length;
         set = curSet.slice(0, pos).concat(toolbarItemId).concat(curSet.slice(pos));
 
         navBar.setAttribute("currentset", set.join(","));
