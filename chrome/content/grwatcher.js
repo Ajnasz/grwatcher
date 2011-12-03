@@ -196,16 +196,16 @@ var GRW = {};
         ], doc
       );
     }
-    if (hasToolbar) {
-      toolbarClick = new scope.MenuClick('GRW-toolbar-menu',
-        [
-          {event: 'openReader', id: 'GRW-toolbar-menuitem-openreader'},
-          {event: 'markAllAsRead', id: 'GRW-toolbar-menuitem-markallasread'},
-          {event: 'checkUnreadFeeds', id: 'GRW-toolbar-menuitem-getcounter'},
-          {event: 'openPreferences', id: 'GRW-toolbar-menuitem-openprefs'},
-          {event: 'enableCookies', id: 'GRW-toolbar-menuitem-enablecookies'}
-        ], doc);
-    }
+    // if (hasToolbar) {
+    toolbarClick = new scope.MenuClick('GRW-toolbar-menu',
+      [
+        {event: 'openReader', id: 'GRW-toolbar-menuitem-openreader'},
+        {event: 'markAllAsRead', id: 'GRW-toolbar-menuitem-markallasread'},
+        {event: 'checkUnreadFeeds', id: 'GRW-toolbar-menuitem-getcounter'},
+        {event: 'openPreferences', id: 'GRW-toolbar-menuitem-openprefs'},
+        {event: 'enableCookies', id: 'GRW-toolbar-menuitem-enablecookies'}
+      ], doc);
+    // }
     // var toolbarClick = new GRW.ToolbarMenuClick();
     // var requester = GRW.Requester;
     // var loginManager = GRW.LoginManager;
@@ -361,12 +361,14 @@ var GRW = {};
     }
 
     GRW.onToolbarButtonAdd = function (element) {
+      hasToolbar = true;
       element.oncommand = function () {};
       element.onmouseover = function () {};
       toolbarClick.init();
       if (hasToolbar) {
         iconClick.addElements(['GRW-toolbar-button', 'GRW-toolbar-label']);
       }
+      requester.updater();
     };
     GRW.onStatusbarButtonAdd = function (element) {
       element.oncommand = function () {};
