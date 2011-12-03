@@ -44,13 +44,14 @@ var addToolbarButton = function (doc, navi, customizeDone) {
     if (!btnInstalled) {
       setToolbarButton();
       prefs.setBoolPref("extensions.grwatcher.toolbarBtnInstalled", true);
-    // If no toolbar and statusbar button we must add the button because he
-    // won't be able to use the extension
-    // That could happen if user uses Firefox 4 or newer, because we removed
-    // the statusbar button
+      // If no toolbar and statusbar button we must add the button because he
+      // won't be able to use the extension
+      // That could happen if user uses Firefox 4 or newer, because we removed
+      // the statusbar button
+      // If the guys at the amo would think I'm right I wouldn't comment it out
     } else if (!toolbarButton && !statusbarButton) {
       // should ask to set toolbar button
-      setToolbarButton();
+      // setToolbarButton();
     }
   };
 
