@@ -361,14 +361,14 @@ var GRW = {};
     }
 
     GRW.onToolbarButtonAdd = function (element) {
-      hasToolbar = true;
       element.oncommand = function () {};
       element.onmouseover = function () {};
       toolbarClick.init();
-      if (hasToolbar) {
-        iconClick.addElements(['GRW-toolbar-button', 'GRW-toolbar-label']);
+      iconClick.addElements(['GRW-toolbar-button', 'GRW-toolbar-label']);
+      if (!hasToolbar) {
+        requester.updater();
+        hasToolbar = true;
       }
-      requester.updater();
     };
     GRW.onStatusbarButtonAdd = function (element) {
       element.oncommand = function () {};
