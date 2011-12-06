@@ -115,8 +115,8 @@ OpenReader.prototype = {
   },
   open: function (subUrl) {
     Components.utils.import("resource://grwmodules/prefs.jsm", scope);
-    this.fireEvent('startOpen');
     if (scope.prefs.get.haveMultipleAccounts()) {
+      this.fireEvent('startOpen');
       this._loginAndOpen(subUrl);
     } else {
       this._open(subUrl);

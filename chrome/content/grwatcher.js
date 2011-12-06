@@ -171,13 +171,13 @@ var GRW = {};
     // enable to show notification window
     openReader.on('readerOpened', function () {
       Components.utils.import("resource://grwmodules/prefs.jsm", scope);
+      var oArgs = {
+        status: ['off']
+      };
       if (scope.prefs.get.resetCounter()) {
-        var oArgs = {
-          status: ['off'],
-          counter: [0]
-        };
-        updateUI(oArgs, openReader);
+        oArgs.counter = [0];
       }
+      updateUI(oArgs, openReader);
       requester.setNext();
       notifier.showNotification = true;
     });
