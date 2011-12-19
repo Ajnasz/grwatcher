@@ -17,20 +17,22 @@ IconClick.prototype = {
     if (!this.elements) {
       this.elements = [];
     }
-    var _this = this,
-        doc = this.doc;
-    elements.forEach(function (elem) {
-      var element = doc.getElementById(elem);
-      if (element) {
-        // element not added yet
-        if (!_this.elements.some(function (elem) {
-          return elem === element;
-        })) {
-          _this.elements.push(element);
-          _this.addListeners(element);
+    if (elements && elements.length > 0) {
+      var _this = this,
+          doc = this.doc;
+      elements.forEach(function (elem) {
+        var element = doc.getElementById(elem);
+        if (element) {
+          // element not added yet
+          if (!_this.elements.some(function (elem) {
+            return elem === element;
+          })) {
+            _this.elements.push(element);
+            _this.addListeners(element);
+          }
         }
-      }
-    });
+      });
+    }
   },
   addListeners: function (element) {
     if (element) {

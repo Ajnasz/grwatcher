@@ -372,6 +372,7 @@ var GRW = {};
     };
     GRW.onStatusbarButtonAdd = function (element) {
       element.oncommand = function () {};
+      element.onmouseover = function () {};
       statusbarClick.init();
       if (hasStatusbar) {
         iconClick.addElements(['GRW-statusbar']);
