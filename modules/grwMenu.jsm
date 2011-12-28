@@ -3,6 +3,12 @@
 var iconPositions = {
   top: 1,
   bottom: 2
+},
+// create regexps only once
+menuItemFixRexes = {
+    invalidChars: /[^\w_\-]/g,
+    protocol: /https?:\/\/(?:www)?/,
+    duplicateChars: /_+/g
 };
 var scope = {}, GrwMenu;
 GrwMenu = function (win, feeds, labels, menu, openReader, barname) {
@@ -173,6 +179,7 @@ GrwMenu.prototype = {
   genMenuItem: function (label, id, cl, url) {
     var menuitem = this.document.createElement('menuitem'),
         classes = this.getClass(cl);
+    id = id.replace(menuItemFixRexes.protocol, '').replace(menuItemFixRexes.invalidChars, '_').replace(menuItemFixRexes.duplicateChars, '_');
     if (classes) {
       menuitem.setAttribute('class', classes);
     }
@@ -192,7 +199,7 @@ GrwMenu.prototype = {
         openReader = this.openReader;
 
     menuitem = this.genMenuItem(itemCount + ' ' + itemTitle,
-      'menuitem-' + item.id, classes, item.id);
+      'GRW-menuitem-' + item.id, classes, item.id);
     if (isLabel) {
       classes.push('tag');
       menuitem.setAttribute('class', 'tag');
