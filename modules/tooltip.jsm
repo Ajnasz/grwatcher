@@ -26,7 +26,7 @@ var Tooltip = function (conf, GRW, openReader) {
         }
         if (showItemsInToolTip) {
           Components.utils.import("resource://grwmodules/GrwTooltipGrid.jsm", scope);
-          grid = new scope.GrwTooltipGrid(win.document, feeds, labels).getGrid();
+          grid = new scope.GrwTooltipGrid(win.document, feeds, labels, conf.tooltipNewElement).getGrid();
           elementContainer.appendChild(grid);
         } else {
           setTooltip(win, conf.tooltipNewElement);

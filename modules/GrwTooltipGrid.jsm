@@ -1,8 +1,9 @@
 /*jslint indent:2*/
 /*global Components: true*/
 var scope = {};
-var GrwTooltipGrid = function (doc, feeds, labels) {
+var GrwTooltipGrid = function (doc, feeds, labels, containerId) {
   this.document = doc;
+  this.containerId = containerId;
   this.feeds = feeds || [];
   // this.getlist = getlist;
   Components.utils.import("resource://grwmodules/prefs.jsm", scope);
@@ -22,7 +23,7 @@ GrwTooltipGrid.prototype = {
 
 
     grid.flex = 1;
-    grid.id = '';
+    grid.id = 'GRW-tooltigrid-for-' + this.containerId;
 
     columnc1 = column.cloneNode(true);
     columnc1.flex = 1;
