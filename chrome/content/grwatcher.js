@@ -4,7 +4,7 @@ var GRW = {};
 (function (GRW) {
   var minDelay = 300,
       doc = document,
-      helpers, scope, isActiveGRW, setIcons, updateUI, getBrowserVersion,
+      helpers, scope, setIcons, updateUI, getBrowserVersion,
       tooltipSetter, init;
   scope = {};
   helpers = {
@@ -45,19 +45,6 @@ var GRW = {};
     },
     isEmail: function (arg) {
     }
-  };
-  isActiveGRW = function () {
-    // if (typeof Components === 'undefined') {
-    //   return;
-    // }
-    var isActive = false;
-    Components.utils.import("resource://grwmodules/mapwindows.jsm", scope);
-    scope.mapwindows(function (win) {
-      if (win.GRWActive === true) {
-        isActive = true;
-      }
-    });
-    return isActive;
   };
   setIcons = function (status) {
     // if (typeof Components !== 'undefined') {
@@ -387,14 +374,13 @@ var GRW = {};
     Components.utils.import("resource://grwmodules/prefs.jsm", scope);
     var delay = scope.prefs.get.delayStart();
     delay = delay > minDelay ? delay : minDelay;
-    if (isActiveGRW() === false) {
-      window.GRWActive = true;
+    Components.utils.import("resource://grwmodules/getactivegrw.jsm", scope);
+    if (scope.getActiveGRW() === null) {
+      scope.setActiveGRW(window);
       scope.later(function () {
         requester.start();
       }, delay);
     } else {
-      Components.utils.import("resource://grwmodules/grwlog.jsm", scope);
-      scope.grwlog('show unread notificatiosn');
       showUnreadNotifications();
     }
   };

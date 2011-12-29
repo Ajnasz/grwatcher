@@ -1,14 +1,9 @@
-var getActiveGRW = function (w) {
-  // if(typeof Components === 'undefined') {
-  //   return;
-  // }
-  var activeWin = false, scope ={};
-  Components.utils.import("resource://grwmodules/mapwindows.jsm", scope);
-  scope.mapwindows(function(win) {
-    if(win.GRWActive === true) {
-      activeWin = win;
-    }
-  });
-  return (activeWin === false) ? w : activeWin;
+var activeGrw = null;
+var getActiveGRW = function () {
+    return activeGrw;
 };
-let EXPORTED_SYMBOLS = ['getActiveGRW'];
+var setActiveGRW = function (w) {
+    var scope = {};
+    activeGrw = w;
+};
+let EXPORTED_SYMBOLS = ['getActiveGRW', 'setActiveGRW'];
