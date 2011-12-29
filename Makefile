@@ -38,7 +38,7 @@ xpi:
 		modules/timer.jsm \
 		modules/getter.jsm \
 		modules/mapwindows.jsm \
-		modules/getactivegrw.jsm \
+		modules/activegrw.jsm \
 		modules/StatusIcon.jsm \
 		modules/GrwCookie.jsm \
 		modules/IconClick.jsm \

@@ -374,7 +374,7 @@ var GRW = {};
     Components.utils.import("resource://grwmodules/prefs.jsm", scope);
     var delay = scope.prefs.get.delayStart();
     delay = delay > minDelay ? delay : minDelay;
-    Components.utils.import("resource://grwmodules/getactivegrw.jsm", scope);
+    Components.utils.import("resource://grwmodules/activegrw.jsm", scope);
     if (scope.getActiveGRW() === null) {
       scope.setActiveGRW(window);
       scope.later(function () {
