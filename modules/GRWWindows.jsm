@@ -12,6 +12,8 @@ var grwWindows = (function () {
     Components.utils.import("resource://grwmodules/getter.jsm", scope);
     Components.utils.import("resource://grwmodules/getList.jsm", scope);
     Components.utils.import("resource://grwmodules/Requester.jsm", scope);
+
+    Components.utils.import("resource://grwmodules/loginmanager.jsm", scope);
     /**
      * Job:
      *  register new windows
@@ -34,6 +36,8 @@ var grwWindows = (function () {
                 getlist = scope.getList;
                 requester = new scope.Requester(getlist);
                 this.subscribeGetter();
+                this.subscribeLoginManager();
+                this.subscribeGetlist();
             }
         },
         subscribeGetter: function () {
@@ -50,6 +54,36 @@ var grwWindows = (function () {
             scope.getter.onRequestSuccess.subscribe(function () {
                 scope.grwlog('on request success');
                 that.notify([grwWindow.requestSuccess]);
+            });
+        },
+        subscribeGetlist: function () {
+            var that = this,
+                grwWindow = scope.GRWWindow;
+            getlist.on('itemsMatchedEvent', function () {
+                var unreads = getlist.matchedData.unreads,
+                    max = getlist.matchedData.max,
+                    elems = getlist._unreadCount;
+
+                scope.grwlog('items matched: ', elems.unreadSum);
+                if (elems.unreadSum > 0) {
+                    that.notify([grwWindow.unreadFound, {
+                        unreads: unreads,
+                        max: max,
+                        elems: elems
+                    }]);
+                } else {
+                    that.notify([grwWindow.nonew]);
+                }
+            });
+        },
+        subscribeLoginManager: function () {
+            var that = this,
+                grwWindow = scope.GRWWindow;
+            scope.loginManager.on('loginFailed', function () {
+                that.notify([grwWindow.loginFailed]);
+            });
+            scope.loginManager.on('cookieError', function () {
+                that.notify([grwWindow.cookieError]);
             });
         },
         notify: function (args) {

@@ -3,6 +3,26 @@ var customDefs = {
     1: 'click'
 };
 var scope = {};
+
+var tooltipElements = {
+    'GRW-statusbar': {
+        tooltipNewElement: 'GRW-statusbar-tooltip-new',
+        tooltipErrorElement: 'GRW-statusbar-tooltip-error',
+        nonew: 'GRW-statusbar-tooltip-nonew',
+        cookieError: 'GRW-statusbar-tooltip-cookieerror',
+        networkError: 'GRW-statusbar-tooltip-networkerror',
+        logionFailed: 'GRW-statusbar-tooltip-loginerror'
+    },
+    'GRW-toolbar-button': {
+        tooltipNewElement: 'GRW-toolbar-tooltip-new',
+        tooltipErrorElement: 'GRW-toolbar-tooltip-error',
+        nonew: 'GRW-toolbar-tooltip-nonew',
+        cookieError: 'GRW-toolbar-tooltip-cookieerror',
+        networkError: 'GRW-toolbar-tooltip-networkerror',
+        loginFailed: 'GRW-toolbar-tooltip-loginerror'
+    }
+};
+
 Components.utils.import("resource://grwmodules/grwlog.jsm", scope);
 Components.utils.import("resource://grwmodules/EventProvider.jsm", scope);
 Components.utils.import("resource://grwmodules/augment.jsm", scope);
@@ -22,19 +42,46 @@ var GRWWindow = function (win, doc) {
     this.doc = doc;
     this.listenClicks();
 };
-GRWWindow.hasnew = 'hasnew';
+GRWWindow.unreadFound = 'unreadFound';
 GRWWindow.nonew = 'nonew';
 GRWWindow.error = 'error';
+
 GRWWindow.requestFailed = 'requestFailed';
 GRWWindow.requestStarted = 'requestStarted';
 GRWWindow.requestSuccess = 'requestSuccess';
+
+GRWWindow.loginFailed = 'loginFailed';
+GRWWindow.cookieError = 'cookieError';
 GRWWindow.prototype = {
     elements: ['GRW-toolbar-button', 'GRW-toolbar-label', 'GRW-statusbar'],
-    updateCounter: function () {
-    },
     generateMenu: function () {
     },
     generateTooltip: function () {
+    },
+    updateCounter: function (value) {
+        var counterEnabled = scope.prefs.get.showCounter(),
+            showZeroCounter = scope.prefs.get.showZeroCounter(),
+            doc = this.doc;
+
+        ['GRW-statusbar-label', 'GRW-toolbar-label'].forEach(function (elemId) {
+            var elem = doc.getElementById(elemId);
+            if (elem) {
+                // hide counter
+                elem.value = '';
+                elem.crop = 'end';
+                elem.style.margin = 0;
+                elem.style.width = 0;
+                elem.collapsed = true;
+
+                if (value > 0 || showZeroCounter) {
+                    elem.value = value;
+                    elem.crop = '';
+                    elem.style.margin = '';
+                    elem.style.width = '';
+                    elem.collapsed = false;
+                }
+            }
+        });
     },
     handleClick: function (e) {
         var name = '';
@@ -94,17 +141,32 @@ GRWWindow.prototype = {
         case GRWWindow.requestSuccess:
             this.updateIcon('off');
             break;
-        case GRWWindow.hasnew:
+        case GRWWindow.loginFailed:
+            this.updateIcon('error');
+            this.updateTitle(GRWWindow.loginFailed);
+            break;
+        case GRWWindow.cookieError:
+            this.updateIcon('error');
+            this.updateTitle(GRWWindow.cookieError);
+            break;
+        case GRWWindow.unreadFound:
+            this.updateIcon('on');
+            this.updateCounter(args.elems.unreadSum);
             // add/update counter,
             // update tooltip: add grid
             // add menu items
             break;
         case GRWWindow.nonew:
+            this.updateIcon('off');
+            this.updateTitle(GRWWindow.nonew);
+            this.updateCounter(0);
             // remove/update counter,
             // update tooltip: must say no new feed found
             // remove feed menu items
             break;
         case GRWWindow.error:
+            this.updateIcon('error');
+            this.updateTitle(GRWWindow.error);
             // remove counter,
             // update tooltip: must say some error message
             // remove feed menu items
