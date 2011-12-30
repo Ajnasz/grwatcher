@@ -73,6 +73,7 @@ GetList.prototype = {
   },
   _fireUnreadAndSubscription: function () {
     if (this._subscriptionList && this._unreadCount && this._friendList) {
+      this.matchUnreadItems();
       this.fireEvent(unreadAndSubscriptionReceivedEvent,
         [this._subscriptionList, this._unreadCount, this._friendList]);
     } else if (!this._unreadCount) {
@@ -355,6 +356,7 @@ GetList.prototype = {
 
     this.fireEvent(itemsMatchedEvent, [unreads, this._unreadCount.max]);
     this.fireEvent(processFinishEvent);
+    this.setLastFeeds(this.matchedData.unreads);
   },
   setLastFeeds: function (feeds) {
     lastFeeds = feeds;
