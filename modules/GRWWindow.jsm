@@ -56,7 +56,26 @@ GRWWindow.prototype = {
     elements: ['GRW-toolbar-button', 'GRW-toolbar-label', 'GRW-statusbar'],
     generateMenu: function () {
     },
-    generateTooltip: function () {
+    generateTooltip: function (feeds, labels) {
+        Components.utils.import("resource://grwmodules/GrwTooltipGrid.jsm", scope);
+        var doc = this.doc, name, element, grid, elementContainer;
+        for (name in tooltipElements) {
+            if (tooltipElements.hasOwnProperty(name)) {
+                element = doc.getElementById(name);
+                if (element) {
+                    element.tooltip = tooltipElements[name].tooltipNewElement;
+
+                    elementContainer = doc.getElementById(tooltipElements[name].tooltipNewElement);
+                    while (elementContainer.firstChild) {
+                        elementContainer.removeChild(elementContainer.firstChild);
+                    }
+                    grid = new scope.GrwTooltipGrid(doc, feeds, labels, tooltipElements[name].tooltipNewElement).getGrid();
+                    elementContainer.appendChild(grid);
+                }
+            }
+        }
+        ['GRW-statusbar-tooltip-new', 'GRW-toolbar-tooltip-new'].forEach(function (elem) {
+        });
     },
     updateCounter: function (value) {
         var counterEnabled = scope.prefs.get.showCounter(),
@@ -130,7 +149,7 @@ GRWWindow.prototype = {
             }
         });
     },
-    updateTitle: function (type) {
+    updateTitle: function (type, args) {
         var name, tooltip;
         if (type !== GRWWindow.unreadFound) {
             for (name in tooltipElements) {
@@ -138,6 +157,8 @@ GRWWindow.prototype = {
                     this.doc.getElementById(name).tooltip = tooltipElements[name][type];
                 }
             }
+        } else {
+            this.generateTooltip(args.unreads, args.labels);
         }
     },
     notify: function (event, args) {
@@ -162,8 +183,9 @@ GRWWindow.prototype = {
             break;
         case GRWWindow.unreadFound:
             this.updateIcon('on');
-            this.updateTitle(GRWWindow.unreadFound);
+            this.updateTitle(GRWWindow.unreadFound, args);
             this.updateCounter(args.elems.unreadSum);
+            // l
             // add/update counter,
             // update tooltip: add grid
             // add menu items

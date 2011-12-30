@@ -73,7 +73,8 @@ var grwWindows = (function () {
                     that.notify([grwWindow.unreadFound, {
                         unreads: unreads,
                         max: max,
-                        elems: elems
+                        elems: elems,
+                        labels: getlist.getLabels()
                     }]);
                     notifier.show(elems.unreadSum, max);
                 } else {
@@ -112,7 +113,7 @@ var grwWindows = (function () {
             var i = 0, wl = this.windows.length, grwWin;
             for (; i < wl; i += 1) {
                 if (this.windows[i].win === win) {
-                    grwWin = this.windows.splice(i, 1);
+                    grwWin = this.windows.splice(i, 1)[0];
                     grwWin.destroy();
                 }
             }
