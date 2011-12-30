@@ -50,7 +50,7 @@
 
 	<!-- Toolbar Icon -->
   <toolbarpalette id="BrowserToolbarPalette">
-    <toolbaritem id="GRW-toolbaritem" insertbefore="print-button" type="menu-button" orient="horizontal" onmouseover="GRW.onToolbarButtonAdd(this)" label="Google Reader Watcher">
+    <toolbaritem id="GRW-toolbaritem" insertbefore="print-button" type="menu-button" orient="horizontal" label="Google Reader Watcher">
 
       <menupopup id="GRW-toolbar-menu" position="after_start">
         <!--

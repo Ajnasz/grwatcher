@@ -3,6 +3,7 @@ var customDefs = {
     1: 'click'
 };
 var scope = {};
+Components.utils.import("resource://grwmodules/grwlog.jsm", scope);
 Components.utils.import("resource://grwmodules/EventProvider.jsm", scope);
 Components.utils.import("resource://grwmodules/augment.jsm", scope);
 Components.utils.import("resource://grwmodules/IconClick.jsm", scope);
@@ -24,9 +25,11 @@ var GRWWindow = function (win, doc) {
 GRWWindow.hasnew = 'hasnew';
 GRWWindow.nonew = 'nonew';
 GRWWindow.error = 'error';
+GRWWindow.requestFailed = 'requestFailed';
+GRWWindow.requestStarted = 'requestStarted';
+GRWWindow.requestSuccess = 'requestSuccess';
 GRWWindow.prototype = {
-    updateIcon: function () {
-    },
+    elements: ['GRW-toolbar-button', 'GRW-toolbar-label', 'GRW-statusbar'],
     updateCounter: function () {
     },
     generateMenu: function () {
@@ -34,11 +37,63 @@ GRWWindow.prototype = {
     generateTooltip: function () {
     },
     handleClick: function (e) {
+        var name = '';
+        switch (e.button) {
+        case 0:
+            name = 'iconClick';
+            break;
+        case 1:
+            name = 'iconMiddleClick';
+            break;
+        }
+        if (name !== '') {
+            Components.utils.import("resource://grwmodules/prefs.jsm", scope);
+            if (customDefs[scope.prefs.get.leftClickOpen()] === e.type) {
+                this.fireEvent(name, [e.type, e]);
+            }
+        }
+    },
+    onDocClick: function () {
+        var that = this;
+        return function (e) {
+            var targetId = e.target.id;
+            if (that.elements.some(function (id) {
+                return id === targetId;
+            })) {
+                that.handleClick(e);
+            }
+        };
     },
     listenClicks: function () {
+        this.doc.addEventListener('click', this.onDocClick(), false);
+        this.doc.addEventListener('dblclick', this.onDocClick(), false);
+    },
+    updateIcon: function (status) {
+        var that = this;
+        Components.utils.import("resource://grwmodules/prefs.jsm", scope);
+        ['GRW-toolbar-button', 'GRW-statusbar'].forEach(function (elemId) {
+            var elem = that.doc.getElementById(elemId), classes;
+            scope.grwlog('updat elem: ' + elemId, elem, status);
+            if (elem) {
+                classes = elem.getAttribute('class').split(' ').filter(function (cl) {
+                    return cl !== '' && cl !== 'on' && cl !== 'off' && cl !== 'error' && cl !== 'load';
+                });
+                classes.push(status);
+                elem.setAttribute('class', classes.join(' '));
+            }
+        });
     },
     notify: function (event, args) {
         switch (event) {
+        case GRWWindow.requestFailed:
+            this.updateIcon('error');
+            break;
+        case GRWWindow.requestStarted:
+            this.updateIcon('load');
+            break;
+        case GRWWindow.requestSuccess:
+            this.updateIcon('off');
+            break;
         case GRWWindow.hasnew:
             // add/update counter,
             // update tooltip: add grid

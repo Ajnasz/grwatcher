@@ -122,6 +122,9 @@ var GRW = {};
   * initialization function
   */
   init = function () {
+    Components.utils.import("resource://grwmodules/GRWWindows.jsm", scope);
+    scope.grwWindows.add(window, doc);
+    return;
     Components.utils.import("resource://grwmodules/IconClick.jsm", scope);
     Components.utils.import("resource://grwmodules/TooltipHandler.jsm", scope);
     Components.utils.import("resource://grwmodules/OpenReader.jsm", scope);
