@@ -102,6 +102,7 @@ var grwWindows = (function () {
             var grwWin = new scope.GRWWindow(win, doc);
             grwWin.on('iconClick', function () {
                 scope.grwlog('grwwindows iconClick');
+                notifier.showNotification = true;
             });
             grwWin.on('iconMiddleClick', function () {
                 scope.grwlog('grwwindows iconMiddleClick');
