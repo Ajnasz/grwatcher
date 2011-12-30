@@ -4,6 +4,7 @@ var grwWindows = (function () {
         getter,
         getlist,
         requester,
+        notifier,
         GRWWindows;
 
     Components.utils.import("resource://grwmodules/grwlog.jsm", scope);
@@ -14,6 +15,8 @@ var grwWindows = (function () {
     Components.utils.import("resource://grwmodules/Requester.jsm", scope);
 
     Components.utils.import("resource://grwmodules/loginmanager.jsm", scope);
+
+    Components.utils.import("resource://grwmodules/Notifier.jsm", scope);
     /**
      * Job:
      *  register new windows
@@ -35,6 +38,7 @@ var grwWindows = (function () {
             if (!requester) {
                 getlist = scope.getList;
                 requester = new scope.Requester(getlist);
+                notifier = new scope.Notifier();
                 this.subscribeGetter();
                 this.subscribeLoginManager();
                 this.subscribeGetlist();
@@ -71,6 +75,7 @@ var grwWindows = (function () {
                         max: max,
                         elems: elems
                     }]);
+                    notifier.show(elems.unreadSum, max);
                 } else {
                     that.notify([grwWindow.nonew]);
                 }
