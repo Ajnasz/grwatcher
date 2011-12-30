@@ -66,6 +66,7 @@ xpi:
 		modules/siteLogin.jsm \
 		modules/GRWWindow.jsm \
 		modules/GRWWindows.jsm \
+		modules/stringBundles.jsm \
 		defaults/preferences/grwatcher.js \
 		chrome/ \
 		license.txt;
