@@ -5,6 +5,8 @@ var grwWindows = (function () {
         getlist,
         requester,
         notifier,
+        readerOpener,
+        markall,
         GRWWindows;
 
     Components.utils.import("resource://grwmodules/grwlog.jsm", scope);
@@ -17,6 +19,9 @@ var grwWindows = (function () {
     Components.utils.import("resource://grwmodules/loginmanager.jsm", scope);
 
     Components.utils.import("resource://grwmodules/Notifier.jsm", scope);
+
+    Components.utils.import("resource://grwmodules/OpenReader.jsm", scope);
+    Components.utils.import("resource://grwmodules/MarkAllAsRead.jsm", scope);
     /**
      * Job:
      *  register new windows
@@ -39,6 +44,8 @@ var grwWindows = (function () {
                 getlist = scope.getList;
                 requester = new scope.Requester(getlist);
                 notifier = new scope.Notifier();
+                readerOpener = new scope.OpenReader();
+                markall = new scope.MarkAllAsRead();
                 this.subscribeGetter();
                 this.subscribeLoginManager();
                 this.subscribeGetlist();
@@ -102,11 +109,40 @@ var grwWindows = (function () {
             var grwWin = new scope.GRWWindow(win, doc);
             grwWin.on('iconClick', function () {
                 scope.grwlog('grwwindows iconClick');
+                readerOpener.open();
                 notifier.showNotification = true;
             });
             grwWin.on('iconMiddleClick', function () {
                 scope.grwlog('grwwindows iconMiddleClick');
                 requester.updater();
+            });
+            grwWin.on('command', function (target) {
+                var id = target.getAttribute('id');
+                switch (id) {
+                case 'GRW-toolbar-menuitem-openreader':
+                case 'GRW-statusbar-menuitem-openreader':
+                    readerOpener.open();
+                    break;
+                case 'GRW-statusbar-menuitem-markallasread':
+                case 'GRW-toolbar-menuitem-markallasread':
+                    markall.mark();
+                    break;
+                case 'GRW-statusbar-menuitem-getcounter':
+                case 'GRW-toolbar-menuitem-getcounter':
+                    requester.updater();
+                    break;
+                case 'GRW-statusbar-menuitem-openprefs':
+                case 'GRW-toolbar-menuitem-openprefs':
+                    scope.grwlog('Open prefs');
+                    Components.classes["@mozilla.org/embedcomp/window-watcher;1"]
+                                      .getService(Components.interfaces.nsIWindowWatcher)
+                      .openWindow(null, "chrome://grwatcher/content/grprefs.xul", "GRWatcher",
+                                  "chrome,centerscreen", null);
+                    break;
+                }
+                if (target.getAttribute('url')) {
+                    readerOpener.open(target.getAttribute('url'));
+                }
             });
             this.windows.push(grwWin);
         },

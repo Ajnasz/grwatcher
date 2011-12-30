@@ -45,7 +45,9 @@ var GRWWindow = function (win, doc) {
     this.win = win;
     this.doc = doc;
     this.listenClicks();
+    this.subscribeToMenuCommand();
 };
+
 GRWWindow.unreadFound = 'unreadFound';
 GRWWindow.nonew = 'nonew';
 GRWWindow.error = 'error';
@@ -56,19 +58,41 @@ GRWWindow.requestSuccess = 'requestSuccess';
 
 GRWWindow.loginFailed = 'loginFailed';
 GRWWindow.cookieError = 'cookieError';
+
 GRWWindow.prototype = {
     elements: ['GRW-toolbar-button', 'GRW-toolbar-label', 'GRW-statusbar'],
+    subscribeToMenuCommand: function () {
+        var doc = this.doc,
+            that = this;
+        ['GRW-statusbar-menu', 'GRW-toolbar-menu'].forEach(function (elem) {
+            var element = doc.getElementById(elem);
+            if (element) {
+                element.addEventListener('command', function (e) {
+                    that.fireEvent('command', e.target);
+                }, false);
+            }
+        });
+    },
     generateMenu: function (feeds, labels) {
         Components.utils.import("resource://grwmodules/grwMenu.jsm", scope);
         var doc = this.doc,
-            name, menu, conf, openReader = {}, element;
+            name, menu, conf, element;
+        if (this.menus) {
+            this.menus.forEach(function (menu) {
+                menu.unsubscribeAll();
+                menu = null;
+            });
+            this.menus = null;
+        }
+        this.menus = [];
         for (name in tooltipElements) {
             if (tooltipElements.hasOwnProperty(name)) {
                 element = doc.getElementById(name);
                 if (element) {
                     conf = tooltipElements[name];
                     menu = new scope.GrwMenu(this.win, feeds, labels,
-                              conf.menuItem, openReader, conf.barname);
+                              conf.menuItem, conf.barname);
+                    this.menus.push(menu);
                 }
             }
         }
@@ -159,6 +183,7 @@ GRWWindow.prototype = {
             scope.grwlog('updat elem: ' + elemId, elem, status);
             if (elem) {
                 classes = elem.getAttribute('class').split(' ').filter(function (cl) {
+                    // remove empty classes and the current status class
                     return cl !== '' && cl !== 'on' && cl !== 'off' && cl !== 'error' && cl !== 'load';
                 });
                 classes.push(status);

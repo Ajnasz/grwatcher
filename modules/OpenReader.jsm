@@ -24,9 +24,7 @@ var getOpenedGR = function (gBrowser) {
   return outObj;
 };
 
-var OpenReader = function (loginManager) {
-  this.loginManager = loginManager;
-};
+var OpenReader = function () {};
 OpenReader.prototype = {
   gBrowser: function () {
     var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"]
@@ -121,20 +119,6 @@ OpenReader.prototype = {
     } else {
       this._open(subUrl);
     }
-    /*
-    if (false && scope.prefs.get.forceLogin()) {
-      var _this = this;
-      if (false && this.loginManager) {
-        this.loginManager.logIn(function () {
-          _this._open(subUrl);
-        });
-      } else {
-        this._open(subUrl);
-      }
-    } else {
-      this._open(subUrl);
-    }
-    */
   }
 };
 Components.utils.import("resource://grwmodules/augment.jsm", scope);

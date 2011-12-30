@@ -11,7 +11,7 @@ menuItemFixRexes = {
     duplicateChars: /_+/g
 };
 var scope = {}, GrwMenu;
-GrwMenu = function (win, feeds, labels, menu, openReader, barname) {
+GrwMenu = function (win, feeds, labels, menu, barname) {
   var doc = win.document, strings;
   this.barname = barname;
   this.window = win;
@@ -21,7 +21,6 @@ GrwMenu = function (win, feeds, labels, menu, openReader, barname) {
   this.labels = labels;
   strings = this.document.getElementById('grwatcher-strings');
   this.peopleYouFollow = strings.getString('peopleyoufollowtitle');
-  this.openReader = openReader;
   this.initEvents();
   this.init();
 };
@@ -194,9 +193,10 @@ GrwMenu.prototype = {
     var itemTitle = this.getTitle(item),
         itemCount = item.count,
         doc = this.document,
-        menuitem,
         classes = ['feed'],
-        openReader = this.openReader;
+        openReader = this.openReader,
+        that = this,
+        menuitem;
 
     menuitem = this.genMenuItem(itemCount + ' ' + itemTitle,
       'GRW-menuitem-' + item.id, classes, item.id);
@@ -204,12 +204,6 @@ GrwMenu.prototype = {
       classes.push('tag');
       menuitem.setAttribute('class', 'tag');
     }
-    menuitem.addEventListener('command', function () {
-      var href = this.getAttribute('url');
-      if (typeof href !== 'undefined' && href !== 'undefined') {
-        openReader.open(href);
-      }
-    }, false);
     return menuitem;
   },
   clearItems: function () {

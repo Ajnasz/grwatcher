@@ -61,9 +61,9 @@ Notifier.prototype = {
       } else {
         showval = unreadCount;
       }
-      if (scope.grwStringBundles) {
+      if (scope.grwBundles) {
         // it doesn't work in fennec yet
-        this.notificationWin(scope.grwStringBundles.getFormattedString('notifierMSG', [showval]));
+        this.notificationWin(scope.grwBundles.getFormattedString('notifierMSG', [showval]));
       } else {
         this.notificationWin('You have ' + showval + ' unread feeds');
       }

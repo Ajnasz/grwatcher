@@ -27,6 +27,14 @@ EventProvider.prototype = {
         Components.utils.reportError(err);
       }
     }
+  },
+  unsubscribeAll: function () {
+    for (var i in this._subscribers) {
+      if (this._subscribers.hasOwnProperty(i)) {
+        delete this._subscribers[i];
+      }
+    }
+    this._subscribers = {};
   }
 };
 let EXPORTED_SYMBOLS = ['EventProvider'];

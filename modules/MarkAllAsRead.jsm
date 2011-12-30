@@ -1,17 +1,19 @@
 /*jslint indent: 2*/
 /*global Components:true*/
 var scope = {};
-var MarkAllAsRead = function (doc) {
-  this.doc = doc;
-};
+var MarkAllAsRead = function () {};
 MarkAllAsRead.prototype = {
   mark: function () {
     var _this = this,
-        strings = this.doc.getElementById('grwatcher-strings'),
         prompts = Components.classes["@mozilla.org/embedcomp/prompt-service;1"]
                     .getService(Components.interfaces.nsIPromptService);
 
-    if (prompts.confirm(null, '', strings.getString('confirmmarkallasread'))) {
+    Components.utils.import("resource://grwmodules/grwlog.jsm", scope);
+    Components.utils.import("resource://grwmodules/stringBundles.jsm", scope);
+    scope.grwlog(scope.grwBundles)
+    scope.grwlog(scope.grwBundles.getFormattedString)
+
+    if (prompts.confirm(null, '', scope.grwBundles.getFormattedString('confirmmarkallasread', []))) {
       _this._markAsRead();
     }
   },
