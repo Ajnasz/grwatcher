@@ -130,10 +130,21 @@ GRWWindow.prototype = {
             }
         });
     },
+    updateTitle: function (type) {
+        var name, tooltip;
+        if (type !== GRWWindow.unreadFound) {
+            for (name in tooltipElements) {
+                if (tooltipElements.hasOwnProperty(name)) {
+                    this.doc.getElementById(name).tooltip = tooltipElements[name][type];
+                }
+            }
+        }
+    },
     notify: function (event, args) {
         switch (event) {
         case GRWWindow.requestFailed:
             this.updateIcon('error');
+            this.updateTitle(GRWWindow.error);
             break;
         case GRWWindow.requestStarted:
             this.updateIcon('load');
@@ -151,6 +162,7 @@ GRWWindow.prototype = {
             break;
         case GRWWindow.unreadFound:
             this.updateIcon('on');
+            this.updateTitle(GRWWindow.unreadFound);
             this.updateCounter(args.elems.unreadSum);
             // add/update counter,
             // update tooltip: add grid
