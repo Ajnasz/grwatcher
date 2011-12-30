@@ -64,6 +64,8 @@ xpi:
 		modules/iconCounter.jsm \
 		modules/httpConnect.jsm \
 		modules/siteLogin.jsm \
+		modules/GRWWindow.jsm \
+		modules/GRWWindows.jsm \
 		defaults/preferences/grwatcher.js \
 		chrome/ \
 		license.txt;

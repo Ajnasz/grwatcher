@@ -383,9 +383,13 @@ var GRW = {};
     } else {
       showUnreadNotifications();
     }
+    Components.utils.import("resource://grwmodules/GRWWindows.jsm", scope);
+    scope.grwWindows.add(window, doc);
   };
   window.addEventListener('load', init, false);
   window.addEventListener('unload', function (event) {
+    Components.utils.import("resource://grwmodules/GRWWindows.jsm", scope);
+    scope.grwWindows.remove(window);
     this.removeEventListener('load', init, false);
   }, false);
 }(GRW));
