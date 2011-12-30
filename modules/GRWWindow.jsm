@@ -11,7 +11,9 @@ var tooltipElements = {
         nonew: 'GRW-statusbar-tooltip-nonew',
         cookieError: 'GRW-statusbar-tooltip-cookieerror',
         networkError: 'GRW-statusbar-tooltip-networkerror',
-        logionFailed: 'GRW-statusbar-tooltip-loginerror'
+        logionFailed: 'GRW-statusbar-tooltip-loginerror',
+        menuItem: 'GRW-statusbar-menu',
+        barname: 'statusbar'
     },
     'GRW-toolbar-button': {
         tooltipNewElement: 'GRW-toolbar-tooltip-new',
@@ -19,7 +21,9 @@ var tooltipElements = {
         nonew: 'GRW-toolbar-tooltip-nonew',
         cookieError: 'GRW-toolbar-tooltip-cookieerror',
         networkError: 'GRW-toolbar-tooltip-networkerror',
-        loginFailed: 'GRW-toolbar-tooltip-loginerror'
+        loginFailed: 'GRW-toolbar-tooltip-loginerror',
+        menuItem: 'GRW-toolbar-menu',
+        barname: 'toolbar'
     }
 };
 
@@ -54,7 +58,20 @@ GRWWindow.loginFailed = 'loginFailed';
 GRWWindow.cookieError = 'cookieError';
 GRWWindow.prototype = {
     elements: ['GRW-toolbar-button', 'GRW-toolbar-label', 'GRW-statusbar'],
-    generateMenu: function () {
+    generateMenu: function (feeds, labels) {
+        Components.utils.import("resource://grwmodules/grwMenu.jsm", scope);
+        var doc = this.doc,
+            name, menu, conf, openReader = {}, element;
+        for (name in tooltipElements) {
+            if (tooltipElements.hasOwnProperty(name)) {
+                element = doc.getElementById(name);
+                if (element) {
+                    conf = tooltipElements[name];
+                    menu = new scope.GrwMenu(this.win, feeds, labels,
+                              conf.menuItem, openReader, conf.barname);
+                }
+            }
+        }
     },
     generateTooltip: function (feeds, labels) {
         Components.utils.import("resource://grwmodules/GrwTooltipGrid.jsm", scope);
@@ -159,6 +176,7 @@ GRWWindow.prototype = {
             }
         } else {
             this.generateTooltip(args.unreads, args.labels);
+            this.generateMenu(args.unreads, args.labels);
         }
     },
     notify: function (event, args) {
