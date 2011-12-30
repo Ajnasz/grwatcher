@@ -53,17 +53,17 @@ Notifier.prototype = {
   },
   show: function (unreadCount, maxcount) {
     if (this.showNotification && unreadCount > 0) {
-      var showval,
-        strings = this.doc.getElementById('grwatcher-strings');
+      var showval;
       Components.utils.import("resource://grwmodules/prefs.jsm", scope);
+      Components.utils.import("resource://grwmodules/stringBundles.jsm", scope);
       if (scope.prefs.get.maximizeCounter() && maxcount && unreadCount > maxcount) {
         showval = maxcount + '+';
       } else {
         showval = unreadCount;
       }
-      if (strings) {
+      if (scope.grwStringBundles) {
         // it doesn't work in fennec yet
-        this.notificationWin(strings.getFormattedString('notifierMSG', [showval]));
+        this.notificationWin(scope.grwStringBundles.getFormattedString('notifierMSG', [showval]));
       } else {
         this.notificationWin('You have ' + showval + ' unread feeds');
       }
