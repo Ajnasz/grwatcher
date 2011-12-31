@@ -91,26 +91,28 @@ var grwWindows = (function () {
                 that.notify([grwWindow.requestSuccess]);
             });
         },
-        subscribeGetlist: function () {
-            var that = this,
+        onItemsMatched: function () {
+            var unreads = getlist.matchedData.unreads,
+                max = getlist.matchedData.max,
+                elems = getlist._unreadCount,
                 grwWindow = scope.GRWWindow;
-            getlist.on('itemsMatchedEvent', function () {
-                var unreads = getlist.matchedData.unreads,
-                    max = getlist.matchedData.max,
-                    elems = getlist._unreadCount;
 
-                scope.grwlog('items matched: ', elems.unreadSum);
-                if (elems.unreadSum > 0) {
-                    that.notify([grwWindow.unreadFound, {
-                        unreads: unreads,
-                        max: max,
-                        elems: elems,
-                        labels: getlist.getLabels()
-                    }]);
-                    notifier.show(elems.unreadSum, max);
-                } else {
-                    that.notify([grwWindow.nonew]);
-                }
+            if (elems.unreadSum > 0) {
+                this.notify([grwWindow.unreadFound, {
+                    unreads: unreads,
+                    max: max,
+                    elems: elems,
+                    labels: getlist.getLabels()
+                }]);
+                notifier.show(elems.unreadSum, max);
+            } else {
+                this.notify([grwWindow.nonew]);
+            }
+        },
+        subscribeGetlist: function () {
+            var that = this;
+            getlist.on('itemsMatchedEvent', function () {
+                that.onItemsMatched();
             });
         },
         subscribeLoginManager: function () {
