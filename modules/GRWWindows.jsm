@@ -65,7 +65,13 @@ var grwWindows = (function () {
                 this.subscribeLoginManager();
                 this.subscribeGetlist();
                 this.subscribeOpener();
+                this.subscribeNotifier();
             }
+        },
+        subscribeNotifier: function () {
+            notifier.on('notifierClicked', function () {
+                readerOpener.open();
+            });
         },
         subscribeOpener: function () {
             var that = this,
