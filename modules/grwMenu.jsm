@@ -28,44 +28,30 @@ GrwMenu.prototype = {
   init: function () {
     this.clearItems();
     Components.utils.import("resource://grwmodules/prefs.jsm", scope);
-    if (scope.prefs.get.showitemsincontextmenu()) {
-      var menu = this.menu,
-          firstMenuItem,
-          peopleYouFollow = this.peopleYouFollow,
-          isBottom = this.getPosition() === iconPositions.bottom,
-          isStatusbar = this.isStatusbar(),
-          _this = this,
-          labelRows, controlRows, sortedLabels, insert, insertBefore, insertAfter;
 
-      if (menu) {
-        firstMenuItem = menu.firstChild;
+    var menu = this.menu,
+        peopleYouFollow = this.peopleYouFollow,
+        isBottom = this.getPosition() === iconPositions.bottom,
+        isStatusbar = this.isStatusbar(),
+        labelRows, controlRows, sortedLabels;
+
+    if (menu) {
+      controlRows = this.genControlRows();
+
+      if (scope.prefs.get.showitemsincontextmenu()) {
         sortedLabels = scope.prefs.get.sortByLabels();
         labelRows = this.genRowItems(this.feeds, sortedLabels, peopleYouFollow);
-        controlRows = this.genControlRows(isBottom, isStatusbar);
-        insertBefore = function (item) {
-          _this.insertBefore(item);
-        };
-        insertAfter = function (item) {
-          _this.insertAfter(item);
-        };
-        if (isBottom || isStatusbar) {
-          insert = insertBefore;
-        } else {
-          insert = insertAfter;
-        }
-        controlRows.forEach(insertBefore);
         if (labelRows) {
-          insert(this.genMenuSeparator());
-          labelRows.forEach(insert, this);
+          controlRows.push(this.genMenuSeparator());
+          controlRows = controlRows.concat(labelRows);
         }
       }
-      /*
-      if (this.feeds && this.feeds.length) {
-        this.showMenuSeparator();
-      } else {
-        this.hideMenuSeparator();
+      if (isBottom || isStatusbar) {
+        controlRows.reverse();
       }
-      */
+      controlRows.forEach(function (item) {
+        this.insertAfter(item);
+      }, this);
     }
   },
   genMenuSeparator: function () {
@@ -73,31 +59,28 @@ GrwMenu.prototype = {
     element.setAttribute('id', 'GRW-' + this.barname + '-menuseparator');
     return element;
   },
-  genControlRows: function (isBottom, isStatusbar) {
+  genControlRows: function () {
     var strings = this.document.getElementById('grwatcher-strings'),
         conf = [
         {
-          label: strings.getString('toolbarpopupmarkallasread'),
-          id: 'GRW-' + this.barname + '-menuitem-markallasread'
-        },
-        {
-          label: strings.getString('toolbarpopupopenreader'),
-          id: 'GRW-' + this.barname + '-menuitem-openreader'
+          label: strings.getString('toolbarpopupgetreadcounter'),
+          id: 'GRW-' + this.barname + '-menuitem-getcounter'
         },
         {
           label: strings.getString('toolbarpopupopenprefs'),
           id: 'GRW-' + this.barname + '-menuitem-openprefs'
         },
         {
-          label: strings.getString('toolbarpopupgetreadcounter'),
-          id: 'GRW-' + this.barname + '-menuitem-getcounter'
+          label: strings.getString('toolbarpopupopenreader'),
+          id: 'GRW-' + this.barname + '-menuitem-openreader'
+        },
+        {
+          label: strings.getString('toolbarpopupmarkallasread'),
+          id: 'GRW-' + this.barname + '-menuitem-markallasread'
         }
       ],
       _this = this,
       rows = [];
-    if (isBottom || isStatusbar) {
-      conf.reverse();
-    }
     conf.forEach(function (item) {
       rows.push(_this.genMenuItem(item.label, item.id));
     });
@@ -113,18 +96,6 @@ GrwMenu.prototype = {
       });
     } else {
       menu.appendChild(item);
-    }
-  },
-  insertBefore: function (item) {
-    var menu = this.menu,
-        firstMenuItem = menu.firstChild;
-
-    if (item.rows) {
-      item.rows.forEach(function (row) {
-        menu.insertBefore(row, firstMenuItem);
-      });
-    } else {
-      menu.insertBefore(item, firstMenuItem);
     }
   },
   isStatusbar: function () {
