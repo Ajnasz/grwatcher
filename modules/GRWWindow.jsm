@@ -225,6 +225,7 @@ GRWWindow.prototype = {
             this.updateIcon('load');
             break;
         case GRWWindow.requestSuccess:
+        case GRWWindow.readerOpened:
             this.updateIcon('off');
             break;
         case GRWWindow.loginFailed:

@@ -72,12 +72,12 @@ var grwWindows = (function () {
                 grwWindow = scope.GRWWindow;
             readerOpener.on('startOpen', function () {
                 scope.grwlog('reader start open');
-                that.notify(grwWindow.startReaderOpen);
+                that.notify([grwWindow.startReaderOpen]);
             });
             readerOpener.on('readerOpened', function () {
                 scope.grwlog('reader opened');
-                that.notify(grwWindow.readerOpened);
                 notifier.showNotification = true;
+                that.notify([grwWindow.readerOpened]);
             });
         },
         subscribeGetter: function () {
