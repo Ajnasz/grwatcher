@@ -65,6 +65,13 @@ GRWWindow.cookieError = 'cookieError';
 GRWWindow.startReaderOpen = 'startReaderOpen';
 GRWWindow.readerOpened = 'readerOpened';
 
+GRWWindow.iconClasses = {
+    load: 'load',
+    on: 'on',
+    off: 'off',
+    error: 'error'
+};
+
 GRWWindow.prototype = {
     elements: ['GRW-toolbar-button', 'GRW-toolbar-label', 'GRW-statusbar'],
     subscribeToMenuCommand: function () {
@@ -123,8 +130,6 @@ GRWWindow.prototype = {
                 }
             }
         }
-        ['GRW-statusbar-tooltip-new', 'GRW-toolbar-tooltip-new'].forEach(function (elem) {
-        });
     },
     resetCounter: function () {
         this.updateCounter(0, 0);
@@ -192,14 +197,19 @@ GRWWindow.prototype = {
         this.doc.addEventListener('dblclick', this.onDocClick(), false);
     },
     updateIcon: function (status) {
-        var that = this;
+        var that = this,
+            iconClasses = GRWWindow.iconClasses;
         ['GRW-toolbar-button', 'GRW-statusbar'].forEach(function (elemId) {
             var elem = that.doc.getElementById(elemId), classes;
             scope.grwlog('updat elem: ' + elemId, elem, status);
             if (elem) {
                 classes = elem.getAttribute('class').split(' ').filter(function (cl) {
                     // remove empty classes and the current status class
-                    return cl !== '' && cl !== 'on' && cl !== 'off' && cl !== 'error' && cl !== 'load';
+                    return cl !== '' &&
+                            cl !== iconClasses.on &&
+                            cl !== iconClasses.off &&
+                            cl !== iconClasses.error &&
+                            cl !== iconClasses.load;
                 });
                 classes.push(status);
                 elem.setAttribute('class', classes.join(' '));
@@ -223,62 +233,72 @@ GRWWindow.prototype = {
     },
     notify: function (event, args) {
         switch (event) {
+
         case GRWWindow.requestFailed:
             this.updateIcon('error');
             this.updateTitle(GRWWindow.error);
             break;
+
         case GRWWindow.requestStarted:
         case GRWWindow.startReaderOpen:
             this.updateIcon('load');
             break;
+
         case GRWWindow.readerOpened:
             this.updateIcon('off');
             if (scope.prefs.get.resetCounter()) {
                 this.resetCounter();
             }
             break;
+
         case GRWWindow.requestSuccess:
             this.updateIcon('off');
             break;
+
         case GRWWindow.loginFailed:
             this.updateIcon('error');
             this.updateTitle(GRWWindow.loginFailed);
             break;
+
         case GRWWindow.cookieError:
             this.updateIcon('error');
             this.updateTitle(GRWWindow.cookieError);
             break;
+
         case GRWWindow.unreadFound:
+            // add/update counter,
+            // update tooltip: add grid
+            // add menu items
             this.updateIcon('on');
             this.updateTitle(GRWWindow.unreadFound, args);
             this.generateMenu(args.unreads, args.labels);
             this.updateCounter(args.elems.unreadSum, args.max);
-            // l
-            // add/update counter,
-            // update tooltip: add grid
-            // add menu items
             break;
+
         case GRWWindow.nonew:
+            // remove/update counter,
+            // update tooltip: must say no new feed found
+            // remove feed menu items
             this.updateIcon('off');
             this.updateTitle(GRWWindow.nonew);
             this.generateMenu(0, 0);
             this.updateCounter(0);
-            // remove/update counter,
-            // update tooltip: must say no new feed found
-            // remove feed menu items
             break;
+
         case GRWWindow.error:
-            this.updateIcon('error');
-            this.updateTitle(GRWWindow.error);
             // remove counter,
             // update tooltip: must say some error message
             // remove feed menu items
+            this.updateIcon('error');
+            this.updateTitle(GRWWindow.error);
             break;
         }
     },
     destroy: function () {
+        this.unsubscribeAll();
         this.doc = null;
         this.win = null;
+        this.menus = null;
         delete this.win;
         delete this.doc;
     }
