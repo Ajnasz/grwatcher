@@ -42,9 +42,9 @@ Components.utils.import("resource://grwmodules/prefs.jsm", scope);
  *        check for unread feeds
  *        open window
  */
-var GRWWindow = function (win, doc) {
+var GRWWindow = function (win) {
     this.win = win;
-    this.doc = doc;
+    this.doc = this.win.document;
     this.listenClicks();
     this.subscribeToMenuCommand();
 };
