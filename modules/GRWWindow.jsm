@@ -122,11 +122,17 @@ GRWWindow.prototype = {
         ['GRW-statusbar-tooltip-new', 'GRW-toolbar-tooltip-new'].forEach(function (elem) {
         });
     },
-    updateCounter: function (value) {
+    updateCounter: function (value, maxcount) {
         var counterEnabled = scope.prefs.get.showCounter(),
             showZeroCounter = scope.prefs.get.showZeroCounter(),
-            doc = this.doc;
+            doc = this.doc,
+            showval;
 
+        if (scope.prefs.get.maximizeCounter() && maxcount && value > maxcount) {
+            showval = maxcount + '+';
+        } else {
+            showval = value;
+        }
         ['GRW-statusbar-label', 'GRW-toolbar-label'].forEach(function (elemId) {
             var elem = doc.getElementById(elemId);
             if (elem) {
@@ -138,7 +144,7 @@ GRWWindow.prototype = {
                 elem.collapsed = true;
 
                 if (value > 0 || showZeroCounter) {
-                    elem.value = value;
+                    elem.value = showval;
                     elem.crop = '';
                     elem.style.margin = '';
                     elem.style.width = '';
@@ -232,7 +238,7 @@ GRWWindow.prototype = {
         case GRWWindow.unreadFound:
             this.updateIcon('on');
             this.updateTitle(GRWWindow.unreadFound, args);
-            this.updateCounter(args.elems.unreadSum);
+            this.updateCounter(args.elems.unreadSum, args.max);
             // l
             // add/update counter,
             // update tooltip: add grid
