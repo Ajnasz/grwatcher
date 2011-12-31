@@ -64,7 +64,21 @@ var grwWindows = (function () {
                 this.subscribeGetter();
                 this.subscribeLoginManager();
                 this.subscribeGetlist();
+                this.subscribeOpener();
             }
+        },
+        subscribeOpener: function () {
+            var that = this,
+                grwWindow = scope.GRWWindow;
+            readerOpener.on('startOpen', function () {
+                scope.grwlog('reader start open');
+                that.notify(grwWindow.startReaderOpen);
+            });
+            readerOpener.on('readerOpened', function () {
+                scope.grwlog('reader opened');
+                that.notify(grwWindow.readerOpened);
+                notifier.showNotification = true;
+            });
         },
         subscribeGetter: function () {
             var that = this,
@@ -125,7 +139,6 @@ var grwWindows = (function () {
             grwWin.on('iconClick', function () {
                 scope.grwlog('grwwindows iconClick');
                 readerOpener.open();
-                notifier.showNotification = true;
             });
             grwWin.on('iconMiddleClick', function () {
                 scope.grwlog('grwwindows iconMiddleClick');

@@ -50,6 +50,7 @@ var GRWWindow = function (win, doc) {
 
 GRWWindow.unreadFound = 'unreadFound';
 GRWWindow.nonew = 'nonew';
+GRWWindow.load = 'load';
 GRWWindow.error = 'error';
 
 GRWWindow.requestFailed = 'requestFailed';
@@ -58,6 +59,9 @@ GRWWindow.requestSuccess = 'requestSuccess';
 
 GRWWindow.loginFailed = 'loginFailed';
 GRWWindow.cookieError = 'cookieError';
+
+GRWWindow.startReaderOpen = 'startReaderOpen';
+GRWWindow.readerOpened = 'readerOpened';
 
 GRWWindow.prototype = {
     elements: ['GRW-toolbar-button', 'GRW-toolbar-label', 'GRW-statusbar'],
@@ -211,6 +215,7 @@ GRWWindow.prototype = {
             this.updateTitle(GRWWindow.error);
             break;
         case GRWWindow.requestStarted:
+        case GRWWindow.startReaderOpen:
             this.updateIcon('load');
             break;
         case GRWWindow.requestSuccess:
