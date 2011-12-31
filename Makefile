@@ -29,7 +29,6 @@ xpi:
 	@zip -r -q -MM $(PROJECT_NAME)_$(VERSION).xpi \
 		chrome.manifest \
 		install.rdf \
-		modules/tooltip.jsm \
 		modules/JSON.jsm \
 		modules/augment.jsm \
 		modules/generateUri.jsm \
@@ -38,11 +37,6 @@ xpi:
 		modules/timer.jsm \
 		modules/getter.jsm \
 		modules/mapwindows.jsm \
-		modules/activegrw.jsm \
-		modules/StatusIcon.jsm \
-		modules/GrwCookie.jsm \
-		modules/IconClick.jsm \
-		modules/TooltipHandler.jsm \
 		modules/passManager.jsm \
 		modules/MenuClick.jsm \
 		modules/EventProvider.jsm \

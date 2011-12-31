@@ -30,7 +30,6 @@ var tooltipElements = {
 Components.utils.import("resource://grwmodules/grwlog.jsm", scope);
 Components.utils.import("resource://grwmodules/EventProvider.jsm", scope);
 Components.utils.import("resource://grwmodules/augment.jsm", scope);
-Components.utils.import("resource://grwmodules/IconClick.jsm", scope);
 Components.utils.import("resource://grwmodules/prefs.jsm", scope);
 /**
  * Job: Update UI:
