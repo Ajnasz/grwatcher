@@ -55,7 +55,6 @@ xpi:
 		modules/loginmanager.jsm \
 		modules/grwMenu.jsm \
 		modules/GrwTooltipGrid.jsm \
-		modules/iconCounter.jsm \
 		modules/httpConnect.jsm \
 		modules/siteLogin.jsm \
 		modules/GRWWindow.jsm \
