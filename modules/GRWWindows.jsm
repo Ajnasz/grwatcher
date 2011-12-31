@@ -37,8 +37,23 @@ var grwWindows = (function () {
     GRWWindows = function () {
         scope.grwlog('initialize grwwindows');
         this.windows = [];
+        Components.utils.import("resource://grwmodules/timer.jsm", scope);
+        Components.utils.import("resource://grwmodules/prefs.jsm", scope);
     };
     GRWWindows.prototype = {
+        start: function () {
+            if (!this.started) {
+                var delay = scope.prefs.get.delayStart(),
+                    minDelay = 300;
+                delay = delay > minDelay ? delay : minDelay;
+                scope.later(function () {
+                    // must set to uninitialized
+                    requester.getlist._initialized = false;
+                    requester.start();
+                }, delay);
+                this.started = true;
+            }
+        },
         initRequesters: function () {
             if (!requester) {
                 getlist = scope.getList;
@@ -145,6 +160,7 @@ var grwWindows = (function () {
                 }
             });
             this.windows.push(grwWin);
+            this.start();
         },
         remove: function (win) {
             var i = 0, wl = this.windows.length, grwWin;
