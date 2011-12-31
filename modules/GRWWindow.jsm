@@ -47,6 +47,7 @@ var GRWWindow = function (win) {
     this.doc = this.win.document;
     this.listenClicks();
     this.subscribeToMenuCommand();
+    this.generateMenu(0, 0);
 };
 
 GRWWindow.unreadFound = 'unreadFound';
@@ -218,7 +219,6 @@ GRWWindow.prototype = {
             }
         } else {
             this.generateTooltip(args.unreads, args.labels);
-            this.generateMenu(args.unreads, args.labels);
         }
     },
     notify: function (event, args) {
@@ -251,6 +251,7 @@ GRWWindow.prototype = {
         case GRWWindow.unreadFound:
             this.updateIcon('on');
             this.updateTitle(GRWWindow.unreadFound, args);
+            this.generateMenu(args.unreads, args.labels);
             this.updateCounter(args.elems.unreadSum, args.max);
             // l
             // add/update counter,
@@ -260,6 +261,7 @@ GRWWindow.prototype = {
         case GRWWindow.nonew:
             this.updateIcon('off');
             this.updateTitle(GRWWindow.nonew);
+            this.generateMenu(0, 0);
             this.updateCounter(0);
             // remove/update counter,
             // update tooltip: must say no new feed found
