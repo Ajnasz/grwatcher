@@ -71,11 +71,9 @@ var grwWindows = (function () {
             var that = this,
                 grwWindow = scope.GRWWindow;
             readerOpener.on('startOpen', function () {
-                scope.grwlog('reader start open');
                 that.notify([grwWindow.startReaderOpen]);
             });
             readerOpener.on('readerOpened', function () {
-                scope.grwlog('reader opened');
                 notifier.showNotification = true;
                 that.notify([grwWindow.readerOpened]);
             });
@@ -84,15 +82,12 @@ var grwWindows = (function () {
             var that = this,
                 grwWindow = scope.GRWWindow;
             scope.getter.onRequestFailed.subscribe(function () {
-                scope.grwlog('on request failed');
                 that.notify([grwWindow.requestFailed]);
             });
             scope.getter.onStartRequest.subscribe(function () {
-                scope.grwlog('on start request', grwWindow.requestStarted);
                 that.notify([grwWindow.requestStarted]);
             });
             scope.getter.onRequestSuccess.subscribe(function () {
-                scope.grwlog('on request success');
                 that.notify([grwWindow.requestSuccess]);
             });
         },
@@ -137,11 +132,9 @@ var grwWindows = (function () {
             this.initRequesters();
             var grwWin = new scope.GRWWindow(win, doc);
             grwWin.on('iconClick', function () {
-                scope.grwlog('grwwindows iconClick');
                 readerOpener.open();
             });
             grwWin.on('iconMiddleClick', function () {
-                scope.grwlog('grwwindows iconMiddleClick');
                 requester.updater();
             });
             grwWin.on('command', function (target) {
@@ -161,7 +154,6 @@ var grwWindows = (function () {
                     break;
                 case 'GRW-statusbar-menuitem-openprefs':
                 case 'GRW-toolbar-menuitem-openprefs':
-                    scope.grwlog('Open prefs');
                     Components.classes["@mozilla.org/embedcomp/window-watcher;1"]
                                       .getService(Components.interfaces.nsIWindowWatcher)
                       .openWindow(null, "chrome://grwatcher/content/grprefs.xul", "GRWatcher",
