@@ -206,11 +206,14 @@ GRWWindow.prototype = {
         });
     },
     updateTitle: function (type, args) {
-        var name, tooltip;
+        var name, element;
         if (type !== GRWWindow.unreadFound) {
             for (name in tooltipElements) {
                 if (tooltipElements.hasOwnProperty(name)) {
-                    this.doc.getElementById(name).tooltip = tooltipElements[name][type];
+                    element = this.doc.getElementById(name);
+                    if (element) {
+                        element.tooltip = tooltipElements[name][type];
+                    }
                 }
             }
         } else {
