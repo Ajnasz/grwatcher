@@ -115,8 +115,10 @@ GRWWindow.prototype = {
                     while (elementContainer.firstChild) {
                         elementContainer.removeChild(elementContainer.firstChild);
                     }
-                    grid = new scope.GrwTooltipGrid(doc, feeds, labels, tooltipElements[name].tooltipNewElement).getGrid();
-                    elementContainer.appendChild(grid);
+                    if (scope.prefs.get.showitemsintooltip()) {
+                        grid = new scope.GrwTooltipGrid(doc, feeds, labels, tooltipElements[name].tooltipNewElement).getGrid();
+                        elementContainer.appendChild(grid);
+                    }
                 }
             }
         }
