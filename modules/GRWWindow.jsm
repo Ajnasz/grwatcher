@@ -31,6 +31,7 @@ Components.utils.import("resource://grwmodules/grwlog.jsm", scope);
 Components.utils.import("resource://grwmodules/EventProvider.jsm", scope);
 Components.utils.import("resource://grwmodules/augment.jsm", scope);
 Components.utils.import("resource://grwmodules/IconClick.jsm", scope);
+Components.utils.import("resource://grwmodules/prefs.jsm", scope);
 /**
  * Job: Update UI:
  *    update icon
@@ -122,6 +123,9 @@ GRWWindow.prototype = {
         ['GRW-statusbar-tooltip-new', 'GRW-toolbar-tooltip-new'].forEach(function (elem) {
         });
     },
+    resetCounter: function () {
+        this.updateCounter(0, 0);
+    },
     updateCounter: function (value, maxcount) {
         var counterEnabled = scope.prefs.get.showCounter(),
             showZeroCounter = scope.prefs.get.showZeroCounter(),
@@ -164,7 +168,6 @@ GRWWindow.prototype = {
             break;
         }
         if (name !== '') {
-            Components.utils.import("resource://grwmodules/prefs.jsm", scope);
             if (customDefs[scope.prefs.get.leftClickOpen()] === e.type) {
                 this.fireEvent(name, [e.type, e]);
             }
@@ -187,7 +190,6 @@ GRWWindow.prototype = {
     },
     updateIcon: function (status) {
         var that = this;
-        Components.utils.import("resource://grwmodules/prefs.jsm", scope);
         ['GRW-toolbar-button', 'GRW-statusbar'].forEach(function (elemId) {
             var elem = that.doc.getElementById(elemId), classes;
             scope.grwlog('updat elem: ' + elemId, elem, status);
@@ -224,8 +226,13 @@ GRWWindow.prototype = {
         case GRWWindow.startReaderOpen:
             this.updateIcon('load');
             break;
-        case GRWWindow.requestSuccess:
         case GRWWindow.readerOpened:
+            this.updateIcon('off');
+            if (scope.prefs.get.resetCounter()) {
+                this.resetCounter();
+            }
+            break;
+        case GRWWindow.requestSuccess:
             this.updateIcon('off');
             break;
         case GRWWindow.loginFailed:
