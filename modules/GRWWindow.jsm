@@ -143,7 +143,7 @@ GRWWindow.prototype = {
                 elem.style.width = 0;
                 elem.collapsed = true;
 
-                if (value > 0 || showZeroCounter) {
+                if (counterEnabled && (value > 0 || showZeroCounter)) {
                     elem.value = showval;
                     elem.crop = '';
                     elem.style.margin = '';
