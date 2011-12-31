@@ -5,8 +5,8 @@
     */
     var scope = {},
         init;
+    Components.utils.import("resource://grwmodules/GRWWindows.jsm", scope);
     init = function () {
-        Components.utils.import("resource://grwmodules/GRWWindows.jsm", scope);
         scope.grwWindows.add(window);
 
         Components.utils.import("resource://grwmodules/addToolbarButton.jsm", scope);
@@ -14,7 +14,6 @@
     };
     window.addEventListener('load', init, false);
     window.addEventListener('unload', function (event) {
-        Components.utils.import("resource://grwmodules/GRWWindows.jsm", scope);
         scope.grwWindows.remove(window);
         this.removeEventListener('load', init, false);
     }, false);
