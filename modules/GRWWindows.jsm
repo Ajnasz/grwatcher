@@ -130,9 +130,7 @@ var grwWindows = (function () {
                 win.notify.apply(win, args);
             });
         },
-        add: function (win, doc) {
-            this.initRequesters();
-            var grwWin = new scope.GRWWindow(win, doc);
+        subscribeToWindow: function (grwWin) {
             grwWin.on('iconClick', function () {
                 readerOpener.open();
             });
@@ -166,7 +164,15 @@ var grwWindows = (function () {
                     readerOpener.open(target.getAttribute('url'));
                 }
             });
+        },
+        add: function (win) {
+            this.initRequesters();
+            var grwWin = new scope.GRWWindow(win);
+            this.subscribeToWindow(grwWin);
             this.windows.push(grwWin);
+            if (this.started) {
+                this.onItemsMatched();
+            }
             this.start();
         },
         remove: function (win) {
@@ -175,6 +181,8 @@ var grwWindows = (function () {
                 if (this.windows[i].win === win) {
                     grwWin = this.windows.splice(i, 1)[0];
                     grwWin.destroy();
+                    grwWin = null;
+                    break;
                 }
             }
         }
