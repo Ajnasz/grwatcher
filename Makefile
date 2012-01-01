@@ -59,6 +59,7 @@ xpi:
 		modules/siteLogin.jsm \
 		modules/GRWWindow.jsm \
 		modules/GRWWindows.jsm \
+		modules/Oauth2.jsm \
 		modules/stringBundles.jsm \
 		defaults/preferences/grwatcher.js \
 		chrome/ \

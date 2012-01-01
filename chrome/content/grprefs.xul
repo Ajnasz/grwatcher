@@ -88,6 +88,7 @@
                 -->
                 <checkbox id="GRW-have-multiple-accounts" label="&GRWpreferences.accountinfohavemultipleaccounts;" />
               </vbox>
+              <row align="center"><button id="GRW-oauth-opener">OAuth2</button></row>
             </rows>
           </grid>
         </groupbox>

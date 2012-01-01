@@ -157,6 +157,12 @@ var prefs = {
     },
     debug: function() {
       return getBoolPref('extensions.grwatcher.debug');
+    },
+    /**
+      * @type {String} value
+      */
+    oauthCode: function() {
+      return getCharPref('extensions.grwatcher.oauthcode');
     }
   },
   set: {
@@ -298,6 +304,12 @@ var prefs = {
       */
     debug: function(value) {
       return setBoolPref('network.cookie.debug', value);
+    },
+    /**
+      * @type {String} value
+      */
+    oauthCode: function(value) {
+      return setCharPref('extensions.grwatcher.oauthcode', value);
     }
   }
 };

@@ -142,6 +142,11 @@ var GRW = {};
     document.getElementById('GRW-openinnewtab-field')
       .addEventListener('command', openNewTabCheckToogle, false);
     counterHandler();
+    getById('GRW-oauth-opener').addEventListener('click', function () {
+      Components.utils.import("resource://grwmodules/Oauth2.jsm", scope);
+      var oauth = new scope.Oauth2();
+      oauth.auth();
+    });
   };
 
   GRW.savePreferences = savePreferences;
