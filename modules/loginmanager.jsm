@@ -1,4 +1,3 @@
-/*jslint indent: 2*/
 /*global Components: true */
 // mozilla nsi cookie manager component
 /**
@@ -9,147 +8,62 @@
   * @requires #getFeedList function, to gets the feeds
   */
 var scope = {};
-var LoginManager = function () {};
+Components.utils.import("resource://grwmodules/Oauth2.jsm", scope);
+Components.utils.import("resource://grwmodules/ClientLogin.jsm", scope);
+var LoginManager = function () {
+    var that = this;
+    scope.oauth.on('loginSuccess', function () {
+        that.loginSuccess();
+    });
+    scope.oauth.on('loginFailed', function (msg) {
+        that.loginFailed(msg);
+    });
+    scope.clientLogin.on('loginSuccess', function () {
+        that.loginSuccess();
+    });
+    scope.clientLogin.on('loginFailed', function (msg) {
+        that.loginFailed();
+    });
+    scope.clientLogin.on('cookieError', function (msg) {
+        that.cookieError();
+    });
+};
+LoginManager.authTypeClientLogin = 'ClientLogin';
+LoginManager.authTypeOauth2 = 'Oauth2';
 LoginManager.prototype = {
-  /**
-    * Check, that the account is configured
-    * @type {Boolean}
-    */
-  accountExists: function () {
-    Components.utils.import("resource://grwmodules/passManager.jsm", scope);
-    if (scope.passManager.getUsername() && scope.passManager.getPassword()) {
-      return true;
-    }
-    return false;
-  },
-  isLoggedIn: function () {
-    return this.getCurrentAuth() !== false;
-  },
-  hasSidInCookie: function () {
-    Components.utils.import("resource://grwmodules/grwCookie.jsm", scope);
-    return scope.grwCookie.get('SID');
-  },
-  getCurrentSID: function () {
-    return this.authData !== null && typeof this.authData === 'object' ?
-            this.authData.SID : false;
-  },
-  getCurrentAuth: function () {
-    return this.authData !== null && typeof this.authData === 'object' ?
-            this.authData.Auth : false;
-  },
-  parseResponse: function (response) {
-    if (response && response.responseText) {
-      var auths = response.responseText.split('\n'),
-          authData = {};
-      auths.forEach(function (item) {
-        var itemKeyValue = item.split('=');
-        if (itemKeyValue.length === 2) {
-          authData[itemKeyValue[0]] = itemKeyValue[1];
+    oauthLogin: function (cb) {
+        scope.oauth.getToken(cb);
+    },
+    clientLoginLogin: function (cb) {
+        scope.clientLogin.logIn(cb);
+    },
+    loginSuccess: function () {
+        this.fireEvent('loginSuccess');
+    },
+    loginFailed: function (msg) {
+        this.fireEvent('loginFailed', msg);
+    },
+    cookieError: function () {
+        this.fireEvent('cookieError');
+    },
+    getAuthType: function () {
+        var output = 'ClientLogin';
+        Components.utils.import("resource://grwmodules/prefs.jsm", scope);
+        if (scope.prefs.get.oauthCode()) {
+            output = 'Oauth2';
         }
-      });
-      if (authData.Auth) {
-        this.authData = authData;
-      } else {
-        this.authData = null;
-      }
-      return this.authData;
-    }
-  },
-
-  handleWrongResponse: function (response) {
-    Components.utils.import("resource://grwmodules/prefs.jsm", scope);
-    var cookieBehavior = scope.prefs.get.cookieBehaviour(),
-        _this = this;
-
-    if (cookieBehavior !== 0) {
-
-      _this.loginFailed(response.responseText);
-      _this.fireEvent('cookieError');
-
-      Components.utils.import("resource://grwmodules/grwlog.jsm", scope);
-      scope.grwlog('bad cookie behavior', cookieBehavior);
-
-    } else {
-      _this.loginFailed(response.responseText);
-    }
-  },
-
-  /**
-    * do the login into the google service
-    * @param {Function} onLoad run after successful login
-    */
-  logIn: function (onLogin) {
-    if (this.accountExists()) {
-      // var url = GRStates.conntype + '://www.google.com/accounts/ServiceLoginAuth';
-      // var url = 'https://www.google.com/accounts/ServiceLoginAuth?service=reader';
-      Components.utils.import("resource://grwmodules/passManager.jsm", scope);
-
-      var param = 'service=reader&Email=' + encodeURIComponent(scope.passManager.getUsername()) +
-          '&Passwd=' + encodeURIComponent(scope.passManager.getPassword()) +
-          '&continue=http://www.google.com/reader/',
-          _this = this, url, cb;
-
-      Components.utils.import("resource://grwmodules/generateUri.jsm", scope);
-
-      url = scope.generateUri('www.google.com/accounts/ClientLogin', {service: 'reader'});
-
-      cb = {
-        onSuccess: function (response) {
-          // logoin success
-          _this.loginSuccess(response);
-          if (typeof onLogin === 'function') {
-            onLogin.call(this, response);
-          }
-          if (!_this.getCurrentAuth()) {
-            _this.handleWrongResponse(response);
-          }
-        },
-        onError: function (response) {
-          _this.loginFailed(response.responseText);
+        return output;
+    },
+    login: function (cb) {
+        switch (this.getAuthType()) {
+        case LoginManager.authTypeOauth2:
+            this.oauthLogin(cb);
+            break;
+        case LoginManager.authTypeClientLogin:
+            this.clientLoginLogin(cb);
+            break;
         }
-      };
-
-      Components.utils.import("resource://grwmodules/getter.jsm", scope);
-
-      scope.getter.asyncRequest('post', url, cb, param);
-
-    } else {
-      this.loginFailed('account not defined');
-      return -1;
     }
-    return true;
-  },
-  /**
-    * @param {Event} e event object
-    * @returns true if the login was succes and false if wasn't
-    * @type Boolean
-    */
-  loginSuccess: function (e) {
-    this.parseResponse(e);
-    var curAuth = this.getCurrentAuth(e);
-
-    if (curAuth === false) {
-      this.loginFailed(e.responseText);
-      return false;
-    } else {
-      Components.utils.import("resource://grwmodules/getter.jsm", scope);
-      scope.getter.setDefaultHeader({
-        name: 'Authorization',
-        value: 'GoogleLogin auth=' + curAuth
-      });
-    }
-    this.fireEvent('loginSuccess');
-    return true;
-  },
-  /**
-    * do things when the login failed
-    * @returns false
-    * @type Boolean
-    */
-  loginFailed: function (msg) {
-    this.fireEvent('loginFailed', msg);
-    return false;
-  }
 };
 
 Components.utils.import("resource://grwmodules/augment.jsm", scope);
@@ -158,4 +72,4 @@ scope.augmentProto(LoginManager, scope.EventProvider);
 
 var loginManager = new LoginManager();
 
-let EXPORTED_SYMBOLS = ['loginManager'];
+let EXPORTED_SYMBOLS = ['loginManager', 'LoginManager'];

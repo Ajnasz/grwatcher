@@ -7,6 +7,7 @@ var oAuthTokenURL = 'https://accounts.google.com/o/oauth2/token';
 var scope = {};
 Components.utils.import("resource://grwmodules/grwlog.jsm", scope);
 Components.utils.import("resource://grwmodules/prefs.jsm", scope);
+Components.utils.import("resource://grwmodules/getter.jsm", scope);
 
 var generateQueryParam = function (queryParams) {
     return queryParams.map(function (param) {
@@ -116,7 +117,7 @@ Oauth2.prototype = {
                 if (title.indexOf('Success code=') > -1) {
                     that._accessData.setRefreshToken('');
                     that.saveAuthCode(title.split('code=')[1]);
-                    win.close();
+                    that.getFirstToken();
                     scope.grwlog('oauthcode saved');
                 } else {
                     scope.grwlog(win.document.title);
@@ -163,17 +164,17 @@ Oauth2.prototype = {
                 value: 'authorization_code'
             }
         ];
-        Components.utils.import("resource://grwmodules/getter.jsm", scope);
         scope.grwlog('get first token: ' + oAuthTokenURL, generateQueryParam(params));
         scope.getter.asyncRequest('POST', oAuthTokenURL, {
             onSuccess: function (response) {
-                var jsonResponse = JSON.parse(response.responseText);
-                that._accessData.updateToken(jsonResponse);
-                that._accessData.setRefreshToken(jsonResponse.refresh_token);
-                cb(that._accessData);
+                that.onLogin(response);
+                if (typeof cb === 'function') {
+                    cb(that._accessData);
+                }
             },
             onError: function (response) {
                 scope.grwlog('on error: ', response.responseText);
+                that.fireEvent('loginFailed', response.responseText);
             }
         }, generateQueryParam(params));
     },
@@ -182,6 +183,21 @@ Oauth2.prototype = {
             this._accessData = new Oauth2Token(data);
         } else {
         }
+    },
+    setGetterHeaders: function () {
+        scope.getter.setDefaultHeader({
+            name: 'Authorization',
+            value: this._accessData.getTokenType() + ' ' + this._accessData.getAccessToken()
+        });
+    },
+    onLogin: function (response) {
+        var jsonResponse = JSON.parse(response.responseText);
+        this._accessData.updateToken(jsonResponse);
+        if (jsonResponse.refresh_token) {
+            this._accessData.setRefreshToken(jsonResponse.refresh_token);
+        }
+        this.setGetterHeaders();
+        this.fireEvent('loginSuccess');
     },
     refreshToken: function (cb) {
         var that = this,
@@ -208,17 +224,22 @@ Oauth2.prototype = {
         scope.grwlog('refresh token: ' + oAuthTokenURL, generateQueryParam(params));
         scope.getter.asyncRequest('POST', oAuthTokenURL, {
             onSuccess: function (response) {
-                var jsonResponse = JSON.parse(response.responseText);
-                scope.grwlog(response.responseText);
-                that._accessData.updateToken(jsonResponse);
-                cb(that._accessData);
+                that.onLogin(response);
+                if (typeof cb === 'function') {
+                    cb(that._accessData);
+                }
             },
             onError: function (response) {
+                that.fireEvent('loginFailed', response.responseText);
                 scope.grwlog('on error: ', response.responseText);
             }
         }, generateQueryParam(params));
     }
 };
+
+Components.utils.import("resource://grwmodules/augment.jsm", scope);
+Components.utils.import("resource://grwmodules/EventProvider.jsm", scope);
+scope.augmentProto(Oauth2, scope.EventProvider);
 
 var oauth = new Oauth2();
 

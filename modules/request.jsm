@@ -23,14 +23,15 @@ var request = function (method, uri, callback, postData) {
       }
     },
     onError: function (r) {
+      // 401, unauthorized, so need to login, if we didn't tryed yet
       if (r.status === 401 && lastRequest !== requestTypes.login) {
         lastRequest = requestTypes.login;
         Components.utils.import("resource://grwmodules/loginmanager.jsm", scope);
-        scope.loginManager.logIn(retry);
+        scope.loginManager.login(retry);
       } else if (r.status === 403 &&
           lastRequest !== requestTypes.token &&
-          lastRequest !== requestTypes.login) {
-
+          lastRequest !== requestTypes.login &&
+          scope.loginManager.getAuthType() === scope.LoginManager.authTypeClientLogin) {
         lastRequest = requestTypes.token;
         Components.utils.import("resource://grwmodules/getToken.jsm", scope);
         scope.getToken(retry);
@@ -46,7 +47,7 @@ var request = function (method, uri, callback, postData) {
   if (scope.prefs.get.forceLogin() && lastRequest !== requestTypes.login) {
     lastRequest = requestTypes.login;
     Components.utils.import("resource://grwmodules/loginmanager.jsm", scope);
-    scope.loginManager.logIn(retry);
+    scope.loginManager.login(retry);
   } else {
     scope.getter.asyncRequest(method, uri, _callback, postData);
   }
