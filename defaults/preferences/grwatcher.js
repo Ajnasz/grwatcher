@@ -30,3 +30,7 @@ pref("extensions.grwatcher.forcelogin", false);
 pref("extensions.grwatcher.havemultipleaccounts", false);
 
 pref("extensions.grwatcher.debug", false);
+
+
+pref("extensions.grwatcher.oauthcode", '');
+pref("extensions.grwatcher.oauthrefreshtoken", '');

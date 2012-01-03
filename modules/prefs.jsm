@@ -163,6 +163,12 @@ var prefs = {
       */
     oauthCode: function() {
       return getCharPref('extensions.grwatcher.oauthcode');
+    },
+    /**
+      * @type {String} value
+      */
+    oauthRefreshToken: function() {
+      return getCharPref('extensions.grwatcher.oauthrefreshtoken');
     }
   },
   set: {
@@ -310,6 +316,12 @@ var prefs = {
       */
     oauthCode: function(value) {
       return setCharPref('extensions.grwatcher.oauthcode', value);
+    },
+    /**
+      * @type {String} value
+      */
+    oauthRefreshToken: function(value) {
+      return setCharPref('extensions.grwatcher.oauthrefreshtoken', value);
     }
   }
 };
