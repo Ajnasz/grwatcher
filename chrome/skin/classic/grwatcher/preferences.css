@@ -4,3 +4,6 @@ groupbox {
 description {
   width: 500px;
 }
+strong {
+  font-weight: bold;
+}

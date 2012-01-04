@@ -66,23 +66,21 @@
         <groupbox flex="1">
 
           <caption label="&GRWpreferences.accountinfocaption;" />
-          <description>
-            If you have only one Google account and if you are logged in there almost always, you don't need to set up anything here. The extension will use the same session and will work without any issues.
-          </description>
+          <description>&GRWpreferences.account.description.general;</description>
           <tabbox id="GRW-auth-tabbox">
             <tabs>
-              <tab label="Username/Password" id="GRW-auth-tab-clientlogin" />
-              <tab label="OAuth" id="GRW-auth-tab-oauth" />
+              <tab label="&GRWpreferences.account.tab.username;" id="GRW-auth-tab-clientlogin" />
+              <tab label="&GRWpreferences.account.tab.oauth;" id="GRW-auth-tab-oauth" />
             </tabs>
             <tabpanels>
               <tabpanel>
                 <rows>
                   <row align="center">
-                    <description>If 2 step verification isn't enabled, you can use a simple login method by filling the Username and Password fields.</description>
+                    <description>&GRWpreferences.account.description.username;</description>
                   </row>
                   <grid>
                     <columns>
-                      <column flex="1" />
+                      <column />
                       <column flex="2" />
                     </columns>
                     <rows>
@@ -107,11 +105,9 @@
               </tabpanel>
               <tabpanel>
                 <vbox>
-                  <description>
-                    OAuth is recommended for those who had enabled the 2 step verification for their Google Account. However it has a limitation: Unfortantly using OAuth can not log you in with the proper account when you click on the icon. It means, that when you click on the icon while you are logged in to another account it will open the Reader page for that account. Or the other hand if you are not logged in at all, you will need to fill the login form on Google before you can access to the Google Reader.
-                  </description>
+                  <description>&GRWpreferences.account.description.oauth;</description>
                   <box align="center">
-                    <button id="GRW-oauth-opener" style="list-style-image: url('chrome://grwatcher/skin/oauth-2-sm-s.png');" label="OAuth2" />
+                    <button id="GRW-oauth-opener" style="list-style-image: url('chrome://grwatcher/skin/oauth-2-sm-s.png');" label="Setup OAuth2" />
                     <button id="GRW-oauth-clear" label="Clear OAuth2 settings" />
                   </box>
                 </vbox>

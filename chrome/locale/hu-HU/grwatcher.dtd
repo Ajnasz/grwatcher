@@ -47,3 +47,9 @@
 <!ENTITY GRWtooltip.cookieerror "A harmadik féltől származó sütik nincsenek engedélyzve. Engedélyezéshez kattints jobb egérgombbal az állapotsor ikonon.">
 <!ENTITY GRWpreferences.showitemsintooltip "Olvasatlan hírek megjelenítése az állapotsor ikon tooltippjében">
 <!ENTITY GRWpreferences.showitemsincontextmenu "Olvasatlan hírek megjelenítése az állapotsor ikon helyi menüjében">
+
+<!ENTITY GRWpreferences.account.tab.oauth "OAuth">
+<!ENTITY GRWpreferences.account.tab.username "Felhasználónév/Jelszó">
+<!ENTITY GRWpreferences.account.description.general "<strong>Ha csak egy Google fiókkal rendelkezel és többnyire be is vagy jelentkezve, akkor itt nem kell beállítanod semmit.</strong> A kiegészítő a már érvényben lévő munkamenetet fogja használni.">
+<!ENTITY GRWpreferences.account.description.username "Ha a kétlépcsős azonosítást nincs engedélyezve a Google fiókodhoz, használhatod az egyszerű felhasználónévvel és jelszóval való bejelentkezést.">
+<!ENTITY GRWpreferences.account.description.oauth "Használd ezt, ha a kétlépcsős azonosítás engedélyezve van a Google fiókodhoz. Ennek azonban egy kicsit korlátozza a kiterjesztést: A kiegészítő nem tud majd bejelentkeztetni mielőtt megnyitja a Google Readert. Így amikor az ikonra kattintasz, miközben egy másik fiókba be vagy jelentkezve, a Google Reader azzal a fiókkal fog megnyílni. Ha pedig nem vagy bejelentkezve, akkor ki kell töltened a bejelentkező űrlapot, hogy hozzáférj a Google Readerhez.">
