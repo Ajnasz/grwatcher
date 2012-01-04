@@ -1,4 +1,6 @@
-groupbox
-{
+groupbox {
   width: 100% !important;
+}
+description {
+  width: 500px;
 }

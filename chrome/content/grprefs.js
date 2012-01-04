@@ -3,6 +3,7 @@ var GRW = {};
 (function () {
   var scope = {}, doc, setPref, getPref, getById,
       savePreferences, setPrefPaneVals, openNewTabCheckToogle, counterHandler,
+      oAuthSettings,
       prefFields, workOnPrefs, handlePref;
   /**
    * save the preferences into the chrome when the pref dialog is accepted
@@ -136,17 +137,36 @@ var GRW = {};
     counterField.addEventListener('command', updateZeroCounter, false);
     updateZeroCounter();
   };
+  oAuthSettings = function () {
+    var updateAccountTabs = function () {
+      if (scope.prefs.get.oauthCode()) {
+        getById('GRW-auth-tab-clientlogin').setAttribute('disabled', true);
+        getById('GRW-auth-tab-oauth').parentNode.selectedIndex = 1;
+      } else {
+        getById('GRW-auth-tab-clientlogin').removeAttribute('disabled');
+      }
+    };
+    getById('GRW-oauth-opener').addEventListener('click', function () {
+      scope.oauth.auth(updateAccountTabs);
+    });
+    getById('GRW-oauth-clear').addEventListener('click', function () {
+      scope.prefs.set.oauthCode('');
+      scope.prefs.set.oauthRefreshToken('');
+      Components.utils.import("resource://grwmodules/getter.jsm", scope);
+      scope.getter.unsetDefaultHeader('Authorization');
+      updateAccountTabs();
+    });
+    updateAccountTabs();
+  };
   GRW.initPrefs = function () {
     setPrefPaneVals();
     openNewTabCheckToogle();
     document.getElementById('GRW-openinnewtab-field')
       .addEventListener('command', openNewTabCheckToogle, false);
     counterHandler();
-    getById('GRW-oauth-opener').addEventListener('click', function () {
-      Components.utils.import("resource://grwmodules/Oauth2.jsm", scope);
-      var oauth = new scope.Oauth2();
-      oauth.auth();
-    });
+    oAuthSettings();
+    Components.utils.import("resource://grwmodules/Oauth2.jsm", scope);
+    Components.utils.import("resource://grwmodules/grwlog.jsm", scope);
   };
 
   GRW.savePreferences = savePreferences;

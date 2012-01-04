@@ -15,13 +15,13 @@
   <!--<script type="application/x-javascript;version=1.7" src="chrome://grwatcher/content/preferences.js" />-->
   <script type="application/x-javascript;version=1.7" src="chrome://grwatcher/content/grprefs.js" />
   <script type="application/x-javascript">
-  <![CDATA[
+    <![CDATA[
     window.addEventListener('load',
-      function() {
-        GRW.initPrefs(document);
-      },
+    function() {
+    GRW.initPrefs(document);
+    },
     false);
-  ]]>
+    ]]>
   </script>
 
   <tabbox id="GRW-preferences-tabbox">
@@ -66,41 +66,70 @@
         <groupbox flex="1">
 
           <caption label="&GRWpreferences.accountinfocaption;" />
+          <description>
+            If you have only one Google account and if you are logged in there almost always, you don't need to set up anything here. The extension will use the same session and will work without any issues.
+          </description>
+          <tabbox id="GRW-auth-tabbox">
+            <tabs>
+              <tab label="Username/Password" id="GRW-auth-tab-clientlogin" />
+              <tab label="OAuth" id="GRW-auth-tab-oauth" />
+            </tabs>
+            <tabpanels>
+              <tabpanel>
+                <rows>
+                  <row align="center">
+                    <description>If 2 step verification isn't enabled, you can use a simple login method by filling the Username and Password fields.</description>
+                  </row>
+                  <grid>
+                    <columns>
+                      <column flex="1" />
+                      <column flex="2" />
+                    </columns>
+                    <rows>
+                      <row align="center">
+                        <label control="GRW-accountmanage-email" value="&GRWpreferences.accountinfoemail;" />
+                        <textbox id="GRW-accountmanage-email" maxlength="100" flex="1" />
+                      </row>
+                      <row align="center">
+                        <label control="GRW-accountmanage-pass" value="&GRWpreferences.accountinfopassword;" />
+                        <textbox id="GRW-accountmanage-pass" type="password" maxlength="50" flex="1" />
+                      </row>
+                    </rows>
+                  </grid>
+                  <vbox>
+                    <!--
+                    <checkbox id="GRW-rememberLogin-field" label="&GRWpreferences.accountinfo.rememberLogin;" />
+                    <checkbox id="GRW-forceLogin-field" label="&GRWpreferences.accountinfo.forceLogin;" />
+                    -->
+                    <checkbox id="GRW-have-multiple-accounts" label="&GRWpreferences.accountinfohavemultipleaccounts;" />
+                  </vbox>
+                </rows>
+              </tabpanel>
+              <tabpanel>
+                <vbox>
+                  <description>
+                    OAuth is recommended for those who had enabled the 2 step verification for their Google Account. However it has a limitation: Unfortantly using OAuth can not log you in with the proper account when you click on the icon. It means, that when you click on the icon while you are logged in to another account it will open the Reader page for that account. Or the other hand if you are not logged in at all, you will need to fill the login form on Google before you can access to the Google Reader.
+                  </description>
+                  <box align="center">
+                    <button id="GRW-oauth-opener" style="list-style-image: url('chrome://grwatcher/skin/oauth-2-sm-s.png');" label="OAuth2" />
+                    <button id="GRW-oauth-clear" label="Clear OAuth2 settings" />
+                  </box>
+                </vbox>
+              </tabpanel>
+            </tabpanels>
+          </tabbox>
 
-          <grid align="center">
-            <columns>
-              <column />
-              <column />
-            </columns>
-            <rows>
-              <row align="center">
-                <label control="GRW-accountmanage-email" value="&GRWpreferences.accountinfoemail;" />
-                <textbox id="GRW-accountmanage-email" maxlength="100" flex="1" />
-              </row>
-              <row align="center">
-                <label control="GRW-accountmanage-pass" value="&GRWpreferences.accountinfopassword;" />
-                <textbox id="GRW-accountmanage-pass" type="password" maxlength="50" flex="1" />
-              </row>
-              <vbox>
-                <!--
-                <checkbox id="GRW-rememberLogin-field" label="&GRWpreferences.accountinfo.rememberLogin;" />
-                <checkbox id="GRW-forceLogin-field" label="&GRWpreferences.accountinfo.forceLogin;" />
-                -->
-                <checkbox id="GRW-have-multiple-accounts" label="&GRWpreferences.accountinfohavemultipleaccounts;" />
-              </vbox>
-              <row align="center"><button id="GRW-oauth-opener">OAuth2</button></row>
-            </rows>
-          </grid>
         </groupbox>
       </tabpanel>
+      <tabpanel>
         <groupbox flex="1">
           <caption label="&GRWpreferences.tooltippreferencescaption;" />
 
           <vbox flex="1">
-            <hbox align="center">
+            <box align="center">
               <label control="GRW-tooltiptitlelength-field" value="&GRWpreferences.tooltiptitlelengthdesc;" />
               <textbox id="GRW-tooltiptitlelength-field" size="2" cols="2" />
-            </hbox>
+            </box>
 
             <description>&GRWpreferences.tooltipcounterposdesc;</description>
 
@@ -111,31 +140,33 @@
             <checkbox id="GRW-showitemsintooltip-field" label="&GRWpreferences.showitemsintooltip;" />
             <checkbox id="GRW-showitemsincontextmenu-field" label="&GRWpreferences.showitemsincontextmenu;" />
             <checkbox id="GRW-sortbylabels-field" label="&GRWpreferences.sortbylabels;" />
-            <label value="&GRWpreferences.filteredlabels;" control="GRW-filteredlabels-field" id="GRW-filteredlabels-label" />
-            <textbox id="GRW-filteredlabels-field" flex="1" />
+            <vbox>
+              <label value="&GRWpreferences.filteredlabels;" control="GRW-filteredlabels-field" id="GRW-filteredlabels-label" />
+              <textbox id="GRW-filteredlabels-field" flex="1" />
+            </vbox>
           </vbox>
         </groupbox>
+      </tabpanel>
       <tabpanel>
-          <groupbox flex="1">
-            <caption label="&GRWpreferences.generalpreferencesopencaption;" />
-            <vbox flex="1">
-              <checkbox id="GRW-openinnewtab-field" label="&GRWpreferences.openinnewtabdesc;" />
-              <box id="GRW-openinnewtab-options">
-                <checkbox id="GRW-activateopenedtab-field" label="&GRWpreferences.activateOpenedTab;" />
-              </box>
-              <hbox align="center">
-                <label value="&GRWpreferences.leftclickopen.description;" control="GRW-leftclickopen-field" id="GRW-leftclickopen-label" />
-                <menulist id="GRW-leftclickopen-field">
-                  <menupopup>
-                    <menuitem value="1" label="&GRWpreferences.leftclickopen.singleclick;" />
-                    <menuitem value="2" label="&GRWpreferences.leftclickopen.dblclick;" />
-                    <menuitem value="0" label="&GRWpreferences.leftclickopen.disabled;" />
-                  </menupopup>
-                </menulist>
-              </hbox>
-            </vbox>
-
-          </groupbox>
+        <groupbox flex="1">
+          <caption label="&GRWpreferences.generalpreferencesopencaption;" />
+          <vbox flex="1">
+            <checkbox id="GRW-openinnewtab-field" label="&GRWpreferences.openinnewtabdesc;" />
+            <box id="GRW-openinnewtab-options">
+              <checkbox id="GRW-activateopenedtab-field" label="&GRWpreferences.activateOpenedTab;" />
+            </box>
+            <hbox align="center">
+              <label value="&GRWpreferences.leftclickopen.description;" control="GRW-leftclickopen-field" id="GRW-leftclickopen-label" />
+              <menulist id="GRW-leftclickopen-field">
+                <menupopup>
+                  <menuitem value="1" label="&GRWpreferences.leftclickopen.singleclick;" />
+                  <menuitem value="2" label="&GRWpreferences.leftclickopen.dblclick;" />
+                  <menuitem value="0" label="&GRWpreferences.leftclickopen.disabled;" />
+                </menupopup>
+              </menulist>
+            </hbox>
+          </vbox>
+        </groupbox>
       </tabpanel>
     </tabpanels>
   </tabbox>

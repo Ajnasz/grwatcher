@@ -7,6 +7,9 @@ var getter = {
   setDefaultHeader: function (h) {
     defaultHeaders[h.name] = h.value;
   },
+  unsetDefaultHeader: function (h) {
+    delete defaultHeaders[h];
+  },
   getDefaultHeaders: function () {
     return defaultHeaders;
   },
