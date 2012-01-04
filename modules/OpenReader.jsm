@@ -113,8 +113,12 @@ OpenReader.prototype = {
   },
   open: function (subUrl) {
     Components.utils.import("resource://grwmodules/prefs.jsm", scope);
+    Components.utils.import("resource://grwmodules/loginmanager.jsm", scope);
     this.fireEvent('startOpen');
-    if (scope.prefs.get.haveMultipleAccounts()) {
+    // Login before page open can not be forced if user logs in with oauth
+    // since we don't have any username and/or password
+    if (scope.prefs.get.haveMultipleAccounts() &&
+        scope.loginManager.getAuthType() !== scope.LoginManager.authTypeOauth2) {
       this._loginAndOpen(subUrl);
     } else {
       this._open(subUrl);
