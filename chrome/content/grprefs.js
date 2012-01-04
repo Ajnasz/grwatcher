@@ -142,8 +142,10 @@ var GRW = {};
       if (scope.prefs.get.oauthCode()) {
         getById('GRW-auth-tab-clientlogin').setAttribute('disabled', true);
         getById('GRW-auth-tab-oauth').parentNode.selectedIndex = 1;
+        getById('GRW-oauth-clear').removeAttribute('disabled');
       } else {
         getById('GRW-auth-tab-clientlogin').removeAttribute('disabled');
+        getById('GRW-oauth-clear').setAttribute('disabled', true);
       }
     };
     getById('GRW-oauth-opener').addEventListener('click', function () {
