@@ -75,7 +75,7 @@ Oauth2.prototype = {
         Components.utils.import("resource://grwmodules/prefs.jsm", scope);
         return scope.prefs.get.oauthCode();
     },
-    auth: function () {
+    auth: function (cb) {
         var that = this,
             poll,
             queryParams;
@@ -117,6 +117,10 @@ Oauth2.prototype = {
                 if (title.indexOf('Success code=') > -1) {
                     that._accessData.setRefreshToken('');
                     that.saveAuthCode(title.split('code=')[1]);
+                    win.close();
+                    if (typeof cb === 'function') {
+                        cb();
+                    }
                     that.getFirstToken();
                     scope.grwlog('oauthcode saved');
                 } else {
@@ -131,12 +135,17 @@ Oauth2.prototype = {
     },
     getToken: function (cb) {
         scope.grwlog('get token: ', typeof this._accessData, this._accessData);
+        var that = this, callback;
+        callback = function (data) {
+            that.setGetterHeaders();
+            cb(that._accessData);
+        };
         if (!this._accessData.hasRefreshToken()) {
-            this.getFirstToken(cb);
+            this.getFirstToken(callback);
         } else if (this._accessData.isExpired()) {
-            this.refreshToken(cb);
+            this.refreshToken(callback);
         } else {
-            cb(this._accessData);
+            callback();
         }
     },
     getFirstToken: function (cb) {
@@ -177,12 +186,6 @@ Oauth2.prototype = {
                 that.fireEvent('loginFailed', response.responseText);
             }
         }, generateQueryParam(params));
-    },
-    setToken: function (data) {
-        if (!this._accessData) {
-            this._accessData = new Oauth2Token(data);
-        } else {
-        }
     },
     setGetterHeaders: function () {
         scope.getter.setDefaultHeader({
