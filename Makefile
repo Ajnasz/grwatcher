@@ -45,7 +45,6 @@ xpi:
 		modules/OpenReader.jsm \
 		modules/addToolbarButton.jsm \
 		modules/getter.jsm \
-		modules/getToken.jsm \
 		modules/request.jsm \
 		modules/Requester.jsm \
 		modules/getList.jsm \
