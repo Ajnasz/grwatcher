@@ -62,7 +62,23 @@ xpi:
 		modules/ClientLogin.jsm \
 		modules/stringBundles.jsm \
 		defaults/preferences/grwatcher.js \
-		chrome/ \
+		chrome/skin/classic/grwatcher/tooltip.css \
+		chrome/skin/classic/grwatcher/toolbar.css \
+		chrome/skin/classic/grwatcher/statusbar.css \
+		chrome/skin/classic/grwatcher/menu.css \
+		chrome/skin/classic/grwatcher/preferences.css \
+		chrome/skin/classic/grwatcher/images/active-toolbar-15.png \
+		chrome/skin/classic/grwatcher/images/inactive-toolbar-15.png \
+		chrome/skin/classic/grwatcher/images/error-toolbar-15.png \
+		chrome/skin/classic/grwatcher/images/loading-toolbar-15.png \
+		chrome/skin/classic/grwatcher/icons-sprite.png \
+		chrome/skin/classic/grwatcher/loading-small.gif \
+		chrome/skin/classic/grwatcher/grwatcher.png \
+		chrome/locale \
+		chrome/content/grwatcher.xul \
+		chrome/content/grwatcher.js \
+		chrome/content/grprefs.js \
+		chrome/content/grprefs.xul \
 		license.txt;
 
 restore:
