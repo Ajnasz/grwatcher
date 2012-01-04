@@ -4,12 +4,10 @@ var scope = {};
 var Notifier = function (doc) {
   this.doc = doc;
 };
-Components.utils.import("resource://grwmodules/grwlog.jsm", scope);
 Components.utils.import("resource://grwmodules/prefs.jsm", scope);
 Notifier.prototype = {
   showNotification: true,
   enabled: function () {
-    scope.grwlog('notification: show: ' + scope.prefs.get.showNotificationWindow(), 'enabled: ' + this.showNotification);
     return scope.prefs.get.showNotificationWindow() && this.showNotification;
   },
   notificationWin: function (value) {

@@ -27,7 +27,6 @@ var tooltipElements = {
     }
 };
 
-Components.utils.import("resource://grwmodules/grwlog.jsm", scope);
 Components.utils.import("resource://grwmodules/EventProvider.jsm", scope);
 Components.utils.import("resource://grwmodules/augment.jsm", scope);
 Components.utils.import("resource://grwmodules/prefs.jsm", scope);
@@ -200,7 +199,6 @@ GRWWindow.prototype = {
             iconClasses = GRWWindow.iconClasses;
         ['GRW-toolbar-button', 'GRW-statusbar'].forEach(function (elemId) {
             var elem = that.doc.getElementById(elemId), classes;
-            scope.grwlog('updat elem: ' + elemId, elem, status);
             if (elem) {
                 classes = elem.getAttribute('class').split(' ').filter(function (cl) {
                     // remove empty classes and the current status class
