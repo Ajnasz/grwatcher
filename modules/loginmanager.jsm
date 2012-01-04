@@ -34,8 +34,14 @@ LoginManager.prototype = {
     oauthLogin: function (cb) {
         scope.oauth.getToken(cb);
     },
+    getOauthToken: function (cb) {
+        scope.oauth.getToken(cb);
+    },
     clientLoginLogin: function (cb) {
         scope.clientLogin.logIn(cb);
+    },
+    getClientLoginToken: function (cb) {
+        scope.clientLogin.getToken(cb);
     },
     loginSuccess: function () {
         this.fireEvent('loginSuccess');
@@ -46,11 +52,21 @@ LoginManager.prototype = {
     cookieError: function () {
         this.fireEvent('cookieError');
     },
+    getToken: function (cb) {
+        switch (this.getAuthType()) {
+        case LoginManager.authTypeOauth2:
+            this.getOauthToken(cb);
+            break;
+        case LoginManager.authTypeClientLogin:
+            this.getClientLoginToken(cb);
+            break;
+        }
+    },
     getAuthType: function () {
-        var output = 'ClientLogin';
+        var output = LoginManager.authTypeClientLogin;
         Components.utils.import("resource://grwmodules/prefs.jsm", scope);
         if (scope.prefs.get.oauthCode()) {
-            output = 'Oauth2';
+            output = LoginManager.authTypeOauth2;
         }
         return output;
     },
