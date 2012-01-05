@@ -47,7 +47,6 @@
 <!ENTITY GRWtooltip.cookieerror "A harmadik féltől származó sütik nincsenek engedélyzve. Engedélyezéshez kattints jobb egérgombbal az állapotsor ikonon.">
 <!ENTITY GRWpreferences.showitemsintooltip "Olvasatlan hírek megjelenítése az állapotsor ikon tooltippjében">
 <!ENTITY GRWpreferences.showitemsincontextmenu "Olvasatlan hírek megjelenítése az állapotsor ikon helyi menüjében">
-
 <!ENTITY GRWpreferences.account.tab.oauth "OAuth">
 <!ENTITY GRWpreferences.account.tab.username "Felhasználónév/Jelszó">
 <!ENTITY GRWpreferences.account.description.general "<strong>Ha csak egy Google fiókkal rendelkezel és többnyire be is vagy jelentkezve, akkor itt nem kell beállítanod semmit.</strong> A kiegészítő a már érvényben lévő munkamenetet fogja használni.">

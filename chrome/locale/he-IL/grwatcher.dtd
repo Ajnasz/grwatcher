@@ -47,3 +47,8 @@
 <!ENTITY GRWtooltip.cookieerror "עוגיות צד שלישי אינן פעילות! יש ללחוץ עם לחצן העכבר הימני על הסמל כדי להפעיל זאת.">
 <!ENTITY GRWpreferences.showitemsintooltip "יש להפעיל כדי להציג את הפריטים שלא נקראו בתאור הכלי של הסמל שבשורת המצב">
 <!ENTITY GRWpreferences.showitemsincontextmenu "יש להפעיל כדי להוסיף את הפריטים שלא נקראו לתפריט ההקשר של הסמל שבשורת המצב">
+<!ENTITY GRWpreferences.account.tab.oauth "OAuth">
+<!ENTITY GRWpreferences.account.tab.username "שם משתמש/ססמה">
+<!ENTITY GRWpreferences.account.description.general "אם יש לך <strong>חשבון Google אחד</strong> בלבד ואם <strong>החשבון נמצא בשימוש</strong> כמעט <strong>תמיד</strong>, <strong>אין לך צורך</strong> להגדיר כאן שום דבר. ההרחבה תשתמש באותה ההפעלה ותעבוד ללא כל בעיות.">
+<!ENTITY GRWpreferences.account.description.username "אם לא הפעלת אימות בשני שלבים, באפשרותך להיכנס לחשבונך כרגיל על ידי מילוי השדות של שם המשתמש והססמה.">
+<!ENTITY GRWpreferences.account.description.oauth "יש להשתמש באפשרות זו רק אם הפעלת את מצב האימות בשני שלבים עבור חשבון ה־Google שלך. עם זאת, ישנה מגבלה: השימוש ב־OAuth, ההרחבה לא תוכל להכניס אותך עם החשבון המתאים לפני פתיחת העמוד. משמעות הדבר היא שכאשר המשתמש לוחץ על הסמל בזמן שנכנסת לחשבון אחר ייפתח עמוד Reader עבור חשבון זו או שאם לא נכנסת כלל, יהיה עליך למלא את טופס הכניסה של Google כדי לגשת ל־Google Reader.">

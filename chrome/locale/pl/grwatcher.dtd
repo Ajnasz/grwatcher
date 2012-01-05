@@ -47,3 +47,8 @@
 <!ENTITY GRWtooltip.cookieerror "Zewnętrzne ciasteczka są wyłączone. W celu aktywacji, kliknij prawym przyciskiem myszy na ikonie.">
 <!ENTITY GRWpreferences.showitemsintooltip "Włącz wyświetlanie nieprzeczytanych pozycji w okienku informacyjnym ikony na pasku statusu">
 <!ENTITY GRWpreferences.showitemsincontextmenu "Włącz dodawanie nieprzeczytanych pozycji w menu kontekstowym ikony na pasku statusu">
+<!ENTITY GRWpreferences.account.tab.oauth "OAuth">
+<!ENTITY GRWpreferences.account.tab.username "Użytkownik/Hasło">
+<!ENTITY GRWpreferences.account.description.general "Jeśli posiadasz <strong>tylko jedno konto Google</strong> oraz jesteś <strong>prawie zawsze zalogowany</strong>, <strong>nie musisz nic konfigurować</strong> tutaj. Rozszerzenie skorzysta z tej samej sesji i będzie działać bez żadnych błędów.">
+<!ENTITY GRWpreferences.account.description.username "Jeśli krok 2 weryfikacji nie został włączony, możesz skorzystać z prostej metody logowania poprzez wpisanie nazwy użytkownika oraz hasła w odpowiednie pola.">
+<!ENTITY GRWpreferences.account.description.oauth "Skorzystaj z tego jeśli masz włączoną dwu krokową weryfikację konta Google. Jednakże takie rozwiązanie posiada limit: Korzystając z OAuth, rozszerzenie nie może zalogować Cię do poprawnego konta bez odwiedzenia strony. Oznacza to, że kiedy klikniesz na ikonie będąc zalogowanym na innym koncie, zostanie otworzony strona Czytnika dla tego konta lub jeśli nie jesteś zalogowany wcale, zostaniesz poproszony o wypełnienie formularza logowania Google w celu uzyskania dostępu do Czytnika Google.">
