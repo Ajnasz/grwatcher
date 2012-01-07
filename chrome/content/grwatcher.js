@@ -359,6 +359,10 @@ var GRW = {};
         markAllAsRead.mark();
       });
     }
+    updateUI({
+      status: ['off'],
+      tooltip: ['nonew']
+    }, openReader);
 
     GRW.onToolbarButtonAdd = function (element) {
       element.oncommand = function () {};
