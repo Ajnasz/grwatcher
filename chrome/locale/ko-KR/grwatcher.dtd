@@ -18,7 +18,7 @@
 <!ENTITY GRWpreferences.resetcounterdesc "구글 리더를 열때 상태표시줄의 카운트를 초기화 합니다.">
 <!ENTITY GRWpreferences.shownotificationwindow "새 글이 있으면 알림창을 보여줍니다.">
 <!ENTITY GRWpreferences.showzerocounter "항상 상태표시줄에 읽지 않은 글의 개수를 표시합니다.">
-<!ENTITY GRWpreferences.showcounter "Show the counter">
+<!ENTITY GRWpreferences.showcounter "카운터를 표시합니다.">
 <!ENTITY GRWpreferences.maximizecounter "읽지 않은 글의 수가 1000개를 넘어가면 1000+라고 표시합니다.">
 <!ENTITY GRWpreferences.tooltipcounterposright "오른쪽">
 <!ENTITY GRWpreferences.tooltipcounterposleft "왼쪽">
@@ -28,7 +28,7 @@
 <!ENTITY GRWpreferences.accountinfocaption "구글 계정 설정">
 <!ENTITY GRWpreferences.accountinfoemail "E-mail 주소:">
 <!ENTITY GRWpreferences.accountinfopassword "비밀번호:">
-<!ENTITY GRWpreferences.accountinfohavemultipleaccounts "I have more then one Google account">
+<!ENTITY GRWpreferences.accountinfohavemultipleaccounts "나는 한개 이상의 구글 계정을 가지고 있습니다.">
 <!ENTITY GRWpreferences.accountinfo.rememberLogin "접속 유지">
 <!ENTITY GRWpreferences.accountinfo.forceLogin "매번 창을 열어 점검할때 강제 로그인 하기">
 <!--nn-->
@@ -48,7 +48,7 @@
 <!ENTITY GRWpreferences.showitemsintooltip "상태바 아이콘의 툴팁에 읽지않은 항목들 표시">
 <!ENTITY GRWpreferences.showitemsincontextmenu "상태바 아이콘의 문맥메뉴에 읽지않은 항목들 추가">
 <!ENTITY GRWpreferences.account.tab.oauth "OAuth">
-<!ENTITY GRWpreferences.account.tab.username "Username/Password">
-<!ENTITY GRWpreferences.account.description.general "If you have only <strong>one Google account</strong> and if <strong>you are logged in</strong> almost <strong>always</strong>, you <strong>don't need to set up</strong> anything here. The extension will use the same session and will work without any issues.">
-<!ENTITY GRWpreferences.account.description.username "If 2 step verification isn't turned on, you can use a simple login method by filling the Username and Password fields.">
-<!ENTITY GRWpreferences.account.description.oauth "Use this if you turned on the 2 step verification for your Google Account. However it has a limitation: Using OAuth, the extension can not log you in with the proper account before it opens the page. It means when you click on the icon while you are logged in to another account it will open the Reader page for that account or if you are not logged in at all, you will need to fill the Google login form to access to the Google Reader.">
+<!ENTITY GRWpreferences.account.tab.username "사용자 이름/비밀 번호">
+<!ENTITY GRWpreferences.account.description.general "만약 당신이 단 <strong>하나의 구글 계정</strong>만을 가지고 계시고 거의 <strong>항상 로그인 된 상태</strong>이시면, 여기서 아무것도 <strong>설정할 것이 없습니다</strong>. 이 확장기능은 같은 세션을 사용하게 되며 아무런 문제없이 작동할 것입니다.">
+<!ENTITY GRWpreferences.account.description.username "만약 2단계 인증 방식을 사용하지 않으시면, 사용자 이름과 비밀 번호란을 채우는 간단한 로그인 방식을 사용하실 수 있습니다.">
+<!ENTITY GRWpreferences.account.description.oauth "구글 계정에 2단계 인증 방식을 사용하실 경우 이것을 사용하세요. 그러나 제약이 있습니다: OAuth 사용시, 페이지를 열기전에는 이 확장기능은 올바른 계정으로 당신을 로그인 시킬 수 없습니다. 다시말해 당신이 다른 계정으로 로그인한 상태에서 아이콘을 클릭하시면 그 계정의 리더 페이지를 열거나 또는 만약 전혀 로그인을 하지 않으신 경우 구글 리더에 접근하기 위해서 구글 로그인 폼을 채워야 할 필요가 있습니다.">
