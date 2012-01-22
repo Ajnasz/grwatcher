@@ -47,3 +47,8 @@
 <!ENTITY GRWtooltip.cookieerror "Cookies van derden zijn niet ingeschakeld! Klik met uw rechtermuisknop op het pictogram om dit in te schakelen.">
 <!ENTITY GRWpreferences.showitemsintooltip "Inschakelen om ongelezen berichten in de tooltip van het statusbalkpictogram weer te geven">
 <!ENTITY GRWpreferences.showitemsincontextmenu "Inschakelen om de ongelezen berichten toe te voegen aan het contextmenu van het statusbalkpictogram">
+<!ENTITY GRWpreferences.account.tab.oauth "OAuth">
+<!ENTITY GRWpreferences.account.tab.username "Gebruikersnaam/Wachtwoord">
+<!ENTITY GRWpreferences.account.description.general "Indien u slechts <strong>één Google-account</strong> hebt en als u <strong>bijna altijd bent aangemeld</strong>, dan hoeft u hier <strong>niets in te stellen</strong>. De extensie gebruikt dan dezelfde sessie en zal zonder problemen werken.">
+<!ENTITY GRWpreferences.account.description.username "Als de 2-stapsverificatie niet is ingeschakeld, dan kunt u een eenvoudige aanmeldmethode gebruiken door de velden Gebruikersnaam en Wachtwoord in te vullen.">
+<!ENTITY GRWpreferences.account.description.oauth "Gebruik dit als u de 2-stapsverificatie voor uw Google-account hebt ingeschakeld. Dit heeft echter een beperking: met OAuth kan de extensie niet aanmelden met het juiste account voordat de pagina wordt geopend. Dit betekent dat wanneer u op het pictogram klikt terwijl u nog bij een ander account bent aangemeld, de Reader-pagina wordt geopend voor dat account, of wanneer u helemaal niet bent aangemeld, u het Google-aanmeldscherm moet invullen om de Google Reader te benaderen.">

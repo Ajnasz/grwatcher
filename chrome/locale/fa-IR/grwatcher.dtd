@@ -47,3 +47,8 @@
 <!ENTITY GRWtooltip.cookieerror "کوکی های شخص ثالث غیر فعال می باشد! برای فعال سازی روی شمایل(icon) راست کلیک کنید.">
 <!ENTITY GRWpreferences.showitemsintooltip "فعال سازی برای نمایش اقلام خوانده نشده در شمایل توضیح کوتاه نوار وضعیت">
 <!ENTITY GRWpreferences.showitemsincontextmenu "فعال سازی برای اضافه کردن اقلام خوانده نشده در فهرست زمینه ی شمایل نوار وضعیت">
+<!ENTITY GRWpreferences.account.tab.oauth "OAuth">
+<!ENTITY GRWpreferences.account.tab.username "نام کاربری/گذرواژه">
+<!ENTITY GRWpreferences.account.description.general "اگر شما فقط <strong>یک حساب گوگل</strong> دارید و اگر <strong>به حساب خود وارد شده اید</strong> تقریبا <strong>همیشه</strong>، شما <strong>به تنظیم چیزی احتیاج ندارید</strong>. افزونه از همان نشست استفاده خواهد کرد و کار هار را بدون هیچ مشکلی انجام خواهد داد.">
+<!ENTITY GRWpreferences.account.description.username "اگر تایید دو مرحله ای روشن باشد، شما می توانید از راهکار ورود ساده با وارد کردن نام کاربری و گذرواژه استفاده کنید.">
+<!ENTITY GRWpreferences.account.description.oauth "در صورتی که تایید دو مرحله ای را برای حساب گوگل روشن کرده اید از این گزینه استفاده کنید. هرچند این گزینه محدودیت هایی دارد: با استفاده از OAuth، افزونه نمی تواند وارد حساب شود قبل از این که صفحه را باز کند. این بدان معناست که اگر شما برای ورود به یک حساب گوگل خود روی شمایل افزونه کلیک کنید، افزونه شما را به صفحه خواننده گوگل می برد و یا اگر وارد حساب نشده اید این صفحه ورود به حساب خواننده گوگل باز خواهد شد.">

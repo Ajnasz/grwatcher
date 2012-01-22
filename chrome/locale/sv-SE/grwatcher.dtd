@@ -47,3 +47,8 @@
 <!ENTITY GRWtooltip.cookieerror "Du tillåter för närvarande inte tredjepartskakor! Högerklicka på ikonen för att ändra på det.">
 <!ENTITY GRWpreferences.showitemsintooltip "Visa olästa objekt (per flöde) i statusfältikonens verktygstips">
 <!ENTITY GRWpreferences.showitemsincontextmenu "Visa olästa objekt (per flöde) i statusfältikonens snabbmeny">
+<!ENTITY GRWpreferences.account.tab.oauth "OAuth">
+<!ENTITY GRWpreferences.account.tab.username "Användarnamn/lösenord">
+<!ENTITY GRWpreferences.account.description.general "Om du endast har <strong>ett Google-konto</strong> och nästan <strong>alltid är inloggad</strong>, så <strong>behöver du inte konfigurera</strong> någonting här. Tillägget använder samma session och kommer att fungera utan problem.">
+<!ENTITY GRWpreferences.account.description.username "Om tvåstegsverifiering inte har aktiverats, så kan du använda en enkel inloggningsmetod genom att fylla i fälten Användarnamn och Lösenord.">
+<!ENTITY GRWpreferences.account.description.oauth "Använd detta om du har aktiverat tvåstegsverifiering för ditt Google-konto. Det finns emellertid en begränsning: Om du använder OAuth kan inte tillägget logga in dig på rätt konto förrän sidan öppnas. Det betyder att om du klickar på ikonen medan du är inloggad på ett annat konto, så öppnas Google Reader för det kontot – och om du inte är inloggad, så måste du fylla i Googles inloggningsformulär för att komma åt Google Reader.">

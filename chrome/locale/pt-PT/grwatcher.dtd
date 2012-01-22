@@ -47,3 +47,5 @@
 <!ENTITY GRWtooltip.cookieerror "Os cookies de terceiros não estão activados!Clique com o botão direito do rato para o activar.">
 <!ENTITY GRWpreferences.showitemsintooltip "Activar para mostrar itens não lidos no ícone da barra de estado">
 <!ENTITY GRWpreferences.showitemsincontextmenu "Activar para adicionar itens não lidos no menu de contexto do ícone da barra de estado">
+<!ENTITY GRWpreferences.account.tab.oauth "OAuth">
+<!ENTITY GRWpreferences.account.tab.username "Nome de utilizador/Senha">

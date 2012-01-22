@@ -47,3 +47,8 @@
 <!ENTITY GRWtooltip.cookieerror "Cookies třetích stran nejsou povoleny! Klikněte pravým tlačítkem myši na ikonu pro jejich povolení.">
 <!ENTITY GRWpreferences.showitemsintooltip "Zobrazit nepřečtené položky v nabídce stavové ikony">
 <!ENTITY GRWpreferences.showitemsincontextmenu "Povolit přidání nepřečtených položek do upozornění">
+<!ENTITY GRWpreferences.account.tab.oauth "OAuth">
+<!ENTITY GRWpreferences.account.tab.username "Uživ.jméno/Heslo">
+<!ENTITY GRWpreferences.account.description.general "Pokud máte pouze <strong>jeden účet Google</strong> a <strong>jste přihlášeni</strong> téměř <strong>vždy</strong>, <strong>nepotřebujete</strong> zde <strong>nastavovat</strong> nic. Rozšíření použije stejné údaje a bude bez problémů fungovat.">
+<!ENTITY GRWpreferences.account.description.username "Pokud není zapnuté dvoustupňové ověření, můžete použít jednoduchý způsob přihlášení vyplněním Uživ.jména a hesla.">
+<!ENTITY GRWpreferences.account.description.oauth "Toto použijte pokud máte zapnuté dvoustupňové ověření Google účtu. Nicméně existuje omezení: Při použití OAuth se nemůže rozšíření přihlásit před otevřením stránky. Tzn. pokud jste přihlášeni k účtu, po kliknutí se otevře okno Readeru pro tento účet, ale pokud nebudete vůbec přihlášeni, budete muset vyplnit přihlašovací údaje pro přístup na Google Reader.">
