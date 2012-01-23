@@ -10,11 +10,21 @@ REPLACE_VERSION_STRING = ___VERSION___
 REPLACE_VERSION_FILES = install.rdf
 REPLACE_VERSION_FILES += modules/getter.jsm
 
-all: clean setversion xpi restore
+
+build-release: clean build-localizations-release setversion xpi restore
+build-babelzilla: clean build-localizations-babelzilla setversion xpi restore
+
+all: build-release
 
 clean:
 	@echo Clean
 	@-rm $(PROJECT_NAME)*.xpi
+
+build-localizations-release:
+	cd tools && ./dtdparser.pl release
+
+build-localizations-babelzilla:
+	cd tools && ./dtdparser.pl babelzilla
 
 setversion:
 	@echo Set version to $(VERSION)
