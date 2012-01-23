@@ -47,8 +47,7 @@
 <!ENTITY GRWtooltip.cookieerror "Колачићи од трећих лица нису омогућени. Притисните десни клик на икону да бисте их омогућили.">
 <!ENTITY GRWpreferences.showitemsintooltip "Омогући приказ непрочитаних ставки у облачићу иконе у статусној траци">
 <!ENTITY GRWpreferences.showitemsincontextmenu "Омогући додавање непрочитаних ставки у приручни мени иконе у статусној траци">
-<!ENTITY GRWpreferences.account.tab.oauth "OAuth">
-<!ENTITY GRWpreferences.account.tab.username "Username/Password">
-<!ENTITY GRWpreferences.account.description.general "If you have only <strong>one Google account</strong> and if <strong>you are logged in</strong> almost <strong>always</strong>, you <strong>don't need to set up</strong> anything here. The extension will use the same session and will work without any issues.">
-<!ENTITY GRWpreferences.account.description.username "If 2 step verification isn't turned on, you can use a simple login method by filling the Username and Password fields.">
-<!ENTITY GRWpreferences.account.description.oauth "Use this if you turned on the 2 step verification for your Google Account. However it has a limitation: Using OAuth, the extension can not log you in with the proper account before it opens the page. It means when you click on the icon while you are logged in to another account it will open the Reader page for that account or if you are not logged in at all, you will need to fill the Google login form to access to the Google Reader.">
+<!ENTITY GRWpreferences.account.tab.username "Корисничко име/лозинка">
+<!ENTITY GRWpreferences.account.description.general "Ако имате <strong>само један Google налог и ако сте пријављени на њега</strong>, вероватно нећете требати ништа да подешавате овде. Додатак ће користити исту сесију и радиће без проблема.">
+<!ENTITY GRWpreferences.account.description.username "Ако 2. корак (потврђивање) није укључен, можете да се пријавите користећи корисничко име и лозинку.">
+<!ENTITY GRWpreferences.account.description.oauth "Користите ово ако је укључено у 2. кораку (потврђивању) за Google налог. Ипак, постоје нека ограничења: коришћењем OAuth, додатак не може да вас пријави са одговарајућим налогом пре него што отвори страницу. То значи да када кликнете на икону док сте пријављени на други налог, отвориће се страница читача за тај налог. Ако уопште нисте пријављени, требаћете да се ручно пријавите на Google да бисте приступили читачу.">
