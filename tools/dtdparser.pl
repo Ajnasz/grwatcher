@@ -8,6 +8,7 @@ use File::Copy;
 
 my $inputDir = '../defaultlocales';
 my $outputDir = '../chrome/locale';
+my $refLocale = 'en-US';
 
 my $exceptions = ['GRWpreferences.account.tab.oauth'];
 
@@ -77,15 +78,18 @@ sub checkFile {
     };
 
     foreach my $refKey (keys %$reference) {
+      if (!isException($refKey)) {
         if (defined($f->{$refKey}->{ENTITYDEF})) {
           if ($f->{$refKey}->{ENTITYDEF} eq $reference->{$refKey}->{ENTITYDEF}) {
               push(@{$errors->{'sameasref'}}, {'locale' => $locale, 'entity' => $refKey});
           } elsif ($f->{$refKey}->{ENTITYDEF} eq '') {
               push(@{$errors->{'empty'}}, {'locale' => $locale, 'entity' => $refKey});
+          } else {
           }
         } else {
               push(@{$errors->{'missing'}}, {'locale' => $locale, 'entity' => $refKey});
         }
+      }
     }
     return $errors;
 }
@@ -126,13 +130,13 @@ sub keyInRefAll {
 sub fillMissing {
   my $locale = shift;
   my $inputFile = shift;
-  my $reference = readFile($inputDir .'/en-US/grwatcher.dtd');
+  my $reference = readFile($inputDir .'/' . $refLocale . '/grwatcher.dtd');
   my $localeReference = readFile($inputFile);
 
   foreach my $key (keys %{$reference->entman->{GENERAL}}) {
-    if (!isException($key) && !$localeReference->entman->{GENERAL}->{$key}->{ENTITYDEF}) {
-       my $ent = XML::DTD::Entity->new('<!ENTITY ' . $key .  ' "' . $reference->entman->{GENERAL}->{$key}->{ENTITYDEF} . '">' . "\n");
-       # $localeReference->entman->insertge($ent);
+    if (!$localeReference->entman->{GENERAL}->{$key}->{ENTITYDEF}) {
+      my $ent = XML::DTD::Entity->new('<!ENTITY ' . $key .  ' "' . $reference->entman->{GENERAL}->{$key}->{ENTITYDEF} . '">' . "\n");
+      # $localeReference->entman->insertge($ent);
       push(@{$localeReference->{ALL}}, $ent) unless (keyInRefAll($localeReference, $key));
       $localeReference->entman->{GENERAL}->{$key} = $ent;
      }
@@ -149,7 +153,7 @@ sub fillMissing {
 sub removeEmpty {
   my $locale = shift;
   my $inputFile = shift;
-  my $reference = readFile($inputDir .'/en-US/grwatcher.dtd');
+  my $reference = readFile($inputDir .'/' . $refLocale . '/grwatcher.dtd');
   my $localeReference = readFile($inputFile);
 
   foreach my $key (keys %{$reference->entman->{GENERAL}}) {
@@ -168,7 +172,7 @@ sub removeEmpty {
 
 sub removeSame {
   my $locale = shift;
-  my $reference = readFile($inputDir .'/en-US/grwatcher.dtd');
+  my $reference = readFile($inputDir .'/' . $refLocale . '/grwatcher.dtd');
   my $localeReference = readFile($inputDir .'/' . $locale . '/grwatcher.dtd');
 
   foreach my $key (keys %{$reference->entman->{GENERAL}}) {
@@ -187,7 +191,7 @@ sub removeSame {
 
 sub fillEmpty {
   my $locale = shift;
-  my $reference = readFile($inputDir .'/en-US/grwatcher.dtd');
+  my $reference = readFile($inputDir .'/' . $refLocale . '/grwatcher.dtd');
   my $localeReference = readFile($inputDir .'/' . $locale . '/grwatcher.dtd');
 
   foreach my $key (keys %{$reference->entman->{GENERAL}}) {
@@ -205,27 +209,20 @@ sub fillEmpty {
   close(FH);
 }
 
-sub copyProperties {
+sub copyOriginals {
   opendir(DIR, $inputDir);
   my @DIRS = readdir(DIR);
   closedir(DIR);
-  print "Copy prooperties\n";
 
-  foreach (@DIRS) {
-    copy($inputDir . '/' .$_ . '/grwatcher.properties', $outputDir . '/' . $_ .'/grwatcher.properties');
-  }
+  my $dir;
+
+
 }
 
-sub copyRef {
-  my $dir = $outputDir . '/en-US/';
-  unless (-d $dir) {
-    mkpath($dir);
-  }
-  copy($inputDir . '/en-US/grwatcher.properties', $outputDir . '/en-US/grwatcher.properties');
-  copy($inputDir . '/en-US/grwatcher.dtd', $outputDir . '/en-US/grwatcher.dtd');
-}
 
-my $reference = getFileGenerals($inputDir . '/en-US/grwatcher.dtd');
+my $reference = getFileGenerals($inputDir . '/' . $refLocale . '/grwatcher.dtd');
+
+copyOriginals();
 
 # print Dumper($reference);
 
@@ -233,90 +230,26 @@ opendir(DIR, $inputDir);
 my @DIRS = readdir(DIR);
 closedir(DIR);
 
-my $errors = {
-  'empty' => [],
-  'missing' => [],
-  'sameasref' => [],
-};
-
-# collect issues
-my $results = {};
-foreach my $dir (@DIRS) {
-    if ($dir ne '..' and $dir ne 'en-US' and $dir ne '.') {
-        my $f = getFileGenerals($inputDir . '/' . $dir . '/grwatcher.dtd');
-        my $result = checkFile($f, $dir, $reference);
-        @{$errors->{empty}} = (@{$errors->{empty}}, @{$result->{empty}});
-        @{$errors->{missing}} = (@{$errors->{missing}}, @{$result->{missing}});
-        @{$errors->{sameasref}} = (@{$errors->{sameasref}}, @{$result->{sameasref}});
-        $results->{$dir} = $result;
+foreach (@DIRS) {
+  if ($_ ne '.' && $_ ne '..') {
+    my $dir = $outputDir . '/' .$_;
+    unless (-d $dir) {
+      mkpath($dir);
     }
-}
-# where translation is the same as the original
-my $sameasrefCount = scalar(@{$errors->{'sameasref'}});
-# where the translation is an empty string
-my $emptyCount = scalar(@{$errors->{'empty'}});
-# where the translation is missing
-my $missingCount = scalar(@{$errors->{'missing'}});
-
-if ($sameasrefCount > 0) {
-  printf "has %d same as reference\n", $sameasrefCount;
-  my $locales = {};
-  foreach my $same (@{$errors->{'sameasref'}}) {
-      $locales->{$same->{'locale'}} = [] unless defined($locales->{$same->{'locale'}});
-      push(@{$locales->{$same->{'locale'}}}, $same->{'entity'});
-  }
-  print join(' ', keys $locales);
-  print "\n";
-  print "Remove same\n";
-  foreach my $locale (keys $locales) {
-    removeSame($locale);
+    copy($inputDir . '/' .$_ . '/grwatcher.properties', $dir .'/grwatcher.properties');
+    copy($inputDir . '/' .$_ . '/grwatcher.dtd', $dir .'/grwatcher.dtd');
+    if ($fillEmpty) {
+      if ($_ ne $refLocale) {
+        removeSame($_);
+        fillMissing($_, $outputDir . '/' . $_ . '/grwatcher.dtd');
+      }
+    } else {
+      if ($_ ne $refLocale) {
+        removeSame($_);
+        removeEmpty($_, $outputDir. '/' . $_ . '/grwatcher.dtd');
+      }
+    }
   }
 }
-
-if ($emptyCount > 0) {
-  printf "has %d empty\n", $emptyCount;
-  my $locales = {};
-  foreach my $empties (@{$errors->{'empty'}}) {
-      $locales->{$empties->{'locale'}} = [] unless defined($locales->{$empties->{'locale'}});
-      push(@{$locales->{$empties->{'locale'}}}, $empties->{'entity'});
-  }
-  print join(' ', keys $locales);
-  print "\n";
-  if ($fillEmpty) {
-      print "Fill missing\n";
-      foreach (keys $locales) {
-        fillMissing($_, "$outputDir/$_/grwatcher.dtd");
-      }
-  } elsif ($removeEmpty) { # remove duplicated locales
-      print "Remove empty\n";
-      foreach (keys $locales) {
-        removeEmpty($_, "$outputDir/$_/grwatcher.dtd");
-      }
-  }
-}
-if ($missingCount > 0) {
-  printf "%d is missing\n", $missingCount;
-  my $locales = {};
-  foreach my $missing (@{$errors->{'missing'}}) {
-      $locales->{$missing->{'locale'}} = [] unless defined($locales->{$missing->{'locale'}});
-      push(@{$locales->{$missing->{'locale'}}}, $missing->{'entity'});
-  }
-  print join(' ', keys $locales);
-  print "\n";
-  if ($fillEmpty) { # fix missing locales
-      print "Fill missing\n";
-      foreach (keys $locales) {
-        fillMissing($_, "$outputDir/$_/grwatcher.dtd");
-      }
-  } elsif ($removeEmpty) { # remove duplicated locales
-      print "Remove empty\n";
-      foreach (keys $locales) {
-        removeEmpty($_, "$outputDir/$_/grwatcher.dtd");
-      }
-  }
-}
-
-copyProperties();
-copyRef();
 
 exit 0;

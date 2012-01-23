@@ -19,6 +19,7 @@ all: build-release
 clean:
 	@echo Clean
 	@-rm $(PROJECT_NAME)*.xpi
+	@-rm -rf chrome/locale
 
 build-localizations-release:
 	cd tools && ./dtdparser.pl release
