@@ -4,6 +4,7 @@ use strict;
 use Data::Dumper;
 use XML::DTD;
 use File::Path;
+use File::Copy;
 
 my $inputDir = '../defaultlocales';
 my $outputDir = '../chrome/locale';
@@ -204,6 +205,26 @@ sub fillEmpty {
   close(FH);
 }
 
+sub copyProperties {
+  opendir(DIR, $inputDir);
+  my @DIRS = readdir(DIR);
+  closedir(DIR);
+  print "Copy prooperties\n";
+
+  foreach (@DIRS) {
+    copy($inputDir . '/' .$_ . '/grwatcher.properties', $outputDir . '/' . $_ .'/grwatcher.properties');
+  }
+}
+
+sub copyRef {
+  my $dir = $outputDir . '/en-US/';
+  unless (-d $dir) {
+    mkpath($dir);
+  }
+  copy($inputDir . '/en-US/grwatcher.properties', $outputDir . '/en-US/grwatcher.properties');
+  copy($inputDir . '/en-US/grwatcher.dtd', $outputDir . '/en-US/grwatcher.dtd');
+}
+
 my $reference = getFileGenerals($inputDir . '/en-US/grwatcher.dtd');
 
 # print Dumper($reference);
@@ -294,5 +315,8 @@ if ($missingCount > 0) {
       }
   }
 }
+
+copyProperties();
+copyRef();
 
 exit 0;
