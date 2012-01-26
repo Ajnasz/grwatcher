@@ -1,3 +1,5 @@
+/*global Components: true */
+/*jslint es5: true */
 var oAuthURL = 'https://accounts.google.com/o/oauth2/auth';
 var clientID = '18154408674.apps.googleusercontent.com';
 var clientSecret = '7uN4ujGfnbItwS6NbqWgbEJ5';
@@ -77,6 +79,7 @@ Oauth2.prototype = {
     },
     auth: function (cb) {
         var that = this,
+            Cc, win,
             poll,
             queryParams;
         queryParams = [
@@ -102,10 +105,25 @@ Oauth2.prototype = {
             }
         ];
 
-        var win = Components.classes["@mozilla.org/embedcomp/window-watcher;1"]
-                          .getService(Components.interfaces.nsIWindowWatcher)
-          .openWindow(null, generateRequestURI(oAuthURL, queryParams), "GRWatcher Auth request",
-                      "location=yes,status=yes,width=500,height=410", null);
+
+        Cc = Components.classes;
+            // open window to allow access
+            // Set most recent window as parent window
+        win = Cc["@mozilla.org/embedcomp/window-watcher;1"]
+          .getService(Components.interfaces.nsIWindowWatcher)
+          .openWindow(
+              // parent window
+              Cc["@mozilla.org/appshell/window-mediator;1"]
+                .getService(Components.interfaces.nsIWindowMediator)
+              .getMostRecentWindow("navigator:browser"),
+              // uri
+              generateRequestURI(oAuthURL, queryParams),
+              // window name
+              "GRWatcher Auth request",
+              // window params
+              "location=yes,status=yes,width=500,height=410",
+              null
+          );
 
         Components.utils.import("resource://grwmodules/timer.jsm", scope);
         /**
