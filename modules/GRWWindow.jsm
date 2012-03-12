@@ -78,17 +78,19 @@ GRWWindow.prototype = {
     onMenuCommand: function () {
         var that = this;
         return function (e) {
-            // fake event object. We assume that a command would be the
-            // same as clicking on a elment with the left mouse button
-            var ev = {
-                button: typeof e.button === 'undefined' ? 0 : e.button,
-                shiftKey: e.shiftKey,
-                altKey: e.altKey,
-                ctrlKey: e.ctrlKey,
-                target: e.target
-            };
             // only feed items has url attribute
-            if (e.target.getAttribute('url')) {
+            if (e.target.getAttribute('url') ||
+                        e.target.getAttribute('id') === 'GRW-toolbar-menuitem-openreader' ||
+                        e.target.getAttribute('id') === 'GRW-statusbar-menuitem-openreader') {
+                // fake event object. We assume that a command would be the
+                // same as clicking on a elment with the left mouse button
+                var ev = {
+                    button: typeof e.button === 'undefined' ? 0 : e.button,
+                    shiftKey: e.shiftKey,
+                    altKey: e.altKey,
+                    ctrlKey: e.ctrlKey,
+                    target: e.target
+                };
                 that.handleClick(ev);
             } else {
                 e.preventDefault();

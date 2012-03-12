@@ -146,6 +146,10 @@
       <tabpanel>
         <groupbox flex="1">
           <caption label="&GRWpreferences.generalpreferencesopencaption;" />
+            <checkbox id="GRW-browserlikeopen-field" label="&GRWpreferences.browserlikeopencheckboxlabel;" />
+            <description id="GRW-browserlikeopen-description">&GRWpreferences.browserlikeopendesc;</description>
+          <vbox flex="1">
+          </vbox>
           <vbox flex="1">
             <checkbox id="GRW-openinnewtab-field" label="&GRWpreferences.openinnewtabdesc;" />
             <box id="GRW-openinnewtab-options">

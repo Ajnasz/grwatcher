@@ -149,10 +149,6 @@ var grwWindows = (function () {
                 if (e.button === 0 || e.button === 1) {
                     var id = e.target.getAttribute('id');
                     switch (id) {
-                    case 'GRW-toolbar-menuitem-openreader':
-                    case 'GRW-statusbar-menuitem-openreader':
-                        readerOpener.open();
-                        break;
                     case 'GRW-statusbar-menuitem-markallasread':
                     case 'GRW-toolbar-menuitem-markallasread':
                         markall.mark();

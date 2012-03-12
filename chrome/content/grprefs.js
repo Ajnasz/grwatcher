@@ -1,14 +1,7 @@
 var GRW = {};
 (function () {
     var scope = {}, doc, setPref, getPref, getById,
-        savePreferences, setPrefPaneVals, openNewTabCheckToogle, counterHandler,
-        oAuthSettings,
-        prefFields, workOnPrefs, handlePref;
-    /**
-    * save the preferences into the chrome when the pref dialog is accepted
-    * @method savePreferences
-    * @namespace GRW
-    */
+        prefFields;
     Components.utils.import("resource://grwmodules/prefs.jsm", scope);
     Components.utils.import("resource://grwmodules/passManager.jsm", scope);
     Components.utils.import("resource://grwmodules/Oauth2.jsm", scope);
@@ -29,6 +22,7 @@ var GRW = {};
         {id: 'GRW-tooltiptitlelength-field', cmd: 'tooltipTitleLength'},
         // {id: 'GRW-rememberLogin-field', cmd: 'rememberLogin'},
         {id: 'GRW-leftclickopen-field', cmd: 'leftClickOpen'},
+        {id: 'GRW-browserlikeopen-field', cmd: 'browserlikeWindowOpen'},
         {id: 'GRW-activateopenedtab-field', cmd: 'activateOpenedTab'},
         {id: 'GRW-shownotificationwindow-field', cmd: 'showNotificationWindow'},
         {id: 'GRW-showzerocounter-field', cmd: 'showZeroCounter'},
@@ -55,7 +49,7 @@ var GRW = {};
         }
     ];
 
-    handlePref = function (save) {
+    function handlePref(save) {
         return function (item) {
             var id = item.id,
                 elem = getById(id),
@@ -89,27 +83,39 @@ var GRW = {};
                 }
             }
         };
-    };
+    }
 
-    workOnPrefs = function (save) {
+    function workOnPrefs(save) {
         var handler = handlePref(save);
         prefFields.forEach(handlePref(save));
-    };
+    }
 
-    savePreferences = function () {
+    function savePreferences() {
         workOnPrefs(true);
-    };
+    }
 
-    setPrefPaneVals = function () {
+    function setPrefPaneVals() {
         workOnPrefs(false);
-    };
+    }
+
+    function windowOpenHandler() {
+        var field = getById('GRW-browserlikeopen-field');
+        if (field.checked) {
+            getById('GRW-openinnewtab-field').disabled = 'disabled';
+            getById('GRW-activateopenedtab-field').disabled = 'disabled';
+            getById('GRW-leftclickopen-field').disabled = 'disabled';
+        } else {
+            getById('GRW-openinnewtab-field').disabled = '';
+            getById('GRW-activateopenedtab-field').disabled = '';
+            getById('GRW-leftclickopen-field').disabled = '';
+        }
+    }
 
     /**
     * show/hide the newtab options
     * @method openNewTabCheckToogle
-    * @namespace GRW
     */
-    openNewTabCheckToogle = function () {
+    function openNewTabCheckToogle() {
         var cbfield = getById('GRW-openinnewtab-field');
         if (cbfield.checked) {
             getById('GRW-activateopenedtab-field').disabled = '';
@@ -123,9 +129,9 @@ var GRW = {};
             getById('GRW-leftclickopen-label').disabled = 'disabled';
             // document.getElementById('GRW-openinnewtab-options').style.display = 'none';
         }
-    };
+    }
     
-    counterHandler = function () {
+    function counterHandler() {
         var counterField = getById('GRW-showcounter-field'),
             zeroCounterField = getById('GRW-showzerocounter-field'),
             maxCounterField = getById('GRW-maximizecounter-field'),
@@ -137,8 +143,8 @@ var GRW = {};
         };
         counterField.addEventListener('command', updateZeroCounter, false);
         updateZeroCounter();
-    };
-    oAuthSettings = function () {
+    }
+    function oAuthSettings() {
         var updateAccountTabs = function () {
             if (scope.prefs.get.oauthCode()) {
                 getById('GRW-auth-tab-clientlogin').setAttribute('disabled', true);
@@ -160,12 +166,14 @@ var GRW = {};
             updateAccountTabs();
         });
         updateAccountTabs();
-    };
+    }
     GRW.initPrefs = function () {
         setPrefPaneVals();
         openNewTabCheckToogle();
         document.getElementById('GRW-openinnewtab-field')
             .addEventListener('command', openNewTabCheckToogle, false);
+        windowOpenHandler();
+        getById('GRW-browserlikeopen-field').addEventListener('command', windowOpenHandler, false);
         counterHandler();
         oAuthSettings();
     };
