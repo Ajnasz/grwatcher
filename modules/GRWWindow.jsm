@@ -87,7 +87,10 @@ GRWWindow.prototype = {
                 ctrlKey: e.ctrlKey,
                 target: e.target
             };
-            if (!that.handleClick(ev)) {
+            // only feed items has url attribute
+            if (e.target.getAttribute('url')) {
+                that.handleClick(ev);
+            } else {
                 e.preventDefault();
                 that.fireEvent('command', e);
             }
