@@ -141,34 +141,39 @@ var grwWindows = (function () {
             grwWin.on('updateRequest', function () {
                 requester.updater();
             });
-            grwWin.on('windowOpenRequest', function (how) {
-                readerOpener.open(null, how);
+            grwWin.on('windowOpenRequest', function (args) {
+                readerOpener.open(args[0], args[1]);
             });
-            grwWin.on('command', function (target) {
-                var id = target.getAttribute('id');
-                switch (id) {
-                case 'GRW-toolbar-menuitem-openreader':
-                case 'GRW-statusbar-menuitem-openreader':
-                    readerOpener.open();
-                    break;
-                case 'GRW-statusbar-menuitem-markallasread':
-                case 'GRW-toolbar-menuitem-markallasread':
-                    markall.mark();
-                    break;
-                case 'GRW-statusbar-menuitem-getcounter':
-                case 'GRW-toolbar-menuitem-getcounter':
-                    requester.updater();
-                    break;
-                case 'GRW-statusbar-menuitem-openprefs':
-                case 'GRW-toolbar-menuitem-openprefs':
-                    Components.classes["@mozilla.org/embedcomp/window-watcher;1"]
-                                      .getService(Components.interfaces.nsIWindowWatcher)
-                      .openWindow(null, "chrome://grwatcher/content/grprefs.xul", "GRWatcher",
-                                  "chrome,centerscreen", null);
-                    break;
-                }
-                if (target.getAttribute('url')) {
-                    readerOpener.open(target.getAttribute('url'));
+            grwWin.on('command', function (e) {
+                scope.grwlog('button: ', e.shiftKey);
+                if (e.button === 0 || e.button === 1) {
+                    var id = e.target.getAttribute('id');
+                    switch (id) {
+                    case 'GRW-toolbar-menuitem-openreader':
+                    case 'GRW-statusbar-menuitem-openreader':
+                        readerOpener.open();
+                        break;
+                    case 'GRW-statusbar-menuitem-markallasread':
+                    case 'GRW-toolbar-menuitem-markallasread':
+                        markall.mark();
+                        break;
+                    case 'GRW-statusbar-menuitem-getcounter':
+                    case 'GRW-toolbar-menuitem-getcounter':
+                        requester.updater();
+                        break;
+                    case 'GRW-statusbar-menuitem-openprefs':
+                    case 'GRW-toolbar-menuitem-openprefs':
+                        Components.classes["@mozilla.org/embedcomp/window-watcher;1"]
+                                          .getService(Components.interfaces.nsIWindowWatcher)
+                          .openWindow(null, "chrome://grwatcher/content/grprefs.xul", "GRWatcher",
+                                      "chrome,centerscreen", null);
+                        break;
+                    }
+                    /*
+                    if (e.target.getAttribute('url')) {
+                        readerOpener.open(e.target.getAttribute('url'));
+                    }
+                    */
                 }
             });
         },

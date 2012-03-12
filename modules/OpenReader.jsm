@@ -118,9 +118,10 @@ OpenReader.prototype = {
     var me = this,
       url;
 
+    how = how || 'currentTab';
     this.fireEvent('startOpen');
     function open() {
-      scope.grwlog('open grw');
+      scope.grwlog('open grw', how, subUrl);
       try {
         me.fireEvent('beforeReaderOpened');
         url = subUrl ?

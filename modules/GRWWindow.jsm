@@ -31,6 +31,7 @@ var tooltipElements = {
 Components.utils.import("resource://grwmodules/EventProvider.jsm", scope);
 Components.utils.import("resource://grwmodules/augment.jsm", scope);
 Components.utils.import("resource://grwmodules/prefs.jsm", scope);
+Components.utils.import("resource://grwmodules/grwlog.jsm", scope);
 /**
  * Job: Update UI:
  *    update icon
@@ -80,7 +81,21 @@ GRWWindow.prototype = {
             var element = doc.getElementById(elem);
             if (element) {
                 element.addEventListener('command', function (e) {
-                    that.fireEvent('command', e.target);
+                    scope.grwlog('shift: ' + e.shiftKey, 'ctrly: ' + e.ctrlKey,
+                                 'alt: ' + e.altKey, 'btn: ' + e.button);
+                    // fake event object. We assume that a command would be the
+                    // same as clicking on a elment with the left mouse button
+                    var ev = {
+                        button: 0,
+                        shiftKey: e.shiftKey,
+                        altKey: e.altKey,
+                        ctrlKey: e.ctrlKey,
+                        target: e.target
+                    };
+                    if (!that.handleClick(ev)) {
+                        e.preventDefault();
+                        that.fireEvent('command', e);
+                    }
                 }, false);
             }
         });
@@ -172,11 +187,13 @@ GRWWindow.prototype = {
             }
         });
     },
-    handleClick: function (e) {
+    handleMouseCommand: function (e) {
         var browserLike,
             possibilities,
             name,
             getPref,
+            output,
+            url,
             how;
         Components.utils.import("resource://grwmodules/prefs.jsm", scope);
         getPref = scope.prefs.get;
@@ -189,6 +206,9 @@ GRWWindow.prototype = {
                 key.alt === e.altKey &&
                 key.ctrl === e.ctrlKey;
         }
+        output = null;
+        name = null;
+        how = null;
         if (browserLike) {
             possibilities = [
                 {
@@ -248,22 +268,15 @@ GRWWindow.prototype = {
                     ]
                 }
             ];
-            name = null;
             possibilities.forEach(function (keyGroup) {
-                if (name || keyGroup.keys.some(keyFilter)) {
-                    name = name || keyGroup.name;
+                if (how || keyGroup.keys.some(keyFilter)) {
+                    how = how || keyGroup.name;
                 }
             });
-            if (name) {
-                e.preventDefault();
+            if (how) {
+                name = 'windowOpenRequest';
             }
-            this.fireEvent('windowOpenRequest', name);
-            Components.utils.import("resource://grwmodules/grwlog.jsm", scope);
-            scope.grwlog('open name', name, 'btn: ' + e.button, ' shift' +
-                         e.shiftKey, ' alt: ' + e.altKey, ' ctrl: ' +
-                         e.ctrlKey);
         } else {
-            name = '';
             switch (e.button) {
             case 0:
                 name = 'windowOpenRequest';
@@ -281,12 +294,20 @@ GRWWindow.prototype = {
                 name = 'updateRequest';
                 break;
             }
-            if (name !== '') {
-                if (customDefs[scope.prefs.get.leftClickOpen()] === e.type) {
-                    this.fireEvent(name, how);
-                }
-            }
         }
+        if (name && how) {
+            output = [name, e.target.getAttribute('url') || null, how];
+        }
+        return output;
+    },
+    handleClick: function (e) {
+        var o = this.handleMouseCommand(e);
+        scope.grwlog(o);
+        if (o !== null) {
+            this.fireEvent(o[0], [o[1], o[2]]);
+            return true;
+        }
+        return false;
     },
     onDocClick: function () {
         var that = this;
@@ -295,7 +316,9 @@ GRWWindow.prototype = {
             if (that.elements.some(function (id) {
                     return id === targetId;
                 })) {
-                that.handleClick(e);
+                if (that.handleClick(e)) {
+                    e.preventDefault();
+                }
             }
         };
     },
