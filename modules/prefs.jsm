@@ -169,6 +169,9 @@ var prefs = {
       */
     oauthRefreshToken: function() {
       return getCharPref('extensions.grwatcher.oauthrefreshtoken');
+    },
+    browserlikeWindowOpen: function () {
+      return getBoolPref('extensions.grwatcher.browserlikewindowopen');
     }
   },
   set: {
@@ -322,6 +325,9 @@ var prefs = {
       */
     oauthRefreshToken: function(value) {
       return setCharPref('extensions.grwatcher.oauthrefreshtoken', value);
+    },
+    browserlikeWindowOpen: function (value) {
+      return setBoolPref('extensions.grwatcher.browserlikewindowopen', value);
     }
   }
 };

@@ -1,9 +1,10 @@
-/*jslint indent: 2*/
+/*jslint indent: 2, sloppy: true */
 var scope = {};
 Components.utils.import("resource://grwmodules/prefs.jsm", scope);
+Components.utils.import("resource://grwmodules/grwlog.jsm", scope);
 /*global Components:true */
 var readerURL = 'www.google.com/reader/view',
-    getPref = scope.prefs.get;
+  getPref = scope.prefs.get;
 
 var getOpenedGR = function (gBrowser) {
   Components.utils.import("resource://grwmodules/generateUri.jsm", scope);
@@ -31,40 +32,74 @@ OpenReader.prototype = {
       .getService(Components.interfaces.nsIWindowMediator);
     return wm.getMostRecentWindow("navigator:browser").gBrowser;
   },
-  loadToCurrentTab: function (url) {
+  loadIntoNewWindow: function (url) {
+    scope.grwlog('open window');
+    var Cc = Components.classes;
+    Cc["@mozilla.org/embedcomp/window-watcher;1"]
+          .getService(Components.interfaces.nsIWindowWatcher)
+          .openWindow(
+              // parent window
+        Cc["@mozilla.org/appshell/window-mediator;1"]
+          .getService(Components.interfaces.nsIWindowMediator)
+          .getMostRecentWindow("navigator:browser"),
+        url,
+          // window name
+        null,
+          // window params
+        null,
+        null
+      );
+  },
+  loadIntoCurrentTab: function (url) {
+    scope.grwlog('load into current tab');
     this.gBrowser().loadURI(url);
   },
-  loadIntoToNewTab: function (url) {
+  loadIntoNewForegroundTab: function (url) {
     var gBrowser = this.gBrowser(),
-        openedGR = getOpenedGR(gBrowser),
-        currentContent = gBrowser
-          .getBrowserAtIndex(gBrowser.mTabContainer.selectedIndex).contentWindow;
+      openedGR = getOpenedGR(gBrowser),
+      currentContent = gBrowser
+        .getBrowserAtIndex(gBrowser.mTabContainer.selectedIndex).contentWindow;
     /**
     * isn't there any blank page
     */
     if (openedGR.blankPage === false) {
-      if (getPref.activateOpenedTab()) {
-        gBrowser.selectedTab = gBrowser.addTab(url);
-        currentContent.focus();
-      } else {
-        gBrowser.addTab(url);
-      }
+      gBrowser.selectedTab = gBrowser.addTab(url);
+      currentContent.focus();
     } else {
       /**
       * load the GR into the blank page
       */
-      if (getPref.activateOpenedTab()) {
-        gBrowser.mTabContainer.selectedIndex = openedGR.blankPage;
-        gBrowser.loadURI(url);
-        currentContent.focus();
-      } else {
-        gBrowser.getBrowserAtIndex(openedGR.blankPage).loadURI(url);
-      }
+      gBrowser.mTabContainer.selectedIndex = openedGR.blankPage;
+      gBrowser.loadURI(url);
+      currentContent.focus();
+    }
+  },
+  loadIntoNewBackgroundTab: function (url) {
+    var gBrowser = this.gBrowser(),
+      openedGR = getOpenedGR(gBrowser);
+    /**
+    * isn't there any blank page
+    */
+    if (openedGR.blankPage === false) {
+      gBrowser.addTab(url);
+    } else {
+      gBrowser.getBrowserAtIndex(openedGR.blankPage).loadURI(url);
+    }
+  },
+  loadIntoNewTab: function (url) {
+    var gBrowser = this.gBrowser(),
+      openedGR = getOpenedGR(gBrowser),
+      currentContent = gBrowser
+          .getBrowserAtIndex(gBrowser.mTabContainer.selectedIndex).contentWindow;
+    if (getPref.activateOpenedTab()) {
+      this.loadIntoNewForegroundTab(url);
+    } else {
+      this.loadIntoNewBackgroundTab(url);
     }
   },
   focusCurrentGR: function (url) {
     var gBrowser = this.gBrowser(),
-        openedGR = getOpenedGR(gBrowser);
+      openedGR = getOpenedGR(gBrowser);
     gBrowser.mTabContainer.selectedIndex = openedGR.grTab;
     gBrowser.loadURI(url);
   },
@@ -74,54 +109,63 @@ OpenReader.prototype = {
   hasOpenedGR: function () {
     return getOpenedGR(this.gBrowser()).grTab !== false;
   },
-  _loginAndOpen: function (subUrl) {
-    Components.utils.import("resource://grwmodules/siteLogin.jsm", scope);
-    var me = this;
-    scope.siteLogin(function () {
-      me._open(subUrl);
-    });
-  },
-  _open: function (subUrl) {
-    try {
-      this.fireEvent('beforeReaderOpened');
-      Components.utils.import("resource://grwmodules/generateUri.jsm", scope);
-      var url = subUrl ?
-        scope.generateUri(readerURL, false) + '/' + subUrl :
-        scope.generateUri(readerURL, false);
-      /**
-      * google reader doesn't opened yet
-      */
-      if (!this.hasOpenedGR()) {
-        /**
-        * open in new tab
-        */
-        if (getPref.openInNewTab()) {
-          this.loadIntoToNewTab(url);
-        } else {
-          this.loadToCurrentTab(url);
-        }
-      } else {
-        this.focusCurrentGR(url);
-      }
-    } catch (e) {
-      Components.utils.import("resource://grwmodules/grwlog.jsm", scope);
-      scope.grwlog('reader open', e);
-      scope.grwlog('fileName', e.fileName);
-      scope.grwlog('line', e.lineNumber);
-    }
-    this.fireEvent('readerOpened');
-  },
-  open: function (subUrl) {
+  open: function (subUrl, how) {
     Components.utils.import("resource://grwmodules/prefs.jsm", scope);
     Components.utils.import("resource://grwmodules/loginmanager.jsm", scope);
+    Components.utils.import("resource://grwmodules/siteLogin.jsm", scope);
+    Components.utils.import("resource://grwmodules/generateUri.jsm", scope);
+
+    var me = this,
+      url;
+
     this.fireEvent('startOpen');
+    function open() {
+      scope.grwlog('open grw');
+      try {
+        me.fireEvent('beforeReaderOpened');
+        url = subUrl ?
+            scope.generateUri(readerURL, false) + '/' + subUrl :
+            scope.generateUri(readerURL, false);
+        /**
+        * google reader doesn't opened yet
+        */
+        if (me.hasOpenedGR()) {
+          scope.grwlog('has opened grw');
+          me.focusCurrentGR(url);
+        } else {
+          scope.grwlog('open somehow: ', how);
+          switch (how) {
+          case 'newWindow':
+            me.loadIntoNewWindow(url);
+            break;
+          case 'newBackgroundTab':
+            me.loadIntoNewBackgroundTab(url);
+            break;
+          case 'newForegroundTab':
+            me.loadIntoNewForegroundTab(url);
+            break;
+          case 'currentTab':
+            scope.grwlog('load inooo current tab');
+            me.loadIntoCurrentTab(url);
+            break;
+          default:
+            scope.grwlog('mode not found: ', '++++' + how + '++++', typeof how, how.length);
+          }
+        }
+      } catch (e) {
+        scope.grwlog('reader open', e);
+        scope.grwlog('fileName', e.fileName);
+        scope.grwlog('line', e.lineNumber);
+      }
+      me.fireEvent('readerOpened');
+    }
     // Login before page open can not be forced if user logs in with oauth
     // since we don't have any username and/or password
     if (scope.prefs.get.haveMultipleAccounts() &&
         scope.loginManager.getAuthType() !== scope.LoginManager.authTypeOauth2) {
-      this._loginAndOpen(subUrl);
+      scope.siteLogin(open);
     } else {
-      this._open(subUrl);
+      open();
     }
   }
 };

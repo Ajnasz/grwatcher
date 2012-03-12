@@ -28,7 +28,8 @@ var grwWindows = (function () {
      *  unregister closed windows
      *  listen on happenings
      *  notify all GRWWindow objects about any happening.
-     *  listen on GRWWindow events: if user clicks on the icon, the icon and the counter may need update
+     *  listen on GRWWindow events: if user clicks on the icon, the icon and
+     *  the counter may need update
      * Happening could be:
      *  New unread items found
      *  No unread items found
@@ -48,7 +49,7 @@ var grwWindows = (function () {
                 delay = delay > minDelay ? delay : minDelay;
                 scope.later(function () {
                     // must set to uninitialized
-                    requester.getlist._initialized = false;
+                    requester.getlist.setUnInitialized();
                     requester.start();
                 }, delay);
                 this.started = true;
@@ -137,11 +138,11 @@ var grwWindows = (function () {
             });
         },
         subscribeToWindow: function (grwWin) {
-            grwWin.on('iconClick', function () {
-                readerOpener.open();
-            });
-            grwWin.on('iconMiddleClick', function () {
+            grwWin.on('updateRequest', function () {
                 requester.updater();
+            });
+            grwWin.on('windowOpenRequest', function (how) {
+                readerOpener.open(null, how);
             });
             grwWin.on('command', function (target) {
                 var id = target.getAttribute('id');
@@ -182,8 +183,10 @@ var grwWindows = (function () {
             this.start();
         },
         remove: function (win) {
-            var i = 0, wl = this.windows.length, grwWin;
-            for (; i < wl; i += 1) {
+            var i,
+                wl,
+                grwWin;
+            for (i = 0, wl = this.windows.length; i < wl; i += 1) {
                 if (this.windows[i].win === win) {
                     grwWin = this.windows.splice(i, 1)[0];
                     grwWin.destroy();

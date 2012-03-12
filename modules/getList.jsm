@@ -50,12 +50,22 @@ GetList = function () {
   });
 };
 GetList.prototype = {
+  initialized: false,
+  setInitialized: function () {
+      this.initialized = true;
+  },
+  setUnInitialized: function () {
+      this.initialized = false;
+  },
+  isInitialized: function () {
+      return this.initialized;
+  },
   start: function () {
-    if (this._initialized) {
+    if (this.isInitialized()) {
       return;
     }
     this._initRequests();
-    this._initialized = true;
+    this.setInitialized();
   },
   getUserInfo: function (cb) {
     var _this = this;
@@ -68,7 +78,7 @@ GetList.prototype = {
     });
   },
   restart: function () {
-    this._initialized = false;
+    this.setUnInitialized();
     this.start();
   },
   _fireUnreadAndSubscription: function () {

@@ -1,3 +1,4 @@
+/*jslint sloppy: true*/
 var customDefs = {
     2: 'dblclick',
     1: 'click'
@@ -40,13 +41,13 @@ Components.utils.import("resource://grwmodules/prefs.jsm", scope);
  *        check for unread feeds
  *        open window
  */
-var GRWWindow = function (win) {
+function GRWWindow(win) {
     this.win = win;
     this.doc = this.win.document;
     this.listenClicks();
     this.subscribeToMenuCommand();
     this.generateMenu(0, 0);
-};
+}
 
 GRWWindow.unreadFound = 'unreadFound';
 GRWWindow.nonew = 'nonew';
@@ -87,7 +88,10 @@ GRWWindow.prototype = {
     generateMenu: function (feeds, labels) {
         Components.utils.import("resource://grwmodules/grwMenu.jsm", scope);
         var doc = this.doc,
-            name, menu, conf, element;
+            name,
+            menu,
+            conf,
+            element;
         if (this.menus) {
             this.menus.forEach(function (menu) {
                 menu.unsubscribeAll();
@@ -122,7 +126,12 @@ GRWWindow.prototype = {
                         elementContainer.removeChild(elementContainer.firstChild);
                     }
                     if (scope.prefs.get.showitemsintooltip()) {
-                        grid = new scope.GrwTooltipGrid(doc, feeds, labels, tooltipElements[name].tooltipNewElement).getGrid();
+                        grid = new scope.GrwTooltipGrid(
+                            doc,
+                            feeds,
+                            labels,
+                            tooltipElements[name].tooltipNewElement
+                        ).getGrid();
                         elementContainer.appendChild(grid);
                     }
                 }
@@ -164,18 +173,118 @@ GRWWindow.prototype = {
         });
     },
     handleClick: function (e) {
-        var name = '';
-        switch (e.button) {
-        case 0:
-            name = 'iconClick';
-            break;
-        case 1:
-            name = 'iconMiddleClick';
-            break;
+        var browserLike,
+            possibilities,
+            name,
+            getPref,
+            how;
+        Components.utils.import("resource://grwmodules/prefs.jsm", scope);
+        getPref = scope.prefs.get;
+
+        browserLike = getPref.browserlikeWindowOpen();
+
+        function keyFilter(key) {
+            return key.button === e.button &&
+                key.shift === e.shiftKey &&
+                key.alt === e.altKey &&
+                key.ctrl === e.ctrlKey;
         }
-        if (name !== '') {
-            if (customDefs[scope.prefs.get.leftClickOpen()] === e.type) {
-                this.fireEvent(name, [e.type, e]);
+        if (browserLike) {
+            possibilities = [
+                {
+                    name: 'newBackgroundTab',
+                    keys: [
+                        {
+                            button: 1,
+                            shift: false,
+                            ctrl: false,
+                            alt: false
+                        },
+                        {
+                            button: 0,
+                            ctrl: true,
+                            shift: false,
+                            alt: false
+                        }
+                    ]
+                },
+                {
+                    name: 'newForegroundTab',
+                    keys: [
+                        {
+                            button: 1,
+                            shift: true,
+                            ctrl: false,
+                            alt: false
+                        },
+                        {
+                            button: 0,
+                            shift: true,
+                            ctrl: true,
+                            alt: false
+                        }
+                    ]
+                },
+                {
+                    name: 'currentTab',
+                    keys: [
+                        {
+                            button: 0,
+                            shift: false,
+                            ctrl: false,
+                            alt: false
+                        }
+                    ]
+                },
+                {
+                    name: 'newWindow',
+                    keys: [
+                        {
+                            button: 0,
+                            shift: true,
+                            ctrl: false,
+                            alt: false
+                        }
+                    ]
+                }
+            ];
+            name = null;
+            possibilities.forEach(function (keyGroup) {
+                if (name || keyGroup.keys.some(keyFilter)) {
+                    name = name || keyGroup.name;
+                }
+            });
+            if (name) {
+                e.preventDefault();
+            }
+            this.fireEvent('windowOpenRequest', name);
+            Components.utils.import("resource://grwmodules/grwlog.jsm", scope);
+            scope.grwlog('open name', name, 'btn: ' + e.button, ' shift' +
+                         e.shiftKey, ' alt: ' + e.altKey, ' ctrl: ' +
+                         e.ctrlKey);
+        } else {
+            name = '';
+            switch (e.button) {
+            case 0:
+                name = 'windowOpenRequest';
+                if (getPref.openInNewTab()) {
+                    if (getPref.activateOpenedTab()) {
+                        how = 'newForegroundTab';
+                    } else {
+                        how = 'newBackgroundTab';
+                    }
+                } else {
+                    how = 'currentTab';
+                }
+                break;
+            case 1:
+                name = 'updateRequest';
+                break;
+            }
+            if (name !== '') {
+                if (customDefs[scope.prefs.get.leftClickOpen()] === e.type) {
+                    this.fireEvent(name, how);
+                }
             }
         }
     },
@@ -184,8 +293,8 @@ GRWWindow.prototype = {
         return function (e) {
             var targetId = e.target.id;
             if (that.elements.some(function (id) {
-                return id === targetId;
-            })) {
+                    return id === targetId;
+                })) {
                 that.handleClick(e);
             }
         };

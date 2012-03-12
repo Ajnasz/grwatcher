@@ -31,6 +31,7 @@ pref("extensions.grwatcher.havemultipleaccounts", false);
 
 pref("extensions.grwatcher.debug", false);
 
-
 pref("extensions.grwatcher.oauthcode", '');
 pref("extensions.grwatcher.oauthrefreshtoken", '');
+
+pref("extensions.grwatcher.browserlikewindowopen", false);
