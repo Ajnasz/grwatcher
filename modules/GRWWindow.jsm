@@ -74,29 +74,48 @@ GRWWindow.iconClasses = {
 
 GRWWindow.prototype = {
     elements: ['GRW-toolbar-button', 'GRW-toolbar-label', 'GRW-statusbar'],
+    menuElemnets: ['GRW-statusbar-menu', 'GRW-toolbar-menu'],
+    onMenuCommand: function () {
+        var that = this;
+        return function (e) {
+            // fake event object. We assume that a command would be the
+            // same as clicking on a elment with the left mouse button
+            var ev = {
+                button: typeof e.button === 'undefined' ? 0 : e.button,
+                shiftKey: e.shiftKey,
+                altKey: e.altKey,
+                ctrlKey: e.ctrlKey,
+                target: e.target
+            };
+            if (!that.handleClick(ev)) {
+                e.preventDefault();
+                that.fireEvent('command', e);
+            }
+        };
+    },
     subscribeToMenuCommand: function () {
         var doc = this.doc,
             that = this;
-        ['GRW-statusbar-menu', 'GRW-toolbar-menu'].forEach(function (elem) {
-            var element = doc.getElementById(elem);
+        this.menuElemnets.forEach(function (elem) {
+            var element = doc.getElementById(elem),
+                menuCommand;
             if (element) {
-                element.addEventListener('command', function (e) {
-                    scope.grwlog('shift: ' + e.shiftKey, 'ctrly: ' + e.ctrlKey,
-                                 'alt: ' + e.altKey, 'btn: ' + e.button);
-                    // fake event object. We assume that a command would be the
-                    // same as clicking on a elment with the left mouse button
-                    var ev = {
-                        button: 0,
-                        shiftKey: e.shiftKey,
-                        altKey: e.altKey,
-                        ctrlKey: e.ctrlKey,
-                        target: e.target
-                    };
-                    if (!that.handleClick(ev)) {
-                        e.preventDefault();
-                        that.fireEvent('command', e);
-                    }
-                }, false);
+                menuCommand = that.onMenuCommand();
+                element.addEventListener('command', menuCommand, false);
+                element.addEventListener('click', menuCommand, false);
+            }
+        });
+    },
+    unsubscribeMenuCommand: function () {
+        var doc = this.doc,
+            that = this;
+        this.menuElemnets.forEach(function (elem) {
+            var element = doc.getElementById(elem),
+                menuCommand;
+            if (element) {
+                menuCommand = that.onMenuCommand();
+                element.removeEventListener('command', menuCommand, false);
+                element.removeEventListener('click', menuCommand, false);
             }
         });
     },
@@ -295,7 +314,7 @@ GRWWindow.prototype = {
                 break;
             }
         }
-        if (name && how) {
+        if (name) {
             output = [name, e.target.getAttribute('url') || null, how];
         }
         return output;
@@ -323,8 +342,14 @@ GRWWindow.prototype = {
         };
     },
     listenClicks: function () {
-        this.doc.addEventListener('click', this.onDocClick(), false);
-        this.doc.addEventListener('dblclick', this.onDocClick(), false);
+        var onDocClick = this.onDocClick();
+        this.doc.addEventListener('click', onDocClick, false);
+        this.doc.addEventListener('dblclick', onDocClick, false);
+    },
+    unlistenClicks: function () {
+        var onDocClick = this.onDocClick();
+        this.doc.removeEventListener('click', onDocClick, false);
+        this.doc.removeEventListener('dblclick', onDocClick, false);
     },
     updateIcon: function (status) {
         var that = this,
@@ -428,6 +453,8 @@ GRWWindow.prototype = {
         }
     },
     destroy: function () {
+        this.unsubscribeMenuCommand();
+        this.unlistenClicks();
         this.unsubscribeAll();
         this.doc = null;
         this.win = null;
