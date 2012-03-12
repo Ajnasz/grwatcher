@@ -1,7 +1,7 @@
 #!/usr/bin/perl
 use strict;
 
-use Data::Dumper;
+# use Data::Dumper;
 use XML::DTD;
 use File::Path;
 use File::Copy;
