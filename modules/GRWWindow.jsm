@@ -329,17 +329,21 @@ GRWWindow.prototype = {
     updateIcon: function (status) {
         var that = this,
             iconClasses = GRWWindow.iconClasses;
+
+
+        function iconFilter(cl) {
+            // remove empty classes and the current status class
+            return cl !== '' &&
+                    cl !== iconClasses.on &&
+                    cl !== iconClasses.off &&
+                    cl !== iconClasses.error &&
+                    cl !== iconClasses.load;
+        }
+
         ['GRW-toolbar-button', 'GRW-statusbar'].forEach(function (elemId) {
             var elem = that.doc.getElementById(elemId), classes;
             if (elem) {
-                classes = elem.getAttribute('class').split(' ').filter(function (cl) {
-                    // remove empty classes and the current status class
-                    return cl !== '' &&
-                            cl !== iconClasses.on &&
-                            cl !== iconClasses.off &&
-                            cl !== iconClasses.error &&
-                            cl !== iconClasses.load;
-                });
+                classes = elem.getAttribute('class').split(' ').filter(iconFilter);
                 classes.push(status);
                 elem.setAttribute('class', classes.join(' '));
             }
