@@ -15,10 +15,12 @@
 <!ENTITY GRWpreferences.tabopening "Ustawienia otwierania okna">
 <!ENTITY GRWpreferences.tabtooltip "Ustawienia podpowiedzi">
 <!ENTITY GRWpreferences.openinnewtabdesc "Otwórz Google Reader w nowej karcie">
+<!ENTITY GRWpreferences.browserlikeopencheckboxlabel "Zaawansowane opcje myszy">
+<!ENTITY GRWpreferences.browserlikeopendesc "W przypadku wybrania tej opcji ikona i elementy menu będą się zachowywać podobnie do odnośników na stronach internetowych. Na przykład kliknięcie środkowym przyciskiem myszy otworzy Czytnik Google w nowej karcie w tle. Klikając z wykorzystaniem klawisza Shift zostanie Czytnik Google zostanie otwarty w nowym oknie.">
 <!ENTITY GRWpreferences.resetcounterdesc "Wyzeruj licznik po otwarciu Google Readera">
 <!ENTITY GRWpreferences.shownotificationwindow "Wyświetlaj okienko powiadomienia">
 <!ENTITY GRWpreferences.showzerocounter "Wyświetlaj licznik jeśli nie ma nieprzeczytanych wiadomości">
-<!ENTITY GRWpreferences.showcounter "Show the counter">
+<!ENTITY GRWpreferences.showcounter "Wyświetlaj licznik">
 <!ENTITY GRWpreferences.maximizecounter "Pokazuj &quot;1000+&quot; na pasku stanu jeśli masz więcej niż 1000 nieprzeczytanych wiadomości">
 <!ENTITY GRWpreferences.tooltipcounterposright "z prawej strony">
 <!ENTITY GRWpreferences.tooltipcounterposleft "z lewej strony">
@@ -28,7 +30,7 @@
 <!ENTITY GRWpreferences.accountinfocaption "Informacje o koncie Google">
 <!ENTITY GRWpreferences.accountinfoemail "Adres e-mail:">
 <!ENTITY GRWpreferences.accountinfopassword "Hasło:">
-<!ENTITY GRWpreferences.accountinfohavemultipleaccounts "I have more then one Google account">
+<!ENTITY GRWpreferences.accountinfohavemultipleaccounts "Posiadam więcej jak jedno konto Google">
 <!ENTITY GRWpreferences.accountinfo.rememberLogin "Zapamiętaj informacje logowania">
 <!ENTITY GRWpreferences.accountinfo.forceLogin "Loguj się przed każdym sprawdzeniem wiadomości oraz otwarciem okna">
 <!--nn-->

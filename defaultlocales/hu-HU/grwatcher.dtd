@@ -15,6 +15,8 @@
 <!ENTITY GRWpreferences.tabopening "Ablak nyitás beállítások">
 <!ENTITY GRWpreferences.tabtooltip "Tooltip beállítások">
 <!ENTITY GRWpreferences.openinnewtabdesc "Google Reader megnyitása új fülön">
+<!ENTITY GRWpreferences.browserlikeopencheckboxlabel "Fejlesztett egérkezelés">
+<!ENTITY GRWpreferences.browserlikeopendesc "Ha ezt az opciót kiválasztod, az ikon és a menü elemek weboldalak linkjeihez hasonlóan fognak viselkedni. Például, ha a középső egérgombbal kattintasz az ikonon, a Google Reader a háttérben fog megnyílni. Hasonlóan, ha a Shift billentyűt nyomva tartva kattintasz az ikonra, a Google Reader új ablakban fog megnyílni.">
 <!ENTITY GRWpreferences.resetcounterdesc "A állapotsor számláló nullázása a Google Reader megnyitásakor">
 <!ENTITY GRWpreferences.shownotificationwindow "Figyelmeztető ablak mutatása">
 <!ENTITY GRWpreferences.showzerocounter "Számláló mutatása ha nincs olvasatlan feed.">

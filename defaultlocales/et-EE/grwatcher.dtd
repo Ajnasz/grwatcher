@@ -2,7 +2,6 @@
 <!ENTITY GRWstatusbar.popup.getReadCounter "Kontrolli lugemata tellimusi">
 <!ENTITY GRWstatusbar.popup.openPrefs "Eelistused">
 <!ENTITY GRWstatusbar.popup.markAllAsRead "Märgi kõik loetuks">
-<!ENTITY GRWstatusbar.popup.enableCookies "Enable cookies">
 <!ENTITY GRWpreferences.title "Google Reader Watcheri eelistused">
 <!ENTITY GRWpreferences.checkfrequency "Uusi tellimusi kontrollitakse iga">
 <!ENTITY GRWpreferences.delaystart "Viivitus esimese kontrollini pärast brauseri starti (millisekundites)">
@@ -18,7 +17,6 @@
 <!ENTITY GRWpreferences.resetcounterdesc "Google Readeri akna avamisel lähtestatakse olekuriba loendur">
 <!ENTITY GRWpreferences.shownotificationwindow "Näidatakse teavitusakent">
 <!ENTITY GRWpreferences.showzerocounter "Loendurit näidatakse ka siis, kui puuduvad lugemata tellimused">
-<!ENTITY GRWpreferences.showcounter "Show the counter">
 <!ENTITY GRWpreferences.maximizecounter "Olekuribal kuvatakse 1000+ kui 1000 tellimust on lugemata">
 <!ENTITY GRWpreferences.tooltipcounterposright "paremal">
 <!ENTITY GRWpreferences.tooltipcounterposleft "vasakul">
@@ -28,7 +26,6 @@
 <!ENTITY GRWpreferences.accountinfocaption "Google konto info">
 <!ENTITY GRWpreferences.accountinfoemail "E-posti aadress:">
 <!ENTITY GRWpreferences.accountinfopassword "Parool:">
-<!ENTITY GRWpreferences.accountinfohavemultipleaccounts "I have more then one Google account">
 <!ENTITY GRWpreferences.accountinfo.rememberLogin "Logimise info peetakse meeles">
 <!ENTITY GRWpreferences.accountinfo.forceLogin "Logimist sunnitakse enne iga kontrolli ja akna avamist">
 <!--nn-->
@@ -44,11 +41,5 @@
 <!ENTITY GRWtooltip.newfeed "Sul on lugemata tellimusi">
 <!ENTITY GRWtooltip.errorlogin "Sisselogimine ebaõnnestus. Kontrolli sisestatud parooli ja/või kasutajanime!">
 <!ENTITY GRWtooltip.networkerror "Ühendus ebaõnnestus. Tee kindlaks, et sinu internetiühendus töötab!">
-<!ENTITY GRWtooltip.cookieerror "The third-party cookies are not enabled! Press right mouse button on the icon to enable it.">
-<!ENTITY GRWpreferences.showitemsintooltip "Enable to display unread items in the tooltip statusbar icon">
-<!ENTITY GRWpreferences.showitemsincontextmenu "Enable to add the unread items in the context menu of the statusbar icon">
 <!ENTITY GRWpreferences.account.tab.oauth "OAuth">
-<!ENTITY GRWpreferences.account.tab.username "Username/Password">
-<!ENTITY GRWpreferences.account.description.general "If you have only <strong>one Google account</strong> and if <strong>you are logged in</strong> almost <strong>always</strong>, you <strong>don't need to set up</strong> anything here. The extension will use the same session and will work without any issues.">
 <!ENTITY GRWpreferences.account.description.username "If 2 step verification isn't turned on, you can use a simple login method by filling the Username and Password fields.">
-<!ENTITY GRWpreferences.account.description.oauth "Use this if you turned on the 2 step verification for your Google Account. However it has a limitation: Using OAuth, the extension can not log you in with the proper account before it opens the page. It means when you click on the icon while you are logged in to another account it will open the Reader page for that account or if you are not logged in at all, you will need to fill the Google login form to access to the Google Reader.">

@@ -15,6 +15,8 @@
 <!ENTITY GRWpreferences.tabopening "Ρυθμίσεις ανοίγματος παραθύρου">
 <!ENTITY GRWpreferences.tabtooltip "Ρυθμίσεις συμβουλής εργαλείου">
 <!ENTITY GRWpreferences.openinnewtabdesc "Άνοιγμα του Google Reader σε νέα καρτέλα">
+<!ENTITY GRWpreferences.browserlikeopencheckboxlabel "Συμπεριφορά ποντικιού">
+<!ENTITY GRWpreferences.browserlikeopendesc "Αν ενεργοποιήσετε αυτή την επιλογή, το εικονίδιο και τα στοιχεία του μενού θα συμπεριφέρονται όπως οι δεσμοί στις ιστοσελίδες. Για παράδειγμα, το κλικ με το μεσαίο πλήκτρο του ποντικιού θα ανοίγει το Google Reader σε καρτέλα παρασκηνίου, το κλικ με πατημένο το πλήκτρο shift θα ανοίγει το Google Reader σε νέο παράθυρο.">
 <!ENTITY GRWpreferences.resetcounterdesc "Επαναφορά μετρητή της γραμμής κατάστασης μετά το άνοιγμα του Google Reader">
 <!ENTITY GRWpreferences.shownotificationwindow "Προβολή ειδοποίησης σε αναδυόμενο παράθυρο">
 <!ENTITY GRWpreferences.showzerocounter "Πάντα προβολή του μετρητή">

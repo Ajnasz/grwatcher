@@ -18,7 +18,6 @@
 <!ENTITY GRWpreferences.resetcounterdesc "Tetapkan semula bar status apabila layar Google Reader dibuka">
 <!ENTITY GRWpreferences.shownotificationwindow "Pamer layar notifikasi">
 <!ENTITY GRWpreferences.showzerocounter "Sentiasa pamerkan pengira">
-<!ENTITY GRWpreferences.showcounter "Show the counter">
 <!ENTITY GRWpreferences.maximizecounter "Pamerkan 1000+ pada bar status jika anda mempunyai lebih 1000 bahan belum baca">
 <!ENTITY GRWpreferences.tooltipcounterposright "Kanan">
 <!ENTITY GRWpreferences.tooltipcounterposleft "Kiri">
@@ -28,7 +27,6 @@
 <!ENTITY GRWpreferences.accountinfocaption "Maklumat akaun Google">
 <!ENTITY GRWpreferences.accountinfoemail "Alamat e-mel:">
 <!ENTITY GRWpreferences.accountinfopassword "Katalaluan:">
-<!ENTITY GRWpreferences.accountinfohavemultipleaccounts "I have more then one Google account">
 <!ENTITY GRWpreferences.accountinfo.rememberLogin "Sambungkan sesi pada permulaan">
 <!ENTITY GRWpreferences.accountinfo.forceLogin "Log masuk secara paksa sebelum pemeriksaan dan pembukaan layar">
 <!--nn-->
@@ -48,7 +46,4 @@
 <!ENTITY GRWpreferences.showitemsintooltip "Aktifkan supaya semua bahan belum dibaca dipamer pada ikon bar status">
 <!ENTITY GRWpreferences.showitemsincontextmenu "Aktifkan untuk menambah bahan belum dibaca pada menu konteks pada bar status">
 <!ENTITY GRWpreferences.account.tab.oauth "OAuth">
-<!ENTITY GRWpreferences.account.tab.username "Username/Password">
-<!ENTITY GRWpreferences.account.description.general "If you have only <strong>one Google account</strong> and if <strong>you are logged in</strong> almost <strong>always</strong>, you <strong>don't need to set up</strong> anything here. The extension will use the same session and will work without any issues.">
 <!ENTITY GRWpreferences.account.description.username "If 2 step verification isn't turned on, you can use a simple login method by filling the Username and Password fields.">
-<!ENTITY GRWpreferences.account.description.oauth "Use this if you turned on the 2 step verification for your Google Account. However it has a limitation: Using OAuth, the extension can not log you in with the proper account before it opens the page. It means when you click on the icon while you are logged in to another account it will open the Reader page for that account or if you are not logged in at all, you will need to fill the Google login form to access to the Google Reader.">

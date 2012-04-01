@@ -2,7 +2,6 @@
 <!ENTITY GRWstatusbar.popup.getReadCounter "检查未读的收取点">
 <!ENTITY GRWstatusbar.popup.openPrefs "选项">
 <!ENTITY GRWstatusbar.popup.markAllAsRead "标记所有为已读">
-<!ENTITY GRWstatusbar.popup.enableCookies "Enable cookies">
 <!ENTITY GRWpreferences.title "Google Reader Watcher 首选项">
 <!ENTITY GRWpreferences.checkfrequency "每">
 <!ENTITY GRWpreferences.delaystart "在浏览器启动后开始检查的延迟（毫秒）">
@@ -18,7 +17,6 @@
 <!ENTITY GRWpreferences.resetcounterdesc "Google 阅读器窗口打开时重置状态栏计数器">
 <!ENTITY GRWpreferences.shownotificationwindow "显示提示窗口">
 <!ENTITY GRWpreferences.showzerocounter "无未读信息时显示计数器">
-<!ENTITY GRWpreferences.showcounter "Show the counter">
 <!ENTITY GRWpreferences.maximizecounter "如果有超过1000条未读信息就在状态栏显示1000+">
 <!ENTITY GRWpreferences.tooltipcounterposright "右">
 <!ENTITY GRWpreferences.tooltipcounterposleft "左">
@@ -28,7 +26,6 @@
 <!ENTITY GRWpreferences.accountinfocaption "Google 账户信息">
 <!ENTITY GRWpreferences.accountinfoemail "Email 地址:">
 <!ENTITY GRWpreferences.accountinfopassword "密码:">
-<!ENTITY GRWpreferences.accountinfohavemultipleaccounts "I have more then one Google account">
 <!ENTITY GRWpreferences.accountinfo.rememberLogin "记住此登录">
 <!ENTITY GRWpreferences.accountinfo.forceLogin "每次检查和窗口打开前强制登录">
 <!--nn-->
@@ -44,11 +41,5 @@
 <!ENTITY GRWtooltip.newfeed "您有未读收取点">
 <!ENTITY GRWtooltip.errorlogin "登录失败。请确认账户信息正确！">
 <!ENTITY GRWtooltip.networkerror "连接失败。请确认网络连接有效！">
-<!ENTITY GRWtooltip.cookieerror "The third-party cookies are not enabled! Press right mouse button on the icon to enable it.">
-<!ENTITY GRWpreferences.showitemsintooltip "Enable to display unread items in the tooltip statusbar icon">
-<!ENTITY GRWpreferences.showitemsincontextmenu "Enable to add the unread items in the context menu of the statusbar icon">
 <!ENTITY GRWpreferences.account.tab.oauth "OAuth">
-<!ENTITY GRWpreferences.account.tab.username "Username/Password">
-<!ENTITY GRWpreferences.account.description.general "If you have only <strong>one Google account</strong> and if <strong>you are logged in</strong> almost <strong>always</strong>, you <strong>don't need to set up</strong> anything here. The extension will use the same session and will work without any issues.">
 <!ENTITY GRWpreferences.account.description.username "If 2 step verification isn't turned on, you can use a simple login method by filling the Username and Password fields.">
-<!ENTITY GRWpreferences.account.description.oauth "Use this if you turned on the 2 step verification for your Google Account. However it has a limitation: Using OAuth, the extension can not log you in with the proper account before it opens the page. It means when you click on the icon while you are logged in to another account it will open the Reader page for that account or if you are not logged in at all, you will need to fill the Google login form to access to the Google Reader.">

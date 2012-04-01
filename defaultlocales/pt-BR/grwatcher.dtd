@@ -2,24 +2,18 @@
 <!ENTITY GRWstatusbar.popup.getReadCounter "Verificar feeds não lidos">
 <!ENTITY GRWstatusbar.popup.openPrefs "Preferências">
 <!ENTITY GRWstatusbar.popup.markAllAsRead "Marcar todas como lidas">
-<!ENTITY GRWstatusbar.popup.enableCookies "Enable cookies">
 <!ENTITY GRWpreferences.title "Preferências do Google Reader Watcher">
 <!ENTITY GRWpreferences.checkfrequency "Verificar novos feeds a cada">
-<!ENTITY GRWpreferences.delaystart "Start the first check after the browser started (milliseconds)">
 <!ENTITY GRWpreferences.activateOpenedTab "Selecionar a aba do Google Reader após abertura">
 <!ENTITY GRWpreferences.generalpreferencescaption "Preferências gerais">
 <!ENTITY GRWpreferences.generalpreferencesopencaption "Abrindo configurações do Google Reader">
 <!ENTITY GRWpreferences.tooltippreferencescaption "Preferências de aviso">
 <!ENTITY GRWpreferences.tabgeneral "Geral">
 <!ENTITY GRWpreferences.tabaccountinfo "Informação da conta">
-<!ENTITY GRWpreferences.tabopening "Window opening settings">
-<!ENTITY GRWpreferences.tabtooltip "Tooltip settings">
 <!ENTITY GRWpreferences.openinnewtabdesc "Abrir Google Reader em uma nova aba">
 <!ENTITY GRWpreferences.resetcounterdesc "Resetar o contador da barra de status quando a janela do Google Reader abrir">
 <!ENTITY GRWpreferences.shownotificationwindow "Exibir Janela de Aviso">
 <!ENTITY GRWpreferences.showzerocounter "Mostrar contador quando não houverem feeds disponíveis">
-<!ENTITY GRWpreferences.showcounter "Show the counter">
-<!ENTITY GRWpreferences.maximizecounter "Show 1000+ in the statusbar if you have more than 1000 unread items">
 <!ENTITY GRWpreferences.tooltipcounterposright "Direita">
 <!ENTITY GRWpreferences.tooltipcounterposleft "Esquerda">
 <!ENTITY GRWpreferences.tooltipcounterposdesc "A posição do contador no aviso">
@@ -28,9 +22,7 @@
 <!ENTITY GRWpreferences.accountinfocaption "Informação da conta Google">
 <!ENTITY GRWpreferences.accountinfoemail "Endereço de e-mail:">
 <!ENTITY GRWpreferences.accountinfopassword "Senha:">
-<!ENTITY GRWpreferences.accountinfohavemultipleaccounts "I have more then one Google account">
 <!ENTITY GRWpreferences.accountinfo.rememberLogin "Lembrar Login">
-<!ENTITY GRWpreferences.accountinfo.forceLogin "Force login before every checking and window opening">
 <!--nn-->
 <!ENTITY GRWpreferences.leftclickopen.description "Abrir Google Reader com">
 <!ENTITY GRWpreferences.leftclickopen.singleclick "Clique único">
@@ -44,11 +36,5 @@
 <!ENTITY GRWtooltip.newfeed "Você tem feeds não lidos">
 <!ENTITY GRWtooltip.errorlogin "Falha de login. Verifique se login e senha estão corretos!">
 <!ENTITY GRWtooltip.networkerror "Erro na rede!">
-<!ENTITY GRWtooltip.cookieerror "The third-party cookies are not enabled! Press right mouse button on the icon to enable it.">
-<!ENTITY GRWpreferences.showitemsintooltip "Enable to display unread items in the tooltip statusbar icon">
-<!ENTITY GRWpreferences.showitemsincontextmenu "Enable to add the unread items in the context menu of the statusbar icon">
 <!ENTITY GRWpreferences.account.tab.oauth "OAuth">
-<!ENTITY GRWpreferences.account.tab.username "Username/Password">
-<!ENTITY GRWpreferences.account.description.general "If you have only <strong>one Google account</strong> and if <strong>you are logged in</strong> almost <strong>always</strong>, you <strong>don't need to set up</strong> anything here. The extension will use the same session and will work without any issues.">
 <!ENTITY GRWpreferences.account.description.username "If 2 step verification isn't turned on, you can use a simple login method by filling the Username and Password fields.">
-<!ENTITY GRWpreferences.account.description.oauth "Use this if you turned on the 2 step verification for your Google Account. However it has a limitation: Using OAuth, the extension can not log you in with the proper account before it opens the page. It means when you click on the icon while you are logged in to another account it will open the Reader page for that account or if you are not logged in at all, you will need to fill the Google login form to access to the Google Reader.">

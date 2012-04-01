@@ -10,7 +10,6 @@
 <!ENTITY GRWpreferences.generalpreferencescaption "Preferencias generales">
 <!ENTITY GRWpreferences.generalpreferencesopencaption "Cómo abrir Google Reader">
 <!ENTITY GRWpreferences.tooltippreferencescaption "Preferencias del texto emergente">
-<!ENTITY GRWpreferences.tabgeneral "General">
 <!ENTITY GRWpreferences.tabaccountinfo "Información de la cuenta">
 <!ENTITY GRWpreferences.tabopening "Apertura de Google Reader">
 <!ENTITY GRWpreferences.tabtooltip "Texto emergente">
@@ -18,7 +17,6 @@
 <!ENTITY GRWpreferences.resetcounterdesc "Reiniciar el contador de la barra de estado cuando se abra Google Reader">
 <!ENTITY GRWpreferences.shownotificationwindow "Mostrar un mensaje de notificación">
 <!ENTITY GRWpreferences.showzerocounter "Mostrar siempre el contador">
-<!ENTITY GRWpreferences.showcounter "Show the counter">
 <!ENTITY GRWpreferences.maximizecounter "Mostrar 1000+ en el contador si tiene más de 1000 elementos sin leer">
 <!ENTITY GRWpreferences.tooltipcounterposright "Derecha">
 <!ENTITY GRWpreferences.tooltipcounterposleft "Izquierda">
@@ -28,7 +26,6 @@
 <!ENTITY GRWpreferences.accountinfocaption "Información de la cuenta de Google">
 <!ENTITY GRWpreferences.accountinfoemail "Dirección de correo electrónico:">
 <!ENTITY GRWpreferences.accountinfopassword "Contraseña:">
-<!ENTITY GRWpreferences.accountinfohavemultipleaccounts "I have more then one Google account">
 <!ENTITY GRWpreferences.accountinfo.rememberLogin "Recordar la contraseña">
 <!ENTITY GRWpreferences.accountinfo.forceLogin "Forzar la identificación antes de cada revisión y apertura de Google Reader">
 <!--nn-->
@@ -48,7 +45,4 @@
 <!ENTITY GRWpreferences.showitemsintooltip "Mostrar los elementos sin leer en el texto emergente del icono de la barra de estado">
 <!ENTITY GRWpreferences.showitemsincontextmenu "Añadir los elementos sin leer en el menú contextual del icono de la barra de estado">
 <!ENTITY GRWpreferences.account.tab.oauth "OAuth">
-<!ENTITY GRWpreferences.account.tab.username "Username/Password">
-<!ENTITY GRWpreferences.account.description.general "If you have only <strong>one Google account</strong> and if <strong>you are logged in</strong> almost <strong>always</strong>, you <strong>don't need to set up</strong> anything here. The extension will use the same session and will work without any issues.">
 <!ENTITY GRWpreferences.account.description.username "If 2 step verification isn't turned on, you can use a simple login method by filling the Username and Password fields.">
-<!ENTITY GRWpreferences.account.description.oauth "Use this if you turned on the 2 step verification for your Google Account. However it has a limitation: Using OAuth, the extension can not log you in with the proper account before it opens the page. It means when you click on the icon while you are logged in to another account it will open the Reader page for that account or if you are not logged in at all, you will need to fill the Google login form to access to the Google Reader.">

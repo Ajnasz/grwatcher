@@ -15,6 +15,8 @@
 <!ENTITY GRWpreferences.tabopening "Možnosti otevření okna">
 <!ENTITY GRWpreferences.tabtooltip "Nastavení upozornění">
 <!ENTITY GRWpreferences.openinnewtabdesc "Otevřít Google Reader v novém panelu">
+<!ENTITY GRWpreferences.browserlikeopencheckboxlabel "Rozšířené ovládání myší">
+<!ENTITY GRWpreferences.browserlikeopendesc "Pokud vyberete tuto volbu, ikony a nabídky se budou chovat podobně jako odkazy na internetové stránce. Např. při kliknutí prostředním tl. myši se Google Reader otevře v novém panelu. Kliknutí při stisknutém Shiftu se otevře v novém okně.">
 <!ENTITY GRWpreferences.resetcounterdesc "Vynulovat počítadlo na liště při otevření okna s Google Readerem">
 <!ENTITY GRWpreferences.shownotificationwindow "Zobrazit okno s upozorněním">
 <!ENTITY GRWpreferences.showzerocounter "Vždy zobrazovat počítadlo">

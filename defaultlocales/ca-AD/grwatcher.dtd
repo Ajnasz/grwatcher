@@ -2,7 +2,6 @@
 <!ENTITY GRWstatusbar.popup.getReadCounter "Comprova si hi ha canals sense llegir">
 <!ENTITY GRWstatusbar.popup.openPrefs "Preferències">
 <!ENTITY GRWstatusbar.popup.markAllAsRead "Marca com a llegits">
-<!ENTITY GRWstatusbar.popup.enableCookies "Enable cookies">
 <!ENTITY GRWpreferences.title "Preferències de l&apos;observador del lector de Google">
 <!ENTITY GRWpreferences.checkfrequency "Freqüència de comprobació (minuts)">
 <!ENTITY GRWpreferences.delaystart "Comença amb la primera comprobació un cop el navegador s&apos;hagi obert (milisegons)">
@@ -10,7 +9,6 @@
 <!ENTITY GRWpreferences.generalpreferencescaption "Preferències generals">
 <!ENTITY GRWpreferences.generalpreferencesopencaption "Com s&apos;obre el lector de Google">
 <!ENTITY GRWpreferences.tooltippreferencescaption "Preferències de l&apos;indicador de funció">
-<!ENTITY GRWpreferences.tabgeneral "General">
 <!ENTITY GRWpreferences.tabaccountinfo "Informació del compte">
 <!ENTITY GRWpreferences.tabopening "Preferències a l&apos;obrir les finestres">
 <!ENTITY GRWpreferences.tabtooltip "Configuració de l&apos;indicador de funció">
@@ -18,7 +16,6 @@
 <!ENTITY GRWpreferences.resetcounterdesc "Reinicia el contador de la barra d&apos;estat quan s&apos;obre una finestra del lector de google">
 <!ENTITY GRWpreferences.shownotificationwindow "Mostra la finestra de notificació">
 <!ENTITY GRWpreferences.showzerocounter "Mostra sempre el contador">
-<!ENTITY GRWpreferences.showcounter "Show the counter">
 <!ENTITY GRWpreferences.maximizecounter "Mostra més de 1000 en la barra d&apos;estat si teniu més de 1000 wlements sense llegir">
 <!ENTITY GRWpreferences.tooltipcounterposright "Dreta">
 <!ENTITY GRWpreferences.tooltipcounterposleft "Esqerra">
@@ -28,7 +25,6 @@
 <!ENTITY GRWpreferences.accountinfocaption "Informació del compte de Google">
 <!ENTITY GRWpreferences.accountinfoemail "Correu electrònic:">
 <!ENTITY GRWpreferences.accountinfopassword "Contrasenya:">
-<!ENTITY GRWpreferences.accountinfohavemultipleaccounts "I have more then one Google account">
 <!ENTITY GRWpreferences.accountinfo.rememberLogin "Continua la sessió a l&apos;engegada">
 <!ENTITY GRWpreferences.accountinfo.forceLogin "Forçar accés abans de cada comprobació i d&apos;obrir finestres">
 <!--nn-->
@@ -44,11 +40,5 @@
 <!ENTITY GRWtooltip.newfeed "Teniu canals sense llegir">
 <!ENTITY GRWtooltip.errorlogin "S&apos;ha produït un error a l&apos;accedir. Assegureu-vos que heu entrat de forma correcta les vostres dades!">
 <!ENTITY GRWtooltip.networkerror "S&apos;ha produït un error en la connexió. Assegureuvos que en teniu una i estigui funcionant!">
-<!ENTITY GRWtooltip.cookieerror "The third-party cookies are not enabled! Press right mouse button on the icon to enable it.">
-<!ENTITY GRWpreferences.showitemsintooltip "Enable to display unread items in the tooltip statusbar icon">
-<!ENTITY GRWpreferences.showitemsincontextmenu "Enable to add the unread items in the context menu of the statusbar icon">
 <!ENTITY GRWpreferences.account.tab.oauth "OAuth">
-<!ENTITY GRWpreferences.account.tab.username "Username/Password">
-<!ENTITY GRWpreferences.account.description.general "If you have only <strong>one Google account</strong> and if <strong>you are logged in</strong> almost <strong>always</strong>, you <strong>don't need to set up</strong> anything here. The extension will use the same session and will work without any issues.">
 <!ENTITY GRWpreferences.account.description.username "If 2 step verification isn't turned on, you can use a simple login method by filling the Username and Password fields.">
-<!ENTITY GRWpreferences.account.description.oauth "Use this if you turned on the 2 step verification for your Google Account. However it has a limitation: Using OAuth, the extension can not log you in with the proper account before it opens the page. It means when you click on the icon while you are logged in to another account it will open the Reader page for that account or if you are not logged in at all, you will need to fill the Google login form to access to the Google Reader.">

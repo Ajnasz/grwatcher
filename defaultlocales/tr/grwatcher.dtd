@@ -2,7 +2,6 @@
 <!ENTITY GRWstatusbar.popup.getReadCounter "Okunmamış haberleri kontrol et">
 <!ENTITY GRWstatusbar.popup.openPrefs "Tercihler">
 <!ENTITY GRWstatusbar.popup.markAllAsRead "Hepsini okunmuş işaretle">
-<!ENTITY GRWstatusbar.popup.enableCookies "Enable cookies">
 <!ENTITY GRWpreferences.title "Google Reader İzleyicisi Tercihleri">
 <!ENTITY GRWpreferences.checkfrequency "Haberleri">
 <!ENTITY GRWpreferences.delaystart "Tarayıcı açıldıktan sonraki ilk kontrol için gereken gecikme (milisaniye)">
@@ -18,7 +17,6 @@
 <!ENTITY GRWpreferences.resetcounterdesc "Google Reader açıldığında durum çubuğundaki sayacı sıfırla">
 <!ENTITY GRWpreferences.shownotificationwindow "Duyuru penceresini göster">
 <!ENTITY GRWpreferences.showzerocounter "Okunmamış beslemeler yokken de sayacı göster">
-<!ENTITY GRWpreferences.showcounter "Show the counter">
 <!ENTITY GRWpreferences.maximizecounter "1000&apos;den fazla haber varsa durum çubuğunda 1000+ diye göster">
 <!ENTITY GRWpreferences.tooltipcounterposright "Sağ">
 <!ENTITY GRWpreferences.tooltipcounterposleft "Sol">
@@ -28,7 +26,6 @@
 <!ENTITY GRWpreferences.accountinfocaption "Google Hesap Bilgisi">
 <!ENTITY GRWpreferences.accountinfoemail "Email Adresi:">
 <!ENTITY GRWpreferences.accountinfopassword "şifre:">
-<!ENTITY GRWpreferences.accountinfohavemultipleaccounts "I have more then one Google account">
 <!ENTITY GRWpreferences.accountinfo.rememberLogin "Giriş bilgilerini hatırla">
 <!ENTITY GRWpreferences.accountinfo.forceLogin "Her kontrol ve pencere açma öncesi giriş yapmaya zorla">
 <!--nn-->
@@ -37,18 +34,10 @@
 <!ENTITY GRWpreferences.leftclickopen.dblclick "çift tıklamayla aç">
 <!ENTITY GRWpreferences.leftclickopen.disabled "açma">
 <!ENTITY GRWpreferences.usesecureconnection "Güvenli bağlantı kullan">
-<!ENTITY GRWpreferences.sortbylabels "In the tooltip sort the feeds by label">
-<!ENTITY GRWpreferences.filteredlabels "Filter feeds which are labeled with these labels (comma separated list)">
 <!ENTITY GRWtooltip.nonewfeed "Okunmamış haberiniz yok">
 <!ENTITY GRWtooltip.errorfeedfetch "Beslemelere ulaşırken hata oluştu!">
 <!ENTITY GRWtooltip.newfeed "Okunmamış haberleriniz var">
 <!ENTITY GRWtooltip.errorlogin "Giriş başarısız. Doğru kullanıcı adı/şifre kombinasyonunu girdiğinizden emin olun!">
 <!ENTITY GRWtooltip.networkerror "Ağ hatası!">
-<!ENTITY GRWtooltip.cookieerror "The third-party cookies are not enabled! Press right mouse button on the icon to enable it.">
-<!ENTITY GRWpreferences.showitemsintooltip "Enable to display unread items in the tooltip statusbar icon">
-<!ENTITY GRWpreferences.showitemsincontextmenu "Enable to add the unread items in the context menu of the statusbar icon">
 <!ENTITY GRWpreferences.account.tab.oauth "OAuth">
-<!ENTITY GRWpreferences.account.tab.username "Username/Password">
-<!ENTITY GRWpreferences.account.description.general "If you have only <strong>one Google account</strong> and if <strong>you are logged in</strong> almost <strong>always</strong>, you <strong>don't need to set up</strong> anything here. The extension will use the same session and will work without any issues.">
 <!ENTITY GRWpreferences.account.description.username "If 2 step verification isn't turned on, you can use a simple login method by filling the Username and Password fields.">
-<!ENTITY GRWpreferences.account.description.oauth "Use this if you turned on the 2 step verification for your Google Account. However it has a limitation: Using OAuth, the extension can not log you in with the proper account before it opens the page. It means when you click on the icon while you are logged in to another account it will open the Reader page for that account or if you are not logged in at all, you will need to fill the Google login form to access to the Google Reader.">

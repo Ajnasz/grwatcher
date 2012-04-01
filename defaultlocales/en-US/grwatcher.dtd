@@ -16,7 +16,7 @@
 <!ENTITY GRWpreferences.tabtooltip "Tooltip settings">
 <!ENTITY GRWpreferences.openinnewtabdesc "Open Google Reader in a new tab">
 <!ENTITY GRWpreferences.browserlikeopencheckboxlabel "Advanced mouse handling">
-<!ENTITY GRWpreferences.browserlikeopendesc "If you choose this options the icon and the menu items will behave similar to links on the webpages. For example, clicking with middle mouse button will open the Google Reeader in a new background tab. Clicking while the shift button is pressed will opens the Google Reader in a new window.">
+<!ENTITY GRWpreferences.browserlikeopendesc "If you choose this options the icon and the menu items will behave similar to links on the webpages. For example, clicking with middle mouse button will open the Google Reader in a new background tab. Clicking while the shift button is pressed will opens the Google Reader in a new window.">
 <!ENTITY GRWpreferences.resetcounterdesc "Resets the statusbar counter when the Google Reader window opens">
 <!ENTITY GRWpreferences.shownotificationwindow "Show notification window">
 <!ENTITY GRWpreferences.showzerocounter "Show the counter even if it would be 0">
@@ -26,7 +26,7 @@
 <!ENTITY GRWpreferences.tooltipcounterposleft "Left">
 <!ENTITY GRWpreferences.tooltipcounterposdesc "Counter tooltip position:">
 <!ENTITY GRWpreferences.tooltipdesc "These options will take effect after a feed check.">
-<!ENTITY GRWpreferences.tooltiptitlelengthdesc "Sets the feed title&apos;s character number in the tooltip">
+<!ENTITY GRWpreferences.tooltiptitlelengthdesc "Sets the feed title's character number in the tooltip">
 <!ENTITY GRWpreferences.accountinfocaption "Google account information">
 <!ENTITY GRWpreferences.accountinfoemail "E-mail address:">
 <!ENTITY GRWpreferences.accountinfopassword "Password:">
@@ -34,6 +34,7 @@
 <!ENTITY GRWpreferences.accountinfo.rememberLogin "Continue session on startup">
 <!ENTITY GRWpreferences.accountinfo.forceLogin "Force login before every checking and window opening">
 <!--
+
 
 -->
 <!ENTITY GRWpreferences.leftclickopen.description "Open Google Reader with">
@@ -43,7 +44,7 @@
 <!ENTITY GRWpreferences.usesecureconnection "Secure connection">
 <!ENTITY GRWpreferences.sortbylabels "In the tooltip sort the feeds by label">
 <!ENTITY GRWpreferences.filteredlabels "Filter feeds which are labeled with these labels (comma separated list)">
-<!ENTITY GRWtooltip.nonewfeed "You haven&apos;t got any unread feeds">
+<!ENTITY GRWtooltip.nonewfeed "You haven't got any unread feeds">
 <!ENTITY GRWtooltip.errorfeedfetch "Error fetching feeds!">
 <!ENTITY GRWtooltip.newfeed "You have unread feeds">
 <!ENTITY GRWtooltip.errorlogin "Login failed. Make sure you have entered the correct account credentials!">

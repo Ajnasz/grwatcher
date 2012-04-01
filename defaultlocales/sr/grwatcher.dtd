@@ -15,6 +15,8 @@
 <!ENTITY GRWpreferences.tabopening "Подешавања отварања прозора">
 <!ENTITY GRWpreferences.tabtooltip "Поставке описа алатки">
 <!ENTITY GRWpreferences.openinnewtabdesc "Отвори Google читач у новом језичку">
+<!ENTITY GRWpreferences.browserlikeopencheckboxlabel "Напредно управљање мишем">
+<!ENTITY GRWpreferences.browserlikeopendesc "Ако изаберете ову опцију, искона и ставке менија ће се понашати слично везама на страницама. На пример, ако кликнете средњим мишем, Google читач је бити отворен у новом језичку у позадини. Ако кликнете док држите шифт, Google читач је бити отворен у новом прозору.">
 <!ENTITY GRWpreferences.resetcounterdesc "Поништи бројач у статусној траци када се Google читач отвори">
 <!ENTITY GRWpreferences.shownotificationwindow "Прикажи прозор са обавештењем">
 <!ENTITY GRWpreferences.showzerocounter "Увек приказуј бројач">
@@ -47,6 +49,7 @@
 <!ENTITY GRWtooltip.cookieerror "Колачићи од трећих лица нису омогућени. Притисните десни клик на икону да бисте их омогућили.">
 <!ENTITY GRWpreferences.showitemsintooltip "Омогући приказ непрочитаних ставки у облачићу иконе у статусној траци">
 <!ENTITY GRWpreferences.showitemsincontextmenu "Омогући додавање непрочитаних ставки у приручни мени иконе у статусној траци">
+<!ENTITY GRWpreferences.account.tab.oauth "OAuth">
 <!ENTITY GRWpreferences.account.tab.username "Корисничко име/лозинка">
 <!ENTITY GRWpreferences.account.description.general "Ако имате <strong>само један Google налог и ако сте пријављени на њега</strong>, вероватно нећете требати ништа да подешавате овде. Додатак ће користити исту сесију и радиће без проблема.">
 <!ENTITY GRWpreferences.account.description.username "Ако 2. корак (потврђивање) није укључен, можете да се пријавите користећи корисничко име и лозинку.">

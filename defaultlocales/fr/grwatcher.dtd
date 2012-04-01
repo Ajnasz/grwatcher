@@ -18,7 +18,6 @@
 <!ENTITY GRWpreferences.resetcounterdesc "Remettre à zéro le compteur lors de l&apos;ouverture de Google Reader">
 <!ENTITY GRWpreferences.shownotificationwindow "Afficher la fenêtre de notification">
 <!ENTITY GRWpreferences.showzerocounter "Toujours montrer le compteur">
-<!ENTITY GRWpreferences.showcounter "Show the counter">
 <!ENTITY GRWpreferences.maximizecounter "Montrer 1000+ si vous avez plus de 1000 items non lus">
 <!ENTITY GRWpreferences.tooltipcounterposright "Droite">
 <!ENTITY GRWpreferences.tooltipcounterposleft "Gauche">
@@ -28,7 +27,6 @@
 <!ENTITY GRWpreferences.accountinfocaption "information du comtpe Google">
 <!ENTITY GRWpreferences.accountinfoemail "Adresse email :">
 <!ENTITY GRWpreferences.accountinfopassword "Mot de passe :">
-<!ENTITY GRWpreferences.accountinfohavemultipleaccounts "I have more then one Google account">
 <!ENTITY GRWpreferences.accountinfo.rememberLogin "Se souvenir du login">
 <!ENTITY GRWpreferences.accountinfo.forceLogin "Forcer la connexion avant chaque vérification et ouverture de fenêtre">
 <!--nn-->
@@ -48,7 +46,4 @@
 <!ENTITY GRWpreferences.showitemsintooltip "Activez pour afficher les items non lus dans l'infobulle de l'icône de la barre de statut">
 <!ENTITY GRWpreferences.showitemsincontextmenu "Activez pour ajouter les items non lus dans le menu contextuel de l'icône de la barre de statut">
 <!ENTITY GRWpreferences.account.tab.oauth "OAuth">
-<!ENTITY GRWpreferences.account.tab.username "Username/Password">
-<!ENTITY GRWpreferences.account.description.general "If you have only <strong>one Google account</strong> and if <strong>you are logged in</strong> almost <strong>always</strong>, you <strong>don't need to set up</strong> anything here. The extension will use the same session and will work without any issues.">
 <!ENTITY GRWpreferences.account.description.username "If 2 step verification isn't turned on, you can use a simple login method by filling the Username and Password fields.">
-<!ENTITY GRWpreferences.account.description.oauth "Use this if you turned on the 2 step verification for your Google Account. However it has a limitation: Using OAuth, the extension can not log you in with the proper account before it opens the page. It means when you click on the icon while you are logged in to another account it will open the Reader page for that account or if you are not logged in at all, you will need to fill the Google login form to access to the Google Reader.">
