@@ -87,6 +87,7 @@ xpi:
 		chrome/skin/classic/grwatcher/grwatcher.png \
 		chrome/locale \
 		chrome/content/grwatcher.xul \
+		chrome/content/grwatcher-old.xul \
 		chrome/content/grwatcher.js \
 		chrome/content/grprefs.js \
 		chrome/content/grprefs.xul \

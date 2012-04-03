@@ -157,14 +157,14 @@ var GRW = {};
         };
         getById('GRW-oauth-opener').addEventListener('click', function () {
             scope.oauth.auth(updateAccountTabs);
-        });
+        }, false);
         getById('GRW-oauth-clear').addEventListener('click', function () {
             scope.prefs.set.oauthCode('');
             scope.prefs.set.oauthRefreshToken('');
             Components.utils.import("resource://grwmodules/getter.jsm", scope);
             scope.getter.unsetDefaultHeader('Authorization');
             updateAccountTabs();
-        });
+        }, false);
         updateAccountTabs();
     }
     GRW.initPrefs = function () {
