@@ -57,7 +57,7 @@ var request = function (method, uri, callback, postData) {
             }
         }
     };
-    if (scope.prefs.get.forceLogin() && lastRequest !== requestTypes.login) {
+    if (scope.prefs.get.haveMultipleAccounts() && lastRequest !== requestTypes.login) {
         lastRequest = requestTypes.login;
         scope.loginManager.login(retry);
     } else {

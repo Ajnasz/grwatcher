@@ -21,8 +21,9 @@ var getter = {
     // var req = new XMLHttpRequest();
     var req = Components.classes["@mozilla.org/xmlextras/xmlhttprequest;1"]
                .createInstance(Components.interfaces.nsIXMLHttpRequest),
-               agent = 'Google Reader Watcher ___VERSION___',
-               headers, h;
+      agent = 'Google Reader Watcher ___VERSION___',
+      headers,
+      h;
     if (!req) {
       getter.onRequestFailed.fire();
       return false;
@@ -47,7 +48,7 @@ var getter = {
 
     headers = getter.getDefaultHeaders();
     for (h in headers) {
-      if (defaultHeaders.hasOwnProperty(h)) {
+      if (headers.hasOwnProperty(h)) {
         req.setRequestHeader(h, headers[h]);
       }
     }
