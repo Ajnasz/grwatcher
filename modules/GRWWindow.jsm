@@ -32,6 +32,7 @@ Components.utils.import("resource://grwmodules/EventProvider.jsm", scope);
 Components.utils.import("resource://grwmodules/augment.jsm", scope);
 Components.utils.import("resource://grwmodules/prefs.jsm", scope);
 Components.utils.import("resource://grwmodules/grwlog.jsm", scope);
+Components.utils.import("resource://grwmodules/ClickHandler.jsm", scope);
 /**
  * Job: Update UI:
  *    update icon
@@ -43,11 +44,16 @@ Components.utils.import("resource://grwmodules/grwlog.jsm", scope);
  *        open window
  */
 function GRWWindow(win) {
+    var that = this;
     this.win = win;
     this.doc = this.win.document;
     this.listenClicks();
     this.subscribeToMenuCommand();
     this.generateMenu(0, 0);
+    this.clickHandler = new scope.ClickHandler(this.elements);
+    this.clickHandler.on('eventFound', function (args) {
+        that.fireEvent(args.shift(), args);
+    });
 }
 
 GRWWindow.unreadFound = 'unreadFound';
@@ -91,7 +97,7 @@ GRWWindow.prototype = {
                     ctrlKey: e.ctrlKey,
                     target: e.target
                 };
-                that.handleClick(ev);
+                that.clickHandler.handleClick(ev);
             } else {
                 e.preventDefault();
                 that.fireEvent('command', e);
@@ -211,148 +217,19 @@ GRWWindow.prototype = {
             }
         });
     },
-    handleMouseCommand: function (e) {
-        var browserLike,
-            possibilities,
-            name,
-            getPref,
-            output,
-            url,
-            how;
-        Components.utils.import("resource://grwmodules/prefs.jsm", scope);
-        getPref = scope.prefs.get;
-
-        browserLike = getPref.browserlikeWindowOpen();
-
-        function keyFilter(key) {
-            return key.button === e.button &&
-                key.shift === e.shiftKey &&
-                key.alt === e.altKey &&
-                key.ctrl === e.ctrlKey;
-        }
-        output = null;
-        name = null;
-        how = null;
-        if (browserLike) {
-            possibilities = [
-                {
-                    name: 'newBackgroundTab',
-                    keys: [
-                        {
-                            button: 1,
-                            shift: false,
-                            ctrl: false,
-                            alt: false
-                        },
-                        {
-                            button: 0,
-                            ctrl: true,
-                            shift: false,
-                            alt: false
-                        }
-                    ]
-                },
-                {
-                    name: 'newForegroundTab',
-                    keys: [
-                        {
-                            button: 1,
-                            shift: true,
-                            ctrl: false,
-                            alt: false
-                        },
-                        {
-                            button: 0,
-                            shift: true,
-                            ctrl: true,
-                            alt: false
-                        }
-                    ]
-                },
-                {
-                    name: 'currentTab',
-                    keys: [
-                        {
-                            button: 0,
-                            shift: false,
-                            ctrl: false,
-                            alt: false
-                        }
-                    ]
-                },
-                {
-                    name: 'newWindow',
-                    keys: [
-                        {
-                            button: 0,
-                            shift: true,
-                            ctrl: false,
-                            alt: false
-                        }
-                    ]
-                }
-            ];
-            possibilities.forEach(function (keyGroup) {
-                if (how || keyGroup.keys.some(keyFilter)) {
-                    how = how || keyGroup.name;
-                }
-            });
-            if (how) {
-                name = 'windowOpenRequest';
-            }
-        } else {
-            switch (e.button) {
-            case 0:
-                name = 'windowOpenRequest';
-                if (getPref.openInNewTab()) {
-                    if (getPref.activateOpenedTab()) {
-                        how = 'newForegroundTab';
-                    } else {
-                        how = 'newBackgroundTab';
-                    }
-                } else {
-                    how = 'currentTab';
-                }
-                break;
-            case 1:
-                name = 'updateRequest';
-                break;
-            }
-        }
-        if (name) {
-            output = [name, e.target.getAttribute('url') || null, how];
-        }
-        return output;
-    },
-    handleClick: function (e) {
-        var o = this.handleMouseCommand(e);
-        scope.grwlog(o);
-        if (o !== null) {
-            this.fireEvent(o[0], [o[1], o[2]]);
-            return true;
-        }
-        return false;
-    },
-    onDocClick: function () {
-        var that = this;
-        return function (e) {
-            var targetId = e.target.id;
-            if (that.elements.some(function (id) {
-                    return id === targetId;
-                })) {
-                if (that.handleClick(e)) {
-                    e.preventDefault();
-                }
-            }
-        };
-    },
     listenClicks: function () {
-        var onDocClick = this.onDocClick();
+        var that = this, onDocClick;
+        onDocClick = function (e) {
+            return that.clickHandler.onClick(e);
+        };
         this.doc.addEventListener('click', onDocClick, false);
         this.doc.addEventListener('dblclick', onDocClick, false);
     },
     unlistenClicks: function () {
-        var onDocClick = this.onDocClick();
+        var that = this, onDocClick;
+        onDocClick = function (e) {
+            that.clickHandler.onClick(e);
+        };
         this.doc.removeEventListener('click', onDocClick, false);
         this.doc.removeEventListener('dblclick', onDocClick, false);
     },

@@ -71,7 +71,10 @@ var grwWindows = (function () {
         },
         subscribeNotifier: function () {
             notifier.on('notifierClicked', function () {
-                readerOpener.open();
+                Components.utils.import("resource://grwmodules/ClickHandler.jsm", scope);
+                var mouseCommand = scope.ClickHandler
+                    .handleMouseCommand(scope.ClickHandler.fakeEvent());
+                readerOpener.open(mouseCommand[1], mouseCommand[2]);
             });
         },
         subscribeOpener: function () {
@@ -160,8 +163,8 @@ var grwWindows = (function () {
                     case 'GRW-statusbar-menuitem-openprefs':
                     case 'GRW-toolbar-menuitem-openprefs':
                         Components.classes["@mozilla.org/embedcomp/window-watcher;1"]
-                                          .getService(Components.interfaces.nsIWindowWatcher)
-                          .openWindow(null, "chrome://grwatcher/content/grprefs.xul", "GRWatcher",
+                            .getService(Components.interfaces.nsIWindowWatcher)
+                            .openWindow(null, "chrome://grwatcher/content/grprefs.xul", "GRWatcher",
                                       "chrome,centerscreen", null);
                         break;
                     }
