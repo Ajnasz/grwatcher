@@ -26,7 +26,7 @@ var grwlog =  function () {
       }
       msg.push(arg);
     }
-    consoleService.logStringMessage('GRW: ' + msg.join(',\n'));
+    consoleService.logStringMessage('GRW: ' + msg.join('\t'));
   }
 };
 let EXPORTED_SYMBOLS = ['grwlog'];
