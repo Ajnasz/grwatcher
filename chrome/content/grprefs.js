@@ -92,6 +92,8 @@ var GRW = {};
 
     function savePreferences() {
         workOnPrefs(true);
+        Components.utils.import("resource://grwmodules/GRWWindows.jsm", scope);
+        scope.grwWindows.updateGRStates();
     }
 
     function setPrefPaneVals() {

@@ -198,6 +198,12 @@ var grwWindows = (function () {
                     break;
                 }
             }
+        },
+        updateGRStates: function () {
+            scope.later(function () {
+                scope.grwlog('UPDATE GR STATES');
+                requester.restart();
+            }, 100);
         }
     };
 

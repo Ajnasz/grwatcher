@@ -9,6 +9,10 @@ Requester.prototype = {
     this.getlist.start();
     this.setNext();
   },
+  restart: function () {
+    this.getlist.restart();
+    this.setNext();
+  },
   updater: function () {
     this.getlist.getUnreadCount();
     this.setNext();
