@@ -73,6 +73,7 @@ xpi:
 		modules/ClientLogin.jsm \
 		modules/stringBundles.jsm \
 		modules/ClickHandler.jsm \
+		modules/getAPIToken.jsm \
 		defaults/preferences/grwatcher.js \
 		chrome/skin/classic/grwatcher/tooltip.css \
 		chrome/skin/classic/grwatcher/toolbar.css \

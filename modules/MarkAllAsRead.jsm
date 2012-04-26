@@ -14,10 +14,10 @@ MarkAllAsRead.prototype = {
 
         if (prompts.confirm(null, '',
                 scope.grwBundles.getFormattedString('confirmmarkallasread', []))) {
-            that._markAsRead();
+            that.markAsRead();
         }
     },
-    _markAsRead: function () {
+    markAsRead: function () {
         var that = this;
         Components.utils.import("resource://grwmodules/getAPIToken.jsm", scope);
         scope.getAPIToken(function (tokenData) {
@@ -28,11 +28,11 @@ MarkAllAsRead.prototype = {
                 {
                     onSuccess: function (response) {
                         if (response.responseText === 'OK') {
-                            that.fireEvent('onMarkAllAsRead');
+                            that.fireEvent('itemsMarked');
                         }
                     },
                     onError: function () {
-                        that.fireEvent('onMarkAllAsReadFailed');
+                        that.fireEvent('itemsMarkFailed');
                     }
                 }, 's=user/-/state/com.google/reading-list&T=' + tokenData.token);
         });
