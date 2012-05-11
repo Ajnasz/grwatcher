@@ -17,7 +17,8 @@ var getOpenedGR = function (gBrowser) {
         if (r.test(curSpec)) {
             outObj.grTab = i;
             break;
-        } else if (curSpec === 'about:blank' && outObj.blankPage === false) {
+        } else if ((curSpec === 'about:blank' || curSpec === 'about:newtab') &&
+                   outObj.blankPage === false) {
             outObj.blankPage = i;
         }
         i -= 1;
