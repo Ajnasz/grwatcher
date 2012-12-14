@@ -127,7 +127,8 @@ OpenReader.prototype = {
             try {
                 me.fireEvent('beforeReaderOpened');
                 url = subUrl ?
-                        scope.generateUri(readerURL, false) + '/' + subUrl :
+                        scope.generateUri(readerURL, false) +
+                            '#stream/' + encodeURIComponent(subUrl) :
                         scope.generateUri(readerURL, false);
                 /**
                 * google reader doesn't opened yet
