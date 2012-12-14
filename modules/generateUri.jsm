@@ -1,4 +1,4 @@
-var uriRex_ = new RegExp('^https?://');
+const uriRex = new RegExp('^https?://');
 /**
   * @method uri
   * @description Creates urls
@@ -9,8 +9,8 @@ var uriRex_ = new RegExp('^https?://');
   *  if its a boolean it will mean that the uri should be extended with client
   *  and ck params or not
   */
-var generateUri = function(domain) {
-    let args =[].slice.call(arguments),
+function generateUri(domain) {
+    let args = [].slice.call(arguments),
         uriRoot = args.shift(),
         uriParts = [],
         queryParams = [],
@@ -21,37 +21,45 @@ var generateUri = function(domain) {
         output = '',
         shouldExtend = true;
 
-    while(args.length) {
-      let part = args.shift();
-      let type = typeof part;
-      if(type == 'string') {
-          uriParts.push(part);
-      } else if(type == 'boolean') {
-        shouldExtend = part;
-        break;
-      } else {
-          for(let i in part) {
-              if(part.hasOwnProperty(i)) {
-                  queryParams.push(encodeURIComponent(i) + '=' + encodeURIComponent(part[i]));
-              }
-          }
-          break;
-      }
+    while (args.length) {
+        let part = args.shift(),
+            type = typeof part;
+
+        if (type === 'string') {
+            uriParts.push(part);
+        } else if (type === 'boolean') {
+            shouldExtend = part;
+            break;
+        } else {
+            for (var i in part) {
+                if(part.hasOwnProperty(i)) {
+                    queryParams.push(encodeURIComponent(i) + '=' + encodeURIComponent(part[i]));
+                }
+            }
+            break;
+        }
     }
+
     output = uriRoot;
-    if(uriParts.length > 0) {
+
+    if (uriParts.length > 0) {
         output += '/' + uriParts.join('/');
     }
-    if(shouldExtend) {
+
+    if (shouldExtend) {
       queryParams.push('client=grwatcher&ck=' + new Date().getTime());
     }
-    if(queryParams.length > 0) {
+
+    if (queryParams.length > 0) {
         output += '?' + queryParams.join('&');
     }
-    if(uriRex_.test(output)) {
+
+    if (uriRex.test(output)) {
         output = output.replace(uriRex, '');
     }
+
     output = connectionType + '://' +  output;
+
     return output;
 };
 
