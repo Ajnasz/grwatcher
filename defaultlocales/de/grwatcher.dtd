@@ -15,9 +15,11 @@
 <!ENTITY GRWpreferences.tabopening "Einstellungen zum Öffnen des Fensters">
 <!ENTITY GRWpreferences.tabtooltip "Tooltip-Einstellungen">
 <!ENTITY GRWpreferences.openinnewtabdesc "&quot;Google Reader&quot; in einem neuen Tab öffnen">
+<!ENTITY GRWpreferences.browserlikeopencheckboxlabel "Erweiterte Mausfunktionen">
 <!ENTITY GRWpreferences.resetcounterdesc "Setzt den Statusleistenzähler zurück, wenn das &quot;Google Reader&quot;-Fenster geöffnet wird">
 <!ENTITY GRWpreferences.shownotificationwindow "Benachrichtigungsfenster anzeigen">
 <!ENTITY GRWpreferences.showzerocounter "Zähler immer anzeigen">
+<!ENTITY GRWpreferences.showcounter "Zähler anzeigen">
 <!ENTITY GRWpreferences.maximizecounter "1000+ in der Statusleiste anzeigen, falls mehr als 1000 ungelesene Artikel vorhanden sind">
 <!ENTITY GRWpreferences.tooltipcounterposright "Rechts">
 <!ENTITY GRWpreferences.tooltipcounterposleft "Links">
@@ -27,6 +29,7 @@
 <!ENTITY GRWpreferences.accountinfocaption "&quot;Google Konto&quot;-Informationen">
 <!ENTITY GRWpreferences.accountinfoemail "E-Mail-Adresse:">
 <!ENTITY GRWpreferences.accountinfopassword "Passwort:">
+<!ENTITY GRWpreferences.accountinfohavemultipleaccounts "Ich verwende mehr als ein Google-Konto">
 <!ENTITY GRWpreferences.accountinfo.rememberLogin "Sitzung beim Start fortsetzen">
 <!ENTITY GRWpreferences.accountinfo.forceLogin "Anmeldung erzwingen vor jedem Überprüfen und Öffnen des Fensters">
 <!--nn-->
@@ -46,4 +49,5 @@
 <!ENTITY GRWpreferences.showitemsintooltip "Aktivieren, um ungelesene Einträge im Tooltip des Statusleisten-Symbols anzuzeigen">
 <!ENTITY GRWpreferences.showitemsincontextmenu "Aktivieren, um ungelesene Einträge dem Kontextmenü des Statusleisten-Symbols hinzuzufügen">
 <!ENTITY GRWpreferences.account.tab.oauth "OAuth">
-<!ENTITY GRWpreferences.account.description.username "If 2 step verification isn't turned on, you can use a simple login method by filling the Username and Password fields.">
+<!ENTITY GRWpreferences.account.tab.username "Benutzername/Passwort">
+<!ENTITY GRWpreferences.account.description.username "Wenn die Zwei-Schritte-Verifikation deaktiviert ist, können Sie eine einfache Anmeldemethode verwenden, füllen Sie dazu die Felder Benutzername und Kennwort aus.">
