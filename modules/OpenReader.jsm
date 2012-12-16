@@ -12,6 +12,7 @@ var getOpenedGR = function (gBrowser) {
         r = new RegExp('^' + scope.generateUri(readerURL, false)),
         i = gBrowser.browsers.length - 1,
         curSpec;
+
     while (i >= 0) {
         curSpec = gBrowser.getBrowserAtIndex(i).currentURI.spec;
         if (r.test(curSpec)) {
@@ -23,16 +24,20 @@ var getOpenedGR = function (gBrowser) {
         }
         i -= 1;
     }
+
     return outObj;
 };
 
 var OpenReader = function () {};
+
 OpenReader.prototype = {
+
     gBrowser: function () {
         var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"]
             .getService(Components.interfaces.nsIWindowMediator);
         return wm.getMostRecentWindow("navigator:browser").gBrowser;
     },
+
     loadIntoNewWindow: function (url) {
         scope.grwlog('open window');
         var Cc = Components.classes;
@@ -51,10 +56,12 @@ OpenReader.prototype = {
                 null
             );
     },
+
     loadIntoCurrentTab: function (url) {
         scope.grwlog('load into current tab');
         this.gBrowser().loadURI(url);
     },
+
     loadIntoNewForegroundTab: function (url) {
         var gBrowser = this.gBrowser(),
             openedGR = getOpenedGR(gBrowser),
@@ -75,6 +82,7 @@ OpenReader.prototype = {
             currentContent.focus();
         }
     },
+
     loadIntoNewBackgroundTab: function (url) {
         var gBrowser = this.gBrowser(),
             openedGR = getOpenedGR(gBrowser);
@@ -87,6 +95,7 @@ OpenReader.prototype = {
             gBrowser.getBrowserAtIndex(openedGR.blankPage).loadURI(url);
         }
     },
+
     loadIntoNewTab: function (url) {
         var gBrowser = this.gBrowser(),
             openedGR = getOpenedGR(gBrowser),
@@ -98,6 +107,7 @@ OpenReader.prototype = {
             this.loadIntoNewBackgroundTab(url);
         }
     },
+
     focusCurrentGR: function (url) {
         var gBrowser = this.gBrowser(),
             openedGR = getOpenedGR(gBrowser);
@@ -111,18 +121,11 @@ OpenReader.prototype = {
     hasOpenedGR: function () {
         return getOpenedGR(this.gBrowser()).grTab !== false;
     },
-    open: function (subUrl, how) {
-        Components.utils.import("resource://grwmodules/prefs.jsm", scope);
-        Components.utils.import("resource://grwmodules/loginmanager.jsm", scope);
-        Components.utils.import("resource://grwmodules/siteLogin.jsm", scope);
-        Components.utils.import("resource://grwmodules/generateUri.jsm", scope);
 
-        var me = this,
-            url;
-
-        how = how || 'currentTab';
-        this.fireEvent('startOpen');
-        function open() {
+    getOpenerFunction: function (subUrl, how) {
+        var me = this;
+        return function open() {
+            var url;
             scope.grwlog('open grw', how, subUrl);
             try {
                 me.fireEvent('beforeReaderOpened');
@@ -163,7 +166,20 @@ OpenReader.prototype = {
                 scope.grwlog('line', e.lineNumber);
             }
             me.fireEvent('readerOpened');
-        }
+        };
+    },
+
+    open: function (subUrl, how) {
+        Components.utils.import("resource://grwmodules/prefs.jsm", scope);
+        Components.utils.import("resource://grwmodules/loginmanager.jsm", scope);
+        Components.utils.import("resource://grwmodules/siteLogin.jsm", scope);
+        Components.utils.import("resource://grwmodules/generateUri.jsm", scope);
+
+        var open = this.getOpenerFunction(subUrl, how);
+
+        how = how || 'currentTab';
+        this.fireEvent('startOpen');
+
         // Login before page open can not be forced if user logs in with oauth
         // since we don't have any username and/or password
         if (scope.prefs.get.haveMultipleAccounts() &&
