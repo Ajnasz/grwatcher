@@ -11,26 +11,52 @@ Components.utils.import("resource://grwmodules/grwlog.jsm", scope);
 Components.utils.import("resource://grwmodules/prefs.jsm", scope);
 Components.utils.import("resource://grwmodules/getter.jsm", scope);
 
-var generateQueryParam = function (queryParams) {
+/**
+ * Generates query params from an array
+ * @method generateQueryParam
+ * @param {Array} queryParams List of query parameters. Each item must have a
+ * name and a value property
+ * @return {String} the generated query param
+ * @private
+ */
+function generateQueryParam(queryParams) {
+    "use strict";
     return queryParams.map(function (param) {
         if (typeof param.value === 'string') {
             return encodeURIComponent(param.name) + '=' + encodeURIComponent(param.value);
         }
     }).join('&');
-};
+}
 
-var generateRequestURI = function (url, queryParams) {
+/**
+ * Generates urls
+ * @method generateRequestURI
+ * @param {String} url
+ * @param {Array} queryParams
+ * @return {String} An url
+ */
+function generateRequestURI(url, queryParams) {
+    "use strict";
     return url + '?' + generateQueryParam(queryParams);
-};
+}
 
-var Oauth2Token = function (data) {
+/**
+ * @class Oauth2Token
+ * @param {Object} data
+ * @constructor
+ */
+function Oauth2Token(data) {
+    "use strict";
+
     var expDate, getRefreshToken;
+
     data = data || {};
     getRefreshToken = function () {
         return scope.prefs.get.oauthRefreshToken();
     };
 
     expDate = new Date();
+
     return {
         getAccessToken: function () {
             return data.access_token;
@@ -63,25 +89,50 @@ var Oauth2Token = function (data) {
             return !!getRefreshToken();
         }
     };
-};
+}
 
-var Oauth2 = function Oauth2() {
-    this._currentToken = '';
-    this._accessData = new Oauth2Token();
-};
+/**
+ * @class Oauth2
+ * @constructor
+ */
+function Oauth2() {
+    "use strict";
+    this.accessData = new Oauth2Token();
+}
 Oauth2.prototype = {
+    /**
+     * Saves oauth code into pref storage
+     * @method saveAuthCode
+     * @param {String}
+     */
     saveAuthCode: function (value) {
+        "use strict";
         return scope.prefs.set.oauthCode(value);
     },
+
+    /**
+     * Retreives oauth code from pref storage
+     * @method getAuthCode
+     * @return {String}
+     */
     getAuthCode: function () {
+        "use strict";
         Components.utils.import("resource://grwmodules/prefs.jsm", scope);
         return scope.prefs.get.oauthCode();
     },
+
+    /**
+     * @method auth
+     * @param {Function} cb Callback
+     */
     auth: function (cb) {
+        "use strict";
+
         var that = this,
-            Cc, win,
-            poll,
+            Cc,
+            win,
             queryParams;
+
         queryParams = [
             {
                 name: 'response_type',
@@ -105,35 +156,35 @@ Oauth2.prototype = {
             }
         ];
 
-
         Cc = Components.classes;
             // open window to allow access
             // Set most recent window as parent window
         win = Cc["@mozilla.org/embedcomp/window-watcher;1"]
-          .getService(Components.interfaces.nsIWindowWatcher)
-          .openWindow(
-              // parent window
-              Cc["@mozilla.org/appshell/window-mediator;1"]
-                .getService(Components.interfaces.nsIWindowMediator)
-              .getMostRecentWindow("navigator:browser"),
-              // uri
-              generateRequestURI(oAuthURL, queryParams),
-              // window name
-              "GRWatcher Auth request",
-              // window params
-              "location=yes,status=yes,width=500,height=410",
-              null
-          );
+            .getService(Components.interfaces.nsIWindowWatcher)
+            .openWindow(
+                // parent window
+                Cc["@mozilla.org/appshell/window-mediator;1"]
+                    .getService(Components.interfaces.nsIWindowMediator)
+                    .getMostRecentWindow("navigator:browser"),
+                // uri
+                generateRequestURI(oAuthURL, queryParams),
+                // window name
+                "GRWatcher Auth request",
+                // window params
+                "location=yes,status=yes,width=500,height=410",
+                null
+            );
 
         Components.utils.import("resource://grwmodules/timer.jsm", scope);
+
         /**
          * poll the window to get the authorization code
          */
-        poll = function () {
+        function poll() {
             scope.later(function () {
                 var title = win.document.title;
                 if (title.indexOf('Success code=') > -1) {
-                    that._accessData.setRefreshToken('');
+                    that.accessData.setRefreshToken('');
                     that.saveAuthCode(title.split('code=')[1]);
                     win.close();
                     if (typeof cb === 'function') {
@@ -148,27 +199,43 @@ Oauth2.prototype = {
                     }
                 }
             }, 1000);
-        };
+        }
         poll();
     },
+
+    /**
+     * @method getToken
+     * @param {Function} cb
+     */
     getToken: function (cb) {
-        scope.grwlog('get token: ', typeof this._accessData, this._accessData);
+        "use strict";
+        scope.grwlog('get token: ', typeof this.accessData, this.accessData);
         var that = this, callback;
         callback = function (data) {
             that.setGetterHeaders();
-            cb(that._accessData);
+            cb(that.accessData);
         };
-        if (!this._accessData.hasRefreshToken()) {
+        if (!this.accessData.hasRefreshToken()) {
             this.getFirstToken(callback);
-        } else if (this._accessData.isExpired()) {
+        } else if (this.accessData.isExpired()) {
             this.refreshToken(callback);
         } else {
             callback();
         }
     },
+
+    /**
+     * Retreives the first token
+     * @method getFirstToken
+     * @param {Function} cb Callback
+     */
     getFirstToken: function (cb) {
+        "use strict";
+
         var that = this,
-            url, params;
+            url,
+            params;
+
         params = [
             {
                 name: 'code',
@@ -196,7 +263,7 @@ Oauth2.prototype = {
             onSuccess: function (response) {
                 that.onLogin(response);
                 if (typeof cb === 'function') {
-                    cb(that._accessData);
+                    cb(that.accessData);
                 }
             },
             onError: function (response) {
@@ -205,24 +272,46 @@ Oauth2.prototype = {
             }
         }, generateQueryParam(params));
     },
+
+    /**
+     * @method setGetterHeaders
+     */
     setGetterHeaders: function () {
+        "use strict";
+
         scope.getter.setDefaultHeader({
             name: 'Authorization',
-            value: this._accessData.getTokenType() + ' ' + this._accessData.getAccessToken()
+            value: this.accessData.getTokenType() + ' ' + this.accessData.getAccessToken()
         });
     },
+
+    /**
+     * @method onLogin
+     * @param {Object} response
+     *      @param {String} response.responseText
+     */
     onLogin: function (response) {
+        "use strict";
         var jsonResponse = JSON.parse(response.responseText);
-        this._accessData.updateToken(jsonResponse);
+
+        this.accessData.updateToken(jsonResponse);
         if (jsonResponse.refresh_token) {
-            this._accessData.setRefreshToken(jsonResponse.refresh_token);
+            this.accessData.setRefreshToken(jsonResponse.refresh_token);
         }
         this.setGetterHeaders();
         this.fireEvent('loginSuccess');
     },
+
+    /**
+     * @method refreshToken
+     * @param {Function} cb
+     */
     refreshToken: function (cb) {
+        "use strict";
+
         var that = this,
-            url, params;
+            url,
+            params;
         params = [
             {
                 name: 'client_id',
@@ -247,7 +336,7 @@ Oauth2.prototype = {
             onSuccess: function (response) {
                 that.onLogin(response);
                 if (typeof cb === 'function') {
-                    cb(that._accessData);
+                    cb(that.accessData);
                 }
             },
             onError: function (response) {
