@@ -21,10 +21,10 @@ var clientConfig = clientConfigs.feedly;
 
 
 
-var scope = {};
-Components.utils.import("resource://grwmodules/grwlog.jsm", scope);
-Components.utils.import("resource://grwmodules/prefs.jsm", scope);
-Components.utils.import("resource://grwmodules/getter.jsm", scope);
+var context = {};
+Components.utils.import("resource://grwmodules/grwlog.jsm", context);
+Components.utils.import("resource://grwmodules/prefs.jsm", context);
+Components.utils.import("resource://grwmodules/getter.jsm", context);
 
 /**
  * Generates query params from an array
@@ -67,7 +67,7 @@ function Oauth2Token(data) {
 
     data = data || {};
     getRefreshToken = function () {
-        return scope.prefs.get.oauthRefreshToken();
+        return context.prefs.get.oauthRefreshToken();
     };
 
     expDate = new Date();
@@ -83,12 +83,12 @@ function Oauth2Token(data) {
             return data.expires_in;
         },
         isExpired: function () {
-            scope.grwlog('is expired: ' + Date.now() > expDate.getTime());
+            context.grwlog('is expired: ' + Date.now() > expDate.getTime());
             return !data.expires_in || Date.now() > expDate.getTime();
         },
         getRefreshToken: getRefreshToken,
         setRefreshToken: function (value) {
-            return scope.prefs.set.oauthRefreshToken(value);
+            return context.prefs.set.oauthRefreshToken(value);
         },
         setAccessToken: function (val) {
             data.access_token = val;
@@ -122,7 +122,7 @@ Oauth2.prototype = {
      */
     saveAuthCode: function (value) {
         "use strict";
-        return scope.prefs.set.oauthCode(value);
+        return context.prefs.set.oauthCode(value);
     },
 
     /**
@@ -132,8 +132,8 @@ Oauth2.prototype = {
      */
     getAuthCode: function () {
         "use strict";
-        Components.utils.import("resource://grwmodules/prefs.jsm", scope);
-        return scope.prefs.get.oauthCode();
+        Components.utils.import("resource://grwmodules/prefs.jsm", context);
+        return context.prefs.get.oauthCode();
     },
 
     /**
@@ -190,13 +190,13 @@ Oauth2.prototype = {
                 null
             );
 
-        Components.utils.import("resource://grwmodules/timer.jsm", scope);
+        Components.utils.import("resource://grwmodules/timer.jsm", context);
 
         /**
          * poll the window to get the authorization code
          */
         function poll() {
-            scope.later(function () {
+            context.later(function () {
                 var title = win.document.title;
                 if (title.indexOf('Success code=') > -1) {
                     that.accessData.setRefreshToken('');
@@ -206,9 +206,9 @@ Oauth2.prototype = {
                         cb();
                     }
                     that.getFirstToken();
-                    scope.grwlog('oauthcode saved');
+                    context.grwlog('oauthcode saved');
                 } else {
-                    scope.grwlog(win.document.title);
+                    context.grwlog(win.document.title);
                     if (win && !win.closed) {
                         poll();
                     }
@@ -224,7 +224,7 @@ Oauth2.prototype = {
      */
     getToken: function (cb) {
         "use strict";
-        scope.grwlog('get token: ', typeof this.accessData, this.accessData);
+        context.grwlog('get token: ', typeof this.accessData, this.accessData);
         var that = this, callback;
         callback = function (data) {
             that.setGetterHeaders();
@@ -273,8 +273,8 @@ Oauth2.prototype = {
                 value: 'authorization_code'
             }
         ];
-        scope.grwlog('get first token: ' + clientConfig.oAuthTokenURL, generateQueryParam(params));
-        scope.getter.asyncRequest('POST', clientConfig.oAuthTokenURL, {
+        context.grwlog('get first token: ' + clientConfig.oAuthTokenURL, generateQueryParam(params));
+        context.getter.asyncRequest('POST', clientConfig.oAuthTokenURL, {
             onSuccess: function (response) {
                 that.onLogin(response);
                 if (typeof cb === 'function') {
@@ -282,7 +282,7 @@ Oauth2.prototype = {
                 }
             },
             onError: function (response) {
-                scope.grwlog('on error: ', response.responseText);
+                context.grwlog('on error: ', response.responseText);
                 that.fireEvent('loginFailed', response.responseText);
             }
         }, generateQueryParam(params));
@@ -294,7 +294,7 @@ Oauth2.prototype = {
     setGetterHeaders: function () {
         "use strict";
 
-        scope.getter.setDefaultHeader({
+        context.getter.setDefaultHeader({
             name: 'Authorization',
             value: this.accessData.getTokenType() + ' ' + this.accessData.getAccessToken()
         });
@@ -338,16 +338,16 @@ Oauth2.prototype = {
             },
             {
                 name: 'refresh_token',
-                value: scope.prefs.get.oauthRefreshToken()
+                value: context.prefs.get.oauthRefreshToken()
             },
             {
                 name: 'grant_type',
                 value: 'refresh_token'
             }
         ];
-        Components.utils.import("resource://grwmodules/getter.jsm", scope);
-        scope.grwlog('refresh token: ' + clientConfig.oAuthTokenURL, generateQueryParam(params));
-        scope.getter.asyncRequest('POST', clientConfig.oAuthTokenURL, {
+        Components.utils.import("resource://grwmodules/getter.jsm", context);
+        context.grwlog('refresh token: ' + clientConfig.oAuthTokenURL, generateQueryParam(params));
+        context.getter.asyncRequest('POST', clientConfig.oAuthTokenURL, {
             onSuccess: function (response) {
                 that.onLogin(response);
                 if (typeof cb === 'function') {
@@ -356,15 +356,15 @@ Oauth2.prototype = {
             },
             onError: function (response) {
                 that.fireEvent('loginFailed', response.responseText);
-                scope.grwlog('on error: ', response.responseText);
+                context.grwlog('on error: ', response.responseText);
             }
         }, generateQueryParam(params));
     }
 };
 
-Components.utils.import("resource://grwmodules/augment.jsm", scope);
-Components.utils.import("resource://grwmodules/EventProvider.jsm", scope);
-scope.augmentProto(Oauth2, scope.EventProvider);
+Components.utils.import("resource://grwmodules/augment.jsm", context);
+Components.utils.import("resource://grwmodules/EventProvider.jsm", context);
+context.augmentProto(Oauth2, context.EventProvider);
 
 var oauth = new Oauth2();
 
