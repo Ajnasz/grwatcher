@@ -102,7 +102,7 @@ function Oauth2Token(data) {
             expDate.setTime(expDate.getTime() + newData.expires_in * 1000);
             data.access_token = newData.access_token;
             data.expires_in = newData.expires_in;
-            data.token_type = newData.token_type;
+            data.token_type = 'OAuth' || newData.token_type;
         },
         hasRefreshToken: function () {
             return !!getRefreshToken();
