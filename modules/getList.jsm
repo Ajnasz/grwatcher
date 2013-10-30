@@ -1,11 +1,22 @@
-/*jslint indent: 2*/
+/*jslint indent: 2, nomen: true, sloppy: true*/
 /*global Components: true, GRW: true*/
-const unreadcountURL = ['www.google.com/reader/api/0/unread-count', {
-    all: 'true',
-    output: 'json'
-  }],
-  subscriptionListURL = ['www.google.com/reader/api/0/subscription/list', {output: 'json'}],
-  friendListURL = ['www.google.com/reader/api/0/friend/list', {output: 'json'}],
+var clientConfigs = {
+    google: {
+      unreadcountURL: ['www.google.com/reader/api/0/unread-count', {
+        all: 'true',
+        output: 'json'
+      }],
+      subscriptionListURL: ['www.google.com/reader/api/0/subscription/list', {output: 'json'}],
+      friendListURL: ['www.google.com/reader/api/0/friend/list', {output: 'json'}]
+    },
+    feedlySandox: {
+      unreadcountURL: ['sandbox.feedly.com/v3/markers/counts', {
+        autorefresh: 'true'
+      }],
+      subscriptionListURL: ['sandbox.feedly.com/v3/subscriptions'],
+      friendListURL: ['www.google.com/reader/api/0/friend/list', {output: 'json'}]
+    }
+  },
 
   // used for testing
   // unreadcountURL =
@@ -34,9 +45,12 @@ const unreadcountURL = ['www.google.com/reader/api/0/unread-count', {
   processFinishEvent = 'processFinishEvent';
 
 var scope = {},
-    GetList, getList,
-    lastFeeds;
+  clientConfig = clientConfigs.feedlySandox,
+  GetList,
+  getList,
+  lastFeeds;
 
+Components.utils.import("resource://grwmodules/grwlog.jsm", scope);
 GetList = function () {
   var _this = this;
   this.subscribe(subscriptionGeneratedEvent, function () {
@@ -82,7 +96,7 @@ GetList.prototype = {
     this.start();
   },
   _fireUnreadAndSubscription: function () {
-    if (this._subscriptionList && this._unreadCount && this._friendList) {
+    if (this._subscriptionList && this._unreadCount/* && this._friendList */) {
       this.matchUnreadItems();
       this.fireEvent(unreadAndSubscriptionReceivedEvent,
         [this._subscriptionList, this._unreadCount, this._friendList]);
@@ -113,6 +127,7 @@ GetList.prototype = {
     return item.id.indexOf('/state/com.google/broadcast') !== -1;
   },
   _processUnreadCount: function (response) {
+    "use strict";
     this.fireEvent(processStartEvent);
     Components.utils.import("resource://grwmodules/JSON.jsm", scope);
     var text = response.responseText,
@@ -138,8 +153,6 @@ GetList.prototype = {
     }
 
     unread = {
-      rText: text, // response text
-      rJSON: obj,  // response text as json object
       max: obj.max, // max number to display
       // unread items number unreadItems: unreadcounts, // all of the unread items
       unreadSum: unreadSum,
@@ -160,7 +173,7 @@ GetList.prototype = {
     this.fireEvent(unreadCountRequestStartEvent);
     Components.utils.import("resource://grwmodules/generateUri.jsm", scope);
     Components.utils.import("resource://grwmodules/request.jsm", scope);
-    scope.request('get', scope.generateUri.apply(scope.generateUri, unreadcountURL), {
+    scope.request('get', scope.generateUri.apply(scope.generateUri, clientConfig.unreadcountURL), {
       onSuccess: function (o) {
           _this.fireEvent(unreadCountRequestFinishEvent);
           if (!_this.userInfo) {
@@ -176,19 +189,19 @@ GetList.prototype = {
         }
     });
   },
-  _processSubscriptionList: function (response) {
+  _processSubscriptionList: function (subscriptions) {
     this.fireEvent(processStartEvent);
     // this.fireEvent(requestFinishEvent);
 
-    Components.utils.import("resource://grwmodules/JSON.jsm", scope);
-    var obj = scope.JSON.parse(response.responseText),
+    var subscription;
+
+    if (subscriptions && subscriptions.length > 0) {
       subscription = {
-        rText: response.responseText,
-        rJSON: obj,
-        subscriptions: obj.subscriptions
+        subscriptions: subscriptions
       };
-    this._subscriptionList = subscription;
-    this.fireEvent(subscriptionGeneratedEvent, subscription);
+      this._subscriptionList = subscription;
+      this.fireEvent(subscriptionGeneratedEvent, subscription);
+    }
     this.fireEvent(processFinishEvent);
   },
   getSubscriptionList: function () {
@@ -197,26 +210,24 @@ GetList.prototype = {
     this.fireEvent(subscriptionListRequestStartEvent);
     Components.utils.import("resource://grwmodules/generateUri.jsm", scope);
     Components.utils.import("resource://grwmodules/request.jsm", scope);
-    scope.request('get', scope.generateUri.apply(scope.generateUri, subscriptionListURL), {
+    scope.request('get', scope.generateUri.apply(scope.generateUri, clientConfig.subscriptionListURL), {
       onSuccess: function (o) {
+        Components.utils.import("resource://grwmodules/JSON.jsm", scope);
         _this.fireEvent(subscriptionListRequestFinishEvent);
-        _this._processSubscriptionList(o);
+        _this._processSubscriptionList(scope.JSON.parse(o.responseText));
       },
       onError: function (o) {
         _this.fireEvent(requestErrorEvent);
       }
     });
   },
-  _processFriendList: function (response) {
+  _processFriendList: function (friends) {
     this.fireEvent(processStartEvent);
     // this.fireEvent(requestFinishEvent);
 
     Components.utils.import("resource://grwmodules/JSON.jsm", scope);
-    var obj = scope.JSON.parse(response.responseText),
-      friend = {
-        rText: response.responseText,
-        rJSON: obj,
-        friends: obj.friends
+    var friend = {
+        friends: friends
       };
     this._friendList = friend;
     this.fireEvent(friendGeneratedEvent, friend);
@@ -228,10 +239,11 @@ GetList.prototype = {
     this.fireEvent(friendListRequestStartEvent);
     Components.utils.import("resource://grwmodules/generateUri.jsm", scope);
     Components.utils.import("resource://grwmodules/request.jsm", scope);
-    scope.request('get', scope.generateUri.apply(scope.generateUri, friendListURL), {
+    scope.request('get', scope.generateUri.apply(scope.generateUri, clientConfig.friendListURL), {
       onSuccess: function (o) {
+        Components.utils.import("resource://grwmodules/JSON.jsm", scope);
         _this.fireEvent(friendListRequestFinishEvent);
-        _this._processFriendList(o);
+        _this._processFriendList(scope.JSON.parse(o.responseText));
       },
       onError: function (o) {
         _this.fireEvent(requestErrorEvent);
@@ -240,7 +252,7 @@ GetList.prototype = {
   },
   _matchUnreadItems: function (unreads) {
     var subscriptions = this._subscriptionList.subscriptions,
-        friends = this._friendList.friends,
+        friends = [] /*this._friendList.friends*/,
 
         i = unreads.length - 1,
         j = subscriptions.length - 1,
@@ -356,6 +368,8 @@ GetList.prototype = {
     unreads.forEach(function (elem) {
       unreadSum += elem.count;
     });
+
+    scope.grwlog('unread sum: ', unreadSum);
 
     this._unreadCount.unreadSum = unreadSum;
     this.matchedData = {
