@@ -1,10 +1,25 @@
 /*global Components: true */
 /*jslint es5: true */
-var oAuthURL = 'https://accounts.google.com/o/oauth2/auth';
-var clientID = '18154408674.apps.googleusercontent.com';
-var clientSecret = '7uN4ujGfnbItwS6NbqWgbEJ5';
+var clientConfigs = {
+    google: {
+        clientID: '18154408674.apps.googleusercontent.com',
+        clientSecret: '7uN4ujGfnbItwS6NbqWgbEJ5',
+        oAuthURL: 'https://accounts.google.com/o/oauth2/auth',
+        oAuthTokenURL: 'https://accounts.google.com/o/oauth2/token',
+        scope: 'https://www.google.com/reader/api/0'
+    },
+    feedly: {
+        clientID: 'sandbox',
+        clientSecret: '7uN4ujGfnbItwS6NbqWgbEJ5',
+        oAuthURL: 'https://cloud.feedly.com/v3/auth/auth',
+        oAuthTokenURL: 'http://cloud.feedly.com/v3/auth/token',
+        scope: 'https://cloud.feedly.com/subscriptions'
+    }
+};
 
-var oAuthTokenURL = 'https://accounts.google.com/o/oauth2/token';
+var clientConfig = clientConfigs.feedly;
+
+
 
 var scope = {};
 Components.utils.import("resource://grwmodules/grwlog.jsm", scope);
@@ -140,7 +155,7 @@ Oauth2.prototype = {
             },
             {
                 name: 'client_id',
-                value: clientID
+                value: clientConfig.clientID
             },
             {
                 name: 'redirect_uri',
@@ -167,7 +182,7 @@ Oauth2.prototype = {
                     .getService(Components.interfaces.nsIWindowMediator)
                     .getMostRecentWindow("navigator:browser"),
                 // uri
-                generateRequestURI(oAuthURL, queryParams),
+                generateRequestURI(clientConfig.oAuthURL, queryParams),
                 // window name
                 "GRWatcher Auth request",
                 // window params
@@ -243,11 +258,11 @@ Oauth2.prototype = {
             },
             {
                 name: 'client_id',
-                value: clientID
+                value: clientConfig.clientID
             },
             {
                 name: 'client_secret',
-                value: clientSecret
+                value: clientConfig.clientSecret
             },
             {
                 name: 'redirect_uri',
@@ -258,8 +273,8 @@ Oauth2.prototype = {
                 value: 'authorization_code'
             }
         ];
-        scope.grwlog('get first token: ' + oAuthTokenURL, generateQueryParam(params));
-        scope.getter.asyncRequest('POST', oAuthTokenURL, {
+        scope.grwlog('get first token: ' + clientConfig.oAuthTokenURL, generateQueryParam(params));
+        scope.getter.asyncRequest('POST', clientConfig.oAuthTokenURL, {
             onSuccess: function (response) {
                 that.onLogin(response);
                 if (typeof cb === 'function') {
@@ -315,11 +330,11 @@ Oauth2.prototype = {
         params = [
             {
                 name: 'client_id',
-                value: clientID
+                value: clientConfig.clientID
             },
             {
                 name: 'client_secret',
-                value: clientSecret
+                value: clientConfig.clientSecret
             },
             {
                 name: 'refresh_token',
@@ -331,8 +346,8 @@ Oauth2.prototype = {
             }
         ];
         Components.utils.import("resource://grwmodules/getter.jsm", scope);
-        scope.grwlog('refresh token: ' + oAuthTokenURL, generateQueryParam(params));
-        scope.getter.asyncRequest('POST', oAuthTokenURL, {
+        scope.grwlog('refresh token: ' + clientConfig.oAuthTokenURL, generateQueryParam(params));
+        scope.getter.asyncRequest('POST', clientConfig.oAuthTokenURL, {
             onSuccess: function (response) {
                 that.onLogin(response);
                 if (typeof cb === 'function') {
