@@ -229,7 +229,7 @@ Oauth2.prototype = {
      */
     getToken: function (cb) {
         "use strict";
-        context.grwlog('get token: ', typeof this.accessData, this.accessData);
+        context.grwlog('get token: ', typeof this.accessData, JSON.stringify(this.accessData));
         var that = this, callback;
         callback = function (data) {
             that.setGetterHeaders();
@@ -281,7 +281,9 @@ Oauth2.prototype = {
         context.grwlog('get first token: ' + clientConfig.oAuthTokenURL, generateQueryParam(params));
         context.getter.asyncRequest('POST', clientConfig.oAuthTokenURL, {
             onSuccess: function (response) {
-                that.onLogin(response);
+                context.grwlog('on first token success: ', response.responseText);
+                Components.utils.import("resource://grwmodules/JSON.jsm", context);
+                that.onLogin(context.JSON.parse(response.responseText));
                 if (typeof cb === 'function') {
                     cb(that.accessData);
                 }
@@ -310,9 +312,8 @@ Oauth2.prototype = {
      * @param {Object} response
      *      @param {String} response.responseText
      */
-    onLogin: function (response) {
+    onLogin: function (jsonResponse) {
         "use strict";
-        var jsonResponse = JSON.parse(response.responseText);
 
         this.accessData.updateToken(jsonResponse);
         if (jsonResponse.refresh_token) {
@@ -354,7 +355,7 @@ Oauth2.prototype = {
         context.grwlog('refresh token: ' + clientConfig.oAuthTokenURL, generateQueryParam(params));
         context.getter.asyncRequest('POST', clientConfig.oAuthTokenURL, {
             onSuccess: function (response) {
-                that.onLogin(response);
+                that.onLogin(JSON.parse(response.responseText));
                 if (typeof cb === 'function') {
                     cb(that.accessData);
                 }
