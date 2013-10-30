@@ -6,18 +6,21 @@ var clientConfigs = {
         clientSecret: '7uN4ujGfnbItwS6NbqWgbEJ5',
         oAuthURL: 'https://accounts.google.com/o/oauth2/auth',
         oAuthTokenURL: 'https://accounts.google.com/o/oauth2/token',
-        scope: 'https://www.google.com/reader/api/0'
+        scope: 'https://www.google.com/reader/api/0',
+        redirectUri: 'urn:ietf:wg:oauth:2.0:oob'
     },
-    feedly: {
+    feedlySandbox: {
         clientID: 'sandbox',
-        clientSecret: '7uN4ujGfnbItwS6NbqWgbEJ5',
-        oAuthURL: 'https://cloud.feedly.com/v3/auth/auth',
-        oAuthTokenURL: 'http://cloud.feedly.com/v3/auth/token',
-        scope: 'https://cloud.feedly.com/subscriptions'
+        clientSecret: 'Z5ZSFRASVWCV3EFATRUY', // expires 12/1/2013
+        oAuthURL: 'https://sandbox.feedly.com/v3/auth/auth',
+        oAuthTokenURL: 'http://sandbox.feedly.com/v3/auth/token',
+        scope: 'https://cloud.feedly.com/subscriptions',
+        redirectUri: 'http://localhost'
+        // redirectUri: 'urn:ietf:wg:oauth:2.0:oob'
     }
 };
 
-var clientConfig = clientConfigs.feedly;
+var clientConfig = clientConfigs.feedlySandbox;
 
 
 
@@ -40,7 +43,8 @@ function generateQueryParam(queryParams) {
         if (typeof param.value === 'string') {
             return encodeURIComponent(param.name) + '=' + encodeURIComponent(param.value);
         }
-    }).join('&');
+        return null;
+    }).filter(function (i) { return i && i.trim() !== ''; }).join('&');
 }
 
 /**
@@ -159,11 +163,11 @@ Oauth2.prototype = {
             },
             {
                 name: 'redirect_uri',
-                value: 'urn:ietf:wg:oauth:2.0:oob'
+                value: clientConfig.redirectUri
             },
             {
                 name: 'scope',
-                value: ['https://www.google.com/reader/api/0'].join(' ')
+                value: clientConfig.scope
             },
             {
                 name: 'state',
@@ -198,6 +202,7 @@ Oauth2.prototype = {
         function poll() {
             context.later(function () {
                 var title = win.document.title;
+                context.grwlog(win.document.location.href);
                 if (title.indexOf('Success code=') > -1) {
                     that.accessData.setRefreshToken('');
                     that.saveAuthCode(title.split('code=')[1]);
@@ -266,7 +271,7 @@ Oauth2.prototype = {
             },
             {
                 name: 'redirect_uri',
-                value: 'urn:ietf:wg:oauth:2.0:oob'
+                value: clientConfig.redirectUri
             },
             {
                 name: 'grant_type',
