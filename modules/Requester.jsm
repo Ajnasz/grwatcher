@@ -1,40 +1,46 @@
 /*jslint indent: 2*/
-var scope = {};
+var context = {};
 // var getlist = GRW.GetList;
-var Requester = function (getlist) {
+function Requester(getlist) {
+  "use strict";
   this.getlist = getlist;
-};
+}
 Requester.prototype = {
   start: function () {
+    "use strict";
     this.getlist.start();
     this.setNext();
   },
   restart: function () {
+    "use strict";
     this.getlist.restart();
     this.setNext();
   },
   updater: function () {
+    "use strict";
     this.getlist.getUnreadCount();
     this.setNext();
   },
   setNext: function () {
-    Components.utils.import("resource://grwmodules/timer.jsm", scope);
-    if (this.timer) {
-      scope.never(this.timer);
-    }
-    Components.utils.import("resource://grwmodules/prefs.jsm", scope);
-    var _this = this,
-        minCheck = 1,
-        configuredCheck = scope.prefs.get.checkFreq(),
-        freq = (configuredCheck >= minCheck) ? configuredCheck : minCheck;
+    "use strict";
+    Components.utils.import("resource://grwmodules/timer.jsm", context);
+    Components.utils.import("resource://grwmodules/prefs.jsm", context);
 
-    this.timer = scope.later(function () {
-      _this.updater();
-    }, freq * 1000 * 60);
+    if (this.timer) {
+      context.never(this.timer);
+    }
+
+    var minCheck = 1,
+      configuredCheck = context.prefs.get.checkFreq(),
+      freq = (configuredCheck >= minCheck) ? configuredCheck : minCheck;
+
+    this.timer = context.later(this.updater.bind(this), freq * 1000 * 60);
   }
 };
-Components.utils.import("resource://grwmodules/augment.jsm", scope);
-Components.utils.import("resource://grwmodules/EventProvider.jsm", scope);
-scope.augmentProto(Requester, scope.EventProvider);
 
-let EXPORTED_SYMBOLS = ['Requester'];
+Components.utils.import("resource://grwmodules/augment.jsm", context);
+Components.utils.import("resource://grwmodules/EventProvider.jsm", context);
+
+context.augmentProto(Requester, context.EventProvider);
+
+var EXPORTED_SYMBOLS = ['Requester'];
