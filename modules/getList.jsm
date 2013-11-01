@@ -44,13 +44,13 @@ var clientConfigs = {
   processStartEvent = 'processStartEvent',
   processFinishEvent = 'processFinishEvent';
 
-var scope = {},
+var context = {},
   clientConfig = clientConfigs.feedlySandox,
   GetList,
   getList,
   lastFeeds;
 
-Components.utils.import("resource://grwmodules/grwlog.jsm", scope);
+Components.utils.import("resource://grwmodules/grwlog.jsm", context);
 
 
 function filterMatchingLabels(filteredLabels, categories) {
@@ -109,9 +109,9 @@ function filterZeroCounts(items) {
 }
 
 function filterLabels(items) {
-  Components.utils.import("resource://grwmodules/prefs.jsm", scope);
+  Components.utils.import("resource://grwmodules/prefs.jsm", context);
 
-  var filteredLabels = scope.prefs.get.filteredLabels()
+  var filteredLabels = context.prefs.get.filteredLabels()
         .replace(/\s+,/g, ',').replace(/,\s+/g, ',');
 
   if (filteredLabels !== '') {
@@ -170,8 +170,8 @@ GetList.prototype = {
 
   getUserInfo: function (cb) {
     var _this = this;
-    Components.utils.import("resource://grwmodules/userinfo.jsm", scope);
-    scope.userInfo.get(function (info) {
+    Components.utils.import("resource://grwmodules/userinfo.jsm", context);
+    context.userInfo.get(function (info) {
       _this.userInfo = info;
       if (typeof cb === 'function') {
         cb(info);
@@ -209,10 +209,10 @@ GetList.prototype = {
     "use strict";
     this.fireEvent(processStartEvent);
 
-    Components.utils.import("resource://grwmodules/JSON.jsm", scope);
+    Components.utils.import("resource://grwmodules/JSON.jsm", context);
 
     var text = response.responseText,
-      obj = scope.JSON.parse(text),
+      obj = context.JSON.parse(text),
       unreadcounts = obj.unreadcounts,
       i = unreadcounts.length - 1,
       unreadSum,
@@ -267,17 +267,17 @@ GetList.prototype = {
   },
 
   getUnreadCountRequestUrl: function () {
-    Components.utils.import("resource://grwmodules/generateUri.jsm", scope);
-    Components.utils.import("resource://grwmodules/request.jsm", scope);
+    Components.utils.import("resource://grwmodules/generateUri.jsm", context);
+    Components.utils.import("resource://grwmodules/request.jsm", context);
 
-    return scope.generateUri.apply(scope.generateUri, clientConfig.unreadcountURL);
+    return context.generateUri.apply(context.generateUri, clientConfig.unreadcountURL);
   },
 
   getUnreadCount: function () {
     this.fireEvent(requestStartEvent);
     this.fireEvent(unreadCountRequestStartEvent);
 
-    scope.request('get', this.getUnreadCountRequestUrl(), {
+    context.request('get', this.getUnreadCountRequestUrl(), {
       onSuccess: this.onUnreadCountSuccess.bind(this),
       onError: this.onUnreadCountError.bind(this)
     });
@@ -301,13 +301,13 @@ GetList.prototype = {
     var _this = this;
     this.fireEvent(requestStartEvent);
     this.fireEvent(subscriptionListRequestStartEvent);
-    Components.utils.import("resource://grwmodules/generateUri.jsm", scope);
-    Components.utils.import("resource://grwmodules/request.jsm", scope);
-    scope.request('get', scope.generateUri.apply(scope.generateUri, clientConfig.subscriptionListURL), {
+    Components.utils.import("resource://grwmodules/generateUri.jsm", context);
+    Components.utils.import("resource://grwmodules/request.jsm", context);
+    context.request('get', context.generateUri.apply(context.generateUri, clientConfig.subscriptionListURL), {
       onSuccess: function (o) {
-        Components.utils.import("resource://grwmodules/JSON.jsm", scope);
+        Components.utils.import("resource://grwmodules/JSON.jsm", context);
         _this.fireEvent(subscriptionListRequestFinishEvent);
-        _this._processSubscriptionList(scope.JSON.parse(o.responseText));
+        _this._processSubscriptionList(context.JSON.parse(o.responseText));
       },
       onError: function (o) {
         _this.fireEvent(requestErrorEvent);
@@ -328,24 +328,24 @@ GetList.prototype = {
     this.fireEvent(processFinishEvent);
   },
   onFriendListSuccess: function (response) {
-    Components.utils.import("resource://grwmodules/JSON.jsm", scope);
+    Components.utils.import("resource://grwmodules/JSON.jsm", context);
 
-    this._processFriendList(scope.JSON.parse(response.responseText));
+    this._processFriendList(context.JSON.parse(response.responseText));
     this.fireEvent(friendListRequestFinishEvent);
   },
   onFriendListError: function (response) {
     this.fireEvent(requestErrorEvent);
   },
   getFriendList: function () {
-    Components.utils.import("resource://grwmodules/generateUri.jsm", scope);
-    Components.utils.import("resource://grwmodules/request.jsm", scope);
+    Components.utils.import("resource://grwmodules/generateUri.jsm", context);
+    Components.utils.import("resource://grwmodules/request.jsm", context);
 
     var _this = this;
 
     this.fireEvent(requestStartEvent);
     this.fireEvent(friendListRequestStartEvent);
 
-    scope.request('get', scope.generateUri.apply(scope.generateUri, clientConfig.friendListURL), {
+    context.request('get', context.generateUri.apply(context.generateUri, clientConfig.friendListURL), {
       onSuccess: this.onFriendListSuccess.bind(this),
       onError: this.onFriendListError.bind(this)
     });
@@ -459,10 +459,10 @@ GetList.prototype = {
   }
 };
 
-Components.utils.import("resource://grwmodules/augment.jsm", scope);
-Components.utils.import("resource://grwmodules/EventProvider.jsm", scope);
+Components.utils.import("resource://grwmodules/augment.jsm", context);
+Components.utils.import("resource://grwmodules/EventProvider.jsm", context);
 
-scope.augmentProto(GetList, scope.EventProvider);
+context.augmentProto(GetList, context.EventProvider);
 
 getList = new GetList();
 
