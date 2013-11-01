@@ -256,7 +256,7 @@ GetList.prototype = {
     if (!this.userInfo) {
       this.getUserInfo(function (info) {
         this._processUnreadCount(response);
-      });
+      }.bind(this));
     } else {
       this._processUnreadCount(response);
     }
