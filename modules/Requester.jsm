@@ -9,19 +9,19 @@ Requester.prototype = {
   start: function () {
     "use strict";
     this.getlist.start();
-    this.setNext();
+    this.scheduleNext();
   },
   restart: function () {
     "use strict";
     this.getlist.restart();
-    this.setNext();
+    this.scheduleNext();
   },
   updater: function () {
     "use strict";
     this.getlist.getUnreadCount();
-    this.setNext();
+    this.scheduleNext();
   },
-  setNext: function () {
+  scheduleNext: function () {
     "use strict";
     Components.utils.import("resource://grwmodules/timer.jsm", context);
     Components.utils.import("resource://grwmodules/prefs.jsm", context);
