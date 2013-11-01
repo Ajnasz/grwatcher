@@ -58,6 +58,8 @@ xpi:
 		modules/getter.jsm \
 		modules/request.jsm \
 		modules/Requester.jsm \
+		modules/ListReceiver.jsm \
+		modules/UnreadCountReceiver.jsm \
 		modules/getList.jsm \
 		modules/Notifier.jsm \
 		modules/userinfo.jsm \

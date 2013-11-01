@@ -1,20 +1,26 @@
 /*jslint indent: 2, nomen: true, sloppy: true*/
 /*global Components: true, GRW: true*/
+
+var context = {};
+Components.utils.import("resource://grwmodules/augment.jsm", context);
+Components.utils.import("resource://grwmodules/EventProvider.jsm", context);
+Components.utils.import("resource://grwmodules/grwlog.jsm", context);
+Components.utils.import("resource://grwmodules/ListReceiver.jsm", context);
+Components.utils.import("resource://grwmodules/UnreadCountReceiver.jsm", context);
+
 var clientConfigs = {
     google: {
       unreadcountURL: ['www.google.com/reader/api/0/unread-count', {
         all: 'true',
         output: 'json'
       }],
-      subscriptionListURL: ['www.google.com/reader/api/0/subscription/list', {output: 'json'}],
-      friendListURL: ['www.google.com/reader/api/0/friend/list', {output: 'json'}]
+      subscriptionListURL: ['www.google.com/reader/api/0/subscription/list', {output: 'json'}]
     },
     feedlySandox: {
       unreadcountURL: ['sandbox.feedly.com/v3/markers/counts', {
         autorefresh: 'true'
       }],
-      subscriptionListURL: ['sandbox.feedly.com/v3/subscriptions'],
-      friendListURL: ['www.google.com/reader/api/0/friend/list', {output: 'json'}]
+      subscriptionListURL: ['sandbox.feedly.com/v3/subscriptions']
     }
   },
 
@@ -26,45 +32,21 @@ var clientConfigs = {
   // 'http://localhost/grwatcher/hg/testfiles/feedlist.json?' + (new
   // Date().getTime()),
 
-  unreadGeneratedEvent = 'unreadGeneratedEvent',
+  unreadGeneratedEvent = context.listReceiverEvents.unreadGeneratedEvent,
   subscriptionGeneratedEvent = 'subscriptionGeneratedEvent',
-  friendGeneratedEvent = 'friendGeneratedEvent',
   unreadAndSubscriptionReceivedEvent = 'unreadAndSubscriptionReceivedEvent',
   itemsMatchedEvent = 'itemsMatchedEvent',
-  requestStartEvent = 'requestStartEvent',
-  // requestFinishEvent = 'requestFinishEvent',
-  requestErrorEvent = 'requestErrorEvent',
 
   unreadCountRequestStartEvent = 'unreadCountRequestStartEvent',
   subscriptionListRequestFinishEvent = 'subscriptionListRequestFinishEvent',
-  friendListRequestFinishEvent = 'friendListRequestFinishEvent',
   processStartEvent = 'processStartEvent',
   processFinishEvent = 'processFinishEvent';
 
-var context = {},
-  clientConfig = clientConfigs.feedlySandox,
+context.grwlog('unread generated event', unreadGeneratedEvent);
+
+var clientConfig = clientConfigs.feedlySandox,
   getList,
   lastFeeds;
-
-
-var matchers = {
-  isBroadcastCount: function (item) {
-    return item.id.indexOf('/state/com.google/broadcast') !== -1;
-  },
-  isBroadcastFriendCount: function (item) {
-    return item.id.indexOf('/state/com.google/broadcast-friend') !== -1;
-  },
-  isReadingListCounter: function (item) {
-    return item.id.indexOf('/state/com.google/reading-list') !== -1;
-  },
-  isFollwedUser: function (item) {
-    return (/user\/\d+\/state\/com\.google\/google/).test(item.id);
-  }
-};
-
-Components.utils.import("resource://grwmodules/augment.jsm", context);
-Components.utils.import("resource://grwmodules/EventProvider.jsm", context);
-Components.utils.import("resource://grwmodules/grwlog.jsm", context);
 
 
 function filterMatchingLabels(filteredLabels, categories) {
@@ -137,37 +119,6 @@ function filterLabels(items) {
   return items;
 }
 
-function ListReceiver() {
-}
-ListReceiver.prototype = {
-  url: null,
-  success: function () {
-    throw new Error('Success must be overwritten');
-  },
-  error: function () {
-    this.fireEvent(requestErrorEvent);
-  },
-  request: function () {
-    this.fireEvent(requestStartEvent);
-    Components.utils.import("resource://grwmodules/generateUri.jsm", context);
-    Components.utils.import("resource://grwmodules/request.jsm", context);
-    context.request(
-      'get',
-      context.generateUri.apply(context.generateUri, this.url),
-      {
-        onSuccess: this.success.bind(this),
-        onError: this.error.bind(this)
-      }
-    );
-  }
-};
-context.augmentProto(ListReceiver, context.EventProvider);
-
-function getUserInfo(cb) {
-  Components.utils.import("resource://grwmodules/userinfo.jsm", context);
-  context.userInfo.get(cb);
-}
-
 /**
  * @class SubscriptionList
  * @constructor
@@ -176,10 +127,9 @@ function getUserInfo(cb) {
 function SubscriptionList() {
   this.url = clientConfig.subscriptionListURL;
 }
-SubscriptionList.prototype = new ListReceiver();
+SubscriptionList.prototype = new context.ListReceiver();
 SubscriptionList.prototype.processSubscriptionList = function (subscriptions) {
   this.fireEvent(processStartEvent);
-  // this.fireEvent(requestFinishEvent);
 
   var subscription;
 
@@ -194,110 +144,43 @@ SubscriptionList.prototype.success = function (response) {
   this.processSubscriptionList(context.JSON.parse(response.responseText));
 };
 
-/**
- * @class UnreadCountReceiver
- * @constructor
- * @extends ListReceiver
- */
-
-function UnreadCountReceiver() {
-  context.grwlog(" new unread count receiver");
-  this.url = clientConfig.unreadcountURL;
-}
-UnreadCountReceiver.prototype = new ListReceiver();
-UnreadCountReceiver.prototype.isLabelItem = function (item) {
-  return item.id.indexOf('user/' + this.userInfo.userId + '/label') === 0;
-};
-
-UnreadCountReceiver.prototype.processUnreadCount = function (obj) {
-  "use strict";
-  this.fireEvent(processStartEvent);
-
-  var unreadcounts = obj.unreadcounts,
-    i = unreadcounts.length - 1,
-    unreadSum,
-    unread,
-    labels = [],
-    feeds  = [],
-    unreadItem;
-
-  while (i >= 0) {
-    unreadItem = unreadcounts[i];
-    if (this.isLabelItem(unreadItem)) {
-      labels.push(unreadItem);
-    } else if (matchers.isReadingListCounter(unreadItem)) {
-      unreadSum = unreadItem.count;
-    } else if (!matchers.isBroadcastFriendCount(unreadItem)) {
-      feeds.push(unreadItem);
-    }
-    i -= 1;
-  }
-
-  unread = {
-    max: obj.max, // max number to display
-    // unread items number unreadItems: unreadcounts, // all of the unread items
-    unreadSum: unreadSum,
-    // unread items, but only the ones which are belongs to a url (id
-    // starts with doesn't start with 'user')
-    labels: labels,
-    // unread items, but only the ones which are belongs to the user (id
-    // starts with 'user')
-    feeds: feeds
-  };
-
-  this.fireEvent(unreadGeneratedEvent, unread);
-  this.fireEvent(processFinishEvent);
-};
-UnreadCountReceiver.prototype.success = function (response) {
-  Components.utils.import("resource://grwmodules/JSON.jsm", context);
-  if (!this.userInfo) {
-    getUserInfo(function (info) {
-      this.userInfo = info;
-      this.processUnreadCount(context.JSON.parse(response.responseText));
-    }.bind(this));
-  } else {
-    this.processUnreadCount(context.JSON.parse(response.responseText));
-  }
-};
-
 function GetList() {
-  var cb = this._fireUnreadAndSubscription.bind(this),
-    subsList,
-    unreadList;
-
-
-  subsList = new SubscriptionList();
-  subsList.on(requestStartEvent, function () {
-    this.fireEvent(requestStartEvent);
-  }.bind(this));
-  subsList.on(subscriptionGeneratedEvent, function (subscriptions) {
-    this._subscriptionList = {
-      subscriptions: subscriptions
-    };
-    this._fireUnreadAndSubscription();
-  }.bind(this));
-  subsList.on(requestErrorEvent, function (response) {
-    this.fireEvent(requestErrorEvent);
-  }.bind(this));
-  this.subscriptionList = subsList;
-
-  unreadList = new UnreadCountReceiver();
-  unreadList.on(requestStartEvent, function () {
-    this.fireEvent(requestStartEvent);
-  }.bind(this));
-  unreadList.on(unreadGeneratedEvent, function (unread) {
-    this._unreadCount = unread || {};
-    context.grwlog('unread', unread);
-    this._fireUnreadAndSubscription();
-  }.bind(this));
-  unreadList.on(requestErrorEvent, function (response) {
-    this.fireEvent(requestErrorEvent);
-  }.bind(this));
-  this.unreadList = unreadList;
-
-  this.subscribe(friendGeneratedEvent, cb);
+  this.initSubscriptionList();
+  this.initUnreadList();
 }
 GetList.prototype = {
+  initSubscriptionList: function () {
+    var subsList = new SubscriptionList();
+    subsList.on(context.listReceiverEvents.requestStartEvent, function () {
+      this.fireEvent(context.listReceiverEvents.requestStartEvent);
+    }.bind(this));
+    subsList.on(subscriptionGeneratedEvent, function (subscriptions) {
+      this._subscriptionList = {
+        subscriptions: subscriptions
+      };
+      this._fireUnreadAndSubscription();
+    }.bind(this));
+    subsList.on(context.listReceiverEvents.requestErrorEvent, function (response) {
+      this.fireEvent(context.listReceiverEvents.requestErrorEvent);
+    }.bind(this));
+    this.subscriptionList = subsList;
+  },
+  initUnreadList: function () {
+    var unreadList = new context.UnreadCountReceiver();
+
+    unreadList.on(context.listReceiverEvents.requestStartEvent, function () {
+      this.fireEvent(context.listReceiverEvents.requestStartEvent);
+    }.bind(this));
+
+    unreadList.on(unreadGeneratedEvent, function (unread) {
+      this._unreadCount = unread;
+      this._fireUnreadAndSubscription();
+    }.bind(this));
+    unreadList.on(context.listReceiverEvents.requestErrorEvent, function (response) {
+      this.fireEvent(context.listReceiverEvents.requestErrorEvent);
+    }.bind(this));
+    this.unreadList = unreadList;
+  },
   initialized: false,
 
   setInitialized: function () {
@@ -321,15 +204,6 @@ GetList.prototype = {
     this.setInitialized();
   },
 
-  getUserInfo: function (cb) {
-    getUserInfo(function (info) {
-      this.userInfo = info;
-      if (typeof cb === 'function') {
-        cb(info);
-      }
-    }.bind(this));
-  },
-
   restart: function () {
     this.setUnInitialized();
     this.start();
@@ -343,8 +217,6 @@ GetList.prototype = {
       this.getUnreadCount();
     } else if (!this._subscriptionList) {
       this.getSubscriptionList();
-    } else if (!this._friendList) {
-      this.getFriendList();
     }
   },
 
@@ -358,41 +230,6 @@ GetList.prototype = {
   },
   getSubscriptionList: function () {
     this.subscriptionList.request();
-  },
-
-  _processFriendList: function (friends) {
-    this.fireEvent(processStartEvent);
-    // this.fireEvent(requestFinishEvent);
-
-    var friend = {
-      friends: friends
-    };
-
-    this._friendList = friend;
-    this.fireEvent(friendGeneratedEvent, friend);
-    this.fireEvent(processFinishEvent);
-  },
-  onFriendListSuccess: function (response) {
-    Components.utils.import("resource://grwmodules/JSON.jsm", context);
-
-    this._processFriendList(context.JSON.parse(response.responseText));
-    this.fireEvent(friendListRequestFinishEvent);
-  },
-  onFriendListError: function (response) {
-    this.fireEvent(requestErrorEvent);
-  },
-  getFriendList: function () {
-    Components.utils.import("resource://grwmodules/generateUri.jsm", context);
-    Components.utils.import("resource://grwmodules/request.jsm", context);
-
-    var _this = this;
-
-    this.fireEvent(requestStartEvent);
-
-    context.request('get', context.generateUri.apply(context.generateUri, clientConfig.friendListURL), {
-      onSuccess: this.onFriendListSuccess.bind(this),
-      onError: this.onFriendListError.bind(this)
-    });
   },
 
   _subscriptionToHash: function (subscriptions) {
@@ -409,20 +246,6 @@ GetList.prototype = {
     return subscriptionHash;
   },
 
-  _friendsToHash: function (friends) {
-    var friendHash = {},
-      k = friends.length - 1,
-      friend;
-
-    while (k >= 0) {
-      friend = friends[k];
-      friendHash[friend.stream] = friend;
-      k -= 1;
-    }
-
-    return friendHash;
-  },
-
   _matchUnreadsWithHash: function (unreads, hash) {
     unreads.forEach(function (unread) {
       var item = hash[unread.id];
@@ -435,14 +258,11 @@ GetList.prototype = {
 
   _matchUnreadItems: function (unreads) {
     var subscriptions = this._subscriptionList.subscriptions,
-      // friends = [], /*this._friendList.friends*/
       subscriptionHash;
 
     subscriptionHash = this._subscriptionToHash(subscriptions);
-    // friendHash = this._friendsToHash(friends);
 
     this._matchUnreadsWithHash(unreads, subscriptionHash);
-    // this._matchUnreadsWithHash(unreads, friendHash);
 
     return unreads;
   },
