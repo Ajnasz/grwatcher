@@ -5,7 +5,7 @@ Components.utils.import("resource://grwmodules/EventProvider.jsm", context);
 var listReceiverEvents = {
     requestErrorEvent: 'requestErrorEvent',
     requestStartEvent: 'requestStartEvent',
-    processStartEvent: 'processStartEvent'
+    listProcessDoneEvent: 'listProcessDoneEvent'
 };
 function ListReceiver() {
     "use strict";

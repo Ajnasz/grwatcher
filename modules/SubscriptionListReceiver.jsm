@@ -16,7 +16,6 @@ var clientConfigs = {
 };
 var clientConfig = clientConfigs.feedlySandox;
 Components.utils.import("resource://grwmodules/ListReceiver.jsm", context);
-context.listReceiverEvents.subscriptionGeneratedEvent = 'subscriptionGeneratedEvent';
 
 /**
  * @class SubscriptionListReceiver
@@ -30,12 +29,10 @@ function SubscriptionListReceiver() {
 SubscriptionListReceiver.prototype = new context.ListReceiver();
 SubscriptionListReceiver.prototype.processSubscriptionList = function (subscriptions) {
     "use strict";
-    this.fireEvent(context.listReceiverEvents.processStartEvent);
-
     var subscription;
 
     if (subscriptions && subscriptions.length > 0) {
-        this.fireEvent(context.listReceiverEvents.subscriptionGeneratedEvent, subscriptions);
+        this.fireEvent(context.listReceiverEvents.listProcessDoneEvent, subscriptions);
     }
 };
 SubscriptionListReceiver.prototype.success = function (response) {

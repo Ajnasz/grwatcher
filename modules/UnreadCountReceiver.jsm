@@ -29,7 +29,6 @@ var matchers = {
 
 Components.utils.import("resource://grwmodules/ListReceiver.jsm", context);
 
-context.listReceiverEvents.unreadGeneratedEvent = 'unreadGeneratedEvent';
 
 
 /**
@@ -49,8 +48,6 @@ UnreadCountReceiver.prototype.isLabelItem = function (item) {
 
 UnreadCountReceiver.prototype.processUnreadCount = function (obj) {
     "use strict";
-    this.fireEvent(context.listReceiverEvents.processStartEvent);
-
     var unreadcounts = obj.unreadcounts,
         i = unreadcounts.length - 1,
         unreadSum,
@@ -83,7 +80,7 @@ UnreadCountReceiver.prototype.processUnreadCount = function (obj) {
         feeds: feeds
     };
 
-    this.fireEvent(context.listReceiverEvents.unreadGeneratedEvent, unread);
+    this.fireEvent(context.listReceiverEvents.listProcessDoneEvent, unread);
 };
 UnreadCountReceiver.prototype.success = function (response) {
     "use strict";

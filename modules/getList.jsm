@@ -48,14 +48,6 @@ var clientConfig = clientConfigs.feedlySandox,
   lastFeeds;
 
 
-function filterMatchingLabels(filteredLabels, categories) {
-  return filteredLabels.some(function (label) {
-    return categories.some(function (category) {
-      return label === category.label;
-    });
-  });
-}
-
 function filterNonMatchingLabels(filteredLabels, categories) {
   return filteredLabels.every(function (label) {
     return categories.every(function (category) {
@@ -74,23 +66,6 @@ function isNotFilteredLabel(filteredLabels) {
     } else {
       output = filteredLabels.every(function (label) {
         return label !== '-';
-      });
-    }
-
-    return output;
-  };
-}
-
-function isFilteredLabel(filteredLabels) {
-  return function (item) {
-    var categories = item.data.categories,
-      output;
-
-    if (categories.length) {
-      output = filterMatchingLabels(filteredLabels, categories);
-    } else {
-      output = filteredLabels.some(function (label) {
-        return label === '-';
       });
     }
 
@@ -118,43 +93,38 @@ function filterLabels(items) {
   return items;
 }
 
+function createReceiver(Receiver, onSuccess, cont) {
+  "use strict";
+  var receiver = new Receiver();
+
+  receiver.on(context.listReceiverEvents.requestStartEvent, function () {
+    this.fireEvent(context.listReceiverEvents.requestStartEvent);
+  }.bind(cont));
+
+  receiver.on(context.listReceiverEvents.listProcessDoneEvent, function (items) {
+    onSuccess(items);
+    this._fireUnreadAndSubscription();
+  }.bind(cont));
+
+  receiver.on(context.listReceiverEvents.requestErrorEvent, function (response) {
+    this.fireEvent(context.listReceiverEvents.requestErrorEvent);
+  }.bind(cont));
+
+  return receiver;
+}
+
 function GetList() {
-  this.initSubscriptionList();
-  this.initUnreadList();
+  this.subscriptionList = createReceiver(context.SubscriptionListReceiver, function (items) {
+    this._subscriptionList = {
+      subscriptions: items
+    };
+  }.bind(this), this);
+
+  this.unreadList = createReceiver(context.UnreadCountReceiver, function (items) {
+    this._unreadCount = items;
+  }.bind(this), this);
 }
 GetList.prototype = {
-  initSubscriptionList: function () {
-    var subsList = new context.SubscriptionListReceiver();
-    subsList.on(context.listReceiverEvents.requestStartEvent, function () {
-      this.fireEvent(context.listReceiverEvents.requestStartEvent);
-    }.bind(this));
-    subsList.on(subscriptionGeneratedEvent, function (subscriptions) {
-      this._subscriptionList = {
-        subscriptions: subscriptions
-      };
-      this._fireUnreadAndSubscription();
-    }.bind(this));
-    subsList.on(context.listReceiverEvents.requestErrorEvent, function (response) {
-      this.fireEvent(context.listReceiverEvents.requestErrorEvent);
-    }.bind(this));
-    this.subscriptionList = subsList;
-  },
-  initUnreadList: function () {
-    var unreadList = new context.UnreadCountReceiver();
-
-    unreadList.on(context.listReceiverEvents.requestStartEvent, function () {
-      this.fireEvent(context.listReceiverEvents.requestStartEvent);
-    }.bind(this));
-
-    unreadList.on(unreadGeneratedEvent, function (unread) {
-      this._unreadCount = unread;
-      this._fireUnreadAndSubscription();
-    }.bind(this));
-    unreadList.on(context.listReceiverEvents.requestErrorEvent, function (response) {
-      this.fireEvent(context.listReceiverEvents.requestErrorEvent);
-    }.bind(this));
-    this.unreadList = unreadList;
-  },
   initialized: false,
 
   setInitialized: function () {
@@ -188,22 +158,14 @@ GetList.prototype = {
       this.matchUnreadItems();
       this.fireEvent(unreadAndSubscriptionReceivedEvent, [this._subscriptionList, this._unreadCount]);
     } else if (!this._unreadCount) {
-      this.getUnreadCount();
+      this.unreadList.request();
     } else if (!this._subscriptionList) {
-      this.getSubscriptionList();
+      this.subscriptionList.request();
     }
   },
 
   _initRequests: function () {
-    this.getSubscriptionList();
-  },
-
-  getUnreadCount: function () {
-    context.grwlog('get unread count');
-    this.unreadList.request();
-  },
-  getSubscriptionList: function () {
-    this.subscriptionList.request();
+    this._fireUnreadAndSubscription();
   },
 
   _subscriptionToHash: function (subscriptions) {
@@ -211,11 +173,9 @@ GetList.prototype = {
       j = subscriptions.length - 1,
       subscription;
 
-    while (j >= 0) {
-      subscription = subscriptions[j];
-      subscriptionHash[subscription.id] = subscription;
-      j -= 1;
-    }
+    subscriptions.forEach(function (s) {
+      subscriptionHash[s.id] = s;
+    });
 
     return subscriptionHash;
   },
@@ -281,8 +241,6 @@ GetList.prototype = {
       max: this._unreadCount.max
     };
 
-    this.fireEvent(processStartEvent);
-
     this.fireEvent(itemsMatchedEvent, [unreads, this._unreadCount.max]);
     this.setLastFeeds(this.matchedData.unreads);
   },
@@ -295,7 +253,6 @@ GetList.prototype = {
     return lastFeeds;
   }
 };
-
 
 context.augmentProto(GetList, context.EventProvider);
 
