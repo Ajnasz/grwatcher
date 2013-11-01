@@ -133,12 +133,11 @@ OpenReader.prototype = {
     },
 
     getOpenerFunction: function (subUrl, how) {
-        var me = this;
         return function open() {
             var url;
             scope.grwlog('open grw', how, subUrl);
             try {
-                me.fireEvent('beforeReaderOpened');
+                this.fireEvent('beforeReaderOpened');
                 url = subUrl ?
                         scope.generateUri(clientConfig.readerURL, false) +
                             clientConfig.subscriptionPrefix + '/' + encodeURIComponent(subUrl) :
@@ -146,24 +145,24 @@ OpenReader.prototype = {
                 /**
                 * google reader doesn't opened yet
                 */
-                if (me.hasOpenedGR()) {
+                if (this.hasOpenedGR()) {
                     scope.grwlog('has opened grw');
-                    me.focusCurrentGR(url);
+                    this.focusCurrentGR(url);
                 } else {
                     scope.grwlog('open somehow: ', how);
                     switch (how) {
                     case 'newWindow':
-                        me.loadIntoNewWindow(url);
+                        this.loadIntoNewWindow(url);
                         break;
                     case 'newBackgroundTab':
-                        me.loadIntoNewBackgroundTab(url);
+                        this.loadIntoNewBackgroundTab(url);
                         break;
                     case 'newForegroundTab':
-                        me.loadIntoNewForegroundTab(url);
+                        this.loadIntoNewForegroundTab(url);
                         break;
                     case 'currentTab':
                         scope.grwlog('load inooo current tab');
-                        me.loadIntoCurrentTab(url);
+                        this.loadIntoCurrentTab(url);
                         break;
                     default:
                         scope.grwlog('mode not found: ', '++++' + how + '++++',
@@ -175,8 +174,8 @@ OpenReader.prototype = {
                 scope.grwlog('fileName', e.fileName);
                 scope.grwlog('line', e.lineNumber);
             }
-            me.fireEvent('readerOpened');
-        };
+            this.fireEvent('readerOpened');
+        }.bind(this);
     },
 
     open: function (subUrl, how) {
