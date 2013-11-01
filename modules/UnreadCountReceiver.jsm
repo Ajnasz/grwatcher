@@ -84,7 +84,6 @@ UnreadCountReceiver.prototype.processUnreadCount = function (obj) {
     };
 
     this.fireEvent(context.listReceiverEvents.unreadGeneratedEvent, unread);
-    this.fireEvent(context.listReceiverEvents.processFinishEvent);
 };
 UnreadCountReceiver.prototype.success = function (response) {
     "use strict";

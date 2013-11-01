@@ -60,6 +60,7 @@ xpi:
 		modules/Requester.jsm \
 		modules/ListReceiver.jsm \
 		modules/UnreadCountReceiver.jsm \
+		modules/SubscriptionListReceiver.jsm \
 		modules/getList.jsm \
 		modules/Notifier.jsm \
 		modules/userinfo.jsm \

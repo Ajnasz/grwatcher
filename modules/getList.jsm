@@ -7,6 +7,7 @@ Components.utils.import("resource://grwmodules/EventProvider.jsm", context);
 Components.utils.import("resource://grwmodules/grwlog.jsm", context);
 Components.utils.import("resource://grwmodules/ListReceiver.jsm", context);
 Components.utils.import("resource://grwmodules/UnreadCountReceiver.jsm", context);
+Components.utils.import("resource://grwmodules/SubscriptionListReceiver.jsm", context);
 
 var clientConfigs = {
     google: {
@@ -33,14 +34,12 @@ var clientConfigs = {
   // Date().getTime()),
 
   unreadGeneratedEvent = context.listReceiverEvents.unreadGeneratedEvent,
-  subscriptionGeneratedEvent = 'subscriptionGeneratedEvent',
+  subscriptionGeneratedEvent = context.listReceiverEvents.subscriptionGeneratedEvent,
   unreadAndSubscriptionReceivedEvent = 'unreadAndSubscriptionReceivedEvent',
   itemsMatchedEvent = 'itemsMatchedEvent',
 
   unreadCountRequestStartEvent = 'unreadCountRequestStartEvent',
-  subscriptionListRequestFinishEvent = 'subscriptionListRequestFinishEvent',
-  processStartEvent = 'processStartEvent',
-  processFinishEvent = 'processFinishEvent';
+  processStartEvent = 'processStartEvent';
 
 context.grwlog('unread generated event', unreadGeneratedEvent);
 
@@ -119,38 +118,13 @@ function filterLabels(items) {
   return items;
 }
 
-/**
- * @class SubscriptionList
- * @constructor
- * @extends ListReceiver
- */
-function SubscriptionList() {
-  this.url = clientConfig.subscriptionListURL;
-}
-SubscriptionList.prototype = new context.ListReceiver();
-SubscriptionList.prototype.processSubscriptionList = function (subscriptions) {
-  this.fireEvent(processStartEvent);
-
-  var subscription;
-
-  if (subscriptions && subscriptions.length > 0) {
-    this.fireEvent(subscriptionGeneratedEvent, subscriptions);
-  }
-  this.fireEvent(processFinishEvent);
-};
-SubscriptionList.prototype.success = function (response) {
-  Components.utils.import("resource://grwmodules/JSON.jsm", context);
-  this.fireEvent(subscriptionListRequestFinishEvent);
-  this.processSubscriptionList(context.JSON.parse(response.responseText));
-};
-
 function GetList() {
   this.initSubscriptionList();
   this.initUnreadList();
 }
 GetList.prototype = {
   initSubscriptionList: function () {
-    var subsList = new SubscriptionList();
+    var subsList = new context.SubscriptionListReceiver();
     subsList.on(context.listReceiverEvents.requestStartEvent, function () {
       this.fireEvent(context.listReceiverEvents.requestStartEvent);
     }.bind(this));
@@ -310,7 +284,6 @@ GetList.prototype = {
     this.fireEvent(processStartEvent);
 
     this.fireEvent(itemsMatchedEvent, [unreads, this._unreadCount.max]);
-    this.fireEvent(processFinishEvent);
     this.setLastFeeds(this.matchedData.unreads);
   },
 
