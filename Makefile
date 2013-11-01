@@ -69,6 +69,8 @@ xpi:
 		modules/siteLogin.jsm \
 		modules/GRWWindow.jsm \
 		modules/GRWWindows.jsm \
+		modules/Oauth2CodeRequester.jsm \
+		modules/Oauth2Token.jsm \
 		modules/Oauth2.jsm \
 		modules/ClientLogin.jsm \
 		modules/stringBundles.jsm \

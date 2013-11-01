@@ -1,12 +1,17 @@
 /*global Components: true */
 /*jslint es5: true */
-var clientConfigs = {
+
+var clientConfigs, context, clientConfig;
+
+clientConfigs = {
     google: {
         clientID: '18154408674.apps.googleusercontent.com',
         clientSecret: '7uN4ujGfnbItwS6NbqWgbEJ5',
         oAuthURL: 'https://accounts.google.com/o/oauth2/auth',
         oAuthTokenURL: 'https://accounts.google.com/o/oauth2/token',
         scope: 'https://www.google.com/reader/api/0',
+        windowName: 'GRWatcher Auth request',
+        windowParams: 'location=yes,status=yes,width=500,height=410',
         redirectUri: 'urn:ietf:wg:oauth:2.0:oob'
     },
     feedlySandbox: {
@@ -15,19 +20,34 @@ var clientConfigs = {
         oAuthURL: 'https://sandbox.feedly.com/v3/auth/auth',
         oAuthTokenURL: 'http://sandbox.feedly.com/v3/auth/token',
         scope: 'https://cloud.feedly.com/subscriptions',
+        windowName: 'Feedly Auth request',
+        windowParams: 'location=yes,status=yes,width=500,height=410',
         redirectUri: 'http://localhost'
         // redirectUri: 'urn:ietf:wg:oauth:2.0:oob'
     }
 };
 
-var clientConfig = clientConfigs.feedlySandbox;
+clientConfig = clientConfigs.feedlySandbox;
 
-
-
-var context = {};
-Components.utils.import("resource://grwmodules/grwlog.jsm", context);
+context = {};
+// Components.utils.import("resource://grwmodules/grwlog.jsm", context);
 Components.utils.import("resource://grwmodules/prefs.jsm", context);
 Components.utils.import("resource://grwmodules/getter.jsm", context);
+
+
+function makeRequeset(args) {
+    "use strict";
+
+    context.getter.asyncRequest(
+        args.method,
+        args.url,
+        {
+            onSuccess: args.success,
+            onError: args.error
+        },
+        args.data
+    );
+}
 
 /**
  * Generates query params from an array
@@ -60,63 +80,14 @@ function generateRequestURI(url, queryParams) {
 }
 
 /**
- * @class Oauth2Token
- * @param {Object} data
- * @constructor
- */
-function Oauth2Token(data) {
-    "use strict";
-
-    var expDate, getRefreshToken;
-
-    data = data || {};
-    getRefreshToken = function () {
-        return context.prefs.get.oauthRefreshToken();
-    };
-
-    expDate = new Date();
-
-    return {
-        getAccessToken: function () {
-            return data.access_token;
-        },
-        getTokenType: function () {
-            return data.token_type;
-        },
-        getExpires: function () {
-            return data.expires_in;
-        },
-        isExpired: function () {
-            context.grwlog('is expired: ' + Date.now() > expDate.getTime());
-            return !data.expires_in || Date.now() > expDate.getTime();
-        },
-        getRefreshToken: getRefreshToken,
-        setRefreshToken: function (value) {
-            return context.prefs.set.oauthRefreshToken(value);
-        },
-        setAccessToken: function (val) {
-            data.access_token = val;
-        },
-        updateToken: function (newData) {
-            expDate = new Date();
-            expDate.setTime(expDate.getTime() + newData.expires_in * 1000);
-            data.access_token = newData.access_token;
-            data.expires_in = newData.expires_in;
-            data.token_type = 'OAuth' || newData.token_type;
-        },
-        hasRefreshToken: function () {
-            return !!getRefreshToken();
-        }
-    };
-}
-
-/**
  * @class Oauth2
  * @constructor
  */
 function Oauth2() {
     "use strict";
-    this.accessData = new Oauth2Token();
+
+    Components.utils.import("resource://grwmodules/Oauth2Token.jsm", context);
+    this.accessData = new context.Oauth2Token();
 }
 Oauth2.prototype = {
     /**
@@ -140,19 +111,10 @@ Oauth2.prototype = {
         return context.prefs.get.oauthCode();
     },
 
-    /**
-     * @method auth
-     * @param {Function} cb Callback
-     */
-    auth: function (cb) {
+    getAuthQueryParams: function () {
         "use strict";
 
-        var that = this,
-            Cc,
-            win,
-            queryParams;
-
-        queryParams = [
+        return [
             {
                 name: 'response_type',
                 value: 'code'
@@ -174,53 +136,28 @@ Oauth2.prototype = {
                 value: null
             }
         ];
+    },
 
-        Cc = Components.classes;
-            // open window to allow access
-            // Set most recent window as parent window
-        win = Cc["@mozilla.org/embedcomp/window-watcher;1"]
-            .getService(Components.interfaces.nsIWindowWatcher)
-            .openWindow(
-                // parent window
-                Cc["@mozilla.org/appshell/window-mediator;1"]
-                    .getService(Components.interfaces.nsIWindowMediator)
-                    .getMostRecentWindow("navigator:browser"),
-                // uri
-                generateRequestURI(clientConfig.oAuthURL, queryParams),
-                // window name
-                "GRWatcher Auth request",
-                // window params
-                "location=yes,status=yes,width=500,height=410",
-                null
-            );
+    getAuthUrl: function () {
+        "use strict";
+        return generateRequestURI(clientConfig.oAuthURL, this.getAuthQueryParams());
+    },
 
-        Components.utils.import("resource://grwmodules/timer.jsm", context);
+    /**
+     * @method auth
+     * @param {Function} cb Callback
+     */
+    auth: function (cb) {
+        "use strict";
 
-        /**
-         * poll the window to get the authorization code
-         */
-        function poll() {
-            context.later(function () {
-                var title = win.document.title;
-                context.grwlog(win.document.location.href);
-                if (title.indexOf('Success code=') > -1) {
-                    that.accessData.setRefreshToken('');
-                    that.saveAuthCode(title.split('code=')[1]);
-                    win.close();
-                    if (typeof cb === 'function') {
-                        cb();
-                    }
-                    that.getFirstToken();
-                    context.grwlog('oauthcode saved');
-                } else {
-                    context.grwlog(win.document.title);
-                    if (win && !win.closed) {
-                        poll();
-                    }
-                }
-            }, 1000);
-        }
-        poll();
+        Components.utils.import("resource://grwmodules/Oauth2CodeRequester.jsm", context);
+        var codeRequester = new context.Oauth2CodeRequester();
+        codeRequester.request(this.getAuthUrl(), function (code) {
+            this.accessData.setRefreshToken('');
+            this.saveAuthCode(code);
+            this.getFirstToken();
+        }.bind(this));
+
     },
 
     /**
@@ -229,12 +166,13 @@ Oauth2.prototype = {
      */
     getToken: function (cb) {
         "use strict";
-        context.grwlog('get token: ', typeof this.accessData, JSON.stringify(this.accessData));
-        var that = this, callback;
-        callback = function (data) {
+        var that = this;
+
+        function callback(data) {
             that.setGetterHeaders();
             cb(that.accessData);
-        };
+        }
+
         if (!this.accessData.hasRefreshToken()) {
             this.getFirstToken(callback);
         } else if (this.accessData.isExpired()) {
@@ -244,19 +182,9 @@ Oauth2.prototype = {
         }
     },
 
-    /**
-     * Retreives the first token
-     * @method getFirstToken
-     * @param {Function} cb Callback
-     */
-    getFirstToken: function (cb) {
+    getFirstTokenQueryParams: function () {
         "use strict";
-
-        var that = this,
-            url,
-            params;
-
-        params = [
+        return [
             {
                 name: 'code',
                 value: this.getAuthCode()
@@ -278,21 +206,39 @@ Oauth2.prototype = {
                 value: 'authorization_code'
             }
         ];
-        context.grwlog('get first token: ' + clientConfig.oAuthTokenURL, generateQueryParam(params));
-        context.getter.asyncRequest('POST', clientConfig.oAuthTokenURL, {
-            onSuccess: function (response) {
-                context.grwlog('on first token success: ', response.responseText);
-                Components.utils.import("resource://grwmodules/JSON.jsm", context);
-                that.onLogin(context.JSON.parse(response.responseText));
-                if (typeof cb === 'function') {
-                    cb(that.accessData);
-                }
-            },
-            onError: function (response) {
-                context.grwlog('on error: ', response.responseText);
-                that.fireEvent('loginFailed', response.responseText);
+    },
+
+    onFirstTokenSuccess: function (cb) {
+        "use strict";
+        return function (response) {
+            Components.utils.import("resource://grwmodules/JSON.jsm", context);
+            this.onLogin(context.JSON.parse(response.responseText));
+            if (typeof cb === 'function') {
+                cb(this.accessData);
             }
-        }, generateQueryParam(params));
+        }.bind(this);
+    },
+
+    onFirstTokenError: function (response) {
+        "use strict";
+        this.fireEvent('loginFailed', response.responseText);
+    },
+
+    /**
+     * Retreives the first token
+     * @method getFirstToken
+     * @param {Function} cb Callback
+     */
+    getFirstToken: function (cb) {
+        "use strict";
+
+        makeRequeset({
+            method: 'POST',
+            url: clientConfig.oAuthTokenURL,
+            data: generateQueryParam(this.getFirstTokenQueryParams()),
+            success: this.onFirstTokenSuccess(cb),
+            error: this.onFirstTokenError.bind(this)
+        });
     },
 
     /**
@@ -323,17 +269,9 @@ Oauth2.prototype = {
         this.fireEvent('loginSuccess');
     },
 
-    /**
-     * @method refreshToken
-     * @param {Function} cb
-     */
-    refreshToken: function (cb) {
+    getRefreshTokenQueryParams: function () {
         "use strict";
-
-        var that = this,
-            url,
-            params;
-        params = [
+        return [
             {
                 name: 'client_id',
                 value: clientConfig.clientID
@@ -351,20 +289,38 @@ Oauth2.prototype = {
                 value: 'refresh_token'
             }
         ];
-        Components.utils.import("resource://grwmodules/getter.jsm", context);
-        context.grwlog('refresh token: ' + clientConfig.oAuthTokenURL, generateQueryParam(params));
-        context.getter.asyncRequest('POST', clientConfig.oAuthTokenURL, {
-            onSuccess: function (response) {
-                that.onLogin(JSON.parse(response.responseText));
-                if (typeof cb === 'function') {
-                    cb(that.accessData);
-                }
-            },
-            onError: function (response) {
-                that.fireEvent('loginFailed', response.responseText);
-                context.grwlog('on error: ', response.responseText);
+    },
+
+    onRefershTokenSuccess: function (cb) {
+        "use strict";
+
+        return function (response) {
+            this.onLogin(JSON.parse(response.responseText));
+            if (typeof cb === 'function') {
+                cb(this.accessData);
             }
-        }, generateQueryParam(params));
+        }.bind(this);
+    },
+
+    onRefreshTokenError: function (response) {
+        "use strict";
+        this.fireEvent('loginFailed', response.responseText);
+    },
+
+    /**
+     * @method refreshToken
+     * @param {Function} cb
+     */
+    refreshToken: function (cb) {
+        "use strict";
+
+        makeRequeset({
+            method: 'POST',
+            url: clientConfig.oAuthTokenURL,
+            data: generateQueryParam(this.getRefreshTokenQueryParams()),
+            success: this.onRefershTokenSuccess(cb),
+            error: this.onRefershTokenSuccess.bind(this)
+        });
     }
 };
 
