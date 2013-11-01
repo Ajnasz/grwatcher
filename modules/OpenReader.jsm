@@ -3,13 +3,23 @@ var scope = {};
 Components.utils.import("resource://grwmodules/prefs.jsm", scope);
 Components.utils.import("resource://grwmodules/grwlog.jsm", scope);
 /*global Components:true */
-var readerURL = 'www.google.com/reader/view',
-    getPref = scope.prefs.get;
+var clientsConfig = {
+    google: {
+        readerURL: 'www.google.com/reader/view',
+        subscriptionPrefix: '#stream'
+    },
+    feedlySandbox: {
+        readerURL: 'sandbox.feedly.com/',
+        subscriptionPrefix: '#subscription'
+    }
+};
+var clientConfig = clientsConfig.feedlySandbox;
+var getPref = scope.prefs.get;
 
 var getOpenedGR = function (gBrowser) {
     Components.utils.import("resource://grwmodules/generateUri.jsm", scope);
     var outObj = {grTab: false, blankPage: false},
-        r = new RegExp('^' + scope.generateUri(readerURL, false)),
+        r = new RegExp('^' + scope.generateUri(clientConfig.readerURL, false)),
         i = gBrowser.browsers.length - 1,
         curSpec;
 
@@ -130,9 +140,9 @@ OpenReader.prototype = {
             try {
                 me.fireEvent('beforeReaderOpened');
                 url = subUrl ?
-                        scope.generateUri(readerURL, false) +
-                            '#stream/' + encodeURIComponent(subUrl) :
-                        scope.generateUri(readerURL, false);
+                        scope.generateUri(clientConfig.readerURL, false) +
+                            clientConfig.subscriptionPrefix + '/' + encodeURIComponent(subUrl) :
+                        scope.generateUri(clientConfig.readerURL, false);
                 /**
                 * google reader doesn't opened yet
                 */
