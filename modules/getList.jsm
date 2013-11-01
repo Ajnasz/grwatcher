@@ -36,20 +36,34 @@ var clientConfigs = {
   requestErrorEvent = 'requestErrorEvent',
 
   unreadCountRequestStartEvent = 'unreadCountRequestStartEvent',
-  unreadCountRequestFinishEvent = 'unreadCountRequestFinishEvent',
-  subscriptionListRequestStartEvent = 'subscriptionListRequestStartEvent',
   subscriptionListRequestFinishEvent = 'subscriptionListRequestFinishEvent',
-  friendListRequestStartEvent = 'friendListRequestStartEvent',
   friendListRequestFinishEvent = 'friendListRequestFinishEvent',
   processStartEvent = 'processStartEvent',
   processFinishEvent = 'processFinishEvent';
 
 var context = {},
   clientConfig = clientConfigs.feedlySandox,
-  GetList,
   getList,
   lastFeeds;
 
+
+var matchers = {
+  isBroadcastCount: function (item) {
+    return item.id.indexOf('/state/com.google/broadcast') !== -1;
+  },
+  isBroadcastFriendCount: function (item) {
+    return item.id.indexOf('/state/com.google/broadcast-friend') !== -1;
+  },
+  isReadingListCounter: function (item) {
+    return item.id.indexOf('/state/com.google/reading-list') !== -1;
+  },
+  isFollwedUser: function (item) {
+    return (/user\/\d+\/state\/com\.google\/google/).test(item.id);
+  }
+};
+
+Components.utils.import("resource://grwmodules/augment.jsm", context);
+Components.utils.import("resource://grwmodules/EventProvider.jsm", context);
 Components.utils.import("resource://grwmodules/grwlog.jsm", context);
 
 
@@ -123,27 +137,166 @@ function filterLabels(items) {
   return items;
 }
 
-var matchers = {
-  isBroadcastCount: function (item) {
-    return item.id.indexOf('/state/com.google/broadcast') !== -1;
+function ListReceiver() {
+}
+ListReceiver.prototype = {
+  url: null,
+  success: function () {
+    throw new Error('Success must be overwritten');
   },
-  isBroadcastFriendCount: function (item) {
-    return item.id.indexOf('/state/com.google/broadcast-friend') !== -1;
+  error: function () {
+    this.fireEvent(requestErrorEvent);
   },
-  isReadingListCounter: function (item) {
-    return item.id.indexOf('/state/com.google/reading-list') !== -1;
-  },
-  isFollwedUser: function (item) {
-    return (/user\/\d+\/state\/com\.google\/google/).test(item.id);
+  request: function () {
+    this.fireEvent(requestStartEvent);
+    Components.utils.import("resource://grwmodules/generateUri.jsm", context);
+    Components.utils.import("resource://grwmodules/request.jsm", context);
+    context.request(
+      'get',
+      context.generateUri.apply(context.generateUri, this.url),
+      {
+        onSuccess: this.success.bind(this),
+        onError: this.error.bind(this)
+      }
+    );
+  }
+};
+context.augmentProto(ListReceiver, context.EventProvider);
+
+function getUserInfo(cb) {
+  Components.utils.import("resource://grwmodules/userinfo.jsm", context);
+  context.userInfo.get(cb);
+}
+
+/**
+ * @class SubscriptionList
+ * @constructor
+ * @extends ListReceiver
+ */
+function SubscriptionList() {
+  this.url = clientConfig.subscriptionListURL;
+}
+SubscriptionList.prototype = new ListReceiver();
+SubscriptionList.prototype.processSubscriptionList = function (subscriptions) {
+  this.fireEvent(processStartEvent);
+  // this.fireEvent(requestFinishEvent);
+
+  var subscription;
+
+  if (subscriptions && subscriptions.length > 0) {
+    this.fireEvent(subscriptionGeneratedEvent, subscriptions);
+  }
+  this.fireEvent(processFinishEvent);
+};
+SubscriptionList.prototype.success = function (response) {
+  Components.utils.import("resource://grwmodules/JSON.jsm", context);
+  this.fireEvent(subscriptionListRequestFinishEvent);
+  this.processSubscriptionList(context.JSON.parse(response.responseText));
+};
+
+/**
+ * @class UnreadCountReceiver
+ * @constructor
+ * @extends ListReceiver
+ */
+
+function UnreadCountReceiver() {
+  context.grwlog(" new unread count receiver");
+  this.url = clientConfig.unreadcountURL;
+}
+UnreadCountReceiver.prototype = new ListReceiver();
+UnreadCountReceiver.prototype.isLabelItem = function (item) {
+  return item.id.indexOf('user/' + this.userInfo.userId + '/label') === 0;
+};
+
+UnreadCountReceiver.prototype.processUnreadCount = function (obj) {
+  "use strict";
+  this.fireEvent(processStartEvent);
+
+  var unreadcounts = obj.unreadcounts,
+    i = unreadcounts.length - 1,
+    unreadSum,
+    unread,
+    labels = [],
+    feeds  = [],
+    unreadItem;
+
+  while (i >= 0) {
+    unreadItem = unreadcounts[i];
+    if (this.isLabelItem(unreadItem)) {
+      labels.push(unreadItem);
+    } else if (matchers.isReadingListCounter(unreadItem)) {
+      unreadSum = unreadItem.count;
+    } else if (!matchers.isBroadcastFriendCount(unreadItem)) {
+      feeds.push(unreadItem);
+    }
+    i -= 1;
+  }
+
+  unread = {
+    max: obj.max, // max number to display
+    // unread items number unreadItems: unreadcounts, // all of the unread items
+    unreadSum: unreadSum,
+    // unread items, but only the ones which are belongs to a url (id
+    // starts with doesn't start with 'user')
+    labels: labels,
+    // unread items, but only the ones which are belongs to the user (id
+    // starts with 'user')
+    feeds: feeds
+  };
+
+  this.fireEvent(unreadGeneratedEvent, unread);
+  this.fireEvent(processFinishEvent);
+};
+UnreadCountReceiver.prototype.success = function (response) {
+  Components.utils.import("resource://grwmodules/JSON.jsm", context);
+  if (!this.userInfo) {
+    getUserInfo(function (info) {
+      this.userInfo = info;
+      this.processUnreadCount(context.JSON.parse(response.responseText));
+    }.bind(this));
+  } else {
+    this.processUnreadCount(context.JSON.parse(response.responseText));
   }
 };
 
-GetList = function () {
-  var cb = this._fireUnreadAndSubscription.bind(this);
-  this.subscribe(subscriptionGeneratedEvent, cb);
+function GetList() {
+  var cb = this._fireUnreadAndSubscription.bind(this),
+    subsList,
+    unreadList;
+
+
+  subsList = new SubscriptionList();
+  subsList.on(requestStartEvent, function () {
+    this.fireEvent(requestStartEvent);
+  }.bind(this));
+  subsList.on(subscriptionGeneratedEvent, function (subscriptions) {
+    this._subscriptionList = {
+      subscriptions: subscriptions
+    };
+    this._fireUnreadAndSubscription();
+  }.bind(this));
+  subsList.on(requestErrorEvent, function (response) {
+    this.fireEvent(requestErrorEvent);
+  }.bind(this));
+  this.subscriptionList = subsList;
+
+  unreadList = new UnreadCountReceiver();
+  unreadList.on(requestStartEvent, function () {
+    this.fireEvent(requestStartEvent);
+  }.bind(this));
+  unreadList.on(unreadGeneratedEvent, function (unread) {
+    this._unreadCount = unread || {};
+    context.grwlog('unread', unread);
+    this._fireUnreadAndSubscription();
+  }.bind(this));
+  unreadList.on(requestErrorEvent, function (response) {
+    this.fireEvent(requestErrorEvent);
+  }.bind(this));
+  this.unreadList = unreadList;
+
   this.subscribe(friendGeneratedEvent, cb);
-  this.subscribe(unreadGeneratedEvent, cb);
-};
+}
 GetList.prototype = {
   initialized: false,
 
@@ -169,14 +322,12 @@ GetList.prototype = {
   },
 
   getUserInfo: function (cb) {
-    var _this = this;
-    Components.utils.import("resource://grwmodules/userinfo.jsm", context);
-    context.userInfo.get(function (info) {
-      _this.userInfo = info;
+    getUserInfo(function (info) {
+      this.userInfo = info;
       if (typeof cb === 'function') {
         cb(info);
       }
-    });
+    }.bind(this));
   },
 
   restart: function () {
@@ -201,118 +352,12 @@ GetList.prototype = {
     this.getSubscriptionList();
   },
 
-  isLabelItem: function (item) {
-    return item.id.indexOf('user/' + this.userInfo.userId + '/label') === 0;
-  },
-
-  _processUnreadCount: function (response) {
-    "use strict";
-    this.fireEvent(processStartEvent);
-
-    Components.utils.import("resource://grwmodules/JSON.jsm", context);
-
-    var text = response.responseText,
-      obj = context.JSON.parse(text),
-      unreadcounts = obj.unreadcounts,
-      i = unreadcounts.length - 1,
-      unreadSum,
-      unread,
-      labels = [],
-      feeds  = [],
-      unreadItem;
-
-    while (i >= 0) {
-      unreadItem = unreadcounts[i];
-      if (this.isLabelItem(unreadItem)) {
-        labels.push(unreadItem);
-      } else if (matchers.isReadingListCounter(unreadItem)) {
-        unreadSum = unreadItem.count;
-      } else if (!matchers.isBroadcastFriendCount(unreadItem)) {
-        feeds.push(unreadItem);
-      }
-      i -= 1;
-    }
-
-    unread = {
-      max: obj.max, // max number to display
-      // unread items number unreadItems: unreadcounts, // all of the unread items
-      unreadSum: unreadSum,
-      // unread items, but only the ones which are belongs to a url (id
-      // starts with doesn't start with 'user')
-      labels: labels,
-      // unread items, but only the ones which are belongs to the user (id
-      // starts with 'user')
-      feeds: feeds
-    };
-
-    this._unreadCount = unread;
-    this.fireEvent(unreadGeneratedEvent, this._unreadCount);
-    this.fireEvent(processFinishEvent);
-  },
-
-  onUnreadCountSuccess: function (response) {
-    this.fireEvent(unreadCountRequestFinishEvent);
-
-    if (!this.userInfo) {
-      this.getUserInfo(function (info) {
-        this._processUnreadCount(response);
-      }.bind(this));
-    } else {
-      this._processUnreadCount(response);
-    }
-  },
-
-  onUnreadCountError: function () {
-    this.fireEvent(requestErrorEvent);
-  },
-
-  getUnreadCountRequestUrl: function () {
-    Components.utils.import("resource://grwmodules/generateUri.jsm", context);
-    Components.utils.import("resource://grwmodules/request.jsm", context);
-
-    return context.generateUri.apply(context.generateUri, clientConfig.unreadcountURL);
-  },
-
   getUnreadCount: function () {
-    this.fireEvent(requestStartEvent);
-    this.fireEvent(unreadCountRequestStartEvent);
-
-    context.request('get', this.getUnreadCountRequestUrl(), {
-      onSuccess: this.onUnreadCountSuccess.bind(this),
-      onError: this.onUnreadCountError.bind(this)
-    });
-  },
-  _processSubscriptionList: function (subscriptions) {
-    this.fireEvent(processStartEvent);
-    // this.fireEvent(requestFinishEvent);
-
-    var subscription;
-
-    if (subscriptions && subscriptions.length > 0) {
-      subscription = {
-        subscriptions: subscriptions
-      };
-      this._subscriptionList = subscription;
-      this.fireEvent(subscriptionGeneratedEvent, subscription);
-    }
-    this.fireEvent(processFinishEvent);
+    context.grwlog('get unread count');
+    this.unreadList.request();
   },
   getSubscriptionList: function () {
-    var _this = this;
-    this.fireEvent(requestStartEvent);
-    this.fireEvent(subscriptionListRequestStartEvent);
-    Components.utils.import("resource://grwmodules/generateUri.jsm", context);
-    Components.utils.import("resource://grwmodules/request.jsm", context);
-    context.request('get', context.generateUri.apply(context.generateUri, clientConfig.subscriptionListURL), {
-      onSuccess: function (o) {
-        Components.utils.import("resource://grwmodules/JSON.jsm", context);
-        _this.fireEvent(subscriptionListRequestFinishEvent);
-        _this._processSubscriptionList(context.JSON.parse(o.responseText));
-      },
-      onError: function (o) {
-        _this.fireEvent(requestErrorEvent);
-      }
-    });
+    this.subscriptionList.request();
   },
 
   _processFriendList: function (friends) {
@@ -343,7 +388,6 @@ GetList.prototype = {
     var _this = this;
 
     this.fireEvent(requestStartEvent);
-    this.fireEvent(friendListRequestStartEvent);
 
     context.request('get', context.generateUri.apply(context.generateUri, clientConfig.friendListURL), {
       onSuccess: this.onFriendListSuccess.bind(this),
@@ -459,8 +503,6 @@ GetList.prototype = {
   }
 };
 
-Components.utils.import("resource://grwmodules/augment.jsm", context);
-Components.utils.import("resource://grwmodules/EventProvider.jsm", context);
 
 context.augmentProto(GetList, context.EventProvider);
 
