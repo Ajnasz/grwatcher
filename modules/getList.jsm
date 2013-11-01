@@ -127,38 +127,12 @@ function GetList() {
 GetList.prototype = {
   initialized: false,
 
-  setInitialized: function () {
-    this.initialized = true;
-  },
-
-  setUnInitialized: function () {
-    this.initialized = false;
-  },
-
-  isInitialized: function () {
-    return this.initialized;
-  },
-
-  start: function () {
-    if (this.isInitialized()) {
-      return;
-    }
-
-    this._initRequests();
-    this.setInitialized();
-  },
-
-  restart: function () {
-    this.setUnInitialized();
-    this.start();
-  },
-
   _fireUnreadAndSubscription: function () {
     if (this._subscriptionList && this._unreadCount) {
-      this.matchUnreadItems();
+      this._createMatchedData();
       this.fireEvent(unreadAndSubscriptionReceivedEvent, [this._subscriptionList, this._unreadCount]);
     } else if (!this._unreadCount) {
-      this.unreadList.request();
+      this.getUnreadCount();
     } else if (!this._subscriptionList) {
       this.subscriptionList.request();
     }
@@ -201,29 +175,10 @@ GetList.prototype = {
     return unreads;
   },
 
-  getLabels: function () {
-    var labels = {},
-      subscriptionsList,
-      subscription;
-
-    if (this._subscriptionLis && this._subscriptionList.subscriptions) {
-      subscriptionsList = this._subscriptionList.subscriptions;
-      subscriptionsList.forEach(function (item) {
-        if (item.categories.length) {
-          item.categories.forEach(function (category) {
-            labels[item.id] = category.label;
-          });
-        }
-      });
-    }
-
-    return labels;
-  },
-
   /**
-   * @method matchUnreadItems
+   * @method _createMatchedData
    */
-  matchUnreadItems: function () {
+  _createMatchedData: function () {
     this._unreadCount.feeds = this._matchUnreadItems(this._unreadCount.feeds);
     var unreads = filterZeroCounts(this._unreadCount.feeds),
       unreadSum;
@@ -243,6 +198,55 @@ GetList.prototype = {
 
     this.fireEvent(itemsMatchedEvent, [unreads, this._unreadCount.max]);
     this.setLastFeeds(this.matchedData.unreads);
+  },
+
+  setInitialized: function () {
+    this.initialized = true;
+  },
+
+  setUnInitialized: function () {
+    this.initialized = false;
+  },
+
+  isInitialized: function () {
+    return this.initialized;
+  },
+
+  start: function () {
+    if (this.isInitialized()) {
+      return;
+    }
+
+    this._initRequests();
+    this.setInitialized();
+  },
+
+  restart: function () {
+    this.setUnInitialized();
+    this.start();
+  },
+
+  getUnreadCount: function () {
+    this.unreadList.request();
+  },
+
+  getLabels: function () {
+    var labels = {},
+      subscriptionsList,
+      subscription;
+
+    if (this._subscriptionLis && this._subscriptionList.subscriptions) {
+      subscriptionsList = this._subscriptionList.subscriptions;
+      subscriptionsList.forEach(function (item) {
+        if (item.categories.length) {
+          item.categories.forEach(function (category) {
+            labels[item.id] = category.label;
+          });
+        }
+      });
+    }
+
+    return labels;
   },
 
   setLastFeeds: function (feeds) {
