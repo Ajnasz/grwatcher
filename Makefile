@@ -85,13 +85,14 @@ xpi:
 		chrome/skin/classic/grwatcher/statusbar.css \
 		chrome/skin/classic/grwatcher/menu.css \
 		chrome/skin/classic/grwatcher/preferences.css \
-		chrome/skin/classic/grwatcher/images/active-toolbar-15.png \
+		chrome/skin/classic/grwatcher/images/active-toolbar-15-new.png \
 		chrome/skin/classic/grwatcher/images/inactive-toolbar-15.png \
 		chrome/skin/classic/grwatcher/images/error-toolbar-15.png \
 		chrome/skin/classic/grwatcher/images/loading-toolbar-15.png \
 		chrome/skin/classic/grwatcher/icons-sprite.png \
 		chrome/skin/classic/grwatcher/loading-small.gif \
-		chrome/skin/classic/grwatcher/grwatcher.png \
+		chrome/skin/classic/grwatcher/images/addon-icon-48.png \
+		chrome/skin/classic/grwatcher/images/addon-icon-64.png \
 		chrome/locale \
 		chrome/content/grwatcher.xul \
 		chrome/content/grwatcher-old.xul \

@@ -1,6 +1,6 @@
 [iconsize="small"] #GRW-toolbar-button,
 #GRW-toolbar-button {
-  list-style-image: url(chrome://grwatcher/skin/images/active-toolbar-15.png);
+  list-style-image: url(chrome://grwatcher/skin/images/active-toolbar-15-new.png);
 }
 #GRW-toolbar-button.off {
   list-style-image: url(chrome://grwatcher/skin/images/inactive-toolbar-15.png);

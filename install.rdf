@@ -73,7 +73,8 @@
     </em:localized>
     <em:creator>Lajos Koszti</em:creator>
     <em:description>Checks your Google Reader for unread feeds</em:description>
-    <em:iconURL>chrome://grwatcher/skin/grwatcher.png</em:iconURL>
+    <em:iconURL>chrome://grwatcher/skin/images/addon-icon-48.png</em:iconURL>
+    <em:icon64URL>chrome://grwatcher/skin/images/addon-icon-64.png</em:iconURL>
     <em:optionsURL>chrome://grwatcher/content/grprefs.xul</em:optionsURL>
     <em:homepageURL>http://ajnasz.hu/google-reader-watcher</em:homepageURL>
     <em:contributor>David Peitler</em:contributor>
