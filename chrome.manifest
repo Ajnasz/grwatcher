@@ -1,7 +1,6 @@
 content grwatcher chrome/content/
 resource grwmodules modules/
-overlay chrome://browser/content/browser.xul chrome://grwatcher/content/grwatcher-old.xul appversion<4.0
-overlay chrome://browser/content/browser.xul chrome://grwatcher/content/grwatcher.xul appversion>=4
+overlay chrome://browser/content/browser.xul chrome://grwatcher/content/grwatcher.xul
 
 skin grwatcher classic/1.0	chrome/skin/classic/grwatcher/
 style	chrome://global/content/customizeToolbar.xul	chrome://grwatcher/skin/toolbar.css
