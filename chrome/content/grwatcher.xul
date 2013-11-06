@@ -7,61 +7,16 @@
 <!DOCTYPE window SYSTEM "chrome://grwatcher/locale/grwatcher.dtd">
 
 <overlay id="GRWatcherOverlay" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
-  <!-- <script type="application/x-javascript;version=1.7" src="chrome://grwatcher/content/core.js" /> -->
-  <!-- <script type="application/x-javascript;version=1.7" src="chrome://grwatcher/content/ajax.js" /> -->
-  <!-- <script type="application/x-javascript;version=1.7" src="chrome://grwatcher/content/loginmanager.js" /> -->
-  <!-- <script type="application/x-javascript;version=1.7" src="chrome://grwatcher/content/userinfo.js" /> -->
-  <!-- <script type="application/x-javascript;version=1.7" src="chrome://grwatcher/content/getlist.js" /> -->
-  <!--<script type="application/x-javascript;version=1.7" src="chrome://grwatcher/content/notifier.js" /> -->
-  <!-- <script type="application/x-javascript;version=1.7" src="chrome://grwatcher/content/markallasread.js" /> -->
-  <!-- <script type="application/x-javascript;version=1.7" src="chrome://grwatcher/content/ui.js" /> -->
-  <!-- <script type="application/x-javascript;version=1.7" src="chrome://grwatcher/content/ui/statusbar-counter.js" />-->
-  <!-- <script type="application/x-javascript;version=1.7" src="chrome://grwatcher/content/ui/tooltip.js" /> -->
-  <!-- <script type="application/x-javascript;version=1.7" src="chrome://grwatcher/content/openreader.js" /> -->
-  <!-- <script type="application/x-javascript;version=1.7" src="chrome://grwatcher/content/requester.js" /> -->
-  <!-- <script type="application/x-javascript;version=1.7" src="chrome://grwatcher/content/ui/settoolbarbutton.js" /> -->
   <script type="application/x-javascript;version=1.7" src="chrome://grwatcher/content/grwatcher.js" />
   <stringbundleset>
     <stringbundle id="grwatcher-strings" src="chrome://grwatcher/locale/grwatcher.properties" />
   </stringbundleset>
-
-  <!--
-  <statusbar id="status-bar">
-    <statusbarpanel class="statusbarpanel-iconic off" id="GRW-statusbar" status="none" tooltip="GRW-statusbar-tooltip-nonew" context="GRW-statusbar-menu">
-      <image id="GRW-statusbar-image" width="16" height="16" />
-      <label id="GRW-statusbar-label" value="GRW" collapsed="true" crop="end" />
-      <menupopup id="GRW-statusbar-menu" position="before_end">
-        <menuseparator class="grw-hidden" id="GRW-menuseparator" />
-        <menuitem label="&GRWstatusbar.popup.markAllAsRead;" id="GRW-statusbar-menuitem-markallasread" />
-        <menuitem label="&GRWstatusbar.popup.openReader;" id="GRW-statusbar-menuitem-openreader" />
-        <menuitem label="&GRWstatusbar.popup.openPrefs;" id="GRW-statusbar-menuitem-openprefs" />
-        <menuitem label="&GRWstatusbar.popup.getReadCounter;" id="GRW-statusbar-menuitem-getcounter" />
-        <menuitem label="&GRWstatusbar.popup.enableCookies;" class="grw-hidden" id="GRW-statusbar-menuitem-enablecookies" />
-      </menupopup>
-      <tooltip id="GRW-statusbar-tooltip-error" position="before_end"><description id="GRW-statusbar-tooltip-error-description" value="&GRWtooltip.errorfeedfetch;" /></tooltip>
-      <tooltip id="GRW-statusbar-tooltip-loginerror" position="before_end"><description id="GRW-statusbar-tooltip-loginerror-description" value="&GRWtooltip.errorlogin;" /></tooltip>
-      <tooltip id="GRW-statusbar-tooltip-networkerror" position="before_end"><description id="GRW-statusbar-tooltip-networkerror-description" value="&GRWtooltip.networkerror;" /></tooltip>
-      <tooltip id="GRW-statusbar-tooltip-cookieerror" position="before_end"><description id="GRW-statusbar-tooltip-cookieerror-description" value="&GRWtooltip.cookieerror;" /></tooltip>
-      <tooltip id="GRW-statusbar-tooltip-nonew" position="before_end"><description id="GRW-statusbar-tooltip-nonew-description" value="&GRWtooltip.nonewfeed;" /></tooltip>
-      <tooltip id="GRW-statusbar-tooltip-new" position="before_end"></tooltip>
-    </statusbarpanel>
-  </statusbar>
-  -->
 
 	<!-- Toolbar Icon -->
   <toolbarpalette id="BrowserToolbarPalette">
     <toolbaritem id="GRW-toolbaritem" insertbefore="print-button" type="menu-button" orient="horizontal" label="Google Reader Watcher">
 
       <menupopup id="GRW-toolbar-menu" position="after_start">
-        <!--
-        <menuseparator class="grw-hidden" id="GRW-toolbar-menuseparator" />
-        <menuitem label="&GRWstatusbar.popup.markAllAsRead;" id="GRW-toolbar-menuitem-markallasread" />
-        <menuitem label="&GRWstatusbar.popup.openReader;" id="GRW-toolbar-menuitem-openreader" />
-        <menuitem label="&GRWstatusbar.popup.openPrefs;" id="GRW-toolbar-menuitem-openprefs" />
-        <menuitem label="&GRWstatusbar.popup.getReadCounter;" id="GRW-toolbar-menuitem-getcounter" />
-        <menuitem label="&GRWstatusbar.popup.enableCookies;" class="grw-hidden" id="GRW-toolbar-menuitem-enablecookies" />
-        <menuseparator class="grw-hidden" id="GRW-toolbar-menuseparator-bottom" />
-        -->
       </menupopup>
 
       <toolbarbutton id="GRW-toolbar-button" label="GRW" context="GRW-toolbar-menu" class="toolbarbutton-1 chromeclass-toolbar-additional off" tooltip="GRW-toolbar-tooltip-nonew" />
