@@ -2,6 +2,8 @@ var context = {};
 Components.utils.import("resource://grwmodules/augment.jsm", context);
 Components.utils.import("resource://grwmodules/EventProvider.jsm", context);
 
+var boo = 1;
+
 var listReceiverEvents = {
     requestErrorEvent: 'requestErrorEvent',
     requestStartEvent: 'requestStartEvent',
