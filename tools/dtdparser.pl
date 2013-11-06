@@ -10,7 +10,7 @@ my $inputDir = '../defaultlocales';
 my $outputDir = '../chrome/locale';
 my $refLocale = 'en-US';
 
-my $exceptions = ['GRWpreferences.account.tab.oauth'];
+my $exceptions = ['feednotifier.preferences.account.tab.oauth'];
 
 my $release;
 

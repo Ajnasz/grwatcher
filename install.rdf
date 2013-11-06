@@ -76,6 +76,7 @@
     <em:iconURL>chrome://grwatcher/skin/images/addon-icon-48.png</em:iconURL>
     <em:icon64URL>chrome://grwatcher/skin/images/addon-icon-64.png</em:iconURL>
     <em:optionsURL>chrome://grwatcher/content/grprefs.xul</em:optionsURL>
+    <em:optionsType>1</em:optionsURL>
     <em:homepageURL>http://ajnasz.hu/google-reader-watcher</em:homepageURL>
     <em:contributor>David Peitler</em:contributor>
     <em:translator>AlleyKat - da-DK (babelzilla)</em:translator>

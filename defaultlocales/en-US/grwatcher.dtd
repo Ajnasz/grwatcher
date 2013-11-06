@@ -3,57 +3,57 @@
 <!ENTITY GRWstatusbar.popup.openPrefs "Preferences">
 <!ENTITY GRWstatusbar.popup.markAllAsRead "Mark all as read">
 <!ENTITY GRWstatusbar.popup.enableCookies "Enable cookies">
-<!ENTITY GRWpreferences.title "Google Reader Watcher Preferences">
-<!ENTITY GRWpreferences.checkfrequency "Check frequency (minutes)">
-<!ENTITY GRWpreferences.delaystart "Start the first check after the browser started (milliseconds)">
-<!ENTITY GRWpreferences.activateOpenedTab "Focus on the Reader tab after opening">
-<!ENTITY GRWpreferences.generalpreferencescaption "General preferences">
-<!ENTITY GRWpreferences.generalpreferencesopencaption "How to open the Google Reader">
-<!ENTITY GRWpreferences.tooltippreferencescaption "Tooltip preferences">
-<!ENTITY GRWpreferences.tabgeneral "General">
-<!ENTITY GRWpreferences.tabaccountinfo "Account information">
-<!ENTITY GRWpreferences.tabopening "Window opening settings">
-<!ENTITY GRWpreferences.tabtooltip "Tooltip settings">
-<!ENTITY GRWpreferences.openinnewtabdesc "Open Google Reader in a new tab">
-<!ENTITY GRWpreferences.browserlikeopencheckboxlabel "Advanced mouse handling">
-<!ENTITY GRWpreferences.browserlikeopendesc "If you choose this options the icon and the menu items will behave similar to links on the webpages. For example, clicking with middle mouse button will open the Google Reader in a new background tab. Clicking while the shift button is pressed will opens the Google Reader in a new window.">
-<!ENTITY GRWpreferences.resetcounterdesc "Resets the statusbar counter when the Google Reader window opens">
-<!ENTITY GRWpreferences.shownotificationwindow "Show notification window">
-<!ENTITY GRWpreferences.showzerocounter "Show the counter even if it would be 0">
-<!ENTITY GRWpreferences.showcounter "Show the counter">
-<!ENTITY GRWpreferences.maximizecounter "Show 1000+ in the statusbar if you have more than 1000 unread items">
-<!ENTITY GRWpreferences.tooltipcounterposright "Right">
-<!ENTITY GRWpreferences.tooltipcounterposleft "Left">
-<!ENTITY GRWpreferences.tooltipcounterposdesc "Counter tooltip position:">
-<!ENTITY GRWpreferences.tooltipdesc "These options will take effect after a feed check.">
-<!ENTITY GRWpreferences.tooltiptitlelengthdesc "Sets the feed title's character number in the tooltip">
-<!ENTITY GRWpreferences.accountinfocaption "Google account information">
-<!ENTITY GRWpreferences.accountinfoemail "E-mail address:">
-<!ENTITY GRWpreferences.accountinfopassword "Password:">
-<!ENTITY GRWpreferences.accountinfohavemultipleaccounts "I have more then one Google account">
-<!ENTITY GRWpreferences.accountinfo.rememberLogin "Continue session on startup">
-<!ENTITY GRWpreferences.accountinfo.forceLogin "Force login before every checking and window opening">
+<!ENTITY feednotifier.preferences.title "Google Reader Watcher Preferences">
+<!ENTITY feednotifier.preferences.checkfrequency "Check frequency (minutes)">
+<!ENTITY feednotifier.preferences.delaystart "Start the first check after the browser started (milliseconds)">
+<!ENTITY feednotifier.preferences.activateOpenedTab "Focus on the Reader tab after opening">
+<!ENTITY feednotifier.preferences.generalpreferencescaption "General preferences">
+<!ENTITY feednotifier.preferences.generalpreferencesopencaption "How to open the Google Reader">
+<!ENTITY feednotifier.preferences.tooltippreferencescaption "Tooltip preferences">
+<!ENTITY feednotifier.preferences.tabgeneral "General">
+<!ENTITY feednotifier.preferences.tabaccountinfo "Account information">
+<!ENTITY feednotifier.preferences.tabopening "Window opening settings">
+<!ENTITY feednotifier.preferences.tabtooltip "Tooltip settings">
+<!ENTITY feednotifier.preferences.openinnewtabdesc "Open Google Reader in a new tab">
+<!ENTITY feednotifier.preferences.browserlikeopencheckboxlabel "Advanced mouse handling">
+<!ENTITY feednotifier.preferences.browserlikeopendesc "If you choose this options the icon and the menu items will behave similar to links on the webpages. For example, clicking with middle mouse button will open the Google Reader in a new background tab. Clicking while the shift button is pressed will opens the Google Reader in a new window.">
+<!ENTITY feednotifier.preferences.resetcounterdesc "Resets the statusbar counter when the Google Reader window opens">
+<!ENTITY feednotifier.preferences.shownotificationwindow "Show notification window">
+<!ENTITY feednotifier.preferences.showzerocounter "Show the counter even if it would be 0">
+<!ENTITY feednotifier.preferences.showcounter "Show the counter">
+<!ENTITY feednotifier.preferences.maximizecounter "Show 1000+ in the statusbar if you have more than 1000 unread items">
+<!ENTITY feednotifier.preferences.tooltipcounterposright "Right">
+<!ENTITY feednotifier.preferences.tooltipcounterposleft "Left">
+<!ENTITY feednotifier.preferences.tooltipcounterposdesc "Counter tooltip position:">
+<!ENTITY feednotifier.preferences.tooltipdesc "These options will take effect after a feed check.">
+<!ENTITY feednotifier.preferences.tooltiptitlelengthdesc "Sets the feed title's character number in the tooltip">
+<!ENTITY feednotifier.preferences.accountinfocaption "Google account information">
+<!ENTITY feednotifier.preferences.accountinfoemail "E-mail address:">
+<!ENTITY feednotifier.preferences.accountinfopassword "Password:">
+<!ENTITY feednotifier.preferences.accountinfohavemultipleaccounts "I have more then one Google account">
+<!ENTITY feednotifier.preferences.accountinfo.rememberLogin "Continue session on startup">
+<!ENTITY feednotifier.preferences.accountinfo.forceLogin "Force login before every checking and window opening">
 <!--
 
 
 -->
-<!ENTITY GRWpreferences.leftclickopen.description "Open Google Reader with">
-<!ENTITY GRWpreferences.leftclickopen.singleclick "Single click">
-<!ENTITY GRWpreferences.leftclickopen.dblclick "Double click">
-<!ENTITY GRWpreferences.leftclickopen.disabled "Disabled">
-<!ENTITY GRWpreferences.usesecureconnection "Secure connection">
-<!ENTITY GRWpreferences.sortbylabels "In the tooltip sort the feeds by label">
-<!ENTITY GRWpreferences.filteredlabels "Filter feeds which are labeled with these labels (comma separated list)">
-<!ENTITY GRWtooltip.nonewfeed "You haven't got any unread feeds">
-<!ENTITY GRWtooltip.errorfeedfetch "Error fetching feeds!">
-<!ENTITY GRWtooltip.newfeed "You have unread feeds">
-<!ENTITY GRWtooltip.errorlogin "Login failed. Make sure you have entered the correct account credentials!">
-<!ENTITY GRWtooltip.networkerror "Connecting failed. Make sure you have a working connection!">
-<!ENTITY GRWtooltip.cookieerror "The third-party cookies are not enabled! Press right mouse button on the icon to enable it.">
-<!ENTITY GRWpreferences.showitemsintooltip "Enable to display unread items in the tooltip statusbar icon">
-<!ENTITY GRWpreferences.showitemsincontextmenu "Enable to add the unread items in the context menu of the statusbar icon">
-<!ENTITY GRWpreferences.account.tab.oauth "OAuth">
-<!ENTITY GRWpreferences.account.tab.username "Username/Password">
-<!ENTITY GRWpreferences.account.description.general "If you have only <strong>one Google account</strong> and if <strong>you are logged in</strong> almost <strong>always</strong>, you <strong>don't need to set up</strong> anything here. The extension will use the same session and will work without any issues.">
-<!ENTITY GRWpreferences.account.description.username "If 2 step verification is turned off, you can use a simple login method by filling the Username and Password fields.">
-<!ENTITY GRWpreferences.account.description.oauth "Use this if you turned on the 2 step verification for your Google Account. However it has a limitation: Using OAuth, the extension can not log you in with the proper account before it opens the page. It means when you click on the icon while you are logged in to another account it will open the Reader page for that account or if you are not logged in at all, you will need to fill the Google login form to access to the Google Reader.">
+<!ENTITY feednotifier.preferences.leftclickopen.description "Open Google Reader with">
+<!ENTITY feednotifier.preferences.leftclickopen.singleclick "Single click">
+<!ENTITY feednotifier.preferences.leftclickopen.dblclick "Double click">
+<!ENTITY feednotifier.preferences.leftclickopen.disabled "Disabled">
+<!ENTITY feednotifier.preferences.usesecureconnection "Secure connection">
+<!ENTITY feednotifier.preferences.sortbylabels "In the tooltip sort the feeds by label">
+<!ENTITY feednotifier.preferences.filteredlabels "Filter feeds which are labeled with these labels (comma separated list)">
+<!ENTITY feednotifier.tooltip.nonewfeed "You haven't got any unread feeds">
+<!ENTITY feednotifier.tooltip.errorfeedfetch "Error fetching feeds!">
+<!ENTITY feednotifier.tooltip.newfeed "You have unread feeds">
+<!ENTITY feednotifier.tooltip.errorlogin "Login failed. Make sure you have entered the correct account credentials!">
+<!ENTITY feednotifier.tooltip.networkerror "Connecting failed. Make sure you have a working connection!">
+<!ENTITY feednotifier.tooltip.cookieerror "The third-party cookies are not enabled! Press right mouse button on the icon to enable it.">
+<!ENTITY feednotifier.preferences.showitemsintooltip "Enable to display unread items in the tooltip statusbar icon">
+<!ENTITY feednotifier.preferences.showitemsincontextmenu "Enable to add the unread items in the context menu of the statusbar icon">
+<!ENTITY feednotifier.preferences.account.tab.oauth "OAuth">
+<!ENTITY feednotifier.preferences.account.tab.username "Username/Password">
+<!ENTITY feednotifier.preferences.account.description.general "If you have only <strong>one Google account</strong> and if <strong>you are logged in</strong> almost <strong>always</strong>, you <strong>don't need to set up</strong> anything here. The extension will use the same session and will work without any issues.">
+<!ENTITY feednotifier.preferences.account.description.username "If 2 step verification is turned off, you can use a simple login method by filling the Username and Password fields.">
+<!ENTITY feednotifier.preferences.account.description.oauth "Use this if you turned on the 2 step verification for your Google Account. However it has a limitation: Using OAuth, the extension can not log you in with the proper account before it opens the page. It means when you click on the icon while you are logged in to another account it will open the Reader page for that account or if you are not logged in at all, you will need to fill the Google login form to access to the Google Reader.">

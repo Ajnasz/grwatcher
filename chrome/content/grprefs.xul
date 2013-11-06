@@ -6,7 +6,7 @@
 
 <dialog
   id="grprefs"
-  title="&GRWpreferences.title;"
+  title="&feednotifier.preferences.title;"
   buttons="accept,cancel"
   ondialogaccept="GRW.savePreferences();"
   flex="1"
@@ -26,37 +26,37 @@
 
   <tabbox id="GRW-preferences-tabbox">
     <tabs>
-      <tab label="&GRWpreferences.tabgeneral;" />
-      <tab label="&GRWpreferences.tabaccountinfo;" />
-      <tab label="&GRWpreferences.tabtooltip;" />
-      <tab label="&GRWpreferences.tabopening;" />
+      <tab label="&feednotifier.preferences.tabgeneral;" />
+      <tab label="&feednotifier.preferences.tabaccountinfo;" />
+      <tab label="&feednotifier.preferences.tabtooltip;" />
+      <tab label="&feednotifier.preferences.tabopening;" />
     </tabs>
     <tabpanels>
       <tabpanel>
         <vbox flex="1">
           <groupbox flex="1">
 
-            <caption label="&GRWpreferences.generalpreferencescaption;" />
+            <caption label="&feednotifier.preferences.generalpreferencescaption;" />
 
             <hbox align="center">
-              <label control="GRW-checkfreq-field" value="&GRWpreferences.checkfrequency;" />
+              <label control="GRW-checkfreq-field" value="&feednotifier.preferences.checkfrequency;" />
               <textbox id="GRW-checkfreq-field" size="2" cols="2" />
             </hbox>
             <hbox align="center">
-              <label control="GRW-delayStart-field" value="&GRWpreferences.delaystart;" />
+              <label control="GRW-delayStart-field" value="&feednotifier.preferences.delaystart;" />
               <textbox id="GRW-delayStart-field" size="2" cols="2" />
             </hbox>
             <vbox>
-              <checkbox id="GRW-resetcounter-field" label="&GRWpreferences.resetcounterdesc;" />
-              <checkbox id="GRW-shownotificationwindow-field" label="&GRWpreferences.shownotificationwindow;" />
-              <checkbox id="GRW-usesecureconnection-field" label="&GRWpreferences.usesecureconnection;" />
+              <checkbox id="GRW-resetcounter-field" label="&feednotifier.preferences.resetcounterdesc;" />
+              <checkbox id="GRW-shownotificationwindow-field" label="&feednotifier.preferences.shownotificationwindow;" />
+              <checkbox id="GRW-usesecureconnection-field" label="&feednotifier.preferences.usesecureconnection;" />
             </vbox>
           </groupbox>
           <groupbox flex="1">
             <vbox>
-              <checkbox id="GRW-showcounter-field" label="&GRWpreferences.showcounter;" />
-              <checkbox id="GRW-showzerocounter-field" label="&GRWpreferences.showzerocounter;" />
-              <checkbox id="GRW-maximizecounter-field" label="&GRWpreferences.maximizecounter;" />
+              <checkbox id="GRW-showcounter-field" label="&feednotifier.preferences.showcounter;" />
+              <checkbox id="GRW-showzerocounter-field" label="&feednotifier.preferences.showzerocounter;" />
+              <checkbox id="GRW-maximizecounter-field" label="&feednotifier.preferences.maximizecounter;" />
             </vbox>
 
           </groupbox>
@@ -65,18 +65,18 @@
       <tabpanel>
         <groupbox flex="1">
 
-          <caption label="&GRWpreferences.accountinfocaption;" />
-          <description>&GRWpreferences.account.description.general;</description>
+          <caption label="&feednotifier.preferences.accountinfocaption;" />
+          <description>&feednotifier.preferences.account.description.general;</description>
           <tabbox id="GRW-auth-tabbox">
             <tabs>
-              <tab label="&GRWpreferences.account.tab.username;" id="GRW-auth-tab-clientlogin" />
-              <tab label="&GRWpreferences.account.tab.oauth;" id="GRW-auth-tab-oauth" />
+              <tab label="&feednotifier.preferences.account.tab.username;" id="GRW-auth-tab-clientlogin" />
+              <tab label="&feednotifier.preferences.account.tab.oauth;" id="GRW-auth-tab-oauth" />
             </tabs>
             <tabpanels>
               <tabpanel>
                 <rows>
                   <row align="center">
-                    <description>&GRWpreferences.account.description.username;</description>
+                    <description>&feednotifier.preferences.account.description.username;</description>
                   </row>
                   <grid>
                     <columns>
@@ -85,27 +85,27 @@
                     </columns>
                     <rows>
                       <row align="center">
-                        <label control="GRW-accountmanage-email" value="&GRWpreferences.accountinfoemail;" />
+                        <label control="GRW-accountmanage-email" value="&feednotifier.preferences.accountinfoemail;" />
                         <textbox id="GRW-accountmanage-email" maxlength="100" flex="1" />
                       </row>
                       <row align="center">
-                        <label control="GRW-accountmanage-pass" value="&GRWpreferences.accountinfopassword;" />
+                        <label control="GRW-accountmanage-pass" value="&feednotifier.preferences.accountinfopassword;" />
                         <textbox id="GRW-accountmanage-pass" type="password" maxlength="50" flex="1" />
                       </row>
                     </rows>
                   </grid>
                   <vbox>
                     <!--
-                    <checkbox id="GRW-rememberLogin-field" label="&GRWpreferences.accountinfo.rememberLogin;" />
-                    <checkbox id="GRW-forceLogin-field" label="&GRWpreferences.accountinfo.forceLogin;" />
+                    <checkbox id="GRW-rememberLogin-field" label="&feednotifier.preferences.accountinfo.rememberLogin;" />
+                    <checkbox id="GRW-forceLogin-field" label="&feednotifier.preferences.accountinfo.forceLogin;" />
                     -->
-                    <checkbox id="GRW-have-multiple-accounts" label="&GRWpreferences.accountinfohavemultipleaccounts;" />
+                    <checkbox id="GRW-have-multiple-accounts" label="&feednotifier.preferences.accountinfohavemultipleaccounts;" />
                   </vbox>
                 </rows>
               </tabpanel>
               <tabpanel>
                 <vbox>
-                  <description>&GRWpreferences.account.description.oauth;</description>
+                  <description>&feednotifier.preferences.account.description.oauth;</description>
                   <box align="center">
                     <button id="GRW-oauth-opener" style="list-style-image: url('chrome://grwatcher/skin/oauth-2-sm-s.png');" label="Setup OAuth2" />
                     <button id="GRW-oauth-clear" label="Clear OAuth2 settings" />
@@ -119,25 +119,25 @@
       </tabpanel>
       <tabpanel>
         <groupbox flex="1">
-          <caption label="&GRWpreferences.tooltippreferencescaption;" />
+          <caption label="&feednotifier.preferences.tooltippreferencescaption;" />
 
           <vbox flex="1">
             <box align="center">
-              <label control="GRW-tooltiptitlelength-field" value="&GRWpreferences.tooltiptitlelengthdesc;" />
+              <label control="GRW-tooltiptitlelength-field" value="&feednotifier.preferences.tooltiptitlelengthdesc;" />
               <textbox id="GRW-tooltiptitlelength-field" size="2" cols="2" />
             </box>
 
-            <description>&GRWpreferences.tooltipcounterposdesc;</description>
+            <description>&feednotifier.preferences.tooltipcounterposdesc;</description>
 
             <radiogroup id="GRW-tooltipcounterpos-field">
-              <radio label="&GRWpreferences.tooltipcounterposleft;" value="left" selected="true" />
-              <radio label="&GRWpreferences.tooltipcounterposright;" value="right" />
+              <radio label="&feednotifier.preferences.tooltipcounterposleft;" value="left" selected="true" />
+              <radio label="&feednotifier.preferences.tooltipcounterposright;" value="right" />
             </radiogroup>
-            <checkbox id="GRW-showitemsintooltip-field" label="&GRWpreferences.showitemsintooltip;" />
-            <checkbox id="GRW-showitemsincontextmenu-field" label="&GRWpreferences.showitemsincontextmenu;" />
-            <checkbox id="GRW-sortbylabels-field" label="&GRWpreferences.sortbylabels;" />
+            <checkbox id="GRW-showitemsintooltip-field" label="&feednotifier.preferences.showitemsintooltip;" />
+            <checkbox id="GRW-showitemsincontextmenu-field" label="&feednotifier.preferences.showitemsincontextmenu;" />
+            <checkbox id="GRW-sortbylabels-field" label="&feednotifier.preferences.sortbylabels;" />
             <vbox>
-              <label value="&GRWpreferences.filteredlabels;" control="GRW-filteredlabels-field" id="GRW-filteredlabels-label" />
+              <label value="&feednotifier.preferences.filteredlabels;" control="GRW-filteredlabels-field" id="GRW-filteredlabels-label" />
               <textbox id="GRW-filteredlabels-field" flex="1" />
             </vbox>
           </vbox>
@@ -145,23 +145,23 @@
       </tabpanel>
       <tabpanel>
         <groupbox flex="1">
-          <caption label="&GRWpreferences.generalpreferencesopencaption;" />
-            <checkbox id="GRW-browserlikeopen-field" label="&GRWpreferences.browserlikeopencheckboxlabel;" />
-            <description id="GRW-browserlikeopen-description">&GRWpreferences.browserlikeopendesc;</description>
+          <caption label="&feednotifier.preferences.generalpreferencesopencaption;" />
+            <checkbox id="GRW-browserlikeopen-field" label="&feednotifier.preferences.browserlikeopencheckboxlabel;" />
+            <description id="GRW-browserlikeopen-description">&feednotifier.preferences.browserlikeopendesc;</description>
           <vbox flex="1">
           </vbox>
           <vbox flex="1">
-            <checkbox id="GRW-openinnewtab-field" label="&GRWpreferences.openinnewtabdesc;" />
+            <checkbox id="GRW-openinnewtab-field" label="&feednotifier.preferences.openinnewtabdesc;" />
             <box id="GRW-openinnewtab-options">
-              <checkbox id="GRW-activateopenedtab-field" label="&GRWpreferences.activateOpenedTab;" />
+              <checkbox id="GRW-activateopenedtab-field" label="&feednotifier.preferences.activateOpenedTab;" />
             </box>
             <hbox align="center">
-              <label value="&GRWpreferences.leftclickopen.description;" control="GRW-leftclickopen-field" id="GRW-leftclickopen-label" />
+              <label value="&feednotifier.preferences.leftclickopen.description;" control="GRW-leftclickopen-field" id="GRW-leftclickopen-label" />
               <menulist id="GRW-leftclickopen-field">
                 <menupopup>
-                  <menuitem value="1" label="&GRWpreferences.leftclickopen.singleclick;" />
-                  <menuitem value="2" label="&GRWpreferences.leftclickopen.dblclick;" />
-                  <menuitem value="0" label="&GRWpreferences.leftclickopen.disabled;" />
+                  <menuitem value="1" label="&feednotifier.preferences.leftclickopen.singleclick;" />
+                  <menuitem value="2" label="&feednotifier.preferences.leftclickopen.dblclick;" />
+                  <menuitem value="0" label="&feednotifier.preferences.leftclickopen.disabled;" />
                 </menupopup>
               </menulist>
             </hbox>
