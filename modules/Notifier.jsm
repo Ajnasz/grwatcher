@@ -10,7 +10,7 @@ Notifier.prototype = {
         return scope.prefs.get.showNotificationWindow() && this.showNotification;
     },
     notificationWin: function (value) {
-        var label = 'Google Reader Watcher',
+        var label = 'Feed Notifier',
             image = "chrome://grwatcher/skin/grwatcher.png",
             alertsService,
             alertWin,
@@ -27,7 +27,7 @@ Notifier.prototype = {
 
 
         if (!value) {
-            value = 'Google Reader Watcher Notification';
+            value = 'Feed Notification';
         }
         try {
             // notifier for windows
