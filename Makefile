@@ -93,6 +93,7 @@ xpi:
 		chrome/skin/classic/grwatcher/loading-small.gif \
 		chrome/skin/classic/grwatcher/images/addon-icon-48.png \
 		chrome/skin/classic/grwatcher/images/addon-icon-64.png \
+		icon.png \
 		chrome/locale \
 		chrome/content/grwatcher.xul \
 		chrome/content/grwatcher-old.xul \
