@@ -49,8 +49,5 @@
 <!ENTITY feednotifier.tooltip.cookieerror "A harmadik féltől származó sütik nincsenek engedélyzve. Engedélyezéshez kattints jobb egérgombbal az állapotsor ikonon.">
 <!ENTITY feednotifier.preferences.showitemsintooltip "Olvasatlan hírek megjelenítése az állapotsor ikon tooltippjében">
 <!ENTITY feednotifier.preferences.showitemsincontextmenu "Olvasatlan hírek megjelenítése az állapotsor ikon helyi menüjében">
-<!ENTITY feednotifier.preferences.account.tab.oauth "OAuth">
-<!ENTITY feednotifier.preferences.account.tab.username "Felhasználónév/Jelszó">
-<!ENTITY feednotifier.preferences.account.description.general "<strong>Ha csak egy Google fiókkal rendelkezel és többnyire be is vagy jelentkezve, akkor itt nem kell beállítanod semmit.</strong> A kiegészítő a már érvényben lévő munkamenetet fogja használni.">
-<!ENTITY feednotifier.preferences.account.description.username "Ha a kétlépcsős azonosítást nincs engedélyezve a Google fiókodhoz, használhatod az egyszerű felhasználónévvel és jelszóval való bejelentkezést.">
-<!ENTITY feednotifier.preferences.account.description.oauth "Használd ezt, ha a kétlépcsős azonosítás engedélyezve van a Google fiókodhoz. Ennek azonban egy kicsit korlátozza a kiterjesztést: A kiegészítő nem tud majd bejelentkeztetni mielőtt megnyitja a Hírolvasót. Így amikor az ikonra kattintasz, miközben egy másik fiókba be vagy jelentkezve, a Hírolvasó azzal a fiókkal fog megnyílni. Ha pedig nem vagy bejelentkezve, akkor ki kell töltened a bejelentkező űrlapot, hogy hozzáférj a Hírolvasóhoz.">
+<!ENTITY feednotifier.preferences.setupoauth "Kattints az alábbi gombra, hogy beállítsd a fiókod">
+

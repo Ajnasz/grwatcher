@@ -20,7 +20,6 @@ var GRW = {};
         {id: 'GRW-resetcounter-field', cmd: 'resetCounter'},
         {id: 'GRW-tooltipcounterpos-field', cmd: 'tooltipCounterPos'},
         {id: 'GRW-tooltiptitlelength-field', cmd: 'tooltipTitleLength'},
-        // {id: 'GRW-rememberLogin-field', cmd: 'rememberLogin'},
         {id: 'GRW-leftclickopen-field', cmd: 'leftClickOpen'},
         {id: 'GRW-browserlikeopen-field', cmd: 'browserlikeWindowOpen'},
         {id: 'GRW-activateopenedtab-field', cmd: 'activateOpenedTab'},
@@ -32,31 +31,24 @@ var GRW = {};
         {id: 'GRW-filteredlabels-field', cmd: 'filteredLabels'},
         {id: 'GRW-maximizecounter-field', cmd: 'maximizeCounter'},
         {id: 'GRW-showitemsintooltip-field', cmd: 'showitemsintooltip'},
-        {id: 'GRW-showitemsincontextmenu-field', cmd: 'showitemsincontextmenu'},
-        {id: 'GRW-accountmanage-email', cmd: 'userName'},
-        // {id: 'GRW-forceLogin-field', cmd: 'forceLogin'},
-        {id: 'GRW-have-multiple-accounts', cmd: 'haveMultipleAccounts'},
-        {
-            id: 'GRW-accountmanage-pass',
-            cmd: {
-                setter: function (value, elem) {
-                    scope.passManager.addPassword(value);
-                },
-                getter: function (elem) {
-                    elem.value = scope.passManager.getPassword() || '';
-                }
-            }
-        }
+        {id: 'GRW-showitemsincontextmenu-field', cmd: 'showitemsincontextmenu'}
     ];
 
     function handlePref(save) {
         return function (item) {
             var id = item.id,
                 elem = getById(id),
-                cmd = item.cmd,
-                nodeName = elem.nodeName,
+                cmd,
+                nodeName,
                 elemValueSetterProp,
                 value;
+            if (!elem) {
+                return;
+            }
+
+            cmd = item.cmd;
+            nodeName = elem.nodeName;
+
             switch (nodeName) {
             case 'textbox':
             case 'radiogroup':
@@ -149,11 +141,8 @@ var GRW = {};
     function oAuthSettings() {
         var updateAccountTabs = function () {
             if (scope.prefs.get.oauthCode()) {
-                getById('GRW-auth-tab-clientlogin').setAttribute('disabled', true);
-                getById('GRW-auth-tab-oauth').parentNode.selectedIndex = 1;
                 getById('GRW-oauth-clear').removeAttribute('disabled');
             } else {
-                getById('GRW-auth-tab-clientlogin').removeAttribute('disabled');
                 getById('GRW-oauth-clear').setAttribute('disabled', true);
             }
         };

@@ -66,55 +66,13 @@
         <groupbox flex="1">
 
           <caption label="&feednotifier.preferences.accountinfocaption;" />
-          <description>&feednotifier.preferences.account.description.general;</description>
-          <tabbox id="GRW-auth-tabbox">
-            <tabs>
-              <tab label="&feednotifier.preferences.account.tab.username;" id="GRW-auth-tab-clientlogin" />
-              <tab label="&feednotifier.preferences.account.tab.oauth;" id="GRW-auth-tab-oauth" />
-            </tabs>
-            <tabpanels>
-              <tabpanel>
-                <rows>
-                  <row align="center">
-                    <description>&feednotifier.preferences.account.description.username;</description>
-                  </row>
-                  <grid>
-                    <columns>
-                      <column />
-                      <column flex="2" />
-                    </columns>
-                    <rows>
-                      <row align="center">
-                        <label control="GRW-accountmanage-email" value="&feednotifier.preferences.accountinfoemail;" />
-                        <textbox id="GRW-accountmanage-email" maxlength="100" flex="1" />
-                      </row>
-                      <row align="center">
-                        <label control="GRW-accountmanage-pass" value="&feednotifier.preferences.accountinfopassword;" />
-                        <textbox id="GRW-accountmanage-pass" type="password" maxlength="50" flex="1" />
-                      </row>
-                    </rows>
-                  </grid>
-                  <vbox>
-                    <!--
-                    <checkbox id="GRW-rememberLogin-field" label="&feednotifier.preferences.accountinfo.rememberLogin;" />
-                    <checkbox id="GRW-forceLogin-field" label="&feednotifier.preferences.accountinfo.forceLogin;" />
-                    -->
-                    <checkbox id="GRW-have-multiple-accounts" label="&feednotifier.preferences.accountinfohavemultipleaccounts;" />
-                  </vbox>
-                </rows>
-              </tabpanel>
-              <tabpanel>
-                <vbox>
-                  <description>&feednotifier.preferences.account.description.oauth;</description>
-                  <box align="center">
-                    <button id="GRW-oauth-opener" style="list-style-image: url('chrome://grwatcher/skin/oauth-2-sm-s.png');" label="Setup OAuth2" />
-                    <button id="GRW-oauth-clear" label="Clear OAuth2 settings" />
-                  </box>
-                </vbox>
-              </tabpanel>
-            </tabpanels>
-          </tabbox>
-
+          <vbox>
+            <description>&feednotifier.preferences.setupoauth;</description>
+            <box align="center">
+            <button id="GRW-oauth-opener" style="list-style-image: url('chrome://grwatcher/skin/oauth-2-sm-s.png');" label="Setup OAuth2" />
+            <button id="GRW-oauth-clear" label="Clear OAuth2 settings" />
+            </box>
+          </vbox>
         </groupbox>
       </tabpanel>
       <tabpanel>
