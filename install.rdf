@@ -2,8 +2,8 @@
 <RDF xmlns="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:em="http://www.mozilla.org/2004/em-rdf#">
 
   <Description about="urn:mozilla:install-manifest">
-    <em:id>grwatcher@ajnasz.hu</em:id>
-    <em:name>Google Reader Watcher</em:name>
+    <em:id>feed-notifier@ajnasz.hu</em:id>
+    <em:name>Feed notifier</em:name>
     <em:version>___VERSION___</em:version>
     <em:type>2</em:type>
 
@@ -12,99 +12,28 @@
       <Description>
         <em:id>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</em:id>
         <em:minVersion>3.0</em:minVersion>
-        <em:maxVersion>13.*</em:maxVersion>
+        <em:maxVersion>26.*</em:maxVersion>
       </Description>
     </em:targetApplication>
 
     <em:localized>
       <Description>
         <em:locale>hu-HU</em:locale>
-        <em:name>Google Reader Watcher</em:name>
+        <em:name>Feed Notifier</em:name>
         <em:creator>Koszti Lajos</em:creator>
-        <em:description>Rendszeresen ellenőrzi a Google Readert, olvasatlan hírek után kutatva</em:description>
+        <em:description>Rendszeresen ellenőrzi a Hírolvasót, hogy érkezett-e új, olvasatlan hír</em:description>
         <em:homepageURL>http://ajnasz.hu/google-reader-watcher</em:homepageURL>
         <em:contributor>David Peitler</em:contributor>
         <em:translator>Koszti Lajos hu-HU</em:translator>
       </Description>
     </em:localized>
-    <em:localized>
-      <Description>
-        <em:locale>el-GR</em:locale>
-        <em:name>Google Reader Watcher</em:name>
-        <em:creator>Koszti Lajos</em:creator>
-        <em:description>Ελέγχει το Google Reader για μη αναγνωσμένες εγγραφές στα αρχεία ροής</em:description>
-        <em:homepageURL>http://ajnasz.hu/google-reader-watcher</em:homepageURL>
-        <em:contributor>David Peitler</em:contributor>
-        <em:translator>Sonickydon (el-GR)</em:translator>
-      </Description>
-    </em:localized>
-    <em:localized>
-      <Description>
-        <em:locale>es-ES</em:locale>
-        <em:name>Google Reader Watcher</em:name>
-        <em:description>Revisa sus suscripciones de Google Reader</em:description>
-        <em:creator>Lajos Koszti</em:creator>
-        <em:homepageURL>http://ajnasz.hu/google-reader-watcher</em:homepageURL>
-        <em:translator>Francisco Javier Cuadrado es-ES</em:translator>
-        <em:contributor>David Peitler</em:contributor>
-      </Description>
-    </em:localized>
-    <em:localized>
-      <Description>
-        <em:locale>sv-SE</em:locale>
-        <em:name>Google Reader Watcher</em:name>
-        <em:description>Söker igenom din Google Reader efter olästa flöden</em:description>
-        <em:creator>Lajos Koszti</em:creator>
-        <em:homepageURL>http://ajnasz.hu/google-reader-watcher</em:homepageURL>
-        <em:translator>Mikael Hiort af Ornäs (sv-SE)</em:translator>
-        <em:contributor>David Peitler</em:contributor>
-      </Description>
-    </em:localized>
-    <em:localized>
-      <Description>
-        <em:locale>cs</em:locale>
-        <em:name>Google Reader Watcher</em:name>
-        <em:creator>Koszti Lajos</em:creator>
-        <em:description>Kontroluje nepřečtené položky na Google Reader.</em:description>
-        <em:homepageURL>http://ajnasz.hu/google-reader-watcher</em:homepageURL>
-        <em:contributor>David Peitler</em:contributor>
-        <em:translator>Michal Stanke cs</em:translator>
-      </Description>
-    </em:localized>
     <em:creator>Lajos Koszti</em:creator>
-    <em:description>Checks your Google Reader for unread feeds</em:description>
+    <em:description>Checks your your Feed provider for unread feeds</em:description>
     <em:iconURL>chrome://grwatcher/skin/images/addon-icon-48.png</em:iconURL>
     <em:icon64URL>chrome://grwatcher/skin/images/addon-icon-64.png</em:icon64URL>
     <em:optionsURL>chrome://grwatcher/content/grprefs.xul</em:optionsURL>
     <em:optionsType>1</em:optionsType>
     <em:homepageURL>http://ajnasz.hu/google-reader-watcher</em:homepageURL>
     <em:contributor>David Peitler</em:contributor>
-    <em:translator>AlleyKat - da-DK (babelzilla)</em:translator>
-    <em:translator>7bse - de-DE (babelzilla)</em:translator>
-    <em:translator>Endor de-DE</em:translator>
-    <em:translator>panda2005 el-GR (babelzilla)</em:translator>
-    <em:translator>Sonickydon (el-GR)</em:translator>
-    <em:translator>PAGF_LINUX es-AR (babelzilla)</em:translator>
-    <em:translator>PAGF_LINUX es-ES (babelzilla)</em:translator>
-    <em:translator>Sander Lepik - et-EE</em:translator>
-    <em:translator>AtteL fi-FI (babelzilla)</em:translator>
-    <em:translator>chtitux - fr-FR (babelzilla)</em:translator>
-    <em:translator>pierfrancesco99 it-IT (babelzilla)</em:translator>
-    <em:translator>drry ja-JP (babelzilla)</em:translator>
-    <em:translator>Hans nl-NL (babelzilla)</em:translator>
-    <em:translator>Wareczek pl-PL (babelzilla)</em:translator>
-    <em:translator>zini pt-BR (babelzilla)</em:translator>
-    <em:translator>promatik pt-PT (babelzilla)</em:translator>
-    <em:translator>lloco pt-PT (babelzilla)</em:translator>
-    <em:translator>dvdianov ru-RU (babelzilla)</em:translator>
-    <em:translator>morpher sk-SK (babelzilla)</em:translator>
-    <em:translator>Ahmed Yilmaz - tr-TR</em:translator>
-    <em:translator>fiag zh-CN (babelzilla)</em:translator>
-    <em:translator>toomore zh-TW (babelzilla)</em:translator>
-    <em:translator>Young-Cheon Kim ko-KR (babelzilla)</em:translator>
-    <em:translator>DakSrbija sr (babelzilla)</em:translator>
-    <em:translator>Mikael Hiort af Ornäs (sv-SE)</em:translator>
-    <em:translator>DakSrbija (sr) (babelzilla)</em:translator>
-    <em:translator>mikk_s cs (babelzilla)</em:translator>
   </Description>
 </RDF>
