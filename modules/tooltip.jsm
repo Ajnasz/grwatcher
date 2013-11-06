@@ -49,8 +49,9 @@ var Tooltip = function (conf, GRW, openReader) {
       setTooltip(win, conf.tooltipLoginErrorElement);
     }
   };
-  _Tooltip = function (action) {
-    var actionMethod, menu, feeds;
+
+  function getActionMethod(action) {
+    var actionMethod;
     switch (action) {
     case 'grid':
       actionMethod = actions.genGrid;
@@ -76,20 +77,29 @@ var Tooltip = function (conf, GRW, openReader) {
       actionMethod = actions.nonew;
       break;
     }
+
+    return actionMethod;
+  }
+  function Tooltip(action) {
+    var actionMethod, menu, feeds, labels;
+
+    actionMethod = getActionMethod(action);
+
     if (actionMethod) {
       Components.utils.import("resource://grwmodules/mapwindows.jsm", scope);
       Components.utils.import("resource://grwmodules/getList.jsm", scope);
       Components.utils.import("resource://grwmodules/grwMenu.jsm", scope);
       feeds = scope.getList.getLastFeeds();
+      labels = scope.getList.getLabels();
+
       scope.mapwindows(function (win) {
-        var labels = scope.getList.getLabels(), menu;
         actionMethod.call(this, win, feeds, labels);
-        menu = new scope.GrwMenu(win, feeds, labels,
+        var menu = new scope.GrwMenu(win, feeds, labels,
           conf.menuItem, openReader, conf.barname);
       });
     }
-  };
-  return _Tooltip;
+  }
+  return Tooltip;
 };
 
 let EXPORTED_SYMBOLS = ['Tooltip'];
