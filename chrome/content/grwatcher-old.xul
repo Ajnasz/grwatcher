@@ -50,11 +50,11 @@
       <menupopup id="GRW-toolbar-menu" position="after_start">
         <!--
         <menuseparator class="grw-hidden" id="GRW-toolbar-menuseparator" />
-        <menuitem label="&GRWstatusbar.popup.markAllAsRead;" id="GRW-toolbar-menuitem-markallasread" />
-        <menuitem label="&GRWstatusbar.popup.openReader;" id="GRW-toolbar-menuitem-openreader" />
-        <menuitem label="&GRWstatusbar.popup.openPrefs;" id="GRW-toolbar-menuitem-openprefs" />
-        <menuitem label="&GRWstatusbar.popup.getReadCounter;" id="GRW-toolbar-menuitem-getcounter" />
-        <menuitem label="&GRWstatusbar.popup.enableCookies;" class="grw-hidden" id="GRW-toolbar-menuitem-enablecookies" />
+        <menuitem label="&feednotifier.statusbar.popup.markAllAsRead;" id="GRW-toolbar-menuitem-markallasread" />
+        <menuitem label="&feednotifier.statusbar.popup.openReader;" id="GRW-toolbar-menuitem-openreader" />
+        <menuitem label="&feednotifier.statusbar.popup.openPrefs;" id="GRW-toolbar-menuitem-openprefs" />
+        <menuitem label="&feednotifier.statusbar.popup.getReadCounter;" id="GRW-toolbar-menuitem-getcounter" />
+        <menuitem label="&feednotifier.statusbar.popup.enableCookies;" class="grw-hidden" id="GRW-toolbar-menuitem-enablecookies" />
         <menuseparator class="grw-hidden" id="GRW-toolbar-menuseparator-bottom" />
         -->
       </menupopup>

@@ -1,8 +1,8 @@
-<!ENTITY GRWstatusbar.popup.openReader "Google Reader megnyitása">
-<!ENTITY GRWstatusbar.popup.getReadCounter "Olvasatlan feed keresése">
-<!ENTITY GRWstatusbar.popup.openPrefs "Tulajdonságok">
-<!ENTITY GRWstatusbar.popup.markAllAsRead "Mind megjelölése olvasottként">
-<!ENTITY GRWstatusbar.popup.enableCookies "Sütik engedélyezése">
+<!ENTITY feednotifier.statusbar.popup.openReader "Google Reader megnyitása">
+<!ENTITY feednotifier.statusbar.popup.getReadCounter "Olvasatlan feed keresése">
+<!ENTITY feednotifier.statusbar.popup.openPrefs "Tulajdonságok">
+<!ENTITY feednotifier.statusbar.popup.markAllAsRead "Mind megjelölése olvasottként">
+<!ENTITY feednotifier.statusbar.popup.enableCookies "Sütik engedélyezése">
 <!ENTITY feednotifier.preferences.title "Google Reader Watcher Tulajdonságok">
 <!ENTITY feednotifier.preferences.checkfrequency "Új feedek keresése minden">
 <!ENTITY feednotifier.preferences.delaystart "Új feedek keresése a böngésző megnyitása után (másodpercek)">

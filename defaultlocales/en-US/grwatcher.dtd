@@ -1,8 +1,8 @@
-<!ENTITY GRWstatusbar.popup.openReader "Open Google Reader">
-<!ENTITY GRWstatusbar.popup.getReadCounter "Check for unread feeds">
-<!ENTITY GRWstatusbar.popup.openPrefs "Preferences">
-<!ENTITY GRWstatusbar.popup.markAllAsRead "Mark all as read">
-<!ENTITY GRWstatusbar.popup.enableCookies "Enable cookies">
+<!ENTITY feednotifier.statusbar.popup.openReader "Open Google Reader">
+<!ENTITY feednotifier.statusbar.popup.getReadCounter "Check for unread feeds">
+<!ENTITY feednotifier.statusbar.popup.openPrefs "Preferences">
+<!ENTITY feednotifier.statusbar.popup.markAllAsRead "Mark all as read">
+<!ENTITY feednotifier.statusbar.popup.enableCookies "Enable cookies">
 <!ENTITY feednotifier.preferences.title "Google Reader Watcher Preferences">
 <!ENTITY feednotifier.preferences.checkfrequency "Check frequency (minutes)">
 <!ENTITY feednotifier.preferences.delaystart "Start the first check after the browser started (milliseconds)">
