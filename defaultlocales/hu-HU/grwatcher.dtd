@@ -1,23 +1,23 @@
-<!ENTITY feednotifier.statusbar.popup.openReader "Google Reader megnyitása">
+<!ENTITY feednotifier.statusbar.popup.openReader "Hírolvasó megnyitása">
 <!ENTITY feednotifier.statusbar.popup.getReadCounter "Olvasatlan feed keresése">
 <!ENTITY feednotifier.statusbar.popup.openPrefs "Tulajdonságok">
 <!ENTITY feednotifier.statusbar.popup.markAllAsRead "Mind megjelölése olvasottként">
 <!ENTITY feednotifier.statusbar.popup.enableCookies "Sütik engedélyezése">
-<!ENTITY feednotifier.preferences.title "Google Reader Watcher Tulajdonságok">
+<!ENTITY feednotifier.preferences.title "Feed Notifier Tulajdonságok">
 <!ENTITY feednotifier.preferences.checkfrequency "Új feedek keresése minden">
 <!ENTITY feednotifier.preferences.delaystart "Új feedek keresése a böngésző megnyitása után (másodpercek)">
-<!ENTITY feednotifier.preferences.activateOpenedTab "Google Reader fül aktiválása megnyitás után">
+<!ENTITY feednotifier.preferences.activateOpenedTab "Hírolvsó fül aktiválása megnyitás után">
 <!ENTITY feednotifier.preferences.generalpreferencescaption "Általános tulajdonságok">
-<!ENTITY feednotifier.preferences.generalpreferencesopencaption "Google Reader megnyitásának beállításai">
+<!ENTITY feednotifier.preferences.generalpreferencesopencaption "Hírolvasó megnyitásának beállításai">
 <!ENTITY feednotifier.preferences.tooltippreferencescaption "Tooltip tulajdonságok">
 <!ENTITY feednotifier.preferences.tabgeneral "Általános">
 <!ENTITY feednotifier.preferences.tabaccountinfo "Fiók információk">
 <!ENTITY feednotifier.preferences.tabopening "Ablak nyitás beállítások">
 <!ENTITY feednotifier.preferences.tabtooltip "Tooltip beállítások">
-<!ENTITY feednotifier.preferences.openinnewtabdesc "Google Reader megnyitása új fülön">
+<!ENTITY feednotifier.preferences.openinnewtabdesc "Hírolvasó megnyitása új fülön">
 <!ENTITY feednotifier.preferences.browserlikeopencheckboxlabel "Fejlesztett egérkezelés">
-<!ENTITY feednotifier.preferences.browserlikeopendesc "Ha ezt az opciót kiválasztod, az ikon és a menü elemek weboldalak linkjeihez hasonlóan fognak viselkedni. Például, ha a középső egérgombbal kattintasz az ikonon, a Google Reader a háttérben fog megnyílni. Hasonlóan, ha a Shift billentyűt nyomva tartva kattintasz az ikonra, a Google Reader új ablakban fog megnyílni.">
-<!ENTITY feednotifier.preferences.resetcounterdesc "A állapotsor számláló nullázása a Google Reader megnyitásakor">
+<!ENTITY feednotifier.preferences.browserlikeopendesc "Ha ezt az opciót kiválasztod, az ikon és a menü elemek weboldalak linkjeihez hasonlóan fognak viselkedni. Például, ha a középső egérgombbal kattintasz az ikonon, a Hírolvasó a háttérben fog megnyílni. Hasonlóan, ha a Shift billentyűt nyomva tartva kattintasz az ikonra, a Hírolvasó új ablakban fog megnyílni.">
+<!ENTITY feednotifier.preferences.resetcounterdesc "A állapotsor számláló nullázása a Hírolvasó megnyitásakor">
 <!ENTITY feednotifier.preferences.shownotificationwindow "Figyelmeztető ablak mutatása">
 <!ENTITY feednotifier.preferences.showzerocounter "Számláló mutatása ha nincs olvasatlan feed.">
 <!ENTITY feednotifier.preferences.showcounter "Számláló mutatása">
@@ -34,7 +34,7 @@
 <!ENTITY feednotifier.preferences.accountinfo.rememberLogin "Munkamenet folytatása induláskor">
 <!ENTITY feednotifier.preferences.accountinfo.forceLogin "Bejelentkezés minden ellenőrzés és ablaknyitás előtt">
 <!--nn-->
-<!ENTITY feednotifier.preferences.leftclickopen.description "Google Reader megnyitása az ikonra kattintáskor">
+<!ENTITY feednotifier.preferences.leftclickopen.description "Hírolvasó megnyitása az ikonra kattintáskor">
 <!ENTITY feednotifier.preferences.leftclickopen.singleclick "Kattintás">
 <!ENTITY feednotifier.preferences.leftclickopen.dblclick "Dupla kattintás">
 <!ENTITY feednotifier.preferences.leftclickopen.disabled "Tiltva">
@@ -53,4 +53,4 @@
 <!ENTITY feednotifier.preferences.account.tab.username "Felhasználónév/Jelszó">
 <!ENTITY feednotifier.preferences.account.description.general "<strong>Ha csak egy Google fiókkal rendelkezel és többnyire be is vagy jelentkezve, akkor itt nem kell beállítanod semmit.</strong> A kiegészítő a már érvényben lévő munkamenetet fogja használni.">
 <!ENTITY feednotifier.preferences.account.description.username "Ha a kétlépcsős azonosítást nincs engedélyezve a Google fiókodhoz, használhatod az egyszerű felhasználónévvel és jelszóval való bejelentkezést.">
-<!ENTITY feednotifier.preferences.account.description.oauth "Használd ezt, ha a kétlépcsős azonosítás engedélyezve van a Google fiókodhoz. Ennek azonban egy kicsit korlátozza a kiterjesztést: A kiegészítő nem tud majd bejelentkeztetni mielőtt megnyitja a Google Readert. Így amikor az ikonra kattintasz, miközben egy másik fiókba be vagy jelentkezve, a Google Reader azzal a fiókkal fog megnyílni. Ha pedig nem vagy bejelentkezve, akkor ki kell töltened a bejelentkező űrlapot, hogy hozzáférj a Google Readerhez.">
+<!ENTITY feednotifier.preferences.account.description.oauth "Használd ezt, ha a kétlépcsős azonosítás engedélyezve van a Google fiókodhoz. Ennek azonban egy kicsit korlátozza a kiterjesztést: A kiegészítő nem tud majd bejelentkeztetni mielőtt megnyitja a Hírolvasót. Így amikor az ikonra kattintasz, miközben egy másik fiókba be vagy jelentkezve, a Hírolvasó azzal a fiókkal fog megnyílni. Ha pedig nem vagy bejelentkezve, akkor ki kell töltened a bejelentkező űrlapot, hogy hozzáférj a Hírolvasóhoz.">

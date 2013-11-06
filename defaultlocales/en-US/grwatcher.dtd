@@ -1,23 +1,23 @@
-<!ENTITY feednotifier.statusbar.popup.openReader "Open Google Reader">
+<!ENTITY feednotifier.statusbar.popup.openReader "Open Feed Reader">
 <!ENTITY feednotifier.statusbar.popup.getReadCounter "Check for unread feeds">
 <!ENTITY feednotifier.statusbar.popup.openPrefs "Preferences">
 <!ENTITY feednotifier.statusbar.popup.markAllAsRead "Mark all as read">
 <!ENTITY feednotifier.statusbar.popup.enableCookies "Enable cookies">
-<!ENTITY feednotifier.preferences.title "Google Reader Watcher Preferences">
+<!ENTITY feednotifier.preferences.title "Feed Notifier Preferences">
 <!ENTITY feednotifier.preferences.checkfrequency "Check frequency (minutes)">
 <!ENTITY feednotifier.preferences.delaystart "Start the first check after the browser started (milliseconds)">
-<!ENTITY feednotifier.preferences.activateOpenedTab "Focus on the Reader tab after opening">
+<!ENTITY feednotifier.preferences.activateOpenedTab "Focus on the reader tab after opening">
 <!ENTITY feednotifier.preferences.generalpreferencescaption "General preferences">
-<!ENTITY feednotifier.preferences.generalpreferencesopencaption "How to open the Google Reader">
+<!ENTITY feednotifier.preferences.generalpreferencesopencaption "How to open the Feed Reder">
 <!ENTITY feednotifier.preferences.tooltippreferencescaption "Tooltip preferences">
 <!ENTITY feednotifier.preferences.tabgeneral "General">
 <!ENTITY feednotifier.preferences.tabaccountinfo "Account information">
 <!ENTITY feednotifier.preferences.tabopening "Window opening settings">
 <!ENTITY feednotifier.preferences.tabtooltip "Tooltip settings">
-<!ENTITY feednotifier.preferences.openinnewtabdesc "Open Google Reader in a new tab">
+<!ENTITY feednotifier.preferences.openinnewtabdesc "Open the Feed Reder in a new tab">
 <!ENTITY feednotifier.preferences.browserlikeopencheckboxlabel "Advanced mouse handling">
-<!ENTITY feednotifier.preferences.browserlikeopendesc "If you choose this options the icon and the menu items will behave similar to links on the webpages. For example, clicking with middle mouse button will open the Google Reader in a new background tab. Clicking while the shift button is pressed will opens the Google Reader in a new window.">
-<!ENTITY feednotifier.preferences.resetcounterdesc "Resets the statusbar counter when the Google Reader window opens">
+<!ENTITY feednotifier.preferences.browserlikeopendesc "If you choose this options the icon and the menu items will behave similar to links on the webpages. For example, clicking with middle mouse button will open the Feed Reader in a new background tab. Clicking while the shift button is pressed will opens the Feed Reader in a new window.">
+<!ENTITY feednotifier.preferences.resetcounterdesc "Resets the statusbar counter when the Feed Reader window opens">
 <!ENTITY feednotifier.preferences.shownotificationwindow "Show notification window">
 <!ENTITY feednotifier.preferences.showzerocounter "Show the counter even if it would be 0">
 <!ENTITY feednotifier.preferences.showcounter "Show the counter">
@@ -27,7 +27,7 @@
 <!ENTITY feednotifier.preferences.tooltipcounterposdesc "Counter tooltip position:">
 <!ENTITY feednotifier.preferences.tooltipdesc "These options will take effect after a feed check.">
 <!ENTITY feednotifier.preferences.tooltiptitlelengthdesc "Sets the feed title's character number in the tooltip">
-<!ENTITY feednotifier.preferences.accountinfocaption "Google account information">
+<!ENTITY feednotifier.preferences.accountinfocaption "Account information">
 <!ENTITY feednotifier.preferences.accountinfoemail "E-mail address:">
 <!ENTITY feednotifier.preferences.accountinfopassword "Password:">
 <!ENTITY feednotifier.preferences.accountinfohavemultipleaccounts "I have more then one Google account">
@@ -37,7 +37,7 @@
 
 
 -->
-<!ENTITY feednotifier.preferences.leftclickopen.description "Open Google Reader with">
+<!ENTITY feednotifier.preferences.leftclickopen.description "Open Feed Reader with">
 <!ENTITY feednotifier.preferences.leftclickopen.singleclick "Single click">
 <!ENTITY feednotifier.preferences.leftclickopen.dblclick "Double click">
 <!ENTITY feednotifier.preferences.leftclickopen.disabled "Disabled">
@@ -56,4 +56,4 @@
 <!ENTITY feednotifier.preferences.account.tab.username "Username/Password">
 <!ENTITY feednotifier.preferences.account.description.general "If you have only <strong>one Google account</strong> and if <strong>you are logged in</strong> almost <strong>always</strong>, you <strong>don't need to set up</strong> anything here. The extension will use the same session and will work without any issues.">
 <!ENTITY feednotifier.preferences.account.description.username "If 2 step verification is turned off, you can use a simple login method by filling the Username and Password fields.">
-<!ENTITY feednotifier.preferences.account.description.oauth "Use this if you turned on the 2 step verification for your Google Account. However it has a limitation: Using OAuth, the extension can not log you in with the proper account before it opens the page. It means when you click on the icon while you are logged in to another account it will open the Reader page for that account or if you are not logged in at all, you will need to fill the Google login form to access to the Google Reader.">
+<!ENTITY feednotifier.preferences.account.description.oauth "Use this if you turned on the 2 step verification for your Google Account. However it has a limitation: Using OAuth, the extension can not log you in with the proper account before it opens the page. It means when you click on the icon while you are logged in to another account it will open the Reader page for that account or if you are not logged in at all, you will need to fill the Google login form to access to the Feed Reader.">
