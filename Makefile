@@ -48,7 +48,6 @@ xpi:
 		modules/timer.jsm \
 		modules/getter.jsm \
 		modules/mapwindows.jsm \
-		modules/passManager.jsm \
 		modules/MenuClick.jsm \
 		modules/EventProvider.jsm \
 		modules/CustomEvent.jsm \
@@ -69,13 +68,11 @@ xpi:
 		modules/grwMenu.jsm \
 		modules/GrwTooltipGrid.jsm \
 		modules/httpConnect.jsm \
-		modules/siteLogin.jsm \
 		modules/GRWWindow.jsm \
 		modules/GRWWindows.jsm \
 		modules/Oauth2CodeRequester.jsm \
 		modules/Oauth2Token.jsm \
 		modules/Oauth2.jsm \
-		modules/ClientLogin.jsm \
 		modules/stringBundles.jsm \
 		modules/ClickHandler.jsm \
 		modules/getAPIToken.jsm \

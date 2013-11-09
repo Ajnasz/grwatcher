@@ -39,9 +39,6 @@ var Tooltip = function (conf, GRW, openReader) {
     nonew: function (win) {
       setTooltip(win, conf.tooltipNoNewElement);
     },
-    cookieError: function (win) {
-      setTooltip(win, conf.tooltipCookieErrorElement);
-    },
     networkError: function (win) {
       setTooltip(win, conf.tooltipTtbNetworkErrorElement);
     },
@@ -59,10 +56,6 @@ var Tooltip = function (conf, GRW, openReader) {
 
     case 'error':
       actionMethod = actions.error;
-      break;
-
-    case 'cookieerror':
-      actionMethod = actions.cookieError;
       break;
 
     case 'networkerror':

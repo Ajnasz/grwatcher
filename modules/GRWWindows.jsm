@@ -139,9 +139,6 @@ var grwWindows = (function () {
             scope.loginManager.on('loginFailed', function () {
                 that.notify([grwWindow.loginFailed]);
             });
-            scope.loginManager.on('cookieError', function () {
-                that.notify([grwWindow.cookieError]);
-            });
         },
         notify: function (args) {
             this.windows.forEach(function (win) {

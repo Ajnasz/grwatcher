@@ -10,7 +10,6 @@ var tooltipElements = {
         tooltipNewElement: 'GRW-statusbar-tooltip-new',
         tooltipErrorElement: 'GRW-statusbar-tooltip-error',
         nonew: 'GRW-statusbar-tooltip-nonew',
-        cookieError: 'GRW-statusbar-tooltip-cookieerror',
         networkError: 'GRW-statusbar-tooltip-networkerror',
         logionFailed: 'GRW-statusbar-tooltip-loginerror',
         menuItem: 'GRW-statusbar-menu',
@@ -20,7 +19,6 @@ var tooltipElements = {
         tooltipNewElement: 'GRW-toolbar-tooltip-new',
         tooltipErrorElement: 'GRW-toolbar-tooltip-error',
         nonew: 'GRW-toolbar-tooltip-nonew',
-        cookieError: 'GRW-toolbar-tooltip-cookieerror',
         networkError: 'GRW-toolbar-tooltip-networkerror',
         loginFailed: 'GRW-toolbar-tooltip-loginerror',
         menuItem: 'GRW-toolbar-menu',
@@ -66,7 +64,6 @@ GRWWindow.requestStarted = 'requestStarted';
 GRWWindow.requestSuccess = 'requestSuccess';
 
 GRWWindow.loginFailed = 'loginFailed';
-GRWWindow.cookieError = 'cookieError';
 
 GRWWindow.startReaderOpen = 'startReaderOpen';
 GRWWindow.readerOpened = 'readerOpened';
@@ -298,11 +295,6 @@ GRWWindow.prototype = {
         case GRWWindow.loginFailed:
             this.updateIcon('error');
             this.updateTitle(GRWWindow.loginFailed);
-            break;
-
-        case GRWWindow.cookieError:
-            this.updateIcon('error');
-            this.updateTitle(GRWWindow.cookieError);
             break;
 
         case GRWWindow.unreadFound:

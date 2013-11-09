@@ -181,7 +181,6 @@ OpenReader.prototype = {
     open: function (subUrl, how) {
         Components.utils.import("resource://grwmodules/prefs.jsm", scope);
         Components.utils.import("resource://grwmodules/loginmanager.jsm", scope);
-        Components.utils.import("resource://grwmodules/siteLogin.jsm", scope);
         Components.utils.import("resource://grwmodules/generateUri.jsm", scope);
 
         var open = this.getOpenerFunction(subUrl, how);
@@ -189,14 +188,7 @@ OpenReader.prototype = {
         how = how || 'currentTab';
         this.fireEvent('startOpen');
 
-        // Login before page open can not be forced if user logs in with oauth
-        // since we don't have any username and/or password
-        if (scope.prefs.get.haveMultipleAccounts() &&
-                scope.loginManager.getAuthType() !== scope.LoginManager.authTypeOauth2) {
-            scope.siteLogin(open);
-        } else {
-            open();
-        }
+        open();
     }
 };
 Components.utils.import("resource://grwmodules/augment.jsm", scope);

@@ -9,7 +9,6 @@
   */
 var scope = {};
 Components.utils.import("resource://grwmodules/Oauth2.jsm", scope);
-Components.utils.import("resource://grwmodules/ClientLogin.jsm", scope);
 var LoginManager = function () {
     var that = this;
     scope.oauth.on('loginSuccess', function () {
@@ -18,17 +17,7 @@ var LoginManager = function () {
     scope.oauth.on('loginFailed', function (msg) {
         that.loginFailed(msg);
     });
-    scope.clientLogin.on('loginSuccess', function () {
-        that.loginSuccess();
-    });
-    scope.clientLogin.on('loginFailed', function (msg) {
-        that.loginFailed();
-    });
-    scope.clientLogin.on('cookieError', function (msg) {
-        that.cookieError();
-    });
 };
-LoginManager.authTypeClientLogin = 'ClientLogin';
 LoginManager.authTypeOauth2 = 'Oauth2';
 LoginManager.prototype = {
     oauthLogin: function (cb) {
@@ -37,48 +26,17 @@ LoginManager.prototype = {
     getOauthToken: function (cb) {
         scope.oauth.getToken(cb);
     },
-    clientLoginLogin: function (cb) {
-        scope.clientLogin.logIn(cb);
-    },
-    getClientLoginToken: function (cb) {
-        scope.clientLogin.getToken(cb);
-    },
     loginSuccess: function () {
         this.fireEvent('loginSuccess');
     },
     loginFailed: function (msg) {
         this.fireEvent('loginFailed', msg);
     },
-    cookieError: function () {
-        this.fireEvent('cookieError');
-    },
     getToken: function (cb) {
-        switch (this.getAuthType()) {
-        case LoginManager.authTypeOauth2:
-            this.getOauthToken(cb);
-            break;
-        case LoginManager.authTypeClientLogin:
-            this.getClientLoginToken(cb);
-            break;
-        }
-    },
-    getAuthType: function () {
-        var output = LoginManager.authTypeClientLogin;
-        Components.utils.import("resource://grwmodules/prefs.jsm", scope);
-        if (scope.prefs.get.oauthCode()) {
-            output = LoginManager.authTypeOauth2;
-        }
-        return output;
+        this.getOauthToken(cb);
     },
     login: function (cb) {
-        switch (this.getAuthType()) {
-        case LoginManager.authTypeOauth2:
-            this.oauthLogin(cb);
-            break;
-        case LoginManager.authTypeClientLogin:
-            this.clientLoginLogin(cb);
-            break;
-        }
+        this.oauthLogin(cb);
     }
 };
 

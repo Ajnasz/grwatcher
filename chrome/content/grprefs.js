@@ -3,7 +3,6 @@ var GRW = {};
     var scope = {}, doc, setPref, getPref, getById,
         prefFields;
     Components.utils.import("resource://grwmodules/prefs.jsm", scope);
-    Components.utils.import("resource://grwmodules/passManager.jsm", scope);
     Components.utils.import("resource://grwmodules/Oauth2.jsm", scope);
     Components.utils.import("resource://grwmodules/grwlog.jsm", scope);
     doc = document;
