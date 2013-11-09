@@ -156,6 +156,9 @@ Oauth2.prototype = {
             this.accessData.setRefreshToken('');
             this.saveAuthCode(code);
             this.getFirstToken();
+            if (typeof cb === 'function') {
+                cb();
+            }
         }.bind(this));
 
     },
