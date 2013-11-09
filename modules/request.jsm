@@ -25,10 +25,10 @@ const requestTypes = {
 };
 
 var lastRequest = requestTypes.general;
-var request = function (method, uri, callback, postData) {
+var request = function (method, uri, callback, postData, headers) {
     callback = callback || {};
     var retry = function () {
-        scope.getter.asyncRequest(method, uri, callback, postData);
+        scope.getter.asyncRequest(method, uri, callback, postData, headers);
     }, _callback;
     _callback = {
         onSuccess: function (r) {
@@ -61,7 +61,7 @@ var request = function (method, uri, callback, postData) {
         lastRequest = requestTypes.login;
         scope.loginManager.login(retry);
     } else {
-        scope.getter.asyncRequest(method, uri, _callback, postData);
+        scope.getter.asyncRequest(method, uri, _callback, postData, headers);
     }
 };
 

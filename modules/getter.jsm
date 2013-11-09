@@ -16,18 +16,20 @@ var getter = {
   onRequestSuccess: new scope.CustomEvent('onRequestSuccess'),
   onRequestFailed: new scope.CustomEvent('onRequestFailed'),
   onStartRequest: new scope.CustomEvent('onStartRequest'),
-  asyncRequest: function (method, uri, callback, postData) {
+  asyncRequest: function (method, uri, callback, postData, headers) {
     getter.onStartRequest.fire();
     // var req = new XMLHttpRequest();
     var req = Components.classes["@mozilla.org/xmlextras/xmlhttprequest;1"]
                .createInstance(Components.interfaces.nsIXMLHttpRequest),
       agent = 'Google Reader Watcher ___VERSION___',
-      headers,
+      defaultHeaders,
       h;
     if (!req) {
       getter.onRequestFailed.fire();
       return false;
     }
+
+    headers = headers || {};
 
     if (method.toUpperCase() === 'GET') {
       if (postData) {
@@ -41,15 +43,15 @@ var getter = {
     req.setRequestHeader('Accept-Charset', 'utf-8');
     req.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
 
-    if (method.toUpperCase() === 'POST') {
+    if (method.toUpperCase() === 'POST' && !headers['Content-Type']) {
       req.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     }
     req.setRequestHeader('User-Agent', agent);
 
-    headers = getter.getDefaultHeaders();
-    for (h in headers) {
-      if (headers.hasOwnProperty(h)) {
-        req.setRequestHeader(h, headers[h]);
+    defaultHeaders = getter.getDefaultHeaders();
+    for (h in defaultHeaders) {
+      if (defaultHeaders.hasOwnProperty(h)) {
+        req.setRequestHeader(h, defaultHeaders[h]);
       }
     }
     h = null;
