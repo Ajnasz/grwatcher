@@ -84,7 +84,12 @@ var GRW = {};
     function savePreferences() {
         workOnPrefs(true);
         Components.utils.import("resource://grwmodules/GRWWindows.jsm", scope);
-        scope.grwWindows.updateGRStates();
+
+        if (scope.prefs.get.oauthCode()) {
+            scope.grwWindows.updateGRStates();
+        } else {
+            scope.grwWindows.resetUI();
+        }
     }
 
     function setPrefPaneVals() {
@@ -124,16 +129,19 @@ var GRW = {};
         }
     }
     
-    function counterHandler() {
+
+    function updateZeroCounter() {
         var counterField = getById('GRW-showcounter-field'),
             zeroCounterField = getById('GRW-showzerocounter-field'),
             maxCounterField = getById('GRW-maximizecounter-field'),
-            updateZeroCounter;
-        updateZeroCounter = function () {
-            var disabled = counterField.checked ? '' : 'disabled';
-            zeroCounterField.disabled = disabled;
-            maxCounterField.disabled = disabled;
-        };
+            disabled = counterField.checked ? '' : 'disabled';
+
+        zeroCounterField.disabled = disabled;
+        maxCounterField.disabled = disabled;
+    }
+    function counterHandler() {
+        var counterField = getById('GRW-showcounter-field');
+
         counterField.addEventListener('command', updateZeroCounter, false);
         updateZeroCounter();
     }

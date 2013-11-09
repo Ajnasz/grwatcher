@@ -206,9 +206,11 @@ var grwWindows = (function () {
         },
         updateGRStates: function () {
             scope.later(function () {
-                scope.grwlog('UPDATE GR STATES');
                 requester.restart();
             }, 100);
+        },
+        resetUI: function () {
+            this.notify([scope.GRWWindow.nonew]);
         }
     };
 
