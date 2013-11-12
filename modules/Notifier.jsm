@@ -7,11 +7,13 @@ Components.utils.import("resource://grwmodules/prefs.jsm", scope);
 Notifier.prototype = {
     showNotification: true,
     enabled: function () {
+        "use strict";
         return scope.prefs.get.showNotificationWindow() && this.showNotification;
     },
     notificationWin: function (value) {
+        "use strict";
         var label = 'Feed Notifier',
-            image = "chrome://grwatcher/skin/grwatcher.png",
+            image = "chrome://grwatcher/skin/images/addon-icon-64.png",
             alertsService,
             alertWin,
             that = this,
@@ -53,6 +55,7 @@ Notifier.prototype = {
         }
     },
     show: function (unreadCount, maxcount) {
+        "use strict";
         if (this.enabled() && unreadCount > 0) {
             var showval;
             Components.utils.import("resource://grwmodules/stringBundles.jsm", scope);
