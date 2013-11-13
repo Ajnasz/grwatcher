@@ -110,6 +110,9 @@ var grwWindows = (function () {
             });
         },
         onItemsMatched: function () {
+            if (!getlist.matchedData) {
+                return;
+            }
             var unreads = getlist.matchedData.unreads,
                 max = getlist.matchedData.max,
                 elems = getlist._unreadCount,
