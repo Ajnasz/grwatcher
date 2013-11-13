@@ -22,15 +22,15 @@ clientConfigs = {
         scope: 'https://cloud.feedly.com/subscriptions',
         windowName: 'Feedly Auth request',
         windowParams: 'location=yes,status=yes,width=500,height=410',
-        redirectUri: 'http://localhost'
-        // redirectUri: 'urn:ietf:wg:oauth:2.0:oob'
+        // redirectUri: 'http://localhost'
+        redirectUri: 'urn:ietf:wg:oauth:2.0:oob'
     }
 };
 
 clientConfig = clientConfigs.feedlySandbox;
 
 context = {};
-// Components.utils.import("resource://grwmodules/grwlog.jsm", context);
+Components.utils.import("resource://grwmodules/grwlog.jsm", context);
 Components.utils.import("resource://grwmodules/prefs.jsm", context);
 Components.utils.import("resource://grwmodules/getter.jsm", context);
 
