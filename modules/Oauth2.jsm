@@ -3,37 +3,14 @@
 
 var clientConfigs, context, clientConfig;
 
-clientConfigs = {
-    google: {
-        clientID: '18154408674.apps.googleusercontent.com',
-        clientSecret: '7uN4ujGfnbItwS6NbqWgbEJ5',
-        oAuthURL: 'https://accounts.google.com/o/oauth2/auth',
-        oAuthTokenURL: 'https://accounts.google.com/o/oauth2/token',
-        scope: 'https://www.google.com/reader/api/0',
-        windowName: 'GRWatcher Auth request',
-        windowParams: 'location=yes,status=yes,width=500,height=410',
-        redirectUri: 'urn:ietf:wg:oauth:2.0:oob'
-    },
-    feedlySandbox: {
-        clientID: 'sandbox',
-        clientSecret: 'Z5ZSFRASVWCV3EFATRUY', // expires 12/1/2013
-        oAuthURL: 'https://sandbox.feedly.com/v3/auth/auth',
-        oAuthTokenURL: 'http://sandbox.feedly.com/v3/auth/token',
-        scope: 'https://cloud.feedly.com/subscriptions',
-        windowName: 'Feedly Auth request',
-        windowParams: 'location=yes,status=yes,width=500,height=410',
-        // redirectUri: 'http://localhost'
-        redirectUri: 'urn:ietf:wg:oauth:2.0:oob'
-    }
-};
-
-clientConfig = clientConfigs.feedlySandbox;
 
 context = {};
+Components.utils.import("resource://grwmodules/clientConfigs.jsm", context);
 Components.utils.import("resource://grwmodules/grwlog.jsm", context);
 Components.utils.import("resource://grwmodules/prefs.jsm", context);
 Components.utils.import("resource://grwmodules/getter.jsm", context);
 
+clientConfig = context.clientConfig;
 
 function makeRequeset(args) {
     "use strict";

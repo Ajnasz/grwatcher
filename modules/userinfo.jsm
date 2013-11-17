@@ -1,13 +1,5 @@
 /*jslint indent: 2*/
 /*global Components*/
-var clientConfigs = {
-  google: {
-    userinfoURI: ['www.google.com/reader/api/0/user-info']
-  },
-  feedlySandbox: {
-    userinfoURI: ['sandbox.feedly.com/v3/profile']
-  }
-};
 var clientConfig = clientConfigs.feedlySandbox;
 var scope = {};
 var userData = null;

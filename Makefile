@@ -42,6 +42,7 @@ xpi:
 		install.rdf \
 		modules/JSON.jsm \
 		modules/augment.jsm \
+		modules/clientConfigs.jsm \
 		modules/generateUri.jsm \
 		modules/prefs.jsm \
 		modules/grwlog.jsm \

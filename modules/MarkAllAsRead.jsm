@@ -7,23 +7,11 @@ Components.utils.import("resource://grwmodules/augment.jsm", scope);
 Components.utils.import("resource://grwmodules/EventProvider.jsm", scope);
 Components.utils.import("resource://grwmodules/stringBundles.jsm", scope);
 Components.utils.import("resource://grwmodules/userinfo.jsm", scope);
-var clientConfigs = {
-    google: {
-        markAsReadUrl: 'www.google.com/reader/api/0/mark-all-as-read?client=scroll'
-    },
-    feedlySandbox: {
-        markAsReadUrl: 'sandbox.feedly.com/v3/markers',
-        categoriesUrl: 'sandbox.feedly.com/v3/categories',
-        subscriptionsUrl: 'sandbox.feedly.com/v3/subscriptions',
-        streamEntryUrl: 'sandbox.feedly.com/v3/streams/xSTREAMIDx/ids',
-        markAsReadParams: {
-            action: 'markAsRead'
-            // lastReadEntryId: 'xUSERIDx'
-        }
-    }
-};
-var clientConfig = clientConfigs.feedlySandbox;
-function MarkAllAsRead () {
+Components.utils.import("resource://grwmodules/clientConfigs.jsm", scope);
+
+var clientConfig = scope.clientConfig;
+
+function MarkAllAsRead() {
     "use strict";
 }
 MarkAllAsRead.prototype = {

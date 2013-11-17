@@ -2,18 +2,9 @@
 var scope = {};
 Components.utils.import("resource://grwmodules/prefs.jsm", scope);
 Components.utils.import("resource://grwmodules/grwlog.jsm", scope);
+Components.utils.import("resource://grwmodules/clientConfigs.jsm", scope);
 /*global Components:true */
-var clientsConfig = {
-    google: {
-        readerURL: 'www.google.com/reader/view',
-        subscriptionPrefix: '#stream'
-    },
-    feedlySandbox: {
-        readerURL: 'sandbox.feedly.com/',
-        subscriptionPrefix: '#subscription'
-    }
-};
-var clientConfig = clientsConfig.feedlySandbox;
+var clientConfig = scope.clientsConfig;
 var getPref = scope.prefs.get;
 
 var getOpenedGR = function (gBrowser) {
