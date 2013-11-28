@@ -26,12 +26,25 @@
 
   <tabbox id="GRW-preferences-tabbox">
     <tabs>
-      <tab label="&feednotifier.preferences.tabgeneral;" />
       <tab label="&feednotifier.preferences.tabaccountinfo;" />
+      <tab label="&feednotifier.preferences.tabgeneral;" />
       <tab label="&feednotifier.preferences.tabtooltip;" />
       <tab label="&feednotifier.preferences.tabopening;" />
     </tabs>
     <tabpanels>
+      <tabpanel>
+        <groupbox flex="1">
+
+          <caption label="&feednotifier.preferences.accountinfocaption;" />
+          <vbox>
+            <description>&feednotifier.preferences.setupoauth;</description>
+            <box align="center">
+            <button id="GRW-oauth-opener" style="list-style-image: url('chrome://grwatcher/skin/oauth-2-sm-s.png');" label="Setup OAuth2" />
+            <button id="GRW-oauth-clear" label="Clear OAuth2 settings" />
+            </box>
+          </vbox>
+        </groupbox>
+      </tabpanel>
       <tabpanel>
         <vbox flex="1">
           <groupbox flex="1">
@@ -61,19 +74,6 @@
 
           </groupbox>
         </vbox>
-      </tabpanel>
-      <tabpanel>
-        <groupbox flex="1">
-
-          <caption label="&feednotifier.preferences.accountinfocaption;" />
-          <vbox>
-            <description>&feednotifier.preferences.setupoauth;</description>
-            <box align="center">
-            <button id="GRW-oauth-opener" style="list-style-image: url('chrome://grwatcher/skin/oauth-2-sm-s.png');" label="Setup OAuth2" />
-            <button id="GRW-oauth-clear" label="Clear OAuth2 settings" />
-            </box>
-          </vbox>
-        </groupbox>
       </tabpanel>
       <tabpanel>
         <groupbox flex="1">
