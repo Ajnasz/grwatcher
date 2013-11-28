@@ -12,7 +12,7 @@
    height="200"
    id="RSSicon"
    viewBox="0 0 400 400"
-   inkscape:version="0.47 r22583"
+   inkscape:version="0.48.4 r9939"
    sodipodi:docname="feed-icon.svg">
   <metadata
      id="metadata2848">
@@ -35,16 +35,16 @@
      guidetolerance="10"
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
-     inkscape:window-width="1680"
-     inkscape:window-height="1009"
+     inkscape:window-width="1582"
+     inkscape:window-height="877"
      id="namedview2846"
      showgrid="false"
      showguides="true"
      inkscape:guide-bbox="true"
      inkscape:zoom="2.7698245"
-     inkscape:cx="95.616486"
+     inkscape:cx="37.49006"
      inkscape:cy="96.371743"
-     inkscape:window-x="0"
+     inkscape:window-x="18"
      inkscape:window-y="0"
      inkscape:window-maximized="1"
      inkscape:current-layer="layer3">
@@ -174,7 +174,7 @@
        d="M 194.56013,205.90582 A 140,140 0 0 0 54.560135,65.905807 V 30.905804 A 175,175 0 0 1 229.56013,205.90582 z"
        id="path2844-4" />
     <rect
-       style="fill:#b0e0e6"
+       style="fill:#656565;fill-opacity:1"
        id="rect2903-9"
        y="-7.094192"
        x="10.560131"
@@ -183,7 +183,7 @@
        height="256"
        width="256" />
     <rect
-       style="fill:#4682b4"
+       style="fill:#656565;fill-opacity:1"
        id="rect2905-5"
        y="-2.094192"
        x="15.560131"
@@ -263,7 +263,7 @@
        d="m 68.094194,139.41885 a 140,140 0 0 0 -140,-139.9999969 V -35.581147 A 175,175 0 0 1 103.09419,139.41885 z"
        id="path2844-1" />
     <rect
-       style="fill:#b0e0e6"
+       style="fill:#009700;fill-opacity:1"
        id="rect2903-4"
        y="-73.581161"
        x="-115.90581"
@@ -272,7 +272,7 @@
        height="256"
        width="256" />
     <rect
-       style="fill:#4682b4"
+       style="fill:#009700;fill-opacity:1"
        id="rect2905-9"
        y="-68.581161"
        x="-110.90581"
@@ -345,7 +345,7 @@
        d="M 105.0942,268.90581 A 140,140 0 0 0 -34.905796,128.9058 v -35 A 175,175 0 0 1 140.09419,268.90581 z"
        id="path2844-2" />
     <rect
-       style="fill:#b0e0e6"
+       style="fill:#fe6f00;fill-opacity:1"
        id="rect2903-2"
        y="55.905807"
        x="-78.905785"
@@ -354,7 +354,7 @@
        height="256"
        width="256" />
     <rect
-       style="fill:#4682b4"
+       style="fill:#fe6f00;fill-opacity:1"
        id="rect2905-6"
        y="60.905807"
        x="-73.905785"

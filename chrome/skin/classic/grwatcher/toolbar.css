@@ -1,6 +1,10 @@
 [iconsize="small"] #GRW-toolbar-button,
 #GRW-toolbar-button {
-  list-style-image: url(chrome://grwatcher/skin/images/active-toolbar-15-new.png);
+  list-style-image: url(chrome://grwatcher/skin/images/active-toolbar-16.png);
+}
+#GRW-toolbar-button[cui-areatype="menu-panel"],
+toolbarpaletteitem[place="palette"] #GRW-toolbar-button {
+  list-style-image: url(chrome://grwatcher/skin/images/active-toolbar-32.png);
 }
 #GRW-toolbar-button.off {
   list-style-image: url(chrome://grwatcher/skin/images/inactive-toolbar-15.png);
@@ -15,4 +19,8 @@
   display: -moz-box;
   -moz-box-align: center;
   -moz-box-orient: horizontal;
+}
+#GRW-toolbar-label-container[cui-areatype="menu-panel"],
+toolbarpaletteitem[place="palette"] #GRW-toolbar-label-container {
+  display: none;
 }

@@ -84,6 +84,8 @@ xpi:
 		chrome/skin/classic/grwatcher/menu.css \
 		chrome/skin/classic/grwatcher/preferences.css \
 		chrome/skin/classic/grwatcher/images/active-toolbar-15-new.png \
+		chrome/skin/classic/grwatcher/images/active-toolbar-16.png \
+		chrome/skin/classic/grwatcher/images/active-toolbar-32.png \
 		chrome/skin/classic/grwatcher/images/inactive-toolbar-15.png \
 		chrome/skin/classic/grwatcher/images/error-toolbar-15.png \
 		chrome/skin/classic/grwatcher/images/loading-toolbar-15.png \
