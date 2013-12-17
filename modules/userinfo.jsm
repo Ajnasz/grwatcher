@@ -1,7 +1,8 @@
 /*jslint indent: 2*/
 /*global Components*/
-var clientConfig = clientConfigs.feedlySandbox;
 var scope = {};
+Components.utils.import("resource://grwmodules/clientConfigs.jsm", scope);
+var clientConfig = scope.clientConfig;
 var userData = null;
 var userInfo = {
   request: function (cb) {

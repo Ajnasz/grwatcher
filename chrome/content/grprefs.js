@@ -41,6 +41,7 @@ var GRW = {};
                 nodeName,
                 elemValueSetterProp,
                 value;
+
             if (!elem) {
                 return;
             }
@@ -70,7 +71,11 @@ var GRW = {};
                 if (save) {
                     setPref[cmd](value, elem);
                 } else {
-                    elem[elemValueSetterProp] = getPref[cmd](elem);
+                    value = getPref[cmd](elem);
+                    if (elem.getAttribute('min') && elem.getAttribute('min') > value) {
+                        value = elem.getAttribute('min');
+                    }
+                    elem[elemValueSetterProp] = value;
                 }
             }
         };
@@ -166,9 +171,10 @@ var GRW = {};
         updateAccountTabs();
     }
     GRW.initPrefs = function () {
+        getById('GRW-checkfreq-field').setAttribute('min', 30);
         setPrefPaneVals();
         openNewTabCheckToogle();
-        document.getElementById('GRW-openinnewtab-field')
+        getById('GRW-openinnewtab-field')
             .addEventListener('command', openNewTabCheckToogle, false);
         windowOpenHandler();
         getById('GRW-browserlikeopen-field').addEventListener('command', windowOpenHandler, false);
