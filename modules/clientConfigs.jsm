@@ -11,7 +11,8 @@ var clientConfigs = {
         redirectUri: 'urn:ietf:wg:oauth:2.0:oob',
         readerURL: 'www.google.com/reader/view',
         markAsReadUrl: 'www.google.com/reader/api/0/mark-all-as-read?client=scroll',
-        subscriptionPrefix: '#stream'
+        subscriptionPrefix: '#stream',
+        minCheckFreq: 1
 	},
 	feedlySandbox: {
 		userinfoURI: ['sandbox.feedly.com/v3/profile'],
@@ -33,7 +34,8 @@ var clientConfigs = {
             action: 'markAsRead'
             // lastReadEntryId: 'xUSERIDx'
         },
-        subscriptionPrefix: '#subscription'
+        subscriptionPrefix: '#subscription',
+        minCheckFreq: 30
 	}
 };
 var clientConfig = clientConfigs.feedlySandbox;

@@ -25,12 +25,14 @@ Requester.prototype = {
     "use strict";
     Components.utils.import("resource://grwmodules/timer.jsm", context);
     Components.utils.import("resource://grwmodules/prefs.jsm", context);
+    Components.utils.import("resource://grwmodules/clientConfigs.jsm", context);
 
     if (this.timer) {
       context.never(this.timer);
     }
 
-    var minCheck = 1,
+    // get minimum check frequency from config or set to 1
+    var minCheck = context.minCheckFreq || 1,
       configuredCheck = context.prefs.get.checkFreq(),
       freq = (configuredCheck >= minCheck) ? configuredCheck : minCheck;
 

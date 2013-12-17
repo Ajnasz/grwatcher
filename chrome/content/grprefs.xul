@@ -53,7 +53,7 @@
 
             <hbox align="center">
               <label control="GRW-checkfreq-field" value="&feednotifier.preferences.checkfrequency;" />
-              <textbox id="GRW-checkfreq-field" size="2" cols="2" />
+              <textbox id="GRW-checkfreq-field" size="2" cols="2" type="number" min="1" />
             </hbox>
             <hbox align="center">
               <label control="GRW-delayStart-field" value="&feednotifier.preferences.delaystart;" />

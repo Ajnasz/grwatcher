@@ -1,11 +1,18 @@
 var GRW = {};
 (function () {
-    var scope = {}, doc, setPref, getPref, getById,
+    var scope = {},
+        doc,
+        setPref,
+        getPref,
+        getById,
+        clientConfig,
         prefFields;
     Components.utils.import("resource://grwmodules/prefs.jsm", scope);
     Components.utils.import("resource://grwmodules/Oauth2.jsm", scope);
     Components.utils.import("resource://grwmodules/grwlog.jsm", scope);
+    Components.utils.import("resource://grwmodules/clientConfigs.jsm", scope);
     doc = document;
+    clientConfig = scope.clientConfig;
     setPref = scope.prefs.set;
     getPref = scope.prefs.get;
     getById = function (id) {
@@ -171,7 +178,7 @@ var GRW = {};
         updateAccountTabs();
     }
     GRW.initPrefs = function () {
-        getById('GRW-checkfreq-field').setAttribute('min', 30);
+        getById('GRW-checkfreq-field').setAttribute('min', clientConfig.minCheckFreq);
         setPrefPaneVals();
         openNewTabCheckToogle();
         getById('GRW-openinnewtab-field')
